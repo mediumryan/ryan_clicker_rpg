@@ -32,13 +32,13 @@ type_map = {
     "쌍절곤": "nunchaku"
 }
 
-initial_damage = 45
+initial_damage = 100.0
 initial_crit_chance = 0.1
 initial_crit_multiplier = 1.35
 initial_sell_price = 125.0 # Adjusted for 12.5x
 
-damage_growth_factor = 1.20 # New exponential growth factor
-price_increment = 250.0 # Adjusted for 12.5x
+damage_growth_factor = 1.75 # New exponential growth factor
+price_increment = 500.0 # Adjusted for 12.5x
 crit_chance_increment = 0.025
 crit_multiplier_increment = 0.05
 

@@ -162,7 +162,7 @@ class InventoryScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Damage: ${weapon.damage.toStringAsFixed(0)}',
+                  'Damage: ${weapon.calculatedDamage.toStringAsFixed(0)}',
                   style: const TextStyle(color: Colors.white70),
                 ),
                 Text(

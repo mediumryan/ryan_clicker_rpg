@@ -26,7 +26,9 @@ class GameProvider with ChangeNotifier {
   Future<void> initializeGame() async {
     // New public initialization method
     await _loadGame(); // Load player data
-    _player.acquiredWeaponIdsHistory.add(_player.equippedWeapon.id); // ADD THIS LINE: Ensure equipped weapon is always in history
+    _player.acquiredWeaponIdsHistory.add(
+      _player.equippedWeapon.id,
+    ); // ADD THIS LINE: Ensure equipped weapon is always in history
     _spawnMonster(); // Spawn initial monster
   }
 
@@ -58,7 +60,8 @@ class GameProvider with ChangeNotifier {
 
   Map<String, dynamic> attackMonster() {
     // Calculate damage
-    double totalDamage = _player.equippedWeapon.damage;
+    double totalDamage =
+        _player.equippedWeapon.calculatedDamage; // Changed to calculatedDamage
     bool isCritical =
         Random().nextDouble() < _player.equippedWeapon.criticalChance;
     if (isCritical) {
@@ -83,7 +86,7 @@ class GameProvider with ChangeNotifier {
       _isMonsterDefeated = true; // Set to true when monster is defeated
       notifyListeners(); // Notify listeners immediately to update UI
 
-      _player.gold += (_player.currentStage * 5)
+      _player.gold += (_player.currentStage * 25)
           .toDouble(); // Gold reward based on stage level
       // Drop enhancement stones with a low probability
       if (Random().nextDouble() < 0.1) {
@@ -147,33 +150,17 @@ class GameProvider with ChangeNotifier {
     }
   }
 
-  // Returns a message indicating the result of the level up attempt.
-  String levelUpEquippedWeapon() {
-    final weapon = _player.equippedWeapon;
-    final cost = weapon.level * 100; // Placeholder for cost formula
-
-    if (_player.gold >= cost) {
-      _player.gold -= cost;
-      weapon.investedGold += cost; // Track invested gold
-      weapon.level++;
-      weapon.damage +=
-          weapon.level * 2; // Placeholder for damage increase formula
-      notifyListeners();
-      _saveGame(); // Save game after level up
-      return '레벨업 성공! Lvl: ${weapon.level}, Dmg: ${weapon.damage.toStringAsFixed(0)}';
-    } else {
-      return '골드가 부족합니다. (필요: $cost)';
-    }
-  }
-
   // Returns a message indicating the result of the enhancement attempt.
   String enhanceEquippedWeapon() {
     final weapon = _player.equippedWeapon;
+
+    if (weapon.enhancement >= weapon.maxEnhancement) {
+      return '이미 최대 강화 단계입니다.';
+    }
+
     final goldCost =
-        (weapon.enhancement + 1) * 1000; // Placeholder for cost formula
-    final stoneCost = weapon.level <= 50
-        ? 0
-        : weapon.enhancement + 1; // No stone cost for weapons up to level 50
+        (100 + (weapon.baseLevel * 10)) * 5 + (weapon.enhancement * 250);
+    final stoneCost = 1 + (weapon.baseLevel / 100).floor() + weapon.enhancement;
 
     if (_player.gold < goldCost) {
       return '골드가 부족합니다. (필요: $goldCost)';
@@ -184,30 +171,63 @@ class GameProvider with ChangeNotifier {
 
     _player.gold -= goldCost;
     _player.enhancementStones -= stoneCost;
-    weapon.investedGold += goldCost; // Track invested gold
-    weapon.investedEnhancementStones += stoneCost; // Track invested stones
-    weapon.enhancement++;
-    weapon.damage *= 1.5; // Placeholder for damage increase formula
+    weapon.investedGold += goldCost;
+    weapon.investedEnhancementStones += stoneCost;
 
-    notifyListeners();
-    _saveGame(); // Save game after enhancement
-    return '강화 성공! +${weapon.enhancement} (Dmg: ${weapon.damage.toStringAsFixed(0)})';
+    final enhancementLevel = weapon.enhancement;
+    const probabilities = [1.0, 0.9, 0.75, 0.6, 0.5];
+    // const damageMultipliers = [1.05, 1.07, 1.10, 1.15, 1.20]; // Removed, damage is calculated by getter
+
+    if (enhancementLevel >= probabilities.length) {
+      return '더 이상 강화할 수 없습니다.'; // Or handle as an error
+    }
+
+    final successChance = probabilities[enhancementLevel];
+
+    if (Random().nextDouble() < successChance) {
+      // Success
+      // weapon.damage *= damageMultipliers[enhancementLevel]; // Removed direct damage modification
+      weapon.enhancement++;
+      notifyListeners();
+      _saveGame();
+      return '강화 성공! +${weapon.enhancement} (Dmg: ${weapon.calculatedDamage.toStringAsFixed(0)})'; // Changed to calculatedDamage
+    } else {
+      // Failure
+      String penaltyMessage;
+      if (enhancementLevel == 3) {
+        // 3 -> 4, level down
+        weapon.enhancement--;
+        penaltyMessage = '강화 실패... 강화 단계가 1 하락했습니다.';
+      } else if (enhancementLevel == 4) {
+        // 4 -> 5, reset
+        weapon.enhancement = 0;
+        penaltyMessage = '강화 실패... 강화 단계가 초기화되었습니다.';
+      } else {
+        // maintain
+        penaltyMessage = '강화에 실패했지만 단계는 유지됩니다.';
+      }
+      notifyListeners();
+      _saveGame();
+      return penaltyMessage;
+    }
   }
 
   // Returns a message indicating the result of the transcendence attempt.
   String transcendEquippedWeapon() {
     final weapon = _player.equippedWeapon;
 
-    // Check conditions
-    if (weapon.level < weapon.maxLevel) {
-      return '초월하려면 최대 레벨(${weapon.maxLevel})에 도달해야 합니다.';
+    if (weapon.transcendence >= weapon.maxTranscendence) {
+      return '이미 최대 초월 단계입니다.';
     }
+
     if (weapon.enhancement < weapon.maxEnhancement) {
       return '초월하려면 최대 강화(+${weapon.maxEnhancement})에 도달해야 합니다.';
     }
 
-    final goldCost = 100000; // Placeholder for cost formula
-    final stoneCost = 1; // Placeholder for cost formula
+    final goldCost =
+        (100 + (weapon.baseLevel * 10)) * 100 * (weapon.transcendence + 1);
+    final stoneCost =
+        (1 + (weapon.baseLevel / 200).floor()) * (weapon.transcendence + 1);
 
     if (_player.gold < goldCost) {
       return '골드가 부족합니다. (필요: $goldCost)';
@@ -218,16 +238,29 @@ class GameProvider with ChangeNotifier {
 
     _player.gold -= goldCost;
     _player.transcendenceStones -= stoneCost;
-    weapon.investedGold += goldCost; // Track invested gold
-    weapon.investedTranscendenceStones += stoneCost; // Track invested stones
-    weapon.transcendence++;
-    weapon.level = 1;
-    weapon.enhancement = 0;
-    weapon.damage *= 5; // Placeholder for game balance
+    weapon.investedGold += goldCost;
+    weapon.investedTranscendenceStones += stoneCost;
 
-    notifyListeners();
-    _saveGame(); // Save game after transcendence
-    return '초월 성공! [${weapon.transcendence}] (Dmg: ${weapon.damage.toStringAsFixed(0)})';
+    final transcendenceLevel = weapon.transcendence;
+    const probabilities = [1.0, 0.75, 0.5, 0.3, 0.1];
+    // const damageMultipliers = [1.75, 2.25, 2.75, 3.25, 4.0]; // Removed, damage is calculated by getter
+
+    if (Random().nextDouble() < probabilities[transcendenceLevel]) {
+      // Success
+      // weapon.damage *= damageMultipliers[transcendenceLevel]; // Removed direct damage modification
+      weapon.transcendence++;
+      weapon.enhancement = 0; // Reset enhancement on success
+      notifyListeners();
+      _saveGame();
+      return '초월 성공! [${weapon.transcendence}] (Dmg: ${weapon.calculatedDamage.toStringAsFixed(0)})'; // Changed to calculatedDamage
+    } else {
+      // Failure
+      weapon.enhancement = 0;
+      weapon.transcendence = 0;
+      notifyListeners();
+      _saveGame();
+      return '초월 실패... 강화 및 초월 단계가 초기화되었습니다.';
+    }
   }
 
   void equipWeapon(Weapon weaponToEquip) {
@@ -270,15 +303,13 @@ class GameProvider with ChangeNotifier {
     }
   }
 
-  String buyRandomWeaponBox({required int cost}) {
+  String buyTranscendenceStones({required int amount, required int cost}) {
     if (_player.gold >= cost) {
       _player.gold -= cost;
-      final newWeapon = WeaponData.getGuaranteedRandomWeapon();
-      _player.inventory.add(newWeapon);
-      _player.acquiredWeaponIdsHistory.add(newWeapon.id); // Add to history
+      _player.transcendenceStones += amount;
       notifyListeners();
       _saveGame(); // Save game after purchase
-      return '[${newWeapon.name}] 획득!';
+      return '$amount개의 초월석을 구매했습니다.';
     } else {
       return '골드가 부족합니다.';
     }

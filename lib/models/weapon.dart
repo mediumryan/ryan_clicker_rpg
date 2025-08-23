@@ -1,3 +1,5 @@
+import 'dart:math';
+
 enum Rarity { common, uncommon, rare, unique, epic, legend, demigod, god }
 
 enum SpecialAbilityType { onHitProcDamage }
@@ -28,10 +30,9 @@ class Weapon {
   final Rarity rarity;
   final WeaponType type;
   final int baseLevel;
-  int level;
   int enhancement;
   int transcendence;
-  double damage;
+  final double baseDamage; // New: Base damage
   double criticalChance;
   double criticalDamage;
   double baseSellPrice;
@@ -47,18 +48,41 @@ class Weapon {
   double? abilityProcChance;
   double? abilityValue;
 
-  int get maxLevel {
-    if (baseLevel <= 100) return 100;
-    if (baseLevel <= 200) return 200;
-    if (baseLevel <= 300) return 300;
-    return (baseLevel / 100).ceil() * 100;
-  }
+  int get maxTranscendence => 5;
 
   int get maxEnhancement {
-    if (baseLevel <= 100) return 5;
-    if (baseLevel <= 200) return 10;
-    if (baseLevel <= 300) return 15;
-    return (baseLevel / 100).ceil() * 5;
+    if (baseLevel <= 149) {
+      return 5;
+    } else if (baseLevel <= 199) {
+      return 7;
+    } else if (baseLevel <= 399) {
+      return 10;
+    } else if (baseLevel <= 500) {
+      return 15;
+    }
+    return 0; // Default for any other case
+  }
+
+  double get calculatedDamage {
+    double currentDamage = baseDamage;
+
+    // Apply enhancement multipliers
+    const enhancementMultipliers = [1.05, 1.07, 1.10, 1.15, 1.20];
+    for (int i = 0; i < enhancement; i++) {
+      if (i < enhancementMultipliers.length) {
+        currentDamage *= enhancementMultipliers[i];
+      }
+    }
+
+    // Apply transcendence multipliers
+    const transcendenceMultipliers = [1.75, 2.25, 2.75, 3.25, 4.0];
+    for (int i = 0; i < transcendence; i++) {
+      if (i < transcendenceMultipliers.length) {
+        currentDamage *= transcendenceMultipliers[i];
+      }
+    }
+
+    return currentDamage;
   }
 
   Weapon({
@@ -68,10 +92,9 @@ class Weapon {
     required this.rarity,
     required this.type,
     required this.baseLevel,
-    this.level = 1,
     this.enhancement = 0,
     this.transcendence = 0,
-    required this.damage,
+    required this.baseDamage, // Changed from damage to baseDamage
     required this.criticalChance,
     required this.criticalDamage,
     required this.baseSellPrice,
@@ -91,10 +114,9 @@ class Weapon {
     'rarity': rarity.toString(),
     'type': type.toString(),
     'baseLevel': baseLevel,
-    'level': level,
     'enhancement': enhancement,
     'transcendence': transcendence,
-    'damage': damage,
+    'baseDamage': baseDamage, // Added baseDamage
     'criticalChance': criticalChance,
     'criticalDamage': criticalDamage,
     'baseSellPrice': baseSellPrice,
@@ -115,10 +137,9 @@ class Weapon {
       rarity: Rarity.values.firstWhere((e) => e.toString() == json['rarity']),
       type: WeaponType.values.firstWhere((e) => e.toString() == json['type']),
       baseLevel: json['baseLevel'],
-      level: json['level'],
       enhancement: json['enhancement'],
       transcendence: json['transcendence'],
-      damage: json['damage'],
+      baseDamage: json['damage'], // Read damage from json as baseDamage
       criticalChance: json['criticalChance'],
       criticalDamage: json['criticalDamage'],
       baseSellPrice: json['baseSellPrice'] ?? 0.0,
@@ -144,10 +165,10 @@ class Weapon {
       rarity: Rarity.common,
       type: WeaponType.rapier,
       baseLevel: 0,
-      damage: 45.0,
+      baseDamage: 100.0, // Changed from damage to baseDamage
       criticalChance: 0.1,
       criticalDamage: 1.35,
-      baseSellPrice: 10.0,
+      baseSellPrice: 125.0,
     );
   }
 
@@ -158,10 +179,9 @@ class Weapon {
     Rarity? rarity,
     WeaponType? type,
     int? baseLevel,
-    int? level,
     int? enhancement,
     int? transcendence,
-    double? damage,
+    double? baseDamage, // Changed from damage to baseDamage
     double? criticalChance,
     double? criticalDamage,
     double? baseSellPrice,
@@ -180,10 +200,9 @@ class Weapon {
       rarity: rarity ?? this.rarity,
       type: type ?? this.type,
       baseLevel: baseLevel ?? this.baseLevel,
-      level: level ?? this.level,
       enhancement: enhancement ?? this.enhancement,
       transcendence: transcendence ?? this.transcendence,
-      damage: damage ?? this.damage,
+      baseDamage: baseDamage ?? this.baseDamage, // Changed from damage to baseDamage
       criticalChance: criticalChance ?? this.criticalChance,
       criticalDamage: criticalDamage ?? this.criticalDamage,
       baseSellPrice: baseSellPrice ?? this.baseSellPrice,

@@ -51,7 +51,7 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
     super.didUpdateWidget(oldWidget);
     if (widget.isMonsterDefeated && !oldWidget.isMonsterDefeated) {
       // Monster just got defeated, start timer
-      _defeatTimer = Timer(const Duration(seconds: 2), () {
+      _defeatTimer = Timer(const Duration(milliseconds: 500), () {
         widget.onGoToNextStage();
       });
     } else if (!widget.isMonsterDefeated && oldWidget.isMonsterDefeated) {
@@ -134,8 +134,15 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      widget.monster.name,
-                      style: const TextStyle(color: Colors.white, fontSize: 20),
+                      widget.monster.isBoss
+                          ? '${widget.monster.name} (BOSS)'
+                          : widget.monster.name,
+                      style: TextStyle(
+                        color: widget.monster.isBoss
+                            ? Colors.red
+                            : Colors.white,
+                        fontSize: 20,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     ColorFiltered(
@@ -254,7 +261,7 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 1000), // Animation duration
+      duration: const Duration(milliseconds: 2000), // Animation duration
       vsync: this,
     );
 

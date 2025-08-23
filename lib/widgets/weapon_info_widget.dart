@@ -86,14 +86,7 @@ class WeaponInfoWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Level: ${weapon.level}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
-                ),
-                Text(
-                  'Damage: ${weapon.damage.toStringAsFixed(0)}',
+                  'Damage: ${weapon.calculatedDamage.toStringAsFixed(0)}',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 12,
@@ -125,10 +118,6 @@ class WeaponInfoWidget extends StatelessWidget {
             ),
             const Divider(color: Colors.grey),
             Text(
-              '레벨: ${weapon.level} / ${weapon.maxLevel}',
-              style: const TextStyle(color: Colors.white),
-            ),
-            Text(
               '강화: +${weapon.enhancement} / +${weapon.maxEnhancement}',
               style: const TextStyle(color: Colors.white),
             ),
@@ -138,7 +127,7 @@ class WeaponInfoWidget extends StatelessWidget {
             ),
             const Divider(color: Colors.grey),
             Text(
-              '데미지: ${weapon.damage.toStringAsFixed(0)}',
+              '데미지: ${weapon.calculatedDamage.toStringAsFixed(0)}',
               style: const TextStyle(color: Colors.white),
             ),
             Text(

@@ -12,13 +12,26 @@ class WeaponData {
     if (_isInitialized) return;
 
     try {
-      final String jsonString = await rootBundle.loadString('assets/data/weapons.json');
+      final String jsonString = await rootBundle.loadString(
+        'assets/data/weapons.json',
+      );
+      print('Loaded jsonString length: ${jsonString.length}'); // Debug print
       final List<dynamic> jsonList = json.decode(jsonString);
 
       // The fromJson factory now expects a Map<String, dynamic>, which is correct.
       _baseWeapons = jsonList.map((json) => Weapon.fromJson(json)).toList();
       _isInitialized = true;
-      print('WeaponData initialized. Loaded ${_baseWeapons.length} weapons.');
+      print(
+        'WeaponData initialized. Loaded ${_baseWeapons.length} weapons.',
+      ); // Debug print
+
+      // Add debug print for first 25 weapons
+      for (int i = 0; i < min(25, _baseWeapons.length); i++) {
+        final weapon = _baseWeapons[i];
+        print(
+          'Weapon ${i + 1}: ID=${weapon.id}, Name=${weapon.name}, BaseLevel=${weapon.baseLevel}, Damage=${weapon.calculatedDamage.toStringAsFixed(0)}',
+        );
+      }
     } catch (e) {
       print('Error initializing WeaponData: $e');
       // Handle error, maybe load some default data or show an error state
@@ -48,20 +61,40 @@ class WeaponData {
 
   static Weapon getWeaponForStageLevel(int stageLevel) {
     if (!_isInitialized || _baseWeapons.isEmpty) {
-      print("WeaponData not initialized. Returning a default starting weapon for stage level.");
+      print(
+        "WeaponData not initialized. Returning a default starting weapon for stage level.",
+      );
       return Weapon.startingWeapon();
     }
 
     final targetBaseLevel = (stageLevel ~/ 25) * 25;
-    final availableWeapons = _baseWeapons.where((weapon) => weapon.baseLevel == targetBaseLevel).toList();
+    print(
+      'Target Base Level: $targetBaseLevel for Stage: $stageLevel',
+    ); // Debug print
+
+    final availableWeapons = _baseWeapons
+        .where((weapon) => weapon.baseLevel == targetBaseLevel)
+        .toList();
+
+    print(
+      'Available Weapons count for targetBaseLevel $targetBaseLevel: ${availableWeapons.length}',
+    ); // Debug print
+    if (availableWeapons.isNotEmpty) {
+      print(
+        'First available weapon damage: ${availableWeapons.first.calculatedDamage.toStringAsFixed(0)}',
+      ); // Debug print
+    }
 
     if (availableWeapons.isEmpty) {
-      print("No weapons found for baseLevel $targetBaseLevel. Returning a random weapon from all available.");
+      print(
+        "No weapons found for baseLevel $targetBaseLevel. Returning a random weapon from all available.",
+      );
       // Fallback: if no specific level weapon found, return any random weapon
       return _baseWeapons[Random().nextInt(_baseWeapons.length)].copyWith();
     }
 
-    return availableWeapons[Random().nextInt(availableWeapons.length)].copyWith();
+    return availableWeapons[Random().nextInt(availableWeapons.length)]
+        .copyWith();
   }
 
   // Optional: A way to access all base weapons if needed elsewhere
