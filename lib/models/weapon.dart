@@ -50,25 +50,16 @@ class Weapon {
 
   int get maxTranscendence => 5;
 
-  int get maxEnhancement {
-    if (baseLevel <= 149) {
-      return 5;
-    } else if (baseLevel <= 199) {
-      return 7;
-    } else if (baseLevel <= 399) {
-      return 10;
-    } else if (baseLevel <= 500) {
-      return 15;
-    }
-    return 0; // Default for any other case
-  }
+  int get maxEnhancement => 5;
 
   double get calculatedDamage {
     double currentDamage = baseDamage;
 
     // Apply enhancement multipliers
     const enhancementMultipliers = [1.05, 1.07, 1.10, 1.15, 1.20];
+    print('DEBUG: enhancement: $enhancement, multipliers length: ${enhancementMultipliers.length}'); // ADD THIS LINE
     for (int i = 0; i < enhancement; i++) {
+      print('DEBUG: i: $i, accessing index: $i'); // ADD THIS LINE
       if (i < enhancementMultipliers.length) {
         currentDamage *= enhancementMultipliers[i];
       }
@@ -139,7 +130,10 @@ class Weapon {
       baseLevel: json['baseLevel'],
       enhancement: json['enhancement'],
       transcendence: json['transcendence'],
-      baseDamage: json['damage'], // Read damage from json as baseDamage
+      baseDamage:
+          json['baseDamage'] ??
+          json['damage'] ??
+          0.0, // Prioritize baseDamage, fallback to damage, then 0.0
       criticalChance: json['criticalChance'],
       criticalDamage: json['criticalDamage'],
       baseSellPrice: json['baseSellPrice'] ?? 0.0,
@@ -202,7 +196,8 @@ class Weapon {
       baseLevel: baseLevel ?? this.baseLevel,
       enhancement: enhancement ?? this.enhancement,
       transcendence: transcendence ?? this.transcendence,
-      baseDamage: baseDamage ?? this.baseDamage, // Changed from damage to baseDamage
+      baseDamage:
+          baseDamage ?? this.baseDamage, // Changed from damage to baseDamage
       criticalChance: criticalChance ?? this.criticalChance,
       criticalDamage: criticalDamage ?? this.criticalDamage,
       baseSellPrice: baseSellPrice ?? this.baseSellPrice,

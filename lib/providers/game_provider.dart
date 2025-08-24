@@ -49,6 +49,11 @@ class GameProvider with ChangeNotifier {
       // This is the critical part: WeaponData must be initialized here
       // WeaponData.getGuaranteedRandomWeapon() will now work correctly
       _player = Player(equippedWeapon: Weapon.startingWeapon().copyWith());
+      // --- START TEST INJECTION ---
+      _player.transcendenceStones = 1000;
+      _player.enhancementStones = 10000;
+      _player.gold = 9999999999.0; // Gold is double
+      // --- END TEST INJECTION ---
     }
   }
 
@@ -99,6 +104,18 @@ class GameProvider with ChangeNotifier {
         // Example: 5% chance to drop a transcendence stone from a boss
         if (Random().nextDouble() < 0.05) {
           _player.transcendenceStones++;
+        }
+
+        // 100% chance to drop a Boss Reward Box, but only on first defeat
+        if (!_player.defeatedBossNames.contains(_monster.name)) { // Check if boss already defeated by name
+          _player.defeatedBossNames.add(_monster.name); // Add boss name to defeated bosses
+          final bossGachaBox = GachaBox(
+            id: DateTime.now().millisecondsSinceEpoch.toString(),
+            name: '보스 처치 보상 상자',
+            stageLevel: _player.currentStage,
+            isBossBox: true,
+          );
+          _player.gachaBoxes.add(bossGachaBox);
         }
       }
 
@@ -242,14 +259,16 @@ class GameProvider with ChangeNotifier {
     weapon.investedTranscendenceStones += stoneCost;
 
     final transcendenceLevel = weapon.transcendence;
-    const probabilities = [1.0, 0.75, 0.5, 0.3, 0.1];
-    // const damageMultipliers = [1.75, 2.25, 2.75, 3.25, 4.0]; // Removed, damage is calculated by getter
+    const probabilities = [1.0, 0.9, 0.75, 0.5, 0.3];
+
+    if (transcendenceLevel >= probabilities.length) {
+      return '더 이상 초월할 수 없습니다.'; // Or handle as an error
+    }
 
     if (Random().nextDouble() < probabilities[transcendenceLevel]) {
       // Success
       // weapon.damage *= damageMultipliers[transcendenceLevel]; // Removed direct damage modification
       weapon.transcendence++;
-      weapon.enhancement = 0; // Reset enhancement on success
       notifyListeners();
       _saveGame();
       return '초월 성공! [${weapon.transcendence}] (Dmg: ${weapon.calculatedDamage.toStringAsFixed(0)})'; // Changed to calculatedDamage
@@ -315,6 +334,36 @@ class GameProvider with ChangeNotifier {
     }
   }
 
+  String sellEnhancementStones({required int amount}) {
+    if (amount <= 0) {
+      return '판매할 강화석 수량을 입력해주세요.';
+    }
+    if (_player.enhancementStones >= amount) {
+      _player.enhancementStones -= amount;
+      _player.gold += amount.toDouble(); // 1 stone = 1 gold
+      notifyListeners();
+      _saveGame();
+      return '$amount개의 강화석을 판매하여 ${amount * 5000} 골드를 획득했습니다.';
+    } else {
+      return '강화석이 부족합니다.';
+    }
+  }
+
+  String sellTranscendenceStones({required int amount}) {
+    if (amount <= 0) {
+      return '판매할 초월석 수량을 입력해주세요.';
+    }
+    if (_player.transcendenceStones >= amount) {
+      _player.transcendenceStones -= amount;
+      _player.gold += (amount * 50000).toDouble(); // 1 stone = 50000 gold
+      notifyListeners();
+      _saveGame();
+      return '$amount개의 초월석을 판매하여 ${amount * 50000} 골드를 획득했습니다.';
+    } else {
+      return '초월석이 부족합니다.';
+    }
+  }
+
   // New method to open a gacha box
   String openGachaBox(GachaBox box) {
     _player.gachaBoxes.removeWhere(
@@ -325,23 +374,39 @@ class GameProvider with ChangeNotifier {
     final random = Random();
 
     // Gold reward
-    final goldAmount =
-        random.nextInt(box.stageLevel * 100) + (box.stageLevel * 25);
+    int goldAmount = random.nextInt(box.stageLevel * 100) + (box.stageLevel * 25);
+
+    // Enhancement Stones reward
+    int enhancementStoneAmount = random.nextInt((box.stageLevel ~/ 10) + 1);
+
+    // Transcendence Stones reward
+    int transcendenceStoneAmount = 0;
+    if (random.nextDouble() < 0.025) {
+      transcendenceStoneAmount = 1;
+    }
+
+    // Apply double rewards for boss boxes
+    if (box.isBossBox) {
+      goldAmount *= 2;
+      enhancementStoneAmount *= 2;
+      transcendenceStoneAmount *= 2;
+      resultMessage += '보스 상자 보상 2배!\n'; // Add a message for boss box
+    }
+
+    // --- RE-INSERTED REWARD APPLICATION ---
     _player.gold += goldAmount.toDouble();
     resultMessage += '골드 $goldAmount 획득!\n';
 
-    // Enhancement Stones reward
-    final enhancementStoneAmount = random.nextInt((box.stageLevel ~/ 10) + 1);
     if (enhancementStoneAmount > 0) {
       _player.enhancementStones += enhancementStoneAmount;
       resultMessage += '강화석 $enhancementStoneAmount개 획득!\n';
     }
 
-    // Transcendence Stones reward
-    if (random.nextDouble() < 0.025) {
-      _player.transcendenceStones += 1;
-      resultMessage += '초월석 1개 획득!\n';
+    if (transcendenceStoneAmount > 0) {
+      _player.transcendenceStones += transcendenceStoneAmount;
+      resultMessage += '초월석 $transcendenceStoneAmount개 획득!\n';
     }
+    // --- END RE-INSERTED REWARD APPLICATION ---
 
     // Weapon reward (guaranteed for now, but could be probabilistic)
     final newWeapon = WeaponData.getWeaponForStageLevel(

@@ -27,12 +27,12 @@ class MainGameScreen extends StatelessWidget {
                     children: [
                       // Left 60% of the top section
                       Expanded(
-                        flex: 6,
+                        flex: 3, // Adjusted flex for WeaponInfoWidget
                         child: WeaponInfoWidget(weapon: game.player.equippedWeapon),
                       ),
                       // Right 40% of the top section
                       const Expanded(
-                        flex: 4,
+                        flex: 7, // Adjusted flex for NavButtonsWidget
                         child: NavButtonsWidget(),
                       ),
                     ],

@@ -3,8 +3,37 @@ import 'package:provider/provider.dart';
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart'; // Import Weapon model
 
-class BlacksmithScreen extends StatelessWidget {
+enum StoneType { enhancement, transcendence }
+
+class BlacksmithScreen extends StatefulWidget {
   const BlacksmithScreen({super.key});
+
+  @override
+  State<BlacksmithScreen> createState() => _BlacksmithScreenState();
+}
+
+class _BlacksmithScreenState extends State<BlacksmithScreen> {
+  double _currentEnhancementStoneSellAmount = 0.0;
+  double _currentTranscendenceStoneSellAmount = 0.0;
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void _updateEnhancementStoneSellAmount(int increment, int maxAmount) {
+    setState(() {
+      _currentEnhancementStoneSellAmount = (_currentEnhancementStoneSellAmount + increment)
+          .clamp(0.0, maxAmount.toDouble());
+    });
+  }
+
+  void _updateTranscendenceStoneSellAmount(int increment, int maxAmount) {
+    setState(() {
+      _currentTranscendenceStoneSellAmount = (_currentTranscendenceStoneSellAmount + increment)
+          .clamp(0.0, maxAmount.toDouble());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,26 +46,50 @@ class BlacksmithScreen extends StatelessWidget {
       body: Consumer<GameProvider>(
         builder: (context, game, child) {
           final equippedWeapon = game.player.equippedWeapon;
-          final enhancementGoldCost = (100 + (equippedWeapon.baseLevel * 10)) * 5 + (equippedWeapon.enhancement * 250);
-          final enhancementStoneCost = 1 + (equippedWeapon.baseLevel / 100).floor() + equippedWeapon.enhancement;
-          
+          final enhancementGoldCost =
+              (100 + (equippedWeapon.baseLevel * 10)) * 5 +
+              (equippedWeapon.enhancement * 250);
+          final enhancementStoneCost =
+              1 +
+              (equippedWeapon.baseLevel / 100).floor() +
+              equippedWeapon.enhancement;
+
           final enhancementLevel = equippedWeapon.enhancement;
           const enhancementDamageMultipliers = [1.05, 1.07, 1.10, 1.15, 1.20];
-          final expectedEnhancementDamage = enhancementLevel < enhancementDamageMultipliers.length
-              ? equippedWeapon.calculatedDamage * enhancementDamageMultipliers[enhancementLevel]
+          final expectedEnhancementDamage =
+              enhancementLevel < enhancementDamageMultipliers.length
+              ? equippedWeapon.calculatedDamage *
+                    enhancementDamageMultipliers[enhancementLevel]
               : equippedWeapon.calculatedDamage;
-          const enhancementProbabilities = [100, 90, 70, 50, 30]; // In percentage
+          const enhancementProbabilities = [
+            100,
+            90,
+            75,
+            60,
+            50,
+          ]; // In percentage
 
           final transcendenceLevel = equippedWeapon.transcendence;
           const transcendenceDamageMultipliers = [1.75, 2.25, 2.75, 3.25, 4.0];
-          final transcendenceDamageMultiplier = transcendenceLevel < transcendenceDamageMultipliers.length
+          final transcendenceDamageMultiplier =
+              transcendenceLevel < transcendenceDamageMultipliers.length
               ? transcendenceDamageMultipliers[transcendenceLevel]
               : 1.0;
-          const transcendenceProbabilities = [100, 75, 50, 30, 10]; // In percentage
+          const transcendenceProbabilities = [
+            100,
+            75,
+            50,
+            30,
+            10,
+          ]; // In percentage
 
-          final newTranscendenceGoldCost = (100 + (equippedWeapon.baseLevel * 10)) * 100 * (equippedWeapon.transcendence + 1);
-          final newTranscendenceStoneCost = (1 + (equippedWeapon.baseLevel / 200).floor()) * (equippedWeapon.transcendence + 1);
-
+          final newTranscendenceGoldCost =
+              (100 + (equippedWeapon.baseLevel * 10)) *
+              100 *
+              (equippedWeapon.transcendence + 1);
+          final newTranscendenceStoneCost =
+              (1 + (equippedWeapon.baseLevel / 200).floor()) *
+              (equippedWeapon.transcendence + 1);
 
           // Filter out the equipped weapon from inventory for selling/disassembling
           final inventoryWeapons = game.player.inventory
@@ -77,14 +130,26 @@ class BlacksmithScreen extends StatelessWidget {
                   _buildSection(
                     title: '강화',
                     description:
-                        '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n강화 확률: ${enhancementProbabilities[enhancementLevel]}%\n필요 골드: $enhancementGoldCost\n필요 강화석: $enhancementStoneCost\n성공 시 기대 데미지: ${expectedEnhancementDamage.toStringAsFixed(0)}\n\n골드와 강화석을 소모하여 무기를 강화합니다. 강화 시 데미지가 큰 폭으로 상승합니다.',
+                        equippedWeapon.enhancement >=
+                            equippedWeapon.maxEnhancement
+                        ? '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n\n최대 강화에 도달하였습니다.'
+                        : '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n강화 확률: ${enhancementProbabilities[enhancementLevel]}%\n필요 골드: $enhancementGoldCost\n필요 강화석: $enhancementStoneCost\n성공 시 기대 데미지: ${expectedEnhancementDamage.toStringAsFixed(0)}\n\n골드와 강화석을 소모하여 무기를 강화합니다. 강화 시 데미지가 큰 폭으로 상승합니다.',
                     buttonText: '강화',
-                    onPressed: () {
-                      _showConfirmationDialog(context, '강화', '정말로 강화하시겠습니까?', () {
-                        final message = game.enhanceEquippedWeapon();
-                        _showResultDialog(context, message);
-                      });
-                    },
+                    onPressed:
+                        equippedWeapon.enhancement >=
+                            equippedWeapon.maxEnhancement
+                        ? null
+                        : () {
+                            _showConfirmationDialog(
+                              context,
+                              '강화',
+                              '정말로 강화하시겠습니까?',
+                              () {
+                                final message = game.enhanceEquippedWeapon();
+                                _showResultDialog(context, message);
+                              },
+                            );
+                          },
                   ),
 
                   const SizedBox(height: 20),
@@ -96,10 +161,15 @@ class BlacksmithScreen extends StatelessWidget {
                         '현재 초월: [${equippedWeapon.transcendence}] / ${equippedWeapon.maxTranscendence}\n초월 확률: ${transcendenceProbabilities[transcendenceLevel]}%\n조건: 최대 강화\n필요 골드: $newTranscendenceGoldCost\n필요 초월석: $newTranscendenceStoneCost\n성공 시 데미지 x${transcendenceDamageMultiplier.toStringAsFixed(2)}\n\n최대 강화 무기를 초월시킵니다. 초월 시 능력치가 막대하게 상승합니다.',
                     buttonText: '초월',
                     onPressed: () {
-                      _showConfirmationDialog(context, '초월', '정말로 초월하시겠습니까?', () {
-                        final message = game.transcendEquippedWeapon();
-                        _showResultDialog(context, message);
-                      });
+                      _showConfirmationDialog(
+                        context,
+                        '초월',
+                        '정말로 초월하시겠습니까?',
+                        () {
+                          final message = game.transcendEquippedWeapon();
+                          _showResultDialog(context, message);
+                        },
+                      );
                     },
                   ),
 
@@ -138,6 +208,26 @@ class BlacksmithScreen extends StatelessWidget {
                       );
                     },
                   ),
+                  const SizedBox(height: 20),
+                  const Divider(color: Colors.yellow),
+                  _buildSection(
+                    title: '보유 재화 판매',
+                    description:
+                        '강화석: ${game.player.enhancementStones}개 (개당 5000 골드)\n'
+                        '초월석: ${game.player.transcendenceStones}개 (개당 50000 골드)',
+                    children: [
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                        onPressed: () => _showSellStoneDialog(context, StoneType.enhancement, game),
+                        child: const Text('강화석 판매'),
+                      ),
+                      const SizedBox(height: 8),
+                      ElevatedButton(
+                        onPressed: () => _showSellStoneDialog(context, StoneType.transcendence, game),
+                        child: const Text('초월석 판매'),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -150,8 +240,9 @@ class BlacksmithScreen extends StatelessWidget {
   Widget _buildSection({
     required String title,
     required String description,
-    required String buttonText,
-    required VoidCallback onPressed,
+    String? buttonText,
+    VoidCallback? onPressed,
+    List<Widget>? children, // New optional parameter
   }) {
     return Container(
       padding: const EdgeInsets.all(12.0),
@@ -176,7 +267,12 @@ class BlacksmithScreen extends StatelessWidget {
             style: const TextStyle(color: Colors.white70, fontSize: 14),
           ),
           const SizedBox(height: 12),
-          ElevatedButton(onPressed: onPressed, child: Text(buttonText)),
+          if (children != null) // Render children if provided
+            ...children
+          else if (buttonText != null &&
+              onPressed !=
+                  null) // Render button if text and onPressed are provided
+            ElevatedButton(onPressed: onPressed, child: Text(buttonText)),
         ],
       ),
     );
@@ -225,20 +321,30 @@ class BlacksmithScreen extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    _showConfirmationDialog(context, '판매', '${weapon.name}을(를) 정말로 판매하시겠습니까?', () {
-                      final message = game.sellWeapon(weapon);
-                      _showResultDialog(context, message);
-                    });
+                    _showConfirmationDialog(
+                      context,
+                      '판매',
+                      '${weapon.name}을(를) 정말로 판매하시겠습니까?',
+                      () {
+                        final message = game.sellWeapon(weapon);
+                        _showResultDialog(context, message);
+                      },
+                    );
                   },
                   child: const Text('판매'),
                 ),
                 const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: () {
-                    _showConfirmationDialog(context, '분해', '${weapon.name}을(를) 정말로 분해하시겠습니까?', () {
-                      final message = game.disassembleWeapon(weapon);
-                      _showResultDialog(context, message);
-                    });
+                    _showConfirmationDialog(
+                      context,
+                      '분해',
+                      '${weapon.name}을(를) 정말로 분해하시겠습니까?',
+                      () {
+                        final message = game.disassembleWeapon(weapon);
+                        _showResultDialog(context, message);
+                      },
+                    );
                   },
                   child: const Text('분해'),
                 ),
@@ -266,7 +372,12 @@ class BlacksmithScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _showConfirmationDialog(BuildContext context, String title, String content, VoidCallback onConfirm) async {
+  Future<void> _showConfirmationDialog(
+    BuildContext context,
+    String title,
+    String content,
+    VoidCallback onConfirm,
+  ) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -274,11 +385,7 @@ class BlacksmithScreen extends StatelessWidget {
         return AlertDialog(
           title: Text(title),
           content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(content),
-              ],
-            ),
+            child: ListBody(children: <Widget>[Text(content)]),
           ),
           actions: <Widget>[
             TextButton(
@@ -295,6 +402,89 @@ class BlacksmithScreen extends StatelessWidget {
               },
             ),
           ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showSellStoneDialog(BuildContext context, StoneType type, GameProvider game) async {
+    int currentAmount = 0; // This will be managed by StatefulBuilder
+
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            final int maxStones = (type == StoneType.enhancement)
+                ? game.player.enhancementStones
+                : game.player.transcendenceStones;
+            final String stoneName = (type == StoneType.enhancement) ? '강화석' : '초월석';
+            final int sellPricePerStone = (type == StoneType.enhancement) ? 5000 : 50000;
+
+            // Ensure currentAmount doesn't exceed maxStones
+            if (currentAmount > maxStones) {
+              currentAmount = maxStones;
+            }
+
+            void updateAmount(int increment) {
+              setState(() {
+                currentAmount = (currentAmount + increment).clamp(0, maxStones);
+              });
+            }
+
+            return AlertDialog(
+              title: Text('$stoneName 판매'),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    Text('보유 $stoneName: $maxStones개', style: const TextStyle(fontSize: 16)),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(onPressed: () => updateAmount(-10), child: const Text('-10')),
+                        const SizedBox(width: 8),
+                        ElevatedButton(onPressed: () => updateAmount(-1), child: const Text('-1')),
+                        const SizedBox(width: 8),
+                        Text(
+                          '$currentAmount개',
+                          style: const TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        const SizedBox(width: 8),
+                        ElevatedButton(onPressed: () => updateAmount(1), child: const Text('+1')),
+                        const SizedBox(width: 8),
+                        ElevatedButton(onPressed: () => updateAmount(10), child: const Text('+10')),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Text('판매 시 획득 골드: ${currentAmount * sellPricePerStone} 골드', style: const TextStyle(fontSize: 16)),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text('취소'),
+                  onPressed: () {
+                    Navigator.of(dialogContext).pop();
+                  },
+                ),
+                TextButton(
+                  child: const Text('판매'),
+                  onPressed: () {
+                    Navigator.of(dialogContext).pop(); // Dismiss dialog first
+                    String message;
+                    if (type == StoneType.enhancement) {
+                      message = game.sellEnhancementStones(amount: currentAmount);
+                    } else {
+                      message = game.sellTranscendenceStones(amount: currentAmount);
+                    }
+                    _showResultDialog(context, message);
+                  },
+                ),
+              ],
+            );
+          },
         );
       },
     );

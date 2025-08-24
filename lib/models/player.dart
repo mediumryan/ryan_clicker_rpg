@@ -10,7 +10,8 @@ class Player {
   List<GachaBox> gachaBoxes;
   int currentStage;
   int highestStageCleared;
-  final Set<int> acquiredWeaponIdsHistory; // NEW FIELD
+  final Set<int> acquiredWeaponIdsHistory;
+  final Set<String> defeatedBossNames; // NEW FIELD
 
   Player({
     this.gold = 0,
@@ -21,10 +22,12 @@ class Player {
     List<GachaBox>? gachaBoxes,
     this.currentStage = 1,
     this.highestStageCleared = 0,
-    Set<int>? acquiredWeaponIdsHistory, // NEW IN CONSTRUCTOR
+    Set<int>? acquiredWeaponIdsHistory,
+    Set<String>? defeatedBossNames, // NEW IN CONSTRUCTOR
   }) : inventory = inventory ?? [],
        gachaBoxes = gachaBoxes ?? [],
-       acquiredWeaponIdsHistory = acquiredWeaponIdsHistory ?? {}; // INITIALIZE NEW FIELD
+       acquiredWeaponIdsHistory = acquiredWeaponIdsHistory ?? {},
+       defeatedBossNames = defeatedBossNames ?? {}; // INITIALIZE NEW FIELD
 
   // Serialization
   Map<String, dynamic> toJson() => {
@@ -33,12 +36,11 @@ class Player {
     'transcendenceStones': transcendenceStones,
     'equippedWeapon': equippedWeapon.toJson(),
     'inventory': inventory.map((w) => w.toJson()).toList(),
-    'gachaBoxes': gachaBoxes
-        .map((b) => b.toJson())
-        .toList(),
+    'gachaBoxes': gachaBoxes.map((b) => b.toJson()).toList(),
     'currentStage': currentStage,
     'highestStageCleared': highestStageCleared,
-    'acquiredWeaponIdsHistory': acquiredWeaponIdsHistory.toList(), // NEW: Serialize as List
+    'acquiredWeaponIdsHistory': acquiredWeaponIdsHistory.toList(),
+    'defeatedBossNames': defeatedBossNames.toList(), // NEW: Serialize as List
   };
 
   // Deserialization
@@ -58,9 +60,15 @@ class Player {
           [],
       currentStage: json['currentStage'],
       highestStageCleared: json['highestStageCleared'],
-      acquiredWeaponIdsHistory: (json['acquiredWeaponIdsHistory'] as List?) // NEW: Deserialize from List
-          ?.map((id) => id as int)
-          .toSet() ??
+      acquiredWeaponIdsHistory:
+          (json['acquiredWeaponIdsHistory'] as List?)
+              ?.map((id) => id as int)
+              .toSet() ??
+          {},
+      defeatedBossNames:
+          (json['defeatedBossNames'] as List?) // NEW: Deserialize from List
+              ?.map((name) => name as String)
+              .toSet() ??
           {}, // Handle null for old saves
     );
   }

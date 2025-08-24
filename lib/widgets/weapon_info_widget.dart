@@ -31,71 +31,40 @@ class WeaponInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      color: Colors.grey[800],
-      child: Row(
-        children: [
-          SizedBox( // Replaced Expanded with SizedBox for fixed width
-            width: 80, // Fixed width for the image section
-            child: GestureDetector(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) =>
-                      _buildWeaponDetailsDialog(context, weapon),
-                );
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  border: Border.all(
-                    color: _getColorForRarity(weapon.rarity),
-                    width: 2.0,
-                  ),
-                  borderRadius: BorderRadius.circular(4.0),
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) => _buildWeaponDetailsDialog(context, weapon),
+        );
+      },
+      child: Container(
+        color: Colors.grey[800], // Background color for the image container
+        padding: const EdgeInsets.all(8.0), // Padding around the image
+        child: Center( // Center the image within the available space
+          child: AspectRatio(
+            aspectRatio: 1.0, // Force the image to be square
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black,
+                border: Border.all(
+                  color: _getColorForRarity(weapon.rarity),
+                  width: 2.0,
                 ),
-                width: 60, // Fixed width for the image container
-                height: 60, // Fixed height for the image container
-                child: Image.asset(
-                  'images/weapons/${weapon.imageName}',
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Center(
-                      child: Icon(Icons.image_not_supported, color: Colors.white),
-                    );
-                  },
-                ),
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              child: Image.asset(
+                'images/weapons/${weapon.imageName}',
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Center(
+                    child: Icon(Icons.image_not_supported, color: Colors.white),
+                  );
+                },
               ),
             ),
           ),
-          const SizedBox(width: 8),
-          // Weapon Info Text
-          Expanded( // This Expanded is for the text column
-            flex: 5, // Keep flex for text to fill remaining space
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  weapon.name,
-                  style: TextStyle(
-                    color: _getColorForRarity(weapon.rarity),
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  'Damage: ${weapon.calculatedDamage.toStringAsFixed(0)}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

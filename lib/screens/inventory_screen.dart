@@ -134,10 +134,14 @@ class InventoryScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.black, // MOVED HERE
                 border: Border.all(
-                  color: _getColorForRarity(weapon.rarity), // Rarity color border
+                  color: _getColorForRarity(
+                    weapon.rarity,
+                  ), // Rarity color border
                   width: 2.0, // Border thickness
                 ),
-                borderRadius: BorderRadius.circular(4.0), // Slightly rounded corners
+                borderRadius: BorderRadius.circular(
+                  4.0,
+                ), // Slightly rounded corners
               ),
               child: Image.asset(
                 'images/weapons/${weapon.imageName}',
@@ -154,7 +158,7 @@ class InventoryScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${weapon.name}${isEquipped ? ' [E]' : ''}',
+                  '${weapon.name} [${weapon.enhancement}][${weapon.transcendence}]${isEquipped ? ' [E]' : ''}',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -185,7 +189,7 @@ class InventoryScreen extends StatelessWidget {
     VoidCallback onOpen,
   ) {
     return Card(
-      color: Colors.purple[800], // Distinct color for gacha boxes
+      color: box.isBossBox ? Colors.red[800] : Colors.purple[800], // Different color for boss boxes
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -207,6 +211,11 @@ class InventoryScreen extends StatelessWidget {
                   'Stage Level: ${box.stageLevel}',
                   style: const TextStyle(color: Colors.white70),
                 ),
+                if (box.isBossBox) // Add a visual indicator for boss box
+                  const Text(
+                    '★ 보스 상자 ★',
+                    style: TextStyle(color: Colors.yellow, fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
               ],
             ),
             ElevatedButton(onPressed: onOpen, child: const Text('열기')),
