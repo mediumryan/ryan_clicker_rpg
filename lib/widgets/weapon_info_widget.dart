@@ -54,7 +54,7 @@ class WeaponInfoWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4.0),
               ),
               child: Image.asset(
-                'images/weapons/${weapon.imageName}',
+                'images/weapons/common/${weapon.imageName}',
                 fit: BoxFit.contain,
                 errorBuilder: (context, error, stackTrace) {
                   return const Center(

@@ -116,7 +116,7 @@ class EquipmentCodexDialog extends StatelessWidget {
                                 0,
                               ]),
                         child: Image.asset(
-                          'images/weapons/${weapon.imageName}',
+                          'images/weapons/common/${weapon.imageName}',
                           width: 60,
                           height: 60,
                           fit: BoxFit.contain,

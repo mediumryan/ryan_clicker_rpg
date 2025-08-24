@@ -155,7 +155,7 @@ class Weapon {
     return Weapon(
       id: 1, // Changed to ID 1 for rusty crude rapier
       name: '녹슨 조잡한 레이피어',
-      imageName: 'rusty_crude_rapier.png',
+      imageName: 'common/rusty_crude_rapier.png',
       rarity: Rarity.common,
       type: WeaponType.rapier,
       baseLevel: 0,

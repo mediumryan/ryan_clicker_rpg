@@ -13,7 +13,7 @@ class WeaponData {
 
     try {
       final String jsonString = await rootBundle.loadString(
-        'data/weapons.json',
+        'assets/data/weapons.json',
       );
       print('Loaded jsonString length: ${jsonString.length}'); // Debug print
       final List<dynamic> jsonList = json.decode(jsonString);
