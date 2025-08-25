@@ -16,6 +16,7 @@ class WeaponData {
         'assets/data/weapons.json',
       );
       print('Loaded jsonString length: ${jsonString.length}'); // Debug print
+      print('JSON String: ${jsonString.substring(0, min(jsonString.length, 500))}'); // Print first 500 chars of JSON
       final List<dynamic> jsonList = json.decode(jsonString);
 
       // The fromJson factory now expects a Map<String, dynamic>, which is correct.

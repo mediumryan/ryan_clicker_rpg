@@ -74,13 +74,7 @@ class GameProvider with ChangeNotifier {
     }
 
     // Handle special ability
-    final weapon = _player.equippedWeapon;
-    if (weapon.abilityType == SpecialAbilityType.onHitProcDamage) {
-      if (Random().nextDouble() < weapon.abilityProcChance!) {
-        totalDamage += weapon.abilityValue!;
-        // In a real game, you might want to show a special effect here
-      }
-    }
+    
 
     // Apply monster defense
     double actualDamage = max(1, totalDamage - _monster.defense);

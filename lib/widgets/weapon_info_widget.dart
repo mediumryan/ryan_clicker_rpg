@@ -107,12 +107,29 @@ class WeaponInfoWidget extends StatelessWidget {
               '치명타 배율: x${weapon.criticalDamage.toStringAsFixed(2)}',
               style: const TextStyle(color: Colors.white),
             ),
-            if (weapon.specialAbilityDescription != null)
+            if (weapon.description != null)
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  '특수능력: ${weapon.specialAbilityDescription}',
-                  style: const TextStyle(color: Colors.cyanAccent),
+                  '설명: ${weapon.description}',
+                  style: const TextStyle(color: Colors.white70),
+                ),
+              ),
+            if (weapon.skills.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      '스킬:',
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                    ...weapon.skills.map((skill) => Text(
+                          '- ${skill['skill_name']}: ${skill['skill_description']}',
+                          style: const TextStyle(color: Colors.cyanAccent),
+                        )),
+                  ],
                 ),
               ),
           ],

@@ -144,7 +144,7 @@ class InventoryScreen extends StatelessWidget {
                 ), // Slightly rounded corners
               ),
               child: Image.asset(
-                Image.asset('images/weapons/common/${weapon.imageName}'),
+                'images/weapons/common/${weapon.imageName}',
                 fit: BoxFit.contain,
                 errorBuilder: (context, error, stackTrace) {
                   return const Center(

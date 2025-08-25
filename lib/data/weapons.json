@@ -16,10 +16,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 2,
@@ -38,10 +39,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 3,
@@ -60,10 +62,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 4,
@@ -82,10 +85,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 5,
@@ -104,10 +108,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 6,
@@ -126,10 +131,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 7,
@@ -148,10 +154,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 8,
@@ -170,10 +177,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 9,
@@ -192,10 +200,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 10,
@@ -214,10 +223,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 11,
@@ -236,10 +246,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 12,
@@ -258,10 +269,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 13,
@@ -280,10 +292,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 14,
@@ -302,10 +315,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 15,
@@ -324,10 +338,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 16,
@@ -346,10 +361,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 17,
@@ -368,10 +384,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 18,
@@ -390,10 +407,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 19,
@@ -412,10 +430,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 20,
@@ -434,10 +453,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 21,
@@ -456,10 +476,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 22,
@@ -478,10 +499,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 23,
@@ -500,10 +522,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 24,
@@ -522,10 +545,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 25,
@@ -544,10 +568,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 26,
@@ -566,10 +591,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 27,
@@ -588,10 +614,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 28,
@@ -610,10 +637,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 29,
@@ -632,10 +660,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 30,
@@ -654,10 +683,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 31,
@@ -676,10 +706,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 32,
@@ -698,10 +729,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 33,
@@ -720,10 +752,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 34,
@@ -742,10 +775,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 35,
@@ -764,10 +798,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 36,
@@ -786,10 +821,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 37,
@@ -808,10 +844,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 38,
@@ -830,10 +867,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 39,
@@ -852,10 +890,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 40,
@@ -874,10 +913,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 41,
@@ -896,10 +936,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 42,
@@ -918,10 +959,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 43,
@@ -940,10 +982,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 44,
@@ -962,10 +1005,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 45,
@@ -984,10 +1028,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 46,
@@ -1006,10 +1051,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 47,
@@ -1028,10 +1074,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 48,
@@ -1050,10 +1097,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 49,
@@ -1072,10 +1120,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 50,
@@ -1094,10 +1143,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 51,
@@ -1116,10 +1166,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 52,
@@ -1138,10 +1189,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 53,
@@ -1160,10 +1212,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 54,
@@ -1182,10 +1235,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 55,
@@ -1204,10 +1258,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 56,
@@ -1226,10 +1281,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 57,
@@ -1248,10 +1304,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 58,
@@ -1270,10 +1327,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 59,
@@ -1292,10 +1350,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 60,
@@ -1314,10 +1373,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 61,
@@ -1336,10 +1396,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 62,
@@ -1358,10 +1419,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 63,
@@ -1380,10 +1442,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 64,
@@ -1402,10 +1465,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 65,
@@ -1424,10 +1488,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 66,
@@ -1446,10 +1511,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 67,
@@ -1468,10 +1534,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 68,
@@ -1490,10 +1557,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 69,
@@ -1512,10 +1580,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 70,
@@ -1534,10 +1603,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 71,
@@ -1556,10 +1626,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 72,
@@ -1578,10 +1649,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 73,
@@ -1600,10 +1672,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 74,
@@ -1622,10 +1695,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 75,
@@ -1644,10 +1718,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 76,
@@ -1666,10 +1741,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 77,
@@ -1688,10 +1764,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 78,
@@ -1710,10 +1787,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 79,
@@ -1732,10 +1810,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 80,
@@ -1754,10 +1833,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 81,
@@ -1776,10 +1856,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 82,
@@ -1798,10 +1879,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 83,
@@ -1820,10 +1902,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 84,
@@ -1842,10 +1925,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 85,
@@ -1864,10 +1948,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 86,
@@ -1886,10 +1971,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 87,
@@ -1908,10 +1994,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 88,
@@ -1930,10 +2017,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 89,
@@ -1952,10 +2040,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 90,
@@ -1974,10 +2063,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 91,
@@ -1996,10 +2086,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 92,
@@ -2018,10 +2109,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 93,
@@ -2040,10 +2132,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 94,
@@ -2062,10 +2155,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 95,
@@ -2084,10 +2178,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 96,
@@ -2106,10 +2201,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 97,
@@ -2128,10 +2224,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 98,
@@ -2150,10 +2247,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 99,
@@ -2172,10 +2270,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 100,
@@ -2194,10 +2293,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 101,
@@ -2216,10 +2316,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 102,
@@ -2238,10 +2339,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 103,
@@ -2260,10 +2362,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 104,
@@ -2282,10 +2385,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 105,
@@ -2304,10 +2408,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 106,
@@ -2326,10 +2431,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 107,
@@ -2348,10 +2454,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 108,
@@ -2370,10 +2477,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 109,
@@ -2392,10 +2500,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 110,
@@ -2414,10 +2523,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 111,
@@ -2436,10 +2546,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 112,
@@ -2458,10 +2569,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 113,
@@ -2480,10 +2592,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 114,
@@ -2502,10 +2615,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 115,
@@ -2524,10 +2638,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 116,
@@ -2546,10 +2661,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 117,
@@ -2568,10 +2684,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 118,
@@ -2590,10 +2707,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 119,
@@ -2612,10 +2730,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 120,
@@ -2634,10 +2753,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 121,
@@ -2656,10 +2776,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 122,
@@ -2678,10 +2799,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 123,
@@ -2700,10 +2822,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 124,
@@ -2722,10 +2845,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 125,
@@ -2744,10 +2868,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 126,
@@ -2766,10 +2891,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 127,
@@ -2788,10 +2914,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 128,
@@ -2810,10 +2937,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 129,
@@ -2832,10 +2960,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 130,
@@ -2854,10 +2983,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 131,
@@ -2876,10 +3006,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 132,
@@ -2898,10 +3029,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 133,
@@ -2920,10 +3052,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 134,
@@ -2942,10 +3075,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 135,
@@ -2964,10 +3098,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 136,
@@ -2986,10 +3121,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 137,
@@ -3008,10 +3144,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 138,
@@ -3030,10 +3167,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 139,
@@ -3052,10 +3190,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 140,
@@ -3074,10 +3213,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 141,
@@ -3096,10 +3236,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 142,
@@ -3118,10 +3259,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 143,
@@ -3140,10 +3282,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 144,
@@ -3162,10 +3305,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 145,
@@ -3184,10 +3328,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 146,
@@ -3206,10 +3351,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 147,
@@ -3228,10 +3374,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 148,
@@ -3250,10 +3397,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 149,
@@ -3272,10 +3420,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 150,
@@ -3294,10 +3443,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 151,
@@ -3316,10 +3466,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 152,
@@ -3338,10 +3489,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 153,
@@ -3360,10 +3512,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 154,
@@ -3382,10 +3535,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 155,
@@ -3404,10 +3558,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 156,
@@ -3426,10 +3581,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 157,
@@ -3448,10 +3604,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 158,
@@ -3470,10 +3627,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 159,
@@ -3492,10 +3650,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 160,
@@ -3514,10 +3673,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 161,
@@ -3536,10 +3696,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 162,
@@ -3558,10 +3719,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 163,
@@ -3580,10 +3742,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 164,
@@ -3602,10 +3765,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 165,
@@ -3624,10 +3788,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 166,
@@ -3646,10 +3811,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 167,
@@ -3668,10 +3834,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 168,
@@ -3690,10 +3857,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 169,
@@ -3712,10 +3880,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 170,
@@ -3734,10 +3903,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 171,
@@ -3756,10 +3926,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 172,
@@ -3778,10 +3949,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 173,
@@ -3800,10 +3972,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 174,
@@ -3822,10 +3995,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 175,
@@ -3844,10 +4018,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 176,
@@ -3866,10 +4041,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 177,
@@ -3888,10 +4064,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 178,
@@ -3910,10 +4087,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 179,
@@ -3932,10 +4110,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 180,
@@ -3954,10 +4133,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 181,
@@ -3976,10 +4156,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 182,
@@ -3998,10 +4179,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 183,
@@ -4020,10 +4202,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 184,
@@ -4042,10 +4225,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 185,
@@ -4064,10 +4248,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 186,
@@ -4086,10 +4271,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 187,
@@ -4108,10 +4294,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 188,
@@ -4130,10 +4317,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 189,
@@ -4152,10 +4340,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 190,
@@ -4174,10 +4363,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 191,
@@ -4196,10 +4386,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 192,
@@ -4218,10 +4409,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 193,
@@ -4240,10 +4432,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 194,
@@ -4262,10 +4455,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 195,
@@ -4284,10 +4478,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 196,
@@ -4306,10 +4501,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 197,
@@ -4328,10 +4524,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 198,
@@ -4350,10 +4547,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 199,
@@ -4372,10 +4570,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 200,
@@ -4394,10 +4593,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 201,
@@ -4416,10 +4616,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 202,
@@ -4438,10 +4639,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 203,
@@ -4460,10 +4662,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 204,
@@ -4482,10 +4685,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 205,
@@ -4504,10 +4708,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 206,
@@ -4526,10 +4731,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 207,
@@ -4548,10 +4754,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 208,
@@ -4570,10 +4777,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 209,
@@ -4592,10 +4800,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 210,
@@ -4614,10 +4823,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 211,
@@ -4636,10 +4846,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 212,
@@ -4658,10 +4869,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 213,
@@ -4680,10 +4892,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 214,
@@ -4702,10 +4915,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 215,
@@ -4724,10 +4938,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 216,
@@ -4746,10 +4961,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 217,
@@ -4768,10 +4984,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 218,
@@ -4790,10 +5007,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 219,
@@ -4812,10 +5030,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 220,
@@ -4834,10 +5053,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 221,
@@ -4856,10 +5076,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 222,
@@ -4878,10 +5099,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 223,
@@ -4900,10 +5122,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 224,
@@ -4922,10 +5145,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 225,
@@ -4944,10 +5168,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 226,
@@ -4966,10 +5191,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 227,
@@ -4988,10 +5214,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 228,
@@ -5010,10 +5237,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 229,
@@ -5032,10 +5260,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 230,
@@ -5054,10 +5283,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 231,
@@ -5076,10 +5306,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 232,
@@ -5098,10 +5329,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 233,
@@ -5120,10 +5352,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 234,
@@ -5142,10 +5375,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 235,
@@ -5164,10 +5398,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 236,
@@ -5186,10 +5421,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 237,
@@ -5208,10 +5444,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 238,
@@ -5230,10 +5467,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 239,
@@ -5252,10 +5490,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 240,
@@ -5274,10 +5513,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 241,
@@ -5296,10 +5536,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 242,
@@ -5318,10 +5559,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 243,
@@ -5340,10 +5582,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 244,
@@ -5362,10 +5605,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 245,
@@ -5384,10 +5628,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 246,
@@ -5406,10 +5651,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 247,
@@ -5428,10 +5674,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 248,
@@ -5450,10 +5697,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 249,
@@ -5472,10 +5720,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 250,
@@ -5494,10 +5743,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 251,
@@ -5516,10 +5766,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 252,
@@ -5538,10 +5789,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 253,
@@ -5560,10 +5812,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 254,
@@ -5582,10 +5835,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 255,
@@ -5604,10 +5858,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 256,
@@ -5626,10 +5881,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 257,
@@ -5648,10 +5904,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 258,
@@ -5670,10 +5927,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 259,
@@ -5692,10 +5950,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 260,
@@ -5714,10 +5973,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 261,
@@ -5736,10 +5996,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 262,
@@ -5758,10 +6019,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 263,
@@ -5780,10 +6042,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 264,
@@ -5802,10 +6065,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 265,
@@ -5824,10 +6088,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 266,
@@ -5846,10 +6111,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 267,
@@ -5868,10 +6134,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 268,
@@ -5890,10 +6157,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 269,
@@ -5912,10 +6180,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 270,
@@ -5934,10 +6203,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 271,
@@ -5956,10 +6226,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 272,
@@ -5978,10 +6249,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 273,
@@ -6000,10 +6272,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 274,
@@ -6022,10 +6295,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 275,
@@ -6044,10 +6318,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 276,
@@ -6066,10 +6341,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 277,
@@ -6088,10 +6364,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 278,
@@ -6110,10 +6387,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 279,
@@ -6132,10 +6410,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 280,
@@ -6154,10 +6433,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 281,
@@ -6176,10 +6456,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 282,
@@ -6198,10 +6479,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 283,
@@ -6220,10 +6502,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 284,
@@ -6242,10 +6525,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 285,
@@ -6264,10 +6548,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 286,
@@ -6286,10 +6571,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 287,
@@ -6308,10 +6594,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 288,
@@ -6330,10 +6617,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 289,
@@ -6352,10 +6640,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 290,
@@ -6374,10 +6663,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 291,
@@ -6396,10 +6686,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 292,
@@ -6418,10 +6709,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 293,
@@ -6440,10 +6732,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 294,
@@ -6462,10 +6755,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 295,
@@ -6484,10 +6778,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 296,
@@ -6506,10 +6801,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 297,
@@ -6528,10 +6824,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 298,
@@ -6550,10 +6847,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 299,
@@ -6572,10 +6870,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 300,
@@ -6594,10 +6893,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 301,
@@ -6616,10 +6916,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 302,
@@ -6638,10 +6939,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 303,
@@ -6660,10 +6962,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 304,
@@ -6682,10 +6985,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 305,
@@ -6704,10 +7008,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 306,
@@ -6726,10 +7031,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 307,
@@ -6748,10 +7054,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 308,
@@ -6770,10 +7077,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 309,
@@ -6792,10 +7100,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 310,
@@ -6814,10 +7123,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 311,
@@ -6836,10 +7146,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 312,
@@ -6858,10 +7169,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 313,
@@ -6880,10 +7192,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 314,
@@ -6902,10 +7215,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 315,
@@ -6924,10 +7238,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 316,
@@ -6946,10 +7261,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 317,
@@ -6968,10 +7284,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 318,
@@ -6990,10 +7307,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 319,
@@ -7012,10 +7330,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 320,
@@ -7034,10 +7353,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 321,
@@ -7056,10 +7376,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 322,
@@ -7078,10 +7399,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 323,
@@ -7100,10 +7422,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 324,
@@ -7122,10 +7445,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 325,
@@ -7144,10 +7468,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 326,
@@ -7166,10 +7491,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 327,
@@ -7188,10 +7514,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 328,
@@ -7210,10 +7537,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 329,
@@ -7232,10 +7560,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 330,
@@ -7254,10 +7583,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 331,
@@ -7276,10 +7606,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 332,
@@ -7298,10 +7629,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 333,
@@ -7320,10 +7652,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 334,
@@ -7342,10 +7675,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 335,
@@ -7364,10 +7698,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 336,
@@ -7386,10 +7721,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 337,
@@ -7408,10 +7744,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 338,
@@ -7430,10 +7767,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 339,
@@ -7452,10 +7790,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 340,
@@ -7474,10 +7813,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 341,
@@ -7496,10 +7836,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 342,
@@ -7518,10 +7859,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 343,
@@ -7540,10 +7882,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 344,
@@ -7562,10 +7905,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 345,
@@ -7584,10 +7928,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 346,
@@ -7606,10 +7951,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 347,
@@ -7628,10 +7974,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 348,
@@ -7650,10 +7997,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 349,
@@ -7672,10 +8020,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 350,
@@ -7694,10 +8043,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 351,
@@ -7716,10 +8066,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 352,
@@ -7738,10 +8089,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 353,
@@ -7760,10 +8112,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 354,
@@ -7782,10 +8135,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 355,
@@ -7804,10 +8158,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 356,
@@ -7826,10 +8181,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 357,
@@ -7848,10 +8204,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 358,
@@ -7870,10 +8227,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 359,
@@ -7892,10 +8250,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 360,
@@ -7914,10 +8273,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 361,
@@ -7936,10 +8296,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 362,
@@ -7958,10 +8319,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 363,
@@ -7980,10 +8342,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 364,
@@ -8002,10 +8365,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 365,
@@ -8024,10 +8388,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 366,
@@ -8046,10 +8411,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 367,
@@ -8068,10 +8434,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 368,
@@ -8090,10 +8457,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 369,
@@ -8112,10 +8480,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 370,
@@ -8134,10 +8503,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 371,
@@ -8156,10 +8526,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 372,
@@ -8178,10 +8549,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 373,
@@ -8200,10 +8572,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 374,
@@ -8222,10 +8595,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 375,
@@ -8244,10 +8618,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 376,
@@ -8266,10 +8641,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 377,
@@ -8288,10 +8664,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 378,
@@ -8310,10 +8687,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 379,
@@ -8332,10 +8710,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 380,
@@ -8354,10 +8733,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 381,
@@ -8376,10 +8756,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 382,
@@ -8398,10 +8779,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 383,
@@ -8420,10 +8802,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 384,
@@ -8442,10 +8825,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 385,
@@ -8464,10 +8848,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 386,
@@ -8486,10 +8871,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 387,
@@ -8508,10 +8894,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 388,
@@ -8530,10 +8917,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 389,
@@ -8552,10 +8940,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 390,
@@ -8574,10 +8963,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 391,
@@ -8596,10 +8986,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 392,
@@ -8618,10 +9009,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 393,
@@ -8640,10 +9032,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 394,
@@ -8662,10 +9055,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 395,
@@ -8684,10 +9078,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 396,
@@ -8706,10 +9101,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 397,
@@ -8728,10 +9124,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 398,
@@ -8750,10 +9147,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 399,
@@ -8772,10 +9170,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 400,
@@ -8794,10 +9193,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 401,
@@ -8816,10 +9216,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 402,
@@ -8838,10 +9239,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 403,
@@ -8860,10 +9262,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 404,
@@ -8882,10 +9285,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 405,
@@ -8904,10 +9308,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 406,
@@ -8926,10 +9331,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 407,
@@ -8948,10 +9354,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 408,
@@ -8970,10 +9377,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 409,
@@ -8992,10 +9400,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 410,
@@ -9014,10 +9423,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 411,
@@ -9036,10 +9446,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 412,
@@ -9058,10 +9469,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 413,
@@ -9080,10 +9492,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 414,
@@ -9102,10 +9515,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 415,
@@ -9124,10 +9538,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 416,
@@ -9146,10 +9561,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 417,
@@ -9168,10 +9584,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 418,
@@ -9190,10 +9607,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 419,
@@ -9212,10 +9630,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 420,
@@ -9234,10 +9653,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 421,
@@ -9256,10 +9676,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 422,
@@ -9278,10 +9699,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 423,
@@ -9300,10 +9722,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 424,
@@ -9322,10 +9745,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 425,
@@ -9344,10 +9768,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 426,
@@ -9366,10 +9791,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 427,
@@ -9388,10 +9814,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 428,
@@ -9410,10 +9837,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 429,
@@ -9432,10 +9860,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 430,
@@ -9454,10 +9883,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 431,
@@ -9476,10 +9906,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 432,
@@ -9498,10 +9929,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 433,
@@ -9520,10 +9952,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 434,
@@ -9542,10 +9975,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 435,
@@ -9564,10 +9998,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 436,
@@ -9586,10 +10021,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 437,
@@ -9608,10 +10044,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 438,
@@ -9630,10 +10067,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 439,
@@ -9652,10 +10090,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 440,
@@ -9674,10 +10113,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 441,
@@ -9696,10 +10136,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 442,
@@ -9718,10 +10159,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 443,
@@ -9740,10 +10182,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 444,
@@ -9762,10 +10205,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 445,
@@ -9784,10 +10228,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 446,
@@ -9806,10 +10251,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 447,
@@ -9828,10 +10274,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 448,
@@ -9850,10 +10297,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 449,
@@ -9872,10 +10320,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 450,
@@ -9894,10 +10343,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 451,
@@ -9916,10 +10366,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 452,
@@ -9938,10 +10389,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 453,
@@ -9960,10 +10412,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 454,
@@ -9982,10 +10435,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 455,
@@ -10004,10 +10458,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 456,
@@ -10026,10 +10481,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 457,
@@ -10048,10 +10504,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 458,
@@ -10070,10 +10527,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 459,
@@ -10092,10 +10550,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 460,
@@ -10114,10 +10573,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 461,
@@ -10136,10 +10596,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 462,
@@ -10158,10 +10619,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 463,
@@ -10180,10 +10642,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 464,
@@ -10202,10 +10665,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 465,
@@ -10224,10 +10688,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 466,
@@ -10246,10 +10711,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 467,
@@ -10268,10 +10734,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 468,
@@ -10290,10 +10757,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 469,
@@ -10312,10 +10780,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 470,
@@ -10334,10 +10803,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 471,
@@ -10356,10 +10826,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 472,
@@ -10378,10 +10849,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 473,
@@ -10400,10 +10872,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 474,
@@ -10422,10 +10895,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 475,
@@ -10444,10 +10918,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 476,
@@ -10466,10 +10941,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 477,
@@ -10488,10 +10964,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 478,
@@ -10510,10 +10987,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 479,
@@ -10532,10 +11010,11 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   },
   {
     "id": 480,
@@ -10554,9 +11033,10 @@
     "investedGold": 0,
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
-    "specialAbilityDescription": null,
-    "abilityType": null,
-    "abilityProcChance": null,
-    "abilityValue": null
+    "description": null,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "skills": []
   }
 ]

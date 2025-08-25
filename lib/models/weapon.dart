@@ -2,7 +2,7 @@ import 'dart:math';
 
 enum Rarity { common, uncommon, rare, unique, epic, legend, demigod, god }
 
-enum SpecialAbilityType { onHitProcDamage }
+
 
 enum WeaponType {
   rapier,
@@ -36,17 +36,18 @@ class Weapon {
   double criticalChance;
   double criticalDamage;
   double baseSellPrice;
+  String? description;
+  double defensePenetration;
+  double doubleAttackChance;
+  double speed;
 
   // Resources invested in this weapon
   double investedGold;
   int investedEnhancementStones;
   int investedTranscendenceStones;
 
-  // Special Ability
-  String? specialAbilityDescription;
-  SpecialAbilityType? abilityType;
-  double? abilityProcChance;
-  double? abilityValue;
+  // Skills
+  List<Map<String, dynamic>> skills;
 
   int get maxTranscendence => 5;
 
@@ -85,17 +86,18 @@ class Weapon {
     required this.baseLevel,
     this.enhancement = 0,
     this.transcendence = 0,
-    required this.baseDamage, // Changed from damage to baseDamage
+    required this.baseDamage,
     required this.criticalChance,
     required this.criticalDamage,
     required this.baseSellPrice,
     this.investedGold = 0,
     this.investedEnhancementStones = 0,
     this.investedTranscendenceStones = 0,
-    this.specialAbilityDescription,
-    this.abilityType,
-    this.abilityProcChance,
-    this.abilityValue,
+    this.description,
+    this.defensePenetration = 0.0,
+    this.doubleAttackChance = 0.0,
+    this.speed = 1.0,
+    this.skills = const [],
   });
 
   Map<String, dynamic> toJson() => {
@@ -107,17 +109,18 @@ class Weapon {
     'baseLevel': baseLevel,
     'enhancement': enhancement,
     'transcendence': transcendence,
-    'baseDamage': baseDamage, // Added baseDamage
+    'baseDamage': baseDamage,
     'criticalChance': criticalChance,
     'criticalDamage': criticalDamage,
     'baseSellPrice': baseSellPrice,
     'investedGold': investedGold,
     'investedEnhancementStones': investedEnhancementStones,
     'investedTranscendenceStones': investedTranscendenceStones,
-    'specialAbilityDescription': specialAbilityDescription,
-    'abilityType': abilityType?.toString(),
-    'abilityProcChance': abilityProcChance,
-    'abilityValue': abilityValue,
+    'description': description,
+    'defensePenetration': defensePenetration,
+    'doubleAttackChance': doubleAttackChance,
+    'speed': speed,
+    'skills': skills,
   };
 
   factory Weapon.fromJson(Map<String, dynamic> json) {
@@ -128,26 +131,26 @@ class Weapon {
       rarity: Rarity.values.firstWhere((e) => e.toString() == json['rarity']),
       type: WeaponType.values.firstWhere((e) => e.toString() == json['type']),
       baseLevel: json['baseLevel'],
-      enhancement: json['enhancement'],
-      transcendence: json['transcendence'],
+      enhancement: json['enhancement'] ?? 0,
+      transcendence: json['transcendence'] ?? 0,
       baseDamage:
           json['baseDamage'] ??
           json['damage'] ??
-          0.0, // Prioritize baseDamage, fallback to damage, then 0.0
-      criticalChance: json['criticalChance'],
-      criticalDamage: json['criticalDamage'],
+          0.0,
+      criticalChance: json['criticalChance'] ?? 0.0,
+      criticalDamage: json['criticalDamage'] ?? 0.0,
       baseSellPrice: json['baseSellPrice'] ?? 0.0,
       investedGold: json['investedGold'] ?? 0.0,
       investedEnhancementStones: json['investedEnhancementStones'] ?? 0,
       investedTranscendenceStones: json['investedTranscendenceStones'] ?? 0,
-      specialAbilityDescription: json['specialAbilityDescription'],
-      abilityType: json['abilityType'] != null
-          ? SpecialAbilityType.values.firstWhere(
-              (e) => e.toString() == json['abilityType'],
-            )
-          : null,
-      abilityProcChance: json['abilityProcChance'],
-      abilityValue: json['abilityValue'],
+      description: json['description'],
+      defensePenetration: json['defensePenetration'] ?? 0.0,
+      doubleAttackChance: json['doubleAttackChance'] ?? 0.0,
+      speed: json['speed'] ?? 1.0,
+      skills: (json['skills'] as List<dynamic>?)
+              ?.map((e) => e as Map<String, dynamic>)
+              .toList() ??
+          const [],
     );
   }
 
@@ -175,17 +178,18 @@ class Weapon {
     int? baseLevel,
     int? enhancement,
     int? transcendence,
-    double? baseDamage, // Changed from damage to baseDamage
+    double? baseDamage,
     double? criticalChance,
     double? criticalDamage,
     double? baseSellPrice,
     double? investedGold,
     int? investedEnhancementStones,
     int? investedTranscendenceStones,
-    String? specialAbilityDescription,
-    SpecialAbilityType? abilityType,
-    double? abilityProcChance,
-    double? abilityValue,
+    String? description,
+    double? defensePenetration,
+    double? doubleAttackChance,
+    double? speed,
+    List<Map<String, dynamic>>? skills,
   }) {
     return Weapon(
       id: id ?? this.id,
@@ -196,8 +200,7 @@ class Weapon {
       baseLevel: baseLevel ?? this.baseLevel,
       enhancement: enhancement ?? this.enhancement,
       transcendence: transcendence ?? this.transcendence,
-      baseDamage:
-          baseDamage ?? this.baseDamage, // Changed from damage to baseDamage
+      baseDamage: baseDamage ?? this.baseDamage,
       criticalChance: criticalChance ?? this.criticalChance,
       criticalDamage: criticalDamage ?? this.criticalDamage,
       baseSellPrice: baseSellPrice ?? this.baseSellPrice,
@@ -206,11 +209,11 @@ class Weapon {
           investedEnhancementStones ?? this.investedEnhancementStones,
       investedTranscendenceStones:
           investedTranscendenceStones ?? this.investedTranscendenceStones,
-      specialAbilityDescription:
-          specialAbilityDescription ?? this.specialAbilityDescription,
-      abilityType: abilityType ?? this.abilityType,
-      abilityProcChance: abilityProcChance ?? this.abilityProcChance,
-      abilityValue: abilityValue ?? this.abilityValue,
+      description: description ?? this.description,
+      defensePenetration: defensePenetration ?? this.defensePenetration,
+      doubleAttackChance: doubleAttackChance ?? this.doubleAttackChance,
+      speed: speed ?? this.speed,
+      skills: skills ?? this.skills,
     );
   }
 }
