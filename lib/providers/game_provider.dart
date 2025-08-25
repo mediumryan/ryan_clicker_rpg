@@ -76,9 +76,27 @@ class GameProvider with ChangeNotifier {
     // Handle special ability
     
 
+    // Apply defense penetration
+    double effectiveMonsterDefense = max(0, _monster.defense - _player.equippedWeapon.defensePenetration);
+
     // Apply monster defense
-    double actualDamage = max(1, totalDamage - _monster.defense);
+    double actualDamage = max(1, totalDamage - effectiveMonsterDefense);
     _monster.hp -= actualDamage;
+
+    // Handle double attack chance
+    if (Random().nextDouble() < _player.equippedWeapon.doubleAttackChance) {
+      // Perform another attack (recursive call or duplicate logic)
+      // For simplicity, let's just add the same damage again for now
+      _monster.hp -= actualDamage; // Apply damage again
+      // In a real game, you might want to show a special effect or animation
+    }
+
+    // Handle skills
+    for (var skill in _player.equippedWeapon.skills) {
+      // Placeholder for skill logic
+      // Example: if (skill['skill_name'] == '심판') { apply judgment logic }
+      // This will be implemented later based on user's request
+    }
 
     if (_monster.hp <= 0) {
       // Monster defeated
