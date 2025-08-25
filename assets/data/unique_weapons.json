@@ -1,0 +1,230 @@
+[
+  {
+    "id": 961,
+    "name": "벌새",
+    "imageName": "unique/hummingbird.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "baseLevel": 0,
+    "baseDamage": 175,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.5,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.1,
+    "speed": 1.5,
+    "baseSellPrice": 4000,
+    "skills": [
+      {
+        "skill_name": "더 빠르게",
+        "skill_effect": "공격시 10% 확률로 두 번 타격합니다."
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "매우 가벼운 레이피어로, 시작의 마을 대장장이 윌터가 만든 수작 중 하나입니다. 빠르고 날렵한 공격이 특징입니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 962,
+    "name": "하얀 송곳니",
+    "imageName": "unique/white_fang.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "baseLevel": 50,
+    "baseDamage": 500,
+    "criticalChance": 0.25,
+    "criticalDamage": 1.75,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0,
+    "speed": 1.25,
+    "baseSellPrice": 12500,
+    "skills": [
+      {
+        "skill_name": "사냥 본능",
+        "skill_effect": "체력이 50% 이하인 적에게 25% 추가 데미지를 입힙니다."
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "알파 울프의 예리한 송곳니로 제작된 레이피어. 날카로운 일격을 갈망하는 초보 모험가들에게 있어, 실전의 문을 여는 상징입니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 963,
+    "name": "아머 브레이커",
+    "imageName": "unique/armor_breaker_rapier.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "baseLevel": 100,
+    "baseDamage": 840,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.5,
+    "defensePenetration": 5,
+    "doubleAttackChance": 0,
+    "speed": 1.25,
+    "baseSellPrice": 50000,
+    "skills": [
+      {
+        "skill_name": "갑옷 부수기",
+        "skill_effect": "기본 적 방어력 무시 5, 공격 시 10% 확률로 대상의 방어력을 25 하락시킵니다. 이 효과는 5초 동안 지속되며, 중첩되지 않습니다."
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "날카로운 찌르기로 수많은 병사의 갑옷을 넝마로 만든 레이피어입니다. 검날은 닳았지만, 여전히 적의 방어구를 꿰뚫기에 충분합니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 964,
+    "name": "아머 브레이커",
+    "imageName": "unique/armor_breaker_warhammer.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.warhammer",
+    "baseLevel": 100,
+    "baseDamage": 207,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.5,
+    "defensePenetration": 5,
+    "doubleAttackChance": 0,
+    "speed": 1.25,
+    "baseSellPrice": 50000,
+    "skills": [
+      {
+        "skill_name": "갑옷 부수기",
+        "skill_effect": "기본 적 방어력 무시 5, 공격 시 10% 확률로 대상의 방어력을 25 하락시킵니다. 이 효과는 5초 동안 지속되며, 중첩되지 않습니다."
+      }
+    ],
+    "accuracy": 0.95,
+    "description": "날카로운 찌르기로 수많은 병사의 갑옷을 넝마로 만든 레이피어입니다. 검날은 닳았지만, 여전히 적의 방어구를 꿰뚫기에 충분합니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 965,
+    "name": "아머 브레이커",
+    "imageName": "unique/armor_breaker_battleAxe.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.battleAxe",
+    "baseLevel": 100,
+    "baseDamage": 207,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.5,
+    "defensePenetration": 5,
+    "doubleAttackChance": 0,
+    "speed": 1.25,
+    "baseSellPrice": 50000,
+    "skills": [
+      {
+        "skill_name": "갑옷 부수기",
+        "skill_effect": "기본 적 방어력 무시 5, 공격 시 10% 확률로 대상의 방어력을 25 하락시킵니다. 이 효과는 5초 동안 지속되며, 중첩되지 않습니다."
+      }
+    ],
+    "accuracy": 0.95,
+    "description": "날카로운 찌르기로 수많은 병사의 갑옷을 넝마로 만든 레이피어입니다. 검날은 닳았지만, 여전히 적의 방어구를 꿰뚫기에 충분합니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 966,
+    "name": "독아",
+    "imageName": "unique/venom_fang.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "baseLevel": 200,
+    "baseDamage": 1650,
+    "criticalChance": 1.5,
+    "criticalDamage": 1.5,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0,
+    "speed": 1.25,
+    "baseSellPrice": 125000,
+    "skills": [
+      {
+        "skill_name": "맹독 주입",
+        "skill_effect": "공격 시 10% 확률로 몬스터를 중독 상태로 만듭니다. 중독된 몬스터는 5초 동안 초당 최대체력의 2% 피해를 입습니다. (해당 피해는 방어력을 무시합니다)"
+      }
+    ],
+    "accuracy": 0.95,
+    "description": "음침한 대장장이가 으슥한 동굴에서 채취한 독과 함께 벼린 레이피어입니다. 외형은 허술해 보이지만, 맞은 자는 그 즉시 이상 징후를 보입니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 967,
+    "name": "복제된 신성한 일침",
+    "imageName": "unique/replicated_divine_pierce.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "baseLevel": 300,
+    "baseDamage": 2500,
+    "criticalChance": 1.75,
+    "criticalDamage": 1.5,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0,
+    "speed": 1.35,
+    "baseSellPrice": 225000,
+    "skills": [
+      {
+        "skill_name": "심판 (복제)",
+        "skill_effect": "언데드 또는 악마형 적에게 30% 추가 피해를 입힙니다. 신성교 혹은 천사형 적에게는 30% 피해가 감소합니다."
+      },
+      {
+        "skill_name": "신성한 일격 (복제)",
+        "skill_effect": "공격 시 10% 확률로 신성한 빛줄기를 내뿜어, 7,500의 추가 피해를 입힙니다."
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "신성국에서 전해 내려오는 《신성한 일침》의 복제품입니다. 일부 신성 기사들에게 하사품 형식으로 보급되며, 진품보다 성능은 떨어지지만 형식적인 권위를 갖춘 무기입니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 968,
+    "name": "벌집",
+    "imageName": "unique/hive.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "baseLevel": 400,
+    "baseDamage": 3600,
+    "criticalChance": 0.0,
+    "criticalDamage": 1.0,
+    "defensePenetration": 0.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "skills": [
+      {
+        "skill_name": "벌집내기",
+        "skill_effect": "상대방을 정신 못 차리게 찌릅니다. 공격 시 15% 확률로 공격력의 4배에 해당하는 추가 피해를 입힙니다."
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "강력한 찌르기로 적을 벌집으로 만듭니다. 끝없이 꽂히는 칼날 끝에 맞은 적은 온몸이 피투성이가 되어 무너져 내립니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  }
+]

@@ -1,6 +1,4 @@
 
-import 'package:flutter/foundation.dart';
-
 class GachaBox {
   final String id;
   final String name;

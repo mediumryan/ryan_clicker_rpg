@@ -27,8 +27,6 @@ class InventoryScreen extends StatelessWidget {
         return Colors.yellow;
       case Rarity.god:
         return Colors.white;
-      default:
-        return Colors.grey;
     }
   }
 
@@ -144,7 +142,7 @@ class InventoryScreen extends StatelessWidget {
                 ), // Slightly rounded corners
               ),
               child: Image.asset(
-                'images/weapons/common/${weapon.imageName}',
+                'images/weapons/${weapon.imageName}',
                 fit: BoxFit.contain,
                 errorBuilder: (context, error, stackTrace) {
                   return const Center(

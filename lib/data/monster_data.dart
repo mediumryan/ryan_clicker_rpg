@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:ryan_clicker_rpg/models/monster.dart';
+import 'package:ryan_clicker_rpg/models/monster_species.dart';
 
 class MonsterData {
   static final List<Map<String, dynamic>> _monsterList = [
@@ -12,6 +13,7 @@ class MonsterData {
       'startStage': 1,
       'endStage': 10,
       'def': 0,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '닭',
@@ -19,6 +21,7 @@ class MonsterData {
       'startStage': 11,
       'endStage': 20,
       'def': 0,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '개구리',
@@ -26,6 +29,7 @@ class MonsterData {
       'startStage': 21,
       'endStage': 30,
       'def': 0,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '두꺼비',
@@ -33,6 +37,7 @@ class MonsterData {
       'startStage': 31,
       'endStage': 40,
       'def': 1,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '거위',
@@ -40,6 +45,7 @@ class MonsterData {
       'startStage': 41,
       'endStage': 49,
       'def': 1,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '거대 게',
@@ -48,6 +54,7 @@ class MonsterData {
       'endStage': 50,
       'def': 3,
       'isBoss': true,
+      'species': [MonsterSpecies.beast],
     },
 
     // 시작의 마을 외곽 (51~100)
@@ -57,6 +64,7 @@ class MonsterData {
       'startStage': 51,
       'endStage': 60,
       'def': 2,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '고양이',
@@ -64,6 +72,7 @@ class MonsterData {
       'startStage': 61,
       'endStage': 70,
       'def': 1,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '돼지',
@@ -71,6 +80,7 @@ class MonsterData {
       'startStage': 71,
       'endStage': 80,
       'def': 2,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '스컹크',
@@ -78,6 +88,7 @@ class MonsterData {
       'startStage': 81,
       'endStage': 90,
       'def': 2,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '호저',
@@ -85,6 +96,7 @@ class MonsterData {
       'startStage': 91,
       'endStage': 99,
       'def': 2,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '정신나간 멧돼지',
@@ -93,6 +105,7 @@ class MonsterData {
       'endStage': 100,
       'def': 4,
       'isBoss': true,
+      'species': [MonsterSpecies.beast],
     },
 
     // 설산 입구 (101~150)
@@ -102,6 +115,7 @@ class MonsterData {
       'startStage': 101,
       'endStage': 110,
       'def': 2,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '정신나간 멧돼지',
@@ -109,6 +123,7 @@ class MonsterData {
       'startStage': 111,
       'endStage': 120,
       'def': 3,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '설산여우',
@@ -116,6 +131,7 @@ class MonsterData {
       'startStage': 121,
       'endStage': 130,
       'def': 3,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '산양',
@@ -123,6 +139,7 @@ class MonsterData {
       'startStage': 131,
       'endStage': 140,
       'def': 3,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '설산여우',
@@ -130,6 +147,7 @@ class MonsterData {
       'startStage': 141,
       'endStage': 149,
       'def': 4,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '팀버울프',
@@ -138,6 +156,7 @@ class MonsterData {
       'endStage': 150,
       'def': 5,
       'isBoss': true,
+      'species': [MonsterSpecies.beast],
     },
 
     // 어두운 동굴 초입(151~200)
@@ -147,6 +166,7 @@ class MonsterData {
       'startStage': 151,
       'endStage': 160,
       'def': 3,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '굶주린 진드기',
@@ -154,6 +174,7 @@ class MonsterData {
       'startStage': 161,
       'endStage': 170,
       'def': 3,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '거대 진드기',
@@ -161,6 +182,7 @@ class MonsterData {
       'startStage': 171,
       'endStage': 180,
       'def': 4,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '빈대',
@@ -168,6 +190,7 @@ class MonsterData {
       'startStage': 181,
       'endStage': 190,
       'def': 4,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '박쥐',
@@ -175,6 +198,7 @@ class MonsterData {
       'startStage': 191,
       'endStage': 199,
       'def': 4,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '역병박쥐',
@@ -183,6 +207,7 @@ class MonsterData {
       'endStage': 200,
       'def': 7,
       'isBoss': true,
+      'species': [MonsterSpecies.beast, MonsterSpecies.undead],
     },
 
     // 어두운 동굴 깊은 곳 (201~250)
@@ -192,6 +217,7 @@ class MonsterData {
       'startStage': 201,
       'endStage': 210,
       'def': 5,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '맹독개미',
@@ -199,6 +225,7 @@ class MonsterData {
       'startStage': 211,
       'endStage': 220,
       'def': 5,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '불개미',
@@ -206,6 +233,7 @@ class MonsterData {
       'startStage': 221,
       'endStage': 230,
       'def': 5,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '바퀴벌레',
@@ -213,6 +241,7 @@ class MonsterData {
       'startStage': 231,
       'endStage': 240,
       'def': 5,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '비틀',
@@ -220,6 +249,7 @@ class MonsterData {
       'startStage': 241,
       'endStage': 249,
       'def': 7,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '거대한 사슴벌레',
@@ -228,6 +258,7 @@ class MonsterData {
       'endStage': 250,
       'def': 9,
       'isBoss': true,
+      'species': [MonsterSpecies.insect],
     },
 
     // 어두운 동굴 깊은 곳II (251~300)
@@ -237,6 +268,7 @@ class MonsterData {
       'startStage': 251,
       'endStage': 260,
       'def': 6,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '역병박쥐',
@@ -244,6 +276,7 @@ class MonsterData {
       'startStage': 261,
       'endStage': 270,
       'def': 6,
+      'species': [MonsterSpecies.beast, MonsterSpecies.undead],
     },
     {
       'name': '거대한 사슴벌레',
@@ -251,6 +284,7 @@ class MonsterData {
       'startStage': 271,
       'endStage': 280,
       'def': 6,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '역병쥐',
@@ -258,6 +292,7 @@ class MonsterData {
       'startStage': 281,
       'endStage': 290,
       'def': 7,
+      'species': [MonsterSpecies.beast, MonsterSpecies.undead],
     },
     {
       'name': '두더쥐',
@@ -265,6 +300,7 @@ class MonsterData {
       'startStage': 291,
       'endStage': 299,
       'def': 8,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '육식 비버',
@@ -273,6 +309,7 @@ class MonsterData {
       'endStage': 300,
       'def': 10,
       'isBoss': true,
+      'species': [MonsterSpecies.beast],
     },
 
     // 고블린 영지 (301~350)
@@ -282,6 +319,7 @@ class MonsterData {
       'startStage': 301,
       'endStage': 310,
       'def': 7,
+      'species': [MonsterSpecies.goblin],
     },
     {
       'name': '고블린 광신도',
@@ -289,6 +327,7 @@ class MonsterData {
       'startStage': 311,
       'endStage': 320,
       'def': 7,
+      'species': [MonsterSpecies.goblin],
     },
     {
       'name': '고블린 투사',
@@ -296,6 +335,7 @@ class MonsterData {
       'startStage': 321,
       'endStage': 330,
       'def': 8,
+      'species': [MonsterSpecies.goblin],
     },
     {
       'name': '고블린 사제',
@@ -303,6 +343,7 @@ class MonsterData {
       'startStage': 331,
       'endStage': 340,
       'def': 7,
+      'species': [MonsterSpecies.goblin],
     },
     {
       'name': '고블린 투사',
@@ -310,6 +351,7 @@ class MonsterData {
       'startStage': 341,
       'endStage': 349,
       'def': 10,
+      'species': [MonsterSpecies.goblin],
     },
     {
       'name': '고블린 리더',
@@ -318,6 +360,7 @@ class MonsterData {
       'endStage': 350,
       'def': 12,
       'isBoss': true,
+      'species': [MonsterSpecies.goblin],
     },
 
     // 소인족 마을 (351~400)
@@ -327,6 +370,7 @@ class MonsterData {
       'startStage': 351,
       'endStage': 360,
       'def': 7,
+      'species': [MonsterSpecies.dwarf],
     },
     {
       'name': '소인족 로그',
@@ -334,6 +378,7 @@ class MonsterData {
       'startStage': 361,
       'endStage': 370,
       'def': 7,
+      'species': [MonsterSpecies.dwarf],
     },
     {
       'name': '소인족 사제',
@@ -341,6 +386,7 @@ class MonsterData {
       'startStage': 371,
       'endStage': 380,
       'def': 7,
+      'species': [MonsterSpecies.dwarf],
     },
     {
       'name': '소인족 기사',
@@ -348,6 +394,7 @@ class MonsterData {
       'startStage': 381,
       'endStage': 390,
       'def': 7,
+      'species': [MonsterSpecies.dwarf],
     },
     {
       'name': '소인족 기사',
@@ -355,6 +402,7 @@ class MonsterData {
       'startStage': 391,
       'endStage': 399,
       'def': 9,
+      'species': [MonsterSpecies.dwarf],
     },
     {
       'name': '소인족 리더',
@@ -363,6 +411,7 @@ class MonsterData {
       'endStage': 400,
       'def': 15,
       'isBoss': true,
+      'species': [MonsterSpecies.dwarf],
     },
 
     // 리자드 습지 (401~450)
@@ -372,6 +421,7 @@ class MonsterData {
       'startStage': 401,
       'endStage': 410,
       'def': 8,
+      'species': [MonsterSpecies.lizardman],
     },
     {
       'name': '리자드맨 정찰병',
@@ -379,6 +429,7 @@ class MonsterData {
       'startStage': 411,
       'endStage': 420,
       'def': 8,
+      'species': [MonsterSpecies.lizardman],
     },
     {
       'name': '리자드맨 검투사',
@@ -386,6 +437,7 @@ class MonsterData {
       'startStage': 421,
       'endStage': 430,
       'def': 8,
+      'species': [MonsterSpecies.lizardman],
     },
     {
       'name': '리자드맨 창병',
@@ -393,6 +445,7 @@ class MonsterData {
       'startStage': 431,
       'endStage': 440,
       'def': 9,
+      'species': [MonsterSpecies.lizardman],
     },
     {
       'name': '리자드맨 검투사',
@@ -400,6 +453,7 @@ class MonsterData {
       'startStage': 441,
       'endStage': 449,
       'def': 10,
+      'species': [MonsterSpecies.lizardman],
     },
     {
       'name': '리자드맨 리더',
@@ -408,6 +462,7 @@ class MonsterData {
       'endStage': 450,
       'def': 18,
       'isBoss': true,
+      'species': [MonsterSpecies.lizardman],
     },
 
     // 바위산 초입 (451~500)
@@ -417,6 +472,7 @@ class MonsterData {
       'startStage': 451,
       'endStage': 460,
       'def': 8,
+      'species': [MonsterSpecies.aberration],
     },
     {
       'name': '주시자',
@@ -424,6 +480,7 @@ class MonsterData {
       'startStage': 461,
       'endStage': 470,
       'def': 8,
+      'species': [MonsterSpecies.aberration],
     },
     {
       'name': '독버섯',
@@ -431,6 +488,7 @@ class MonsterData {
       'startStage': 471,
       'endStage': 480,
       'def': 8,
+      'species': [MonsterSpecies.aberration],
     },
     {
       'name': '광대버섯',
@@ -438,6 +496,7 @@ class MonsterData {
       'startStage': 481,
       'endStage': 490,
       'def': 9,
+      'species': [MonsterSpecies.aberration],
     },
     {
       'name': '변종 독버섯',
@@ -445,6 +504,7 @@ class MonsterData {
       'startStage': 491,
       'endStage': 499,
       'def': 10,
+      'species': [MonsterSpecies.aberration],
     },
     {
       'name': '바위산 뼈수집가',
@@ -453,6 +513,7 @@ class MonsterData {
       'endStage': 500,
       'def': 20,
       'isBoss': true,
+      'species': [MonsterSpecies.undead],
     },
 
     // 바위산 중턱 (501~550)
@@ -462,6 +523,7 @@ class MonsterData {
       'startStage': 501,
       'endStage': 510,
       'def': 9,
+      'species': [MonsterSpecies.aberration],
     },
     {
       'name': '포이즌 슬라임',
@@ -469,6 +531,7 @@ class MonsterData {
       'startStage': 511,
       'endStage': 520,
       'def': 9,
+      'species': [MonsterSpecies.aberration],
     },
     {
       'name': '바위산 뼈수집가',
@@ -476,6 +539,7 @@ class MonsterData {
       'startStage': 521,
       'endStage': 530,
       'def': 9,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '오우거',
@@ -483,6 +547,7 @@ class MonsterData {
       'startStage': 531,
       'endStage': 540,
       'def': 11,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '샴오우거',
@@ -490,6 +555,7 @@ class MonsterData {
       'startStage': 541,
       'endStage': 549,
       'def': 12,
+      'species': [MonsterSpecies.beast, MonsterSpecies.aberration],
     },
     {
       'name': '죽음의 그림자',
@@ -498,6 +564,7 @@ class MonsterData {
       'endStage': 550,
       'def': 24,
       'isBoss': true,
+      'species': [MonsterSpecies.undead, MonsterSpecies.aberration],
     },
 
     // 바위산 정상 (551~600)
@@ -507,6 +574,7 @@ class MonsterData {
       'startStage': 551,
       'endStage': 560,
       'def': 12,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '바위트롤',
@@ -514,6 +582,7 @@ class MonsterData {
       'startStage': 561,
       'endStage': 570,
       'def': 13,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '싸이클롭스',
@@ -521,6 +590,7 @@ class MonsterData {
       'startStage': 571,
       'endStage': 580,
       'def': 13,
+      'species': [MonsterSpecies.beast, MonsterSpecies.aberration],
     },
     {
       'name': '죽음의 그림자',
@@ -528,6 +598,7 @@ class MonsterData {
       'startStage': 581,
       'endStage': 590,
       'def': 15,
+      'species': [MonsterSpecies.undead, MonsterSpecies.aberration],
     },
     {
       'name': '싸이클롭스',
@@ -535,6 +606,7 @@ class MonsterData {
       'startStage': 591,
       'endStage': 599,
       'def': 17,
+      'species': [MonsterSpecies.beast, MonsterSpecies.aberration],
     },
     {
       'name': '죽음의 형태',
@@ -543,6 +615,7 @@ class MonsterData {
       'endStage': 600,
       'def': 30,
       'isBoss': true,
+      'species': [MonsterSpecies.undead, MonsterSpecies.aberration],
     },
 
     // 이상한 마을 (601~650)
@@ -552,6 +625,7 @@ class MonsterData {
       'startStage': 601,
       'endStage': 610,
       'def': 15,
+      'species': [MonsterSpecies.human, MonsterSpecies.aberration],
     },
     {
       'name': '소리 지르는 아이',
@@ -559,6 +633,7 @@ class MonsterData {
       'startStage': 611,
       'endStage': 620,
       'def': 15,
+      'species': [MonsterSpecies.human, MonsterSpecies.aberration],
     },
     {
       'name': '눈 돌아간 청년',
@@ -566,6 +641,7 @@ class MonsterData {
       'startStage': 621,
       'endStage': 630,
       'def': 15,
+      'species': [MonsterSpecies.human, MonsterSpecies.aberration],
     },
     {
       'name': '소리 지르는 아이',
@@ -573,6 +649,7 @@ class MonsterData {
       'startStage': 631,
       'endStage': 640,
       'def': 17,
+      'species': [MonsterSpecies.human, MonsterSpecies.aberration],
     },
     {
       'name': '설교하는 자',
@@ -580,6 +657,7 @@ class MonsterData {
       'startStage': 641,
       'endStage': 649,
       'def': 17,
+      'species': [MonsterSpecies.human],
     },
     {
       'name': '이상한 마을 촌장',
@@ -588,6 +666,7 @@ class MonsterData {
       'endStage': 650,
       'def': 30,
       'isBoss': true,
+      'species': [MonsterSpecies.human, MonsterSpecies.aberration],
     },
 
     // 엘프 숲 (651~700)
@@ -597,6 +676,7 @@ class MonsterData {
       'startStage': 651,
       'endStage': 660,
       'def': 17,
+      'species': [MonsterSpecies.elf],
     },
     {
       'name': '엘프 검사',
@@ -604,6 +684,7 @@ class MonsterData {
       'startStage': 661,
       'endStage': 670,
       'def': 17,
+      'species': [MonsterSpecies.elf],
     },
     {
       'name': '엘프 마법사',
@@ -611,6 +692,7 @@ class MonsterData {
       'startStage': 671,
       'endStage': 680,
       'def': 17,
+      'species': [MonsterSpecies.elf],
     },
     {
       'name': '엘프 궁병',
@@ -618,6 +700,7 @@ class MonsterData {
       'startStage': 681,
       'endStage': 690,
       'def': 19,
+      'species': [MonsterSpecies.elf],
     },
     {
       'name': '엘프 궁병',
@@ -625,6 +708,7 @@ class MonsterData {
       'startStage': 691,
       'endStage': 699,
       'def': 20,
+      'species': [MonsterSpecies.elf],
     },
     {
       'name': '엘프 촌장',
@@ -633,6 +717,7 @@ class MonsterData {
       'endStage': 700,
       'def': 32,
       'isBoss': true,
+      'species': [MonsterSpecies.elf],
     },
 
     // 요정 숲 (701~750)
@@ -642,6 +727,7 @@ class MonsterData {
       'startStage': 701,
       'endStage': 710,
       'def': 20,
+      'species': [MonsterSpecies.elf],
     },
     {
       'name': '호전적인 요정',
@@ -649,6 +735,7 @@ class MonsterData {
       'startStage': 711,
       'endStage': 720,
       'def': 20,
+      'species': [MonsterSpecies.elf],
     },
     {
       'name': '위스프',
@@ -656,6 +743,7 @@ class MonsterData {
       'startStage': 721,
       'endStage': 730,
       'def': 20,
+      'species': [MonsterSpecies.elemental],
     },
     {
       'name': '나무정령',
@@ -663,6 +751,7 @@ class MonsterData {
       'startStage': 731,
       'endStage': 740,
       'def': 21,
+      'species': [MonsterSpecies.elemental],
     },
     {
       'name': '위스프',
@@ -670,6 +759,7 @@ class MonsterData {
       'startStage': 741,
       'endStage': 749,
       'def': 22,
+      'species': [MonsterSpecies.elemental],
     },
     {
       'name': '귀신들린 나무정령',
@@ -678,6 +768,7 @@ class MonsterData {
       'endStage': 750,
       'def': 35,
       'isBoss': true,
+      'species': [MonsterSpecies.elemental, MonsterSpecies.undead],
     },
 
     // 이상한 숲 (751~800)
@@ -687,6 +778,7 @@ class MonsterData {
       'startStage': 751,
       'endStage': 760,
       'def': 21,
+      'species': [MonsterSpecies.human],
     },
     {
       'name': '능숙한 마법사',
@@ -694,6 +786,7 @@ class MonsterData {
       'startStage': 761,
       'endStage': 770,
       'def': 21,
+      'species': [MonsterSpecies.human],
     },
     {
       'name': '음침한 마녀',
@@ -701,6 +794,7 @@ class MonsterData {
       'startStage': 771,
       'endStage': 780,
       'def': 21,
+      'species': [MonsterSpecies.human],
     },
     {
       'name': '네크로맨서',
@@ -708,6 +802,7 @@ class MonsterData {
       'startStage': 781,
       'endStage': 790,
       'def': 23,
+      'species': [MonsterSpecies.human, MonsterSpecies.undead],
     },
     {
       'name': '음침한 마녀',
@@ -715,6 +810,7 @@ class MonsterData {
       'startStage': 791,
       'endStage': 799,
       'def': 22,
+      'species': [MonsterSpecies.human],
     },
     {
       'name': '드루이드',
@@ -723,6 +819,7 @@ class MonsterData {
       'endStage': 800,
       'def': 37,
       'isBoss': true,
+      'species': [MonsterSpecies.human, MonsterSpecies.elemental],
     },
 
     // 정령의 숲 (801~850)
@@ -732,6 +829,7 @@ class MonsterData {
       'startStage': 801,
       'endStage': 810,
       'def': 23,
+      'species': [MonsterSpecies.elemental],
     },
     {
       'name': '아이언 골렘',
@@ -739,6 +837,7 @@ class MonsterData {
       'startStage': 811,
       'endStage': 820,
       'def': 23,
+      'species': [MonsterSpecies.elemental],
     },
     {
       'name': '물의 정령',
@@ -746,6 +845,7 @@ class MonsterData {
       'startStage': 821,
       'endStage': 830,
       'def': 23,
+      'species': [MonsterSpecies.elemental],
     },
     {
       'name': '아이스 골렘',
@@ -753,6 +853,7 @@ class MonsterData {
       'startStage': 831,
       'endStage': 840,
       'def': 25,
+      'species': [MonsterSpecies.elemental],
     },
     {
       'name': '아이언 골렘',
@@ -760,6 +861,7 @@ class MonsterData {
       'startStage': 841,
       'endStage': 849,
       'def': 26,
+      'species': [MonsterSpecies.elemental],
     },
     {
       'name': '불의 정령',
@@ -768,6 +870,7 @@ class MonsterData {
       'endStage': 850,
       'def': 40,
       'isBoss': true,
+      'species': [MonsterSpecies.elemental],
     },
 
     // 바위산 끝자락 (851~900)
@@ -777,6 +880,7 @@ class MonsterData {
       'startStage': 851,
       'endStage': 860,
       'def': 24,
+      'species': [MonsterSpecies.aberration],
     },
     {
       'name': '주시자',
@@ -784,6 +888,7 @@ class MonsterData {
       'startStage': 861,
       'endStage': 870,
       'def': 24,
+      'species': [MonsterSpecies.aberration],
     },
     {
       'name': '독버섯',
@@ -791,6 +896,7 @@ class MonsterData {
       'startStage': 871,
       'endStage': 880,
       'def': 24,
+      'species': [MonsterSpecies.aberration],
     },
     {
       'name': '광대버섯',
@@ -798,6 +904,7 @@ class MonsterData {
       'startStage': 881,
       'endStage': 890,
       'def': 25,
+      'species': [MonsterSpecies.aberration],
     },
     {
       'name': '변종 독버섯',
@@ -805,6 +912,7 @@ class MonsterData {
       'startStage': 891,
       'endStage': 899,
       'def': 26,
+      'species': [MonsterSpecies.aberration],
     },
     {
       'name': '바위산 뼈수집가',
@@ -813,6 +921,7 @@ class MonsterData {
       'endStage': 900,
       'def': 42,
       'isBoss': true,
+      'species': [MonsterSpecies.undead],
     },
 
     // 신성국으로 가는 길 (901~950)
@@ -822,6 +931,7 @@ class MonsterData {
       'startStage': 901,
       'endStage': 910,
       'def': 22,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '스컹크',
@@ -829,6 +939,7 @@ class MonsterData {
       'startStage': 911,
       'endStage': 920,
       'def': 22,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '고양이',
@@ -836,6 +947,7 @@ class MonsterData {
       'startStage': 921,
       'endStage': 930,
       'def': 22,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '두꺼비',
@@ -843,6 +955,7 @@ class MonsterData {
       'startStage': 931,
       'endStage': 940,
       'def': 22,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '돼지',
@@ -850,6 +963,7 @@ class MonsterData {
       'startStage': 941,
       'endStage': 949,
       'def': 24,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '정신나간 멧돼지',
@@ -858,6 +972,7 @@ class MonsterData {
       'endStage': 950,
       'def': 40,
       'isBoss': true,
+      'species': [MonsterSpecies.beast],
     },
 
     // 신성국 입구 (951~1000)
@@ -867,6 +982,7 @@ class MonsterData {
       'startStage': 951,
       'endStage': 960,
       'def': 26,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '신성국 경비대장',
@@ -874,6 +990,7 @@ class MonsterData {
       'startStage': 961,
       'endStage': 970,
       'def': 26,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '신성국 기사',
@@ -881,6 +998,7 @@ class MonsterData {
       'startStage': 971,
       'endStage': 980,
       'def': 26,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '신성국 경비대장',
@@ -888,6 +1006,7 @@ class MonsterData {
       'startStage': 981,
       'endStage': 990,
       'def': 28,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '신성국 기사단장',
@@ -895,6 +1014,7 @@ class MonsterData {
       'startStage': 991,
       'endStage': 999,
       'def': 30,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '팔라딘',
@@ -903,6 +1023,7 @@ class MonsterData {
       'endStage': 1000,
       'def': 50,
       'isBoss': true,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
 
     // 신성국 교회 (1001~1050)
@@ -912,6 +1033,7 @@ class MonsterData {
       'startStage': 1001,
       'endStage': 1010,
       'def': 25,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '신성국 일등 신자',
@@ -919,6 +1041,7 @@ class MonsterData {
       'startStage': 1011,
       'endStage': 1020,
       'def': 25,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '신성국 전도사',
@@ -926,6 +1049,7 @@ class MonsterData {
       'startStage': 1021,
       'endStage': 1030,
       'def': 25,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '신성국 주교',
@@ -933,6 +1057,7 @@ class MonsterData {
       'startStage': 1031,
       'endStage': 1040,
       'def': 25,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '신성국 주교',
@@ -940,6 +1065,7 @@ class MonsterData {
       'startStage': 1041,
       'endStage': 1049,
       'def': 30,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '신성국 대주교',
@@ -948,6 +1074,7 @@ class MonsterData {
       'endStage': 1050,
       'def': 50,
       'isBoss': true,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
 
     // 신성한 제단 (1051~1100)
@@ -957,6 +1084,7 @@ class MonsterData {
       'startStage': 1051,
       'endStage': 1060,
       'def': 40,
+      'species': [MonsterSpecies.angel, MonsterSpecies.holy],
     },
     {
       'name': '중급 천사',
@@ -964,6 +1092,7 @@ class MonsterData {
       'startStage': 1061,
       'endStage': 1070,
       'def': 40,
+      'species': [MonsterSpecies.angel, MonsterSpecies.holy],
     },
     {
       'name': '상급 천사',
@@ -971,6 +1100,7 @@ class MonsterData {
       'startStage': 1071,
       'endStage': 1080,
       'def': 41,
+      'species': [MonsterSpecies.angel, MonsterSpecies.holy],
     },
     {
       'name': '대천사',
@@ -978,6 +1108,7 @@ class MonsterData {
       'startStage': 1081,
       'endStage': 1090,
       'def': 42,
+      'species': [MonsterSpecies.angel, MonsterSpecies.holy],
     },
     {
       'name': '대천사',
@@ -985,6 +1116,7 @@ class MonsterData {
       'startStage': 1091,
       'endStage': 1099,
       'def': 45,
+      'species': [MonsterSpecies.angel, MonsterSpecies.holy],
     },
     {
       'name': '천사장',
@@ -993,6 +1125,7 @@ class MonsterData {
       'endStage': 1100,
       'def': 55,
       'isBoss': true,
+      'species': [MonsterSpecies.angel, MonsterSpecies.holy],
     },
 
     // 세뇌된 마을 (1101~1150)
@@ -1002,6 +1135,7 @@ class MonsterData {
       'startStage': 1101,
       'endStage': 1110,
       'def': 25,
+      'species': [MonsterSpecies.human, MonsterSpecies.aberration],
     },
     {
       'name': '세뇌된 청년',
@@ -1009,6 +1143,7 @@ class MonsterData {
       'startStage': 1111,
       'endStage': 1120,
       'def': 25,
+      'species': [MonsterSpecies.human, MonsterSpecies.aberration],
     },
     {
       'name': '눈 돌아간 청년',
@@ -1016,6 +1151,7 @@ class MonsterData {
       'startStage': 1121,
       'endStage': 1130,
       'def': 25,
+      'species': [MonsterSpecies.human, MonsterSpecies.aberration],
     },
     {
       'name': '세뇌된 청년',
@@ -1023,6 +1159,7 @@ class MonsterData {
       'startStage': 1131,
       'endStage': 1140,
       'def': 26,
+      'species': [MonsterSpecies.human, MonsterSpecies.aberration],
     },
     {
       'name': '세뇌된 어른',
@@ -1030,6 +1167,7 @@ class MonsterData {
       'startStage': 1141,
       'endStage': 1149,
       'def': 27,
+      'species': [MonsterSpecies.human, MonsterSpecies.aberration],
     },
     {
       'name': '세뇌된 촌장',
@@ -1038,6 +1176,7 @@ class MonsterData {
       'endStage': 1150,
       'def': 30,
       'isBoss': true,
+      'species': [MonsterSpecies.human, MonsterSpecies.aberration],
     },
 
     // 마을 공동묘지 입구 (1151~1200)
@@ -1047,6 +1186,7 @@ class MonsterData {
       'startStage': 1151,
       'endStage': 1160,
       'def': 35,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '거대 식인벌레',
@@ -1054,6 +1194,7 @@ class MonsterData {
       'startStage': 1161,
       'endStage': 1170,
       'def': 35,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '상태 안좋은 미라',
@@ -1061,6 +1202,7 @@ class MonsterData {
       'startStage': 1171,
       'endStage': 1180,
       'def': 35,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '미라',
@@ -1068,6 +1210,7 @@ class MonsterData {
       'startStage': 1181,
       'endStage': 1190,
       'def': 36,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '거대 식인벌레',
@@ -1075,6 +1218,7 @@ class MonsterData {
       'startStage': 1191,
       'endStage': 1199,
       'def': 37,
+      'species': [MonsterSpecies.insect],
     },
     {
       'name': '거대한 미라',
@@ -1083,6 +1227,7 @@ class MonsterData {
       'endStage': 1200,
       'def': 40,
       'isBoss': true,
+      'species': [MonsterSpecies.undead],
     },
 
     // 마을 공동묘지 (1201~1250)
@@ -1092,6 +1237,7 @@ class MonsterData {
       'startStage': 1201,
       'endStage': 1210,
       'def': 37,
+      'species': [MonsterSpecies.undead, MonsterSpecies.aberration],
     },
     {
       'name': '좀비개',
@@ -1099,6 +1245,7 @@ class MonsterData {
       'startStage': 1211,
       'endStage': 1220,
       'def': 37,
+      'species': [MonsterSpecies.beast, MonsterSpecies.undead],
     },
     {
       'name': '굶주린 좀비',
@@ -1106,6 +1253,7 @@ class MonsterData {
       'startStage': 1221,
       'endStage': 1230,
       'def': 37,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '기어다니는 좀비',
@@ -1113,6 +1261,7 @@ class MonsterData {
       'startStage': 1231,
       'endStage': 1240,
       'def': 38,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '기어다니는 좀비',
@@ -1120,6 +1269,7 @@ class MonsterData {
       'startStage': 1241,
       'endStage': 1249,
       'def': 39,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '뛰는 좀비',
@@ -1128,6 +1278,7 @@ class MonsterData {
       'endStage': 1250,
       'def': 45,
       'isBoss': true,
+      'species': [MonsterSpecies.undead],
     },
 
     // 마을 공동묘지 중심부 (1251~1300)
@@ -1137,6 +1288,7 @@ class MonsterData {
       'startStage': 1251,
       'endStage': 1260,
       'def': 40,
+      'species': [MonsterSpecies.beast, MonsterSpecies.undead],
     },
     {
       'name': '죽음의 눈',
@@ -1144,6 +1296,7 @@ class MonsterData {
       'startStage': 1261,
       'endStage': 1270,
       'def': 40,
+      'species': [MonsterSpecies.aberration, MonsterSpecies.undead],
     },
     {
       'name': '스켈레톤',
@@ -1151,6 +1304,7 @@ class MonsterData {
       'startStage': 1271,
       'endStage': 1280,
       'def': 40,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '스켈레톤 아쳐',
@@ -1158,6 +1312,7 @@ class MonsterData {
       'startStage': 1281,
       'endStage': 1290,
       'def': 41,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '스켈레톤',
@@ -1165,6 +1320,7 @@ class MonsterData {
       'startStage': 1291,
       'endStage': 1299,
       'def': 42,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '무덤지기',
@@ -1173,6 +1329,7 @@ class MonsterData {
       'endStage': 1300,
       'def': 45,
       'isBoss': true,
+      'species': [MonsterSpecies.human, MonsterSpecies.undead],
     },
 
     // 항구로 가는 길 (1301~1350)
@@ -1182,6 +1339,7 @@ class MonsterData {
       'startStage': 1301,
       'endStage': 1310,
       'def': 41,
+      'species': [MonsterSpecies.goblin],
     },
     {
       'name': '소인족 기사',
@@ -1189,6 +1347,7 @@ class MonsterData {
       'startStage': 1311,
       'endStage': 1320,
       'def': 41,
+      'species': [MonsterSpecies.dwarf],
     },
     {
       'name': '어인족 검사',
@@ -1196,6 +1355,7 @@ class MonsterData {
       'startStage': 1321,
       'endStage': 1330,
       'def': 41,
+      'species': [MonsterSpecies.lizardman],
     },
     {
       'name': '미숙한 마법사',
@@ -1203,6 +1363,7 @@ class MonsterData {
       'startStage': 1331,
       'endStage': 1340,
       'def': 42,
+      'species': [MonsterSpecies.human],
     },
     {
       'name': '팀버울프',
@@ -1210,6 +1371,7 @@ class MonsterData {
       'startStage': 1341,
       'endStage': 1349,
       'def': 43,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '샴오우거',
@@ -1218,6 +1380,7 @@ class MonsterData {
       'endStage': 1350,
       'def': 50,
       'isBoss': true,
+      'species': [MonsterSpecies.beast, MonsterSpecies.aberration],
     },
 
     // 항구로 가는 길 II(1351~1400)
@@ -1227,6 +1390,7 @@ class MonsterData {
       'startStage': 1351,
       'endStage': 1360,
       'def': 45,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '신성국 기사',
@@ -1234,6 +1398,7 @@ class MonsterData {
       'startStage': 1361,
       'endStage': 1370,
       'def': 45,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '물의 정령',
@@ -1241,6 +1406,7 @@ class MonsterData {
       'startStage': 1371,
       'endStage': 1380,
       'def': 45,
+      'species': [MonsterSpecies.elemental],
     },
     {
       'name': '육식 비버',
@@ -1248,6 +1414,7 @@ class MonsterData {
       'startStage': 1381,
       'endStage': 1390,
       'def': 46,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '나무정령',
@@ -1255,6 +1422,7 @@ class MonsterData {
       'startStage': 1391,
       'endStage': 1399,
       'def': 47,
+      'species': [MonsterSpecies.elemental],
     },
     {
       'name': '죽음의 형태',
@@ -1263,6 +1431,7 @@ class MonsterData {
       'endStage': 1400,
       'def': 55,
       'isBoss': true,
+      'species': [MonsterSpecies.undead, MonsterSpecies.aberration],
     },
 
     // 피투성이 해안 (1401~1450)
@@ -1272,6 +1441,7 @@ class MonsterData {
       'startStage': 1401,
       'endStage': 1410,
       'def': 46,
+      'species': [MonsterSpecies.lizardman],
     },
     {
       'name': '어인족 검사',
@@ -1279,6 +1449,7 @@ class MonsterData {
       'startStage': 1411,
       'endStage': 1420,
       'def': 46,
+      'species': [MonsterSpecies.lizardman],
     },
     {
       'name': '어인족 마법사',
@@ -1286,6 +1457,7 @@ class MonsterData {
       'startStage': 1421,
       'endStage': 1430,
       'def': 46,
+      'species': [MonsterSpecies.lizardman],
     },
     {
       'name': '어인족 창병',
@@ -1293,6 +1465,7 @@ class MonsterData {
       'startStage': 1431,
       'endStage': 1440,
       'def': 47,
+      'species': [MonsterSpecies.lizardman],
     },
     {
       'name': '어인족 창병',
@@ -1300,6 +1473,7 @@ class MonsterData {
       'startStage': 1441,
       'endStage': 1449,
       'def': 48,
+      'species': [MonsterSpecies.lizardman],
     },
     {
       'name': '어인족 리더',
@@ -1308,6 +1482,7 @@ class MonsterData {
       'endStage': 1450,
       'def': 58,
       'isBoss': true,
+      'species': [MonsterSpecies.lizardman],
     },
 
     // 피폐한 항구도시 (1451~1500)
@@ -1317,6 +1492,7 @@ class MonsterData {
       'startStage': 1451,
       'endStage': 1460,
       'def': 48,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '굶주린 좀비',
@@ -1324,6 +1500,7 @@ class MonsterData {
       'startStage': 1461,
       'endStage': 1470,
       'def': 48,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '죽음의 그림자',
@@ -1331,6 +1508,7 @@ class MonsterData {
       'startStage': 1471,
       'endStage': 1480,
       'def': 48,
+      'species': [MonsterSpecies.undead, MonsterSpecies.aberration],
     },
     {
       'name': '역병쥐',
@@ -1338,6 +1516,7 @@ class MonsterData {
       'startStage': 1481,
       'endStage': 1490,
       'def': 49,
+      'species': [MonsterSpecies.beast, MonsterSpecies.undead],
     },
     {
       'name': '뛰는 좀비',
@@ -1345,6 +1524,7 @@ class MonsterData {
       'startStage': 1491,
       'endStage': 1499,
       'def': 50,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '네크로맨서',
@@ -1353,6 +1533,7 @@ class MonsterData {
       'endStage': 1500,
       'def': 60,
       'isBoss': true,
+      'species': [MonsterSpecies.human, MonsterSpecies.undead],
     },
 
     // 항구도시 외곽 (1501~1550)
@@ -1362,6 +1543,7 @@ class MonsterData {
       'startStage': 1501,
       'endStage': 1510,
       'def': 48,
+      'species': [MonsterSpecies.aberration, MonsterSpecies.undead],
     },
     {
       'name': '좀비 바퀴벌레',
@@ -1369,6 +1551,7 @@ class MonsterData {
       'startStage': 1511,
       'endStage': 1520,
       'def': 48,
+      'species': [MonsterSpecies.insect, MonsterSpecies.undead],
     },
     {
       'name': '데쓰 슬라임',
@@ -1376,6 +1559,7 @@ class MonsterData {
       'startStage': 1521,
       'endStage': 1530,
       'def': 48,
+      'species': [MonsterSpecies.aberration, MonsterSpecies.undead],
     },
     {
       'name': '산송장',
@@ -1383,6 +1567,7 @@ class MonsterData {
       'startStage': 1531,
       'endStage': 1540,
       'def': 49,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '감염된 마녀',
@@ -1390,6 +1575,7 @@ class MonsterData {
       'startStage': 1541,
       'endStage': 1549,
       'def': 50,
+      'species': [MonsterSpecies.human, MonsterSpecies.undead],
     },
     {
       'name': '죽음의 인도자',
@@ -1398,6 +1584,7 @@ class MonsterData {
       'endStage': 1550,
       'def': 60,
       'isBoss': true,
+      'species': [MonsterSpecies.demon, MonsterSpecies.undead],
     },
 
     // 데빌 로드 (1551~1600)
@@ -1407,6 +1594,7 @@ class MonsterData {
       'startStage': 1551,
       'endStage': 1560,
       'def': 50,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '소인족 기사',
@@ -1414,6 +1602,7 @@ class MonsterData {
       'startStage': 1561,
       'endStage': 1570,
       'def': 50,
+      'species': [MonsterSpecies.dwarf],
     },
     {
       'name': '리자드맨 창병',
@@ -1421,6 +1610,7 @@ class MonsterData {
       'startStage': 1571,
       'endStage': 1580,
       'def': 50,
+      'species': [MonsterSpecies.lizardman],
     },
     {
       'name': '팔라딘',
@@ -1428,6 +1618,7 @@ class MonsterData {
       'startStage': 1581,
       'endStage': 1590,
       'def': 51,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '땅의 정령',
@@ -1435,6 +1626,7 @@ class MonsterData {
       'startStage': 1591,
       'endStage': 1599,
       'def': 52,
+      'species': [MonsterSpecies.elemental],
     },
     {
       'name': '하급 악마',
@@ -1443,6 +1635,7 @@ class MonsterData {
       'endStage': 1600,
       'def': 66,
       'isBoss': true,
+      'species': [MonsterSpecies.demon],
     },
 
     // 데빌 로드 II(1601~1650)
@@ -1452,6 +1645,7 @@ class MonsterData {
       'startStage': 1601,
       'endStage': 1610,
       'def': 50,
+      'species': [MonsterSpecies.human, MonsterSpecies.elemental],
     },
     {
       'name': '엘프 촌장',
@@ -1459,6 +1653,7 @@ class MonsterData {
       'startStage': 1611,
       'endStage': 1620,
       'def': 50,
+      'species': [MonsterSpecies.elf],
     },
     {
       'name': '소인족 리더',
@@ -1466,6 +1661,7 @@ class MonsterData {
       'startStage': 1621,
       'endStage': 1630,
       'def': 50,
+      'species': [MonsterSpecies.dwarf],
     },
     {
       'name': '뛰는 좀비',
@@ -1473,6 +1669,7 @@ class MonsterData {
       'startStage': 1631,
       'endStage': 1640,
       'def': 51,
+      'species': [MonsterSpecies.undead],
     },
     {
       'name': '불의 정령',
@@ -1480,6 +1677,7 @@ class MonsterData {
       'startStage': 1641,
       'endStage': 1649,
       'def': 52,
+      'species': [MonsterSpecies.elemental],
     },
     {
       'name': '하급 악마',
@@ -1488,6 +1686,7 @@ class MonsterData {
       'endStage': 1650,
       'def': 66,
       'isBoss': true,
+      'species': [MonsterSpecies.demon],
     },
 
     // 마계 입구 (1651~1700)
@@ -1497,6 +1696,7 @@ class MonsterData {
       'startStage': 1651,
       'endStage': 1660,
       'def': 55,
+      'species': [MonsterSpecies.elemental, MonsterSpecies.demon],
     },
     {
       'name': '하급 악귀',
@@ -1504,6 +1704,7 @@ class MonsterData {
       'startStage': 1661,
       'endStage': 1670,
       'def': 60,
+      'species': [MonsterSpecies.demon],
     },
     {
       'name': '중급 악귀',
@@ -1511,6 +1712,7 @@ class MonsterData {
       'startStage': 1671,
       'endStage': 1680,
       'def': 62,
+      'species': [MonsterSpecies.demon],
     },
     {
       'name': '상급 악귀',
@@ -1518,6 +1720,7 @@ class MonsterData {
       'startStage': 1681,
       'endStage': 1690,
       'def': 64,
+      'species': [MonsterSpecies.demon],
     },
     {
       'name': '상급 악귀',
@@ -1525,6 +1728,7 @@ class MonsterData {
       'startStage': 1691,
       'endStage': 1699,
       'def': 64,
+      'species': [MonsterSpecies.demon],
     },
     {
       'name': '악의',
@@ -1533,6 +1737,7 @@ class MonsterData {
       'endStage': 1700,
       'def': 66,
       'isBoss': true,
+      'species': [MonsterSpecies.demon, MonsterSpecies.aberration],
     },
 
     // 마계 중심 (1701~1750)
@@ -1542,6 +1747,7 @@ class MonsterData {
       'startStage': 1701,
       'endStage': 1710,
       'def': 66,
+      'species': [MonsterSpecies.demon, MonsterSpecies.aberration],
     },
     {
       'name': '원한',
@@ -1549,6 +1755,7 @@ class MonsterData {
       'startStage': 1711,
       'endStage': 1720,
       'def': 66,
+      'species': [MonsterSpecies.demon, MonsterSpecies.aberration],
     },
     {
       'name': '원망',
@@ -1556,6 +1763,7 @@ class MonsterData {
       'startStage': 1721,
       'endStage': 1730,
       'def': 66,
+      'species': [MonsterSpecies.demon, MonsterSpecies.aberration],
     },
     {
       'name': '공허',
@@ -1563,6 +1771,7 @@ class MonsterData {
       'startStage': 1731,
       'endStage': 1740,
       'def': 66,
+      'species': [MonsterSpecies.demon, MonsterSpecies.aberration],
     },
     {
       'name': '원망',
@@ -1570,6 +1779,7 @@ class MonsterData {
       'startStage': 1741,
       'endStage': 1749,
       'def': 66,
+      'species': [MonsterSpecies.demon, MonsterSpecies.aberration],
     },
     {
       'name': '절망',
@@ -1578,6 +1788,7 @@ class MonsterData {
       'endStage': 1750,
       'def': 66,
       'isBoss': true,
+      'species': [MonsterSpecies.demon, MonsterSpecies.aberration],
     },
 
     // 마계 중심부 (1751~1800)
@@ -1587,6 +1798,7 @@ class MonsterData {
       'startStage': 1751,
       'endStage': 1760,
       'def': 66,
+      'species': [MonsterSpecies.demon, MonsterSpecies.aberration],
     },
     {
       'name': '하급 악마',
@@ -1594,6 +1806,7 @@ class MonsterData {
       'startStage': 1761,
       'endStage': 1770,
       'def': 66,
+      'species': [MonsterSpecies.demon],
     },
     {
       'name': '중급 악마',
@@ -1601,6 +1814,7 @@ class MonsterData {
       'startStage': 1771,
       'endStage': 1780,
       'def': 66,
+      'species': [MonsterSpecies.demon],
     },
     {
       'name': '상급 악마',
@@ -1608,6 +1822,7 @@ class MonsterData {
       'startStage': 1781,
       'endStage': 1790,
       'def': 66,
+      'species': [MonsterSpecies.demon],
     },
     {
       'name': '상급 악마',
@@ -1615,6 +1830,7 @@ class MonsterData {
       'startStage': 1791,
       'endStage': 1799,
       'def': 66,
+      'species': [MonsterSpecies.demon],
     },
     {
       'name': '마왕',
@@ -1623,6 +1839,7 @@ class MonsterData {
       'endStage': 1800,
       'def': 66,
       'isBoss': true,
+      'species': [MonsterSpecies.demon],
     },
 
     // 드래곤 로드 (1801~1850)
@@ -1632,6 +1849,7 @@ class MonsterData {
       'startStage': 1801,
       'endStage': 1810,
       'def': 55,
+      'species': [MonsterSpecies.elf],
     },
     {
       'name': '바위트롤',
@@ -1639,6 +1857,7 @@ class MonsterData {
       'startStage': 1811,
       'endStage': 1820,
       'def': 55,
+      'species': [MonsterSpecies.beast],
     },
     {
       'name': '신성국 기사단장',
@@ -1646,6 +1865,7 @@ class MonsterData {
       'startStage': 1821,
       'endStage': 1830,
       'def': 55,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '하급 천사',
@@ -1653,6 +1873,7 @@ class MonsterData {
       'startStage': 1831,
       'endStage': 1840,
       'def': 56,
+      'species': [MonsterSpecies.angel, MonsterSpecies.holy],
     },
     {
       'name': '신성국 대주교',
@@ -1660,6 +1881,7 @@ class MonsterData {
       'startStage': 1841,
       'endStage': 1849,
       'def': 57,
+      'species': [MonsterSpecies.human, MonsterSpecies.holy],
     },
     {
       'name': '새끼 와이번',
@@ -1668,6 +1890,7 @@ class MonsterData {
       'endStage': 1850,
       'def': 77,
       'isBoss': true,
+      'species': [MonsterSpecies.dragon],
     },
 
     // 드래곤 레어 초입 (1851~1900)
@@ -1677,6 +1900,7 @@ class MonsterData {
       'startStage': 1851,
       'endStage': 1860,
       'def': 77,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '성체 와이번',
@@ -1684,6 +1908,7 @@ class MonsterData {
       'startStage': 1861,
       'endStage': 1870,
       'def': 77,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '비취석 드레이크',
@@ -1691,6 +1916,7 @@ class MonsterData {
       'startStage': 1871,
       'endStage': 1880,
       'def': 85,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '청금석 드레이크',
@@ -1698,6 +1924,7 @@ class MonsterData {
       'startStage': 1881,
       'endStage': 1890,
       'def': 85,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '비취석 드레이크',
@@ -1705,6 +1932,7 @@ class MonsterData {
       'startStage': 1891,
       'endStage': 1899,
       'def': 85,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '베놈 드레이크',
@@ -1713,6 +1941,7 @@ class MonsterData {
       'endStage': 1900,
       'def': 90,
       'isBoss': true,
+      'species': [MonsterSpecies.dragon],
     },
 
     // 드래곤 레어 중심부 (1901~1950)
@@ -1722,6 +1951,7 @@ class MonsterData {
       'startStage': 1901,
       'endStage': 1910,
       'def': 95,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '성체 화이트 드래곤',
@@ -1729,6 +1959,7 @@ class MonsterData {
       'startStage': 1911,
       'endStage': 1920,
       'def': 95,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '레드 드래곤',
@@ -1736,6 +1967,7 @@ class MonsterData {
       'startStage': 1921,
       'endStage': 1930,
       'def': 99,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '성체 그린 드래곤',
@@ -1743,6 +1975,7 @@ class MonsterData {
       'startStage': 1931,
       'endStage': 1940,
       'def': 95,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '성체 화이트 드래곤',
@@ -1750,6 +1983,7 @@ class MonsterData {
       'startStage': 1941,
       'endStage': 1949,
       'def': 95,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '레드 드래곤',
@@ -1758,6 +1992,7 @@ class MonsterData {
       'endStage': 1950,
       'def': 99,
       'isBoss': true,
+      'species': [MonsterSpecies.dragon],
     },
 
     // 드래곤 레어 깊은곳 (1951~2000)
@@ -1767,6 +2002,7 @@ class MonsterData {
       'startStage': 1951,
       'endStage': 1960,
       'def': 100,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '성체 화이트 드래곤',
@@ -1774,6 +2010,7 @@ class MonsterData {
       'startStage': 1961,
       'endStage': 1970,
       'def': 100,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '준성체 수호룡',
@@ -1781,6 +2018,7 @@ class MonsterData {
       'startStage': 1971,
       'endStage': 1980,
       'def': 100,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '성체 수호룡',
@@ -1788,6 +2026,7 @@ class MonsterData {
       'startStage': 1981,
       'endStage': 1990,
       'def': 100,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '새끼 황금용',
@@ -1795,6 +2034,7 @@ class MonsterData {
       'startStage': 1991,
       'endStage': 1999,
       'def': 110,
+      'species': [MonsterSpecies.dragon],
     },
     {
       'name': '용왕',
@@ -1803,6 +2043,7 @@ class MonsterData {
       'endStage': 2000,
       'def': 125,
       'isBoss': true,
+      'species': [MonsterSpecies.dragon],
     },
   ];
 
@@ -1815,17 +2056,20 @@ class MonsterData {
         'startStage': 0,
         'endStage': 0,
         'def': 0,
+        'species': [], // Default species
       },
     );
 
     bool isBoss = monsterInfo['isBoss'] ?? false;
+    List<MonsterSpecies> species = (monsterInfo['species'] as List?)
+            ?.map((s) => s as MonsterSpecies)
+            .toList() ??
+        [];
 
-    const double baseHP = 50;
-    const double hpIncrement = 1.5;
-    const double hpGrowthRate = 1.035;
+    const double coefficient = 50;
+    const double exponent = 1.035;
 
-    double hp =
-        (baseHP + hpIncrement * (stage - 1)) * pow(hpGrowthRate, stage - 1);
+    double hp = coefficient * pow(stage, exponent);
     int def = monsterInfo['def'];
 
     if (isBoss) {
@@ -1837,12 +2081,13 @@ class MonsterData {
 
     return Monster(
       name: monsterInfo['name'],
-      imageName: monsterInfo['imageName'], // Pass imageName to constructor
+      imageName: monsterInfo['imageName'],
       stage: stage,
       maxHp: hp.floorToDouble(),
       hp: hp.floorToDouble(),
       defense: def,
       isBoss: isBoss,
+      species: species,
     );
   }
 }

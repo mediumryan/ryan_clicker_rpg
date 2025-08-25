@@ -13,26 +13,9 @@ class BlacksmithScreen extends StatefulWidget {
 }
 
 class _BlacksmithScreenState extends State<BlacksmithScreen> {
-  double _currentEnhancementStoneSellAmount = 0.0;
-  double _currentTranscendenceStoneSellAmount = 0.0;
-
   @override
   void dispose() {
     super.dispose();
-  }
-
-  void _updateEnhancementStoneSellAmount(int increment, int maxAmount) {
-    setState(() {
-      _currentEnhancementStoneSellAmount = (_currentEnhancementStoneSellAmount + increment)
-          .clamp(0.0, maxAmount.toDouble());
-    });
-  }
-
-  void _updateTranscendenceStoneSellAmount(int increment, int maxAmount) {
-    setState(() {
-      _currentTranscendenceStoneSellAmount = (_currentTranscendenceStoneSellAmount + increment)
-          .clamp(0.0, maxAmount.toDouble());
-    });
   }
 
   @override

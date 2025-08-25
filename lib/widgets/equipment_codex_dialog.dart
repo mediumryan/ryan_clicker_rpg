@@ -26,8 +26,6 @@ class EquipmentCodexDialog extends StatelessWidget {
         return Colors.yellow;
       case Rarity.god:
         return Colors.white;
-      default:
-        return Colors.grey;
     }
   }
 
@@ -116,7 +114,7 @@ class EquipmentCodexDialog extends StatelessWidget {
                                 0,
                               ]),
                         child: Image.asset(
-                          'images/weapons/common/${weapon.imageName}',
+                          'images/weapons/${weapon.imageName}',
                           width: 60,
                           height: 60,
                           fit: BoxFit.contain,

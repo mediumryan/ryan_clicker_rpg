@@ -92,7 +92,7 @@ class GameProvider with ChangeNotifier {
     }
 
     // Handle skills
-    for (var skill in _player.equippedWeapon.skills) {
+    for (var _ in _player.equippedWeapon.skills) {
       // Placeholder for skill logic
       // Example: if (skill['skill_name'] == '심판') { apply judgment logic }
       // This will be implemented later based on user's request

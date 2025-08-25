@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ryan_clicker_rpg/models/monster.dart';
 import 'package:ryan_clicker_rpg/models/player.dart';
-
 import 'dart:async'; // Import for Timer
-import 'package:flutter/material.dart';
-import 'package:ryan_clicker_rpg/models/monster.dart';
-import 'package:ryan_clicker_rpg/models/player.dart';
 
 // Class to hold damage text information
 class DamageText {
