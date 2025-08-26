@@ -1,3 +1,5 @@
+import 'dart:math';
+
 enum Rarity { common, uncommon, rare, unique, epic, legend, demigod, god }
 
 
@@ -38,7 +40,6 @@ class Weapon {
   double defensePenetration;
   double doubleAttackChance;
   double speed;
-  final double accuracy;
 
   // Resources invested in this weapon
   double investedGold;
@@ -57,7 +58,9 @@ class Weapon {
 
     // Apply enhancement multipliers
     const enhancementMultipliers = [1.05, 1.07, 1.10, 1.15, 1.20];
+    print('DEBUG: enhancement: $enhancement, multipliers length: ${enhancementMultipliers.length}'); // ADD THIS LINE
     for (int i = 0; i < enhancement; i++) {
+      print('DEBUG: i: $i, accessing index: $i'); // ADD THIS LINE
       if (i < enhancementMultipliers.length) {
         currentDamage *= enhancementMultipliers[i];
       }
@@ -95,7 +98,6 @@ class Weapon {
     this.doubleAttackChance = 0.0,
     this.speed = 1.0,
     this.skills = const [],
-    required this.accuracy,
   });
 
   Map<String, dynamic> toJson() => {
@@ -119,7 +121,6 @@ class Weapon {
     'doubleAttackChance': doubleAttackChance,
     'speed': speed,
     'skills': skills,
-    'accuracy': accuracy,
   };
 
   factory Weapon.fromJson(Map<String, dynamic> json) {
@@ -150,7 +151,6 @@ class Weapon {
               ?.map((e) => e as Map<String, dynamic>)
               .toList() ??
           const [],
-      accuracy: json['accuracy'] ?? 1.0,
     );
   }
 
@@ -166,7 +166,6 @@ class Weapon {
       criticalChance: 0.1,
       criticalDamage: 1.35,
       baseSellPrice: 125.0,
-      accuracy: 1.0,
     );
   }
 
@@ -191,7 +190,6 @@ class Weapon {
     double? doubleAttackChance,
     double? speed,
     List<Map<String, dynamic>>? skills,
-    double? accuracy,
   }) {
     return Weapon(
       id: id ?? this.id,
@@ -216,7 +214,6 @@ class Weapon {
       doubleAttackChance: doubleAttackChance ?? this.doubleAttackChance,
       speed: speed ?? this.speed,
       skills: skills ?? this.skills,
-      accuracy: accuracy ?? this.accuracy,
     );
   }
 }
