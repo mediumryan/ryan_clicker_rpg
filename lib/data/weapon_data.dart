@@ -21,19 +21,24 @@ class WeaponData {
       final String uniqueJsonString = await rootBundle.loadString(
         'assets/data/unique_weapons.json',
       );
+      final String rareJsonString = await rootBundle.loadString(
+        'assets/data/rare_weapons.json',
+      );
 
       final List<dynamic> commonJsonList = json.decode(commonJsonString);
       final List<dynamic> uncommonJsonList = json.decode(uncommonJsonString);
+      final List<dynamic> rareJsonList = json.decode(rareJsonString);
       final List<dynamic> uniqueJsonList = json.decode(uniqueJsonString);
 
       _baseWeapons = [
         ...commonJsonList.map((json) => Weapon.fromJson(json)),
         ...uncommonJsonList.map((json) => Weapon.fromJson(json)),
+        ...rareJsonList.map((json) => Weapon.fromJson(json)),
         ...uniqueJsonList.map((json) => Weapon.fromJson(json)),
       ].toList();
       _isInitialized = true;
-    } catch (e) {
-      // Handle error, maybe load some default data or show an error state
+    } catch (e, stacktrace) {
+      print('ERROR: Failed to initialize WeaponData: $e\n$stacktrace');
     }
   }
 

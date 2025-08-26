@@ -62,7 +62,10 @@ flutter:
   assets:
     - assets/images/monsters/
     - assets/images/weapons/
-    - assets/data/
+    - assets/data/common_weapons.json
+    - assets/data/uncommon_weapons.json
+    - assets/data/rare_weapons.json
+    - assets/data/unique_weapons.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

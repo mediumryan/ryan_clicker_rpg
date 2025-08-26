@@ -36,10 +36,12 @@ class EquipmentCodexDialog extends StatelessWidget {
       title: Consumer<GameProvider>(
         builder: (context, game, child) {
           final allWeapons = WeaponData.getAllWeapons();
+          print('DEBUG: Total weapons loaded: ${allWeapons.length}');
 
           // Use acquiredWeaponIdsHistory directly for the count
           final acquiredWeaponsCount =
               game.player.acquiredWeaponIdsHistory.length;
+          print('DEBUG: Acquired weapons count: $acquiredWeaponsCount');
 
           return Text(
             '장비 도감 ($acquiredWeaponsCount / ${allWeapons.length})',
@@ -54,6 +56,7 @@ class EquipmentCodexDialog extends StatelessWidget {
 
           // Use acquiredWeaponIdsHistory directly for checking acquisition
           final acquiredWeaponIds = game.player.acquiredWeaponIdsHistory;
+          print('DEBUG: acquiredWeaponIdsHistory: $acquiredWeaponIds');
 
           return SizedBox(
             width:

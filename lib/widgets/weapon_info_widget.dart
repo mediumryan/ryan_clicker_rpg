@@ -39,7 +39,8 @@ class WeaponInfoWidget extends StatelessWidget {
       child: Container(
         color: Colors.grey[800], // Background color for the image container
         padding: const EdgeInsets.all(8.0), // Padding around the image
-        child: Center( // Center the image within the available space
+        child: Center(
+          // Center the image within the available space
           child: AspectRatio(
             aspectRatio: 1.0, // Force the image to be square
             child: Container(
@@ -121,12 +122,17 @@ class WeaponInfoWidget extends StatelessWidget {
                   children: [
                     const Text(
                       '스킬:',
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    ...weapon.skills.map((skill) => Text(
-                          '- ${skill['skill_name']}: ${skill['skill_description']}',
-                          style: const TextStyle(color: Colors.cyanAccent),
-                        )),
+                    ...weapon.skills.map(
+                      (skill) => Text(
+                        '- ${skill['skill_name']}: ${skill['skill_description']}',
+                        style: const TextStyle(color: Colors.cyanAccent),
+                      ),
+                    ),
                   ],
                 ),
               ),

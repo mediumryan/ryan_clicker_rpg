@@ -2,8 +2,6 @@ import 'dart:math';
 
 enum Rarity { common, uncommon, rare, unique, epic, legend, demigod, god }
 
-
-
 enum WeaponType {
   rapier,
   katana,
@@ -58,7 +56,9 @@ class Weapon {
 
     // Apply enhancement multipliers
     const enhancementMultipliers = [1.05, 1.07, 1.10, 1.15, 1.20];
-    print('DEBUG: enhancement: $enhancement, multipliers length: ${enhancementMultipliers.length}'); // ADD THIS LINE
+    print(
+      'DEBUG: enhancement: $enhancement, multipliers length: ${enhancementMultipliers.length}',
+    ); // ADD THIS LINE
     for (int i = 0; i < enhancement; i++) {
       print('DEBUG: i: $i, accessing index: $i'); // ADD THIS LINE
       if (i < enhancementMultipliers.length) {
@@ -128,15 +128,32 @@ class Weapon {
       id: json['id'],
       name: json['name'],
       imageName: json['imageName'] ?? '',
-      rarity: Rarity.values.firstWhere((e) => e.toString() == json['rarity']),
-      type: WeaponType.values.firstWhere((e) => e.toString() == json['type']),
+      rarity: Rarity.values.firstWhere(
+        (e) =>
+            e.toString().split('.').last.toLowerCase() ==
+            json['rarity'].toString().split('.').last.toLowerCase(),
+        orElse: () {
+          print(
+            'WARNING: Unknown rarity: ${json['rarity']}. Defaulting to common.',
+          );
+          return Rarity.common;
+        },
+      ),
+      type: WeaponType.values.firstWhere(
+        (e) =>
+            e.toString().split('.').last.toLowerCase() ==
+            json['type'].toString().toLowerCase(),
+        orElse: () {
+          print(
+            'WARNING: Unknown weapon type: ${json['type']}. Defaulting to rapier.',
+          );
+          return WeaponType.rapier;
+        },
+      ),
       baseLevel: json['baseLevel'],
       enhancement: json['enhancement'] ?? 0,
       transcendence: json['transcendence'] ?? 0,
-      baseDamage:
-          json['baseDamage'] ??
-          json['damage'] ??
-          0.0,
+      baseDamage: json['baseDamage'] ?? json['damage'] ?? 0.0,
       criticalChance: json['criticalChance'] ?? 0.0,
       criticalDamage: json['criticalDamage'] ?? 0.0,
       baseSellPrice: json['baseSellPrice'] ?? 0.0,
@@ -147,7 +164,8 @@ class Weapon {
       defensePenetration: json['defensePenetration'] ?? 0.0,
       doubleAttackChance: json['doubleAttackChance'] ?? 0.0,
       speed: json['speed'] ?? 1.0,
-      skills: (json['skills'] as List<dynamic>?)
+      skills:
+          (json['skills'] as List<dynamic>?)
               ?.map((e) => e as Map<String, dynamic>)
               .toList() ??
           const [],
@@ -158,7 +176,7 @@ class Weapon {
     return Weapon(
       id: 1, // Changed to ID 1 for rusty crude rapier
       name: '녹슨 조잡한 레이피어',
-      imageName: 'common/rusty_crude_rapier.png',
+      imageName: 'group1/rusty_crude_rapier.png',
       rarity: Rarity.common,
       type: WeaponType.rapier,
       baseLevel: 0,

@@ -48,7 +48,7 @@ class GameProvider with ChangeNotifier {
     } else {
       // This is the critical part: WeaponData must be initialized here
       // WeaponData.getGuaranteedRandomWeapon() will now work correctly
-      _player = Player(equippedWeapon: Weapon.startingWeapon().copyWith());
+      _player = Player(equippedWeapon: Weapon.startingWeapon());
       // --- START TEST INJECTION ---
       _player.transcendenceStones = 1000;
       _player.enhancementStones = 10000;

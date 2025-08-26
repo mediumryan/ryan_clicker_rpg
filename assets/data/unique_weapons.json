@@ -2,7 +2,7 @@
   {
     "id": 961,
     "name": "벌새",
-    "imageName": "unique/hummingbird.png",
+    "imageName": "others/hummingbird.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 0,
@@ -30,7 +30,7 @@
   {
     "id": 962,
     "name": "하얀 송곳니",
-    "imageName": "unique/white_fang.png",
+    "imageName": "others/white_fang.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 50,
@@ -58,7 +58,7 @@
   {
     "id": 963,
     "name": "아머 브레이커",
-    "imageName": "unique/armor_breaker_rapier.png",
+    "imageName": "others/armor_breaker_rapier.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 100,
@@ -86,7 +86,7 @@
   {
     "id": 964,
     "name": "아머 브레이커",
-    "imageName": "unique/armor_breaker_warhammer.png",
+    "imageName": "others/armor_breaker_warhammer.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.warhammer",
     "baseLevel": 100,
@@ -114,7 +114,7 @@
   {
     "id": 965,
     "name": "아머 브레이커",
-    "imageName": "unique/armor_breaker_battleAxe.png",
+    "imageName": "others/armor_breaker_battleAxe.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.battleAxe",
     "baseLevel": 100,
@@ -142,7 +142,7 @@
   {
     "id": 966,
     "name": "독아",
-    "imageName": "unique/venom_fang.png",
+    "imageName": "others/venom_fang.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 200,
@@ -170,7 +170,7 @@
   {
     "id": 967,
     "name": "복제된 신성한 일침",
-    "imageName": "unique/replicated_divine_pierce.png",
+    "imageName": "others/replicated_divine_pierce.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 300,
@@ -202,7 +202,7 @@
   {
     "id": 968,
     "name": "벌집",
-    "imageName": "unique/hive.png",
+    "imageName": "others/hive.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 400,
