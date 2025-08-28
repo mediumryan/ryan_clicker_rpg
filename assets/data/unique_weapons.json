@@ -1,26 +1,38 @@
 [
   {
-    "id": 961,
-    "name": "벌새",
-    "imageName": "others/hummingbird.png",
+    "id": 1200,
+    "name": "엄마의 잔소리",
+    "imageName": "others/moms_nagging.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 0,
-    "baseDamage": 175,
-    "criticalChance": 0.15,
+    "baseDamage": 210,
+    "criticalChance": 0.1,
     "criticalDamage": 1.5,
     "defensePenetration": 0,
-    "doubleAttackChance": 0.1,
-    "speed": 1.5,
-    "baseSellPrice": 4000,
+    "doubleAttackChance": 0.0,
+    "speed": 1.35,
+    "baseSellPrice": 5000,
     "skills": [
       {
-        "skill_name": "더 빠르게",
-        "skill_effect": "공격시 10% 확률로 두 번 타격합니다."
+        "skill_name": "잔소리 퍼붓기",
+        "skill_type": "active",
+        "skill_description": "상대방이 정신 못 차리게 잔소리를 퍼붓습니다. (공격 시 15% 확률로 3초간 혼란 상태 부여. )",
+        "skill_effect": [
+          {
+            "effect_name": "applyConfusion",
+            "params": {
+              "chance": 0.15,
+              "cooldown": 5,
+              "duration": 3,
+              "trigger": "onHit"
+            }
+          }
+        ]
       }
     ],
     "accuracy": 1.0,
-    "description": "매우 가벼운 레이피어로, 시작의 마을 대장장이 윌터가 만든 수작 중 하나입니다. 빠르고 날렵한 공격이 특징입니다.",
+    "description": "마치 엄마가 잔소리하듯 빠르고 끈질긴 공격을 퍼붓는 레이피어입니다. 잔소리와 같은 공격은 상대방에게 혼란을 줍니다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -28,27 +40,34 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 962,
-    "name": "하얀 송곳니",
-    "imageName": "others/white_fang.png",
+    "id": 1201,
+    "name": "소심한 복수",
+    "imageName": "others/petty_revenge.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 50,
-    "baseDamage": 500,
-    "criticalChance": 0.25,
-    "criticalDamage": 1.75,
+    "baseDamage": 580,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
     "defensePenetration": 0,
-    "doubleAttackChance": 0,
-    "speed": 1.25,
-    "baseSellPrice": 12500,
+    "doubleAttackChance": 0.0,
+    "speed": 1.35,
+    "baseSellPrice": 75000,
     "skills": [
       {
-        "skill_name": "사냥 본능",
-        "skill_effect": "체력이 50% 이하인 적에게 25% 추가 데미지를 입힙니다."
+        "skill_name": "가랑비",
+        "skill_type": "active",
+        "skill_description": "소심하고 잔잔한 복수는 마치 가랑비와 같습니다. (공격 시 10% 확률로 3타 연타)",
+        "skill_effect": [
+          {
+            "effect_name": "applyMultiHit",
+            "params": { "chance": 0.1, "hitCount": 3, "trigger": "onHit" }
+          }
+        ]
       }
     ],
     "accuracy": 1.0,
-    "description": "알파 울프의 예리한 송곳니로 제작된 레이피어. 날카로운 일격을 갈망하는 초보 모험가들에게 있어, 실전의 문을 여는 상징입니다.",
+    "description": "큰 복수는 무리지만, 괜히 속이 뒤틀릴 정도로 귀찮게 찌릅니다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -56,27 +75,34 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 963,
-    "name": "아머 브레이커",
-    "imageName": "others/armor_breaker_rapier.png",
+    "id": 1202,
+    "name": "선한 욕심",
+    "imageName": "others/good_greed.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 100,
-    "baseDamage": 840,
-    "criticalChance": 0.15,
+    "baseDamage": 1150,
+    "criticalChance": 0.1,
     "criticalDamage": 1.5,
-    "defensePenetration": 5,
-    "doubleAttackChance": 0,
-    "speed": 1.25,
-    "baseSellPrice": 50000,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.35,
+    "baseSellPrice": 120000,
     "skills": [
       {
-        "skill_name": "갑옷 부수기",
-        "skill_effect": "기본 적 방어력 무시 5, 공격 시 10% 확률로 대상의 방어력을 25 하락시킵니다. 이 효과는 5초 동안 지속되며, 중첩되지 않습니다."
+        "skill_name": "약자를 위해",
+        "skill_type": "passive",
+        "skill_description": "루퐁은 약자를 위해 부패한 자들의 재산을 훔쳤습니다. (골드 획득량 10% 증가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyGoldGainBoost",
+            "params": { "multiplier": 1.1 }
+          }
+        ]
       }
     ],
     "accuracy": 1.0,
-    "description": "날카로운 찌르기로 수많은 병사의 갑옷을 넝마로 만든 레이피어입니다. 검날은 닳았지만, 여전히 적의 방어구를 꿰뚫기에 충분합니다.",
+    "description": "의적이라 불리운 도둑 루퐁이 애용한 레이피어입니다. 골드 획득량이 약간 증가합니다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -84,115 +110,40 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 964,
-    "name": "아머 브레이커",
-    "imageName": "others/armor_breaker_warhammer.png",
-    "rarity": "Rarity.unique",
-    "type": "WeaponType.warhammer",
-    "baseLevel": 100,
-    "baseDamage": 207,
-    "criticalChance": 0.15,
-    "criticalDamage": 1.5,
-    "defensePenetration": 5,
-    "doubleAttackChance": 0,
-    "speed": 1.25,
-    "baseSellPrice": 50000,
-    "skills": [
-      {
-        "skill_name": "갑옷 부수기",
-        "skill_effect": "기본 적 방어력 무시 5, 공격 시 10% 확률로 대상의 방어력을 25 하락시킵니다. 이 효과는 5초 동안 지속되며, 중첩되지 않습니다."
-      }
-    ],
-    "accuracy": 0.95,
-    "description": "날카로운 찌르기로 수많은 병사의 갑옷을 넝마로 만든 레이피어입니다. 검날은 닳았지만, 여전히 적의 방어구를 꿰뚫기에 충분합니다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 965,
-    "name": "아머 브레이커",
-    "imageName": "others/armor_breaker_battleAxe.png",
-    "rarity": "Rarity.unique",
-    "type": "WeaponType.battleAxe",
-    "baseLevel": 100,
-    "baseDamage": 207,
-    "criticalChance": 0.15,
-    "criticalDamage": 1.5,
-    "defensePenetration": 5,
-    "doubleAttackChance": 0,
-    "speed": 1.25,
-    "baseSellPrice": 50000,
-    "skills": [
-      {
-        "skill_name": "갑옷 부수기",
-        "skill_effect": "기본 적 방어력 무시 5, 공격 시 10% 확률로 대상의 방어력을 25 하락시킵니다. 이 효과는 5초 동안 지속되며, 중첩되지 않습니다."
-      }
-    ],
-    "accuracy": 0.95,
-    "description": "날카로운 찌르기로 수많은 병사의 갑옷을 넝마로 만든 레이피어입니다. 검날은 닳았지만, 여전히 적의 방어구를 꿰뚫기에 충분합니다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 966,
-    "name": "독아",
-    "imageName": "others/venom_fang.png",
+    "id": 1203,
+    "name": "찔레꽃",
+    "imageName": "others/wild_rose.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 200,
-    "baseDamage": 1650,
-    "criticalChance": 1.5,
+    "baseDamage": 2060,
+    "criticalChance": 0.15,
     "criticalDamage": 1.5,
     "defensePenetration": 0,
-    "doubleAttackChance": 0,
-    "speed": 1.25,
-    "baseSellPrice": 125000,
-    "skills": [
-      {
-        "skill_name": "맹독 주입",
-        "skill_effect": "공격 시 10% 확률로 몬스터를 중독 상태로 만듭니다. 중독된 몬스터는 5초 동안 초당 최대체력의 2% 피해를 입습니다. (해당 피해는 방어력을 무시합니다)"
-      }
-    ],
-    "accuracy": 0.95,
-    "description": "음침한 대장장이가 으슥한 동굴에서 채취한 독과 함께 벼린 레이피어입니다. 외형은 허술해 보이지만, 맞은 자는 그 즉시 이상 징후를 보입니다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 967,
-    "name": "복제된 신성한 일침",
-    "imageName": "others/replicated_divine_pierce.png",
-    "rarity": "Rarity.unique",
-    "type": "WeaponType.rapier",
-    "baseLevel": 300,
-    "baseDamage": 2500,
-    "criticalChance": 1.75,
-    "criticalDamage": 1.5,
-    "defensePenetration": 0,
-    "doubleAttackChance": 0,
+    "doubleAttackChance": 0.0,
     "speed": 1.35,
-    "baseSellPrice": 225000,
+    "baseSellPrice": 280000,
     "skills": [
       {
-        "skill_name": "심판 (복제)",
-        "skill_effect": "언데드 또는 악마형 적에게 30% 추가 피해를 입힙니다. 신성교 혹은 천사형 적에게는 30% 피해가 감소합니다."
-      },
-      {
-        "skill_name": "신성한 일격 (복제)",
-        "skill_effect": "공격 시 10% 확률로 신성한 빛줄기를 내뿜어, 7,500의 추가 피해를 입힙니다."
+        "skill_name": "찔레의 가시",
+        "skill_type": "passive",
+        "skill_description": "찔레꽃의 가시는 깊이 박혀 출혈을 유발합니다. (공격 시 20% 확률로 5초간 출혈 부여. 출혈 중인 적은 초당 2500의 고정 피해를 받습니다. 출혈 효과는 중첩되지 않습니다.)",
+        "skill_effect": [
+          {
+            "effect_name": "applyBleed",
+            "params": {
+              "chance": 0.2,
+              "fixedDamagePerSecond": 2500,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false
+            }
+          }
+        ]
       }
     ],
     "accuracy": 1.0,
-    "description": "신성국에서 전해 내려오는 《신성한 일침》의 복제품입니다. 일부 신성 기사들에게 하사품 형식으로 보급되며, 진품보다 성능은 떨어지지만 형식적인 권위를 갖춘 무기입니다.",
+    "description": "찔레꽃처럼 아름답지만, 가시가 깊게 파고들어 치명적인 상처를 남기는 레이피어입니다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -200,27 +151,75 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 968,
-    "name": "벌집",
-    "imageName": "others/hive.png",
+    "id": 1204,
+    "name": "고블린 스팅어",
+    "imageName": "others/goblin_stinger.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "baseLevel": 300,
+    "baseDamage": 2150,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.35,
+    "baseSellPrice": 280000,
+    "skills": [
+      {
+        "skill_name": "너, 피부가 초록색이군...",
+        "skill_type": "passive",
+        "skill_description": "이 레이피어에는 고블린에 대한 원망이 담겨있습니다. (피격 대상이 고블린일 경우 50% 추가 데미지)",
+        "skill_effect": [
+          {
+            "effect_name": "extraDamageToMonsterType",
+            "params": { "monsterType": "goblin", "damageMultiplier": 1.5 }
+          }
+        ]
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "고블린에게 가족을 잃은 어느 긍지 높은 기사가 들었던 레이피어입니다. 고블린을 상대로 한 공격에 뛰어난 위력을 발휘합니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 1205,
+    "name": "맹독의 꽃대",
+    "imageName": "others/poison_stem.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 400,
     "baseDamage": 3600,
-    "criticalChance": 0.0,
-    "criticalDamage": 1.0,
-    "defensePenetration": 0.0,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.5,
+    "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.35,
+    "baseSellPrice": 600000,
     "skills": [
       {
-        "skill_name": "벌집내기",
-        "skill_effect": "상대방을 정신 못 차리게 찌릅니다. 공격 시 15% 확률로 공격력의 4배에 해당하는 추가 피해를 입힙니다."
+        "skill_name": "맹독 주입",
+        "skill_type": "active",
+        "skill_description": "공격 시 20% 확률로 5초간 적에게 초당 최대 체력의 5% 데미지를 주는 중독 상태를 부여합니다. 중독 효과는 중첩되지 않습니다.",
+        "skill_effect": [
+          {
+            "effect_name": "applyPoison",
+            "params": {
+              "chance": 0.2,
+              "percentPerSecond": 0.05,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false
+            }
+          }
+        ]
       }
     ],
     "accuracy": 1.0,
-    "description": "강력한 찌르기로 적을 벌집으로 만듭니다. 끝없이 꽂히는 칼날 끝에 맞은 적은 온몸이 피투성이가 되어 무너져 내립니다.",
+    "description": "동굴 깊은 곳에서 자란 맹독의 꽃대 줄기로 만든 레이피어입니다. 적을 서서히 잠식시키는 치명적인 독이 배어 있습니다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,

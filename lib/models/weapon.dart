@@ -38,6 +38,7 @@ class Weapon {
   double defensePenetration;
   double doubleAttackChance;
   double speed;
+  double accuracy;
 
   // Resources invested in this weapon
   double investedGold;
@@ -51,18 +52,16 @@ class Weapon {
 
   int get maxEnhancement => 5;
 
-  double get calculatedDamage {
-    double currentDamage = baseDamage;
+  late double currentDamage; // New property
+
+  double getCalculatedBaseDamage() { // Renamed method
+    double calculatedDamage = baseDamage;
 
     // Apply enhancement multipliers
     const enhancementMultipliers = [1.05, 1.07, 1.10, 1.15, 1.20];
-    print(
-      'DEBUG: enhancement: $enhancement, multipliers length: ${enhancementMultipliers.length}',
-    ); // ADD THIS LINE
     for (int i = 0; i < enhancement; i++) {
-      print('DEBUG: i: $i, accessing index: $i'); // ADD THIS LINE
       if (i < enhancementMultipliers.length) {
-        currentDamage *= enhancementMultipliers[i];
+        calculatedDamage *= enhancementMultipliers[i];
       }
     }
 
@@ -70,11 +69,23 @@ class Weapon {
     const transcendenceMultipliers = [1.75, 2.25, 2.75, 3.25, 4.0];
     for (int i = 0; i < transcendence; i++) {
       if (i < transcendenceMultipliers.length) {
-        currentDamage *= transcendenceMultipliers[i];
+        calculatedDamage *= transcendenceMultipliers[i];
       }
     }
 
-    return currentDamage;
+    return calculatedDamage;
+  }
+
+  void applyTemporaryDamageBuff(double amount, {bool isMultiplier = false}) {
+    if (isMultiplier) {
+      currentDamage *= amount;
+    } else {
+      currentDamage += amount;
+    }
+  }
+
+  void clearTemporaryDamageBuffs() {
+    currentDamage = getCalculatedBaseDamage();
   }
 
   Weapon({
@@ -98,7 +109,10 @@ class Weapon {
     this.doubleAttackChance = 0.0,
     this.speed = 1.0,
     this.skills = const [],
-  });
+    this.accuracy = 1.0,
+  }) {
+    currentDamage = getCalculatedBaseDamage();
+  }
 
   Map<String, dynamic> toJson() => {
     'id': id,
@@ -121,6 +135,7 @@ class Weapon {
     'doubleAttackChance': doubleAttackChance,
     'speed': speed,
     'skills': skills,
+    'accuracy': accuracy,
   };
 
   factory Weapon.fromJson(Map<String, dynamic> json) {
@@ -142,7 +157,7 @@ class Weapon {
       type: WeaponType.values.firstWhere(
         (e) =>
             e.toString().split('.').last.toLowerCase() ==
-            json['type'].toString().toLowerCase(),
+            json['type'].toString().replaceAll('_', '').split('.').last.toLowerCase(),
         orElse: () {
           print(
             'WARNING: Unknown weapon type: ${json['type']}. Defaulting to rapier.',
@@ -164,6 +179,7 @@ class Weapon {
       defensePenetration: json['defensePenetration'] ?? 0.0,
       doubleAttackChance: json['doubleAttackChance'] ?? 0.0,
       speed: json['speed'] ?? 1.0,
+      accuracy: json['accuracy'] ?? 1.0,
       skills:
           (json['skills'] as List<dynamic>?)
               ?.map((e) => e as Map<String, dynamic>)
@@ -174,16 +190,22 @@ class Weapon {
 
   factory Weapon.startingWeapon() {
     return Weapon(
-      id: 1, // Changed to ID 1 for rusty crude rapier
+      id: 1200,
       name: '녹슨 조잡한 레이피어',
       imageName: 'group1/rusty_crude_rapier.png',
       rarity: Rarity.common,
       type: WeaponType.rapier,
       baseLevel: 0,
-      baseDamage: 100.0, // Changed from damage to baseDamage
+      baseDamage: 100,
       criticalChance: 0.1,
       criticalDamage: 1.35,
-      baseSellPrice: 125.0,
+      defensePenetration: 0,
+      doubleAttackChance: 0.0,
+      speed: 1.0,
+      baseSellPrice: 50,
+      skills: [],
+      description: "기본 무기입니다.",
+      accuracy: 1.0,
     );
   }
 
@@ -207,6 +229,7 @@ class Weapon {
     double? defensePenetration,
     double? doubleAttackChance,
     double? speed,
+    double? accuracy,
     List<Map<String, dynamic>>? skills,
   }) {
     return Weapon(
@@ -231,6 +254,7 @@ class Weapon {
       defensePenetration: defensePenetration ?? this.defensePenetration,
       doubleAttackChance: doubleAttackChance ?? this.doubleAttackChance,
       speed: speed ?? this.speed,
+      accuracy: accuracy ?? this.accuracy,
       skills: skills ?? this.skills,
     );
   }

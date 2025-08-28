@@ -59,7 +59,7 @@ BASE_LEVEL_STATS = {
         'criticalDamage': 1.35,
         'speed': 1.0,
         'accuracy': 1.0
-    } for level in range(0, 1451, 25)
+    } for level in range(0, 1476, 25)
 }
 
 # --- 판매가 계산 공식 ---
@@ -75,78 +75,90 @@ def generate_weapons():
     rare_weapons = []
     weapon_id_counter = 1
 
-    group_order = [FIRST_GROUP_WEAPONS, SECOND_GROUP_WEAPONS]
+    for final_level in range(0, 1476, 25): # Levels from 0 to 1475, step 25
+        # Determine quality_data based on final_level pattern
+        if (final_level % 150) < 50:
+            quality_data = QUALITIES_DATA[0] # 녹슨
+        elif (final_level % 150) < 100:
+            quality_data = QUALITIES_DATA[1] # 평범한
+        else:
+            quality_data = QUALITIES_DATA[2] # 쓸만한
 
-    def generate_weapon_by_rarity(base_weapon, rarity_name, stat_multiplier, id_counter):
-        weapon = base_weapon.copy()
-        weapon['id'] = id_counter
-        weapon['rarity'] = f'Rarity.{rarity_name}'
-        weapon['description'] = f'A {rarity_name} weapon.'
+        # Determine tier_data based on final_level
+        tier_index = final_level // 150
+        if tier_index >= len(TIERS_DATA):
+            continue # Should not happen with range 0-1475 and TIERS_DATA length 10
 
-        # Apply stat multipliers
-        weapon['baseDamage'] = int(base_weapon['baseDamage'] * stat_multiplier)
-        weapon['speed'] = round(base_weapon['speed'] * stat_multiplier, 2)
-        weapon['criticalChance'] = min(1.0, round(base_weapon['criticalChance'] * stat_multiplier, 3))
-        weapon['criticalDamage'] = round(base_weapon['criticalDamage'] * stat_multiplier, 2)
-        weapon['accuracy'] = min(1.0, round(base_weapon['accuracy'] * stat_multiplier, 3))
-        weapon['baseSellPrice'] = int(base_weapon['baseSellPrice'] * stat_multiplier)
+        tier_data = TIERS_DATA[tier_index]
 
-        return weapon
+        # Determine which group (FIRST_GROUP_WEAPONS or SECOND_GROUP_WEAPONS) to use
+        group_index = (final_level // 25) % 2
+        current_group = FIRST_GROUP_WEAPONS if group_index == 0 else SECOND_GROUP_WEAPONS
 
-    for tier_data in TIERS_DATA:
-        for quality_data in QUALITIES_DATA:
-            for group in group_order:  # 1군 → 2군 순서 반복
-                for type_ko in group:
-                    type_key = TYPE_MAP[type_ko]
-                    final_level = tier_data['base_level'] + quality_data['level_add']
+        for type_ko in current_group:
+            type_key = TYPE_MAP[type_ko]
+            base_stats = BASE_LEVEL_STATS.get(final_level)
 
-                    base_stats = BASE_LEVEL_STATS.get(final_level)
-                    if base_stats is None:
-                        continue
+            if base_stats is None:
+                continue # Should not happen if BASE_LEVEL_STATS covers all 25-step levels
 
-                    # Base weapon (conceptually common, but will be modified for each rarity)
-                    base_weapon_template = {
-                        'name': f"{quality_data['name_ko']} {tier_data['name_ko']} {type_ko}",
-                        'imageName': f"group1/{quality_data['name_en']}_{tier_data['name_en']}_{type_key}.png",
-                        'type': f'WeaponType.{type_key}',
-                        'baseLevel': final_level,
-                        'baseDamage': int(base_stats['baseDamage']),
-                        'speed': base_stats['speed'],
-                        'criticalChance': base_stats['criticalChance'],
-                        'criticalDamage': base_stats['criticalDamage'],
-                        'accuracy': base_stats['accuracy'],
-                        'defensePenetration': 0.0,
-                        'doubleAttackChance': 0.0,
-                        'baseSellPrice': calculate_sell_price(final_level),
-                        'enhancement': 0,
-                        'transcendence': 0,
-                        'investedGold': 0.0,
-                        'investedEnhancementStones': 0,
-                        'investedTranscendenceStones': 0,
-                        'skills': []
-                    }
+            base_weapon_template = {
+                'name': f"{quality_data['name_ko']} {tier_data['name_ko']} {type_ko}",
+                'imageName': f"group1/{quality_data['name_en']}_{tier_data['name_en']}_{type_key}.png",
+                'type': f'WeaponType.{type_key}',
+                'baseLevel': final_level,
+                'baseDamage': int(base_stats['baseDamage']),
+                'speed': base_stats['speed'],
+                'criticalChance': base_stats['criticalChance'],
+                'criticalDamage': base_stats['criticalDamage'],
+                'accuracy': base_stats['accuracy'],
+                'defensePenetration': 0.0,
+                'doubleAttackChance': 0.0,
+                'baseSellPrice': calculate_sell_price(final_level),
+                'enhancement': 0,
+                'transcendence': 0,
+                'investedGold': 0.0,
+                'investedEnhancementStones': 0,
+                'investedTranscendenceStones': 0,
+                'skills': []
+            }
 
-                    # Generate Common weapon
-                    common_weapon = generate_weapon_by_rarity(base_weapon_template, 'common', 1.0, weapon_id_counter)
-                    common_weapons.append(common_weapon)
-                    weapon_id_counter += 1
+            # Generate Common weapon
+            common_weapon = generate_weapon_by_rarity(base_weapon_template, 'common', 1.0, weapon_id_counter)
+            common_weapons.append(common_weapon)
+            weapon_id_counter += 1
 
-                    # Generate Uncommon weapon
-                    uncommon_weapon = generate_weapon_by_rarity(base_weapon_template, 'uncommon', 1.25, weapon_id_counter)
-                    uncommon_weapons.append(uncommon_weapon)
-                    weapon_id_counter += 1
+            # Generate Uncommon weapon
+            uncommon_weapon = generate_weapon_by_rarity(base_weapon_template, 'uncommon', 1.25, weapon_id_counter)
+            uncommon_weapons.append(uncommon_weapon)
+            weapon_id_counter += 1
 
-                    # Generate Rare weapon
-                    rare_weapon = generate_weapon_by_rarity(base_weapon_template, 'rare', 1.5, weapon_id_counter) # Example multiplier for rare
-                    rare_weapons.append(rare_weapon)
-                    weapon_id_counter += 1
+            # Generate Rare weapon
+            rare_weapon = generate_weapon_by_rarity(base_weapon_template, 'rare', 1.5, weapon_id_counter)
+            rare_weapons.append(rare_weapon)
+            weapon_id_counter += 1
 
     return {
         'common': common_weapons,
         'uncommon': uncommon_weapons,
         'rare': rare_weapons,
-        'unique': []  # 유니크 무기 제외
     }
+
+def generate_weapon_by_rarity(base_weapon, rarity_name, stat_multiplier, id_counter):
+    weapon = base_weapon.copy()
+    weapon['id'] = id_counter
+    weapon['rarity'] = f'Rarity.{rarity_name}'
+    weapon['description'] = f'A {rarity_name} weapon.'
+
+    # Apply stat multipliers
+    weapon['baseDamage'] = int(base_weapon['baseDamage'] * stat_multiplier)
+    weapon['speed'] = round(base_weapon['speed'] * stat_multiplier, 2)
+    weapon['criticalChance'] = min(1.0, round(base_weapon['criticalChance'] * stat_multiplier, 3))
+    weapon['criticalDamage'] = round(base_weapon['criticalDamage'] * stat_multiplier, 2)
+    weapon['accuracy'] = min(1.0, round(base_weapon['accuracy'] * stat_multiplier, 3))
+    weapon['baseSellPrice'] = int(base_weapon['baseSellPrice'] * stat_multiplier)
+
+    return weapon
 
 # --- 저장 함수 ---
 

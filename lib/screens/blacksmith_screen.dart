@@ -41,9 +41,9 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
           const enhancementDamageMultipliers = [1.05, 1.07, 1.10, 1.15, 1.20];
           final expectedEnhancementDamage =
               enhancementLevel < enhancementDamageMultipliers.length
-              ? equippedWeapon.calculatedDamage *
+              ? equippedWeapon.currentDamage *
                     enhancementDamageMultipliers[enhancementLevel]
-              : equippedWeapon.calculatedDamage;
+              : equippedWeapon.currentDamage;
           const enhancementProbabilities = [
             100,
             90,
@@ -201,12 +201,20 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                     children: [
                       const SizedBox(height: 10),
                       ElevatedButton(
-                        onPressed: () => _showSellStoneDialog(context, StoneType.enhancement, game),
+                        onPressed: () => _showSellStoneDialog(
+                          context,
+                          StoneType.enhancement,
+                          game,
+                        ),
                         child: const Text('강화석 판매'),
                       ),
                       const SizedBox(height: 8),
                       ElevatedButton(
-                        onPressed: () => _showSellStoneDialog(context, StoneType.transcendence, game),
+                        onPressed: () => _showSellStoneDialog(
+                          context,
+                          StoneType.transcendence,
+                          game,
+                        ),
                         child: const Text('초월석 판매'),
                       ),
                     ],
@@ -283,7 +291,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
               ),
             ),
             Text(
-              'Damage: ${weapon.calculatedDamage.toStringAsFixed(0)}',
+              'Damage: ${weapon.currentDamage.toStringAsFixed(0)}',
               style: const TextStyle(color: Colors.white70),
             ),
             Text(
@@ -390,7 +398,11 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
     );
   }
 
-  Future<void> _showSellStoneDialog(BuildContext context, StoneType type, GameProvider game) async {
+  Future<void> _showSellStoneDialog(
+    BuildContext context,
+    StoneType type,
+    GameProvider game,
+  ) async {
     int currentAmount = 0; // This will be managed by StatefulBuilder
 
     return showDialog<void>(
@@ -402,8 +414,12 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
             final int maxStones = (type == StoneType.enhancement)
                 ? game.player.enhancementStones
                 : game.player.transcendenceStones;
-            final String stoneName = (type == StoneType.enhancement) ? '강화석' : '초월석';
-            final int sellPricePerStone = (type == StoneType.enhancement) ? 5000 : 50000;
+            final String stoneName = (type == StoneType.enhancement)
+                ? '강화석'
+                : '초월석';
+            final int sellPricePerStone = (type == StoneType.enhancement)
+                ? 5000
+                : 50000;
 
             // Ensure currentAmount doesn't exceed maxStones
             if (currentAmount > maxStones) {
@@ -421,27 +437,48 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
               content: SingleChildScrollView(
                 child: ListBody(
                   children: <Widget>[
-                    Text('보유 $stoneName: $maxStones개', style: const TextStyle(fontSize: 16)),
+                    Text(
+                      '보유 $stoneName: $maxStones개',
+                      style: const TextStyle(fontSize: 16),
+                    ),
                     const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ElevatedButton(onPressed: () => updateAmount(-10), child: const Text('-10')),
+                        ElevatedButton(
+                          onPressed: () => updateAmount(-10),
+                          child: const Text('-10'),
+                        ),
                         const SizedBox(width: 8),
-                        ElevatedButton(onPressed: () => updateAmount(-1), child: const Text('-1')),
+                        ElevatedButton(
+                          onPressed: () => updateAmount(-1),
+                          child: const Text('-1'),
+                        ),
                         const SizedBox(width: 8),
                         Text(
                           '$currentAmount개',
-                          style: const TextStyle(color: Colors.white, fontSize: 18),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
                         ),
                         const SizedBox(width: 8),
-                        ElevatedButton(onPressed: () => updateAmount(1), child: const Text('+1')),
+                        ElevatedButton(
+                          onPressed: () => updateAmount(1),
+                          child: const Text('+1'),
+                        ),
                         const SizedBox(width: 8),
-                        ElevatedButton(onPressed: () => updateAmount(10), child: const Text('+10')),
+                        ElevatedButton(
+                          onPressed: () => updateAmount(10),
+                          child: const Text('+10'),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Text('판매 시 획득 골드: ${currentAmount * sellPricePerStone} 골드', style: const TextStyle(fontSize: 16)),
+                    Text(
+                      '판매 시 획득 골드: ${currentAmount * sellPricePerStone} 골드',
+                      style: const TextStyle(fontSize: 16),
+                    ),
                   ],
                 ),
               ),
@@ -458,9 +495,13 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                     Navigator.of(dialogContext).pop(); // Dismiss dialog first
                     String message;
                     if (type == StoneType.enhancement) {
-                      message = game.sellEnhancementStones(amount: currentAmount);
+                      message = game.sellEnhancementStones(
+                        amount: currentAmount,
+                      );
                     } else {
-                      message = game.sellTranscendenceStones(amount: currentAmount);
+                      message = game.sellTranscendenceStones(
+                        amount: currentAmount,
+                      );
                     }
                     _showResultDialog(context, message);
                   },

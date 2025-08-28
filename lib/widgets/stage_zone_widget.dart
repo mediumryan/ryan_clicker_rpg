@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ryan_clicker_rpg/models/monster.dart';
 import 'package:ryan_clicker_rpg/models/player.dart';
 import 'dart:async'; // Import for Timer
+import 'package:provider/provider.dart'; // New import
+import 'package:ryan_clicker_rpg/providers/game_provider.dart'; // New import
 
 // Class to hold damage text information
 class DamageText {
@@ -43,21 +45,18 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
   final List<DamageText> _damageTexts = []; // List to hold active damage texts
 
   @override
-  void didUpdateWidget(covariant StageZoneWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.isMonsterDefeated && !oldWidget.isMonsterDefeated) {
-      // Monster just got defeated, start timer
-      _defeatTimer = Timer(const Duration(milliseconds: 500), () {
-        widget.onGoToNextStage();
-      });
-    } else if (!widget.isMonsterDefeated && oldWidget.isMonsterDefeated) {
-      // Monster is no longer defeated (new monster spawned), cancel timer
-      _defeatTimer?.cancel();
-    }
+  void initState() {
+    super.initState();
+    // Get GameProvider instance and set the callback
+    Provider.of<GameProvider>(context, listen: false)
+        .setShowFloatingDamageTextCallback(_showDamageText);
   }
 
   @override
   void dispose() {
+    // Clear the callback when the widget is disposed
+    Provider.of<GameProvider>(context, listen: false)
+        .setShowFloatingDamageTextCallback(null);
     _defeatTimer?.cancel();
     super.dispose();
   }
@@ -169,24 +168,38 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                               Colors.transparent,
                               BlendMode.multiply,
                             ),
-                      child: SizedBox(
-                        width: 200,
-                        height: 200,
-                        child: Image.asset(
-                          'images/monsters/${widget.monster.imageName}',
-                          fit: BoxFit.contain,
-                          errorBuilder: (context, error, stackTrace) =>
-                              Container(
-                                color: Colors.blue,
-                                child: const Center(
-                                  child: Text(
-                                    'Monster Img',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                      child: Stack(
+                          children: [
+                            SizedBox(
+                              width: 200,
+                              height: 200,
+                              child: Image.asset(
+                                'images/monsters/${widget.monster.imageName}',
+                                fit: BoxFit.contain,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Container(
+                                      color: Colors.blue,
+                                      child: const Center(
+                                        child: Text(
+                                          'Monster Img',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                              ),
+                            ),
+                            if (widget.monster.statusEffects.isNotEmpty)
+                              const Positioned(
+                                top: 0,
+                                left: 0,
+                                child: Icon(
+                                  Icons.cyclone,
+                                  color: Colors.purpleAccent,
+                                  size: 40,
                                 ),
                               ),
+                          ],
                         ),
-                      ),
                     ),
                     const SizedBox(height: 16),
                     SizedBox(

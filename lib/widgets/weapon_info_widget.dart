@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart';
+import 'package:provider/provider.dart'; // New import
+import 'package:ryan_clicker_rpg/providers/game_provider.dart'; // New import
 
 class WeaponInfoWidget extends StatelessWidget {
   final Weapon weapon;
@@ -94,17 +96,34 @@ class WeaponInfoWidget extends StatelessWidget {
               style: const TextStyle(color: Colors.white),
             ),
             const Divider(color: Colors.grey),
-            Text(
-              '데미지: ${weapon.calculatedDamage.toStringAsFixed(0)}',
-              style: const TextStyle(color: Colors.white),
-            ),
-            Text(
-              '치명타 확률: ${(weapon.criticalChance * 100).toStringAsFixed(2)}%',
-              style: const TextStyle(color: Colors.white),
-            ),
-            Text(
-              '치명타 배율: x${weapon.criticalDamage.toStringAsFixed(2)}',
-              style: const TextStyle(color: Colors.white),
+            Consumer<GameProvider>(
+              builder: (context, game, child) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '데미지: ${game.player.effectiveDamage.toStringAsFixed(0)}',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      '치명타 확률: ${(game.player.effectiveCriticalChance * 100).toStringAsFixed(2)}%',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      '치명타 배율: x${game.player.effectiveCriticalDamage.toStringAsFixed(2)}',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      '방어력 관통: ${game.player.effectiveDefensePenetration.toStringAsFixed(0)}',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      '더블어택 확률: ${(game.player.effectiveDoubleAttackChance * 100).toStringAsFixed(2)}%',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ],
+                );
+              },
             ),
             if (weapon.description != null)
               Padding(

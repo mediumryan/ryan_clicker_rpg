@@ -4,6 +4,7 @@ import 'package:ryan_clicker_rpg/models/weapon.dart';
 import 'package:ryan_clicker_rpg/models/gacha_box.dart'; // Import GachaBox
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 import 'package:ryan_clicker_rpg/widgets/equipment_codex_dialog.dart'; // NEW IMPORT
+import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT for WeaponData
 
 class InventoryScreen extends StatelessWidget {
   const InventoryScreen({super.key});
@@ -85,11 +86,41 @@ class InventoryScreen extends StatelessWidget {
                 ),
               ),
               const Divider(color: Colors.yellow),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  '보유 상자',
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment:
+                      MainAxisAlignment.spaceBetween, // Changed to spaceBetween
+                  children: [
+                    Row(
+                      // New inner Row to group text and icon
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          '보유 상자',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        const SizedBox(width: 16), // Spacing
+                        IconButton(
+                          // Changed from Tooltip
+                          icon: const Icon(
+                            Icons.info_outline, // Changed icon to info_outline
+                            color: Colors.white70,
+                            size: 20,
+                          ),
+                          onPressed: () {
+                            _showGachaInfoDialog(
+                              context,
+                            ); // New method to show info
+                          },
+                          padding: EdgeInsets.zero, // Remove default padding
+                          constraints:
+                              const BoxConstraints(), // Remove default constraints
+                        ),
+                      ],
+                    ),
+                    // No other widgets here, the IconButton is now part of the inner Row
+                  ],
                 ),
               ),
               // Inventory List for Gacha Boxes
@@ -164,7 +195,7 @@ class InventoryScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Damage: ${weapon.calculatedDamage.toStringAsFixed(0)}',
+                  'Damage: ${weapon.currentDamage.toStringAsFixed(0)}',
                   style: const TextStyle(color: Colors.white70),
                 ),
                 Text(
@@ -187,34 +218,47 @@ class InventoryScreen extends StatelessWidget {
     VoidCallback onOpen,
   ) {
     return Card(
-      color: box.isBossBox ? Colors.red[800] : Colors.purple[800], // Different color for boss boxes
+      color: box.isBossBox ? Colors.red[800] : Colors.purple[800],
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
+          // Changed from Stack
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  box.name,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    box.name,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  'Stage Level: ${box.stageLevel}',
-                  style: const TextStyle(color: Colors.white70),
-                ),
-                if (box.isBossBox) // Add a visual indicator for boss box
+                  Text(
+                    'Stage Level: ${box.stageLevel}',
+                    style: const TextStyle(color: Colors.white70),
+                  ),
+                  if (box.isBossBox)
+                    const Text(
+                      '★ 보스 상자 ★',
+                      style: TextStyle(
+                        color: Colors.yellow,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  // New description text
+                  const SizedBox(height: 4),
                   const Text(
-                    '★ 보스 상자 ★',
-                    style: TextStyle(color: Colors.yellow, fontSize: 12, fontWeight: FontWeight.bold),
+                    '골드, 강화석, 초월석, 그리고 무작위 무기를 획득할 수 있습니다.',
+                    style: TextStyle(color: Colors.white54, fontSize: 12),
                   ),
-              ],
+                ],
+              ),
             ),
             ElevatedButton(onPressed: onOpen, child: const Text('열기')),
           ],
@@ -250,6 +294,50 @@ class InventoryScreen extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return EquipmentCodexDialog(); // Use the new widget here
+      },
+    );
+  }
+
+  void _showGachaInfoDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.grey[800],
+          title: const Text('상자 정보', style: TextStyle(color: Colors.white)),
+          content: SingleChildScrollView(
+            // Use SingleChildScrollView for potentially long content
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  '골드, 강화석, 초월석, 그리고 무작위 무기를 획득할 수 있습니다.',
+                  style: TextStyle(color: Colors.white70),
+                ),
+                const SizedBox(height: 16),
+                RichText( // Use RichText
+                  text: TextSpan(
+                    children: WeaponData.getWeaponDropProbabilitiesRichText().map((item) {
+                      return TextSpan(
+                        text: item['text'],
+                        style: TextStyle(color: item['color'] as Color, fontSize: 14), // Cast to Color
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('확인', style: TextStyle(color: Colors.blue)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
       },
     );
   }

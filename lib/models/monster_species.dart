@@ -3,6 +3,7 @@ enum MonsterSpecies {
   insect, // 벌레
   goblin, // 고블린
   lizardman, // 리자드맨
+  merman, // 머맨
   aberration, // 이형
   human, // 인간
   elf, // 엘프

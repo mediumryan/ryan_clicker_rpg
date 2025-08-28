@@ -11,7 +11,20 @@ class Player {
   int currentStage;
   int highestStageCleared;
   final Set<int> acquiredWeaponIdsHistory;
-  final Set<String> defeatedBossNames; // NEW FIELD
+  final Set<String> defeatedBossNames;
+
+  // Passive Gain Boosts
+  double passiveGoldGainMultiplier;
+  double passiveEnhancementStoneGainMultiplier;
+  int passiveEnhancementStoneGainFlat;
+
+  // Passive Weapon Stat Boosts
+  double passiveWeaponDamageBonus;
+  double passiveWeaponDamageMultiplier;
+  double passiveWeaponCriticalChanceBonus;
+  double passiveWeaponCriticalDamageBonus;
+  double passiveWeaponDoubleAttackChanceBonus;
+  double passiveWeaponDefensePenetrationBonus;
 
   Player({
     this.gold = 0,
@@ -23,11 +36,41 @@ class Player {
     this.currentStage = 1,
     this.highestStageCleared = 0,
     Set<int>? acquiredWeaponIdsHistory,
-    Set<String>? defeatedBossNames, // NEW IN CONSTRUCTOR
+    Set<String>? defeatedBossNames,
+    this.passiveGoldGainMultiplier = 1.0,
+    this.passiveEnhancementStoneGainMultiplier = 1.0,
+    this.passiveEnhancementStoneGainFlat = 0,
+    this.passiveWeaponDamageBonus = 0.0,
+    this.passiveWeaponDamageMultiplier = 1.0,
+    this.passiveWeaponCriticalChanceBonus = 0.0,
+    this.passiveWeaponCriticalDamageBonus = 0.0,
+    this.passiveWeaponDoubleAttackChanceBonus = 0.0,
+    this.passiveWeaponDefensePenetrationBonus = 0.0,
   }) : inventory = inventory ?? [],
        gachaBoxes = gachaBoxes ?? [],
        acquiredWeaponIdsHistory = acquiredWeaponIdsHistory ?? {},
-       defeatedBossNames = defeatedBossNames ?? {}; // INITIALIZE NEW FIELD
+       defeatedBossNames = defeatedBossNames ?? {};
+
+  // Effective Weapon Stat Getters
+  double get effectiveDamage {
+    return equippedWeapon.currentDamage * passiveWeaponDamageMultiplier + passiveWeaponDamageBonus;
+  }
+
+  double get effectiveCriticalChance {
+    return equippedWeapon.criticalChance + passiveWeaponCriticalChanceBonus;
+  }
+
+  double get effectiveCriticalDamage {
+    return equippedWeapon.criticalDamage + passiveWeaponCriticalDamageBonus;
+  }
+
+  double get effectiveDoubleAttackChance {
+    return equippedWeapon.doubleAttackChance + passiveWeaponDoubleAttackChanceBonus;
+  }
+
+  double get effectiveDefensePenetration {
+    return equippedWeapon.defensePenetration + passiveWeaponDefensePenetrationBonus;
+  }
 
   // Serialization
   Map<String, dynamic> toJson() => {
@@ -40,7 +83,16 @@ class Player {
     'currentStage': currentStage,
     'highestStageCleared': highestStageCleared,
     'acquiredWeaponIdsHistory': acquiredWeaponIdsHistory.toList(),
-    'defeatedBossNames': defeatedBossNames.toList(), // NEW: Serialize as List
+    'defeatedBossNames': defeatedBossNames.toList(),
+    'passiveGoldGainMultiplier': passiveGoldGainMultiplier,
+    'passiveEnhancementStoneGainMultiplier': passiveEnhancementStoneGainMultiplier,
+    'passiveEnhancementStoneGainFlat': passiveEnhancementStoneGainFlat,
+    'passiveWeaponDamageBonus': passiveWeaponDamageBonus,
+    'passiveWeaponDamageMultiplier': passiveWeaponDamageMultiplier,
+    'passiveWeaponCriticalChanceBonus': passiveWeaponCriticalChanceBonus,
+    'passiveWeaponCriticalDamageBonus': passiveWeaponCriticalDamageBonus,
+    'passiveWeaponDoubleAttackChanceBonus': passiveWeaponDoubleAttackChanceBonus,
+    'passiveWeaponDefensePenetrationBonus': passiveWeaponDefensePenetrationBonus,
   };
 
   // Deserialization
@@ -66,10 +118,19 @@ class Player {
               .toSet() ??
           {},
       defeatedBossNames:
-          (json['defeatedBossNames'] as List?) // NEW: Deserialize from List
+          (json['defeatedBossNames'] as List?)
               ?.map((name) => name as String)
               .toSet() ??
           {}, // Handle null for old saves
+      passiveGoldGainMultiplier: json['passiveGoldGainMultiplier'] ?? 1.0,
+      passiveEnhancementStoneGainMultiplier: json['passiveEnhancementStoneGainMultiplier'] ?? 1.0,
+      passiveEnhancementStoneGainFlat: json['passiveEnhancementStoneGainFlat'] ?? 0,
+      passiveWeaponDamageBonus: json['passiveWeaponDamageBonus'] ?? 0.0,
+      passiveWeaponDamageMultiplier: json['passiveWeaponDamageMultiplier'] ?? 1.0,
+      passiveWeaponCriticalChanceBonus: json['passiveWeaponCriticalChanceBonus'] ?? 0.0,
+      passiveWeaponCriticalDamageBonus: json['passiveWeaponCriticalDamageBonus'] ?? 0.0,
+      passiveWeaponDoubleAttackChanceBonus: json['passiveWeaponDoubleAttackChanceBonus'] ?? 0.0,
+      passiveWeaponDefensePenetrationBonus: json['passiveWeaponDefensePenetrationBonus'] ?? 0.0,
     );
   }
 }
