@@ -17,26 +17,82 @@ class WeaponData {
   static bool _isInitialized = false;
 
   // Helper to map rarity to a color (similar to inventory_screen.dart)
-  static Color _getColorForRarity(String rarityName) {
-    switch (rarityName) {
-      case '흔함':
+  static Color getColorForRarity(Rarity rarity) {
+    switch (rarity) {
+      case Rarity.common:
         return Colors.grey[400]!;
-      case '희귀':
+      case Rarity.uncommon:
         return Colors.green;
-      case '매우 희귀':
+      case Rarity.rare:
         return Colors.blue;
-      case '고유':
+      case Rarity.unique:
         return Colors.purple;
-      case '에픽':
+      case Rarity.epic:
         return Colors.orange;
-      case '레전드':
+      case Rarity.legend:
         return Colors.red;
-      case '데미갓':
+      case Rarity.demigod:
         return Colors.cyan; // New color for Demigod
-      case '갓':
+      case Rarity.god:
         return Colors.amber; // New color for God
-      default:
-        return Colors.white; // Fallback
+    }
+  }
+
+  static String getKoreanRarity(Rarity rarity) {
+    switch (rarity) {
+      case Rarity.common:
+        return '흔함';
+      case Rarity.uncommon:
+        return '평범';
+      case Rarity.rare:
+        return '희귀';
+      case Rarity.unique:
+        return '유니크';
+      case Rarity.epic:
+        return '에픽';
+      case Rarity.legend:
+        return '레전드';
+      case Rarity.demigod:
+        return '데미갓';
+      case Rarity.god:
+        return '갓';
+    }
+  }
+
+  static String getKoreanWeaponType(WeaponType type) {
+    switch (type) {
+      case WeaponType.rapier:
+        return '레이피어';
+      case WeaponType.katana:
+        return '카타나';
+      case WeaponType.sword:
+        return '검';
+      case WeaponType.greatsword:
+        return '대검';
+      case WeaponType.scimitar:
+        return '시미터';
+      case WeaponType.dagger:
+        return '단검';
+      case WeaponType.cleaver:
+        return '클리버';
+      case WeaponType.battleAxe:
+        return '전투 도끼';
+      case WeaponType.warhammer:
+        return '워해머';
+      case WeaponType.spear:
+        return '창';
+      case WeaponType.staff:
+        return '지팡이';
+      case WeaponType.trident:
+        return '삼지창';
+      case WeaponType.mace:
+        return '철퇴';
+      case WeaponType.scythe:
+        return '낫';
+      case WeaponType.curvedSword:
+        return '곡선형 검';
+      case WeaponType.nunchaku:
+        return '쌍절곤';
     }
   }
 
@@ -138,7 +194,11 @@ class WeaponData {
     return _allWeapons[Random().nextInt(_allWeapons.length)].copyWith();
   }
 
-  static Weapon getWeaponForStageLevel(int stageLevel, {Rarity? guaranteedRarity, bool isAllRange = false}) {
+  static Weapon getWeaponForStageLevel(
+    int stageLevel, {
+    Rarity? guaranteedRarity,
+    bool isAllRange = false,
+  }) {
     if (!_isInitialized || _allWeapons.isEmpty) {
       return Weapon.startingWeapon();
     }
@@ -179,10 +239,18 @@ class WeaponData {
     }
 
     // Use the new helper method
-    return getWeaponForRarity(selectedRarity, isAllRange: isAllRange, currentStageLevel: stageLevel);
+    return getWeaponForRarity(
+      selectedRarity,
+      isAllRange: isAllRange,
+      currentStageLevel: stageLevel,
+    );
   }
 
-  static Weapon getWeaponForRarity(Rarity rarity, {bool isAllRange = false, int? currentStageLevel}) {
+  static Weapon getWeaponForRarity(
+    Rarity rarity, {
+    bool isAllRange = false,
+    int? currentStageLevel,
+  }) {
     List<Weapon> candidates = [];
     switch (rarity) {
       case Rarity.common:
@@ -231,19 +299,32 @@ class WeaponData {
         // Fallback to any weapon of this rarity if no weapon found for the level range
         return candidates[Random().nextInt(candidates.length)].copyWith();
       }
-      return filteredCandidates[Random().nextInt(filteredCandidates.length)].copyWith();
+      return filteredCandidates[Random().nextInt(filteredCandidates.length)]
+          .copyWith();
     }
   }
 
   static List<Map<String, dynamic>> getWeaponDropProbabilitiesRichText() {
     return [
       {'text': '무기 드롭 확률:', 'color': Colors.white},
-      {'text': '\n흔함: 50%', 'color': _getColorForRarity('흔함')},
-      {'text': '\n희귀: 25%', 'color': _getColorForRarity('희귀')},
-      {'text': '\n매우 희귀: 15%', 'color': _getColorForRarity('매우 희귀')},
-      {'text': '\n고유: 7%', 'color': _getColorForRarity('고유')},
-      {'text': '\n에픽: 2%', 'color': _getColorForRarity('에픽')},
-      {'text': '\n레전드: 1%', 'color': _getColorForRarity('레전드')}
+      {
+        'text': '\n흔함: 50%',
+        'color': WeaponData.getColorForRarity(Rarity.common),
+      },
+      {
+        'text': '\n평범: 25%',
+        'color': WeaponData.getColorForRarity(Rarity.uncommon),
+      }, // Changed to 평범
+      {'text': '\n희귀: 15%', 'color': WeaponData.getColorForRarity(Rarity.rare)},
+      {
+        'text': '\n고유: 7%',
+        'color': WeaponData.getColorForRarity(Rarity.unique),
+      },
+      {'text': '\n에픽: 2%', 'color': WeaponData.getColorForRarity(Rarity.epic)},
+      {
+        'text': '\n레전드: 1%',
+        'color': WeaponData.getColorForRarity(Rarity.legend),
+      },
     ];
   }
 
@@ -253,5 +334,18 @@ class WeaponData {
       return [];
     }
     return List<Weapon>.from(_allWeapons);
+  }
+
+  static double getDefaultAccuracyForRarity(Rarity rarity) {
+    switch (rarity) {
+      case Rarity.common:
+        return 0.7;
+      case Rarity.uncommon:
+        return 0.75;
+      case Rarity.rare:
+        return 0.8;
+      default: // For unique, epic, legend, demigod, god
+        return 1.0; // Or some other default for higher rarities
+    }
   }
 }

@@ -2074,7 +2074,7 @@ class MonsterData {
     int def = monsterInfo['def'];
 
     if (isBoss) {
-      const double bossHpMultiplier = 2.0;
+      const double bossHpMultiplier = 8.0;
       const double bossDefMultiplier = 1.3;
       hp *= bossHpMultiplier;
       def = (def * bossDefMultiplier).floor();

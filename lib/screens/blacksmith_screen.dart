@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart'; // Import Weapon model
+import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT for WeaponData
+import 'package:intl/intl.dart';
 
 enum StoneType { enhancement, transcendence }
 
@@ -13,11 +15,6 @@ class BlacksmithScreen extends StatefulWidget {
 }
 
 class _BlacksmithScreenState extends State<BlacksmithScreen> {
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,37 +35,46 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
               equippedWeapon.enhancement;
 
           final enhancementLevel = equippedWeapon.enhancement;
-          const enhancementDamageMultipliers = [1.05, 1.07, 1.10, 1.15, 1.20];
+          const enhancementDamageMultipliers = [
+            1.00,
+            1.05,
+            1.10,
+            1.15,
+            1.20,
+            1.30,
+            1.40,
+            1.50,
+            1.60,
+            1.70,
+            1.85,
+            2.00,
+            2.20,
+            2.40,
+            2.70,
+            3.10,
+            3.60,
+            4.20,
+            5.00,
+            6.00,
+            7.50,
+          ];
           final expectedEnhancementDamage =
               enhancementLevel < enhancementDamageMultipliers.length
-              ? equippedWeapon.currentDamage *
+              ? equippedWeapon.calculatedDamage *
                     enhancementDamageMultipliers[enhancementLevel]
-              : equippedWeapon.currentDamage;
+              : equippedWeapon.calculatedDamage;
           const enhancementProbabilities = [
-            100,
-            90,
-            75,
-            60,
-            50,
-          ]; // In percentage
-
-          final transcendenceLevel = equippedWeapon.transcendence;
-          const transcendenceDamageMultipliers = [1.75, 2.25, 2.75, 3.25, 4.0];
-          final transcendenceDamageMultiplier =
-              transcendenceLevel < transcendenceDamageMultipliers.length
-              ? transcendenceDamageMultipliers[transcendenceLevel]
-              : 1.0;
-          const transcendenceProbabilities = [
-            100,
-            75,
-            50,
-            30,
-            10,
+            100, 100, 100, 100, 100, 100, // 0-5
+            90, 85, 80, 75, 70, // 6-10
+            60, 53, 47, 40, // 11-14
+            30, 25, 20, // 15-17
+            15, 10, // 18-19
+            5, // 20
           ]; // In percentage
 
           final newTranscendenceGoldCost =
               (100 + (equippedWeapon.baseLevel * 10)) *
-              100 *
+              10000 *
               (equippedWeapon.transcendence + 1);
           final newTranscendenceStoneCost =
               (1 + (equippedWeapon.baseLevel / 200).floor()) *
@@ -86,26 +92,51 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   // Gold Info
-                  Text(
-                    '보유 골드: ${game.player.gold.toStringAsFixed(0)}',
-                    style: const TextStyle(color: Colors.yellow, fontSize: 18),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    '보유 강화석: ${game.player.enhancementStones}',
-                    style: const TextStyle(
-                      color: Colors.lightBlueAccent,
-                      fontSize: 18,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    '보유 초월석: ${game.player.transcendenceStones}',
-                    style: const TextStyle(
-                      color: Colors.purpleAccent,
-                      fontSize: 18,
-                    ),
-                    textAlign: TextAlign.center,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'images/others/gold.png',
+                        width: 24,
+                        height: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        ': ${NumberFormat('#,###').format(game.player.gold)}G',
+                        style: const TextStyle(
+                          color: Colors.yellow,
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      Image.asset(
+                        'images/others/enhancement_stone.png',
+                        width: 24,
+                        height: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        ': ${NumberFormat('#,###').format(game.player.enhancementStones)}개',
+                        style: const TextStyle(
+                          color: Colors.lightBlueAccent,
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      Image.asset(
+                        'images/others/transcendence_stone.png',
+                        width: 24,
+                        height: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        ': ${NumberFormat('#,###').format(game.player.transcendenceStones)}개',
+                        style: const TextStyle(
+                          color: Colors.purpleAccent,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 20),
 
@@ -116,7 +147,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                         equippedWeapon.enhancement >=
                             equippedWeapon.maxEnhancement
                         ? '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n\n최대 강화에 도달하였습니다.'
-                        : '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n강화 확률: ${enhancementProbabilities[enhancementLevel]}%\n필요 골드: $enhancementGoldCost\n필요 강화석: $enhancementStoneCost\n성공 시 기대 데미지: ${expectedEnhancementDamage.toStringAsFixed(0)}\n\n골드와 강화석을 소모하여 무기를 강화합니다. 강화 시 데미지가 큰 폭으로 상승합니다.',
+                        : '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n강화 확률: ${enhancementProbabilities[enhancementLevel]}%\n필요 골드: ${NumberFormat('#,###').format(enhancementGoldCost)}G\n필요 강화석: ${NumberFormat('#,###').format(enhancementStoneCost)}개\n성공 시 기대 데미지: ${NumberFormat('#,###').format(expectedEnhancementDamage)}\n\n골드와 강화석을 소모하여 무기를 강화합니다. 강화 시 데미지가 큰 폭으로 상승합니다.',
                     buttonText: '강화',
                     onPressed:
                         equippedWeapon.enhancement >=
@@ -141,19 +172,27 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                   _buildSection(
                     title: '초월',
                     description:
-                        '현재 초월: [${equippedWeapon.transcendence}] / ${equippedWeapon.maxTranscendence}\n초월 확률: ${transcendenceProbabilities[transcendenceLevel]}%\n조건: 최대 강화\n필요 골드: $newTranscendenceGoldCost\n필요 초월석: $newTranscendenceStoneCost\n성공 시 데미지 x${transcendenceDamageMultiplier.toStringAsFixed(2)}\n\n최대 강화 무기를 초월시킵니다. 초월 시 능력치가 막대하게 상승합니다.',
+                        equippedWeapon.transcendence >=
+                            equippedWeapon.maxTranscendence
+                        ? '현재 초월: [${equippedWeapon.transcendence}] / ${equippedWeapon.maxTranscendence}\n\n이미 최대 초월 단계입니다.'
+                        : '현재 초월: [${equippedWeapon.transcendence}] / ${equippedWeapon.maxTranscendence}\n초월 확률: 5%\n조건: +20 강화\n필요 골드: ${NumberFormat('#,###').format(newTranscendenceGoldCost)}G\n필요 초월석: ${NumberFormat('#,###').format(newTranscendenceStoneCost)}개\n성공 시 능력치 상승\n\n최대 강화 무기를 초월시킵니다. 초월 시 능력치가 막대하게 상승합니다.',
                     buttonText: '초월',
-                    onPressed: () {
-                      _showConfirmationDialog(
-                        context,
-                        '초월',
-                        '정말로 초월하시겠습니까?',
-                        () {
-                          final message = game.transcendEquippedWeapon();
-                          _showResultDialog(context, message);
-                        },
-                      );
-                    },
+                    onPressed:
+                        equippedWeapon.transcendence >=
+                                equippedWeapon.maxTranscendence ||
+                            equippedWeapon.enhancement < 20
+                        ? null
+                        : () {
+                            _showConfirmationDialog(
+                              context,
+                              '초월',
+                              '정말로 초월하시겠습니까?',
+                              () {
+                                final message = game.transcendEquippedWeapon();
+                                _showResultDialog(context, message);
+                              },
+                            );
+                          },
                   ),
 
                   const SizedBox(height: 20),
@@ -283,7 +322,8 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              weapon.name,
+              // Weapon Name + Enhancement + Transcendence
+              '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
@@ -291,7 +331,17 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
               ),
             ),
             Text(
-              'Damage: ${weapon.currentDamage.toStringAsFixed(0)}',
+              // Rarity in Korean
+              '등급: ${WeaponData.getKoreanRarity(weapon.rarity)}',
+              style: TextStyle(
+                color: WeaponData.getColorForRarity(
+                  weapon.rarity,
+                ), // Use rarity color for text
+                fontSize: 14,
+              ),
+            ),
+            Text(
+              'Damage: ${weapon.calculatedDamage.toStringAsFixed(0)}',
               style: const TextStyle(color: Colors.white70),
             ),
             Text(
@@ -310,6 +360,21 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                if (game.player.equippedWeapon.id !=
+                    weapon.id) // Only show equip button if not equipped
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        game.equipWeapon(weapon);
+                        _showResultDialog(
+                          context,
+                          '${weapon.name}을(를) 장착했습니다.',
+                        );
+                      },
+                      child: const Text('장착'),
+                    ),
+                  ),
                 ElevatedButton(
                   onPressed: () {
                     _showConfirmationDialog(

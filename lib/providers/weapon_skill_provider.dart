@@ -32,6 +32,18 @@ class WeaponSkillProvider with ChangeNotifier {
   void updatePassiveSkills(Player player, Monster monster) {
     _gameProvider.clearDamageModifiers(); // Clear existing passive modifiers
 
+    // --- NEW: Reset all player passive weapon stats ---
+    player.passiveWeaponDamageBonus = 0.0;
+    player.passiveWeaponDamageMultiplier = 1.0;
+    player.passiveWeaponCriticalChanceBonus = 0.0;
+    player.passiveWeaponCriticalDamageBonus = 0.0;
+    player.passiveWeaponDoubleAttackChanceBonus = 0.0;
+    player.passiveWeaponDefensePenetrationBonus = 0.0;
+    player.passiveGoldGainMultiplier = 1.0;
+    player.passiveEnhancementStoneGainMultiplier = 1.0;
+    player.passiveEnhancementStoneGainFlat = 0;
+    // --- END NEW ---
+
     final weapon = player.equippedWeapon;
     for (final skill in weapon.skills) {
       final skillEffects = skill['skill_effect'];
@@ -66,6 +78,8 @@ class WeaponSkillProvider with ChangeNotifier {
         }
       }
     }
+    // After applying all passive skills, recalculate player stats in GameProvider
+    _gameProvider.recalculatePlayerStats();
   }
 
   void _applyEffect(
@@ -552,7 +566,11 @@ class WeaponSkillProvider with ChangeNotifier {
     if (Random().nextDouble() < chance) {
       monster.hp -= damage; // Apply fixed damage directly
       monster.setSkillCooldown('fixedDamage');
-      _gameProvider.showFloatingDamageText(damage.toInt(), false); // Show skill damage
+      _gameProvider.showFloatingDamageText(
+        damage.toInt(),
+        false,
+        false,
+      ); // Show skill damage
       _gameProvider.notifyListeners(); // Notify listeners for HP change
     }
   }
@@ -596,7 +614,11 @@ class WeaponSkillProvider with ChangeNotifier {
       final damage = monster.maxHp * (percentDamage / 100);
       monster.hp -= damage; // Apply damage based on max HP
       monster.setSkillCooldown('maxHpDamage');
-      _gameProvider.showFloatingDamageText(damage.toInt(), false); // Show skill damage
+      _gameProvider.showFloatingDamageText(
+        damage.toInt(),
+        false,
+        false,
+      ); // Show skill damage
       _gameProvider.notifyListeners(); // Notify listeners for HP change
     }
   }
@@ -637,10 +659,14 @@ class WeaponSkillProvider with ChangeNotifier {
 
     // 3. Roll for chance
     if (Random().nextDouble() < chance) {
-      final damage = player.equippedWeapon.currentDamage * multiplier;
+      final damage = player.finalDamage * multiplier;
       monster.hp -= damage; // Apply damage based on weapon damage multiplier
       monster.setSkillCooldown('multiplierDamage');
-      _gameProvider.showFloatingDamageText(damage.toInt(), false); // Show skill damage
+      _gameProvider.showFloatingDamageText(
+        damage.toInt(),
+        false,
+        false,
+      ); // Show skill damage
       _gameProvider.notifyListeners(); // Notify listeners for HP change
     }
   }
@@ -771,7 +797,7 @@ class WeaponSkillProvider with ChangeNotifier {
       }
 
       if (conditionMet) {
-        final bonusDamage = player.equippedWeapon.currentDamage * multiplier;
+        final bonusDamage = player.finalDamage * multiplier;
         monster.hp -= bonusDamage;
         monster.setSkillCooldown('hpConditionalBonusDamage');
         _gameProvider.notifyListeners(); // Notify listeners for HP change
@@ -830,8 +856,7 @@ class WeaponSkillProvider with ChangeNotifier {
       if (flatDamageBonus != null) {
         bonusDamage = flatDamageBonus;
       } else if (percentDamageBonus != null) {
-        bonusDamage =
-            player.equippedWeapon.currentDamage * (percentDamageBonus / 100);
+        bonusDamage = player.finalDamage * (percentDamageBonus / 100);
       }
 
       monster.hp -= bonusDamage;

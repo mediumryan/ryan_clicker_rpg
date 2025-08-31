@@ -9,28 +9,6 @@ import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT for Weapo
 class InventoryScreen extends StatelessWidget {
   const InventoryScreen({super.key});
 
-  // Helper to map rarity to a color (Copied from weapon_info_widget.dart)
-  Color _getColorForRarity(Rarity rarity) {
-    switch (rarity) {
-      case Rarity.common:
-        return Colors.grey[400]!;
-      case Rarity.uncommon:
-        return Colors.green;
-      case Rarity.rare:
-        return Colors.blue;
-      case Rarity.unique:
-        return Colors.purple;
-      case Rarity.epic:
-        return Colors.orange;
-      case Rarity.legend:
-        return Colors.red;
-      case Rarity.demigod:
-        return Colors.yellow;
-      case Rarity.god:
-        return Colors.white;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +32,18 @@ class InventoryScreen extends StatelessWidget {
       backgroundColor: Colors.grey[900],
       body: Consumer<GameProvider>(
         builder: (context, game, child) {
+          // Debug print for equipped weapon
+          debugPrint(
+            'Equipped Weapon: ${game.player.equippedWeapon.name} - Rarity Multiplier: ${game.player.equippedWeapon.rarity.index + 1}',
+          );
+
+          // Debug print for inventory weapons
+          for (var weapon in game.player.inventory) {
+            debugPrint(
+              'Inventory Weapon: ${weapon.name} - Rarity Multiplier: ${weapon.rarity.index + 1}',
+            );
+          }
+
           return Column(
             children: [
               // Equipped Weapon Section
@@ -163,7 +153,7 @@ class InventoryScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.black, // MOVED HERE
                 border: Border.all(
-                  color: _getColorForRarity(
+                  color: WeaponData.getColorForRarity(
                     weapon.rarity,
                   ), // Rarity color border
                   width: 2.0, // Border thickness
@@ -187,19 +177,30 @@ class InventoryScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${weapon.name} [${weapon.enhancement}][${weapon.transcendence}]${isEquipped ? ' [E]' : ''}',
-                  style: TextStyle(
+                  // Weapon Name + Enhancement + Transcendence
+                  '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]${isEquipped ? ' [E]' : ''}',
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'Damage: ${weapon.currentDamage.toStringAsFixed(0)}',
+                  // Rarity in Korean
+                  '등급: ${WeaponData.getKoreanRarity(weapon.rarity)}',
+                  style: TextStyle(
+                    color: WeaponData.getColorForRarity(
+                      weapon.rarity,
+                    ), // Use rarity color for text
+                    fontSize: 14,
+                  ),
+                ),
+                Text(
+                  '데미지: ${weapon.calculatedDamage.toStringAsFixed(0)}',
                   style: const TextStyle(color: Colors.white70),
                 ),
                 Text(
-                  'Crit: ${weapon.criticalChance * 100}% / x${weapon.criticalDamage}',
+                  '치명타: ${weapon.criticalChance * 100}% / x${weapon.criticalDamage}',
                   style: const TextStyle(color: Colors.white70),
                 ),
               ],
@@ -218,7 +219,7 @@ class InventoryScreen extends StatelessWidget {
     VoidCallback onOpen,
   ) {
     return Card(
-      color: box.isBossBox ? Colors.red[800] : Colors.purple[800],
+      color: box.isSpecialBox ? Colors.red[800] : Colors.purple[800],
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -242,7 +243,7 @@ class InventoryScreen extends StatelessWidget {
                     'Stage Level: ${box.stageLevel}',
                     style: const TextStyle(color: Colors.white70),
                   ),
-                  if (box.isBossBox)
+                  if (box.isSpecialBox)
                     const Text(
                       '★ 보스 상자 ★',
                       style: TextStyle(
@@ -316,14 +317,20 @@ class InventoryScreen extends StatelessWidget {
                   style: TextStyle(color: Colors.white70),
                 ),
                 const SizedBox(height: 16),
-                RichText( // Use RichText
+                RichText(
+                  // Use RichText
                   text: TextSpan(
-                    children: WeaponData.getWeaponDropProbabilitiesRichText().map((item) {
-                      return TextSpan(
-                        text: item['text'],
-                        style: TextStyle(color: item['color'] as Color, fontSize: 14), // Cast to Color
-                      );
-                    }).toList(),
+                    children: WeaponData.getWeaponDropProbabilitiesRichText()
+                        .map((item) {
+                          return TextSpan(
+                            text: item['text'],
+                            style: TextStyle(
+                              color: item['color'] as Color,
+                              fontSize: 14,
+                            ), // Cast to Color
+                          );
+                        })
+                        .toList(),
                   ),
                 ),
               ],

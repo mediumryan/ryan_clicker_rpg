@@ -9,9 +9,10 @@ import 'package:ryan_clicker_rpg/providers/game_provider.dart'; // New import
 class DamageText {
   final int damage;
   final bool isCritical;
+  final bool isMiss; // New
   final Key key;
 
-  DamageText({required this.damage, required this.isCritical})
+  DamageText({required this.damage, required this.isCritical, required this.isMiss}) // Modified
     : key = UniqueKey();
 }
 
@@ -48,22 +49,26 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
   void initState() {
     super.initState();
     // Get GameProvider instance and set the callback
-    Provider.of<GameProvider>(context, listen: false)
-        .setShowFloatingDamageTextCallback(_showDamageText);
+    Provider.of<GameProvider>(
+      context,
+      listen: false,
+    ).setShowFloatingDamageTextCallback(_showDamageText);
   }
 
   @override
   void dispose() {
     // Clear the callback when the widget is disposed
-    Provider.of<GameProvider>(context, listen: false)
-        .setShowFloatingDamageTextCallback(null);
+    Provider.of<GameProvider>(
+      context,
+      listen: false,
+    ).setShowFloatingDamageTextCallback(null);
     _defeatTimer?.cancel();
     super.dispose();
   }
 
   // Method to add and manage damage text
-  void _showDamageText(int damage, bool isCritical) {
-    final newDamageText = DamageText(damage: damage, isCritical: isCritical);
+  void _showDamageText(int damage, bool isCritical, bool isMiss) {
+    final newDamageText = DamageText(damage: damage, isCritical: isCritical, isMiss: isMiss);
     setState(() {
       _damageTexts.add(newDamageText);
     });
@@ -92,6 +97,7 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
               _showDamageText(
                 damageInfo['damageDealt'],
                 damageInfo['isCritical'],
+                damageInfo['isMiss'] ?? false, // Pass isMiss
               );
             },
       child: Container(
@@ -169,37 +175,93 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                               BlendMode.multiply,
                             ),
                       child: Stack(
-                          children: [
-                            SizedBox(
-                              width: 200,
-                              height: 200,
-                              child: Image.asset(
-                                'images/monsters/${widget.monster.imageName}',
-                                fit: BoxFit.contain,
-                                errorBuilder: (context, error, stackTrace) =>
-                                    Container(
-                                      color: Colors.blue,
-                                      child: const Center(
-                                        child: Text(
-                                          'Monster Img',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
+                        children: [
+                          SizedBox(
+                            width: 200,
+                            height: 200,
+                            child: Image.asset(
+                              'images/monsters/${widget.monster.imageName}',
+                              fit: BoxFit.contain,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Container(
+                                    color: Colors.blue,
+                                    child: const Center(
+                                      child: Text(
+                                        'Monster Img',
+                                        style: TextStyle(color: Colors.white),
                                       ),
                                     ),
+                                  ),
+                            ),
+                          ),
+                          if (widget.monster.statusEffects.isNotEmpty)
+                            const Positioned(
+                              top: 0,
+                              left: 0,
+                              child: Icon(
+                                Icons.cyclone,
+                                color: Colors.purpleAccent,
+                                size: 40,
                               ),
                             ),
-                            if (widget.monster.statusEffects.isNotEmpty)
-                              const Positioned(
-                                top: 0,
-                                left: 0,
-                                child: Icon(
-                                  Icons.cyclone,
-                                  color: Colors.purpleAccent,
-                                  size: 40,
-                                ),
+                          // Monster Defense Icon
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.grey[900],
+                                      titleTextStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                      ),
+                                      contentTextStyle: const TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                      title: const Text('방어력 정보'),
+                                      content: const Text(
+                                        '몬스터의 방어력 수치를 나타냅니다.\n\n'
+                                        '몬스터의 방어력 1당 1%의 데미지가 경감됩니다.\n\n'
+                                        '반대로 몬스터의 방어력이 0보다 낮을 경우에는 1당 2.5%의 추가 데미지를 받습니다.',
+                                      ),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: const Text('닫기'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.shield,
+                                    color: Colors.grey[800],
+                                    size: 40,
+                                  ),
+                                  Text(
+                                    widget.monster.defense.toString(),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
                               ),
-                          ],
-                        ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 16),
                     SizedBox(
@@ -303,10 +365,10 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
           child: FadeTransition(
             opacity: _opacityAnimation,
             child: Text(
-              widget.damageText.damage.toString(),
+              widget.damageText.isMiss ? 'MISS!' : widget.damageText.damage.toString(),
               style: TextStyle(
-                color: widget.damageText.isCritical ? Colors.red : Colors.white,
-                fontSize: widget.damageText.isCritical ? 28 : 20,
+                color: widget.damageText.isMiss ? Colors.yellow : (widget.damageText.isCritical ? Colors.red : Colors.white),
+                fontSize: widget.damageText.isMiss ? 32 : (widget.damageText.isCritical ? 28 : 20),
                 fontWeight: FontWeight.bold,
               ),
             ),

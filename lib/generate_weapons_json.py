@@ -33,15 +33,15 @@ TYPE_MAP = {
 
 TIERS_DATA = [
     {"name_ko": "조잡한", "name_en": "crude", "base_level": 0},
-    {"name_ko": "용병의", "name_en": "mercenary", "base_level": 150},
-    {"name_ko": "고블린족의", "name_en": "goblin", "base_level": 300},
-    {"name_ko": "기사단의", "name_en": "knights", "base_level": 450},
-    {"name_ko": "리자드맨의", "name_en": "lizardman", "base_level": 600},
-    {"name_ko": "엘프족의", "name_en": "elf", "base_level": 750},
-    {"name_ko": "정령의 힘이 깃든", "name_en": "elemental", "base_level": 900},
-    {"name_ko": "신성국의", "name_en": "holy", "base_level": 1050},
-    {"name_ko": "악마의 힘이 깃든", "name_en": "demonic", "base_level": 1200},
-    {"name_ko": "용의 힘이 깃든", "name_en": "dragon", "base_level": 1350},
+    {"name_ko": "용병의", "name_en": "mercenary", "base_level": 50},
+    {"name_ko": "고블린족의", "name_en": "goblin", "base_level": 100},
+    {"name_ko": "기사단의", "name_en": "knights", "base_level": 150},
+    {"name_ko": "리자드맨의", "name_en": "lizardman", "base_level": 200},
+    {"name_ko": "엘프족의", "name_en": "elf", "base_level": 250},
+    {"name_ko": "정령의 힘이 깃든", "name_en": "elemental", "base_level": 300},
+    {"name_ko": "신성국의", "name_en": "holy", "base_level": 350},
+    {"name_ko": "악마의 힘이 깃든", "name_en": "demonic", "base_level": 400},
+    {"name_ko": "용의 힘이 깃든", "name_en": "dragon", "base_level": 450},
 ]
 
 QUALITIES_DATA = [
@@ -65,100 +65,131 @@ BASE_LEVEL_STATS = {
 # --- 판매가 계산 공식 ---
 
 def calculate_sell_price(level):
-    return int(50 * math.pow(1.015, level))
+    return int(150 * math.pow(1.015, level))
+
+# --- 무기 생성 함수 ---
 
 # --- 무기 생성 함수 ---
 
 def generate_weapons():
+    temp_common_weapons = []
+    temp_uncommon_weapons = []
+    temp_rare_weapons = []
+    
+    # Iterate through each tier
+    for tier_data in TIERS_DATA:
+        tier_base_level = tier_data['base_level']
+        
+        # Determine the range of baseLevels for this tier
+        tier_end_level = 1475 # Default for the last tier
+        tier_index = TIERS_DATA.index(tier_data) # Re-add tier_index for tier_end_level calculation
+        if tier_index + 1 < len(TIERS_DATA):
+            tier_end_level = TIERS_DATA[tier_index + 1]['base_level'] - 25 # Changed to -50
+        
+        # Iterate through baseLevels within this tier's range, step 50
+        for current_base_level in range(tier_base_level, tier_end_level + 1, 25):
+            # Determine tier_data based on current_base_level (MOVED INSIDE)
+            selected_tier_data = TIERS_DATA[0] # Default to crude
+            for t_data in TIERS_DATA:
+                if current_base_level >= t_data['base_level']:
+                    selected_tier_data = t_data
+                else:
+                    break # Tiers are sorted by base_level, so we can break
+            tier_data = selected_tier_data
+            # Determine weapon group name (1군무기 or 2군무기) for the name string
+            group_name_selector = (current_base_level // 25) % 2
+
+            # Select weapon types based on the group_name_selector
+            selected_weapon_types = []
+            if group_name_selector == 0:
+                selected_weapon_types = FIRST_GROUP_WEAPONS
+            else:
+                selected_weapon_types = SECOND_GROUP_WEAPONS
+            
+            for type_ko in selected_weapon_types: # Iterate through selected weapon types
+                type_key = TYPE_MAP[type_ko]
+                base_stats = BASE_LEVEL_STATS.get(current_base_level)
+                if base_stats is None: continue
+                
+                # Generate weapons for each quality (녹슨, 평범한, 쓸만한)
+                for quality_data in QUALITIES_DATA:
+                    # Apply quality_data['stat_mult'] here
+                    base_damage = int(base_stats['baseDamage'] * quality_data['stat_mult'])
+                    speed = round(base_stats['speed'] * quality_data['stat_mult'], 2)
+                    critical_chance = min(1.0, round(base_stats['criticalChance'] * quality_data['stat_mult'], 3))
+                    critical_damage = round(base_stats['criticalDamage'] * quality_data['stat_mult'], 2)
+                    # Determine accuracy based on quality (rarity)
+                    if quality_data['name_ko'] == "녹슨": # Common
+                        accuracy = 0.7
+                    elif quality_data['name_ko'] == "평범한": # Uncommon
+                        accuracy = 0.75
+                    elif quality_data['name_ko'] == "쓸만한": # Rare
+                        accuracy = 0.8
+                    else:
+                        accuracy = min(1.0, round(base_stats['accuracy'] * quality_data['stat_mult'], 3)) # Fallback
+
+                    base_sell_price = int(calculate_sell_price(current_base_level) * quality_data['stat_mult'])
+                    
+                    weapon = {
+                        'name': f"{quality_data['name_ko']} {tier_data['name_ko']} {type_ko}", # Add group suffix to name
+                        'imageName': f"group1/{quality_data['name_en']}_{tier_data['name_en']}_{type_key}.png",
+                        'type': f'WeaponType.{type_key}',
+                        'baseLevel': current_base_level,
+                        'baseDamage': base_damage,
+                        'speed': speed,
+                        'criticalChance': critical_chance,
+                        'criticalDamage': critical_damage,
+                        'accuracy': accuracy,
+                        'defensePenetration': 0.0,
+                        'doubleAttackChance': 0.0,
+                        'baseSellPrice': base_sell_price,
+                        'enhancement': 0,
+                        'transcendence': 0,
+                        'investedGold': 0.0,
+                        'investedEnhancementStones': 0,
+                        'investedTranscendenceStones': 0,
+                        'skills': [],
+                        'description': f'A {quality_data["name_en"]} {tier_data["name_en"]} weapon.'
+                    }
+                    
+                    # Assign to temporary lists based on quality_data
+                    if quality_data['name_ko'] == "녹슨":
+                        weapon['rarity'] = 'Rarity.common'
+                        temp_common_weapons.append(weapon)
+                    elif quality_data['name_ko'] == "평범한":
+                        weapon['rarity'] = 'Rarity.uncommon'
+                        temp_uncommon_weapons.append(weapon)
+                    elif quality_data['name_ko'] == "쓸만한":
+                        weapon['rarity'] = 'Rarity.rare'
+                        temp_rare_weapons.append(weapon)
+    
+    # Select the first 160 weapons for each rarity and re-assign IDs
     common_weapons = []
     uncommon_weapons = []
     rare_weapons = []
+    
     weapon_id_counter = 1
-
-    for final_level in range(0, 1476, 25): # Levels from 0 to 1475, step 25
-        # Determine quality_data based on final_level pattern
-        if (final_level % 150) < 50:
-            quality_data = QUALITIES_DATA[0] # 녹슨
-        elif (final_level % 150) < 100:
-            quality_data = QUALITIES_DATA[1] # 평범한
-        else:
-            quality_data = QUALITIES_DATA[2] # 쓸만한
-
-        # Determine tier_data based on final_level
-        tier_index = final_level // 150
-        if tier_index >= len(TIERS_DATA):
-            continue # Should not happen with range 0-1475 and TIERS_DATA length 10
-
-        tier_data = TIERS_DATA[tier_index]
-
-        # Determine which group (FIRST_GROUP_WEAPONS or SECOND_GROUP_WEAPONS) to use
-        group_index = (final_level // 25) % 2
-        current_group = FIRST_GROUP_WEAPONS if group_index == 0 else SECOND_GROUP_WEAPONS
-
-        for type_ko in current_group:
-            type_key = TYPE_MAP[type_ko]
-            base_stats = BASE_LEVEL_STATS.get(final_level)
-
-            if base_stats is None:
-                continue # Should not happen if BASE_LEVEL_STATS covers all 25-step levels
-
-            base_weapon_template = {
-                'name': f"{quality_data['name_ko']} {tier_data['name_ko']} {type_ko}",
-                'imageName': f"group1/{quality_data['name_en']}_{tier_data['name_en']}_{type_key}.png",
-                'type': f'WeaponType.{type_key}',
-                'baseLevel': final_level,
-                'baseDamage': int(base_stats['baseDamage']),
-                'speed': base_stats['speed'],
-                'criticalChance': base_stats['criticalChance'],
-                'criticalDamage': base_stats['criticalDamage'],
-                'accuracy': base_stats['accuracy'],
-                'defensePenetration': 0.0,
-                'doubleAttackChance': 0.0,
-                'baseSellPrice': calculate_sell_price(final_level),
-                'enhancement': 0,
-                'transcendence': 0,
-                'investedGold': 0.0,
-                'investedEnhancementStones': 0,
-                'investedTranscendenceStones': 0,
-                'skills': []
-            }
-
-            # Generate Common weapon
-            common_weapon = generate_weapon_by_rarity(base_weapon_template, 'common', 1.0, weapon_id_counter)
-            common_weapons.append(common_weapon)
-            weapon_id_counter += 1
-
-            # Generate Uncommon weapon
-            uncommon_weapon = generate_weapon_by_rarity(base_weapon_template, 'uncommon', 1.25, weapon_id_counter)
-            uncommon_weapons.append(uncommon_weapon)
-            weapon_id_counter += 1
-
-            # Generate Rare weapon
-            rare_weapon = generate_weapon_by_rarity(base_weapon_template, 'rare', 1.5, weapon_id_counter)
-            rare_weapons.append(rare_weapon)
-            weapon_id_counter += 1
-
+    
+    for weapon in temp_common_weapons:
+        weapon['id'] = weapon_id_counter
+        common_weapons.append(weapon)
+        weapon_id_counter += 1
+        
+    for weapon in temp_uncommon_weapons:
+        weapon['id'] = weapon_id_counter
+        uncommon_weapons.append(weapon)
+        weapon_id_counter += 1
+        
+    for weapon in temp_rare_weapons:
+        weapon['id'] = weapon_id_counter
+        rare_weapons.append(weapon)
+        weapon_id_counter += 1
+    
     return {
         'common': common_weapons,
         'uncommon': uncommon_weapons,
         'rare': rare_weapons,
     }
-
-def generate_weapon_by_rarity(base_weapon, rarity_name, stat_multiplier, id_counter):
-    weapon = base_weapon.copy()
-    weapon['id'] = id_counter
-    weapon['rarity'] = f'Rarity.{rarity_name}'
-    weapon['description'] = f'A {rarity_name} weapon.'
-
-    # Apply stat multipliers
-    weapon['baseDamage'] = int(base_weapon['baseDamage'] * stat_multiplier)
-    weapon['speed'] = round(base_weapon['speed'] * stat_multiplier, 2)
-    weapon['criticalChance'] = min(1.0, round(base_weapon['criticalChance'] * stat_multiplier, 3))
-    weapon['criticalDamage'] = round(base_weapon['criticalDamage'] * stat_multiplier, 2)
-    weapon['accuracy'] = min(1.0, round(base_weapon['accuracy'] * stat_multiplier, 3))
-    weapon['baseSellPrice'] = int(base_weapon['baseSellPrice'] * stat_multiplier)
-
-    return weapon
 
 # --- 저장 함수 ---
 

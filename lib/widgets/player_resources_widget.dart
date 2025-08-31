@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
+import 'package:intl/intl.dart'; // NEW IMPORT
 
 class PlayerResourcesWidget extends StatelessWidget {
   const PlayerResourcesWidget({super.key});
@@ -14,20 +15,35 @@ class PlayerResourcesWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildResourceDisplay(
-                '골드',
-                game.player.gold.toStringAsFixed(0),
-                Colors.amber,
+              Expanded(
+                child: _buildResourceDisplay(
+                  context,
+                  'images/others/gold.png',
+                  NumberFormat('#,###').format(game.player.gold),
+                  Colors.amber,
+                  '골드',
+                  '골드는 무기 강화, 초월, 상점 이용 등 다양한 곳에 사용되는 기본 재화입니다.',
+                ),
               ),
-              _buildResourceDisplay(
-                '강화석',
-                game.player.enhancementStones.toString(),
-                Colors.blueGrey,
+              Expanded(
+                child: _buildResourceDisplay(
+                  context,
+                  'images/others/enhancement_stone.png',
+                  NumberFormat('#,###').format(game.player.enhancementStones),
+                  Colors.blueGrey,
+                  '강화석',
+                  '강화석은 무기 강화에 사용되는 핵심 재료입니다. 강화 단계가 높아질수록 더 많은 강화석이 필요합니다.',
+                ),
               ),
-              _buildResourceDisplay(
-                '초월석',
-                game.player.transcendenceStones.toString(),
-                Colors.purple,
+              Expanded(
+                child: _buildResourceDisplay(
+                  context,
+                  'images/others/transcendence_stone.png',
+                  NumberFormat('#,###').format(game.player.transcendenceStones),
+                  Colors.purple,
+                  '초월석',
+                  '초월석은 무기 초월에 사용되는 희귀 재료입니다. 초월을 통해 무기의 잠재력을 극한으로 끌어올릴 수 있습니다.',
+                ),
               ),
             ],
           ),
@@ -36,19 +52,61 @@ class PlayerResourcesWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildResourceDisplay(String label, String value, Color color) {
-    return Column(
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-            color: color,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+  static Widget _buildResourceDisplay(
+    BuildContext context,
+    String imagePath,
+    String value,
+    Color color,
+    String title,
+    String description,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        _showResourceDescriptionDialog(context, title, description);
+      },
+      child: Column(
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(imagePath, width: 24, height: 24),
+              const SizedBox(width: 4),
+              Text(
+                value,
+                style: const TextStyle(color: Colors.white, fontSize: 18),
+              ),
+            ],
           ),
-        ),
-        Text(value, style: const TextStyle(color: Colors.white, fontSize: 18)),
-      ],
+        ],
+      ),
+    );
+  }
+
+  static void _showResourceDescriptionDialog(
+    BuildContext context,
+    String title,
+    String description,
+  ) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.grey[800],
+          title: Text(title, style: const TextStyle(color: Colors.white)),
+          content: Text(
+            description,
+            style: const TextStyle(color: Colors.white70),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('확인', style: TextStyle(color: Colors.blue)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

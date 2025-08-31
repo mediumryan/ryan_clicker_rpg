@@ -2,7 +2,7 @@
   {
     "id": 961,
     "name": "벌새",
-    "imageName": "others/hummingbird.png",
+    "imageName": "epic/rapier/hummingbird.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 0,
@@ -37,7 +37,7 @@
   {
     "id": 962,
     "name": "하얀 송곳니",
-    "imageName": "others/white_fang.png",
+    "imageName": "epic/rapier/white_fang.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 50,
@@ -78,7 +78,7 @@
   {
     "id": 968,
     "name": "벌집",
-    "imageName": "others/hive.png",
+    "imageName": "epic/rapier/hive.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 100,
@@ -118,7 +118,7 @@
   {
     "id": 963,
     "name": "아머 브레이커",
-    "imageName": "others/armor_breaker_rapier.png",
+    "imageName": "epic/rapier/armor_breaker_rapier.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 200,
@@ -159,7 +159,7 @@
   {
     "id": 966,
     "name": "독아",
-    "imageName": "others/venom_fang.png",
+    "imageName": "epic/rapier/venom_fang.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 300,
@@ -210,7 +210,7 @@
   {
     "id": 970,
     "name": "일점돌파",
-    "imageName": "others/pinpoint_pierce.png",
+    "imageName": "epic/rapier/pinpoint_pierce.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 400,
@@ -245,7 +245,7 @@
   {
     "id": 967,
     "name": "복제된 신성한 일침",
-    "imageName": "others/replicated_divine_pierce.png",
+    "imageName": "epic/rapier/replicated_divine_pierce.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 500,
@@ -299,6 +299,429 @@
     ],
     "accuracy": 1.0,
     "description": "신성국에서 전해 내려오는 《신성한 일침》의 복제품입니다. 진품보다 성능은 떨어지지만 형식적인 권위를 갖춘 무기입니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 1400,
+    "name": "후발주자",
+    "imageName": "epic/sword/latecomer.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.sword",
+    "baseLevel": 0,
+    "baseDamage": 350,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 50000,
+    "skills": [
+      {
+        "skill_name": "누적성장",
+        "skill_type": "active",
+        "trigger": "killMonster",
+        "skill_description": "몬스터를 1마리 처치할 때마다 무기의 공격력(베이스데미지)을 영구적으로 5 상승시킵니다. 최대 100중첩.",
+        "skill_effect": [
+          {
+            "effect_name": "increaseStat",
+            "params": {
+              "stat": "baseDamage",
+              "stackPerValue": 5,
+              "isMultiplicative": false,
+              "maxStacks": 100,
+              "initialStacksParam": "player_weapon_stacks"
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "비록 시작은 미약하였으나, 끝은 창대하리.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 1401,
+    "name": "정체불명",
+    "imageName": "epic/sword/mysterious_blade.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.sword",
+    "baseLevel": 50,
+    "baseDamage": 800,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0,
+    "speed": 1.0,
+    "baseSellPrice": 50000,
+    "skills": [
+      {
+        "skill_name": "감정불가",
+        "skill_type": "active",
+        "trigger": "onAttack",
+        "cooldown": 5,
+        "skill_description": "많은 대장장이가 이 검을 감정해 보았지만 기원을 알 수 없었습니다. 공격 시 25% 확률로 3초 동안 상대방에게 랜덤 상태 이상을 부여합니다. 상태 이상은 중첩되지 않습니다.",
+        "skill_effect": [
+          {
+            "effect_name": "applyRandomDebuff",
+            "params": {
+              "chance": 0.25,
+              "duration": 3,
+              "stackable": false,
+              "bleedPerDmg": 20,
+              "poisonPerDmg": 15
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "어디에서, 누구에게 만들어졌는지 모르는 정체불명의 검입니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 1402,
+    "name": "위풍당당",
+    "imageName": "epic/sword/grand_blade.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.sword",
+    "baseLevel": 100,
+    "baseDamage": 1600,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 120000,
+    "skills": [
+      {
+        "skill_name": "기세",
+        "skill_type": "passive",
+        "skill_description": "완성도 높은 무기는 사용자의 기세를 올려주는 법입니다. (무기 공격력 1500 증가, 공격속도 0.2 증가, 치명타 데미지 0.5 증가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 1500,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 0.2,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalDamage",
+              "value": 0.5,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "시작의 마을 대장장이 윌터가 만든 걸작 중 하나입니다. 검날이 예리하고 밸런스가 좋습니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 1402,
+    "name": "아머 브레이커",
+    "imageName": "epic/sword/armor_breaker.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.sword",
+    "baseLevel": 200,
+    "baseDamage": 2800,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.5,
+    "defensePenetration": 5,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 300000,
+    "skills": [
+      {
+        "skill_name": "갑옷 부수기",
+        "skill_type": "active",
+        "trigger": "onHit",
+        "skill_description": "상대의 약점을 파고들어 방어를 무력화시킵니다. 공격 시 10% 확률로 5초간 적의 방어력을 25만큼 감소시킵니다. 중첩되지 않습니다.",
+        "cooldown": 0,
+        "skill_effect": [
+          {
+            "effect_name": "applyDebuff",
+            "params": {
+              "chance": 0.1,
+              "defenseReduction": 25,
+              "duration": 5,
+              "stackable": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "수많은 병사의 갑옷을 넝마로 만든 검입니다. 방어력이 높은 적에게 좋은 선택입니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 1403,
+    "name": "이무기",
+    "imageName": "epic/sword/fang_of_ascension.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.sword",
+    "baseLevel": 300,
+    "baseDamage": 4300,
+    "criticalChance": 0.12,
+    "criticalDamage": 1.6,
+    "defensePenetration": 2,
+    "doubleAttackChance": 0.0,
+    "speed": 1.05,
+    "baseSellPrice": 650000,
+    "skills": [
+      {
+        "skill_name": "승천격",
+        "skill_type": "active",
+        "trigger": "onHit",
+        "cooldown": 0,
+        "skill_description": "대단한 기세로 상대방을 올려칩니다. 공격 시 15% 확률로 적에게 12,500의 추가 피해를 입힙니다.",
+        "skill_effect": [
+          {
+            "effect_name": "dealBonusDamage",
+            "params": { "chance": 0.15, "bonusDamage": 12500 }
+          }
+        ]
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "용이 되지 못한 뱀의 송곳니로 만든 검입니다. 뱀의 한이 담겨있습니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 1404,
+    "name": "커타나",
+    "imageName": "epic/rapier/sword/epic/curtana.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.sword",
+    "baseLevel": 400,
+    "baseDamage": 5800,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 950000,
+    "skills": [
+      {
+        "skill_name": "보검",
+        "skill_type": "passive",
+        "skill_description": "보물은 들고 있는 것만으로도 행운을 불러옵니다. (골드 획득량 125% 증가, 강화석 획득 시 추가로 1개 획득)",
+        "skill_effect": [
+          {
+            "effect_name": "applyGoldGainBoost",
+            "params": { "multiplier": 2.25 }
+          },
+          {
+            "effect_name": "applyPassiveEnhancementStoneGainBoost",
+            "params": { "flatBonus": 1 }
+          }
+        ]
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "어느 이국 왕실의 보검입니다. 어쩌다가 이곳까지 흘러들어왔는지는 의문입니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 1405,
+    "name": "복제된 듀랜달",
+    "imageName": "epic/rapier/replicated_pragaragh.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.sword",
+    "baseLevel": 500,
+    "baseDamage": 6400,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.5,
+    "defensePenetration": 10,
+    "doubleAttackChance": 0.05,
+    "speed": 1.0,
+    "baseSellPrice": 1800000,
+    "skills": [
+      {
+        "skill_name": "심판 (복제)",
+        "skill_type": "passive",
+        "skill_description": "이 무기는 선과 악을 구분합니다. (언데드/데몬 종족에게 30% 데미지 추가, 신성교/천사 종족에게 30% 데미지 감소)",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "undead", "multiplier": 1.3 }
+          },
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "demon", "multiplier": 1.3 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "divine", "multiplier": 0.7 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "angel", "multiplier": 0.7 }
+          }
+        ]
+      },
+      {
+        "skill_name": "신성한 일격 (복제)",
+        "skill_type": "active",
+        "skill_description": "적에게 신성한 빛줄기로 일격을 가합니다. (공격 시 10% 확률로 9999의 추가 고정 피해, 쿨타임 5초)",
+        "skill_effect": [
+          {
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.1,
+              "damage": 9999,
+              "cooldown": 5,
+              "trigger": "onHit"
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "신성국에서 전해 내려오는 《듀랜달》의 복제품입니다. 진품보다 성능은 떨어지지만 형식적인 권위를 갖춘 무기입니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 1406,
+    "name": "오만",
+    "imageName": "epic/rapier/sword/epic/arrogance.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.sword",
+    "baseLevel": 500,
+    "baseDamage": 5000,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 8,
+    "doubleAttackChance": 0.05,
+    "speed": 1.0,
+    "baseSellPrice": 1700000,
+    "skills": [
+      {
+        "skill_name": "약자멸시",
+        "skill_type": "passive",
+        "skill_description": "약화된 적은 이 검 앞에서 무릎꿇게 됩니다. (체력이 50% 이하인 적에게 200% 추가 데미지)",
+        "skill_effect": [
+          {
+            "effect_name": "applyConditionalDamageBoost",
+            "params": {
+              "condition": "targetHealthBelowPercent",
+              "threshold": 0.5,
+              "damageMultiplier": 3.0
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "약자에게는 피도 눈물도 없는 무시무시한 검입니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 1505,
+    "name": "복제된 프라가라흐",
+    "imageName": "epic/rapier/replicated_pragaragh.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.greatsword",
+    "baseLevel": 400,
+    "baseDamage": 7200,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.75,
+    "defensePenetration": 10,
+    "doubleAttackChance": 0.05,
+    "speed": 0.8,
+    "baseSellPrice": 1200000,
+    "skills": [
+      {
+        "skill_name": "심판 (복제)",
+        "skill_type": "passive",
+        "skill_description": "이 무기는 선과 악을 구분합니다. (언데드/데몬 종족에게 30% 데미지 추가, 신성교/천사 종족에게 30% 데미지 감소)",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "undead", "multiplier": 1.3 }
+          },
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "demon", "multiplier": 1.3 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "divine", "multiplier": 0.7 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "angel", "multiplier": 0.7 }
+          }
+        ]
+      },
+      {
+        "skill_name": "신성한 일격 (복제)",
+        "skill_type": "active",
+        "skill_description": "적에게 신성한 빛줄기로 일격을 가합니다. (공격 시 10% 확률로 9999의 추가 고정 피해, 쿨타임 5초)",
+        "skill_effect": [
+          {
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.1,
+              "damage": 9999,
+              "cooldown": 5,
+              "trigger": "onHit"
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "신성국에서 전해 내려오는 《프라가라흐》의 복제품입니다. 진품보다 성능은 떨어지지만 형식적인 권위를 갖춘 무기입니다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,

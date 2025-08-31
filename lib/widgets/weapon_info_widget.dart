@@ -3,31 +3,11 @@ import 'package:ryan_clicker_rpg/models/weapon.dart';
 import 'package:provider/provider.dart'; // New import
 import 'package:ryan_clicker_rpg/providers/game_provider.dart'; // New import
 
+import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT
+
 class WeaponInfoWidget extends StatelessWidget {
   final Weapon weapon;
   const WeaponInfoWidget({super.key, required this.weapon});
-
-  // Helper to map rarity to a color
-  Color _getColorForRarity(Rarity rarity) {
-    switch (rarity) {
-      case Rarity.common:
-        return Colors.grey[400]!;
-      case Rarity.uncommon:
-        return Colors.green;
-      case Rarity.rare:
-        return Colors.blue;
-      case Rarity.unique:
-        return Colors.purple;
-      case Rarity.epic:
-        return Colors.orange;
-      case Rarity.legend:
-        return Colors.red;
-      case Rarity.demigod:
-        return Colors.yellow;
-      case Rarity.god:
-        return Colors.white;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +29,7 @@ class WeaponInfoWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.black,
                 border: Border.all(
-                  color: _getColorForRarity(weapon.rarity),
+                  color: WeaponData.getColorForRarity(weapon.rarity),
                   width: 2.0,
                 ),
                 borderRadius: BorderRadius.circular(4.0),
@@ -74,8 +54,8 @@ class WeaponInfoWidget extends StatelessWidget {
     return AlertDialog(
       backgroundColor: Colors.grey[850],
       title: Text(
-        weapon.name,
-        style: TextStyle(color: _getColorForRarity(weapon.rarity)),
+        '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]',
+        style: TextStyle(color: WeaponData.getColorForRarity(weapon.rarity)),
       ),
       content: SingleChildScrollView(
         child: Column(
@@ -83,17 +63,12 @@ class WeaponInfoWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              '등급: ${weapon.rarity.toString().split('.').last}',
+              '등급: ${WeaponData.getKoreanRarity(weapon.rarity)}',
               style: const TextStyle(color: Colors.white70),
             ),
-            const Divider(color: Colors.grey),
             Text(
-              '강화: +${weapon.enhancement} / +${weapon.maxEnhancement}',
-              style: const TextStyle(color: Colors.white),
-            ),
-            Text(
-              '초월: [${weapon.transcendence}]',
-              style: const TextStyle(color: Colors.white),
+              '타입: ${WeaponData.getKoreanWeaponType(weapon.type)}',
+              style: const TextStyle(color: Colors.white70),
             ),
             const Divider(color: Colors.grey),
             Consumer<GameProvider>(
@@ -102,23 +77,31 @@ class WeaponInfoWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '데미지: ${game.player.effectiveDamage.toStringAsFixed(0)}',
+                      '데미지: ${game.player.finalDamage.toStringAsFixed(0)}',
                       style: const TextStyle(color: Colors.white),
                     ),
                     Text(
-                      '치명타 확률: ${(game.player.effectiveCriticalChance * 100).toStringAsFixed(2)}%',
+                      '공격 속도: ${game.player.finalAttackSpeed.toStringAsFixed(2)}',
                       style: const TextStyle(color: Colors.white),
                     ),
                     Text(
-                      '치명타 배율: x${game.player.effectiveCriticalDamage.toStringAsFixed(2)}',
+                      '치명타 확률: ${(game.player.finalCritChance * 100).toStringAsFixed(2)}%',
                       style: const TextStyle(color: Colors.white),
                     ),
                     Text(
-                      '방어력 관통: ${game.player.effectiveDefensePenetration.toStringAsFixed(0)}',
+                      '치명타 배율: x${game.player.finalCritDamage.toStringAsFixed(2)}',
                       style: const TextStyle(color: Colors.white),
                     ),
                     Text(
-                      '더블어택 확률: ${(game.player.effectiveDoubleAttackChance * 100).toStringAsFixed(2)}%',
+                      '방어력 관통: ${game.player.finalDefensePenetration.toStringAsFixed(0)}',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      '더블어택 확률: ${(game.player.finalDoubleAttackChance * 100).toStringAsFixed(2)}%',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      '적중률: ${(game.player.equippedWeapon.accuracy * 100).toStringAsFixed(2)}%',
                       style: const TextStyle(color: Colors.white),
                     ),
                   ],
@@ -129,7 +112,7 @@ class WeaponInfoWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  '설명: ${weapon.description}',
+                  '${weapon.description}',
                   style: const TextStyle(color: Colors.white70),
                 ),
               ),
@@ -148,7 +131,7 @@ class WeaponInfoWidget extends StatelessWidget {
                     ),
                     ...weapon.skills.map(
                       (skill) => Text(
-                        '- ${skill['skill_name']}: ${skill['skill_description']}',
+                        '${skill['skill_name']}\n${skill['skill_description']}',
                         style: const TextStyle(color: Colors.cyanAccent),
                       ),
                     ),

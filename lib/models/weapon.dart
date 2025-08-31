@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:ryan_clicker_rpg/data/weapon_data.dart';
 
 enum Rarity { common, uncommon, rare, unique, epic, legend, demigod, god }
 
@@ -21,6 +22,21 @@ enum WeaponType {
   nunchaku,
 }
 
+// New class to hold transcendence bonus data
+class TranscendenceBonus {
+  final double damageBonus;
+  final double speedBonus;
+  final double critChanceBonus;
+  final double critDamageBonus;
+
+  const TranscendenceBonus({
+    this.damageBonus = 0.0,
+    this.speedBonus = 0.0,
+    this.critChanceBonus = 0.0,
+    this.critDamageBonus = 0.0,
+  });
+}
+
 class Weapon {
   final int id;
   final String name;
@@ -30,7 +46,7 @@ class Weapon {
   final int baseLevel;
   int enhancement;
   int transcendence;
-  final double baseDamage; // New: Base damage
+  final double baseDamage;
   double criticalChance;
   double criticalDamage;
   double baseSellPrice;
@@ -48,44 +64,56 @@ class Weapon {
   // Skills
   List<Map<String, dynamic>> skills;
 
-  int get maxTranscendence => 5;
+  int get maxTranscendence => 1;
+  int get maxEnhancement => 20;
 
-  int get maxEnhancement => 5;
+  // Static map for transcendence bonuses
+  static const Map<int, TranscendenceBonus> transcendenceBonuses = {
+    1: TranscendenceBonus(
+      damageBonus: 9.0,
+      speedBonus: 1.0,
+      critChanceBonus: 0.1,
+      critDamageBonus: 2.0,
+    ),
+  };
 
-  late double currentDamage; // New property
-
-  double getCalculatedBaseDamage() { // Renamed method
-    double calculatedDamage = baseDamage;
-
-    // Apply enhancement multipliers
-    const enhancementMultipliers = [1.05, 1.07, 1.10, 1.15, 1.20];
-    for (int i = 0; i < enhancement; i++) {
-      if (i < enhancementMultipliers.length) {
-        calculatedDamage *= enhancementMultipliers[i];
-      }
+  // These getters calculate the weapon's own stats including enhancement and transcendence.
+  // They do NOT include player-wide passive bonuses.
+  double get calculatedDamage {
+    double damage = baseDamage;
+    damage *= pow(1.08, enhancement);
+    final bonus = Weapon.transcendenceBonuses[transcendence];
+    if (bonus != null) {
+      damage *= (1 + bonus.damageBonus);
     }
-
-    // Apply transcendence multipliers
-    const transcendenceMultipliers = [1.75, 2.25, 2.75, 3.25, 4.0];
-    for (int i = 0; i < transcendence; i++) {
-      if (i < transcendenceMultipliers.length) {
-        calculatedDamage *= transcendenceMultipliers[i];
-      }
-    }
-
-    return calculatedDamage;
+    return damage;
   }
 
-  void applyTemporaryDamageBuff(double amount, {bool isMultiplier = false}) {
-    if (isMultiplier) {
-      currentDamage *= amount;
-    } else {
-      currentDamage += amount;
+  double get calculatedCritChance {
+    double crit = criticalChance;
+    final bonus = Weapon.transcendenceBonuses[transcendence];
+    if (bonus != null) {
+      crit += bonus.critChanceBonus;
     }
+    return crit;
   }
 
-  void clearTemporaryDamageBuffs() {
-    currentDamage = getCalculatedBaseDamage();
+  double get calculatedCritDamage {
+    double critDmg = criticalDamage;
+    final bonus = Weapon.transcendenceBonuses[transcendence];
+    if (bonus != null) {
+      critDmg += bonus.critDamageBonus;
+    }
+    return critDmg;
+  }
+
+  double get calculatedSpeed {
+    double spd = speed;
+    final bonus = Weapon.transcendenceBonuses[transcendence];
+    if (bonus != null) {
+      spd *= (1 + bonus.speedBonus);
+    }
+    return spd;
   }
 
   Weapon({
@@ -110,9 +138,7 @@ class Weapon {
     this.speed = 1.0,
     this.skills = const [],
     this.accuracy = 1.0,
-  }) {
-    currentDamage = getCalculatedBaseDamage();
-  }
+  });
 
   Map<String, dynamic> toJson() => {
     'id': id,
@@ -139,29 +165,30 @@ class Weapon {
   };
 
   factory Weapon.fromJson(Map<String, dynamic> json) {
+    final calculatedRarity = Rarity.values.firstWhere(
+      (e) =>
+          e.toString().split('.').last.toLowerCase() ==
+          json['rarity'].toString().split('.').last.toLowerCase(),
+      orElse: () {
+        return Rarity.common;
+      },
+    );
+
     return Weapon(
       id: json['id'],
       name: json['name'],
       imageName: json['imageName'] ?? '',
-      rarity: Rarity.values.firstWhere(
-        (e) =>
-            e.toString().split('.').last.toLowerCase() ==
-            json['rarity'].toString().split('.').last.toLowerCase(),
-        orElse: () {
-          print(
-            'WARNING: Unknown rarity: ${json['rarity']}. Defaulting to common.',
-          );
-          return Rarity.common;
-        },
-      ),
+      rarity: calculatedRarity,
       type: WeaponType.values.firstWhere(
         (e) =>
             e.toString().split('.').last.toLowerCase() ==
-            json['type'].toString().replaceAll('_', '').split('.').last.toLowerCase(),
+            json['type']
+                .toString()
+                .replaceAll('_', '')
+                .split('.')
+                .last
+                .toLowerCase(),
         orElse: () {
-          print(
-            'WARNING: Unknown weapon type: ${json['type']}. Defaulting to rapier.',
-          );
           return WeaponType.rapier;
         },
       ),
@@ -179,7 +206,9 @@ class Weapon {
       defensePenetration: json['defensePenetration'] ?? 0.0,
       doubleAttackChance: json['doubleAttackChance'] ?? 0.0,
       speed: json['speed'] ?? 1.0,
-      accuracy: json['accuracy'] ?? 1.0,
+      accuracy:
+          json['accuracy'] ??
+          WeaponData.getDefaultAccuracyForRarity(calculatedRarity),
       skills:
           (json['skills'] as List<dynamic>?)
               ?.map((e) => e as Map<String, dynamic>)
@@ -190,22 +219,38 @@ class Weapon {
 
   factory Weapon.startingWeapon() {
     return Weapon(
-      id: 1200,
+      id: 1,
       name: '녹슨 조잡한 레이피어',
       imageName: 'group1/rusty_crude_rapier.png',
       rarity: Rarity.common,
       type: WeaponType.rapier,
       baseLevel: 0,
-      baseDamage: 100,
-      criticalChance: 0.1,
-      criticalDamage: 1.35,
+      baseDamage: 80,
+      criticalChance: 0.08,
+      criticalDamage: 1.08,
       defensePenetration: 0,
       doubleAttackChance: 0.0,
-      speed: 1.0,
-      baseSellPrice: 50,
+      speed: 0.8,
+      baseSellPrice: 120,
       skills: [],
       description: "기본 무기입니다.",
-      accuracy: 1.0,
+      accuracy: 0.7,
+    );
+  }
+
+  factory Weapon.bareHands() {
+    return Weapon(
+      id: 0,
+      name: '맨손',
+      imageName: 'bare_hands.png',
+      rarity: Rarity.common,
+      type: WeaponType.rapier,
+      baseLevel: 1,
+      baseDamage: 1,
+      criticalChance: 0.0,
+      criticalDamage: 1.0,
+      baseSellPrice: 0,
+      description: "무기가 없습니다.",
     );
   }
 
