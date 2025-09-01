@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ryan_clicker_rpg/models/monster.dart';
+import 'package:ryan_clicker_rpg/models/status_effect.dart';
 import 'package:ryan_clicker_rpg/models/player.dart';
 import 'dart:async'; // Import for Timer
 import 'package:provider/provider.dart'; // New import
@@ -44,6 +45,21 @@ class StageZoneWidget extends StatefulWidget {
 class _StageZoneWidgetState extends State<StageZoneWidget> {
   Timer? _defeatTimer;
   final List<DamageText> _damageTexts = []; // List to hold active damage texts
+
+  // Helper map to get icon and color for each status effect
+  final Map<StatusEffectType, Map<String, dynamic>> _statusEffectIcons = {
+    StatusEffectType.poison: {'icon': Icons.science, 'color': Colors.green},
+    StatusEffectType.bleed: {'icon': Icons.bloodtype, 'color': Colors.red[900]},
+    StatusEffectType.stun: {'icon': Icons.star, 'color': Colors.yellow},
+    StatusEffectType.confusion: {'icon': Icons.psychology, 'color': Colors.orange},
+    StatusEffectType.sleep: {'icon': Icons.bedtime, 'color': Colors.blue[200]},
+    StatusEffectType.disarm: {'icon': Icons.gpp_bad, 'color': Colors.grey},
+    StatusEffectType.charm: {'icon': Icons.favorite, 'color': Colors.pink},
+    StatusEffectType.weakness: {'icon': Icons.trending_down, 'color': Colors.brown},
+    StatusEffectType.freeze: {'icon': Icons.ac_unit, 'color': Colors.lightBlueAccent},
+    StatusEffectType.burn: {'icon': Icons.whatshot, 'color': Colors.deepOrange},
+    StatusEffectType.shock: {'icon': Icons.bolt, 'color': Colors.yellowAccent},
+  };
 
   @override
   void initState() {
@@ -91,14 +107,10 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
       onTap: widget.isMonsterDefeated
           ? null
           : () {
-              final damageInfo = widget.onAttack(
+              Provider.of<GameProvider>(context, listen: false).handleManualClick(); // New: Handle manual click
+              widget.onAttack(
                 {},
-              ); // Call onAttack and get damage info
-              _showDamageText(
-                damageInfo['damageDealt'],
-                damageInfo['isCritical'],
-                damageInfo['isMiss'] ?? false, // Pass isMiss
-              );
+              ); // Call onAttack, damage display is now handled internally
             },
       child: Container(
         color: Colors.grey[900],
@@ -195,13 +207,24 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                             ),
                           ),
                           if (widget.monster.statusEffects.isNotEmpty)
-                            const Positioned(
+                            Positioned(
                               top: 0,
                               left: 0,
-                              child: Icon(
-                                Icons.cyclone,
-                                color: Colors.purpleAccent,
-                                size: 40,
+                              child: Row(
+                                children: widget.monster.statusEffects.map((effect) {
+                                  final effectIcon = _statusEffectIcons[effect.type];
+                                  if (effectIcon != null) {
+                                    return Tooltip(
+                                      message: '${effect.type.toString().split('.').last} (${effect.duration}s)',
+                                      child: Icon(
+                                        effectIcon['icon'],
+                                        color: effectIcon['color'],
+                                        size: 30, // A bit smaller to fit multiple icons
+                                      ),
+                                    );
+                                  }
+                                  return const SizedBox.shrink(); // Should not happen
+                                }).toList(),
                               ),
                             ),
                           // Monster Defense Icon

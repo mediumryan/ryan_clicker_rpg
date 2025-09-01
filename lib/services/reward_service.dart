@@ -55,7 +55,8 @@ class RewardService {
         WeaponBoxType.shiny: 0.12,
         WeaponBoxType.mystic: 0.08,
       };
-    } else { // 1001 - 2000
+    } else {
+      // 1001 - 2000
       dropChance = 0.30; // 30%
       boxDistribution = {
         WeaponBoxType.common: 0.25,
@@ -85,10 +86,18 @@ class RewardService {
     String bossId = 'boss_stage_$stage';
 
     if (stage == 500 && !defeatedBossNames.contains(bossId)) {
-      return GachaBox(id: bossId, boxType: WeaponBoxType.mystic, stageLevel: stage);
+      return GachaBox(
+        id: bossId,
+        boxType: WeaponBoxType.mystic,
+        stageLevel: stage,
+      );
     }
     if (stage == 1000 && !defeatedBossNames.contains(bossId)) {
-      return GachaBox(id: bossId, boxType: WeaponBoxType.holy, stageLevel: stage);
+      return GachaBox(
+        id: bossId,
+        boxType: WeaponBoxType.holy,
+        stageLevel: stage,
+      );
     }
 
     if (stage <= 50) {
@@ -110,7 +119,8 @@ class RewardService {
         WeaponBoxType.shiny: 0.15,
         WeaponBoxType.mystic: 0.10,
       };
-    } else { // 1001 - 2000
+    } else {
+      // 1001 - 2000
       boxDistribution = {
         WeaponBoxType.common: 0.20,
         WeaponBoxType.plain: 0.20,
@@ -156,62 +166,52 @@ class RewardService {
         break;
       case WeaponBoxType.rare:
         rarityDistribution = {
-          Rarity.rare: 40,
-          Rarity.unique: 35,
-          Rarity.epic: 20,
-          Rarity.legend: 5,
+          Rarity.rare: 75,
+          Rarity.unique: 15,
+          Rarity.epic: 7.5,
+          Rarity.legend: 2.5,
         };
         break;
       case WeaponBoxType.shiny:
         rarityDistribution = {
-          Rarity.uncommon: 25,
-          Rarity.rare: 30,
-          Rarity.unique: 25,
-          Rarity.epic: 15,
-          Rarity.legend: 5,
+          Rarity.uncommon: 30,
+          Rarity.rare: 35,
+          Rarity.unique: 23,
+          Rarity.epic: 9,
+          Rarity.legend: 3,
         };
         break;
       case WeaponBoxType.mystic:
-        double demigodChance = 1.0;
-        if (highestStageCleared > 1000) {
-          double progress = (highestStageCleared - 1000).clamp(0, 1000) / 1000;
-          demigodChance = 1.0 + (2.0 * progress); // Linearly scale from 1% to 3%
-        }
         rarityDistribution = {
           Rarity.uncommon: 30,
           Rarity.rare: 25,
           Rarity.unique: 20,
           Rarity.epic: 15,
           Rarity.legend: 9,
-          Rarity.demigod: demigodChance,
+          Rarity.demigod: 1,
         };
         break;
       case WeaponBoxType.holy:
-        double godChance = 1.0;
-        if (highestStageCleared > 1000) {
-          double progress = (highestStageCleared - 1000).clamp(0, 1000) / 1000;
-          godChance = 1.0 + (2.0 * progress); // Linearly scale from 1% to 3%
-        }
         rarityDistribution = {
-          Rarity.uncommon: 25,
-          Rarity.rare: 20,
-          Rarity.unique: 15,
-          Rarity.epic: 15,
-          Rarity.legend: 15,
-          Rarity.demigod: 9,
-          Rarity.god: godChance,
+          Rarity.uncommon: 10,
+          Rarity.rare: 25,
+          Rarity.unique: 35,
+          Rarity.epic: 16,
+          Rarity.legend: 9,
+          Rarity.demigod: 4,
+          Rarity.god: 1,
         };
         break;
       case WeaponBoxType.gamble:
         rarityDistribution = {
-          Rarity.common: 25,
+          Rarity.common: 15,
           Rarity.uncommon: 20,
-          Rarity.rare: 15,
-          Rarity.unique: 15,
-          Rarity.epic: 15,
-          Rarity.legend: 9,
-          Rarity.demigod: 7,
-          Rarity.god: 1,
+          Rarity.rare: 20,
+          Rarity.unique: 23,
+          Rarity.epic: 12,
+          Rarity.legend: 7,
+          Rarity.demigod: 2.5,
+          Rarity.god: 0.5,
         };
         break;
       case WeaponBoxType.guaranteedUnique:
@@ -237,7 +237,8 @@ class RewardService {
         ? highestStageCleared
         : box.stageLevel;
 
-    final isAllRange = box.boxType == WeaponBoxType.gamble ||
+    final isAllRange =
+        box.boxType == WeaponBoxType.gamble ||
         box.boxType == WeaponBoxType.guaranteedUnique ||
         box.boxType == WeaponBoxType.guaranteedEpic;
 

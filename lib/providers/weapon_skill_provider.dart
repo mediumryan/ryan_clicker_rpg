@@ -6,6 +6,7 @@ import 'package:ryan_clicker_rpg/models/status_effect.dart';
 import 'package:ryan_clicker_rpg/models/monster_species.dart'; // New import
 import 'package:ryan_clicker_rpg/models/damage_modifier.dart'; // New import
 import 'package:ryan_clicker_rpg/models/passive_stat_modifier.dart'; // New import
+import 'package:ryan_clicker_rpg/models/buff.dart'; // New
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 
 class WeaponSkillProvider with ChangeNotifier {
@@ -72,6 +73,95 @@ class WeaponSkillProvider with ChangeNotifier {
               case 'applyPassiveDebuff':
                 _applyPassiveDebuff(params, player, monster);
                 break;
+              case 'extraDamageToMonsterType':
+                {
+                  final monsterType = params['monsterType'] as String?;
+                  final multiplier = (params['damageMultiplier'] as num?)?.toDouble();
+                  if (monsterType != null && multiplier != null) {
+                    _applyPassiveBonusDamageToRace({
+                      'requiredRace': monsterType,
+                      'multiplier': multiplier
+                    }, player, monster);
+                  }
+                }
+                break;
+              case 'increaseDamageToPoisoned':
+                {
+                  final multiplier = (params['damageMultiplier'] as num?)?.toDouble();
+                  if (multiplier != null) {
+                    _applyStatusConditionalBonusDamage({
+                      'requiredStatus': 'poison',
+                      'multiplier': multiplier
+                    }, player, monster);
+                  }
+                }
+                break;
+              case 'applyGoldGainBoost':
+                {
+                  final multiplier = (params['multiplier'] as num?)?.toDouble();
+                  if (multiplier != null) {
+                    final percent = (multiplier - 1) * 100;
+                    _applyPassiveGoldGainBoost({'percent': percent}, player);
+                  }
+                }
+                break;
+              case 'increaseAttackPercent':
+                {
+                  final value = (params['value'] as num?)?.toDouble();
+                  if (value != null) {
+                    _applyPassiveStatBoost({
+                      'stat': 'damage',
+                      'value': value / 100,
+                      'isMultiplicative': true
+                    }, player);
+                  }
+                }
+                break;
+              case 'increaseAttackSpeed':
+                {
+                  final value = (params['value'] as num?)?.toDouble();
+                  if (value != null) {
+                    _applyPassiveStatBoost(
+                        {'stat': 'speed', 'value': value, 'isMultiplicative': false},
+                        player);
+                  }
+                }
+                break;
+              case 'increaseCriticalChance':
+                {
+                  final value = (params['value'] as num?)?.toDouble();
+                  if (value != null) {
+                    _applyPassiveStatBoost({
+                      'stat': 'criticalChance',
+                      'value': value,
+                      'isMultiplicative': false
+                    }, player);
+                  }
+                }
+                break;
+              case 'applyBonusDamageToFrozen':
+                {
+                  final multiplier = (params['damageMultiplier'] as num?)?.toDouble();
+                  if (multiplier != null) {
+                    _applyStatusConditionalBonusDamage({
+                      'requiredStatus': 'freeze',
+                      'multiplier': multiplier
+                    }, player, monster);
+                  }
+                }
+                break;
+              case 'increaseDoubleAttack':
+                {
+                  final amount = (params['amount'] as num?)?.toDouble();
+                  if (amount != null) {
+                    _applyPassiveStatBoost({
+                      'stat': 'doubleAttackChance',
+                      'value': amount,
+                      'isMultiplicative': false
+                    }, player);
+                  }
+                }
+                break;
               // Add other passive effects here if needed
             }
           }
@@ -99,6 +189,15 @@ class WeaponSkillProvider with ChangeNotifier {
       case 'applyPoison':
         _applyPoison(params, player, monster);
         break;
+      case 'applyFreeze':
+        _applyFreeze(params, player, monster);
+        break;
+      case 'applyBurn':
+        _applyBurn(params, player, monster);
+        break;
+      case 'applyShock':
+        _applyShock(params, player, monster);
+        break;
       case 'applyConfusion':
         _applyConfusion(params, player, monster);
         break;
@@ -125,6 +224,30 @@ class WeaponSkillProvider with ChangeNotifier {
         break;
       case 'applyStoneConsumeBuff':
         _applyStoneConsumeBuff(params, player);
+        break;
+      case 'applyHpConditionalBonusDamage':
+        _applyHpConditionalBonusDamage(params, player, monster);
+        break;
+      case 'applyDebuff':
+        _applyWeakness(params, player, monster);
+        break;
+      case 'dealBonusDamage':
+        _applyFixedDamage(params, player, monster);
+        break;
+      case 'applyMultiHit':
+        _applyMultiHitDamage(params, player, monster);
+        break;
+      case 'applyPercentageMaxHealthDamage':
+        _applyMaxHpDamage(params, player, monster);
+        break;
+      case 'criticalDamageBoost':
+        _applyCriticalDamageBoost(params, player, monster);
+        break;
+      case 'applyRandomDebuff':
+        _applyRandomDebuff(params, player, monster);
+        break;
+      case 'applyStackingBuff':
+        _applyStackingBuff(params, player);
         break;
     }
   }
@@ -868,6 +991,348 @@ class WeaponSkillProvider with ChangeNotifier {
   void _applyGoldConsumeBuff(Map<String, dynamic> params, Player player) {}
 
   void _applyStoneConsumeBuff(Map<String, dynamic> params, Player player) {}
+
+  void _applyCriticalDamageBoost(
+    Map<String, dynamic> params,
+    Player player,
+    Monster monster,
+  ) {
+    final trigger = params['trigger'] as String?;
+    if (trigger == 'onHit') {
+      final chance = (params['triggerChance'] as num?)?.toDouble();
+      final multiplier = (params['multiplier'] as num?)?.toDouble();
+
+      if (chance == null || multiplier == null) {
+        return; // Missing params
+      }
+
+      if (Random().nextDouble() < chance) {
+        final damage = player.finalDamage * multiplier;
+        monster.hp -= damage;
+        _gameProvider.showFloatingDamageText(damage.toInt(), true, false); // Show as crit
+        _gameProvider.notifyListeners();
+      }
+    }
+  }
+
+  void _applyRandomDebuff(
+    Map<String, dynamic> params,
+    Player player,
+    Monster monster,
+  ) {
+    final chance = (params['chance'] as num?)?.toDouble();
+    final duration = (params['duration'] as num?)?.toInt();
+    final bleedPerDmg = (params['bleedPerDmg'] as num?)?.toDouble();
+    final poisonPerDmg = (params['poisonPerDmg'] as num?)?.toDouble();
+
+    if (chance == null || duration == null || bleedPerDmg == null || poisonPerDmg == null) {
+        return;
+    }
+
+    if (Random().nextDouble() < chance) {
+        final availableDebuffs = [
+            StatusEffectType.bleed,
+            StatusEffectType.poison,
+            StatusEffectType.confusion,
+            StatusEffectType.charm,
+            StatusEffectType.weakness,
+        ];
+
+        final randomDebuff = availableDebuffs[Random().nextInt(availableDebuffs.length)];
+        
+        double? value;
+        if (randomDebuff == StatusEffectType.bleed) {
+            value = bleedPerDmg;
+        } else if (randomDebuff == StatusEffectType.poison) {
+            value = monster.maxHp * poisonPerDmg;
+        } else if (randomDebuff == StatusEffectType.weakness) {
+            value = monster.defense * 0.1; 
+        }
+
+        final effect = StatusEffect(
+            type: randomDebuff,
+            duration: duration,
+            value: value,
+        );
+        monster.applyStatusEffect(effect);
+    }
+  }
+
+  void applyStageStartSkills(Player player, Monster monster) {
+    final weapon = player.equippedWeapon;
+    for (final skill in weapon.skills) {
+      final trigger = skill['trigger'] as String?;
+      if (trigger == 'stageStart') {
+        final skillEffects = skill['skill_effect'];
+        if (skillEffects is List) {
+          for (final effect in skillEffects) {
+            final effectName = effect['effect_name'];
+            final params = effect['params'];
+            if (effectName != null && params != null) {
+              // We could use the main _applyEffect switch, but for now let's be specific
+              if (effectName == 'applyStatBoost') {
+                _applyStatBoost(params, player);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  void _applyStatBoost(Map<String, dynamic> params, Player player) {
+    final statString = params['stat'] as String?;
+    final value = (params['value'] as num?)?.toDouble();
+    final isMultiplicative = params['isMultiplicative'] as bool? ?? false;
+    final duration = (params['duration'] as num?)?.toInt();
+
+    if (statString == null || value == null || duration == null) {
+      return;
+    }
+
+    final stat = Stat.values.firstWhere((e) => e.toString().split('.').last == statString, orElse: () => Stat.damage);
+
+    final buff = Buff(
+      id: 'statBoost_${statString}', // Unique ID for non-stacking buff
+      stat: stat,
+      value: value,
+      isMultiplicative: isMultiplicative,
+      duration: duration,
+    );
+
+    // Remove existing buff of same type before adding new one
+    player.buffs.removeWhere((b) => b.id == buff.id);
+    player.buffs.add(buff);
+    _gameProvider.recalculatePlayerStats();
+  }
+
+  void _applyStackingBuff(Map<String, dynamic> params, Player player) {
+    final statString = params['stat'] as String?;
+    final increasePerStack = (params['increasePerStack'] as num?)?.toDouble();
+    final isMultiplicative = params['isMultiplicative'] as bool? ?? false;
+    final duration = (params['duration'] as num?)?.toInt();
+    final maxStacks = (params['maxStacks'] as num?)?.toInt();
+
+    if (statString == null || increasePerStack == null || duration == null || maxStacks == null) {
+      return;
+    }
+
+    final stat = Stat.values.firstWhere((e) => e.toString().split('.').last == statString, orElse: () => Stat.damage);
+    final buffId = 'stackingBuff_${statString}';
+
+    // Count existing stacks
+    final currentStacks = player.buffs.where((b) => b.id == buffId).length;
+
+    if (currentStacks < maxStacks) {
+      final buff = Buff(
+        id: buffId,
+        stat: stat,
+        value: increasePerStack,
+        isMultiplicative: isMultiplicative,
+        duration: duration,
+      );
+      player.buffs.add(buff);
+    }
+
+    // Refresh duration of all stacks
+    for (final buff in player.buffs) {
+      if (buff.id == buffId) {
+        buff.duration = duration;
+      }
+    }
+
+    _gameProvider.recalculatePlayerStats();
+  }
+
+  void applyOnKillSkills(Player player, Monster monster) {
+    final weapon = player.equippedWeapon;
+    for (final skill in weapon.skills) {
+      final trigger = skill['trigger'] as String?;
+      if (trigger == 'killMonster') {
+        final skillEffects = skill['skill_effect'];
+        if (skillEffects is List) {
+          for (final effect in skillEffects) {
+            final effectName = effect['effect_name'];
+            final params = effect['params'];
+            if (effectName != null && params != null) {
+              if (effectName == 'increaseStat') {
+                _increaseStat(params, player);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  void _increaseStat(Map<String, dynamic> params, Player player) {
+    final stat = params['stat'] as String?;
+    if (stat != 'baseDamage') return; // Only support baseDamage for now
+
+    final stackPerValue = (params['stackPerValue'] as num?)?.toDouble();
+    final maxStacks = (params['maxStacks'] as num?)?.toInt();
+    final skillId = params['skillId'] as String? ?? 'increaseStat_baseDamage'; // Need a unique ID for the skill
+
+    if (stackPerValue == null || maxStacks == null) {
+      return;
+    }
+
+    final weapon = player.equippedWeapon;
+    final currentStacks = weapon.skillStacks[skillId] ?? 0;
+
+    if (currentStacks < maxStacks) {
+      weapon.skillStacks[skillId] = currentStacks + 1;
+      // This permanently modifies the weapon object.
+      // The baseDamage of the weapon is final, so we need to replace the weapon with a new one.
+      final newWeapon = weapon.copyWith(baseDamage: weapon.baseDamage + stackPerValue);
+      player.equippedWeapon = newWeapon;
+      _gameProvider.recalculatePlayerStats();
+    }
+  }
+
+  void _applyFreeze(
+    Map<String, dynamic> params,
+    Player player,
+    Monster monster,
+  ) {
+    final trigger = params['trigger'] as String?;
+    if (trigger != 'onHit') {
+      return;
+    }
+
+    final chance = (params['chance'] as num?)?.toDouble();
+    final duration = (params['duration'] as num?)?.toInt();
+    final cooldown = (params['cooldown'] as num?)?.toInt();
+    final excludedRaces = (params['excludedRaces'] as List<dynamic>?)
+        ?.cast<String>();
+
+    if (chance == null ||
+        duration == null ||
+        cooldown == null) {
+      return; // Missing essential parameters
+    }
+
+    // 1. Check for excluded races
+    if (excludedRaces != null) {
+      for (final race in excludedRaces) {
+        if (monster.species.any((s) => s.toString().split('.').last == race)) {
+          return;
+        }
+      }
+    }
+
+    // 2. Check for cooldown
+    if (monster.isSkillOnCooldown('freeze', cooldown)) {
+      return;
+    }
+
+    // 3. Roll for chance
+    if (Random().nextDouble() < chance) {
+      final effect = StatusEffect(
+        type: StatusEffectType.freeze,
+        duration: duration,
+      );
+      monster.applyStatusEffect(effect);
+      monster.setSkillCooldown('freeze');
+    }
+  }
+
+  void _applyBurn(
+    Map<String, dynamic> params,
+    Player player,
+    Monster monster,
+  ) {
+    final trigger = params['trigger'] as String?;
+    if (trigger != 'onHit') {
+      return;
+    }
+
+    final chance = (params['chance'] as num?)?.toDouble();
+    final duration = (params['duration'] as num?)?.toInt();
+    final damagePerSecond = (params['damagePerSecond'] as num?)?.toDouble();
+    final cooldown = (params['cooldown'] as num?)?.toInt();
+    final excludedRaces = (params['excludedRaces'] as List<dynamic>?)
+        ?.cast<String>();
+
+    if (chance == null ||
+        duration == null ||
+        damagePerSecond == null ||
+        cooldown == null) {
+      return; // Missing essential parameters
+    }
+
+    // 1. Check for excluded races
+    if (excludedRaces != null) {
+      for (final race in excludedRaces) {
+        if (monster.species.any((s) => s.toString().split('.').last == race)) {
+          return;
+        }
+      }
+    }
+
+    // 2. Check for cooldown
+    if (monster.isSkillOnCooldown('burn', cooldown)) {
+      return;
+    }
+
+    // 3. Roll for chance
+    if (Random().nextDouble() < chance) {
+      final effect = StatusEffect(
+        type: StatusEffectType.burn,
+        duration: duration,
+        value: damagePerSecond,
+      );
+      monster.applyStatusEffect(effect);
+      monster.setSkillCooldown('burn');
+    }
+  }
+
+  void _applyShock(
+    Map<String, dynamic> params,
+    Player player,
+    Monster monster,
+  ) {
+    final trigger = params['trigger'] as String?;
+    if (trigger != 'onHit') {
+      return;
+    }
+
+    final chance = (params['chance'] as num?)?.toDouble();
+    final duration = (params['duration'] as num?)?.toInt();
+    final cooldown = (params['cooldown'] as num?)?.toInt();
+    final excludedRaces = (params['excludedRaces'] as List<dynamic>?)
+        ?.cast<String>();
+
+    if (chance == null ||
+        duration == null ||
+        cooldown == null) {
+      return; // Missing essential parameters
+    }
+
+    // 1. Check for excluded races
+    if (excludedRaces != null) {
+      for (final race in excludedRaces) {
+        if (monster.species.any((s) => s.toString().split('.').last == race)) {
+          return;
+        }
+      }
+    }
+
+    // 2. Check for cooldown
+    if (monster.isSkillOnCooldown('shock', cooldown)) {
+      return;
+    }
+
+    // 3. Roll for chance
+    if (Random().nextDouble() < chance) {
+      final effect = StatusEffect(
+        type: StatusEffectType.shock,
+        duration: duration,
+      );
+      monster.applyStatusEffect(effect);
+      monster.setSkillCooldown('shock');
+    }
+  }
 
   StatusEffectType? _getStatusEffectTypeFromString(String type) {
     try {

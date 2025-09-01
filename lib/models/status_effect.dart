@@ -7,6 +7,9 @@ enum StatusEffectType {
   disarm, // 무장해제
   charm, // 매혹
   weakness, // 약화
+  freeze, // 빙결
+  burn, // 화상
+  shock, // 감전
 }
 
 class StatusEffect {

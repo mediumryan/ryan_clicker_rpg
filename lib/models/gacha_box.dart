@@ -1,5 +1,5 @@
 
-import 'package:ryan_clicker_rpg/models/weapon.dart';
+
 
 // Defines the type of weapon box, which determines its loot table.
 enum WeaponBoxType {

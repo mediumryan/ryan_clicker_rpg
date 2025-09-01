@@ -16,6 +16,9 @@ class WeaponData {
   static List<Weapon> _allWeapons = []; // For fallback and other uses
   static bool _isInitialized = false;
 
+  static List<Weapon> get uniqueWeapons => _uniqueWeapons;
+  static List<Weapon> get epicWeapons => _epicWeapons;
+
   // Helper to map rarity to a color (similar to inventory_screen.dart)
   static Color getColorForRarity(Rarity rarity) {
     switch (rarity) {
@@ -171,7 +174,7 @@ class WeaponData {
 
       _isInitialized = true;
     } catch (e, stacktrace) {
-      print('ERROR: Failed to initialize WeaponData: $e\n$stacktrace');
+      debugPrint('ERROR: Failed to initialize WeaponData: $e\n$stacktrace');
     }
   }
 

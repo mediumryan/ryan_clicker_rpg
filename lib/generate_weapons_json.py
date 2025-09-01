@@ -29,6 +29,27 @@ TYPE_MAP = {
     "메이스": "mace", "낫": "scythe", "곡도": "curved_sword", "쌍절곤": "nunchaku"
 }
 
+# --- 무기 타입별 멀티플라이어 ---
+WEAPON_TYPE_MODIFIERS = {
+     "rapier":       {"damage_mult": 0.89, "speed_mult": 1.35, "accuracy_mult": 1.143, "crit_chance_mult": 2.000, "crit_mult_mult": 0.933},
+     "katana":       {"damage_mult": 1.11, "speed_mult": 1.15, "accuracy_mult": 1.071, "crit_chance_mult": 1.600, "crit_mult_mult": 1.067},
+     "sword":        {"damage_mult": 1.36, "speed_mult": 1.00, "accuracy_mult": 1.029, "crit_chance_mult": 1.000, "crit_mult_mult": 1.000},
+     "greatsword":   {"damage_mult": 1.98, "speed_mult": 0.75, "accuracy_mult": 0.929, "crit_chance_mult": 0.800, "crit_mult_mult": 1.267},
+     "scimitar":     {"damage_mult": 1.11, "speed_mult": 1.20, "accuracy_mult": 1.043, "crit_chance_mult": 1.200, "crit_mult_mult": 1.000},
+     "dagger":       {"damage_mult": 0.88, "speed_mult": 1.40, "accuracy_mult": 1.114, "crit_chance_mult": 2.400, "crit_mult_mult": 0.900},
+     "cleaver":      {"damage_mult": 1.52, "speed_mult": 0.90, "accuracy_mult": 1.000, "crit_chance_mult": 1.200, "crit_mult_mult": 1.133},
+     "battle_axe":    {"damage_mult": 1.72, "speed_mult": 0.85, "accuracy_mult": 0.943, "crit_chance_mult": 0.800, "crit_mult_mult": 1.233},
+     "warhammer":    {"damage_mult": 2.19, "speed_mult": 0.70, "accuracy_mult": 0.900, "crit_chance_mult": 0.600, "crit_mult_mult": 1.400},
+     "spear":        {"damage_mult": 1.18, "speed_mult": 1.05, "accuracy_mult": 1.114, "crit_chance_mult": 1.200, "crit_mult_mult": 1.033},
+     "staff":        {"damage_mult": 1.22, "speed_mult": 1.00, "accuracy_mult": 1.143, "crit_chance_mult": 1.400, "crit_mult_mult": 0.933},
+     "trident":      {"damage_mult": 1.34, "speed_mult": 0.95, "accuracy_mult": 1.086, "crit_chance_mult": 1.200, "crit_mult_mult": 1.067},
+     "mace":         {"damage_mult": 1.58, "speed_mult": 0.90, "accuracy_mult": 0.971, "crit_chance_mult": 0.800, "crit_mult_mult": 1.267},
+     "scythe":       {"damage_mult": 1.37, "speed_mult": 1.00, "accuracy_mult": 0.986, "crit_chance_mult": 1.400, "crit_mult_mult": 1.200},
+     "curved_sword": {"damage_mult": 1.22, "speed_mult": 1.10, "accuracy_mult": 1.029, "crit_chance_mult": 1.200, "crit_mult_mult": 1.067},
+     "nunchaku":     {"damage_mult": 0.96, "speed_mult": 1.35, "accuracy_mult": 1.057, "crit_chance_mult": 2.000, "crit_mult_mult": 0.933},
+}
+
+
 # --- 티어, 퀄리티 정의 ---
 
 TIERS_DATA = [
@@ -55,19 +76,69 @@ QUALITIES_DATA = [
 BASE_LEVEL_STATS = {
     level: {
         'baseDamage': 100 if level == 0 else int(6.21 * level + 5),
-        'criticalChance': 0.1,
-        'criticalDamage': 1.35,
+        'criticalChance': 0.05,
+        'criticalDamage': 1.5,
         'speed': 1.0,
-        'accuracy': 1.0
+        'accuracy': 0.7
     } for level in range(0, 1476, 25)
 }
 
 # --- 판매가 계산 공식 ---
 
 def calculate_sell_price(level):
-    return int(150 * math.pow(1.015, level))
+    base_price = 1000
+    if level == 0:
+        return base_price
 
-# --- 무기 생성 함수 ---
+    # Piecewise exponential scaling for sell price
+    # Using base_price * (exponent ^ level)
+    
+    price = base_price
+    
+    # Segment 1: 1 to 100 (exponent 1.025)
+    if level <= 100:
+        price = base_price * math.pow(1.025, level)
+    # Segment 2: 101 to 200 (exponent 1.01)
+    elif level <= 200:
+        price_at_100 = base_price * math.pow(1.025, 100)
+        price = price_at_100 * math.pow(1.01, level - 100)
+    # Segment 3: 201 to 300 (exponent 1.0075)
+    elif level <= 300:
+        price_at_100 = base_price * math.pow(1.025, 100)
+        price_at_200 = price_at_100 * math.pow(1.01, 100)
+        price = price_at_200 * math.pow(1.0075, level - 200)
+    # Segment 4: 301 to 400 (exponent 1.005)
+    elif level <= 400:
+        price_at_100 = base_price * math.pow(1.025, 100)
+        price_at_200 = price_at_100 * math.pow(1.01, 100)
+        price_at_300 = price_at_200 * math.pow(1.0075, 100)
+        price = price_at_300 * math.pow(1.005, level - 300)
+    # Segment 5: 401 to 500 (exponent 1.0075)
+    elif level <= 500:
+        price_at_100 = base_price * math.pow(1.025, 100)
+        price_at_200 = price_at_100 * math.pow(1.01, 100)
+        price_at_300 = price_at_200 * math.pow(1.0075, 100)
+        price_at_400 = price_at_300 * math.pow(1.005, 100)
+        price = price_at_400 * math.pow(1.0075, level - 400)
+    # Segment 6: 501 to 1000 (exponent 1.005)
+    elif level <= 1000:
+        price_at_100 = base_price * math.pow(1.025, 100)
+        price_at_200 = price_at_100 * math.pow(1.01, 100)
+        price_at_300 = price_at_200 * math.pow(1.0075, 100)
+        price_at_400 = price_at_300 * math.pow(1.005, 100)
+        price_at_500 = price_at_400 * math.pow(1.0075, 100) # 500 - 400 = 100
+        price = price_at_500 * math.pow(1.005, level - 500)
+    # Segment 7: 1001 to 2000 (exponent 1.0025)
+    else: # level > 1000
+        price_at_100 = base_price * math.pow(1.025, 100)
+        price_at_200 = price_at_100 * math.pow(1.01, 100)
+        price_at_300 = price_at_200 * math.pow(1.0075, 100)
+        price_at_400 = price_at_300 * math.pow(1.005, 100)
+        price_at_500 = price_at_400 * math.pow(1.0025, 100)
+        price_at_1000 = price_at_500 * math.pow(1.005, 500) # 1000 - 500 = 500
+        price = price_at_1000 * math.pow(1.0025, level - 1000)
+
+    return int(price)
 
 # --- 무기 생성 함수 ---
 
@@ -111,22 +182,18 @@ def generate_weapons():
                 base_stats = BASE_LEVEL_STATS.get(current_base_level)
                 if base_stats is None: continue
                 
+                type_modifiers = WEAPON_TYPE_MODIFIERS.get(type_key, {})
+
                 # Generate weapons for each quality (녹슨, 평범한, 쓸만한)
                 for quality_data in QUALITIES_DATA:
-                    # Apply quality_data['stat_mult'] here
-                    base_damage = int(base_stats['baseDamage'] * quality_data['stat_mult'])
-                    speed = round(base_stats['speed'] * quality_data['stat_mult'], 2)
-                    critical_chance = min(1.0, round(base_stats['criticalChance'] * quality_data['stat_mult'], 3))
-                    critical_damage = round(base_stats['criticalDamage'] * quality_data['stat_mult'], 2)
-                    # Determine accuracy based on quality (rarity)
-                    if quality_data['name_ko'] == "녹슨": # Common
-                        accuracy = 0.7
-                    elif quality_data['name_ko'] == "평범한": # Uncommon
-                        accuracy = 0.75
-                    elif quality_data['name_ko'] == "쓸만한": # Rare
-                        accuracy = 0.8
-                    else:
-                        accuracy = min(1.0, round(base_stats['accuracy'] * quality_data['stat_mult'], 3)) # Fallback
+                    # Apply quality_data['stat_mult'] and type_modifiers here
+                    quality_mult = quality_data['stat_mult']
+                    
+                    base_damage = int(base_stats['baseDamage'] * quality_mult * type_modifiers.get('damage_mult', 1))
+                    speed = round(base_stats['speed'] * type_modifiers.get('speed_mult', 1), 2)
+                    critical_chance = min(1.0, round(base_stats['criticalChance'] * type_modifiers.get('crit_chance_mult', 1), 3))
+                    critical_damage = round(base_stats['criticalDamage'] * type_modifiers.get('crit_mult_mult', 1), 2)
+                    accuracy = min(1.0, round(base_stats['accuracy'] * type_modifiers.get('accuracy_mult', 1), 3))
 
                     base_sell_price = int(calculate_sell_price(current_base_level) * quality_data['stat_mult'])
                     

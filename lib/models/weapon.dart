@@ -63,6 +63,7 @@ class Weapon {
 
   // Skills
   List<Map<String, dynamic>> skills;
+  Map<String, int> skillStacks;
 
   int get maxTranscendence => 1;
   int get maxEnhancement => 20;
@@ -138,6 +139,7 @@ class Weapon {
     this.speed = 1.0,
     this.skills = const [],
     this.accuracy = 1.0,
+    this.skillStacks = const {},
   });
 
   Map<String, dynamic> toJson() => {
@@ -162,6 +164,7 @@ class Weapon {
     'speed': speed,
     'skills': skills,
     'accuracy': accuracy,
+    'skillStacks': skillStacks,
   };
 
   factory Weapon.fromJson(Map<String, dynamic> json) {
@@ -214,6 +217,10 @@ class Weapon {
               ?.map((e) => e as Map<String, dynamic>)
               .toList() ??
           const [],
+      skillStacks:
+          (json['skillStacks'] as Map<String, dynamic>?)
+              ?.map((k, v) => MapEntry(k, v as int)) ??
+          const {},
     );
   }
 
@@ -276,6 +283,7 @@ class Weapon {
     double? speed,
     double? accuracy,
     List<Map<String, dynamic>>? skills,
+    Map<String, int>? skillStacks,
   }) {
     return Weapon(
       id: id ?? this.id,
@@ -301,6 +309,7 @@ class Weapon {
       speed: speed ?? this.speed,
       accuracy: accuracy ?? this.accuracy,
       skills: skills ?? this.skills,
+      skillStacks: skillStacks ?? this.skillStacks,
     );
   }
 }

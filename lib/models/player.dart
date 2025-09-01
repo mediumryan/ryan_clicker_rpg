@@ -1,5 +1,6 @@
 import 'package:ryan_clicker_rpg/models/weapon.dart';
 import 'package:ryan_clicker_rpg/models/gacha_box.dart';
+import 'package:ryan_clicker_rpg/models/buff.dart';
 
 class Player {
   double gold;
@@ -8,6 +9,7 @@ class Player {
   Weapon equippedWeapon;
   List<Weapon> inventory;
   List<GachaBox> gachaBoxes;
+  List<Buff> buffs; // New
   int currentStage;
   int highestStageCleared;
   final Set<int> acquiredWeaponIdsHistory;
@@ -42,6 +44,7 @@ class Player {
     required this.equippedWeapon,
     List<Weapon>? inventory,
     List<GachaBox>? gachaBoxes,
+    List<Buff>? buffs,
     this.currentStage = 1,
     this.highestStageCleared = 0,
     Set<int>? acquiredWeaponIdsHistory,
@@ -57,6 +60,7 @@ class Player {
     this.passiveWeaponDefensePenetrationBonus = 0.0,
   })  : inventory = inventory ?? [],
         gachaBoxes = gachaBoxes ?? [],
+        buffs = buffs ?? [],
         acquiredWeaponIdsHistory = acquiredWeaponIdsHistory ?? {},
         defeatedBossNames = defeatedBossNames ?? {};
 
@@ -68,6 +72,7 @@ class Player {
         'equippedWeapon': equippedWeapon.toJson(),
         'inventory': inventory.map((w) => w.toJson()).toList(),
         'gachaBoxes': gachaBoxes.map((b) => b.toJson()).toList(),
+        'buffs': buffs.map((b) => b.toJson()).toList(), // New
         'currentStage': currentStage,
         'highestStageCleared': highestStageCleared,
         'acquiredWeaponIdsHistory': acquiredWeaponIdsHistory.toList(),
@@ -99,6 +104,10 @@ class Player {
               ?.map((item) => GachaBox.fromJson(item))
               .toList() ??
           [],
+      buffs: (json['buffs'] as List?)
+              ?.map((item) => Buff.fromJson(item))
+              .toList() ??
+          [], // New
       currentStage: json['currentStage'],
       highestStageCleared: json['highestStageCleared'],
       acquiredWeaponIdsHistory: (json['acquiredWeaponIdsHistory'] as List?)

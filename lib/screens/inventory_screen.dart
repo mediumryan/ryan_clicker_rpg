@@ -300,6 +300,127 @@ class InventoryScreen extends StatelessWidget {
   }
 
   void _showGachaInfoDialog(BuildContext context) {
+    final List<Map<String, dynamic>> gachaBoxInfo = [
+      {
+        'name': '흔한 무기상자',
+        'description': '획득한 스테이지 기준 레벨의 흔함~레전드 무기가 랜덤으로 1개 들어있습니다.',
+        'probabilities': [
+          {'rarity': Rarity.common, 'percent': 50.0},
+          {'rarity': Rarity.uncommon, 'percent': 30.0},
+          {'rarity': Rarity.rare, 'percent': 15.0},
+          {'rarity': Rarity.unique, 'percent': 4.0},
+          {'rarity': Rarity.epic, 'percent': 0.9},
+          {'rarity': Rarity.legend, 'percent': 0.1},
+        ],
+      },
+      {
+        'name': '평범한 무기상자',
+        'description': '획득한 스테이지 기준 레벨의 평범~레전드 무기가 랜덤으로 1개 들어있습니다.',
+        'probabilities': [
+          {'rarity': Rarity.uncommon, 'percent': 45.0},
+          {'rarity': Rarity.rare, 'percent': 30.0},
+          {'rarity': Rarity.unique, 'percent': 15.0},
+          {'rarity': Rarity.epic, 'percent': 9.0},
+          {'rarity': Rarity.legend, 'percent': 1.0},
+        ],
+      },
+      {
+        'name': '희귀한 무기상자',
+        'description': '획득한 스테이지 기준 레벨의 레어~레전드 무기가 랜덤으로 1개 들어있습니다.',
+        'probabilities': [
+          {'rarity': Rarity.rare, 'percent': 75.0},
+          {'rarity': Rarity.unique, 'percent': 15.0},
+          {'rarity': Rarity.epic, 'percent': 7.5},
+          {'rarity': Rarity.legend, 'percent': 2.5},
+        ],
+      },
+      {
+        'name': '빛나는 무기상자',
+        'description': '획득한 스테이지 기준 레벨의 언커먼~레전드 무기가 랜덤으로 1개 들어있습니다.',
+        'probabilities': [
+          {'rarity': Rarity.uncommon, 'percent': 30.0},
+          {'rarity': Rarity.rare, 'percent': 35.0},
+          {'rarity': Rarity.unique, 'percent': 23.0},
+          {'rarity': Rarity.epic, 'percent': 9.0},
+          {'rarity': Rarity.legend, 'percent': 3.0},
+        ],
+      },
+      {
+        'name': '신비로운 무기상자',
+        'description': '획득한 스테이지 기준 레벨의 평범~갓 무기가 랜덤으로 1개 들어있습니다.',
+        'probabilities': [
+          {'rarity': Rarity.uncommon, 'percent': 30.0},
+          {'rarity': Rarity.rare, 'percent': 25.0},
+          {'rarity': Rarity.unique, 'percent': 20.0},
+          {'rarity': Rarity.epic, 'percent': 15.0},
+          {'rarity': Rarity.legend, 'percent': 9.0},
+          {'rarity': Rarity.demigod, 'percent': 1.0},
+        ],
+      },
+      {
+        'name': '신성한 기운이 감도는 무기상자',
+        'description': '획득한 스테이지 기준 레벨의 언커먼~갓 무기가 랜덤으로 1개 들어있습니다.',
+        'probabilities': [
+          {'rarity': Rarity.uncommon, 'percent': 10.0},
+          {'rarity': Rarity.rare, 'percent': 25.0},
+          {'rarity': Rarity.unique, 'percent': 35.0},
+          {'rarity': Rarity.epic, 'percent': 16.0},
+          {'rarity': Rarity.legend, 'percent': 9.0},
+          {'rarity': Rarity.demigod, 'percent': 4.0},
+          {'rarity': Rarity.god, 'percent': 1.0},
+        ],
+      },
+      {
+        'name': '무기 갬블상자',
+        'description': '현재 클리어한 최대 스테이지 기준 레벨의 흔함~갓 무기가 랜덤으로 1개 들어있습니다.',
+        'probabilities': [
+          {'rarity': Rarity.common, 'percent': 15.0},
+          {'rarity': Rarity.uncommon, 'percent': 20.0},
+          {'rarity': Rarity.rare, 'percent': 20.0},
+          {'rarity': Rarity.unique, 'percent': 23.0},
+          {'rarity': Rarity.epic, 'percent': 12.0},
+          {'rarity': Rarity.legend, 'percent': 7.0},
+          {'rarity': Rarity.demigod, 'percent': 2.5},
+          {'rarity': Rarity.god, 'percent': 0.5},
+        ],
+      },
+      {
+        'name': '유니크 등급 무기상자',
+        'description': '획득한 스테이지 기준 레벨의 유니크 등급무기가 랜덤으로 1개 들어있습니다.',
+        'probabilities': [
+          {'rarity': Rarity.unique, 'percent': 100.0},
+        ],
+      },
+      {
+        'name': '에픽 등급 무기상자',
+        'description': '획득한 스테이지 기준 레벨의 희귀 등급 무기가 랜덤으로 1개 들어있습니다.',
+        'probabilities': [
+          {'rarity': Rarity.epic, 'percent': 100.0},
+        ],
+      },
+      {
+        'name': '레전드 등급 무기상자',
+        'description': '획득한 스테이지 기준 레벨의 레전드 등급 무기가 랜덤으로 1개 들어있습니다.',
+        'probabilities': [
+          {'rarity': Rarity.legend, 'percent': 100.0},
+        ],
+      },
+      {
+        'name': '데미갓 등급 무기상자',
+        'description': '획득한 스테이지 기준 레벨의 데미갓 등급 무기가 랜덤으로 1개 들어있습니다.',
+        'probabilities': [
+          {'rarity': Rarity.demigod, 'percent': 100.0},
+        ],
+      },
+      {
+        'name': '신 등급 무기상자',
+        'description': '획득한 스테이지 기준 레벨의 갓 등급 무기가 랜덤으로 1개 들어있습니다.',
+        'probabilities': [
+          {'rarity': Rarity.god, 'percent': 100.0},
+        ],
+      },
+    ];
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -307,33 +428,64 @@ class InventoryScreen extends StatelessWidget {
           backgroundColor: Colors.grey[800],
           title: const Text('상자 정보', style: TextStyle(color: Colors.white)),
           content: SingleChildScrollView(
-            // Use SingleChildScrollView for potentially long content
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  '골드, 강화석, 초월석, 그리고 무작위 무기를 획득할 수 있습니다.',
-                  style: TextStyle(color: Colors.white70),
-                ),
-                const SizedBox(height: 16),
-                RichText(
-                  // Use RichText
-                  text: TextSpan(
-                    children: WeaponData.getWeaponDropProbabilitiesRichText()
-                        .map((item) {
-                          return TextSpan(
-                            text: item['text'],
-                            style: TextStyle(
-                              color: item['color'] as Color,
-                              fontSize: 14,
-                            ), // Cast to Color
-                          );
-                        })
-                        .toList(),
-                  ),
-                ),
-              ],
+              children: gachaBoxInfo.map((boxInfo) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '- ${boxInfo['name']}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      boxInfo['description'],
+                      style: const TextStyle(color: Colors.white70),
+                    ),
+                    if ((boxInfo['probabilities'] as List).isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              const TextSpan(
+                                text: '확률\n',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12, // Smaller font size for "확률"
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              ...(boxInfo['probabilities']
+                                      as List<Map<String, dynamic>>)
+                                  .map((prob) {
+                                    final Rarity rarity = prob['rarity'];
+                                    final double percent = prob['percent'];
+                                    return TextSpan(
+                                      text:
+                                          '${WeaponData.getKoreanRarity(rarity)}: ${percent.toStringAsFixed(1)}%\n',
+                                      style: TextStyle(
+                                        color: WeaponData.getColorForRarity(
+                                          rarity,
+                                        ),
+                                        fontSize:
+                                            12, // Smaller font size for probabilities
+                                      ),
+                                    );
+                                  }),
+                            ],
+                          ),
+                        ),
+                      ),
+                    const SizedBox(height: 16), // Spacing between box types
+                  ],
+                );
+              }).toList(),
             ),
           ),
           actions: <Widget>[

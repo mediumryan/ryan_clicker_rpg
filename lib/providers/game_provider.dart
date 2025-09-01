@@ -8,12 +8,15 @@ import 'package:ryan_clicker_rpg/models/weapon.dart';
 import 'package:ryan_clicker_rpg/models/gacha_box.dart';
 import 'package:ryan_clicker_rpg/models/damage_modifier.dart';
 import 'package:ryan_clicker_rpg/models/passive_stat_modifier.dart';
+import 'package:ryan_clicker_rpg/models/status_effect.dart';
+import 'package:ryan_clicker_rpg/models/buff.dart';
 import 'package:ryan_clicker_rpg/data/monster_data.dart';
 import 'package:ryan_clicker_rpg/data/stage_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ryan_clicker_rpg/providers/weapon_skill_provider.dart';
 import 'package:ryan_clicker_rpg/services/reward_service.dart';
 import 'package:intl/intl.dart';
+import 'package:ryan_clicker_rpg/data/weapon_data.dart';
 
 class GameProvider with ChangeNotifier {
   final RewardService _rewardService = RewardService();
@@ -22,9 +25,15 @@ class GameProvider with ChangeNotifier {
   bool _isMonsterDefeated = false;
   late WeaponSkillProvider _weaponSkillProvider;
   Timer? _timer;
+  Timer? _autoAttackTimer; // New
+  DateTime? _lastManualClickTime; // New
+  bool _isAutoAttacking = false; // New
+  Duration _autoAttackDelay = Duration.zero; // New
+
   final List<DamageModifier> _activeDamageModifiers = [];
   final List<PassiveStatModifier> _activePassiveStatModifiers = [];
-  Function(int damage, bool isCritical, bool isMiss)? _showFloatingDamageTextCallback;
+  Function(int damage, bool isCritical, bool isMiss)?
+  _showFloatingDamageTextCallback;
 
   Player get player => _player;
   Monster get monster => _monster;
@@ -45,6 +54,11 @@ class GameProvider with ChangeNotifier {
     double attackSpeed = weapon.speed;
     double doubleAttackChance = weapon.doubleAttackChance;
     double defensePenetration = weapon.defensePenetration;
+
+    // Calculate auto-attack delay
+    _autoAttackDelay = Duration(
+      milliseconds: (1000 / attackSpeed).round(),
+    ); // New
 
     // 2. Apply enhancement bonus (damage only)
     damage *= pow(1.08, weapon.enhancement);
@@ -68,7 +82,39 @@ class GameProvider with ChangeNotifier {
     doubleAttackChance += _player.passiveWeaponDoubleAttackChanceBonus;
     defensePenetration += _player.passiveWeaponDefensePenetrationBonus;
 
-    // 5. Set final stats on player object
+    // 5. Apply temporary buffs
+    for (final buff in _player.buffs) {
+      switch (buff.stat) {
+        case Stat.damage:
+          if (buff.isMultiplicative) {
+            damage *= buff.value;
+          } else {
+            damage += buff.value;
+          }
+          break;
+        case Stat.speed:
+          if (buff.isMultiplicative) {
+            attackSpeed *= buff.value;
+          } else {
+            attackSpeed += buff.value;
+          }
+          break;
+        case Stat.criticalChance:
+          critChance += buff.value;
+          break;
+        case Stat.criticalDamage:
+          critDamage += buff.value;
+          break;
+        case Stat.doubleAttackChance:
+          doubleAttackChance += buff.value;
+          break;
+        case Stat.defensePenetration:
+          defensePenetration += buff.value;
+          break;
+      }
+    }
+
+    // 6. Set final stats on player object
     _player.finalDamage = damage;
     _player.finalCritChance = critChance;
     _player.finalCritDamage = critDamage;
@@ -78,11 +124,13 @@ class GameProvider with ChangeNotifier {
   }
 
   Future<void> initializeGame() async {
+    await WeaponData.initialize();
     await _loadGame();
     recalculatePlayerStats(); // Initial stat calculation
     _player.acquiredWeaponIdsHistory.add(_player.equippedWeapon.id);
     _spawnMonster();
     _startGameLoop();
+    startAutoAttack(); // New: Start auto-attack on game initialization
   }
 
   Map<String, dynamic> attackMonster() {
@@ -90,6 +138,15 @@ class GameProvider with ChangeNotifier {
     if (Random().nextDouble() > _player.equippedWeapon.accuracy) {
       showFloatingDamageText(0, false, true); // Notify UI about miss
       return {'damageDealt': 0, 'isCritical': false, 'isMiss': true};
+    }
+
+    // Check for Freeze/Shatter effect
+    if (_monster.hasStatusEffect(StatusEffectType.freeze)) {
+      final shatterDamageMultiplier = _monster.isBoss ? 0.10 : 0.25;
+      final shatterDamage = _monster.maxHp * shatterDamageMultiplier;
+      _monster.hp -= shatterDamage;
+      showFloatingDamageText(shatterDamage.toInt(), true, false); // Show as crit for visual flair
+      _monster.statusEffects.removeWhere((effect) => effect.type == StatusEffectType.freeze);
     }
 
     // Use the final, pre-calculated stats from the player object
@@ -101,6 +158,15 @@ class GameProvider with ChangeNotifier {
 
     double effectiveDefense =
         _monster.defense - _player.finalDefensePenetration;
+
+    // Apply defense reduction from status effects like weakness
+    double totalDefenseReduction = 0;
+    for (final effect in _monster.statusEffects) {
+      if (effect.type == StatusEffectType.weakness) {
+        totalDefenseReduction += effect.value ?? 0;
+      }
+    }
+    effectiveDefense -= totalDefenseReduction;
 
     for (final modifier in _activePassiveStatModifiers) {
       // This part remains for monster-specific debuffs, etc.
@@ -120,18 +186,64 @@ class GameProvider with ChangeNotifier {
     actualDamage = max(1, actualDamage);
 
     for (final modifier in _activeDamageModifiers) {
-      // This part remains for monster-specific damage multipliers
+      bool conditionMet = false;
+      if (modifier.requiredRace != null) {
+        if (_monster.species.contains(modifier.requiredRace)) {
+          conditionMet = true;
+        }
+      } else if (modifier.requiredStatusEffectType != null) {
+        if (_monster.hasStatusEffect(modifier.requiredStatusEffectType!)) {
+          conditionMet = true;
+        }
+      }
+
+      if (conditionMet) {
+        actualDamage *= modifier.multiplier;
+      }
+    }
+
+    if (_monster.hasStatusEffect(StatusEffectType.shock)) {
+      final shockDamage = _monster.maxHp * 0.03;
+      actualDamage += shockDamage;
     }
 
     _monster.hp -= actualDamage;
+    showFloatingDamageText(
+      actualDamage.toInt(),
+      isCritical,
+      false,
+    ); // Show damage for hit
+
+    // Apply shock damage on hit
+    if (_monster.hasStatusEffect(StatusEffectType.shock)) {
+      final shockDamageMultiplier = _monster.isBoss ? 0.005 : 0.03;
+      final shockDamage = _monster.maxHp * shockDamageMultiplier;
+      _monster.hp -= shockDamage;
+      showFloatingDamageText(shockDamage.toInt(), false, false);
+    }
 
     if (Random().nextDouble() < _player.finalDoubleAttackChance) {
       _monster.hp -= actualDamage;
+      // Re-show damage text for the second hit
+      showFloatingDamageText(
+        actualDamage.toInt(),
+        isCritical,
+        false,
+      );
+
+      // Apply shock damage on double attack hit
+      if (_monster.hasStatusEffect(StatusEffectType.shock)) {
+        final shockDamageMultiplier = _monster.isBoss ? 0.005 : 0.03;
+        final shockDamage = _monster.maxHp * shockDamageMultiplier;
+        _monster.hp -= shockDamage;
+        showFloatingDamageText(shockDamage.toInt(), false, false);
+      }
     }
 
     _weaponSkillProvider.applySkills(_player, _monster);
 
     if (_monster.hp <= 0) {
+      _weaponSkillProvider.applyOnKillSkills(_player, _monster); // New
       _isMonsterDefeated = true;
       notifyListeners();
 
@@ -310,6 +422,35 @@ class GameProvider with ChangeNotifier {
   // Other methods (load, save, etc.) are here...
   // Make sure to include them in the final replacement string
 
+  void startAutoAttack() {
+    _autoAttackTimer?.cancel();
+    _isAutoAttacking = true;
+    _autoAttackTimer = Timer.periodic(_autoAttackDelay, (timer) {
+      if (!_isMonsterDefeated) {
+        attackMonster();
+      }
+    });
+    notifyListeners();
+  }
+
+  void stopAutoAttack() {
+    _autoAttackTimer?.cancel();
+    _isAutoAttacking = false;
+    notifyListeners();
+  }
+
+  void handleManualClick() {
+    _lastManualClickTime = DateTime.now();
+    stopAutoAttack(); // Stop auto-attack immediately on manual click
+
+    // Start a timer to re-engage auto-attack after 3 seconds of inactivity
+    Timer(const Duration(seconds: 3), () {
+      if (DateTime.now().difference(_lastManualClickTime!).inSeconds >= 3) {
+        startAutoAttack();
+      }
+    });
+  }
+
   void addDamageModifier(DamageModifier modifier) {
     _activeDamageModifiers.add(modifier);
   }
@@ -339,6 +480,7 @@ class GameProvider with ChangeNotifier {
   @override
   void dispose() {
     _timer?.cancel();
+    _autoAttackTimer?.cancel(); // New
     super.dispose();
   }
 
@@ -351,14 +493,48 @@ class GameProvider with ChangeNotifier {
 
   void _updatePerSecond() {
     if (_monster.hp > 0) {
-      _monster.updateStatusEffects();
-      notifyListeners();
+      // Apply damage from DoT effects BEFORE ticking them down
+      for (final effect in _monster.statusEffects) {
+        switch (effect.type) {
+          case StatusEffectType.bleed:
+          case StatusEffectType.poison:
+          case StatusEffectType.burn:
+            if (effect.value != null && effect.value! > 0) {
+              _monster.hp -= effect.value!;
+              showFloatingDamageText(effect.value!.toInt(), false, false);
+            }
+            break;
+          default:
+            // Other effects do not deal damage per second
+            break;
+        }
+      }
+      _monster.updateStatusEffects(); // This will tick down duration and remove expired effects
     }
+
+    // Handle player buffs
+    if (_player.buffs.isNotEmpty) {
+      bool buffsExpired = false;
+      _player.buffs.removeWhere((buff) {
+        buff.duration--;
+        if (buff.duration <= 0) {
+          buffsExpired = true;
+          return true;
+        }
+        return false;
+      });
+
+      if (buffsExpired) {
+        recalculatePlayerStats();
+      }
+    }
+    notifyListeners();
   }
 
   void _spawnMonster() {
     _monster = MonsterData.getMonsterForStage(_player.currentStage);
     _isMonsterDefeated = false;
+    _weaponSkillProvider.applyStageStartSkills(_player, _monster);
     notifyListeners();
   }
 
@@ -374,6 +550,8 @@ class GameProvider with ChangeNotifier {
       _player.transcendenceStones = 0;
       _player.enhancementStones = 0;
       _player.gold = 0.0;
+      _player.inventory.addAll(WeaponData.uniqueWeapons.map((w) => w.copyWith()));
+      _player.inventory.addAll(WeaponData.epicWeapons.map((w) => w.copyWith()));
     }
   }
 
