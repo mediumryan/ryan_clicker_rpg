@@ -16,6 +16,7 @@ class StatusEffect {
   final StatusEffectType type;
   int duration; // in seconds
   final double? value;
+  final bool stackable; // New property
 
-  StatusEffect({required this.type, required this.duration, this.value});
+  StatusEffect({required this.type, required this.duration, this.value, this.stackable = true});
 }

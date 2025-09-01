@@ -27,11 +27,11 @@ class GameProvider with ChangeNotifier {
   Timer? _timer;
   Timer? _autoAttackTimer; // New
   DateTime? _lastManualClickTime; // New
-  bool _isAutoAttacking = false; // New
   Duration _autoAttackDelay = Duration.zero; // New
 
   final List<DamageModifier> _activeDamageModifiers = [];
   final List<PassiveStatModifier> _activePassiveStatModifiers = [];
+  double _currentMonsterEffectiveDefense = 0.0; // New field
   Function(int damage, bool isCritical, bool isMiss)?
   _showFloatingDamageTextCallback;
 
@@ -39,6 +39,8 @@ class GameProvider with ChangeNotifier {
   Monster get monster => _monster;
   bool get isMonsterDefeated => _isMonsterDefeated;
   String get currentStageName => StageData.getStageName(_player.currentStage);
+  double get currentMonsterEffectiveDefense =>
+      _currentMonsterEffectiveDefense; // New getter
 
   GameProvider() {
     _weaponSkillProvider = WeaponSkillProvider(this);
@@ -134,6 +136,13 @@ class GameProvider with ChangeNotifier {
   }
 
   Map<String, dynamic> attackMonster() {
+    debugPrint(
+      '[GameProvider.attackMonster] Monster HP before attack: ${_monster.hp}, Defense: ${_monster.defense}',
+    );
+    debugPrint(
+      '[GameProvider.attackMonster] Player finalDefensePenetration: ${_player.finalDefensePenetration}',
+    );
+
     // Check for hit/miss based on weapon accuracy
     if (Random().nextDouble() > _player.equippedWeapon.accuracy) {
       showFloatingDamageText(0, false, true); // Notify UI about miss
@@ -145,8 +154,14 @@ class GameProvider with ChangeNotifier {
       final shatterDamageMultiplier = _monster.isBoss ? 0.10 : 0.25;
       final shatterDamage = _monster.maxHp * shatterDamageMultiplier;
       _monster.hp -= shatterDamage;
-      showFloatingDamageText(shatterDamage.toInt(), true, false); // Show as crit for visual flair
-      _monster.statusEffects.removeWhere((effect) => effect.type == StatusEffectType.freeze);
+      showFloatingDamageText(
+        shatterDamage.toInt(),
+        true,
+        false,
+      ); // Show as crit for visual flair
+      _monster.statusEffects.removeWhere(
+        (effect) => effect.type == StatusEffectType.freeze,
+      );
     }
 
     // Use the final, pre-calculated stats from the player object
@@ -156,21 +171,64 @@ class GameProvider with ChangeNotifier {
       totalDamage *= _player.finalCritDamage;
     }
 
+    debugPrint(
+      '[GameProvider.attackMonster] Monster defense before status effect application: ${_monster.defense}',
+    );
     double effectiveDefense =
         _monster.defense - _player.finalDefensePenetration;
 
     // Apply defense reduction from status effects like weakness
     double totalDefenseReduction = 0;
+    debugPrint(
+      '[GameProvider.attackMonster] Monster status effects: ${_monster.statusEffects.map((e) => '${e.type}:${e.value}').join(', ')}',
+    );
     for (final effect in _monster.statusEffects) {
       if (effect.type == StatusEffectType.weakness) {
         totalDefenseReduction += effect.value ?? 0;
+        debugPrint(
+          '[GameProvider.attackMonster] Adding ${effect.value} from ${effect.type} to totalDefenseReduction. Current total: $totalDefenseReduction',
+        );
+      }
+      // Add disarm logic here
+      if (effect.type == StatusEffectType.disarm) {
+        if (effect.value != null) {
+          if (effect.value! > 1) {
+            // Fixed amount reduction
+            effectiveDefense -= effect.value!;
+            debugPrint(
+              '[GameProvider.attackMonster] Effective defense after disarm (fixed reduction: ${effect.value!}): $effectiveDefense',
+            );
+          } else {
+            // Percentage reduction
+            effectiveDefense *= (1 - effect.value!);
+            debugPrint(
+              '[GameProvider.attackMonster] Effective defense after disarm (percentage reduction: ${effect.value! * 100}%): $effectiveDefense',
+            );
+          }
+        }
       }
     }
     effectiveDefense -= totalDefenseReduction;
+    debugPrint(
+      '[GameProvider.attackMonster] Effective defense after status effects: $effectiveDefense',
+    );
+    debugPrint(
+      '[GameProvider.attackMonster] Monster defense after status effect application: ${_monster.defense}',
+    );
 
-    for (final modifier in _activePassiveStatModifiers) {
-      // This part remains for monster-specific debuffs, etc.
+    // Charm: 10% defense reduction
+    if (_monster.hasStatusEffect(StatusEffectType.charm)) {
+      effectiveDefense *= 0.90;
+      debugPrint(
+        '[GameProvider.attackMonster] Effective defense after charm (10% reduction): $effectiveDefense',
+      );
     }
+
+    _currentMonsterEffectiveDefense =
+        effectiveDefense; // Store the calculated effective defense
+    debugPrint(
+      '[GameProvider.attackMonster] Stored _currentMonsterEffectiveDefense: $_currentMonsterEffectiveDefense',
+    );
 
     double defenseDamageMultiplier = 1.0;
     if (effectiveDefense > 0) {
@@ -181,9 +239,31 @@ class GameProvider with ChangeNotifier {
     if (effectiveDefense > 0) {
       defenseDamageMultiplier = max(0.1, defenseDamageMultiplier);
     }
+    debugPrint(
+      '[GameProvider.attackMonster] Defense damage multiplier: $defenseDamageMultiplier',
+    );
 
     double actualDamage = totalDamage * defenseDamageMultiplier;
     actualDamage = max(1, actualDamage);
+    debugPrint(
+      '[GameProvider.attackMonster] Actual damage before debuffs: $actualDamage',
+    );
+
+    // Confuse: 25% more damage
+    if (_monster.hasStatusEffect(StatusEffectType.confusion)) {
+      actualDamage *= 1.25;
+      debugPrint(
+        '[GameProvider.attackMonster] Actual damage after confusion (25% increase): $actualDamage',
+      );
+    }
+
+    // Charm: 10% increased damage taken
+    if (_monster.hasStatusEffect(StatusEffectType.charm)) {
+      actualDamage *= 1.10;
+      debugPrint(
+        '[GameProvider.attackMonster] Actual damage after charm (10% increase): $actualDamage',
+      );
+    }
 
     for (final modifier in _activeDamageModifiers) {
       bool conditionMet = false;
@@ -225,11 +305,7 @@ class GameProvider with ChangeNotifier {
     if (Random().nextDouble() < _player.finalDoubleAttackChance) {
       _monster.hp -= actualDamage;
       // Re-show damage text for the second hit
-      showFloatingDamageText(
-        actualDamage.toInt(),
-        isCritical,
-        false,
-      );
+      showFloatingDamageText(actualDamage.toInt(), isCritical, false);
 
       // Apply shock damage on double attack hit
       if (_monster.hasStatusEffect(StatusEffectType.shock)) {
@@ -351,7 +427,9 @@ class GameProvider with ChangeNotifier {
       0.15, 0.10, // 18-19
       0.05, // 20
     ];
-    final successChance = probabilities[enhancementLevel] ?? 0.0;
+    final successChance = enhancementLevel < probabilities.length
+        ? probabilities[enhancementLevel]
+        : 0.0;
 
     if (Random().nextDouble() < successChance) {
       weapon.enhancement++;
@@ -424,7 +502,6 @@ class GameProvider with ChangeNotifier {
 
   void startAutoAttack() {
     _autoAttackTimer?.cancel();
-    _isAutoAttacking = true;
     _autoAttackTimer = Timer.periodic(_autoAttackDelay, (timer) {
       if (!_isMonsterDefeated) {
         attackMonster();
@@ -435,7 +512,6 @@ class GameProvider with ChangeNotifier {
 
   void stopAutoAttack() {
     _autoAttackTimer?.cancel();
-    _isAutoAttacking = false;
     notifyListeners();
   }
 
@@ -509,7 +585,8 @@ class GameProvider with ChangeNotifier {
             break;
         }
       }
-      _monster.updateStatusEffects(); // This will tick down duration and remove expired effects
+      _monster
+          .updateStatusEffects(); // This will tick down duration and remove expired effects
     }
 
     // Handle player buffs
@@ -550,8 +627,11 @@ class GameProvider with ChangeNotifier {
       _player.transcendenceStones = 0;
       _player.enhancementStones = 0;
       _player.gold = 0.0;
-      _player.inventory.addAll(WeaponData.uniqueWeapons.map((w) => w.copyWith()));
+      _player.inventory.addAll(
+        WeaponData.uniqueWeapons.map((w) => w.copyWith()),
+      );
       _player.inventory.addAll(WeaponData.epicWeapons.map((w) => w.copyWith()));
+      _player.currentStage = 500;
     }
   }
 

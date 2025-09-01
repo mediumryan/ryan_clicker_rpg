@@ -13,8 +13,12 @@ class DamageText {
   final bool isMiss; // New
   final Key key;
 
-  DamageText({required this.damage, required this.isCritical, required this.isMiss}) // Modified
-    : key = UniqueKey();
+  DamageText({
+    required this.damage,
+    required this.isCritical,
+    required this.isMiss,
+  }) // Modified
+  : key = UniqueKey();
 }
 
 class StageZoneWidget extends StatefulWidget {
@@ -26,6 +30,7 @@ class StageZoneWidget extends StatefulWidget {
   final VoidCallback onGoToPreviousStage;
   final bool isMonsterDefeated;
   final String stageName; // New: Stage name
+  final double monsterEffectiveDefense; // New field
 
   const StageZoneWidget({
     super.key,
@@ -36,6 +41,7 @@ class StageZoneWidget extends StatefulWidget {
     required this.onGoToPreviousStage,
     required this.isMonsterDefeated,
     required this.stageName, // New: Required in constructor
+    required this.monsterEffectiveDefense, // New required field
   });
 
   @override
@@ -47,18 +53,18 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
   final List<DamageText> _damageTexts = []; // List to hold active damage texts
 
   // Helper map to get icon and color for each status effect
-  final Map<StatusEffectType, Map<String, dynamic>> _statusEffectIcons = {
-    StatusEffectType.poison: {'icon': Icons.science, 'color': Colors.green},
-    StatusEffectType.bleed: {'icon': Icons.bloodtype, 'color': Colors.red[900]},
-    StatusEffectType.stun: {'icon': Icons.star, 'color': Colors.yellow},
-    StatusEffectType.confusion: {'icon': Icons.psychology, 'color': Colors.orange},
-    StatusEffectType.sleep: {'icon': Icons.bedtime, 'color': Colors.blue[200]},
-    StatusEffectType.disarm: {'icon': Icons.gpp_bad, 'color': Colors.grey},
-    StatusEffectType.charm: {'icon': Icons.favorite, 'color': Colors.pink},
-    StatusEffectType.weakness: {'icon': Icons.trending_down, 'color': Colors.brown},
-    StatusEffectType.freeze: {'icon': Icons.ac_unit, 'color': Colors.lightBlueAccent},
-    StatusEffectType.burn: {'icon': Icons.whatshot, 'color': Colors.deepOrange},
-    StatusEffectType.shock: {'icon': Icons.bolt, 'color': Colors.yellowAccent},
+  final Map<StatusEffectType, String> _statusEffectImagePaths = {
+    StatusEffectType.poison: 'images/status/poison.png',
+    StatusEffectType.bleed: 'images/status/bleed.png',
+    StatusEffectType.stun: 'images/status/stun.png',
+    StatusEffectType.confusion: 'images/status/confusion.png',
+    StatusEffectType.sleep: 'images/status/sleep.png',
+    StatusEffectType.disarm: 'images/status/disarm.png',
+    StatusEffectType.charm: 'images/status/charm.png',
+    StatusEffectType.weakness: 'images/status/weakness.png',
+    StatusEffectType.freeze: 'images/status/freeze.png',
+    StatusEffectType.burn: 'images/status/burn.png',
+    StatusEffectType.shock: 'images/status/shock.png',
   };
 
   @override
@@ -84,7 +90,11 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
 
   // Method to add and manage damage text
   void _showDamageText(int damage, bool isCritical, bool isMiss) {
-    final newDamageText = DamageText(damage: damage, isCritical: isCritical, isMiss: isMiss);
+    final newDamageText = DamageText(
+      damage: damage,
+      isCritical: isCritical,
+      isMiss: isMiss,
+    );
     setState(() {
       _damageTexts.add(newDamageText);
     });
@@ -107,7 +117,10 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
       onTap: widget.isMonsterDefeated
           ? null
           : () {
-              Provider.of<GameProvider>(context, listen: false).handleManualClick(); // New: Handle manual click
+              Provider.of<GameProvider>(
+                context,
+                listen: false,
+              ).handleManualClick(); // New: Handle manual click
               widget.onAttack(
                 {},
               ); // Call onAttack, damage display is now handled internally
@@ -211,20 +224,36 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                               top: 0,
                               left: 0,
                               child: Row(
-                                children: widget.monster.statusEffects.map((effect) {
-                                  final effectIcon = _statusEffectIcons[effect.type];
-                                  if (effectIcon != null) {
-                                    return Tooltip(
-                                      message: '${effect.type.toString().split('.').last} (${effect.duration}s)',
-                                      child: Icon(
-                                        effectIcon['icon'],
-                                        color: effectIcon['color'],
-                                        size: 30, // A bit smaller to fit multiple icons
-                                      ),
-                                    );
-                                  }
-                                  return const SizedBox.shrink(); // Should not happen
-                                }).toList(),
+                                children: widget.monster.statusEffects
+                                    .map(
+                                      (effect) => effect.type,
+                                    ) // Get only the type
+                                    .toSet() // Get unique types
+                                    .map((uniqueType) {
+                                      // Map unique types to icons
+                                      final imagePath =
+                                          _statusEffectImagePaths[uniqueType];
+                                      if (imagePath != null) {
+                                        // Find the first effect of this type to get its duration for the tooltip
+                                        final effect = widget
+                                            .monster
+                                            .statusEffects
+                                            .firstWhere(
+                                              (e) => e.type == uniqueType,
+                                            );
+                                        return Tooltip(
+                                          message:
+                                              '${effect.type.toString().split('.').last} (${effect.duration}s)',
+                                          child: Image.asset(
+                                            imagePath,
+                                            width: 30,
+                                            height: 30,
+                                          ),
+                                        );
+                                      }
+                                      return const SizedBox.shrink();
+                                    })
+                                    .toList(),
                               ),
                             ),
                           // Monster Defense Icon
@@ -272,7 +301,8 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                                     size: 40,
                                   ),
                                   Text(
-                                    widget.monster.defense.toString(),
+                                    widget.monsterEffectiveDefense
+                                        .toStringAsFixed(0),
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 14,
@@ -388,10 +418,18 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
           child: FadeTransition(
             opacity: _opacityAnimation,
             child: Text(
-              widget.damageText.isMiss ? 'MISS!' : widget.damageText.damage.toString(),
+              widget.damageText.isMiss
+                  ? 'MISS!'
+                  : widget.damageText.damage.toString(),
               style: TextStyle(
-                color: widget.damageText.isMiss ? Colors.yellow : (widget.damageText.isCritical ? Colors.red : Colors.white),
-                fontSize: widget.damageText.isMiss ? 32 : (widget.damageText.isCritical ? 28 : 20),
+                color: widget.damageText.isMiss
+                    ? Colors.yellow
+                    : (widget.damageText.isCritical
+                          ? Colors.red
+                          : Colors.white),
+                fontSize: widget.damageText.isMiss
+                    ? 32
+                    : (widget.damageText.isCritical ? 28 : 20),
                 fontWeight: FontWeight.bold,
               ),
             ),

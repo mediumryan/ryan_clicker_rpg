@@ -51,6 +51,7 @@ class MainGameScreen extends StatelessWidget {
                     onGoToPreviousStage: game.goToPreviousStage,
                     isMonsterDefeated: game.isMonsterDefeated,
                     stageName: game.currentStageName, // Pass stage name
+                    monsterEffectiveDefense: game.currentMonsterEffectiveDefense, // New: Pass effective defense
                   ),
                 ),
               ],
