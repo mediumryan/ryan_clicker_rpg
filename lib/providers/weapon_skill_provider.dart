@@ -243,10 +243,7 @@ class WeaponSkillProvider with ChangeNotifier {
       case 'applyHpConditionalBonusDamage':
         _applyHpConditionalBonusDamage(params, player, monster);
         break;
-      case 'applyDefenseReductionDebuff':
-        _applyDisarm(params, player, monster);
-        break;
-      case 'applyDisarm': // 이 케이스를 추가했습니다.
+      case 'applyDisarm':
         _applyDisarm(params, player, monster);
         break;
       case 'dealBonusDamage':
@@ -500,7 +497,9 @@ class WeaponSkillProvider with ChangeNotifier {
 
     // 3. Roll for chance
     if (Random().nextDouble() < chance) {
-      final isStackable = (params['stackable'] as bool?) ?? true; // Default to true if not specified
+      final isStackable =
+          (params['stackable'] as bool?) ??
+          true; // Default to true if not specified
       final effect = StatusEffect(
         type: StatusEffectType.disarm,
         duration: duration,
@@ -585,7 +584,9 @@ class WeaponSkillProvider with ChangeNotifier {
         '[WeaponSkillProvider._applyWeakness] Applying reductionValue: $reductionValue',
       );
 
-      final isStackable = (params['stackable'] as bool?) ?? true; // Default to true if not specified
+      final isStackable =
+          (params['stackable'] as bool?) ??
+          true; // Default to true if not specified
       final effect = StatusEffect(
         type: StatusEffectType.weakness,
         duration: duration,
@@ -652,7 +653,9 @@ class WeaponSkillProvider with ChangeNotifier {
     }
 
     // 3. Roll for chance
-    final isStackable = (params['stackable'] as bool?) ?? true; // Default to true if not specified
+    final isStackable =
+        (params['stackable'] as bool?) ??
+        true; // Default to true if not specified
     if (Random().nextDouble() < chance) {
       final effect = StatusEffect(
         type: StatusEffectType.bleed,
@@ -709,7 +712,9 @@ class WeaponSkillProvider with ChangeNotifier {
     }
 
     // 3. Roll for chance
-    final isStackable = (params['stackable'] as bool?) ?? true; // Default to true if not specified
+    final isStackable =
+        (params['stackable'] as bool?) ??
+        true; // Default to true if not specified
     if (Random().nextDouble() < chance) {
       debugPrint('Poison skill triggered!');
       final damageValue = monster.maxHp * percentPerSecond;
@@ -759,7 +764,9 @@ class WeaponSkillProvider with ChangeNotifier {
     }
 
     // 3. Roll for chance
-    final isStackable = (params['stackable'] as bool?) ?? true; // Default to true if not specified
+    final isStackable =
+        (params['stackable'] as bool?) ??
+        true; // Default to true if not specified
     if (Random().nextDouble() < chance) {
       final effect = StatusEffect(
         type: StatusEffectType.confusion,
@@ -806,7 +813,9 @@ class WeaponSkillProvider with ChangeNotifier {
     }
 
     // 3. Roll for chance
-    final isStackable = (params['stackable'] as bool?) ?? true; // Default to true if not specified
+    final isStackable =
+        (params['stackable'] as bool?) ??
+        true; // Default to true if not specified
     if (Random().nextDouble() < chance) {
       final effect = StatusEffect(
         type: StatusEffectType.charm,
@@ -1227,7 +1236,9 @@ class WeaponSkillProvider with ChangeNotifier {
         value = monster.defense * 0.25;
       }
 
-      final isStackable = (params['stackable'] as bool?) ?? true; // Default to true if not specified
+      final isStackable =
+          (params['stackable'] as bool?) ??
+          true; // Default to true if not specified
       final effect = StatusEffect(
         type: randomDebuff,
         duration: duration,
@@ -1379,6 +1390,13 @@ class WeaponSkillProvider with ChangeNotifier {
         baseDamage: weapon.baseDamage + stackPerValue,
       );
       player.equippedWeapon = newWeapon;
+      // Update the weapon in the player's inventory as well
+      final indexInInventory = player.inventory.indexWhere(
+        (w) => w.id == newWeapon.id,
+      );
+      if (indexInInventory != -1) {
+        player.inventory[indexInInventory] = newWeapon;
+      }
       _gameProvider.recalculatePlayerStats();
     }
   }
@@ -1418,7 +1436,9 @@ class WeaponSkillProvider with ChangeNotifier {
     }
 
     // 3. Roll for chance
-    final isStackable = (params['stackable'] as bool?) ?? true; // Default to true if not specified
+    final isStackable =
+        (params['stackable'] as bool?) ??
+        true; // Default to true if not specified
     if (Random().nextDouble() < chance) {
       final effect = StatusEffect(
         type: StatusEffectType.freeze,
@@ -1465,7 +1485,9 @@ class WeaponSkillProvider with ChangeNotifier {
     }
 
     // 3. Roll for chance
-    final isStackable = (params['stackable'] as bool?) ?? true; // Default to true if not specified
+    final isStackable =
+        (params['stackable'] as bool?) ??
+        true; // Default to true if not specified
     if (Random().nextDouble() < chance) {
       final effect = StatusEffect(
         type: StatusEffectType.burn,
@@ -1513,7 +1535,9 @@ class WeaponSkillProvider with ChangeNotifier {
     }
 
     // 3. Roll for chance
-    final isStackable = (params['stackable'] as bool?) ?? true; // Default to true if not specified
+    final isStackable =
+        (params['stackable'] as bool?) ??
+        true; // Default to true if not specified
     if (Random().nextDouble() < chance) {
       final effect = StatusEffect(
         type: StatusEffectType.shock,

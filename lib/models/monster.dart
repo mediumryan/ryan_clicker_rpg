@@ -26,16 +26,22 @@ class Monster {
     List<StatusEffect>? statusEffects,
     Map<String, DateTime>? skillCooldowns,
     this.isBoss = false,
-  })  : _baseDefense = defense, // Store the base defense
-        statusEffects = statusEffects ?? [],
-        skillCooldowns = skillCooldowns ?? {};
+  }) : _baseDefense = defense, // Store the base defense
+       statusEffects = statusEffects ?? [],
+       skillCooldowns = skillCooldowns ?? {};
 
   void applyStatusEffect(StatusEffect newEffect) {
-    debugPrint('[Monster.applyStatusEffect] Applying status effect ${newEffect.type} to monster $name. Value: ${newEffect.value}, Duration: ${newEffect.duration}');
-    debugPrint('[Monster.applyStatusEffect] Monster defense BEFORE applying effect: $defense'); // Added debugPrint
+    debugPrint(
+      '[Monster.applyStatusEffect] Applying status effect ${newEffect.type} to monster $name. Value: ${newEffect.value}, Duration: ${newEffect.duration}',
+    );
+    debugPrint(
+      '[Monster.applyStatusEffect] Monster defense BEFORE applying effect: $defense',
+    ); // Added debugPrint
     // Check if an effect of the same type already exists and is not stackable
     final existingEffectIndex = statusEffects.indexWhere(
-      (effect) => effect.type == newEffect.type && !newEffect.stackable, // Use newEffect.stackable here
+      (effect) =>
+          effect.type == newEffect.type &&
+          !newEffect.stackable, // Use newEffect.stackable here
     );
 
     if (existingEffectIndex != -1) {
@@ -53,10 +59,16 @@ class Monster {
     // Apply immediate effects
     if (newEffect.type == StatusEffectType.disarm) {
       defense -= newEffect.value!.toInt(); // Reduce defense
-      debugPrint('[Monster.applyStatusEffect] Monster $name defense reduced to $defense');
+      debugPrint(
+        '[Monster.applyStatusEffect] Monster $name defense reduced to $defense',
+      );
     }
-    debugPrint('[Monster.applyStatusEffect] Monster defense AFTER applying effect: $defense'); // Added debugPrint
-    debugPrint('[Monster.applyStatusEffect] Current status effects: ${statusEffects.map((e) => '${e.type}:${e.value}').join(', ')}');
+    debugPrint(
+      '[Monster.applyStatusEffect] Monster defense AFTER applying effect: $defense',
+    ); // Added debugPrint
+    debugPrint(
+      '[Monster.applyStatusEffect] Current status effects: ${statusEffects.map((e) => '${e.type}:${e.value}').join(', ')}',
+    );
   }
 
   bool isSkillOnCooldown(String skillName, int cooldownSeconds) {
@@ -92,7 +104,9 @@ class Monster {
         if (defense > _baseDefense) {
           defense = _baseDefense;
         }
-        debugPrint('[Monster.updateStatusEffects] Monster $name defense restored to $defense');
+        debugPrint(
+          '[Monster.updateStatusEffects] Monster $name defense restored to $defense',
+        );
       }
     }
   }

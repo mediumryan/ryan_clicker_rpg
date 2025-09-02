@@ -4,6 +4,7 @@ import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart'; // Import Weapon model
 import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT for WeaponData
 import 'package:intl/intl.dart';
+import 'dart:math'; // Import dart:math for pow function
 
 enum StoneType { enhancement, transcendence }
 
@@ -26,13 +27,15 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
       body: Consumer<GameProvider>(
         builder: (context, game, child) {
           final equippedWeapon = game.player.equippedWeapon;
+          final rarityMultiplier = equippedWeapon.rarity.index + 1;
           final enhancementGoldCost =
-              (100 + (equippedWeapon.baseLevel * 10)) * 5 +
-              (equippedWeapon.enhancement * 250);
+              ((equippedWeapon.baseLevel + 1) +
+                  pow(equippedWeapon.enhancement + 1, 2.5)) *
+              100 *
+              rarityMultiplier;
           final enhancementStoneCost =
-              1 +
-              (equippedWeapon.baseLevel / 100).floor() +
-              equippedWeapon.enhancement;
+              ((equippedWeapon.enhancement + 1) / 2).ceil() +
+              (rarityMultiplier - 1);
 
           final enhancementLevel = equippedWeapon.enhancement;
           const enhancementDamageMultipliers = [
@@ -73,12 +76,15 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
           ]; // In percentage
 
           final newTranscendenceGoldCost =
-              (100 + (equippedWeapon.baseLevel * 10)) *
-              10000 *
+              (100 + (equippedWeapon.baseLevel + 1) * 10) *
+              1250 *
+              rarityMultiplier * // rarityMultiplier is already defined above
               (equippedWeapon.transcendence + 1);
           final newTranscendenceStoneCost =
-              (1 + (equippedWeapon.baseLevel / 200).floor()) *
-              (equippedWeapon.transcendence + 1);
+              ((rarityMultiplier +
+                          ((equippedWeapon.baseLevel + 1) / 200).floor()) *
+                      (equippedWeapon.transcendence + 1))
+                  .toInt();
 
           // Filter out the equipped weapon from inventory for selling/disassembling
           final inventoryWeapons = game.player.inventory

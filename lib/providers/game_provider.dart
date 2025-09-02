@@ -189,24 +189,6 @@ class GameProvider with ChangeNotifier {
           '[GameProvider.attackMonster] Adding ${effect.value} from ${effect.type} to totalDefenseReduction. Current total: $totalDefenseReduction',
         );
       }
-      // Add disarm logic here
-      if (effect.type == StatusEffectType.disarm) {
-        if (effect.value != null) {
-          if (effect.value! > 1) {
-            // Fixed amount reduction
-            effectiveDefense -= effect.value!;
-            debugPrint(
-              '[GameProvider.attackMonster] Effective defense after disarm (fixed reduction: ${effect.value!}): $effectiveDefense',
-            );
-          } else {
-            // Percentage reduction
-            effectiveDefense *= (1 - effect.value!);
-            debugPrint(
-              '[GameProvider.attackMonster] Effective defense after disarm (percentage reduction: ${effect.value! * 100}%): $effectiveDefense',
-            );
-          }
-        }
-      }
     }
     effectiveDefense -= totalDefenseReduction;
     debugPrint(
@@ -287,7 +269,10 @@ class GameProvider with ChangeNotifier {
       actualDamage += shockDamage;
     }
 
+    debugPrint('[attackMonster] Monster HP before damage: ${_monster.hp}');
     _monster.hp -= actualDamage;
+    _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
+    debugPrint('[attackMonster] Monster HP after damage: ${_monster.hp}');
     showFloatingDamageText(
       actualDamage.toInt(),
       isCritical,
@@ -296,28 +281,52 @@ class GameProvider with ChangeNotifier {
 
     // Apply shock damage on hit
     if (_monster.hasStatusEffect(StatusEffectType.shock)) {
+      debugPrint(
+        '[attackMonster] Monster HP before shock damage: ${_monster.hp}',
+      );
       final shockDamageMultiplier = _monster.isBoss ? 0.005 : 0.03;
       final shockDamage = _monster.maxHp * shockDamageMultiplier;
       _monster.hp -= shockDamage;
+      _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
+      debugPrint(
+        '[attackMonster] Monster HP after shock damage: ${_monster.hp}',
+      );
       showFloatingDamageText(shockDamage.toInt(), false, false);
     }
 
     if (Random().nextDouble() < _player.finalDoubleAttackChance) {
+      debugPrint(
+        '[attackMonster] Monster HP before double attack damage: ${_monster.hp}',
+      );
       _monster.hp -= actualDamage;
+      _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
+      debugPrint(
+        '[attackMonster] Monster HP after double attack damage: ${_monster.hp}',
+      );
       // Re-show damage text for the second hit
       showFloatingDamageText(actualDamage.toInt(), isCritical, false);
 
       // Apply shock damage on double attack hit
       if (_monster.hasStatusEffect(StatusEffectType.shock)) {
+        debugPrint(
+          '[attackMonster] Monster HP before double attack shock damage: ${_monster.hp}',
+        );
         final shockDamageMultiplier = _monster.isBoss ? 0.005 : 0.03;
         final shockDamage = _monster.maxHp * shockDamageMultiplier;
         _monster.hp -= shockDamage;
+        _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
+        debugPrint(
+          '[attackMonster] Monster HP after double attack shock damage: ${_monster.hp}',
+        );
         showFloatingDamageText(shockDamage.toInt(), false, false);
       }
     }
 
     _weaponSkillProvider.applySkills(_player, _monster);
 
+    debugPrint(
+      '[attackMonster] Checking monster death. Current HP: ${_monster.hp}',
+    );
     if (_monster.hp <= 0) {
       _weaponSkillProvider.applyOnKillSkills(_player, _monster); // New
       _isMonsterDefeated = true;
@@ -403,7 +412,7 @@ class GameProvider with ChangeNotifier {
     final rarityMultiplier = weapon.rarity.index + 1;
     final goldCost =
         ((weapon.baseLevel + 1) + pow(weapon.enhancement + 1, 2.5)) *
-        225 *
+        100 *
         rarityMultiplier;
     final stoneCost =
         ((weapon.enhancement + 1) / 2).ceil() + (rarityMultiplier - 1);
@@ -464,7 +473,7 @@ class GameProvider with ChangeNotifier {
 
     final goldCost =
         (100 + (weapon.baseLevel + 1) * 10) *
-        1000000 *
+        1250 *
         rarityMultiplier *
         (weapon.transcendence + 1);
     final int stoneCost =
@@ -576,7 +585,14 @@ class GameProvider with ChangeNotifier {
           case StatusEffectType.poison:
           case StatusEffectType.burn:
             if (effect.value != null && effect.value! > 0) {
+              debugPrint(
+                '[_updatePerSecond] Monster HP before DoT damage: ${_monster.hp}',
+              );
               _monster.hp -= effect.value!;
+              _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
+              debugPrint(
+                '[_updatePerSecond] Monster HP after DoT damage: ${_monster.hp}',
+              );
               showFloatingDamageText(effect.value!.toInt(), false, false);
             }
             break;
@@ -610,6 +626,9 @@ class GameProvider with ChangeNotifier {
 
   void _spawnMonster() {
     _monster = MonsterData.getMonsterForStage(_player.currentStage);
+    debugPrint(
+      '[_spawnMonster] Spawned monster: ${_monster.name} with HP: ${_monster.hp}',
+    );
     _isMonsterDefeated = false;
     _weaponSkillProvider.applyStageStartSkills(_player, _monster);
     notifyListeners();
@@ -627,11 +646,12 @@ class GameProvider with ChangeNotifier {
       _player.transcendenceStones = 0;
       _player.enhancementStones = 0;
       _player.gold = 0.0;
-      _player.inventory.addAll(
-        WeaponData.uniqueWeapons.map((w) => w.copyWith()),
+      _player.currentStage = 1;
+      // Add '후발주자' (Latecomer) to inventory for testing
+      final latecomerWeapon = WeaponData.getAllWeapons().firstWhere(
+        (w) => w.id == 2300,
       );
-      _player.inventory.addAll(WeaponData.epicWeapons.map((w) => w.copyWith()));
-      _player.currentStage = 500;
+      _player.inventory.add(latecomerWeapon.copyWith());
     }
   }
 

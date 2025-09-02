@@ -18,5 +18,10 @@ class StatusEffect {
   final double? value;
   final bool stackable; // New property
 
-  StatusEffect({required this.type, required this.duration, this.value, this.stackable = true});
+  StatusEffect({
+    required this.type,
+    required this.duration,
+    this.value,
+    this.stackable = true,
+  });
 }

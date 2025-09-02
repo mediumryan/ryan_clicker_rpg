@@ -5,6 +5,7 @@ import 'package:ryan_clicker_rpg/models/gacha_box.dart'; // Import GachaBox
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 import 'package:ryan_clicker_rpg/widgets/equipment_codex_dialog.dart'; // NEW IMPORT
 import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT for WeaponData
+import 'package:ryan_clicker_rpg/widgets/weapon_info_widget.dart'; // NEW IMPORT for WeaponInfoWidget
 
 class InventoryScreen extends StatelessWidget {
   const InventoryScreen({super.key});
@@ -48,6 +49,7 @@ class InventoryScreen extends StatelessWidget {
             children: [
               // Equipped Weapon Section
               _buildWeaponCard(
+                context, // Pass context here
                 game.player.equippedWeapon,
                 isEquipped: true,
                 onEquip: () {},
@@ -67,6 +69,7 @@ class InventoryScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final weapon = game.player.inventory[index];
                     return _buildWeaponCard(
+                      context, // Pass context here
                       weapon,
                       onEquip: () {
                         game.equipWeapon(weapon);
@@ -134,6 +137,7 @@ class InventoryScreen extends StatelessWidget {
   }
 
   Widget _buildWeaponCard(
+    BuildContext context, // Add context here
     Weapon weapon, {
     bool isEquipped = false,
     required VoidCallback onEquip,
@@ -147,29 +151,38 @@ class InventoryScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // NEW: Weapon Image with border
-            Container(
-              width: 50, // Fixed width for the image container
-              height: 50, // Fixed height for the image container
-              decoration: BoxDecoration(
-                color: Colors.black, // MOVED HERE
-                border: Border.all(
-                  color: WeaponData.getColorForRarity(
-                    weapon.rarity,
-                  ), // Rarity color border
-                  width: 2.0, // Border thickness
+            GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) =>
+                      buildWeaponDetailsDialog(context, weapon),
+                );
+              },
+              child: Container(
+                width: 50, // Fixed width for the image container
+                height: 50, // Fixed height for the image container
+                decoration: BoxDecoration(
+                  color: Colors.black, // MOVED HERE
+                  border: Border.all(
+                    color: WeaponData.getColorForRarity(
+                      weapon.rarity,
+                    ), // Rarity color border
+                    width: 2.0, // Border thickness
+                  ),
+                  borderRadius: BorderRadius.circular(
+                    4.0,
+                  ), // Slightly rounded corners
                 ),
-                borderRadius: BorderRadius.circular(
-                  4.0,
-                ), // Slightly rounded corners
-              ),
-              child: Image.asset(
-                'images/weapons/${weapon.imageName}',
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) {
-                  return const Center(
-                    child: Icon(Icons.broken_image, color: Colors.red),
-                  );
-                },
+                child: Image.asset(
+                  'images/weapons/${weapon.imageName}',
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Center(
+                      child: Icon(Icons.broken_image, color: Colors.red),
+                    );
+                  },
+                ),
               ),
             ),
             const SizedBox(width: 12), // Spacing between image and text

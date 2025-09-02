@@ -62,7 +62,12 @@
         "skill_effect": [
           {
             "effect_name": "applyMultiHit",
-            "params": { "chance": 0.1, "hitCount": 2, "trigger": "onHit", "cooldown": 0 }
+            "params": {
+              "chance": 0.1,
+              "hitCount": 2,
+              "trigger": "onHit",
+              "cooldown": 0
+            }
           }
         ]
       }
@@ -599,7 +604,12 @@
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
-            "params": { "chance": 0.25, "damage": 725, "trigger": "onHit", "cooldown": 0 }
+            "params": {
+              "chance": 0.25,
+              "damage": 725,
+              "trigger": "onHit",
+              "cooldown": 0
+            }
           }
         ]
       }

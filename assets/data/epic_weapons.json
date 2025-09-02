@@ -327,15 +327,15 @@
         "skill_name": "누적성장",
         "skill_type": "active",
         "trigger": "killMonster",
-        "skill_description": "적을 쓰러뜨릴수록 검이 강해집니다. (몬스터 처치 시 기본 공격력 10 영구 증가, 최대 50 중첩)",
+        "skill_description": "적을 쓰러뜨릴수록 검이 강해집니다. (몬스터 처치 시 기본 공격력 2 영구 증가, 최대 100 중첩)",
         "skill_effect": [
           {
             "effect_name": "increaseStat",
             "params": {
               "stat": "baseDamage",
-              "stackPerValue": 10,
+              "stackPerValue": 2,
               "isMultiplicative": false,
-              "maxStacks": 50,
+              "maxStacks": 100,
               "initialStacksParam": "player_weapon_stacks"
             }
           }
