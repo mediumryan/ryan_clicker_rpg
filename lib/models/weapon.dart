@@ -139,33 +139,33 @@ class Weapon {
     this.speed = 1.0,
     this.skills = const [],
     this.accuracy = 1.0,
-    this.skillStacks = const {},
-  });
+    Map<String, int>? skillStacks,
+  }) : skillStacks = skillStacks ?? {};
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'name': name,
-    'imageName': imageName,
-    'rarity': rarity.toString(),
-    'type': type.toString(),
-    'baseLevel': baseLevel,
-    'enhancement': enhancement,
-    'transcendence': transcendence,
-    'baseDamage': baseDamage,
-    'criticalChance': criticalChance,
-    'criticalDamage': criticalDamage,
-    'baseSellPrice': baseSellPrice,
-    'investedGold': investedGold,
-    'investedEnhancementStones': investedEnhancementStones,
-    'investedTranscendenceStones': investedTranscendenceStones,
-    'description': description,
-    'defensePenetration': defensePenetration,
-    'doubleAttackChance': doubleAttackChance,
-    'speed': speed,
-    'skills': skills,
-    'accuracy': accuracy,
-    'skillStacks': skillStacks,
-  };
+        'id': id,
+        'name': name,
+        'imageName': imageName,
+        'rarity': rarity.toString(),
+        'type': type.toString(),
+        'baseLevel': baseLevel,
+        'enhancement': enhancement,
+        'transcendence': transcendence,
+        'baseDamage': baseDamage,
+        'criticalChance': criticalChance,
+        'criticalDamage': criticalDamage,
+        'baseSellPrice': baseSellPrice,
+        'investedGold': investedGold,
+        'investedEnhancementStones': investedEnhancementStones,
+        'investedTranscendenceStones': investedTranscendenceStones,
+        'description': description,
+        'defensePenetration': defensePenetration,
+        'doubleAttackChance': doubleAttackChance,
+        'speed': speed,
+        'skills': skills,
+        'accuracy': accuracy,
+        'skillStacks': skillStacks,
+      };
 
   factory Weapon.fromJson(Map<String, dynamic> json) {
     final calculatedRarity = Rarity.values.firstWhere(
@@ -220,7 +220,7 @@ class Weapon {
       skillStacks:
           (json['skillStacks'] as Map<String, dynamic>?)
               ?.map((k, v) => MapEntry(k, v as int)) ??
-          const {},
+          {},
     );
   }
 

@@ -18,6 +18,10 @@ class WeaponSkillProvider with ChangeNotifier {
     debugPrint('--- applySkills called ---');
     final weapon = player.equippedWeapon;
     for (final skill in weapon.skills) {
+      final trigger = skill['trigger'] as String?;
+      if (trigger == 'killMonster') {
+        continue;
+      }
       debugPrint('Checking skill: ${skill['skill_name']}');
       final skillEffects = skill['skill_effect'];
       if (skillEffects is List) {
@@ -25,7 +29,7 @@ class WeaponSkillProvider with ChangeNotifier {
           final effectName = effect['effect_name'];
           final params = effect['params'];
           if (effectName != null && params != null) {
-            debugPrint('Applying effect: $effectName');
+            debugPrint('Applying effect: \$effectName');
             _applyEffect(effectName, params, player, monster);
           }
         }
