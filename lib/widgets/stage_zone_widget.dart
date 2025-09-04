@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ryan_clicker_rpg/models/monster.dart';
 import 'package:ryan_clicker_rpg/models/status_effect.dart';
 import 'package:ryan_clicker_rpg/models/player.dart';
+import 'package:ryan_clicker_rpg/models/gacha_box.dart'; // New import
 import 'dart:async'; // Import for Timer
 import 'package:provider/provider.dart'; // New import
 import 'package:ryan_clicker_rpg/providers/game_provider.dart'; // New import
+import 'package:intl/intl.dart';
 
 // Class to hold damage text information
 class DamageText {
@@ -31,6 +33,9 @@ class StageZoneWidget extends StatefulWidget {
   final bool isMonsterDefeated;
   final String stageName; // New: Stage name
   final double monsterEffectiveDefense; // New field
+  final double lastGoldReward; // New
+  final GachaBox? lastDroppedBox; // New
+  final Duration autoAttackDelay; // New
 
   const StageZoneWidget({
     super.key,
@@ -42,6 +47,9 @@ class StageZoneWidget extends StatefulWidget {
     required this.isMonsterDefeated,
     required this.stageName, // New: Required in constructor
     required this.monsterEffectiveDefense, // New required field
+    required this.lastGoldReward, // New
+    required this.lastDroppedBox, // New
+    required this.autoAttackDelay, // New
   });
 
   @override
@@ -100,11 +108,16 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
     });
 
     // Remove the damage text after a delay (e.g., 1.5 seconds for animation)
-    Timer(const Duration(milliseconds: 1500), () {
-      setState(() {
-        _damageTexts.remove(newDamageText);
-      });
-    });
+    Timer(
+      Duration(
+        milliseconds: (widget.autoAttackDelay.inMilliseconds * 0.75).round(),
+      ),
+      () {
+        setState(() {
+          _damageTexts.remove(newDamageText);
+        });
+      },
+    );
   }
 
   @override
@@ -356,8 +369,60 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
             ),
             // Render damage texts
             ..._damageTexts.map(
-              (dt) => _DamageTextWidget(key: dt.key, damageText: dt),
+              (dt) => _DamageTextWidget(
+                key: dt.key,
+                damageText: dt,
+                animationDuration: widget.autoAttackDelay,
+              ),
             ),
+            // Reward display (positioned absolutely)
+            if (widget.isMonsterDefeated)
+              Positioned(
+                bottom: 20, // Adjust as needed
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Gold reward
+                        SizedBox(
+                          width: 25,
+                          height: 25,
+                          child: Image.asset(
+                            'images/others/gold.png',
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${NumberFormat('#,###').format(widget.lastGoldReward)}G',
+                          style: const TextStyle(
+                            color: Colors.yellow,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        // Dropped box
+                        if (widget.lastDroppedBox != null)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: SizedBox(
+                              width: 30,
+                              height: 30,
+                              child: Image.asset(
+                                widget.lastDroppedBox!.imagePath,
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
           ],
         ),
       ),
@@ -368,8 +433,13 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
 // Widget for displaying individual damage text with animation
 class _DamageTextWidget extends StatefulWidget {
   final DamageText damageText;
+  final Duration animationDuration;
 
-  const _DamageTextWidget({super.key, required this.damageText});
+  const _DamageTextWidget({
+    super.key,
+    required this.damageText,
+    required this.animationDuration,
+  });
 
   @override
   State<_DamageTextWidget> createState() => _DamageTextWidgetState();
@@ -385,7 +455,7 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 2000), // Animation duration
+      duration: widget.animationDuration, // Use dynamic duration
       vsync: this,
     );
 

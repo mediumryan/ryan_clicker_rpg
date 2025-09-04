@@ -29,6 +29,11 @@ class GameProvider with ChangeNotifier {
   DateTime? _lastManualClickTime; // New
   Duration _autoAttackDelay = Duration.zero; // New
 
+  Duration get autoAttackDelay => _autoAttackDelay; // New getter
+
+  double _lastGoldReward = 0.0; // New field for last gold reward
+  GachaBox? _lastDroppedBox; // New field for last dropped box
+
   final List<DamageModifier> _activeDamageModifiers = [];
   final List<PassiveStatModifier> _activePassiveStatModifiers = [];
   double _currentMonsterEffectiveDefense = 0.0; // New field
@@ -41,6 +46,8 @@ class GameProvider with ChangeNotifier {
   String get currentStageName => StageData.getStageName(_player.currentStage);
   double get currentMonsterEffectiveDefense =>
       _currentMonsterEffectiveDefense; // New getter
+  double get lastGoldReward => _lastGoldReward; // New getter
+  GachaBox? get lastDroppedBox => _lastDroppedBox; // New getter
 
   GameProvider() {
     _weaponSkillProvider = WeaponSkillProvider(this);
@@ -59,7 +66,7 @@ class GameProvider with ChangeNotifier {
 
     // Calculate auto-attack delay
     _autoAttackDelay = Duration(
-      milliseconds: (1000 / attackSpeed).round(),
+      microseconds: (1000000 / attackSpeed).round(),
     ); // New
 
     // 2. Apply enhancement bonus (damage only)
@@ -338,6 +345,7 @@ class GameProvider with ChangeNotifier {
           _player.passiveGoldGainMultiplier *
           bossMultiplier;
       _player.gold += goldReward;
+      _lastGoldReward = goldReward; // Store gold reward
 
       final maxStones = (_player.currentStage ~/ 100) + 1;
       int stonesDropped = Random().nextInt(maxStones + 1);
@@ -370,6 +378,9 @@ class GameProvider with ChangeNotifier {
 
       if (droppedBox != null) {
         _player.gachaBoxes.add(droppedBox);
+        _lastDroppedBox = droppedBox; // Store dropped box
+      } else {
+        _lastDroppedBox = null; // Clear if no box dropped
       }
 
       if (_player.currentStage >= _player.highestStageCleared) {
@@ -398,6 +409,7 @@ class GameProvider with ChangeNotifier {
 
       recalculatePlayerStats();
       _weaponSkillProvider.updatePassiveSkills(_player, _monster);
+      startAutoAttack(); // Restart auto-attack with new speed
 
       notifyListeners();
       _saveGame();
@@ -417,10 +429,12 @@ class GameProvider with ChangeNotifier {
     final stoneCost =
         ((weapon.enhancement + 1) / 2).ceil() + (rarityMultiplier - 1);
 
-    if (_player.gold < goldCost)
+    if (_player.gold < goldCost) {
       return '골드가 부족합니다. (필요: ${NumberFormat('#,###').format(goldCost)}G)';
-    if (_player.enhancementStones < stoneCost)
+    }
+    if (_player.enhancementStones < stoneCost) {
       return '강화석이 부족합니다. (필요: $stoneCost)';
+    }
 
     _player.gold -= goldCost;
     _player.enhancementStones -= stoneCost;
@@ -467,9 +481,15 @@ class GameProvider with ChangeNotifier {
   String transcendEquippedWeapon() {
     final weapon = _player.equippedWeapon;
     final rarityMultiplier = weapon.rarity.index + 1;
-    if (weapon.id == 0) return '맨손은 초월할 수 없습니다.';
-    if (weapon.transcendence >= weapon.maxTranscendence) return '이미 초월한 무기입니다.';
-    if (weapon.enhancement < 20) return '초월하려면 +20 강화에 도달해야 합니다.';
+    if (weapon.id == 0) {
+      return '맨손은 초월할 수 없습니다.';
+    }
+    if (weapon.transcendence >= weapon.maxTranscendence) {
+      return '이미 초월한 무기입니다.';
+    }
+    if (weapon.enhancement < 20) {
+      return '초월하려면 +20 강화에 도달해야 합니다.';
+    }
 
     final goldCost =
         (100 + (weapon.baseLevel + 1) * 10) *
@@ -481,9 +501,12 @@ class GameProvider with ChangeNotifier {
                 (weapon.transcendence + 1))
             .toInt();
 
-    if (_player.gold < goldCost) return '골드가 부족합니다. (필요: $goldCost)';
-    if (_player.transcendenceStones < stoneCost)
+    if (_player.gold < goldCost) {
+      return '골드가 부족합니다. (필요: $goldCost)';
+    }
+    if (_player.transcendenceStones < stoneCost) {
       return '초월석이 부족합니다. (필요: $stoneCost)';
+    }
 
     _player.gold -= goldCost;
     _player.transcendenceStones -= stoneCost;
@@ -630,6 +653,8 @@ class GameProvider with ChangeNotifier {
       '[_spawnMonster] Spawned monster: ${_monster.name} with HP: ${_monster.hp}',
     );
     _isMonsterDefeated = false;
+    _lastGoldReward = 0.0; // Clear previous reward
+    _lastDroppedBox = null; // Clear previous dropped box
     _weaponSkillProvider.applyStageStartSkills(_player, _monster);
     notifyListeners();
   }
@@ -649,7 +674,7 @@ class GameProvider with ChangeNotifier {
       _player.currentStage = 1;
       // Add '후발주자' (Latecomer) to inventory for testing
       final latecomerWeapon = WeaponData.getAllWeapons().firstWhere(
-        (w) => w.id == 2300,
+        (w) => w.id == 13004,
       );
       _player.inventory.add(latecomerWeapon.copyWith());
     }
@@ -706,10 +731,12 @@ class GameProvider with ChangeNotifier {
   }
 
   String sellEnhancementStones({required int amount}) {
-    if (amount <= 0) return '판매할 강화석 수량을 입력해주세요.';
+    if (amount <= 0) {
+      return '판매할 강화석 수량을 입력해주세요.';
+    }
     if (_player.enhancementStones >= amount) {
       _player.enhancementStones -= amount;
-      _player.gold += amount.toDouble();
+      _player.gold += (amount * 5000).toDouble();
       notifyListeners();
       _saveGame();
       return '$amount개의 강화석을 판매하여 ${amount * 5000} 골드를 획득했습니다.';
@@ -719,7 +746,9 @@ class GameProvider with ChangeNotifier {
   }
 
   String sellTranscendenceStones({required int amount}) {
-    if (amount <= 0) return '판매할 초월석 수량을 입력해주세요.';
+    if (amount <= 0) {
+      return '판매할 초월석 수량을 입력해주세요.';
+    }
     if (_player.transcendenceStones >= amount) {
       _player.transcendenceStones -= amount;
       _player.gold += (amount * 50000).toDouble();
@@ -731,7 +760,7 @@ class GameProvider with ChangeNotifier {
     }
   }
 
-  String openGachaBox(GachaBox box) {
+  Weapon openGachaBox(GachaBox box) {
     final newWeapon = _rewardService.getWeaponFromBox(
       box,
       _player.highestStageCleared,
@@ -741,12 +770,13 @@ class GameProvider with ChangeNotifier {
     _player.acquiredWeaponIdsHistory.add(newWeapon.id);
     notifyListeners();
     _saveGame();
-    return '[${newWeapon.name}] 획득!';
+    return newWeapon;
   }
 
   String sellWeapon(Weapon weaponToSell) {
-    if (_player.equippedWeapon.id == weaponToSell.id)
+    if (_player.equippedWeapon.id == weaponToSell.id) {
       return '장착 중인 무기는 판매할 수 없습니다.';
+    }
     final sellPrice =
         weaponToSell.baseSellPrice + (weaponToSell.investedGold / 3);
     final returnedEnhancementStones =
@@ -771,8 +801,9 @@ class GameProvider with ChangeNotifier {
   }
 
   String disassembleWeapon(Weapon weaponToDisassemble) {
-    if (_player.equippedWeapon.id == weaponToDisassemble.id)
+    if (_player.equippedWeapon.id == weaponToDisassemble.id) {
       return '장착 중인 무기는 분해할 수 없습니다.';
+    }
     final returnedEnhancementStones =
         weaponToDisassemble.investedEnhancementStones;
     final returnedTranscendenceStones =
@@ -793,7 +824,9 @@ class GameProvider with ChangeNotifier {
   }
 
   String _buyWeaponBox({required int cost, required WeaponBoxType boxType}) {
-    if (_player.gold < cost) return '골드가 부족합니다.';
+    if (_player.gold < cost) {
+      return '골드가 부족합니다.';
+    }
     _player.gold -= cost;
     final newGachaBox = GachaBox(
       id: DateTime.now().millisecondsSinceEpoch.toString(),

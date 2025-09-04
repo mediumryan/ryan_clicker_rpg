@@ -4,6 +4,7 @@ import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart'; // Import Weapon model
 import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT for WeaponData
 import 'package:intl/intl.dart';
+import 'package:ryan_clicker_rpg/widgets/weapon_info_widget.dart';
 import 'dart:math'; // Import dart:math for pow function
 
 enum StoneType { enhancement, transcendence }
@@ -324,93 +325,108 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
           children: [
-            Text(
-              // Weapon Name + Enhancement + Transcendence
-              '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+            // Left Box (Image)
+            GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) =>
+                      buildWeaponDetailsDialog(context, weapon),
+                );
+              },
+              child: Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  border: Border.all(
+                    color: WeaponData.getColorForRarity(weapon.rarity),
+                    width: 2.0,
+                  ),
+                  borderRadius: BorderRadius.circular(4.0),
+                ),
+                child: Image.asset(
+                  'images/weapons/${weapon.imageName}',
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Center(
+                      child: Icon(Icons.broken_image, color: Colors.red),
+                    );
+                  },
+                ),
               ),
             ),
-            Text(
-              // Rarity in Korean
-              '등급: ${WeaponData.getKoreanRarity(weapon.rarity)}',
-              style: TextStyle(
-                color: WeaponData.getColorForRarity(
-                  weapon.rarity,
-                ), // Use rarity color for text
-                fontSize: 14,
-              ),
-            ),
-            Text(
-              'Damage: ${weapon.calculatedDamage.toStringAsFixed(0)}',
-              style: const TextStyle(color: Colors.white70),
-            ),
-            Text(
-              'Enhancement: +${weapon.enhancement}, Transcendence: [${weapon.transcendence}]',
-              style: const TextStyle(color: Colors.white70),
-            ),
-            Text(
-              '판매 시 획득 골드: ${(weapon.baseSellPrice + (weapon.investedGold / 3)).toStringAsFixed(0)}',
-              style: const TextStyle(color: Colors.white70),
-            ),
-            Text(
-              '분해 시 획득 자원: 강화석 ${weapon.investedEnhancementStones}개, 초월석 ${weapon.investedTranscendenceStones}개',
-              style: const TextStyle(color: Colors.white70),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                if (game.player.equippedWeapon.id !=
-                    weapon.id) // Only show equip button if not equipped
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        game.equipWeapon(weapon);
-                        _showResultDialog(
-                          context,
-                          '${weapon.name}을(를) 장착했습니다.',
-                        );
-                      },
-                      child: const Text('장착'),
+            const SizedBox(width: 12),
+            // Right Box (Info and Buttons)
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Top part of Right Box (Info)
+                  Text(
+                    '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]',
+                    style: TextStyle(
+                      color: WeaponData.getColorForRarity(weapon.rarity),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ElevatedButton(
-                  onPressed: () {
-                    _showConfirmationDialog(
-                      context,
-                      '판매',
-                      '${weapon.name}을(를) 정말로 판매하시겠습니까?',
-                      () {
-                        final message = game.sellWeapon(weapon);
-                        _showResultDialog(context, message);
-                      },
-                    );
-                  },
-                  child: const Text('판매'),
-                ),
-                const SizedBox(width: 8),
-                ElevatedButton(
-                  onPressed: () {
-                    _showConfirmationDialog(
-                      context,
-                      '분해',
-                      '${weapon.name}을(를) 정말로 분해하시겠습니까?',
-                      () {
-                        final message = game.disassembleWeapon(weapon);
-                        _showResultDialog(context, message);
-                      },
-                    );
-                  },
-                  child: const Text('분해'),
-                ),
-              ],
+                  Text(
+                    '데미지: ${weapon.calculatedDamage.toStringAsFixed(0)}',
+                    style: const TextStyle(color: Colors.white70),
+                  ),
+                  const SizedBox(height: 8),
+                  // Bottom part of Right Box (Buttons)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      if (game.player.equippedWeapon.id != weapon.id)
+                        ElevatedButton(
+                          onPressed: () {
+                            game.equipWeapon(weapon);
+                            _showResultDialog(
+                              context,
+                              '${weapon.name}을(를) 장착했습니다.',
+                            );
+                          },
+                          child: const Text('장착'),
+                        ),
+                      const SizedBox(width: 8),
+                      ElevatedButton(
+                        onPressed: () {
+                          _showConfirmationDialog(
+                            context,
+                            '판매',
+                            '${weapon.name}을(를) 정말로 판매하시겠습니까?',
+                            () {
+                              final message = game.sellWeapon(weapon);
+                              _showResultDialog(context, message);
+                            },
+                          );
+                        },
+                        child: const Text('판매'),
+                      ),
+                      const SizedBox(width: 8),
+                      ElevatedButton(
+                        onPressed: () {
+                          _showConfirmationDialog(
+                            context,
+                            '분해',
+                            '${weapon.name}을(를) 정말로 분해하시겠습니까?',
+                            () {
+                              final message = game.disassembleWeapon(weapon);
+                              _showResultDialog(context, message);
+                            },
+                          );
+                        },
+                        child: const Text('분해'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),

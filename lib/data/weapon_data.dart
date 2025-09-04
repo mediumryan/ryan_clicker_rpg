@@ -289,21 +289,48 @@ class WeaponData {
     if (isAllRange) {
       return candidates[Random().nextInt(candidates.length)].copyWith();
     } else {
-      // Filter by currentStageLevel or below
       if (currentStageLevel == null) {
-        return Weapon.startingWeapon(); // Fallback if currentStageLevel is not provided for non-all-range
+        return Weapon.startingWeapon();
       }
+
       final targetBaseLevel = (currentStageLevel ~/ 25) * 25;
-      List<Weapon> filteredCandidates = candidates
-          .where((weapon) => weapon.baseLevel <= targetBaseLevel)
+
+      // 1. Try to find a weapon at the exact targetBaseLevel
+      List<Weapon> exactLevelCandidates = candidates
+          .where((weapon) => weapon.baseLevel == targetBaseLevel)
           .toList();
 
-      if (filteredCandidates.isEmpty) {
-        // Fallback to any weapon of this rarity if no weapon found for the level range
-        return candidates[Random().nextInt(candidates.length)].copyWith();
+      if (exactLevelCandidates.isNotEmpty) {
+        return exactLevelCandidates[Random().nextInt(
+              exactLevelCandidates.length,
+            )]
+            .copyWith();
+      } else {
+        // 2. If no exact level weapon, search for the closest available weapon level <= targetBaseLevel
+        List<Weapon> lowerLevelCandidates = candidates
+            .where((weapon) => weapon.baseLevel <= targetBaseLevel)
+            .toList();
+
+        if (lowerLevelCandidates.isNotEmpty) {
+          // Find the highest baseLevel among the lowerLevelCandidates
+          lowerLevelCandidates.sort(
+            (a, b) => b.baseLevel.compareTo(a.baseLevel),
+          );
+          final highestAvailableBaseLevel =
+              lowerLevelCandidates.first.baseLevel;
+
+          // Filter for weapons at this highest available baseLevel
+          List<Weapon> finalCandidates = lowerLevelCandidates
+              .where((weapon) => weapon.baseLevel == highestAvailableBaseLevel)
+              .toList();
+
+          return finalCandidates[Random().nextInt(finalCandidates.length)]
+              .copyWith();
+        } else {
+          // 3. Fallback to any weapon of this rarity if no weapon found for the level range
+          return candidates[Random().nextInt(candidates.length)].copyWith();
+        }
       }
-      return filteredCandidates[Random().nextInt(filteredCandidates.length)]
-          .copyWith();
     }
   }
 

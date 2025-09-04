@@ -3,9 +3,18 @@ import 'package:provider/provider.dart';
 import 'package:ryan_clicker_rpg/data/weapon_data.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart';
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
+import 'package:ryan_clicker_rpg/widgets/weapon_filter_dialog.dart'; // New import
 
-class EquipmentCodexDialog extends StatelessWidget {
+class EquipmentCodexDialog extends StatefulWidget {
   const EquipmentCodexDialog({super.key});
+
+  @override
+  State<EquipmentCodexDialog> createState() => _EquipmentCodexDialogState();
+}
+
+class _EquipmentCodexDialogState extends State<EquipmentCodexDialog> {
+  Set<Rarity> _selectedRarities = Rarity.values.toSet(); // Initialize with all rarities selected
+  Set<WeaponType> _selectedWeaponTypes = WeaponType.values.toSet(); // Initialize with all weapon types selected
 
   // Helper to map rarity to a color
   Color _getColorForRarity(Rarity rarity) {
@@ -41,9 +50,35 @@ class EquipmentCodexDialog extends StatelessWidget {
           final acquiredWeaponsCount =
               game.player.acquiredWeaponIdsHistory.length;
 
-          return Text(
-            '장비 도감 ($acquiredWeaponsCount / ${allWeapons.length})',
-            style: const TextStyle(color: Colors.white),
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '장비 도감 ($acquiredWeaponsCount / ${allWeapons.length})',
+                style: const TextStyle(color: Colors.white),
+              ),
+              IconButton(
+                icon: const Icon(Icons.filter_list, color: Colors.white),
+                onPressed: () async {
+                  final result = await showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return WeaponFilterDialog(
+                        initialSelectedRarities: _selectedRarities,
+                        initialSelectedWeaponTypes: _selectedWeaponTypes,
+                      );
+                    },
+                  );
+
+                  if (result != null) {
+                    setState(() {
+                      _selectedRarities = result['rarities'];
+                      _selectedWeaponTypes = result['weaponTypes'];
+                    });
+                  }
+                },
+              ),
+            ],
           );
         },
       ),
@@ -52,26 +87,30 @@ class EquipmentCodexDialog extends StatelessWidget {
           final allWeapons = WeaponData.getAllWeapons();
           allWeapons.sort((a, b) => a.id.compareTo(b.id)); // Sort by ID
 
+          // Apply filters
+          final filteredWeapons = allWeapons.where((weapon) {
+            final bool matchesRarity = _selectedRarities.contains(weapon.rarity);
+            final bool matchesWeaponType = _selectedWeaponTypes.contains(weapon.type);
+            return matchesRarity && matchesWeaponType;
+          }).toList();
+
           // Use acquiredWeaponIdsHistory directly for checking acquisition
           final acquiredWeaponIds = game.player.acquiredWeaponIdsHistory;
 
           return SizedBox(
-            width:
-                MediaQuery.of(context).size.width * 0.8, // 80% of screen width
-            height:
-                MediaQuery.of(context).size.height *
-                0.7, // 70% of screen height
+            width: 400, // Specify a fixed width
+            height: 500, // Specify a fixed height
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4, // 4 items per row
                 crossAxisSpacing: 4.0, // Reduced spacing
                 mainAxisSpacing: 4.0, // Reduced spacing
                 childAspectRatio:
-                    0.5, // Adjusted aspect ratio to make items much shorter
+                    0.6, // Adjusted aspect ratio to make items much shorter
               ),
-              itemCount: allWeapons.length,
+              itemCount: filteredWeapons.length, // Use filtered weapons count
               itemBuilder: (context, index) {
-                final weapon = allWeapons[index];
+                final weapon = filteredWeapons[index]; // Use filtered weapons
                 // Check acquisition directly from history
                 final isAcquired = acquiredWeaponIds.contains(weapon.id);
 

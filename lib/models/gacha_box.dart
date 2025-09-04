@@ -1,6 +1,3 @@
-
-
-
 // Defines the type of weapon box, which determines its loot table.
 enum WeaponBoxType {
   // Field drop boxes
@@ -10,7 +7,6 @@ enum WeaponBoxType {
   shiny, // 빛나는 무기상자
   mystic, // 신비로운 무기상자
   holy, // 신성한 기운이 감도는 무기상자
-
   // Grade-specific boxes (from quests, achievements, or special drops)
   guaranteedUnique,
   guaranteedEpic,
@@ -27,11 +23,7 @@ class GachaBox {
   final WeaponBoxType boxType;
   final int stageLevel; // Stage level when the box was acquired
 
-  GachaBox({
-    required this.id,
-    required this.boxType,
-    required this.stageLevel,
-  });
+  GachaBox({required this.id, required this.boxType, required this.stageLevel});
 
   // Helper to get the display name for the box
   String get name {
@@ -75,11 +67,36 @@ class GachaBox {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'boxType': boxType.toString(),
-      'stageLevel': stageLevel,
-    };
+    return {'id': id, 'boxType': boxType.toString(), 'stageLevel': stageLevel};
+  }
+
+  String get imagePath {
+    switch (boxType) {
+      case WeaponBoxType.common:
+        return 'images/chests/common.png';
+      case WeaponBoxType.plain:
+        return 'images/chests/plain.png';
+      case WeaponBoxType.rare:
+        return 'images/chests/rare.png';
+      case WeaponBoxType.shiny:
+        return 'images/chests/shiny.png';
+      case WeaponBoxType.mystic:
+        return 'images/chests/mystic.png';
+      case WeaponBoxType.holy:
+        return 'images/chests/holy.png';
+      case WeaponBoxType.guaranteedUnique:
+        return 'images/chests/unique.png';
+      case WeaponBoxType.guaranteedEpic:
+        return 'images/chests/epic.png';
+      case WeaponBoxType.guaranteedLegend:
+        return 'images/chests/legend.png';
+      case WeaponBoxType.guaranteedDemigod:
+        return 'images/chests/demi_god.png';
+      case WeaponBoxType.guaranteedGod:
+        return 'images/chests/god.png';
+      case WeaponBoxType.gamble:
+        return 'images/chests/gamble.png';
+    }
   }
 
   bool get isSpecialBox {

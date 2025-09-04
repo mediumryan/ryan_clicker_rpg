@@ -123,8 +123,8 @@ class InventoryScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final box = game.player.gachaBoxes[index];
                     return _buildGachaBoxCard(context, box, () {
-                      final result = game.openGachaBox(box);
-                      _showGachaResultDialog(context, result);
+                      final newWeapon = game.openGachaBox(box);
+                      _showGachaResultDialog(context, newWeapon);
                     });
                   },
                 ),
@@ -148,9 +148,8 @@ class InventoryScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // NEW: Weapon Image with border
+            // Left Box (Image)
             GestureDetector(
               onTap: () {
                 showDialog(
@@ -163,16 +162,12 @@ class InventoryScreen extends StatelessWidget {
                 width: 50, // Fixed width for the image container
                 height: 50, // Fixed height for the image container
                 decoration: BoxDecoration(
-                  color: Colors.black, // MOVED HERE
+                  color: Colors.black,
                   border: Border.all(
-                    color: WeaponData.getColorForRarity(
-                      weapon.rarity,
-                    ), // Rarity color border
-                    width: 2.0, // Border thickness
+                    color: WeaponData.getColorForRarity(weapon.rarity),
+                    width: 2.0,
                   ),
-                  borderRadius: BorderRadius.circular(
-                    4.0,
-                  ), // Slightly rounded corners
+                  borderRadius: BorderRadius.circular(4.0),
                 ),
                 child: Image.asset(
                   'images/weapons/${weapon.imageName}',
@@ -185,41 +180,38 @@ class InventoryScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 12), // Spacing between image and text
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  // Weapon Name + Enhancement + Transcendence
-                  '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]${isEquipped ? ' [E]' : ''}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+            const SizedBox(width: 12),
+            // Right Box (Info and Button)
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Top part of Right Box (Info)
+                  Text(
+                    '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]${isEquipped ? ' [E]' : ''}',
+                    style: TextStyle(
+                      color: WeaponData.getColorForRarity(weapon.rarity),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  // Rarity in Korean
-                  '등급: ${WeaponData.getKoreanRarity(weapon.rarity)}',
-                  style: TextStyle(
-                    color: WeaponData.getColorForRarity(
-                      weapon.rarity,
-                    ), // Use rarity color for text
-                    fontSize: 14,
+                  Text(
+                    '데미지: ${weapon.calculatedDamage.toStringAsFixed(0)}',
+                    style: const TextStyle(color: Colors.white70),
                   ),
-                ),
-                Text(
-                  '데미지: ${weapon.calculatedDamage.toStringAsFixed(0)}',
-                  style: const TextStyle(color: Colors.white70),
-                ),
-                Text(
-                  '치명타: ${weapon.criticalChance * 100}% / x${weapon.criticalDamage}',
-                  style: const TextStyle(color: Colors.white70),
-                ),
-              ],
+                  const SizedBox(height: 8),
+                  // Bottom part of Right Box (Button)
+                  if (!isEquipped)
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: ElevatedButton(
+                        onPressed: onEquip,
+                        child: const Text('장착'),
+                      ),
+                    ),
+                ],
+              ),
             ),
-            if (!isEquipped)
-              ElevatedButton(onPressed: onEquip, child: const Text('장착')),
           ],
         ),
       ),
@@ -237,9 +229,13 @@ class InventoryScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
-          // Changed from Stack
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            SizedBox(
+              width: 50,
+              height: 50,
+              child: Image.asset(box.imagePath, fit: BoxFit.contain),
+            ),
+            const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -256,39 +252,45 @@ class InventoryScreen extends StatelessWidget {
                     'Stage Level: ${box.stageLevel}',
                     style: const TextStyle(color: Colors.white70),
                   ),
-                  if (box.isSpecialBox)
-                    const Text(
-                      '★ 보스 상자 ★',
-                      style: TextStyle(
-                        color: Colors.yellow,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  // New description text
                   const SizedBox(height: 4),
-                  const Text(
-                    '골드, 강화석, 초월석, 그리고 무작위 무기를 획득할 수 있습니다.',
-                    style: TextStyle(color: Colors.white54, fontSize: 12),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: ElevatedButton(
+                      onPressed: onOpen,
+                      child: const Text('열기'),
+                    ),
                   ),
                 ],
               ),
             ),
-            ElevatedButton(onPressed: onOpen, child: const Text('열기')),
           ],
         ),
       ),
     );
   }
 
-  void _showGachaResultDialog(BuildContext context, String message) {
+  void _showGachaResultDialog(BuildContext context, Weapon newWeapon) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.grey[800],
           title: const Text('상자 개봉 결과', style: TextStyle(color: Colors.white)),
-          content: Text(message, style: const TextStyle(color: Colors.white70)),
+          content: RichText(
+            text: TextSpan(
+              style: const TextStyle(color: Colors.white70, fontSize: 16),
+              children: <TextSpan>[
+                TextSpan(
+                  text: '[${newWeapon.name}]',
+                  style: TextStyle(
+                    color: WeaponData.getColorForRarity(newWeapon.rarity),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const TextSpan(text: ' 획득!'),
+              ],
+            ),
+          ),
           actions: <Widget>[
             TextButton(
               child: const Text('확인', style: TextStyle(color: Colors.blue)),

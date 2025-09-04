@@ -31,22 +31,22 @@ TYPE_MAP = {
 
 # --- 무기 타입별 멀티플라이어 ---
 WEAPON_TYPE_MODIFIERS = {
-     "rapier":       {"damage_mult": 0.89, "speed_mult": 1.35, "accuracy_mult": 1.143, "crit_chance_mult": 2.000, "crit_mult_mult": 0.933},
-     "katana":       {"damage_mult": 1.11, "speed_mult": 1.15, "accuracy_mult": 1.071, "crit_chance_mult": 1.600, "crit_mult_mult": 1.067},
-     "sword":        {"damage_mult": 1.36, "speed_mult": 1.00, "accuracy_mult": 1.029, "crit_chance_mult": 1.000, "crit_mult_mult": 1.000},
-     "greatsword":   {"damage_mult": 1.98, "speed_mult": 0.75, "accuracy_mult": 0.929, "crit_chance_mult": 0.800, "crit_mult_mult": 1.267},
-     "scimitar":     {"damage_mult": 1.11, "speed_mult": 1.20, "accuracy_mult": 1.043, "crit_chance_mult": 1.200, "crit_mult_mult": 1.000},
-     "dagger":       {"damage_mult": 0.88, "speed_mult": 1.40, "accuracy_mult": 1.114, "crit_chance_mult": 2.400, "crit_mult_mult": 0.900},
-     "cleaver":      {"damage_mult": 1.52, "speed_mult": 0.90, "accuracy_mult": 1.000, "crit_chance_mult": 1.200, "crit_mult_mult": 1.133},
-     "battle_axe":    {"damage_mult": 1.72, "speed_mult": 0.85, "accuracy_mult": 0.943, "crit_chance_mult": 0.800, "crit_mult_mult": 1.233},
-     "warhammer":    {"damage_mult": 2.19, "speed_mult": 0.70, "accuracy_mult": 0.900, "crit_chance_mult": 0.600, "crit_mult_mult": 1.400},
-     "spear":        {"damage_mult": 1.18, "speed_mult": 1.05, "accuracy_mult": 1.114, "crit_chance_mult": 1.200, "crit_mult_mult": 1.033},
-     "staff":        {"damage_mult": 1.22, "speed_mult": 1.00, "accuracy_mult": 1.143, "crit_chance_mult": 1.400, "crit_mult_mult": 0.933},
-     "trident":      {"damage_mult": 1.34, "speed_mult": 0.95, "accuracy_mult": 1.086, "crit_chance_mult": 1.200, "crit_mult_mult": 1.067},
-     "mace":         {"damage_mult": 1.58, "speed_mult": 0.90, "accuracy_mult": 0.971, "crit_chance_mult": 0.800, "crit_mult_mult": 1.267},
-     "scythe":       {"damage_mult": 1.37, "speed_mult": 1.00, "accuracy_mult": 0.986, "crit_chance_mult": 1.400, "crit_mult_mult": 1.200},
-     "curved_sword": {"damage_mult": 1.22, "speed_mult": 1.10, "accuracy_mult": 1.029, "crit_chance_mult": 1.200, "crit_mult_mult": 1.067},
-     "nunchaku":     {"damage_mult": 0.96, "speed_mult": 1.35, "accuracy_mult": 1.057, "crit_chance_mult": 2.000, "crit_mult_mult": 0.933},
+     "rapier":       {"damage_mult": 0.90, "speed_mult": 1.30, "accuracy_mult": 1.120, "crit_chance_mult": 1.800, "crit_mult_mult": 0.950},
+     "katana":       {"damage_mult": 1.05, "speed_mult": 1.15, "accuracy_mult": 1.070, "crit_chance_mult": 1.500, "crit_mult_mult": 1.050},
+     "sword":        {"damage_mult": 1.20, "speed_mult": 1.00, "accuracy_mult": 1.030, "crit_chance_mult": 1.000, "crit_mult_mult": 1.000},
+     "greatsword":   {"damage_mult": 1.70, "speed_mult": 0.80, "accuracy_mult": 0.940, "crit_chance_mult": 0.800, "crit_mult_mult": 1.200},
+     "scimitar":     {"damage_mult": 1.05, "speed_mult": 1.15, "accuracy_mult": 1.040, "crit_chance_mult": 1.200, "crit_mult_mult": 1.000},
+     "dagger":       {"damage_mult": 0.85, "speed_mult": 1.35, "accuracy_mult": 1.100, "crit_chance_mult": 2.000, "crit_mult_mult": 0.900},
+     "cleaver":      {"damage_mult": 1.35, "speed_mult": 0.90, "accuracy_mult": 1.000, "crit_chance_mult": 1.200, "crit_mult_mult": 1.100},
+     "battle_axe":    {"damage_mult": 1.50, "speed_mult": 0.85, "accuracy_mult": 0.950, "crit_chance_mult": 0.800, "crit_mult_mult": 1.150},
+     "warhammer":    {"damage_mult": 1.80, "speed_mult": 0.75, "accuracy_mult": 0.920, "crit_chance_mult": 0.700, "crit_mult_mult": 1.300},
+     "spear":        {"damage_mult": 1.10, "speed_mult": 1.05, "accuracy_mult": 1.100, "crit_chance_mult": 1.200, "crit_mult_mult": 1.000},
+     "staff":        {"damage_mult": 1.10, "speed_mult": 1.00, "accuracy_mult": 1.120, "crit_chance_mult": 1.300, "crit_mult_mult": 0.950},
+     "trident":      {"damage_mult": 1.20, "speed_mult": 0.95, "accuracy_mult": 1.080, "crit_chance_mult": 1.200, "crit_mult_mult": 1.050},
+     "mace":         {"damage_mult": 1.40, "speed_mult": 0.90, "accuracy_mult": 0.970, "crit_chance_mult": 0.800, "crit_mult_mult": 1.200},
+     "scythe":       {"damage_mult": 1.25, "speed_mult": 1.00, "accuracy_mult": 0.990, "crit_chance_mult": 1.300, "crit_mult_mult": 1.150},
+     "curved_sword": {"damage_mult": 1.10, "speed_mult": 1.10, "accuracy_mult": 1.030, "crit_chance_mult": 1.200, "crit_mult_mult": 1.050},
+     "nunchaku":     {"damage_mult": 0.95, "speed_mult": 1.30, "accuracy_mult": 1.060, "crit_chance_mult": 1.800, "crit_mult_mult": 0.950},
 }
 
 
@@ -76,11 +76,11 @@ QUALITIES_DATA = [
 BASE_LEVEL_STATS = {
     level: {
         'baseDamage': 100 if level == 0 else int(6.21 * level + 5),
-        'criticalChance': 0.05,
+        'criticalChance': 0.1,
         'criticalDamage': 1.5,
         'speed': 1.0,
         'accuracy': 0.7
-    } for level in range(0, 1476, 25)
+    } for level in range(0, 2376, 25)
 }
 
 # --- 판매가 계산 공식 ---
@@ -142,94 +142,94 @@ def calculate_sell_price(level):
 
 # --- 무기 생성 함수 ---
 
+ROMAN_NUMERALS = ["", "Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ", "Ⅶ", "Ⅷ", "Ⅸ", "Ⅹ"]
+
+MAX_BASE_LEVEL = 2375 # New maximum base level
+
 def generate_weapons():
     temp_common_weapons = []
     temp_uncommon_weapons = []
     temp_rare_weapons = []
-    
-    # Iterate through each tier
-    for tier_data in TIERS_DATA:
-        tier_base_level = tier_data['base_level']
-        
-        # Determine the range of baseLevels for this tier
-        tier_end_level = 1475 # Default for the last tier
-        tier_index = TIERS_DATA.index(tier_data) # Re-add tier_index for tier_end_level calculation
-        if tier_index + 1 < len(TIERS_DATA):
-            tier_end_level = TIERS_DATA[tier_index + 1]['base_level'] - 25 # Changed to -50
-        
-        # Iterate through baseLevels within this tier's range, step 50
-        for current_base_level in range(tier_base_level, tier_end_level + 1, 25):
-            # Determine tier_data based on current_base_level (MOVED INSIDE)
-            selected_tier_data = TIERS_DATA[0] # Default to crude
-            for t_data in TIERS_DATA:
-                if current_base_level >= t_data['base_level']:
-                    selected_tier_data = t_data
-                else:
-                    break # Tiers are sorted by base_level, so we can break
-            tier_data = selected_tier_data
-            # Determine weapon group name (1군무기 or 2군무기) for the name string
-            group_name_selector = (current_base_level // 25) % 2
 
-            # Select weapon types based on the group_name_selector
-            selected_weapon_types = []
-            if group_name_selector == 0:
-                selected_weapon_types = FIRST_GROUP_WEAPONS
+    # Iterate through all base levels in steps of 25
+    for current_base_level in range(0, MAX_BASE_LEVEL + 1, 25):
+        # Determine the Roman numeral prefix
+        roman_numeral_index = current_base_level // 500
+        roman_prefix = ROMAN_NUMERALS[roman_numeral_index] if roman_numeral_index < len(ROMAN_NUMERALS) else ROMAN_NUMERALS[-1] # Fallback to last Roman numeral if index out of bounds
+
+        # Determine the tier_data (suffix) based on the effective base_level within a 500-level cycle
+        effective_base_level_in_cycle = current_base_level % 500
+        
+        selected_tier_data = TIERS_DATA[0] # Default to crude
+        for t_data in TIERS_DATA:
+            if effective_base_level_in_cycle >= t_data['base_level']:
+                selected_tier_data = t_data
             else:
-                selected_weapon_types = SECOND_GROUP_WEAPONS
-            
-            for type_ko in selected_weapon_types: # Iterate through selected weapon types
-                type_key = TYPE_MAP[type_ko]
-                base_stats = BASE_LEVEL_STATS.get(current_base_level)
-                if base_stats is None: continue
-                
-                type_modifiers = WEAPON_TYPE_MODIFIERS.get(type_key, {})
+                break # Tiers are sorted by base_level, so we can break
+        tier_data = selected_tier_data
 
-                # Generate weapons for each quality (녹슨, 평범한, 쓸만한)
-                for quality_data in QUALITIES_DATA:
-                    # Apply quality_data['stat_mult'] and type_modifiers here
-                    quality_mult = quality_data['stat_mult']
-                    
-                    base_damage = int(base_stats['baseDamage'] * quality_mult * type_modifiers.get('damage_mult', 1))
-                    speed = round(base_stats['speed'] * type_modifiers.get('speed_mult', 1), 2)
-                    critical_chance = min(1.0, round(base_stats['criticalChance'] * type_modifiers.get('crit_chance_mult', 1), 3))
-                    critical_damage = round(base_stats['criticalDamage'] * type_modifiers.get('crit_mult_mult', 1), 2)
-                    accuracy = min(1.0, round(base_stats['accuracy'] * type_modifiers.get('accuracy_mult', 1), 3))
+        # Determine weapon group name (1군무기 or 2군무기)
+        group_name_selector = (current_base_level // 25) % 2
 
-                    base_sell_price = int(calculate_sell_price(current_base_level) * quality_data['stat_mult'])
-                    
-                    weapon = {
-                        'name': f"{quality_data['name_ko']} {tier_data['name_ko']} {type_ko}", # Add group suffix to name
-                        'imageName': f"group1/{quality_data['name_en']}_{tier_data['name_en']}_{type_key}.png",
-                        'type': f'WeaponType.{type_key}',
-                        'baseLevel': current_base_level,
-                        'baseDamage': base_damage,
-                        'speed': speed,
-                        'criticalChance': critical_chance,
-                        'criticalDamage': critical_damage,
-                        'accuracy': accuracy,
-                        'defensePenetration': 0.0,
-                        'doubleAttackChance': 0.0,
-                        'baseSellPrice': base_sell_price,
-                        'enhancement': 0,
-                        'transcendence': 0,
-                        'investedGold': 0.0,
-                        'investedEnhancementStones': 0,
-                        'investedTranscendenceStones': 0,
-                        'skills': [],
-                        'description': f'A {quality_data["name_en"]} {tier_data["name_en"]} weapon.'
-                    }
-                    
-                    # Assign to temporary lists based on quality_data
-                    if quality_data['name_ko'] == "녹슨":
-                        weapon['rarity'] = 'Rarity.common'
-                        temp_common_weapons.append(weapon)
-                    elif quality_data['name_ko'] == "평범한":
-                        weapon['rarity'] = 'Rarity.uncommon'
-                        temp_uncommon_weapons.append(weapon)
-                    elif quality_data['name_ko'] == "쓸만한":
-                        weapon['rarity'] = 'Rarity.rare'
-                        temp_rare_weapons.append(weapon)
-    
+        selected_weapon_types = []
+        if group_name_selector == 0:
+            selected_weapon_types = FIRST_GROUP_WEAPONS
+        else:
+            selected_weapon_types = SECOND_GROUP_WEAPONS
+
+        for type_ko in selected_weapon_types:
+            type_key = TYPE_MAP[type_ko]
+            base_stats = BASE_LEVEL_STATS.get(current_base_level)
+            if base_stats is None: continue
+
+            type_modifiers = WEAPON_TYPE_MODIFIERS.get(type_key, {})
+
+            for quality_data in QUALITIES_DATA:
+                quality_mult = quality_data['stat_mult']
+
+                base_damage = int(base_stats['baseDamage'] * quality_mult * type_modifiers.get('damage_mult', 1))
+                speed = round(base_stats['speed'] * type_modifiers.get('speed_mult', 1), 2)
+                critical_chance = min(1.0, round(base_stats['criticalChance'] * type_modifiers.get('crit_chance_mult', 1), 3))
+                critical_damage = round(base_stats['criticalDamage'] * type_modifiers.get('crit_mult_mult', 1), 2)
+                accuracy = min(1.0, round(base_stats['accuracy'] * type_modifiers.get('accuracy_mult', 1), 3))
+
+                base_sell_price = int(calculate_sell_price(current_base_level) * quality_data['stat_mult'])
+
+                weapon_name = f"{roman_prefix} {quality_data['name_ko']} {tier_data['name_ko']} {type_ko}".strip()
+                weapon_name = " ".join(weapon_name.split()) # Handle double spaces if roman_prefix is empty
+
+                weapon = {
+                    'name': weapon_name,
+                    'imageName': f"group1/{quality_data['name_en']}_{tier_data['name_en']}_{type_key}.png",
+                    'type': f'WeaponType.{type_key}',
+                    'baseLevel': current_base_level,
+                    'baseDamage': base_damage,
+                    'speed': speed,
+                    'criticalChance': critical_chance,
+                    'criticalDamage': critical_damage,
+                    'accuracy': accuracy,
+                    'defensePenetration': 0.0,
+                    'doubleAttackChance': 0.0,
+                    'baseSellPrice': base_sell_price,
+                    'enhancement': 0,
+                    'transcendence': 0,
+                    'investedGold': 0.0,
+                    'investedEnhancementStones': 0,
+                    'investedTranscendenceStones': 0,
+                    'skills': [],
+                    'description': f'{weapon_name} 입니다.'
+                }
+
+                if quality_data['name_ko'] == "녹슨":
+                    weapon['rarity'] = 'Rarity.common'
+                    temp_common_weapons.append(weapon)
+                elif quality_data['name_ko'] == "평범한":
+                    weapon['rarity'] = 'Rarity.uncommon'
+                    temp_uncommon_weapons.append(weapon)
+                elif quality_data['name_ko'] == "쓸만한":
+                    weapon['rarity'] = 'Rarity.rare'
+                    temp_rare_weapons.append(weapon)
+
     # Select the first 160 weapons for each rarity and re-assign IDs
     common_weapons = []
     uncommon_weapons = []

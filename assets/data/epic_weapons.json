@@ -1,6 +1,6 @@
 [
   {
-    "id": 2200,
+    "id": 30000,
     "name": "벌새",
     "imageName": "epic/rapier/hummingbird.png",
     "rarity": "Rarity.epic",
@@ -35,7 +35,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2201,
+    "id": 30001,
     "name": "하얀 송곳니",
     "imageName": "epic/rapier/white_fang.png",
     "rarity": "Rarity.epic",
@@ -77,7 +77,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2202,
+    "id": 30002,
     "name": "벌집",
     "imageName": "epic/rapier/hive.png",
     "rarity": "Rarity.epic",
@@ -117,7 +117,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2203,
+    "id": 30003,
     "name": "아머 브레이커",
     "imageName": "epic/rapier/armor_breaker.png",
     "rarity": "Rarity.epic",
@@ -159,7 +159,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2204,
+    "id": 30004,
     "name": "독아",
     "imageName": "epic/rapier/venom_fang.png",
     "rarity": "Rarity.epic",
@@ -211,7 +211,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2205,
+    "id": 30005,
     "name": "일점돌파",
     "imageName": "epic/rapier/pinpoint_pierce.png",
     "rarity": "Rarity.epic",
@@ -246,7 +246,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2206,
+    "id": 30006,
     "name": "복제된 신성한 일침",
     "imageName": "epic/rapier/replicated_divine_pierce.png",
     "rarity": "Rarity.epic",
@@ -309,7 +309,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2300,
+    "id": 31000,
     "name": "후발주자",
     "imageName": "epic/sword/latecomer.png",
     "rarity": "Rarity.epic",
@@ -351,7 +351,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2301,
+    "id": 31001,
     "name": "정체불명",
     "imageName": "epic/sword/mysterious_blade.png",
     "rarity": "Rarity.epic",
@@ -393,7 +393,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2302,
+    "id": 31002,
     "name": "위풍당당",
     "imageName": "epic/sword/grand_blade.png",
     "rarity": "Rarity.epic",
@@ -448,7 +448,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2303,
+    "id": 31003,
     "name": "아머 브레이커",
     "imageName": "epic/sword/armor_breaker.png",
     "rarity": "Rarity.epic",
@@ -490,7 +490,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2304,
+    "id": 31004,
     "name": "이무기",
     "imageName": "epic/sword/fang_of_ascension.png",
     "rarity": "Rarity.epic",
@@ -526,7 +526,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2305,
+    "id": 31005,
     "name": "커타나",
     "imageName": "epic/rapier/sword/epic/curtana.png",
     "rarity": "Rarity.epic",
@@ -565,7 +565,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2306,
+    "id": 31006,
     "name": "복제된 듀랜달",
     "imageName": "epic/rapier/replicated_pragaragh.png",
     "rarity": "Rarity.epic",
@@ -628,7 +628,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2307,
+    "id": 31007,
     "name": "오만",
     "imageName": "epic/rapier/sword/epic/arrogance.png",
     "rarity": "Rarity.epic",
@@ -667,7 +667,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2500,
+    "id": 32000,
     "name": "클레이모어",
     "imageName": "epic/greatsword/claymore.png",
     "rarity": "Rarity.epic",
@@ -706,7 +706,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2501,
+    "id": 32001,
     "name": "압도",
     "imageName": "epic/greatsword/overwhelm.png",
     "rarity": "Rarity.epic",
@@ -748,7 +748,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2502,
+    "id": 32002,
     "name": "크로코다일",
     "imageName": "epic/greatsword/crocodile.png",
     "rarity": "Rarity.epic",
@@ -790,7 +790,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2503,
+    "id": 32003,
     "name": "아머 브레이커",
     "imageName": "epic/greatsword/armor_breaker.png",
     "rarity": "Rarity.epic",
@@ -832,7 +832,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2504,
+    "id": 32004,
     "name": "플람",
     "imageName": "epic/greatsword/plam.png",
     "rarity": "Rarity.epic",
@@ -870,7 +870,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2505,
+    "id": 32005,
     "name": "4번타자",
     "imageName": "epic/greatsword/batting4.png",
     "rarity": "Rarity.epic",
@@ -906,7 +906,59 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2506,
+    "id": 32006,
+    "name": "아이언 레퀴엠",
+    "imageName": "epic/greatsword/iron_requiem.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.greatsword",
+    "baseLevel": 400,
+    "baseDamage": 9320,
+    "criticalChance": 0.04,
+    "criticalDamage": 1.9,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.05,
+    "speed": 0.75,
+    "baseSellPrice": 1066000,
+    "skills": [
+      {
+        "skill_name": "철의 노래",
+        "skill_type": "active",
+        "skill_description": "검을 휘두를 때마다 강렬한 금속성이 울려 퍼집니다. (공격 시 20% 확률로 적에게 혼란 상태 부여)",
+        "skill_effect": [
+          {
+            "effect_name": "applyConfusion",
+            "params": {
+              "chance": 0.2,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 0
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "철의 노래Ⅱ",
+        "skill_type": "passive",
+        "skill_description": "금속의 울림에 휘청인 적에게는 더욱 치명적인 일격이 가해집니다. (혼란 상태의 적에게 가하는 피해 50% 증가)",
+        "skill_effect": [
+          {
+            "effect_name": "increaseDamageToConfused",
+            "params": { "damageMultiplier": 1.5 }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.65,
+    "description": "강철이 울부짖듯 울려 퍼지는 대검. 검을 휘두를 때마다 전장의 모든 이가 그 쇳소리에 숨을 멈춥니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 100,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 32007,
     "name": "복제된 프라가라흐",
     "imageName": "epic/greatsword/replicated_pragaragh.png",
     "rarity": "Rarity.epic",
@@ -969,7 +1021,7 @@
     "investedTranscendenceStones": 0
   },
   {
-    "id": 2507,
+    "id": 32008,
     "name": "아이스브링어",
     "imageName": "epic/greatsword/icebringer.png",
     "rarity": "Rarity.epic",
@@ -1020,6 +1072,325 @@
     "transcendence": 0,
     "investedGold": 0.0,
     "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33000,
+    "name": "백연",
+    "imageName": "epic/katana/baekyeon.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 0,
+    "baseDamage": 290,
+    "criticalChance": 0.05,
+    "criticalDamage": 1.5,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 9800,
+    "skills": [
+      {
+        "skill_name": "백연참",
+        "skill_type": "passive",
+        "skill_description": "흰 연기처럼 사라지는 검격으로 상대방에게 빗나가지 않는 공격을 가합니다. (적중률 100% 상승)",
+        "skill_effect": [
+          {
+            "effect_name": "increaseStat",
+            "params": { "stat": "accuracy", "value": 1.0 }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.8,
+    "description": "흰 연기처럼 사라지는 예리한 일격을 담은 카타나. 예측할 수 없는 검격은 결코 빗나가지 않습니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 5,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33001,
+    "name": "홍앵",
+    "imageName": "epic/katana/hongaeng.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 50,
+    "baseDamage": 710,
+    "criticalChance": 0.05,
+    "criticalDamage": 1.5,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "accuracy": 0.65,
+    "baseSellPrice": 18500,
+    "skills": [
+      {
+        "skill_name": "벚꽃베기",
+        "skill_type": "passive",
+        "skill_description": "벚꽃이 흩날리듯 빠르게 움직이는 칼날이 적을 찌릅니다. (치명타 확률이 25% 증가하고, 공격 속도가 50% 상승합니다.)",
+        "skill_effect": [
+          {
+            "effect_name": "increaseStat",
+            "params": { "stat": "criticalChance", "value": 0.25 }
+          },
+          {
+            "effect_name": "increaseStat",
+            "params": { "stat": "speed", "value": 0.5 }
+          }
+        ]
+      }
+    ],
+    "description": "붉게 빛나는 검신이 특징인 검. 떨어지는 벚꽃잎도 벨 수 있을 정도로 빠른 공격이 가능합니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 15,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33002,
+    "name": "전율",
+    "imageName": "epic/katana/shockblade.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 100,
+    "baseDamage": 2740,
+    "criticalChance": 0.06,
+    "criticalDamage": 1.7,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.05,
+    "speed": 1.1,
+    "baseSellPrice": 122000,
+    "accuracy": 0.7,
+    "skills": [
+      {
+        "skill_name": "감전",
+        "skill_type": "active",
+        "trigger": "onHit",
+        "skill_description": "공격 시 15% 확률로 번개의 힘이 담긴 일격으로 적에게 감전 상태를 부여합니다. (중첩 불가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyShock",
+            "params": {
+              "chance": 0.15,
+              "duration": 3,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 0
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "방전",
+        "skill_type": "passive",
+        "skill_description": "감전 상태의 적에게 입히는 피해가 50% 증가합니다.",
+        "skill_effect": [
+          {
+            "effect_name": "increaseDamageToShocked",
+            "params": { "damageMultiplier": 1.5 }
+          }
+        ]
+      }
+    ],
+    "description": "고요 속에서 들려오는 전류의 진동. 이 카타나는 감전된 적을 흔들림 없이 마무리합니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 25,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33003,
+    "name": "은빛날개",
+    "imageName": "epic/katana/silverwings.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 200,
+    "baseDamage": 5400,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.6,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.3,
+    "baseSellPrice": 75000,
+    "skills": [
+      {
+        "skill_name": "고속검",
+        "skill_type": "passive",
+        "skill_description": "매우 빠른 속도로 검격을 휘두릅니다. 더블어택 확률이 15% 증가합니다.",
+        "skill_effect": [
+          {
+            "effect_name": "increaseDoubleAttackChance",
+            "params": { "value": 0.15 }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.8,
+    "description": "은빛처럼 빠르고 날렵한 검격을 자랑하는 카타나입니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33004,
+    "name": "시라유키",
+    "imageName": "epic/katana/shirayuki.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 300,
+    "baseDamage": 7100,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.6,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.05,
+    "speed": 1.2,
+    "baseSellPrice": 132000,
+    "skills": [
+      {
+        "skill_name": "눈꽃",
+        "skill_type": "active",
+        "skill_description": "무기에 깃든 서늘한 냉기가 적을 얼어붙게 만듭니다. (공격 시 15% 확률로 5초간 빙결 상태 부여, 중첩 불가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyFreeze",
+            "params": {
+              "chance": 0.15,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 0
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.75,
+    "description": "냉기를 담은 검신이 특징인 카타나. 휘두를 때마다 하얀 서리가 날리며, 검격에 맞은 적은 얼어붙게 됩니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33005,
+    "name": "혈매",
+    "imageName": "epic/katana/hyulmae.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 400,
+    "baseDamage": 8900,
+    "criticalChance": 0.04,
+    "criticalDamage": 1.9,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 1080000,
+    "skills": [
+      {
+        "skill_name": "출혈 유도",
+        "skill_type": "active",
+        "skill_description": "공격 시 10% 확률로 적에게 5초간 출혈 상태를 부여합니다. (중첩 불가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyBleed",
+            "params": {
+              "chance": 0.1,
+              "duration": 5,
+              "damagePerSecond": 0,
+              "stackable": false,
+              "trigger": "onHit",
+              "cooldown": 0
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "출혈 타격",
+        "skill_type": "passive",
+        "skill_description": "출혈 상태의 적에게 가하는 피해가 50% 증가합니다.",
+        "skill_effect": [
+          {
+            "effect_name": "increaseDamageToStatusEffectTarget",
+            "params": { "statusEffect": "bleed", "damageMultiplier": 1.5 }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.65,
+    "description": "붉은 매화 문양이 새겨진 카타나. 이 검에 베이면 곧 피를 쏟게 됩니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33006,
+    "name": "복제된 후츠노미타마",
+    "imageName": "others/replicated_hutsunomitama.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 500,
+    "baseDamage": 6400,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.5,
+    "defensePenetration": 10,
+    "doubleAttackChance": 0.05,
+    "speed": 1.0,
+    "baseSellPrice": 1800000,
+    "skills": [
+      {
+        "skill_name": "제령(복제)",
+        "skill_type": "passive",
+        "skill_description": "이 무기는 선과 악을 가립니다. (언데드와 데몬에게 30% 추가 피해, 신성교와 천사에게는 30% 피해 감소)",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "undead", "multiplier": 1.3 }
+          },
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "demon", "multiplier": 1.3 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "divine", "multiplier": 0.7 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "angel", "multiplier": 0.7 }
+          }
+        ]
+      },
+      {
+        "skill_name": "신검(복제)",
+        "skill_type": "active",
+        "skill_description": "복제된 후츠노미타마가 발현하는 신비로운 일격입니다. (공격 시 10% 확률로 9999 고정 피해, 쿨타임 5초)",
+        "skill_effect": [
+          {
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.1,
+              "damage": 9999,
+              "cooldown": 5,
+              "trigger": "onHit"
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 1.0,
+    "description": "동쪽 바다를 품은 섬나라에서 전해 내려오는 《후츠노미타마》의 복제품. 진품에는 미치지 못하지만, 그 신비로운 힘을 이어받았습니다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   }
 ]
