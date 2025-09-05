@@ -29,11 +29,11 @@ class _WeaponFilterDialogState extends State<WeaponFilterDialog> {
   String _getRarityKoreanName(Rarity rarity) {
     switch (rarity) {
       case Rarity.common:
-        return '흔함';
+        return '커먼';
       case Rarity.uncommon:
-        return '평범';
+        return '언커먼';
       case Rarity.rare:
-        return '희귀';
+        return '레어';
       case Rarity.unique:
         return '유니크';
       case Rarity.epic:

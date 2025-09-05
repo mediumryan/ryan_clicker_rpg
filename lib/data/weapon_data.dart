@@ -44,11 +44,11 @@ class WeaponData {
   static String getKoreanRarity(Rarity rarity) {
     switch (rarity) {
       case Rarity.common:
-        return '흔함';
+        return '커먼';
       case Rarity.uncommon:
-        return '평범';
+        return '언커먼';
       case Rarity.rare:
-        return '희귀';
+        return '레어';
       case Rarity.unique:
         return '유니크';
       case Rarity.epic:
@@ -338,16 +338,16 @@ class WeaponData {
     return [
       {'text': '무기 드롭 확률:', 'color': Colors.white},
       {
-        'text': '\n흔함: 50%',
+        'text': '\n언커먼: 50%',
         'color': WeaponData.getColorForRarity(Rarity.common),
       },
       {
-        'text': '\n평범: 25%',
+        'text': '\n커먼: 25%',
         'color': WeaponData.getColorForRarity(Rarity.uncommon),
-      }, // Changed to 평범
-      {'text': '\n희귀: 15%', 'color': WeaponData.getColorForRarity(Rarity.rare)},
+      },
+      {'text': '\n레어: 15%', 'color': WeaponData.getColorForRarity(Rarity.rare)},
       {
-        'text': '\n고유: 7%',
+        'text': '\n유니크: 7%',
         'color': WeaponData.getColorForRarity(Rarity.unique),
       },
       {'text': '\n에픽: 2%', 'color': WeaponData.getColorForRarity(Rarity.epic)},

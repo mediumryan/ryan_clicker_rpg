@@ -318,7 +318,7 @@ class InventoryScreen extends StatelessWidget {
     final List<Map<String, dynamic>> gachaBoxInfo = [
       {
         'name': '흔한 무기상자',
-        'description': '획득한 스테이지 기준 레벨의 흔함~레전드 무기가 랜덤으로 1개 들어있습니다.',
+        'description': '획득한 스테이지 기준 레벨의 언커먼~레전드 무기가 랜덤으로 1개 들어있습니다.',
         'probabilities': [
           {'rarity': Rarity.common, 'percent': 50.0},
           {'rarity': Rarity.uncommon, 'percent': 30.0},
@@ -330,7 +330,7 @@ class InventoryScreen extends StatelessWidget {
       },
       {
         'name': '평범한 무기상자',
-        'description': '획득한 스테이지 기준 레벨의 평범~레전드 무기가 랜덤으로 1개 들어있습니다.',
+        'description': '획득한 스테이지 기준 레벨의 커먼~레전드 무기가 랜덤으로 1개 들어있습니다.',
         'probabilities': [
           {'rarity': Rarity.uncommon, 'percent': 45.0},
           {'rarity': Rarity.rare, 'percent': 30.0},
@@ -351,7 +351,7 @@ class InventoryScreen extends StatelessWidget {
       },
       {
         'name': '빛나는 무기상자',
-        'description': '획득한 스테이지 기준 레벨의 언커먼~레전드 무기가 랜덤으로 1개 들어있습니다.',
+        'description': '획득한 스테이지 기준 레벨의 커먼~레전드 무기가 랜덤으로 1개 들어있습니다.',
         'probabilities': [
           {'rarity': Rarity.uncommon, 'percent': 30.0},
           {'rarity': Rarity.rare, 'percent': 35.0},
@@ -362,7 +362,7 @@ class InventoryScreen extends StatelessWidget {
       },
       {
         'name': '신비로운 무기상자',
-        'description': '획득한 스테이지 기준 레벨의 평범~갓 무기가 랜덤으로 1개 들어있습니다.',
+        'description': '획득한 스테이지 기준 레벨의 언커먼~데미갓 무기가 랜덤으로 1개 들어있습니다.',
         'probabilities': [
           {'rarity': Rarity.uncommon, 'percent': 30.0},
           {'rarity': Rarity.rare, 'percent': 25.0},
@@ -374,7 +374,7 @@ class InventoryScreen extends StatelessWidget {
       },
       {
         'name': '신성한 기운이 감도는 무기상자',
-        'description': '획득한 스테이지 기준 레벨의 언커먼~갓 무기가 랜덤으로 1개 들어있습니다.',
+        'description': '획득한 스테이지 기준 레벨의 커먼~갓 무기가 랜덤으로 1개 들어있습니다.',
         'probabilities': [
           {'rarity': Rarity.uncommon, 'percent': 10.0},
           {'rarity': Rarity.rare, 'percent': 25.0},
@@ -387,7 +387,7 @@ class InventoryScreen extends StatelessWidget {
       },
       {
         'name': '무기 갬블상자',
-        'description': '현재 클리어한 최대 스테이지 기준 레벨의 흔함~갓 무기가 랜덤으로 1개 들어있습니다.',
+        'description': '현재 클리어한 최대 스테이지 기준 레벨의 커먼~갓 무기가 랜덤으로 1개 들어있습니다.',
         'probabilities': [
           {'rarity': Rarity.common, 'percent': 15.0},
           {'rarity': Rarity.uncommon, 'percent': 20.0},
@@ -408,7 +408,7 @@ class InventoryScreen extends StatelessWidget {
       },
       {
         'name': '에픽 등급 무기상자',
-        'description': '획득한 스테이지 기준 레벨의 희귀 등급 무기가 랜덤으로 1개 들어있습니다.',
+        'description': '획득한 스테이지 기준 레벨의 에픽 등급 무기가 랜덤으로 1개 들어있습니다.',
         'probabilities': [
           {'rarity': Rarity.epic, 'percent': 100.0},
         ],
@@ -428,7 +428,7 @@ class InventoryScreen extends StatelessWidget {
         ],
       },
       {
-        'name': '신 등급 무기상자',
+        'name': '갓 등급 무기상자',
         'description': '획득한 스테이지 기준 레벨의 갓 등급 무기가 랜덤으로 1개 들어있습니다.',
         'probabilities': [
           {'rarity': Rarity.god, 'percent': 100.0},

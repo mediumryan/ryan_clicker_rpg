@@ -89,7 +89,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
 
           // Filter out the equipped weapon from inventory for selling/disassembling
           final inventoryWeapons = game.player.inventory
-              .where((w) => w.id != equippedWeapon.id)
+              .where((w) => w.instanceId != equippedWeapon.instanceId)
               .toList();
 
           return Padding(
@@ -221,6 +221,10 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                       style: TextStyle(color: Colors.white70, fontSize: 12),
                     ),
                   ),
+
+                  // Bulk Sell Section
+                  _buildBulkSellSection(context, game, inventoryWeapons),
+
                   // Inventory List for Selling/Disassembling
                   ListView.builder(
                     shrinkWrap:
@@ -382,7 +386,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      if (game.player.equippedWeapon.id != weapon.id)
+                      if (game.player.equippedWeapon.instanceId != weapon.instanceId)
                         ElevatedButton(
                           onPressed: () {
                             game.equipWeapon(weapon);
@@ -396,10 +400,17 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                       const SizedBox(width: 8),
                       ElevatedButton(
                         onPressed: () {
+                          final double sellPrice = weapon.baseSellPrice +
+                              (weapon.investedGold / 3) +
+                              (weapon.investedEnhancementStones * 5000 / 3) +
+                              (weapon.investedTranscendenceStones * 50000 / 3);
+
+                          final content = '${weapon.name}을(를) 정말로 판매하시겠습니까?\n\n판매금액: ${NumberFormat('#,###').format(sellPrice)}G';
+
                           _showConfirmationDialog(
                             context,
                             '판매',
-                            '${weapon.name}을(를) 정말로 판매하시겠습니까?',
+                            content,
                             () {
                               final message = game.sellWeapon(weapon);
                               _showResultDialog(context, message);
@@ -599,5 +610,94 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
         );
       },
     );
+  }
+
+  Widget _buildBulkSellSection(
+    BuildContext context,
+    GameProvider game,
+    List<Weapon> inventoryWeapons,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildBulkSellButton(context, game, inventoryWeapons, [
+            Rarity.common,
+          ], '커먼'),
+          _buildBulkSellButton(context, game, inventoryWeapons, [
+            Rarity.common,
+            Rarity.uncommon,
+          ], '커먼~언커먼'),
+          _buildBulkSellButton(context, game, inventoryWeapons, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ], '커먼~레어'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBulkSellButton(
+    BuildContext context,
+    GameProvider game,
+    List<Weapon> inventoryWeapons,
+    List<Rarity> raritiesToSell,
+    String buttonText,
+  ) {
+    final rarityColor = WeaponData.getColorForRarity(raritiesToSell.last);
+
+    return ElevatedButton(
+      onPressed: () {
+        _showBulkSellConfirmationDialog(
+          context,
+          game,
+          inventoryWeapons,
+          raritiesToSell,
+          buttonText,
+        );
+      },
+      style: ElevatedButton.styleFrom(
+        foregroundColor: rarityColor,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      ),
+      child: Text('일괄판매'),
+    );
+  }
+
+  void _showBulkSellConfirmationDialog(
+    BuildContext context,
+    GameProvider game,
+    List<Weapon> inventoryWeapons,
+    List<Rarity> raritiesToSell,
+    String rarityText,
+  ) {
+    final weaponsToSell = inventoryWeapons
+        .where((w) => raritiesToSell.contains(w.rarity))
+        .toList();
+
+    if (weaponsToSell.isEmpty) {
+      _showResultDialog(context, '판매할 $rarityText 등급의 무기가 없습니다.');
+      return;
+    }
+
+    final double totalSellPrice = weaponsToSell.fold(
+      0,
+      (sum, weapon) =>
+          sum +
+          (weapon.baseSellPrice +
+              (weapon.investedGold / 3) +
+              (weapon.investedEnhancementStones * 5000 / 3) +
+              (weapon.investedTranscendenceStones * 50000 / 3)),
+    );
+
+    final content =
+        '현재 보유한 $rarityText 등급의 모든 무기 (${weaponsToSell.length}개)를 일괄판매하시겠습니까?\n\n판매금액: ${NumberFormat('#,###').format(totalSellPrice)}G';
+
+    _showConfirmationDialog(context, '일괄 판매', content, () {
+      final message = game.sellMultipleWeapons(weaponsToSell);
+      _showResultDialog(context, message);
+    });
   }
 }

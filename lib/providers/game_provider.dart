@@ -398,9 +398,10 @@ class GameProvider with ChangeNotifier {
   }
 
   void equipWeapon(Weapon weaponToEquip) {
-    if (_player.equippedWeapon.id == weaponToEquip.id) return;
+    if (_player.equippedWeapon.instanceId == weaponToEquip.instanceId) return;
 
-    final index = _player.inventory.indexWhere((w) => w.id == weaponToEquip.id);
+    final index =
+        _player.inventory.indexWhere((w) => w.instanceId == weaponToEquip.instanceId);
     if (index != -1) {
       final oldInventoryWeapon = _player.inventory[index];
       _player.inventory.removeAt(index);
@@ -418,7 +419,7 @@ class GameProvider with ChangeNotifier {
 
   String enhanceEquippedWeapon() {
     final weapon = _player.equippedWeapon;
-    if (weapon.id == 0) return '맨손은 강화할 수 없습니다.';
+    if (weapon.instanceId == 'bare_hands') return '맨손은 강화할 수 없습니다.';
     if (weapon.enhancement >= weapon.maxEnhancement) return '이미 최대 강화 단계입니다.';
 
     final rarityMultiplier = weapon.rarity.index + 1;
@@ -481,7 +482,7 @@ class GameProvider with ChangeNotifier {
   String transcendEquippedWeapon() {
     final weapon = _player.equippedWeapon;
     final rarityMultiplier = weapon.rarity.index + 1;
-    if (weapon.id == 0) {
+    if (weapon.instanceId == 'bare_hands') {
       return '맨손은 초월할 수 없습니다.';
     }
     if (weapon.transcendence >= weapon.maxTranscendence) {
@@ -774,7 +775,7 @@ class GameProvider with ChangeNotifier {
   }
 
   String sellWeapon(Weapon weaponToSell) {
-    if (_player.equippedWeapon.id == weaponToSell.id) {
+    if (_player.equippedWeapon.instanceId == weaponToSell.instanceId) {
       return '장착 중인 무기는 판매할 수 없습니다.';
     }
     final sellPrice =
@@ -786,7 +787,7 @@ class GameProvider with ChangeNotifier {
     _player.gold += sellPrice;
     _player.enhancementStones += returnedEnhancementStones;
     _player.transcendenceStones += returnedTranscendenceStones;
-    _player.inventory.removeWhere((w) => w.id == weaponToSell.id);
+    _player.inventory.removeWhere((w) => w.instanceId == weaponToSell.instanceId);
     notifyListeners();
     _saveGame();
     String message = '${weaponToSell.name} 판매 완료!\n';
@@ -800,8 +801,55 @@ class GameProvider with ChangeNotifier {
     return message;
   }
 
+  String sellMultipleWeapons(List<Weapon> weaponsToSell) {
+    if (weaponsToSell.isEmpty) {
+      return '판매할 무기가 없습니다.';
+    }
+
+    double totalGold = 0;
+    int totalEnhancementStones = 0;
+    int totalTranscendenceStones = 0;
+    int soldCount = 0;
+
+    // Create a list of IDs to remove to avoid concurrent modification issues
+    final weaponIdsToSell = weaponsToSell.map((w) => w.instanceId).toSet();
+
+    for (final weapon in weaponsToSell) {
+      final sellPrice =
+          weapon.baseSellPrice + (weapon.investedGold / 3);
+      final returnedEnhancementStones =
+          (weapon.investedEnhancementStones / 3).toInt();
+      final returnedTranscendenceStones =
+          (weapon.investedTranscendenceStones / 3).toInt();
+
+      totalGold += sellPrice;
+      totalEnhancementStones += returnedEnhancementStones;
+      totalTranscendenceStones += returnedTranscendenceStones;
+      soldCount++;
+    }
+
+    _player.inventory.removeWhere((w) => weaponIdsToSell.contains(w.instanceId));
+
+    _player.gold += totalGold;
+    _player.enhancementStones += totalEnhancementStones;
+    _player.transcendenceStones += totalTranscendenceStones;
+
+    notifyListeners();
+    _saveGame();
+
+    String message = '$soldCount개의 무기 일괄 판매 완료!\n';
+    message += '골드 ${NumberFormat('#,###').format(totalGold)} 획득!\n';
+    if (totalEnhancementStones > 0) {
+      message += '강화석 $totalEnhancementStones개 획득!\n';
+    }
+    if (totalTranscendenceStones > 0) {
+      message += '초월석 $totalTranscendenceStones개 획득!\n';
+    }
+    return message;
+  }
+
   String disassembleWeapon(Weapon weaponToDisassemble) {
-    if (_player.equippedWeapon.id == weaponToDisassemble.id) {
+    if (_player.equippedWeapon.instanceId == weaponToDisassemble.instanceId) {
       return '장착 중인 무기는 분해할 수 없습니다.';
     }
     final returnedEnhancementStones =
@@ -810,7 +858,8 @@ class GameProvider with ChangeNotifier {
         weaponToDisassemble.investedTranscendenceStones;
     _player.enhancementStones += returnedEnhancementStones;
     _player.transcendenceStones += returnedTranscendenceStones;
-    _player.inventory.removeWhere((w) => w.id == weaponToDisassemble.id);
+    _player.inventory
+        .removeWhere((w) => w.instanceId == weaponToDisassemble.instanceId);
     notifyListeners();
     _saveGame();
     String message = '${weaponToDisassemble.name} 분해 완료!\n';

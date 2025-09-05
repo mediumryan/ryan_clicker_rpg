@@ -1,5 +1,8 @@
 import 'dart:math';
 import 'package:ryan_clicker_rpg/data/weapon_data.dart';
+import 'package:uuid/uuid.dart';
+
+var uuid = const Uuid();
 
 enum Rarity { common, uncommon, rare, unique, epic, legend, demigod, god }
 
@@ -38,6 +41,7 @@ class TranscendenceBonus {
 }
 
 class Weapon {
+  final String instanceId;
   final int id;
   final String name;
   final String imageName;
@@ -118,6 +122,7 @@ class Weapon {
   }
 
   Weapon({
+    required this.instanceId,
     required this.id,
     required this.name,
     required this.imageName,
@@ -143,6 +148,7 @@ class Weapon {
   }) : skillStacks = skillStacks ?? {};
 
   Map<String, dynamic> toJson() => {
+        'instanceId': instanceId,
         'id': id,
         'name': name,
         'imageName': imageName,
@@ -178,6 +184,7 @@ class Weapon {
     );
 
     return Weapon(
+      instanceId: json['instanceId'] ?? uuid.v4(),
       id: json['id'],
       name: json['name'],
       imageName: json['imageName'] ?? '',
@@ -226,6 +233,7 @@ class Weapon {
 
   factory Weapon.startingWeapon() {
     return Weapon(
+      instanceId: uuid.v4(),
       id: 1,
       name: '녹슨 조잡한 레이피어',
       imageName: 'group1/rusty_crude_rapier.png',
@@ -247,6 +255,7 @@ class Weapon {
 
   factory Weapon.bareHands() {
     return Weapon(
+      instanceId: 'bare_hands', // A fixed unique ID for bare hands
       id: 0,
       name: '맨손',
       imageName: 'bare_hands.png',
@@ -286,6 +295,7 @@ class Weapon {
     Map<String, int>? skillStacks,
   }) {
     return Weapon(
+      instanceId: uuid.v4(), // Always generate a new UUID for a copy
       id: id ?? this.id,
       name: name ?? this.name,
       imageName: imageName ?? this.imageName,
