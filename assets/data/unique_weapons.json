@@ -1,8 +1,8 @@
 [
   {
     "id": 10000,
-    "name": "엄마의 잔소리",
-    "imageName": "unique/rapier/moms_nagging.png",
+    "name": "바늘검",
+    "imageName": "unique/rapier/10000.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 0,
@@ -11,29 +11,11 @@
     "criticalDamage": 1.42,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 1.3,
+    "speed": 1.5,
     "baseSellPrice": 3000,
-    "skills": [
-      {
-        "skill_name": "잔소리 퍼붓기",
-        "skill_type": "active",
-        "skill_description": "정신을 차릴 수 없도록 잔소리를 퍼붓는다. (공격 시 2.5% 확률로 3초간 혼란 효과 부여, 중첩 불가)",
-        "skill_effect": [
-          {
-            "effect_name": "applyConfusion",
-            "params": {
-              "chance": 0.025,
-              "stackable": false,
-              "duration": 3,
-              "trigger": "onHit",
-              "cooldown": 0
-            }
-          }
-        ]
-      }
-    ],
+    "skills": [],
     "accuracy": 0.79,
-    "description": "엄마의 잔소리처럼 빠르고 끈질긴 공격을 퍼붓는 레이피어다. 쉴 새 없는 공격은 상대에게 혼란을 유발한다.",
+    "description": "바늘과 같이 얇고 뾰족한 레이피어. 빠른 공격이 가능하다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -43,7 +25,7 @@
   {
     "id": 10001,
     "name": "소심한 복수",
-    "imageName": "unique/rapier/petty_revenge.png",
+    "imageName": "unique/rapier/10001.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 50,
@@ -56,9 +38,9 @@
     "baseSellPrice": 10000,
     "skills": [
       {
-        "skill_name": "가랑비",
+        "skill_name": "소심한 찌르기",
         "skill_type": "active",
-        "skill_description": "가랑비처럼 조용히, 그러나 끈질기게 복수한다. (공격 시 2.5% 확률로 2연타 공격)",
+        "skill_description": "소심하게 상대방을 한 번 더 공격해본다. (공격 시 2.5% 확률로 1회 추가 타격)",
         "skill_effect": [
           {
             "effect_name": "applyMultiHit",
@@ -82,8 +64,8 @@
   },
   {
     "id": 10002,
-    "name": "선한 욕심",
-    "imageName": "unique/rapier/good_greed.png",
+    "name": "장식용 레이피어",
+    "imageName": "unique/rapier/10002.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 100,
@@ -96,9 +78,9 @@
     "baseSellPrice": 150000,
     "skills": [
       {
-        "skill_name": "의적",
+        "skill_name": "관상용 무구",
         "skill_type": "passive",
-        "skill_description": "약자를 돕기 위해 부패한 자들의 재산을 가져온다. (골드 획득량 20% 증가)",
+        "skill_description": "이 무기를 소지하는 것 만으로도 행운을 불러온다.(골드 획득량 +20%)",
         "skill_effect": [
           {
             "effect_name": "applyGoldGainBoost",
@@ -108,7 +90,7 @@
       }
     ],
     "accuracy": 0.79,
-    "description": "의적 루퐁이 애용했던 레이피어다. 소유자에게 부를 가져다준다고 한다.",
+    "description": "고급 장식이 달려있는 관상용 레이피어. 골드 획득량이 소폭 증가한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -118,7 +100,7 @@
   {
     "id": 10003,
     "name": "찔레꽃",
-    "imageName": "unique/rapier/wild_rose.png",
+    "imageName": "unique/rapier/10003.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 200,
@@ -133,17 +115,17 @@
       {
         "skill_name": "찔레의 가시",
         "skill_type": "passive",
-        "skill_description": "날카로운 가시가 깊은 상처를 내 출혈을 일으킨다. (공격 시 2.5% 확률로 5초간 출혈 효과 부여, 초당 4,400 고정 피해, 중첩 불가)",
+        "skill_description": "날카로운 가시가 깊은 상처를 내 출혈을 일으킨다. (공격 시 2.5% 확률로 3초간 출혈 효과 부여. 초당 875의 피해. 쿨타임 5초)",
         "skill_effect": [
           {
             "effect_name": "applyBleed",
             "params": {
               "chance": 0.025,
-              "fixedDamagePerSecond": 4400,
-              "duration": 5,
+              "fixedDamagePerSecond": 875,
+              "duration": 3,
               "trigger": "onHit",
               "stackable": false,
-              "cooldown": 0
+              "cooldown": 5
             }
           }
         ]
@@ -160,7 +142,7 @@
   {
     "id": 10004,
     "name": "고블린 스팅어",
-    "imageName": "unique/rapier/goblin_stinger.png",
+    "imageName": "unique/rapier/10004.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 300,
@@ -173,9 +155,9 @@
     "baseSellPrice": 202000,
     "skills": [
       {
-        "skill_name": "너, 피부가 초록색이군...",
+        "skill_name": "고블린 사냥",
         "skill_type": "passive",
-        "skill_description": "검에 서린 원한이 고블린을 향한 증오를 불태운다. (고블린 종족에게 50% 추가 피해)",
+        "skill_description": "고블린을 향한 공격이 강해진다. (고블린 종족에게 추가 피해 +50% )",
         "skill_effect": [
           {
             "effect_name": "extraDamageToMonsterType",
@@ -185,7 +167,7 @@
       }
     ],
     "accuracy": 0.79,
-    "description": "고블린에게 가족을 잃은 어느 기사의 원한이 서린 레이피어다. 고블린을 향한 공격이 특히 강력하다.",
+    "description": "고블린 사냥이 취미인 귀족이 사용하던 특제 레이피어. 고블린을 향한 공격이 특히 강력하다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -194,8 +176,8 @@
   },
   {
     "id": 10005,
-    "name": "맹독의 꽃대",
-    "imageName": "unique/rapier/poison_stem.png",
+    "name": "독침",
+    "imageName": "unique/rapier/10005.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 400,
@@ -210,24 +192,24 @@
       {
         "skill_name": "맹독 주입",
         "skill_type": "active",
-        "skill_description": "치명적인 맹독을 주입한다. (공격 시 2.5% 확률로 5초간 중독 효과 부여, 초당 5% 피해, 중첩 불가)",
+        "skill_description": "치명적인 맹독을 주입한다. (공격 시 2.5% 확률로 3초간 중독 효과 부여. 초당 최대체력의 2.5% 피해. 쿨타임 5초)",
         "skill_effect": [
           {
             "effect_name": "applyPoison",
             "params": {
               "chance": 0.025,
-              "percentPerSecond": 0.05,
-              "duration": 5,
+              "percentPerSecond": 0.025,
+              "duration": 3,
               "trigger": "onHit",
               "stackable": false,
-              "cooldown": 0
+              "cooldown": 5
             }
           }
         ]
       }
     ],
     "accuracy": 0.79,
-    "description": "동굴 깊은 곳, 맹독 식물의 줄기로 만든 레이피어다. 치명적인 독이 적을 서서히 잠식한다.",
+    "description": "치명적인 독이 칼 끝에 발려있는 레이피어. 적중 시 중독 효과를 부여한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -237,7 +219,7 @@
   {
     "id": 10006,
     "name": "검무",
-    "imageName": "unique/rapier/sword_dance.png",
+    "imageName": "unique/rapier/10006.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
     "baseLevel": 500,
@@ -252,17 +234,18 @@
       {
         "skill_name": "칼춤",
         "skill_type": "active",
-        "skill_description": "빠르고 우아한 춤사위로 적을 베어낸다. (공격 시 2.5% 확률로 3초간 공격력 20% 증가)",
+        "skill_description": "매우 빠르게 칼춤 추듯 적을 공격한다. (공격 시 2.5% 확률로 1.5초간 공격속도 1.0/s 증가. 쿨타임 5초)",
         "skill_effect": [
           {
-            "effect_name": "applyAttackBuff",
+            "effect_name": "applyStatBoost",
             "params": {
               "chance": 0.025,
-              "attackMultiplier": 1.2,
-              "duration": 3,
+              "stat": "speed",
+              "duration": 1.5,
+              "value": 1.0,
               "trigger": "onHit",
               "stackable": false,
-              "cooldown": 0
+              "cooldown": 5
             }
           }
         ]
@@ -279,7 +262,7 @@
   {
     "id": 11000,
     "name": "첫걸음",
-    "imageName": "unique/sword/first_step_blade.png",
+    "imageName": "unique/sword/11000.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.sword",
     "baseLevel": 0,
@@ -294,7 +277,7 @@
       {
         "skill_name": "전투 자세",
         "skill_type": "active",
-        "skill_description": "전투를 앞두고 자세를 가다듬는다. (전투 시작 시 3초간 공격력 10% 증가)",
+        "skill_description": "전투를 앞두고 자세를 가다듬는다. (전투 시작 시 3초간 공격력 +10%)",
         "skill_effect": [
           {
             "effect_name": "applyStatBoost",
@@ -320,7 +303,7 @@
   {
     "id": 11001,
     "name": "기사생도의 검",
-    "imageName": "unique/sword/knight_trainee_blade.png",
+    "imageName": "unique/sword/11001.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.sword",
     "baseLevel": 50,
@@ -335,7 +318,7 @@
       {
         "skill_name": "반복훈련",
         "skill_type": "passive",
-        "skill_description": "반복된 훈련은 배신하지 않는다. (공격 시 0.9초간 공격력 6% 증가, 최대 5중첩)",
+        "skill_description": "반복된 훈련은 배신하지 않는다. (공격 시 0.9초간 공격력 +6%, 최대 5중첩)",
         "skill_effect": [
           {
             "effect_name": "applyStackingBuff",
@@ -362,7 +345,7 @@
   {
     "id": 11002,
     "name": "용기",
-    "imageName": "unique/sword/blade_of_courage.png",
+    "imageName": "unique/sword/11002.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.sword",
     "baseLevel": 100,
@@ -375,9 +358,9 @@
     "baseSellPrice": 35500,
     "skills": [
       {
-        "skill_name": "용기 있게",
+        "skill_name": "기개",
         "skill_type": "passive",
-        "skill_description": "용기는 전투 능력을 끌어올린다. (공격력 15% 증가, 공격 속도 0.2 가속)",
+        "skill_description": "전투 능력을 끌어올린다. (공격력 +15%, 공격 속도 +0.2/s)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
@@ -409,7 +392,7 @@
   {
     "id": 11003,
     "name": "사냥꾼",
-    "imageName": "unique/sword/hunter_blade.png",
+    "imageName": "unique/sword/11003.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.sword",
     "baseLevel": 100,
@@ -424,7 +407,7 @@
       {
         "skill_name": "사냥 개시",
         "skill_type": "passive",
-        "skill_description": "사냥감이 눈에 들어오면 감각이 날카로워진다. (야수/벌레 종족에게 30% 추가 피해)",
+        "skill_description": "사냥감이 눈에 들어오면 감각이 날카로워진다. (야수/벌레 종족에게 추가 피해 +30%)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveBonusDamageToRace",
@@ -438,7 +421,7 @@
       }
     ],
     "accuracy": 0.75,
-    "description": "거친 야생을 누비기 위해 벼려진 검. 야수와 벌레는 이 검 앞에서 한낱 사냥감일 뿐이다.",
+    "description": "수렵을 위해 벼려진 검. 야수와 벌레 종족에게 효과적이다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -448,7 +431,7 @@
   {
     "id": 11004,
     "name": "바람검",
-    "imageName": "unique/sword/blade_of_wind.png",
+    "imageName": "unique/sword/11004.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.sword",
     "baseLevel": 200,
@@ -463,7 +446,7 @@
       {
         "skill_name": "질풍",
         "skill_type": "passive",
-        "skill_description": "질풍처럼 빠른 검격이 가능해진다. (공격 속도 50% 증가)",
+        "skill_description": "적을 빠르게 공격한다. (공격 속도 +0.5/s)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
@@ -477,7 +460,7 @@
       }
     ],
     "accuracy": 0.72,
-    "description": "바람의 기운이 깃든 가벼운 검.",
+    "description": "바람의 기운이 깃든 가벼운 검. 빠른 공격이 가능하다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -487,7 +470,7 @@
   {
     "id": 11005,
     "name": "불협화음",
-    "imageName": "unique/sword/dissonance_blade.png",
+    "imageName": "unique/sword/11005.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.sword",
     "baseLevel": 300,
@@ -502,7 +485,7 @@
       {
         "skill_name": "리듬 깨기",
         "skill_type": "active",
-        "skill_description": "불협화음이 적의 리듬을 무너뜨린다. (공격 시 2.5% 확률로 3초간 혼란 부여, 중첩 불가)",
+        "skill_description": "불협화음이 적의 리듬을 무너뜨린다. (공격 시 2.5% 확률로 3초간 혼란 부여. 쿨타임 5초)",
         "skill_effect": [
           {
             "effect_name": "applyConfusion",
@@ -511,14 +494,14 @@
               "duration": 3,
               "trigger": "onHit",
               "stackable": false,
-              "cooldown": 0
+              "cooldown": 5
             }
           }
         ]
       }
     ],
     "accuracy": 0.72,
-    "description": "조화를 거부하는 불협화음의 검. 전장의 감각과 균형을 무너뜨린다.",
+    "description": "검신에서 이상한 소리가 나는 레이피어. 상대방의 감각과 균형을 무너뜨린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -528,7 +511,7 @@
   {
     "id": 11006,
     "name": "기사도",
-    "imageName": "unique/sword/chivalry_blade.png",
+    "imageName": "unique/sword/11006.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.sword",
     "baseLevel": 400,
@@ -541,7 +524,7 @@
     "baseSellPrice": 333000,
     "skills": [],
     "accuracy": 0.8,
-    "description": "특별한 기술은 없지만, 명예와 책임이 깃들어 있는 검.",
+    "description": "일부 명예로운 기사에게만 하사하는 검이다. 특수한 능력은 무기 자체의 완성도가 높다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -551,7 +534,7 @@
   {
     "id": 11007,
     "name": "탐관오리",
-    "imageName": "unique/sword/corrupt_official_blade.png",
+    "imageName": "unique/sword/11007.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.sword",
     "baseLevel": 500,
@@ -566,7 +549,7 @@
       {
         "skill_name": "탐욕",
         "skill_type": "passive",
-        "skill_description": "탐욕스럽게 부를 긁어모은다. (골드 획득량 30% 증가)",
+        "skill_description": "탐욕스럽게 부를 긁어모은다. (골드 획득량 +30%)",
         "skill_effect": [
           {
             "effect_name": "applyGoldGainBoost",
@@ -576,18 +559,17 @@
       }
     ],
     "accuracy": 0.72,
-    "description": "명예보다 자신의 이익을 먼저 생각한 자의 검.",
+    "description": "명예보다 자신의 이익을 먼저 생각한 자의 검. 골드 획득량이 증가한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
     "investedEnhancementStones": 25,
     "investedTranscendenceStones": 0
   },
-
   {
     "id": 12000,
     "name": "뭉툭검",
-    "imageName": "unique/greatsword/blunt_blade.png",
+    "imageName": "unique/greatsword/12000.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.greatsword",
     "baseLevel": 0,
@@ -602,22 +584,22 @@
       {
         "skill_name": "내려치기",
         "skill_type": "active",
-        "skill_description": "뼈를 부술 듯 검을 내리친다. (공격 시 2.5% 확률로 1,325 추가 피해)",
+        "skill_description": "강하게 내리친다. (공격 시 2.5% 확률로 660의 추가 피해. 쿨타임 5초.)",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.025,
-              "damage": 1325,
+              "damage": 660,
               "trigger": "onHit",
-              "cooldown": 0
+              "cooldown": 5
             }
           }
         ]
       }
     ],
     "accuracy": 0.65,
-    "description": "수많은 전투로 날이 무뎌진 대검. 무게만은 여전히 위력적이다.",
+    "description": "검날이 뭉툭한 대검. 몽둥이인지 검인지 구분하기 어렵다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -627,7 +609,7 @@
   {
     "id": 12001,
     "name": "쇳덩어리",
-    "imageName": "unique/greatsword/chunk_of_iron.png",
+    "imageName": "unique/greatsword/12001.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.greatsword",
     "baseLevel": 50,
@@ -642,7 +624,7 @@
       {
         "skill_name": "크게 휘두르기",
         "skill_type": "passive",
-        "skill_description": "평범한 이가 들기도 버거운 무게다. (공격력 30% 증가, 공격 속도 30% 감소)",
+        "skill_description": "평범한 사람은 들기도 버거운 무게다. (공격력 +30%, 공격 속도 -30%)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
@@ -664,7 +646,7 @@
       }
     ],
     "accuracy": 0.65,
-    "description": "그저 무겁고 거대한 쇳덩어리. 강력한 일격을 위해서는 각오가 필요하다.",
+    "description": "검신이 살아있는 무거운 대검. 크게 휘두르기 위해서는 힘과 시간이 필요하다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -674,7 +656,7 @@
   {
     "id": 12002,
     "name": "땅울림",
-    "imageName": "unique/greatsword/ground_echo_blade.png",
+    "imageName": "unique/greatsword/12002.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.greatsword",
     "baseLevel": 100,
@@ -689,7 +671,7 @@
       {
         "skill_name": "지진이다!",
         "skill_type": "active",
-        "skill_description": "땅을 울려 적을 혼란에 빠뜨린다. (공격 시 2.5% 확률로 3초간 혼란, 중첩 불가)",
+        "skill_description": "땅을 울려 적을 혼란에 빠뜨린다. (공격 시 2.5% 확률로 3초간 혼란 효과 부여. 쿨타임 5초.)",
         "skill_effect": [
           {
             "effect_name": "applyConfusion",
@@ -698,7 +680,7 @@
               "duration": 3,
               "trigger": "onHit",
               "stackable": false,
-              "cooldown": 0
+              "cooldown": 5
             }
           }
         ]
@@ -715,42 +697,18 @@
   {
     "id": 12003,
     "name": "그레이트 스팅어",
-    "imageName": "unique/greatsword/great_stinger.png",
+    "imageName": "unique/greatsword/12003.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.greatsword",
     "baseLevel": 200,
     "baseDamage": 3300,
-    "criticalChance": 0.08,
-    "criticalDamage": 1.8,
+    "criticalChance": 0.25,
+    "criticalDamage": 2.5,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
     "speed": 0.8,
     "baseSellPrice": 95800,
-    "skills": [
-      {
-        "skill_name": "찌르기",
-        "skill_type": "passive",
-        "skill_description": "단순하지만 효율적인 찌르기다. (치명타 확률 17% 증가, 치명타 피해 0.75배 증가)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.17,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 0.75,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
+    "skills": [],
     "accuracy": 0.65,
     "description": "찌르기에 특화된 대검. 예리한 일격이 적의 생명을 꿰뚫는다.",
     "enhancement": 0,
@@ -762,7 +720,7 @@
   {
     "id": 12004,
     "name": "베어풋",
-    "imageName": "unique/greatsword/barefoot.png",
+    "imageName": "unique/greatsword/12004.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.greatsword",
     "baseLevel": 300,
@@ -774,8 +732,25 @@
     "speed": 0.8,
     "accuracy": 0.65,
     "baseSellPrice": 202000,
-    "skills": [],
-    "description": "곰의 앞발처럼 거대한 파괴력을 지닌 대검. 능력 없어도 위력만큼은 확실하다.",
+    "skills": [
+      {
+        "skill_name": "내려치기",
+        "skill_type": "active",
+        "skill_description": "강하게 내리친다. (공격 시 2.5% 확률로 13,250의 추가 피해. 쿨타임 5초.)",
+        "skill_effect": [
+          {
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.025,
+              "damage": 13250,
+              "trigger": "onHit",
+              "cooldown": 5
+            }
+          }
+        ]
+      }
+    ],
+    "description": "곰의 앞발처럼 거대한 파괴력을 지닌 대검.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -785,7 +760,7 @@
   {
     "id": 12005,
     "name": "선봉대",
-    "imageName": "unique/greatsword/vanguard.png",
+    "imageName": "unique/greatsword/12005.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.greatsword",
     "baseLevel": 400,
@@ -801,7 +776,7 @@
       {
         "skill_name": "사기진작",
         "skill_type": "passive",
-        "skill_description": "굳건한 모습이 아군을 북돋운다. (공격력 15% 증가, 치명타 확률 10% 증가, 공격 속도 0.1 증가)",
+        "skill_description": "전투의지를 불태운다. (공격력 +15%, 치명타 확률 +10%, 공격 속도 +0.1/s)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
@@ -830,7 +805,7 @@
         ]
       }
     ],
-    "description": "전선 최전방을 지키는 검. 철의 무게는 책임의 무게다.",
+    "description": "기사단 선봉대의 대검. 늠름한 자태가 사용자의 사기를 올려준다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -840,7 +815,7 @@
   {
     "id": 12006,
     "name": "불안정한 일도양단",
-    "imageName": "unique/greatsword/unstable_greatsword.png",
+    "imageName": "unique/greatsword/12006.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.greatsword",
     "baseLevel": 500,
@@ -852,17 +827,17 @@
     "baseSellPrice": 703000,
     "skills": [
       {
-        "skill_name": "일격 필살",
+        "skill_name": "불안정한 베기",
         "skill_type": "active",
-        "skill_description": "운에 맡긴 한 방. (공격 시 1% 확률로 적 최대 체력 50% 피해, 보스에겐 효과 반감, 최대 레벨 600)",
+        "skill_description": "아주 낮은 확률로 매우 큰 데미지를 입힌다. (공격 시 1% 확률로 적 최대 체력 100% 피해. 보스에겐 1/3 데미지 적용. 최대 레벨 600)",
         "skill_effect": [
           {
             "effect_name": "applyPercentageMaxHealthDamage",
             "params": {
               "chance": 0.01,
-              "damagePercentage": 0.5,
+              "damagePercentage": 1,
               "trigger": "onHit",
-              "bossDamageMultiplier": 0.5,
+              "bossDamageMultiplier": 0.3,
               "maxLevel": 600,
               "cooldown": 0
             }
@@ -870,7 +845,7 @@
         ]
       }
     ],
-    "description": "한 방에 판세가 뒤바뀔 수 있는 대검. 강력하지만 불안정하다.",
+    "description": "한 방에 판세가 뒤바뀔 수 있는 대검. 강력하지만 다루기가 어렵다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -880,32 +855,32 @@
   {
     "id": 13000,
     "name": "약탈자",
-    "imageName": "unique/katana/raider.png",
+    "imageName": "unique/katana/13000.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.katana",
     "baseLevel": 0,
-    "baseDamage": 150,
-    "criticalChance": 0.02,
-    "criticalDamage": 1.5,
+    "baseDamage": 164,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 1.1,
-    "baseSellPrice": 500,
+    "speed": 1.15,
+    "baseSellPrice": 3000,
     "skills": [
       {
         "skill_name": "약탈",
         "skill_type": "passive",
-        "skill_description": "선량한 시민들을 약탈하여 부를 쌓습니다. (골드 획득량 10% 증가)",
+        "skill_description": "약탈로 부를 쌓는다. (골드 획득량 +10%)",
         "skill_effect": [
           {
-            "effect_name": "increaseGoldGain",
-            "params": { "amount": 0.1, "trigger": "passive" }
+            "effect_name": "applyGoldGainBoost",
+            "params": { "multiplier": 1.1 }
           }
         ]
       }
     ],
-    "accuracy": 0.7,
-    "description": "이름난 산적들이 즐겨 사용하는 카타나. 남의 것을 빼앗는 데 특화된 무기입니다.",
+    "accuracy": 0.75,
+    "description": "산적들이 애용하는 무기. 골드 획득량이 소폭 증가한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -915,22 +890,23 @@
   {
     "id": 13001,
     "name": "도장깨기",
-    "imageName": "unique/katana/dojo_sweeper.png",
+    "imageName": "unique/katana/13001.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.katana",
     "baseLevel": 50,
-    "baseDamage": 690,
-    "criticalChance": 0.03,
-    "criticalDamage": 1.6,
+    "baseDamage": 515,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 1.05,
-    "baseSellPrice": 18000,
+    "speed": 1.15,
+    "baseSellPrice": 10000,
     "skills": [
       {
-        "skill_name": "도전정신",
-        "skill_type": "passive",
-        "skill_description": "도장의 고수들을 상대하며 실력을 갈고닦습니다. (적 처치 시 공격력 5 증가, 최대 30회 중첩)",
+        "skill_name": "실전경험",
+        "skill_type": "active",
+        "trigger": "killMonster",
+        "skill_description": "실전을 통해 강해진다. (적 처치 시 무기 공격력 +5, 최대 30회 중첩)",
         "skill_effect": [
           {
             "effect_name": "increaseStat",
@@ -938,16 +914,15 @@
               "stat": "baseDamage",
               "stackPerValue": 5,
               "isMultiplicative": false,
-              "maxStacks": 30,
+              "maxStacks": 50,
               "initialStacksParam": "player_weapon_stacks"
             }
           }
-        ],
-        "trigger": "killMonster"
+        ]
       }
     ],
-    "accuracy": 0.6,
-    "description": "작은 검이지만 야망은 크다. 이름 있는 고수들을 꺾으며 실력을 쌓아간다.",
+    "accuracy": 0.75,
+    "description": "작지만 야망은 크다. 적들을 꺾으며 성장한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -957,29 +932,29 @@
   {
     "id": 13002,
     "name": "사철검",
-    "imageName": "unique/katana/impure_blade.png",
+    "imageName": "unique/katana/13002.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.katana",
     "baseLevel": 100,
-    "baseDamage": 1280,
-    "criticalChance": 0.03,
-    "criticalDamage": 1.7,
+    "baseDamage": 1024,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 1.1,
-    "baseSellPrice": 42000,
+    "speed": 1.15,
+    "baseSellPrice": 35500,
     "skills": [
       {
         "skill_name": "남아있는 불순물",
         "skill_type": "passive",
-        "skill_description": "아직 정련되지 않은 사철의 파편이 검에 남아있습니다. (공격 시 20% 확률로 5초간 출혈 상태 부여, 초당 1,000 고정 피해, 중첩 불가)",
+        "skill_description": "불순물이 남은 사철의 파편이 적을 출혈시킨다. (공격 시 2.5% 확률로 5초간 출혈, 초당 512 고정 피해)",
         "skill_effect": [
           {
             "effect_name": "applyBleed",
             "params": {
-              "chance": 0.2,
+              "chance": 0.025,
               "duration": 5,
-              "damagePerSecond": 1000,
+              "fixedDamagePerSecond": 512,
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 0
@@ -988,8 +963,8 @@
         ]
       }
     ],
-    "accuracy": 0.6,
-    "description": "불완전한 사철로 벼려낸 카타나. 검 끝에 남은 불순물이 적의 혈육을 가른다.",
+    "accuracy": 0.75,
+    "description": "정제되지 않은 사철로 벼려낸 카타나. 적에게 출혈을 유도한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -999,29 +974,29 @@
   {
     "id": 13003,
     "name": "카토",
-    "imageName": "unique/katana/kato.png",
+    "imageName": "unique/katana/13003.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.katana",
     "baseLevel": 200,
-    "baseDamage": 2800,
-    "criticalChance": 0.04,
-    "criticalDamage": 1.8,
+    "baseDamage": 2042,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
     "defensePenetration": 0,
     "doubleAttackChance": 0.05,
-    "speed": 1.05,
-    "baseSellPrice": 128000,
+    "speed": 1.15,
+    "baseSellPrice": 95800,
     "skills": [
       {
         "skill_name": "열 주입",
         "skill_type": "passive",
-        "skill_description": "무기에 담긴 뜨거운 열기를 상대에게 옮깁니다. (공격 시 15% 확률로 5초간 화상 상태 부여, 초당 2,000 고정 피해, 중첩 불가)",
+        "skill_description": "뜨거운 열기가 적을 태운다. (공격 시 2.5% 확률로 5초간 화상, 초당 1,020 고정 피해)",
         "skill_effect": [
           {
             "effect_name": "applyBurn",
             "params": {
-              "chance": 0.15,
+              "chance": 0.025,
               "duration": 5,
-              "damagePerSecond": 2000,
+              "fixedDamagePerSecond": 1020,
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 0
@@ -1030,8 +1005,8 @@
         ]
       }
     ],
-    "accuracy": 0.62,
-    "description": "‘불의 검’을 뜻하는 이름을 가진 카타나. 뜨거운 열기가 깃든 검신은 맞은 자에게 화상을 남긴다.",
+    "accuracy": 0.75,
+    "description": "'불의 검'이라는 이름의 카타나. 열기가 깃든 검신은 화상을 남긴다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -1041,27 +1016,27 @@
   {
     "id": 13004,
     "name": "레이토",
-    "imageName": "unique/katana/reito.png",
+    "imageName": "unique/katana/13004.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.katana",
     "baseLevel": 300,
-    "baseDamage": 5000,
-    "criticalChance": 0.04,
-    "criticalDamage": 1.8,
+    "baseDamage": 3060,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 30,
-    "baseSellPrice": 424000,
+    "speed": 1.15,
+    "baseSellPrice": 202000,
     "skills": [
       {
         "skill_name": "냉기 주입",
         "skill_type": "passive",
-        "skill_description": "무기에 깃든 서늘한 냉기가 적을 얼어붙게 만듭니다. (공격 시 15% 확률로 5초간 빙결 상태 부여, 중첩 불가)",
+        "skill_description": "서린 냉기가 적을 얼린다. (공격 시 2.5% 확률로 5초간 빙결)",
         "skill_effect": [
           {
             "effect_name": "applyFreeze",
             "params": {
-              "chance": 0.15,
+              "chance": 0.025,
               "duration": 5,
               "trigger": "onHit",
               "stackable": false,
@@ -1071,8 +1046,8 @@
         ]
       }
     ],
-    "accuracy": 0.63,
-    "description": "‘얼음의 검’을 뜻하는 이름을 가진 카타나. 차가운 기운이 서린 검신은 맞은 적의 움직임을 얼어붙게 만듭니다.",
+    "accuracy": 0.75,
+    "description": "'얼음의 검'이라는 이름의 카타나. 차가운 기운이 적의 움직임을 멈춘다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -1082,29 +1057,29 @@
   {
     "id": 13005,
     "name": "역날검",
-    "imageName": "unique/katana/yeoknalgeom.png",
+    "imageName": "unique/katana/13005.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.katana",
     "baseLevel": 400,
-    "baseDamage": 8200,
-    "criticalChance": 0.07,
-    "criticalDamage": 1.6,
+    "baseDamage": 4076,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 1.2,
-    "baseSellPrice": 150000,
+    "speed": 1.15,
+    "baseSellPrice": 333000,
     "skills": [
       {
-        "skill_name": "비도이검류 초식",
+        "skill_name": "칼등치기",
         "skill_type": "active",
         "trigger": "onHit",
-        "skill_description": "타격 시 15% 확률로 적에게 28,700 고정 추가 데미지 부여. 쿨타임 5초",
+        "skill_description": "칼등을 이용해 적을 무력화시킨다. (공격 시 2.5% 확률로 고정 피해 10,200을 준다. 쿨타임 5초)",
         "skill_effect": [
           {
             "effect_name": "addFixedDamage",
             "params": {
-              "damage": 28700,
-              "chance": 0.15,
+              "damage": 10200,
+              "chance": 0.025,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -1112,8 +1087,8 @@
         ]
       }
     ],
-    "accuracy": 0.7,
-    "description": "어느 유명한 검사의 불살의 의지가 깃든 무기입니다.",
+    "accuracy": 0.75,
+    "description": "불살의 의지가 담긴 검.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -1122,41 +1097,53 @@
   },
   {
     "id": 13006,
-    "name": "발검",
-    "imageName": "unique/katana/balgeom.png",
+    "name": "일도섬",
+    "imageName": "unique/katana/13006.png",
     "rarity": "Rarity.unique",
     "type": "WeaponType.katana",
     "baseLevel": 500,
-    "baseDamage": 13500,
+    "baseDamage": 5090,
     "criticalChance": 0.15,
-    "criticalDamage": 2.0,
+    "criticalDamage": 1.58,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 0.5,
-    "baseSellPrice": 3500000,
+    "speed": 1.15,
+    "baseSellPrice": 703000,
     "skills": [
       {
         "skill_name": "발도",
         "skill_type": "passive",
-        "skill_description": "자세를 잡고 적을 양단합니다. 공격속도 50% 감소, 치명타 확률 50% 증가, 적중률 100% 증가.",
+        "skill_description": "일도일섬. 한번 뽑고, 한번 벤다. (공격 속도 -50%, 치명타 확률 +35%, 적중률 +10%)",
         "skill_effect": [
           {
-            "effect_name": "decreaseStat",
-            "params": { "stat": "speed", "value": 0.5 }
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 0.5,
+              "isMultiplicative": true
+            }
           },
           {
-            "effect_name": "increaseStat",
-            "params": { "stat": "criticalChance", "value": 0.5 }
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.35,
+              "isMultiplicative": false
+            }
           },
           {
-            "effect_name": "increaseStat",
-            "params": { "stat": "accuracy", "value": 1.0 }
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.1,
+              "isMultiplicative": false
+            }
           }
         ]
       }
     ],
-    "accuracy": 0.8,
-    "description": "오로지 발도를 위한 검입니다. 위력은 엄청나지만 준비를 위한 시간이 필요합니다.",
+    "accuracy": 0.75,
+    "description": "발도에 특화되어 있는 검.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,

@@ -2,32 +2,44 @@
   {
     "id": 30000,
     "name": "벌새",
-    "imageName": "epic/rapier/hummingbird.png",
+    "imageName": "epic/rapier/30000.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 0,
-    "baseDamage": 148,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.4,
+    "baseDamage": 226,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 9600,
+    "speed": 1.3,
+    "baseSellPrice": 9000,
     "skills": [
       {
         "skill_name": "기민한 몸놀림",
         "skill_type": "passive",
-        "skill_description": "가벼운 무기가 기민한 몸놀림을 가능케 합니다. (더블 어택 확률 25% 증가)",
+        "skill_description": "빠른 움직임을 가능하게 한다. (더블 어택 확률 +5%, 공격 속도 +0.15/s)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
-            "params": { "stat": "doubleAttackChance", "value": 0.25 }
+            "params": {
+              "stat": "doubleAttackChance",
+              "value": 0.05,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 0.15,
+              "isMultiplicative": false
+            }
           }
         ]
       }
     ],
-    "accuracy": 0.8,
-    "description": "벌새의 날갯짓처럼 빠르고 연속적인 찌르기에 최적화된 레이피어.",
+    "accuracy": 0.79,
+    "description": "벌새의 날갯짓처럼 빠른 연속 찌르기에 최적화된 레이피어.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -37,29 +49,29 @@
   {
     "id": 30001,
     "name": "하얀 송곳니",
-    "imageName": "epic/rapier/white_fang.png",
+    "imageName": "epic/rapier/30001.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 50,
-    "baseDamage": 537,
-    "criticalChance": 0.2,
-    "criticalDamage": 1.75,
+    "baseDamage": 612,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 33000,
+    "speed": 1.3,
+    "baseSellPrice": 30000,
     "skills": [
       {
         "skill_name": "사냥 본능",
         "skill_type": "active",
-        "skill_description": "알파 울프의 사냥 본능이 약해진 적을 감지합니다. (체력 50% 이하인 적에게 50% 추가 피해)",
+        "skill_description": "검신이 약화된 적에 반응해 강해진다. (체력이 50% 이하인 적에게 추가 피해 +50%)",
         "skill_effect": [
           {
             "effect_name": "applyHpConditionalBonusDamage",
             "params": {
               "chance": 1.0,
               "hpThreshold": 0.5,
-              "condition": "below",
+              "condition": "이하",
               "multiplier": 1.5,
               "trigger": "onHit",
               "cooldown": 0
@@ -68,8 +80,8 @@
         ]
       }
     ],
-    "accuracy": 0.8,
-    "description": "알파 울프의 송곳니로 제작된 레이피어. 먹잇감의 숨통을 끊는 데 특화되어 있습니다.",
+    "accuracy": 0.79,
+    "description": "알파 울프의 송곳니로 만든 레이피어. 먹잇감의 숨통을 끊는 데 특화되어 있다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -79,36 +91,36 @@
   {
     "id": 30002,
     "name": "벌집",
-    "imageName": "epic/rapier/hive.png",
+    "imageName": "epic/rapier/30002.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 100,
-    "baseDamage": 1070,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.4,
+    "baseDamage": 1216,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 113400,
+    "speed": 1.3,
+    "baseSellPrice": 106500,
     "skills": [
       {
         "skill_name": "벌집 내기",
         "skill_type": "active",
-        "skill_description": "상대를 벌집으로 만들어 버리는 강력한 찌르기. (공격 시 15% 확률로 3,200 추가 피해)",
+        "skill_description": "강력한 찌르기로 상대방을 벌집으로 만든다. (공격 시 5% 확률로 3,040의 추가 피해. 쿨타임 4초.)",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
-              "chance": 0.15,
-              "damage": 3200,
-              "cooldown": 0,
+              "chance": 0.05,
+              "damage": 3040,
+              "cooldown": 4,
               "trigger": "onHit"
             }
           }
         ]
       }
     ],
-    "accuracy": 0.8,
+    "accuracy": 0.79,
     "description": "무자비한 찌르기로 적을 벌집처럼 만든다고 하여 붙여진 악명 높은 레이피어.",
     "enhancement": 0,
     "transcendence": 0,
@@ -119,29 +131,29 @@
   {
     "id": 30003,
     "name": "아머 브레이커",
-    "imageName": "epic/rapier/armor_breaker.png",
+    "imageName": "epic/rapier/30003.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 200,
-    "baseDamage": 2130,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.4,
+    "baseDamage": 2422,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
     "defensePenetration": 5,
     "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 306700,
+    "speed": 1.3,
+    "baseSellPrice": 287400,
     "skills": [
       {
         "skill_name": "갑옷 부수기",
         "skill_type": "active",
-        "skill_description": "정확한 찌르기로 갑옷의 약점을 파고듭니다. (공격 시 10% 확률로 5초간 방어력 25 감소, 중첩 불가)",
+        "skill_description": "정확한 타점으로 갑옷의 약점을 파고든다. (공격 시 5% 확률로 4초간 무장해제 효과 부여. 무장해제 - 방어력 25 감소. 중첩 불가.)",
         "skill_effect": [
           {
             "effect_name": "applyDisarm",
             "params": {
-              "chance": 0.1,
+              "chance": 0.05,
               "defenseReduction": 25,
-              "duration": 5,
+              "duration": 4,
               "trigger": "onHit",
               "stackable": false,
               "cooldown": 0
@@ -150,8 +162,8 @@
         ]
       }
     ],
-    "accuracy": 0.8,
-    "description": "수많은 병사의 갑옷을 넝마로 만든 레이피어. 견고한 방어를 뚫는 데 탁월합니다.",
+    "accuracy": 0.79,
+    "description": "수많은 병사의 갑옷을 넝마로 만든 레이피어. 견고한 방어를 뚫는 데 탁월하다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -161,29 +173,29 @@
   {
     "id": 30004,
     "name": "독아",
-    "imageName": "epic/rapier/venom_fang.png",
+    "imageName": "epic/rapier/30004.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 300,
-    "baseDamage": 2790,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.4,
+    "baseDamage": 3630,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 647000,
+    "speed": 1.3,
+    "baseSellPrice": 606000,
     "skills": [
       {
         "skill_name": "맹독 주입",
         "skill_type": "active",
-        "skill_description": "치명적인 맹독을 적에게 주입합니다. (공격 시 20% 확률로 5초간 중독 효과 부여, 초당 최대 체력의 7.5% 피해, 중첩 불가)",
+        "skill_description": "적에게 치명적인 맹독을 주입한다. (공격 시 5% 확률로 4초간 중독 효과 부여. 중독 - 초당 최대 체력의 2.5% 피해. 중첩 불가)",
         "skill_effect": [
           {
             "effect_name": "applyPoison",
             "params": {
-              "chance": 1.0,
-              "percentPerSecond": 0.075,
-              "duration": 5,
+              "chance": 0.05,
+              "percentPerSecond": 0.025,
+              "duration": 4,
               "trigger": "onHit",
               "cooldown": 0
             }
@@ -193,7 +205,7 @@
       {
         "skill_name": "독사의 송곳니",
         "skill_type": "passive",
-        "skill_description": "독사의 송곳니는 중독된 먹잇감을 놓치지 않습니다. (중독 상태의 적에게 50% 추가 피해)",
+        "skill_description": "독사의 송곳니는 중독된 먹잇감을 놓치지 않는다. (중독 상태인 적에게 추가 피해 +50%)",
         "skill_effect": [
           {
             "effect_name": "increaseDamageToPoisoned",
@@ -202,8 +214,8 @@
         ]
       }
     ],
-    "accuracy": 0.8,
-    "description": "음습한 독을 머금고 벼려낸 레이피어. 스치기만 해도 서서히 죽음에 이릅니다.",
+    "accuracy": 0.79,
+    "description": "음습한 독을 머금고 벼려낸 레이피어. 스치기만 해도 서서히 죽음에 이르게 한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -213,32 +225,20 @@
   {
     "id": 30005,
     "name": "일점돌파",
-    "imageName": "epic/rapier/pinpoint_pierce.png",
+    "imageName": "epic/rapier/30005.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 400,
-    "baseDamage": 4510,
-    "criticalChance": 0.1,
-    "criticalDamage": 2.0,
+    "baseDamage": 4840,
+    "criticalChance": 0.18,
+    "criticalDamage": 2.5,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 1060000,
-    "skills": [
-      {
-        "skill_name": "예리한 집중",
-        "skill_type": "passive",
-        "skill_description": "칼끝에 모든 것을 집중합니다. (치명타 확률 30% 증가)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": { "stat": "criticalChance", "value": 0.3 }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.8,
-    "description": "오직 한 점을 꿰뚫기 위해 모든 것을 집중한 레이피어. 칼끝이 병적으로 예리합니다.",
+    "speed": 1.3,
+    "baseSellPrice": 999000,
+    "skills": [],
+    "accuracy": 0.9,
+    "description": "오직 한 점을 꿰뚫기 위해 모든 것을 집중한 레이피어. 칼끝이 병적으로 예리하다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -248,22 +248,22 @@
   {
     "id": 30006,
     "name": "복제된 신성한 일침",
-    "imageName": "epic/rapier/replicated_divine_pierce.png",
+    "imageName": "epic/rapier/30006.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
     "baseLevel": 500,
-    "baseDamage": 5310,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.4,
+    "baseDamage": 6040,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
     "speed": 1.35,
-    "baseSellPrice": 2250000,
+    "baseSellPrice": 2109000,
     "skills": [
       {
-        "skill_name": "심판 (복제)",
+        "skill_name": "정화 (복제)",
         "skill_type": "passive",
-        "skill_description": "성물이 선과 악을 구분하여 심판을 내립니다. (언데드/데몬 종족에게 50% 추가 피해, 신성/천사 종족에게 30% 피해 감소)",
+        "skill_description": "복제된 성물이 선과 악을 구분하여 전투에 도움을 준다. (언데드/데몬 종족에게 추가 피해 +50%, 신성/천사 종족에게 추가 피해 -30% )",
         "skill_effect": [
           {
             "effect_name": "applyPassiveBonusDamageToRace",
@@ -284,56 +284,56 @@
         ]
       },
       {
-        "skill_name": "신성한 일격 (복제)",
+        "skill_name": "심판 (복제)",
         "skill_type": "active",
-        "skill_description": "신성한 빛으로 적을 정화합니다. (공격 시 10% 확률로 17,000 추가 고정 피해, 쿨타임 5초)",
+        "skill_description": "복제된 성물이 희미한 빛을 발산하여 몬스터를 심판한다. (공격 시 5% 확률로 15,100의 추가피해. 쿨타임 4초)",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
-              "chance": 0.1,
-              "damage": 17000,
-              "cooldown": 5,
+              "chance": 0.05,
+              "damage": 15100,
+              "cooldown": 4,
               "trigger": "onHit"
             }
           }
         ]
       }
     ],
-    "accuracy": 0.8,
-    "description": "신성국에 전해지는 성물, 《신성한 일침》의 복제품. 진품보다 위력은 떨어지나, 그 권위는 여전합니다.",
+    "accuracy": 0.79,
+    "description": "신성국에 전해지는 성물, 《신성한 일침》의 복제품. 진품보다 위력이 많이 떨어진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
     "investedEnhancementStones": 150,
     "investedTranscendenceStones": 0
   },
+
   {
     "id": 31000,
     "name": "후발주자",
-    "imageName": "epic/sword/latecomer.png",
+    "imageName": "epic/sword/31000.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.sword",
     "baseLevel": 0,
     "baseDamage": 260,
-    "criticalChance": 0.05,
+    "criticalChance": 0.1,
     "criticalDamage": 1.5,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
     "speed": 1.0,
-    "baseSellPrice": 9600,
+    "baseSellPrice": 9000,
     "skills": [
       {
         "skill_name": "누적성장",
         "skill_type": "active",
-        "trigger": "killMonster",
-        "skill_description": "적을 쓰러뜨릴수록 검이 강해집니다. (몬스터 처치 시 기본 공격력 2 영구 증가, 최대 100 중첩)",
+        "skill_description": "적을 처치할수록 검도 강해진다. (몬스터 처치 시 기본 공격력 3 영구 증가. 최대 100중첩)",
         "skill_effect": [
           {
             "effect_name": "increaseStat",
             "params": {
               "stat": "baseDamage",
-              "stackPerValue": 2,
+              "stackPerValue": 3,
               "isMultiplicative": false,
               "maxStacks": 100,
               "initialStacksParam": "player_weapon_stacks"
@@ -343,7 +343,7 @@
       }
     ],
     "accuracy": 0.72,
-    "description": "시작은 미약하였으나, 그 끝은 창대하리라.",
+    "description": "대기만성형 검. 사용자와 함께 성장한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -353,30 +353,31 @@
   {
     "id": 31001,
     "name": "정체불명",
-    "imageName": "epic/sword/mysterious_blade.png",
+    "imageName": "epic/sword/31001.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.sword",
     "baseLevel": 50,
-    "baseDamage": 820,
-    "criticalChance": 0.05,
+    "baseDamage": 815,
+    "criticalChance": 0.1,
     "criticalDamage": 1.5,
     "defensePenetration": 0,
-    "doubleAttackChance": 0,
+    "doubleAttackChance": 0.0,
     "speed": 1.0,
-    "baseSellPrice": 33000,
+    "baseSellPrice": 30000,
     "skills": [
       {
         "skill_name": "감정불가",
         "skill_type": "active",
-        "skill_description": "정체를 알 수 없는 힘이 깃들어 있습니다. (공격 시 20% 확률로 3초간 무작위 상태 이상 부여, 중첩 불가)",
+        "skill_description": "검을 휘두르면 정체 모를 힘이 적에게 영향을 준다. (공격 시 5% 확률로 4초간 무작위 상태 이상 부여. 출혈 - 초당 2,000의 피해. 중독 - 초당 최대 체력의 5% 피해. 무장해제 - 방어력 10 감소 .중첩 불가.)",
         "skill_effect": [
           {
             "effect_name": "applyRandomDebuff",
             "params": {
-              "chance": 0.2,
-              "duration": 3,
+              "chance": 0.05,
+              "duration": 4,
               "stackable": false,
-              "bleedPerDmg": 2500,
+              "bleedPerDmg": 2000,
+              "defenseReduction": 10,
               "poisonPerDmg": 0.05,
               "trigger": "onHit"
             }
@@ -385,7 +386,7 @@
       }
     ],
     "accuracy": 0.72,
-    "description": "누가, 어디서, 어떻게 만들었는지 아무것도 알려지지 않은 정체불명의 검.",
+    "description": "정체모를 힘이 담겨있는 검. 적에게 무작위 디버프를 부여한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -395,36 +396,36 @@
   {
     "id": 31002,
     "name": "위풍당당",
-    "imageName": "epic/sword/grand_blade.png",
+    "imageName": "epic/sword/31002.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.sword",
     "baseLevel": 100,
-    "baseDamage": 1630,
-    "criticalChance": 0.05,
+    "baseDamage": 1620,
+    "criticalChance": 0.1,
     "criticalDamage": 1.5,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
     "speed": 1.0,
-    "baseSellPrice": 113400,
+    "baseSellPrice": 106500,
     "skills": [
       {
-        "skill_name": "기세",
+        "skill_name": "드높은 기세",
         "skill_type": "passive",
-        "skill_description": "완성도 높은 무기가 사용자의 기세를 끌어올립니다. (기본 공격력 720 증가, 공격 속도 0.15 가속, 치명타 피해 0.5 증가)",
+        "skill_description": "흉내 낼 수 없는 기세가 검에 깃들어 있다. (공격력 +25%, 공격 속도 +0.25/s, 치명타 피해 +0.5배)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "damage",
-              "value": 720,
-              "isMultiplicative": false
+              "value": 1.25,
+              "isMultiplicative": true
             }
           },
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.15,
+              "value": 0.25,
               "isMultiplicative": false
             }
           },
@@ -440,7 +441,7 @@
       }
     ],
     "accuracy": 0.72,
-    "description": "대장장이 윌터의 걸작 중 하나. 예리한 검날과 완벽한 균형이 사용자를 위풍당당하게 만듭니다.",
+    "description": "대장장이 윌터의 걸작. 그 기세가 사용자에게까지 전해진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -450,7 +451,7 @@
   {
     "id": 31003,
     "name": "아머 브레이커",
-    "imageName": "epic/sword/armor_breaker.png",
+    "imageName": "epic/sword/31003.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.sword",
     "baseLevel": 200,
@@ -465,15 +466,15 @@
       {
         "skill_name": "갑옷 부수기",
         "skill_type": "active",
-        "skill_description": "갑옷의 약점을 정확히 노려 방어를 무력화합니다. (공격 시 10% 확률로 5초간 방어력 25 감소, 중첩 불가)",
+        "skill_description": "정확한 타점으로 갑옷의 약점을 파고든다. (공격 시 5% 확률로 4초간 무장해제 효과 부여. 무장해제 - 방어력 25 감소. 중첩 불가.)",
         "skill_effect": [
           {
             "effect_name": "applyDisarm",
             "params": {
-              "trigger": "onHit",
-              "chance": 0.1,
+              "chance": 0.05,
               "defenseReduction": 25,
-              "duration": 5,
+              "duration": 4,
+              "trigger": "onHit",
               "stackable": false,
               "cooldown": 0
             }
@@ -482,7 +483,7 @@
       }
     ],
     "accuracy": 0.72,
-    "description": "수많은 병사의 갑옷을 넝마로 만든 검. 견고한 방어를 부수는 데 탁월합니다.",
+    "description": "수많은 병사의 갑옷을 넝마로 만든 검. 견고한 방어를 뚫는 데 탁월하다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -492,7 +493,7 @@
   {
     "id": 31004,
     "name": "이무기",
-    "imageName": "epic/sword/fang_of_ascension.png",
+    "imageName": "epic/sword/31004.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.sword",
     "baseLevel": 300,
@@ -508,17 +509,17 @@
         "skill_name": "승천격",
         "skill_type": "active",
         "trigger": "onHit",
-        "skill_description": "하늘로 승천할 듯한 기세로 적을 올려 벱니다. (공격 시 15% 확률로 12,500 추가 피해)",
+        "skill_description": "승천하는 이무기를 형상화한 일격. (공격 시 5% 확률로 12,500의 추가 피해. 쿨타임 4초.)",
         "skill_effect": [
           {
             "effect_name": "dealBonusDamage",
-            "params": { "chance": 0.15, "bonusDamage": 12500, "cooldown": 0 }
+            "params": { "chance": 0.05, "bonusDamage": 12500, "cooldown": 4 }
           }
         ]
       }
     ],
     "accuracy": 0.72,
-    "description": "용이 되지 못한 이무기의 송곳니로 만든 검. 승천하지 못한 한이 서려 있습니다.",
+    "description": "용이 되지 못한 이무기의 송곳니로 만든 검. 승천하지 못한 한이 서려 있다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -528,22 +529,22 @@
   {
     "id": 31005,
     "name": "커타나",
-    "imageName": "epic/rapier/sword/epic/curtana.png",
+    "imageName": "epic/sword/31005.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.sword",
     "baseLevel": 400,
-    "baseDamage": 6500,
-    "criticalChance": 0.05,
+    "baseDamage": 6450,
+    "criticalChance": 0.1,
     "criticalDamage": 1.5,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
     "speed": 1.0,
-    "baseSellPrice": 950000,
+    "baseSellPrice": 999000,
     "skills": [
       {
         "skill_name": "보검",
         "skill_type": "passive",
-        "skill_description": "보검은 소유자에게 행운을 가져다줍니다. (골드 획득량 125% 증가, 강화석 획득 시 1개 추가 획득)",
+        "skill_description": "보검이 행운과 부를 가져다준다. (골드 획득량 +100%, 강화석 추가 획득 +1)",
         "skill_effect": [
           {
             "effect_name": "applyGoldGainBoost",
@@ -557,7 +558,7 @@
       }
     ],
     "accuracy": 0.72,
-    "description": "어느 이국 왕실의 보검. 어떠한 연유로 이곳까지 흘러들어왔는지는 알 수 없습니다.",
+    "description": "어느 왕실에 전해진 전설의 칼. 행운을 품었다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -567,22 +568,22 @@
   {
     "id": 31006,
     "name": "복제된 듀랜달",
-    "imageName": "epic/rapier/replicated_pragaragh.png",
+    "imageName": "epic/sword/31006.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.sword",
     "baseLevel": 500,
-    "baseDamage": 8120,
-    "criticalChance": 0.05,
+    "baseDamage": 8060,
+    "criticalChance": 0.1,
     "criticalDamage": 1.5,
     "defensePenetration": 10,
-    "doubleAttackChance": 0.05,
+    "doubleAttackChance": 0.0,
     "speed": 1.0,
-    "baseSellPrice": 2250000,
+    "baseSellPrice": 2109000,
     "skills": [
       {
-        "skill_name": "심판 (복제)",
+        "skill_name": "정화 (복제)",
         "skill_type": "passive",
-        "skill_description": "이 무기는 선과 악을 구분합니다. (언데드/데몬 종족에게 50% 데미지 추가, 신성교/천사 종족에게 30% 데미지 감소)",
+        "skill_description": "복제된 성물이 선과 악을 구분하여 전투에 도움을 준다. (언데드/데몬 종족에게 추가 피해 +50%, 신성/천사 종족에게 추가 피해 -30% )",
         "skill_effect": [
           {
             "effect_name": "applyPassiveBonusDamageToRace",
@@ -603,16 +604,16 @@
         ]
       },
       {
-        "skill_name": "신성한 일격 (복제)",
+        "skill_name": "심판 (복제)",
         "skill_type": "active",
-        "skill_description": "신성한 빛으로 적을 정화합니다. (공격 시 10% 확률로 40,000 추가 고정 피해, 쿨타임 5초)",
+        "skill_description": "복제된 성물이 희미한 빛을 발산하여 몬스터를 심판한다. (공격 시 5% 확률로 15,100의 추가피해. 쿨타임 4초)",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
-              "chance": 0.1,
-              "damage": 40000,
-              "cooldown": 5,
+              "chance": 0.05,
+              "damage": 15100,
+              "cooldown": 4,
               "trigger": "onHit"
             }
           }
@@ -620,7 +621,7 @@
       }
     ],
     "accuracy": 0.72,
-    "description": "신성국에 전해지는 성검, 《듀랜달》의 복제품. 진품보다 위력은 떨어지나, 그 권위는 여전합니다.",
+    "description": "신성국에 전해지는 성물, 《듀랜달》의 복제품. 진품보다 위력이 많이 떨어진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -630,36 +631,39 @@
   {
     "id": 31007,
     "name": "오만",
-    "imageName": "epic/rapier/sword/epic/arrogance.png",
+    "imageName": "epic/sword/31007.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.sword",
     "baseLevel": 500,
     "baseDamage": 8120,
-    "criticalChance": 0.05,
+    "criticalChance": 0.1,
     "criticalDamage": 1.5,
     "defensePenetration": 0,
-    "doubleAttackChance": 0.05,
+    "doubleAttackChance": 0.0,
     "speed": 1.0,
-    "baseSellPrice": 2250000,
+    "baseSellPrice": 2109000,
     "skills": [
       {
         "skill_name": "약자멸시",
-        "skill_type": "passive",
-        "skill_description": "약자는 이 검 앞에서 무릎 꿇게 될 것입니다. (체력 50% 이하인 적에게 100% 추가 피해)",
+        "skill_type": "active",
+        "skill_description": "약자를 무자비하게 처치한다. (체력 50% 이하인 적에게 추가 피해 +100%)",
         "skill_effect": [
           {
-            "effect_name": "applyConditionalDamageBoost",
+            "effect_name": "applyHpConditionalBonusDamage",
             "params": {
-              "condition": "targetHealthBelowPercent",
-              "threshold": 0.5,
-              "damageMultiplier": 1.0
+              "chance": 1.0,
+              "hpThreshold": 0.5,
+              "condition": "이하",
+              "multiplier": 2.0,
+              "trigger": "onHit",
+              "cooldown": 0
             }
           }
         ]
       }
     ],
     "accuracy": 0.72,
-    "description": "약자에게는 피도 눈물도 없는, 오만함으로 가득 찬 검.",
+    "description": "오만함으로 빚어진 검. 체력이 낮은 적에게 위력이 증가한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -669,28 +673,28 @@
   {
     "id": 32000,
     "name": "클레이모어",
-    "imageName": "epic/greatsword/claymore.png",
+    "imageName": "epic/greatsword/32000.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.greatsword",
     "baseLevel": 0,
-    "baseDamage": 380,
-    "criticalChance": 0.04,
-    "criticalDamage": 1.9,
+    "baseDamage": 367,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 0.75,
-    "baseSellPrice": 9600,
+    "speed": 0.8,
+    "baseSellPrice": 9000,
     "skills": [
       {
         "skill_name": "유서깊은 무구",
         "skill_type": "passive",
-        "skill_description": "역사가 깃든 무구가 사용자의 힘을 증폭시킵니다. (공격력 30% 증가)",
+        "skill_description": "역사가 깃든 무구가 사용자의 힘을 증폭시킨다. (공격력 +30%)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "damage",
-              "value": 0.3,
+              "value": 1.3,
               "isMultiplicative": true
             }
           }
@@ -698,7 +702,7 @@
       }
     ],
     "accuracy": 0.65,
-    "description": "중세 기사들이 사용했던 유서 깊은 대검. 현재는 몇 점 남아있지 않아 희소합니다.",
+    "description": "현재는 몇 점 남아있지 않아 희소한 유서 깊은 대검.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -708,29 +712,29 @@
   {
     "id": 32001,
     "name": "압도",
-    "imageName": "epic/greatsword/overwhelm.png",
+    "imageName": "epic/greatsword/32001.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.greatsword",
     "baseLevel": 50,
-    "baseDamage": 935,
-    "criticalChance": 0.04,
-    "criticalDamage": 1.9,
+    "baseDamage": 1155,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
     "defensePenetration": 0,
-    "doubleAttackChance": 0.05,
-    "speed": 0.75,
-    "baseSellPrice": 33000,
+    "doubleAttackChance": 0,
+    "speed": 0.8,
+    "baseSellPrice": 30000,
     "skills": [
       {
         "skill_name": "기선제압",
         "skill_type": "active",
-        "skill_description": "압도적인 힘으로 초반 기선을 제압합니다. (체력 60% 이상인 적에게 60% 추가 피해)",
+        "skill_description": "압도적인 힘으로 기선제압 한다. (체력이 60% 이상인 적에게 추가 피해 +60%)",
         "skill_effect": [
           {
             "effect_name": "applyHpConditionalBonusDamage",
             "params": {
               "chance": 1.0,
               "hpThreshold": 0.6,
-              "condition": "above",
+              "condition": "이상",
               "multiplier": 1.6,
               "trigger": "onHit",
               "cooldown": 0
@@ -740,7 +744,7 @@
       }
     ],
     "accuracy": 0.65,
-    "description": "압도적인 힘으로 전장을 제압하는 거대한 대검. 그 무게만큼이나 존재감이 강력합니다.",
+    "description": "압도적인 힘으로 전장을 제압하는 거대한 대검.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -750,29 +754,29 @@
   {
     "id": 32002,
     "name": "크로코다일",
-    "imageName": "epic/greatsword/crocodile.png",
+    "imageName": "epic/greatsword/32002.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.greatsword",
     "baseLevel": 100,
-    "baseDamage": 2380,
-    "criticalChance": 0.04,
-    "criticalDamage": 1.9,
+    "baseDamage": 2300,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
     "defensePenetration": 0,
-    "doubleAttackChance": 0.05,
-    "speed": 0.75,
-    "baseSellPrice": 113400,
+    "doubleAttackChance": 0,
+    "speed": 0.8,
+    "baseSellPrice": 106500,
     "skills": [
       {
         "skill_name": "찢어발기기",
         "skill_type": "passive",
-        "skill_description": "악어처럼 적을 물고 찢어발깁니다. (공격 시 25% 확률로 5초간 출혈 효과 부여, 초당 2,500 고정 피해, 중첩 불가)",
+        "skill_description": "악어의 이빨과도 같은 검날이 적을 찢어발긴다. (공격 시 5% 확률로 4초간 출혈 효과 부여. 초당 3,450의 피해. 중첩 불가)",
         "skill_effect": [
           {
             "effect_name": "applyBleed",
             "params": {
-              "chance": 0.25,
-              "duration": 5,
-              "damagePerSecond": 2500,
+              "chance": 0.1,
+              "duration": 4,
+              "damagePerSecond": 3450,
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 0
@@ -782,7 +786,7 @@
       }
     ],
     "accuracy": 0.65,
-    "description": "악어의 턱처럼 생긴 날카로운 대검. 한 번 물리면 상처만으로 끝나지 않습니다.",
+    "description": "검날이 악어의 이빨을 닮아 기묘한 이명이 생긴 대검. 적에게 출혈 효과 부여한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -792,30 +796,30 @@
   {
     "id": 32003,
     "name": "아머 브레이커",
-    "imageName": "epic/greatsword/armor_breaker.png",
+    "imageName": "epic/greatsword/32003.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.greatsword",
     "baseLevel": 200,
-    "baseDamage": 9700,
-    "criticalChance": 0.04,
-    "criticalDamage": 1.9,
+    "baseDamage": 4580,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
     "defensePenetration": 5,
-    "doubleAttackChance": 0.3,
-    "speed": 0.75,
-    "baseSellPrice": 306000,
+    "doubleAttackChance": 0,
+    "speed": 0.8,
+    "baseSellPrice": 287400,
     "skills": [
       {
         "skill_name": "갑옷 부수기",
         "skill_type": "active",
-        "skill_description": "강력한 일격으로 갑옷을 파괴합니다. (공격 시 10% 확률로 5초간 방어력 25 감소, 중첩 불가)",
+        "skill_description": "정확한 타점으로 갑옷의 약점을 파고든다. (공격 시 5% 확률로 4초간 무장해제 효과 부여. 무장해제 - 방어력 25 감소. 중첩 불가.)",
         "skill_effect": [
           {
             "effect_name": "applyDisarm",
             "params": {
-              "trigger": "onHit",
-              "chance": 0.1,
+              "chance": 0.05,
               "defenseReduction": 25,
-              "duration": 5,
+              "duration": 4,
+              "trigger": "onHit",
               "stackable": false,
               "cooldown": 0
             }
@@ -824,7 +828,7 @@
       }
     ],
     "accuracy": 0.65,
-    "description": "수많은 병사의 갑옷을 넝마로 만든 대검. 견고한 방어를 부수는 데 탁월합니다.",
+    "description": "수많은 병사의 갑옷을 넝마로 만든 대검. 견고한 방어를 부수는 데 탁월하다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -834,35 +838,44 @@
   {
     "id": 32004,
     "name": "플람",
-    "imageName": "epic/greatsword/plam.png",
+    "imageName": "epic/greatsword/32004.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.greatsword",
     "baseLevel": 300,
-    "baseDamage": 7100,
-    "criticalChance": 0.04,
-    "criticalDamage": 1.9,
+    "baseDamage": 6860,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
     "defensePenetration": 0,
-    "doubleAttackChance": 0.3,
-    "speed": 0.75,
-    "baseSellPrice": 647000,
+    "doubleAttackChance": 0,
+    "speed": 0.8,
+    "baseSellPrice": 606000,
     "skills": [
       {
         "skill_name": "이중베기",
         "skill_type": "passive",
-        "skill_description": "검의 특수한 구조가 이중 공격을 가능하게 합니다. (더블 어택 확률 25% 증가)",
+        "skill_description": "검의 특수한 구조가 이중 공격을 가능하게 한다. (더블 어택 확률 +5%, 적중률 +10%)",
         "skill_effect": [
           {
-            "effect_name": "increaseDoubleAttack",
+            "effect_name": "applyPassiveStatBoost",
             "params": {
-              "amount": 0.25,
-              "trigger": "passive"
+              "stat": "doubleAttackChance",
+              "value": 0.05,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.1,
+              "isMultiplicative": false
             }
           }
         ]
       }
     ],
     "accuracy": 0.65,
-    "description": "한 번 휘두르면 두 번의 공격이 이루어지는 특수한 구조의 대검.",
+    "description": "한 번 휘두르면 일정 확률로 두 번의 공격이 이루어지는 특수한 구조의 대검.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -872,16 +885,16 @@
   {
     "id": 32005,
     "name": "4번타자",
-    "imageName": "epic/greatsword/batting4.png",
+    "imageName": "epic/greatsword/32005.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.greatsword",
     "baseLevel": 400,
-    "baseDamage": 9460,
-    "criticalChance": 0.04,
-    "criticalDamage": 1.9,
-    "speed": 0.75,
+    "baseDamage": 9140,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
+    "speed": 0.8,
     "accuracy": 0.65,
-    "baseSellPrice": 1066000,
+    "baseSellPrice": 999000,
     "skills": [
       {
         "skill_name": "만루 홈런",
@@ -890,10 +903,7 @@
         "skill_effect": [
           {
             "effect_name": "criticalDamageBoost",
-            "params": {
-              "multiplier": 20,
-              "triggerChance": 0.05
-            }
+            "params": { "multiplier": 20, "triggerChance": 0.05 }
           }
         ]
       }
@@ -908,17 +918,17 @@
   {
     "id": 32006,
     "name": "아이언 레퀴엠",
-    "imageName": "epic/greatsword/iron_requiem.png",
+    "imageName": "epic/greatsword/32006.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.greatsword",
     "baseLevel": 400,
-    "baseDamage": 9320,
-    "criticalChance": 0.04,
-    "criticalDamage": 1.9,
+    "baseDamage": 9140,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
     "defensePenetration": 0,
-    "doubleAttackChance": 0.05,
-    "speed": 0.75,
-    "baseSellPrice": 1066000,
+    "doubleAttackChance": 0,
+    "speed": 0.8,
+    "baseSellPrice": 999000,
     "skills": [
       {
         "skill_name": "철의 노래",
@@ -960,17 +970,17 @@
   {
     "id": 32007,
     "name": "복제된 프라가라흐",
-    "imageName": "epic/greatsword/replicated_pragaragh.png",
+    "imageName": "epic/greatsword/32007.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.greatsword",
-    "baseLevel": 400,
-    "baseDamage": 9460,
-    "criticalChance": 0.04,
-    "criticalDamage": 1.9,
-    "defensePenetration": 10,
-    "doubleAttackChance": 0.05,
-    "speed": 0.75,
-    "baseSellPrice": 1066000,
+    "baseLevel": 500,
+    "baseDamage": 11420,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0,
+    "speed": 0.8,
+    "baseSellPrice": 2109000,
     "skills": [
       {
         "skill_name": "심판 (복제)",
@@ -1023,17 +1033,17 @@
   {
     "id": 32008,
     "name": "아이스브링어",
-    "imageName": "epic/greatsword/icebringer.png",
+    "imageName": "epic/greatsword/32008.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.greatsword",
     "baseLevel": 500,
-    "baseDamage": 11820,
-    "criticalChance": 0.04,
-    "criticalDamage": 1.9,
+    "baseDamage": 11420,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
     "defensePenetration": 0,
-    "doubleAttackChance": 0.0,
-    "speed": 0.75,
-    "baseSellPrice": 2250000,
+    "doubleAttackChance": 0,
+    "speed": 0.8,
+    "baseSellPrice": 2109000,
     "skills": [
       {
         "skill_name": "절대영도",
@@ -1059,9 +1069,7 @@
         "skill_effect": [
           {
             "effect_name": "increaseDamageToFrozen",
-            "params": {
-              "damageMultiplier": 1.5
-            }
+            "params": { "damageMultiplier": 1.5 }
           }
         ]
       }
