@@ -1,1 +1,267 @@
-[]
+[
+  {
+    "id": 51000,
+    "name": "라피스글로우",
+    "imageName": "legend/sword/51000.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.sword",
+    "baseLevel": 0,
+    "baseDamage": 330,
+    "criticalChance": 0.15,
+    "criticalDamage": 2.25,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.25,
+    "baseSellPrice": 0,
+    "skills": [
+      {
+        "skill_name": "청금석 각인",
+        "skill_type": "passive",
+        "skill_description": "청금석이 가진 마법의 힘이 사용자를 강하게 만든다.(공격력 +30%, 속도 +0.3/s, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 0.3,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 0.3,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.1,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalDamage",
+              "value": 1.0,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "accuracy",
+              "value": 1,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.79,
+    "description": "청금석의 신비한 빛을 품은 검. 전투 능력을 대폭 향상시킨다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 10,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 51001,
+    "name": "썬버드",
+    "imageName": "legend/sword/51001.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.sword",
+    "baseLevel": 50,
+    "baseDamage": 1042,
+    "criticalChance": 0.15,
+    "criticalDamage": 2.25,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.25,
+    "baseSellPrice": 32000,
+    "skills": [
+      {
+        "skill_name": "열 주입",
+        "skill_type": "active",
+        "skill_description": "뜨거운 열기가 적을 태운다. (공격 시 7.5% 확률로 5초간 화상, 초당 1,042 피해, 중첩 불가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyBurn",
+            "params": {
+              "chance": 0.075,
+              "duration": 5,
+              "damagePerSecond": 1042,
+              "stackable": false,
+              "trigger": "onHit",
+              "cooldown": 0
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.79,
+    "description": "불새의 날갯짓처럼 타오르는 검. 적에게 강한 화상을 입혀 지속적인 피해를 준다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 30,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 51002,
+    "name": "심판자",
+    "imageName": "legend/sword/51002.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.sword",
+    "baseLevel": 100,
+    "baseDamage": 2072,
+    "criticalChance": 0.15,
+    "criticalDamage": 2.25,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.25,
+    "baseSellPrice": 115000,
+    "skills": [
+      {
+        "skill_name": "정의 구현",
+        "skill_type": "active",
+        "skill_description": "정의로운 힘을 담아 적을 심판합니다. (공격 시 7.5% 확률로 10,360의 추가 피해. 쿨타임 3초)",
+        "skill_effect": [
+          {
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.075,
+              "damage": 10360,
+              "cooldown": 3,
+              "trigger": "onHit"
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.79,
+    "description": "정의를 실현하는 자를 위한 검. 강력한 힘은 곧 정의다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 50,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 51003,
+    "name": "서리의 맹세",
+    "imageName": "legend/sword/51003.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.sword",
+    "baseLevel": 200,
+    "baseDamage": 4160,
+    "criticalChance": 0.15,
+    "criticalDamage": 2.25,
+    "defensePenetration": 10,
+    "doubleAttackChance": 0.0,
+    "speed": 1.25,
+    "baseSellPrice": 310000,
+    "skills": [
+      {
+        "skill_name": "냉기 부여",
+        "skill_type": "active",
+        "skill_description": "서린 냉기가 적을 얼린다. (공격 시 7.5% 확률로 5초간 빙결, 쿨타임 3초)",
+        "skill_effect": [
+          {
+            "effect_name": "applyFreeze",
+            "params": {
+              "chance": 0.075,
+              "duration": 5,
+              "cooldown": 3,
+              "trigger": "onHit"
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "서리꽃",
+        "skill_type": "passive",
+        "skill_description": "착용자의 주변에 냉기가 서린다. (방어력 관통 +10)",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "defensePenetration",
+              "value": 10,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.79,
+    "description": "차디찬 맹세가 깃든 검. 적을 얼리고, 방어를 무력화하며 싸움을 지배한다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 75,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 51004,
+    "name": "크로우송",
+    "imageName": "legend/sword/51004.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.sword",
+    "baseLevel": 300,
+    "baseDamage": 6180,
+    "criticalChance": 0.15,
+    "criticalDamage": 2.25,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.25,
+    "baseSellPrice": 670000,
+    "skills": [
+      {
+        "skill_name": "전쟁의 노래",
+        "skill_type": "active",
+        "skill_description": "모리건의 전쟁의 노래가 전장에 울려 퍼진다. (공격력 +50%)",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 0.5,
+              "isMultiplicative": true
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "까마귀의 저주",
+        "skill_type": "active",
+        "skill_description": "검격과 함께 모리건의 저주가 깃든 까마귀 떼가 적을 휘감는다. (공격 시 7.5% 확률로 5초간 방어력 40 감소, 중첩 불가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyDisarm",
+            "params": {
+              "chance": 0.075,
+              "defenseReduction": 40,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 0
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.79,
+    "description": "모리건의 힘이 깃든 검. 공격력이 크게 증가하고, 적의 방어를 약화시킨다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 100,
+    "investedTranscendenceStones": 0
+  }
+]

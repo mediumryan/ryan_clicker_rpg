@@ -386,7 +386,8 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      if (game.player.equippedWeapon.instanceId != weapon.instanceId)
+                      if (game.player.equippedWeapon.instanceId !=
+                          weapon.instanceId)
                         ElevatedButton(
                           onPressed: () {
                             game.equipWeapon(weapon);
@@ -400,22 +401,19 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                       const SizedBox(width: 8),
                       ElevatedButton(
                         onPressed: () {
-                          final double sellPrice = weapon.baseSellPrice +
+                          final double sellPrice =
+                              weapon.baseSellPrice +
                               (weapon.investedGold / 3) +
                               (weapon.investedEnhancementStones * 5000 / 3) +
                               (weapon.investedTranscendenceStones * 50000 / 3);
 
-                          final content = '${weapon.name}을(를) 정말로 판매하시겠습니까?\n\n판매금액: ${NumberFormat('#,###').format(sellPrice)}G';
+                          final content =
+                              '${weapon.name}을(를) 정말로 판매하시겠습니까?\n\n판매금액: ${NumberFormat('#,###').format(sellPrice)}G';
 
-                          _showConfirmationDialog(
-                            context,
-                            '판매',
-                            content,
-                            () {
-                              final message = game.sellWeapon(weapon);
-                              _showResultDialog(context, message);
-                            },
-                          );
+                          _showConfirmationDialog(context, '판매', content, () {
+                            final message = game.sellWeapon(weapon);
+                            _showResultDialog(context, message);
+                          });
                         },
                         child: const Text('판매'),
                       ),

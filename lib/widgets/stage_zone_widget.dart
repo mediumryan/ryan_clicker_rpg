@@ -8,17 +8,31 @@ import 'package:provider/provider.dart'; // New import
 import 'package:ryan_clicker_rpg/providers/game_provider.dart'; // New import
 import 'package:intl/intl.dart';
 
+enum DamageType {
+  normal,
+  bleed,
+  shatter,
+  shock,
+  poison,
+  fixed,
+  maxHp,
+}
+
 // Class to hold damage text information
 class DamageText {
   final int damage;
   final bool isCritical;
   final bool isMiss; // New
+  final bool isSkillDamage;
+  final DamageType damageType;
   final Key key;
 
   DamageText({
     required this.damage,
     required this.isCritical,
     required this.isMiss,
+    this.isSkillDamage = false,
+    this.damageType = DamageType.normal,
   }) // Modified
   : key = UniqueKey();
 }
@@ -97,11 +111,14 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
   }
 
   // Method to add and manage damage text
-  void _showDamageText(int damage, bool isCritical, bool isMiss) {
+  void _showDamageText(int damage, bool isCritical, bool isMiss,
+      {bool isSkillDamage = false, DamageType damageType = DamageType.normal}) {
     final newDamageText = DamageText(
       damage: damage,
       isCritical: isCritical,
       isMiss: isMiss,
+      isSkillDamage: isSkillDamage,
+      damageType: damageType,
     );
     setState(() {
       _damageTexts.add(newDamageText);
@@ -480,9 +497,41 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
 
   @override
   Widget build(BuildContext context) {
+    Color getColor() {
+      switch (widget.damageText.damageType) {
+        case DamageType.bleed:
+          return Colors.red;
+        case DamageType.shatter:
+          return Colors.blue;
+        case DamageType.shock:
+          return Colors.yellow;
+        case DamageType.poison:
+          return Colors.purple;
+        case DamageType.fixed:
+        case DamageType.maxHp:
+          return Colors.orange;
+        case DamageType.normal:
+          if (widget.damageText.isMiss) return Colors.yellow;
+          if (widget.damageText.isCritical) return Colors.red;
+          return Colors.white;
+      }
+    }
+
+    double getFontSize() {
+      double baseSize = widget.damageText.isMiss
+          ? 32
+          : (widget.damageText.isCritical ? 28 : 20);
+      if (widget.damageText.isSkillDamage) {
+        return baseSize * 1.5;
+      }
+      return baseSize;
+    }
+
     return Positioned.fill(
       child: Align(
-        alignment: Alignment.center,
+        alignment: widget.damageText.isSkillDamage
+            ? const Alignment(0.3, 0.0) // To the right
+            : Alignment.center, // Normal damage at the center
         child: SlideTransition(
           position: _offsetAnimation,
           child: FadeTransition(
@@ -492,14 +541,8 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
                   ? 'MISS!'
                   : widget.damageText.damage.toString(),
               style: TextStyle(
-                color: widget.damageText.isMiss
-                    ? Colors.yellow
-                    : (widget.damageText.isCritical
-                          ? Colors.red
-                          : Colors.white),
-                fontSize: widget.damageText.isMiss
-                    ? 32
-                    : (widget.damageText.isCritical ? 28 : 20),
+                color: getColor(),
+                fontSize: getFontSize(),
                 fontWeight: FontWeight.bold,
               ),
             ),

@@ -5,9 +5,9 @@ import 'package:ryan_clicker_rpg/models/monster.dart';
 import 'package:ryan_clicker_rpg/models/status_effect.dart';
 import 'package:ryan_clicker_rpg/models/monster_species.dart'; // New import
 import 'package:ryan_clicker_rpg/models/damage_modifier.dart'; // New import
-import 'package:ryan_clicker_rpg/models/passive_stat_modifier.dart'; // New import
 import 'package:ryan_clicker_rpg/models/buff.dart'; // New
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
+import 'package:ryan_clicker_rpg/widgets/stage_zone_widget.dart';
 
 class WeaponSkillProvider with ChangeNotifier {
   final GameProvider _gameProvider;
@@ -65,6 +65,9 @@ class WeaponSkillProvider with ChangeNotifier {
               case 'applyPassiveStatBoost':
                 _applyPassiveStatBoost(params, player);
                 break;
+              case 'applyPassiveStatDebuff':
+                _applyPassiveStatDebuff(params, player);
+                break;
               case 'applyPassiveBonusDamageToRace':
                 _applyPassiveBonusDamageToRace(params, player, monster);
                 break;
@@ -76,9 +79,6 @@ class WeaponSkillProvider with ChangeNotifier {
                 break;
               case 'applyPassiveEnhancementStoneGainBoost':
                 _applyPassiveEnhancementStoneGainBoost(params, player);
-                break;
-              case 'applyPassiveDebuff':
-                _applyPassiveDebuff(params, player, monster);
                 break;
               case 'extraDamageToMonsterType':
                 {
@@ -101,6 +101,20 @@ class WeaponSkillProvider with ChangeNotifier {
                   if (multiplier != null) {
                     _applyStatusConditionalBonusDamage(
                       {'requiredStatus': 'poison', 'multiplier': multiplier},
+                      player,
+                      monster,
+                    );
+                  }
+                }
+                break;
+              case 'increaseDamageToStatused':
+                {
+                  final status = params['status'] as String?;
+                  final multiplier = (params['damageMultiplier'] as num?)
+                      ?.toDouble();
+                  if (status != null && multiplier != null) {
+                    _applyStatusConditionalBonusDamage(
+                      {'requiredStatus': status, 'multiplier': multiplier},
                       player,
                       monster,
                     );
@@ -300,47 +314,57 @@ class WeaponSkillProvider with ChangeNotifier {
       case "defensePenetration":
         player.passiveWeaponDefensePenetrationBonus += value;
         break;
+      case "speed":
+        player.passiveWeaponSpeedBonus += value;
+        break;
+      case "accuracy":
+        player.passiveWeaponAccuracyBonus += value;
+        break;
       default:
         // Handle unknown stat or log an error
         break;
     }
   }
 
-  void _applyPassiveDebuff(
-    Map<String, dynamic> params,
-    Player player,
-    Monster monster,
-  ) {
+  void _applyPassiveStatDebuff(Map<String, dynamic> params, Player player) {
     final stat = params['stat'] as String?;
     final value = (params['value'] as num?)?.toDouble();
     final isMultiplicative = params['isMultiplicative'] as bool? ?? false;
-    final hpThreshold = (params['hpThreshold'] as num?)?.toDouble();
-    final hpCondition = params['hpCondition'] as String?;
-    final requiredStatusString = params['requiredStatus'] as String?;
-    final maxStage = (params['maxStage'] as num?)?.toInt();
 
     if (stat == null || value == null) {
       return; // Missing essential parameters
     }
 
-    StatusEffectType? requiredStatus;
-    if (requiredStatusString != null) {
-      requiredStatus = _getStatusEffectTypeFromString(requiredStatusString);
-      if (requiredStatus == null) {
-        return; // Invalid status effect type
-      }
+    switch (stat) {
+      case "damage":
+        if (isMultiplicative) {
+          player.passiveWeaponDamageMultiplier -= value;
+        } else {
+          player.passiveWeaponDamageBonus -= value;
+        }
+        break;
+      case "criticalChance":
+        player.passiveWeaponCriticalChanceBonus -= value;
+        break;
+      case "criticalDamage":
+        player.passiveWeaponCriticalDamageBonus -= value;
+        break;
+      case "doubleAttackChance":
+        player.passiveWeaponDoubleAttackChanceBonus -= value;
+        break;
+      case "defensePenetration":
+        player.passiveWeaponDefensePenetrationBonus -= value;
+        break;
+      case "speed":
+        player.passiveWeaponSpeedBonus -= value;
+        break;
+      case "accuracy":
+        player.passiveWeaponAccuracyBonus -= value;
+        break;
+      default:
+        // Handle unknown stat or log an error
+        break;
     }
-
-    final modifier = PassiveStatModifier(
-      stat: stat,
-      value: value,
-      isMultiplicative: isMultiplicative,
-      hpThreshold: hpThreshold,
-      hpCondition: hpCondition,
-      requiredStatus: requiredStatus,
-      maxStage: maxStage,
-    );
-    _gameProvider.addPassiveStatModifier(modifier);
   }
 
   void _applyPassiveBonusDamageToRace(
@@ -873,6 +897,8 @@ class WeaponSkillProvider with ChangeNotifier {
         damage.toInt(),
         false,
         false,
+        isSkillDamage: true,
+        damageType: DamageType.fixed,
       ); // Show skill damage
       _gameProvider.notifyListeners(); // Notify listeners for HP change
     }
@@ -921,6 +947,8 @@ class WeaponSkillProvider with ChangeNotifier {
         damage.toInt(),
         false,
         false,
+        isSkillDamage: true,
+        damageType: DamageType.maxHp,
       ); // Show skill damage
       _gameProvider.notifyListeners(); // Notify listeners for HP change
     }
@@ -969,6 +997,8 @@ class WeaponSkillProvider with ChangeNotifier {
         damage.toInt(),
         false,
         false,
+        isSkillDamage: true,
+        damageType: DamageType.fixed,
       ); // Show skill damage
       _gameProvider.notifyListeners(); // Notify listeners for HP change
     }
@@ -1103,6 +1133,13 @@ class WeaponSkillProvider with ChangeNotifier {
         final bonusDamage = player.finalDamage * multiplier;
         monster.hp -= bonusDamage;
         monster.setSkillCooldown('hpConditionalBonusDamage');
+        _gameProvider.showFloatingDamageText(
+          bonusDamage.toInt(),
+          false,
+          false,
+          isSkillDamage: true,
+          damageType: DamageType.fixed,
+        );
         _gameProvider.notifyListeners(); // Notify listeners for HP change
       }
     }
@@ -1164,6 +1201,13 @@ class WeaponSkillProvider with ChangeNotifier {
 
       monster.hp -= bonusDamage;
       monster.setSkillCooldown('goldConsumePerHitDamage');
+      _gameProvider.showFloatingDamageText(
+        bonusDamage.toInt(),
+        false,
+        false,
+        isSkillDamage: true,
+        damageType: DamageType.fixed,
+      );
       _gameProvider.notifyListeners(); // Notify listeners for HP change
     }
   }
@@ -1193,6 +1237,8 @@ class WeaponSkillProvider with ChangeNotifier {
           damage.toInt(),
           true,
           false,
+          isSkillDamage: true,
+          damageType: DamageType.fixed,
         ); // Show as crit
         _gameProvider.notifyListeners();
       }

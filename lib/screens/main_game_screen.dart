@@ -56,7 +56,8 @@ class MainGameScreen extends StatelessWidget {
                     stageName: game.currentStageName, // Pass stage name
                     monsterEffectiveDefense: game
                         .currentMonsterEffectiveDefense, // New: Pass effective defense
-                    autoAttackDelay: game.autoAttackDelay, // New: Pass auto attack delay
+                    autoAttackDelay:
+                        game.autoAttackDelay, // New: Pass auto attack delay
                     lastGoldReward: game.lastGoldReward, // New
                     lastDroppedBox: game.lastDroppedBox, // New
                   ),
@@ -89,7 +90,7 @@ class MainGameScreen extends StatelessWidget {
           _buildStat(
             'images/stats/critical_chance.png',
             '${(game.player.finalCritChance * 100).toStringAsFixed(1)}%',
-            '치명타 확률: 공격 시 치명타가 발생할 확률입니다. 100%를 초과할 수 없습니다.',
+            '치명타 확률: 공격 시 치명타가 발생할 확률입니다.',
           ),
           _buildStat(
             'images/stats/critical_damage.png',
@@ -98,8 +99,8 @@ class MainGameScreen extends StatelessWidget {
           ),
           _buildStat(
             'images/stats/accuracy.png',
-            '${(game.player.equippedWeapon.accuracy * 100).toStringAsFixed(0)}%',
-            '적중률: 공격이 몬스터에게 적중할 확률입니다. 100%를 초과할 수 없습니다.',
+            '${(game.player.finalAccuracy * 100).toStringAsFixed(0)}%',
+            '적중률: 공격이 몬스터에게 적중할 확률입니다.',
           ),
         ],
       ),

@@ -39,7 +39,7 @@
       }
     ],
     "accuracy": 0.79,
-    "description": "벌새의 날갯짓처럼 빠른 연속 찌르기에 최적화된 레이피어.",
+    "description": "벌새의 날갯짓처럼 빠른 연속 찌르기에 특화된 레이피어.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -64,7 +64,7 @@
       {
         "skill_name": "사냥 본능",
         "skill_type": "active",
-        "skill_description": "검신이 약화된 적에 반응해 강해진다. (체력이 50% 이하인 적에게 추가 피해 +50%)",
+        "skill_description": "약화된 적에 반응해 강해진다. (체력 50% 이하인 적에게 추가 피해 +50%)",
         "skill_effect": [
           {
             "effect_name": "applyHpConditionalBonusDamage",
@@ -106,7 +106,7 @@
       {
         "skill_name": "벌집 내기",
         "skill_type": "active",
-        "skill_description": "강력한 찌르기로 상대방을 벌집으로 만든다. (공격 시 5% 확률로 3,040의 추가 피해. 쿨타임 4초.)",
+        "skill_description": "강력한 찌르기로 적을 벌집으로 만든다. (공격 시 5% 확률로 3,040 추가 피해, 쿨타임 4초)",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
@@ -121,7 +121,7 @@
       }
     ],
     "accuracy": 0.79,
-    "description": "무자비한 찌르기로 적을 벌집처럼 만든다고 하여 붙여진 악명 높은 레이피어.",
+    "description": "무자비한 찌르기로 적을 벌집처럼 만든다고 악명 높은 레이피어.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -146,7 +146,7 @@
       {
         "skill_name": "갑옷 부수기",
         "skill_type": "active",
-        "skill_description": "정확한 타점으로 갑옷의 약점을 파고든다. (공격 시 5% 확률로 4초간 무장해제 효과 부여. 무장해제 - 방어력 25 감소. 중첩 불가.)",
+        "skill_description": "정확한 타점으로 갑옷의 약점을 파고든다. (공격 시 5% 확률로 4초간 무장 해제, 방어력 25 감소, 중첩 불가)",
         "skill_effect": [
           {
             "effect_name": "applyDisarm",
@@ -188,7 +188,7 @@
       {
         "skill_name": "맹독 주입",
         "skill_type": "active",
-        "skill_description": "적에게 치명적인 맹독을 주입한다. (공격 시 5% 확률로 4초간 중독 효과 부여. 중독 - 초당 최대 체력의 2.5% 피해. 중첩 불가)",
+        "skill_description": "치명적인 맹독을 주입한다. (공격 시 5% 확률로 4초간 중독, 초당 최대 체력의 2.5% 피해, 중첩 불가)",
         "skill_effect": [
           {
             "effect_name": "applyPoison",
@@ -205,11 +205,11 @@
       {
         "skill_name": "독사의 송곳니",
         "skill_type": "passive",
-        "skill_description": "독사의 송곳니는 중독된 먹잇감을 놓치지 않는다. (중독 상태인 적에게 추가 피해 +50%)",
+        "skill_description": "중독된 적에게 치명상을 입힌다. (중독 상태인 적에게 추가 피해 +50%)",
         "skill_effect": [
           {
-            "effect_name": "increaseDamageToPoisoned",
-            "params": { "damageMultiplier": 1.5 }
+            "status": "increaseDamageToStatused",
+            "multiplier": 0.5
           }
         ]
       }
@@ -263,36 +263,36 @@
       {
         "skill_name": "정화 (복제)",
         "skill_type": "passive",
-        "skill_description": "복제된 성물이 선과 악을 구분하여 전투에 도움을 준다. (언데드/데몬 종족에게 추가 피해 +50%, 신성/천사 종족에게 추가 피해 -30% )",
+        "skill_description": "복제된 성물이 선과 악을 구분해 전투를 돕는다. (언데드·데몬 종족에게 추가 피해 +50%, 신성·천사 종족에게 추가 피해 -30%)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveBonusDamageToRace",
-            "params": { "race": "undead", "multiplier": 1.5 }
+            "params": { "race": "undead", "multiplier": 0.5 }
           },
           {
             "effect_name": "applyPassiveBonusDamageToRace",
-            "params": { "race": "demon", "multiplier": 1.5 }
+            "params": { "race": "demon", "multiplier": 0.5 }
           },
           {
             "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": { "race": "divine", "multiplier": 0.7 }
+            "params": { "race": "divine", "multiplier": 0.3 }
           },
           {
             "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": { "race": "angel", "multiplier": 0.7 }
+            "params": { "race": "angel", "multiplier": 0.3 }
           }
         ]
       },
       {
         "skill_name": "심판 (복제)",
         "skill_type": "active",
-        "skill_description": "복제된 성물이 희미한 빛을 발산하여 몬스터를 심판한다. (공격 시 5% 확률로 15,100의 추가피해. 쿨타임 4초)",
+        "skill_description": "복제된 성물이 희미한 빛을 발산해 몬스터를 심판한다. (공격 시 5% 확률로 20,000 추가 피해, 쿨타임 4초)",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.05,
-              "damage": 15100,
+              "damage": 20000,
               "cooldown": 4,
               "trigger": "onHit"
             }
@@ -301,14 +301,13 @@
       }
     ],
     "accuracy": 0.79,
-    "description": "신성국에 전해지는 성물, 《신성한 일침》의 복제품. 진품보다 위력이 많이 떨어진다.",
+    "description": "신성국에 전해지는 성물 《신성한 일침》의 복제품. 진품보다 위력이 크게 떨어진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
     "investedEnhancementStones": 150,
     "investedTranscendenceStones": 0
   },
-
   {
     "id": 31000,
     "name": "후발주자",
@@ -325,9 +324,9 @@
     "baseSellPrice": 9000,
     "skills": [
       {
-        "skill_name": "누적성장",
+        "skill_name": "누적 성장",
         "skill_type": "active",
-        "skill_description": "적을 처치할수록 검도 강해진다. (몬스터 처치 시 기본 공격력 3 영구 증가. 최대 100중첩)",
+        "skill_description": "적을 처치할수록 검이 강해진다. (몬스터 처치 시 기본 공격력 +3 영구 증가, 최대 100중첩)",
         "skill_effect": [
           {
             "effect_name": "increaseStat",
@@ -366,9 +365,9 @@
     "baseSellPrice": 30000,
     "skills": [
       {
-        "skill_name": "감정불가",
+        "skill_name": "감정 불가",
         "skill_type": "active",
-        "skill_description": "검을 휘두르면 정체 모를 힘이 적에게 영향을 준다. (공격 시 5% 확률로 4초간 무작위 상태 이상 부여. 출혈 - 초당 2,000의 피해. 중독 - 초당 최대 체력의 5% 피해. 무장해제 - 방어력 10 감소 .중첩 불가.)",
+        "skill_description": "검을 휘두르면 정체 모를 힘이 적에게 영향을 준다. (공격 시 5% 확률로 4초간 무작위 상태 이상 부여: 출혈 - 초당 2,000 피해, 중독 - 초당 최대 체력의 5% 피해, 무장 해제 - 방어력 10 감소, 중첩 불가)",
         "skill_effect": [
           {
             "effect_name": "applyRandomDebuff",
@@ -386,7 +385,7 @@
       }
     ],
     "accuracy": 0.72,
-    "description": "정체모를 힘이 담겨있는 검. 적에게 무작위 디버프를 부여한다.",
+    "description": "정체 모를 힘이 깃든 검. 적에게 무작위 상태 이상을 부여한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -411,13 +410,13 @@
       {
         "skill_name": "드높은 기세",
         "skill_type": "passive",
-        "skill_description": "흉내 낼 수 없는 기세가 검에 깃들어 있다. (공격력 +25%, 공격 속도 +0.25/s, 치명타 피해 +0.5배)",
+        "skill_description": "흉내 낼 수 없는 기세가 검에 깃든다. (공격력 +25%, 공격 속도 +0.25/s, 치명타 피해 +0.5배)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "damage",
-              "value": 1.25,
+              "value": 0.25,
               "isMultiplicative": true
             }
           },
@@ -441,7 +440,7 @@
       }
     ],
     "accuracy": 0.72,
-    "description": "대장장이 윌터의 걸작. 그 기세가 사용자에게까지 전해진다.",
+    "description": "대장장이 윌터의 걸작. 그 기세가 사용자에게 전해진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -466,7 +465,7 @@
       {
         "skill_name": "갑옷 부수기",
         "skill_type": "active",
-        "skill_description": "정확한 타점으로 갑옷의 약점을 파고든다. (공격 시 5% 확률로 4초간 무장해제 효과 부여. 무장해제 - 방어력 25 감소. 중첩 불가.)",
+        "skill_description": "정확한 타점으로 갑옷의 약점을 파고든다. (공격 시 5% 확률로 4초간 무장 해제, 방어력 25 감소, 중첩 불가)",
         "skill_effect": [
           {
             "effect_name": "applyDisarm",
@@ -508,12 +507,16 @@
       {
         "skill_name": "승천격",
         "skill_type": "active",
-        "trigger": "onHit",
-        "skill_description": "승천하는 이무기를 형상화한 일격. (공격 시 5% 확률로 12,500의 추가 피해. 쿨타임 4초.)",
+        "skill_description": "승천하는 이무기를 형상화한 일격. (공격 시 5% 확률로 12,500 추가 피해, 쿨타임 4초)",
         "skill_effect": [
           {
-            "effect_name": "dealBonusDamage",
-            "params": { "chance": 0.05, "bonusDamage": 12500, "cooldown": 4 }
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.05,
+              "damage": 12500,
+              "cooldown": 4,
+              "trigger": "onHit"
+            }
           }
         ]
       }
@@ -544,11 +547,11 @@
       {
         "skill_name": "보검",
         "skill_type": "passive",
-        "skill_description": "보검이 행운과 부를 가져다준다. (골드 획득량 +100%, 강화석 추가 획득 +1)",
+        "skill_description": "행운과 부를 가져다주는 보검. (골드 획득량 +100%, 강화석 추가 획득 +1)",
         "skill_effect": [
           {
             "effect_name": "applyGoldGainBoost",
-            "params": { "multiplier": 2.25 }
+            "params": { "multiplier": 2.0 }
           },
           {
             "effect_name": "applyPassiveEnhancementStoneGainBoost",
@@ -558,7 +561,7 @@
       }
     ],
     "accuracy": 0.72,
-    "description": "어느 왕실에 전해진 전설의 칼. 행운을 품었다.",
+    "description": "왕실에 전해 내려오는 전설의 검. 행운을 품고 있다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -583,36 +586,36 @@
       {
         "skill_name": "정화 (복제)",
         "skill_type": "passive",
-        "skill_description": "복제된 성물이 선과 악을 구분하여 전투에 도움을 준다. (언데드/데몬 종족에게 추가 피해 +50%, 신성/천사 종족에게 추가 피해 -30% )",
+        "skill_description": "복제된 성물이 선과 악을 구분해 전투를 돕는다. (언데드·데몬 종족에게 추가 피해 +50%, 신성·천사 종족에게 추가 피해 -30%)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveBonusDamageToRace",
-            "params": { "race": "undead", "multiplier": 1.5 }
+            "params": { "race": "undead", "multiplier": 0.5 }
           },
           {
             "effect_name": "applyPassiveBonusDamageToRace",
-            "params": { "race": "demon", "multiplier": 1.5 }
+            "params": { "race": "demon", "multiplier": 0.5 }
           },
           {
             "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": { "race": "divine", "multiplier": 0.7 }
+            "params": { "race": "divine", "multiplier": 0.3 }
           },
           {
             "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": { "race": "angel", "multiplier": 0.7 }
+            "params": { "race": "angel", "multiplier": 0.3 }
           }
         ]
       },
       {
         "skill_name": "심판 (복제)",
         "skill_type": "active",
-        "skill_description": "복제된 성물이 희미한 빛을 발산하여 몬스터를 심판한다. (공격 시 5% 확률로 15,100의 추가피해. 쿨타임 4초)",
+        "skill_description": "복제된 성물이 희미한 빛을 발산해 몬스터를 심판한다. (공격 시 5% 확률로 20,000 추가 피해, 쿨타임 4초)",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.05,
-              "damage": 15100,
+              "damage": 20000,
               "cooldown": 4,
               "trigger": "onHit"
             }
@@ -621,7 +624,7 @@
       }
     ],
     "accuracy": 0.72,
-    "description": "신성국에 전해지는 성물, 《듀랜달》의 복제품. 진품보다 위력이 많이 떨어진다.",
+    "description": "신성국에 전해지는 성물 《듀랜달》의 복제품. 진품보다 위력이 크게 떨어진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -644,7 +647,7 @@
     "baseSellPrice": 2109000,
     "skills": [
       {
-        "skill_name": "약자멸시",
+        "skill_name": "약자 멸시",
         "skill_type": "active",
         "skill_description": "약자를 무자비하게 처치한다. (체력 50% 이하인 적에게 추가 피해 +100%)",
         "skill_effect": [
@@ -686,7 +689,7 @@
     "baseSellPrice": 9000,
     "skills": [
       {
-        "skill_name": "유서깊은 무구",
+        "skill_name": "유서 깊은 무구",
         "skill_type": "passive",
         "skill_description": "역사가 깃든 무구가 사용자의 힘을 증폭시킨다. (공격력 +30%)",
         "skill_effect": [
@@ -694,7 +697,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "damage",
-              "value": 1.3,
+              "value": 0.3,
               "isMultiplicative": true
             }
           }
@@ -702,7 +705,7 @@
       }
     ],
     "accuracy": 0.65,
-    "description": "현재는 몇 점 남아있지 않아 희소한 유서 깊은 대검.",
+    "description": "현재는 몇 점 남아 있지 않아 희소한 유서 깊은 대검.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -720,14 +723,14 @@
     "criticalChance": 0.08,
     "criticalDamage": 1.8,
     "defensePenetration": 0,
-    "doubleAttackChance": 0,
+    "doubleAttackChance": 0.0,
     "speed": 0.8,
     "baseSellPrice": 30000,
     "skills": [
       {
-        "skill_name": "기선제압",
+        "skill_name": "기선 제압",
         "skill_type": "active",
-        "skill_description": "압도적인 힘으로 기선제압 한다. (체력이 60% 이상인 적에게 추가 피해 +60%)",
+        "skill_description": "압도적인 힘으로 기선을 제압한다. (체력 60% 이상인 적에게 추가 피해 +60%)",
         "skill_effect": [
           {
             "effect_name": "applyHpConditionalBonusDamage",
@@ -762,21 +765,21 @@
     "criticalChance": 0.08,
     "criticalDamage": 1.8,
     "defensePenetration": 0,
-    "doubleAttackChance": 0,
+    "doubleAttackChance": 0.0,
     "speed": 0.8,
     "baseSellPrice": 106500,
     "skills": [
       {
         "skill_name": "찢어발기기",
         "skill_type": "passive",
-        "skill_description": "악어의 이빨과도 같은 검날이 적을 찢어발긴다. (공격 시 5% 확률로 4초간 출혈 효과 부여. 초당 3,450의 피해. 중첩 불가)",
+        "skill_description": "악어의 이빨 같은 검날이 적을 찢어발긴다. (공격 시 10% 확률로 4초간 출혈, 초당 1,150 피해, 중첩 불가)",
         "skill_effect": [
           {
             "effect_name": "applyBleed",
             "params": {
               "chance": 0.1,
               "duration": 4,
-              "damagePerSecond": 3450,
+              "damagePerSecond": 1150,
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 0
@@ -786,7 +789,7 @@
       }
     ],
     "accuracy": 0.65,
-    "description": "검날이 악어의 이빨을 닮아 기묘한 이명이 생긴 대검. 적에게 출혈 효과 부여한다.",
+    "description": "검날이 악어의 이빨을 닮아 기묘한 이명이 붙은 대검. 적에게 출혈을 유발한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -804,14 +807,14 @@
     "criticalChance": 0.08,
     "criticalDamage": 1.8,
     "defensePenetration": 5,
-    "doubleAttackChance": 0,
+    "doubleAttackChance": 0.0,
     "speed": 0.8,
     "baseSellPrice": 287400,
     "skills": [
       {
         "skill_name": "갑옷 부수기",
         "skill_type": "active",
-        "skill_description": "정확한 타점으로 갑옷의 약점을 파고든다. (공격 시 5% 확률로 4초간 무장해제 효과 부여. 무장해제 - 방어력 25 감소. 중첩 불가.)",
+        "skill_description": "정확한 타점으로 갑옷의 약점을 파고든다. (공격 시 5% 확률로 4초간 무장 해제, 방어력 25 감소, 중첩 불가)",
         "skill_effect": [
           {
             "effect_name": "applyDisarm",
@@ -846,14 +849,14 @@
     "criticalChance": 0.08,
     "criticalDamage": 1.8,
     "defensePenetration": 0,
-    "doubleAttackChance": 0,
+    "doubleAttackChance": 0.0,
     "speed": 0.8,
     "baseSellPrice": 606000,
     "skills": [
       {
-        "skill_name": "이중베기",
+        "skill_name": "이중 베기",
         "skill_type": "passive",
-        "skill_description": "검의 특수한 구조가 이중 공격을 가능하게 한다. (더블 어택 확률 +5%, 적중률 +10%)",
+        "skill_description": "특수한 구조의 검이 이중 공격을 가능하게 한다. (더블 어택 확률 +5%, 적중률 +10%)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
@@ -875,7 +878,7 @@
       }
     ],
     "accuracy": 0.65,
-    "description": "한 번 휘두르면 일정 확률로 두 번의 공격이 이루어지는 특수한 구조의 대검.",
+    "description": "한 번 휘두르면 일정 확률로 두 번 공격하는 특수 구조의 대검.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -884,7 +887,7 @@
   },
   {
     "id": 32005,
-    "name": "4번타자",
+    "name": "4번 타자",
     "imageName": "epic/greatsword/32005.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.greatsword",
@@ -899,11 +902,16 @@
       {
         "skill_name": "만루 홈런",
         "skill_type": "passive",
-        "skill_description": "신중하게 노린 한 방이 전세를 역전시킵니다. (공격 시 5% 확률로 20배의 피해)",
+        "skill_description": "신중하게 노린 한 방이 전세를 역전시킨다. (공격 시 5% 확률로 40000 피해. 쿨타임 4초)",
         "skill_effect": [
           {
-            "effect_name": "criticalDamageBoost",
-            "params": { "multiplier": 20, "triggerChance": 0.05 }
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.05,
+              "damage": 40000,
+              "trigger": "onHit",
+              "cooldown": 4
+            }
           }
         ]
       }
@@ -926,14 +934,14 @@
     "criticalChance": 0.08,
     "criticalDamage": 1.8,
     "defensePenetration": 0,
-    "doubleAttackChance": 0,
+    "doubleAttackChance": 0.0,
     "speed": 0.8,
     "baseSellPrice": 999000,
     "skills": [
       {
         "skill_name": "철의 노래",
         "skill_type": "active",
-        "skill_description": "검을 휘두를 때마다 강렬한 금속성이 울려 퍼집니다. (공격 시 20% 확률로 적에게 혼란 상태 부여)",
+        "skill_description": "검을 휘두를 때마다 강렬한 금속성이 울려 퍼진다. (공격 시 20% 확률로 5초간 혼란, 중첩 불가)",
         "skill_effect": [
           {
             "effect_name": "applyConfusion",
@@ -948,19 +956,19 @@
         ]
       },
       {
-        "skill_name": "철의 노래Ⅱ",
+        "skill_name": "철의 노래 II",
         "skill_type": "passive",
-        "skill_description": "금속의 울림에 휘청인 적에게는 더욱 치명적인 일격이 가해집니다. (혼란 상태의 적에게 가하는 피해 50% 증가)",
+        "skill_description": "금속의 울림에 휘청인 적에게 더욱 치명적인 일격을 가한다. (혼란 상태의 적에게 피해 +50%)",
         "skill_effect": [
           {
-            "effect_name": "increaseDamageToConfused",
-            "params": { "damageMultiplier": 1.5 }
+            "status": "increaseDamageToStatused",
+            "multiplier": 0.5
           }
         ]
       }
     ],
     "accuracy": 0.65,
-    "description": "강철이 울부짖듯 울려 퍼지는 대검. 검을 휘두를 때마다 전장의 모든 이가 그 쇳소리에 숨을 멈춥니다.",
+    "description": "강철이 울부짖듯 울려 퍼지는 대검. 그 쇳소리에 전장의 모든 이가 숨을 멈춘다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -978,14 +986,408 @@
     "criticalChance": 0.08,
     "criticalDamage": 1.8,
     "defensePenetration": 0,
-    "doubleAttackChance": 0,
+    "doubleAttackChance": 0.0,
     "speed": 0.8,
     "baseSellPrice": 2109000,
     "skills": [
       {
-        "skill_name": "심판 (복제)",
+        "skill_name": "정화 (복제)",
         "skill_type": "passive",
-        "skill_description": "이 무기는 선과 악을 구분합니다. (언데드/데몬 종족에게 50% 데미지 추가, 신성교/천사 종족에게 30% 데미지 감소)",
+        "skill_description": "복제된 성물이 선과 악을 구분해 전투를 돕는다. (언데드·데몬 종족 피해 +50%, 신성·천사 종족 피해 -30%)",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "undead", "multiplier": 0.5 }
+          },
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "demon", "multiplier": 0.5 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "divine", "multiplier": 0.3 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "angel", "multiplier": 0.3 }
+          }
+        ]
+      },
+      {
+        "skill_name": "심판 (복제)",
+        "skill_type": "active",
+        "skill_description": "복제된 성물이 희미한 빛을 발산해 몬스터를 심판한다. (공격 시 5% 확률로 20,000 추가 피해, 쿨타임 4초)",
+        "skill_effect": [
+          {
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.05,
+              "damage": 20000,
+              "cooldown": 4,
+              "trigger": "onHit"
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.65,
+    "description": "신성국에 전해지는 성물 《프라가라흐》의 복제품. 진품보다 위력이 크게 떨어진다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 32008,
+    "name": "아이스브링어",
+    "imageName": "epic/greatsword/32008.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.greatsword",
+    "baseLevel": 500,
+    "baseDamage": 11420,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 0.8,
+    "baseSellPrice": 2109000,
+    "skills": [
+      {
+        "skill_name": "냉기 주입",
+        "skill_type": "active",
+        "skill_description": "검에 깃든 마법의 냉기가 적을 얼린다. (공격 시 25% 확률로 4초간 빙결, 중첩 불가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyFreeze",
+            "params": {
+              "chance": 0.25,
+              "duration": 4,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 0
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "절대 영도",
+        "skill_type": "passive",
+        "skill_description": "빙결 상태의 적에게 더욱 강력한 피해를 준다. (빙결 상태의 적에게 피해 +50%)",
+        "skill_effect": [
+          {
+            "status": "increaseDamageToStatused",
+            "multiplier": 0.5
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.65,
+    "description": "서리 같은 냉기가 깃든 대검. 빙결된 적을 산산조각 낸다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33000,
+    "name": "백연",
+    "imageName": "epic/katana/33000.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 0,
+    "baseDamage": 227,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.15,
+    "baseSellPrice": 9000,
+    "skills": [
+      {
+        "skill_name": "백연참",
+        "skill_type": "passive",
+        "skill_description": "흰 연기처럼 사라지는 검격으로 결코 빗나가지 않는 공격을 가한다. (공격 속도 +0.3/s, 적중률 +20%)",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 0.3,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.2,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.75,
+    "description": "흰 연기처럼 사라지는 예리한 일격을 담은 카타나. 예측할 수 없는 검격은 결코 빗나가지 않는다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 5,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33001,
+    "name": "홍앵",
+    "imageName": "epic/katana/33001.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 50,
+    "baseDamage": 710,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.15,
+    "accuracy": 0.75,
+    "baseSellPrice": 30000,
+    "skills": [
+      {
+        "skill_name": "벚꽃 베기",
+        "skill_type": "passive",
+        "skill_description": "벚꽃이 흩날리듯 빠르게 움직이는 칼날이 적을 찌른다. (치명타 확률 +15%, 공격 속도 +0.5/s)",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.15,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 0.5,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "description": "붉게 빛나는 검신이 특징인 카타나. 떨어지는 벚꽃잎도 벨 만큼 빠른 공격이 가능하다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 15,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33002,
+    "name": "전율",
+    "imageName": "epic/katana/33002.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 100,
+    "baseDamage": 1420,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.05,
+    "speed": 1.15,
+    "baseSellPrice": 106500,
+    "accuracy": 0.75,
+    "skills": [
+      {
+        "skill_name": "감전",
+        "skill_type": "active",
+        "skill_description": "번개의 힘이 담긴 일격으로 적을 감전시킨다. (공격 시 5% 확률로 4초간 감전, 중첩 불가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyShock",
+            "params": {
+              "chance": 0.05,
+              "duration": 4,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 0
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "방전",
+        "skill_type": "passive",
+        "skill_description": "감전 상태의 적에게 주는 피해가 50% 증가한다.",
+        "skill_effect": [
+          {
+            "effect_name": "increaseDamageToStatused",
+            "params": { "damageMultiplier": 1.5 }
+          }
+        ]
+      }
+    ],
+    "description": "번개의 힘이 깃든 카타나. 적을 감전시키고 감전된 적에게 강한 피해를 입힌다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 25,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33003,
+    "name": "은빛날개",
+    "imageName": "epic/katana/33003.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 200,
+    "baseDamage": 2830,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.15,
+    "baseSellPrice": 287400,
+    "skills": [
+      {
+        "skill_name": "고속검",
+        "skill_type": "passive",
+        "skill_description": "매우 빠른 속도로 검을 휘두른다. (더블 어택 확률 +5%)",
+        "skill_effect": [
+          {
+            "effect_name": "increaseDoubleAttackChance",
+            "params": {
+              "stat": "doubleAttackChance",
+              "value": 0.05,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.75,
+    "description": "은빛처럼 빠르고 날렵한 검격을 자랑하는 카타나.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33004,
+    "name": "시라유키",
+    "imageName": "epic/katana/33004.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 300,
+    "baseDamage": 4230,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.05,
+    "speed": 1.15,
+    "baseSellPrice": 606000,
+    "skills": [
+      {
+        "skill_name": "냉기 주입",
+        "skill_type": "active",
+        "skill_description": "검에 깃든 마법의 냉기가 적을 얼린다. (공격 시 5% 확률로 4초간 빙결, 중첩 불가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyFreeze",
+            "params": {
+              "chance": 0.05,
+              "duration": 4,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 0
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.75,
+    "description": "서리 같은 냉기가 깃든 카타나. 적을 얼릴 확률이 높다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33005,
+    "name": "혈매",
+    "imageName": "epic/katana/33005.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 400,
+    "baseDamage": 5640,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
+    "defensePenetration": 0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.15,
+    "baseSellPrice": 999000,
+    "skills": [
+      {
+        "skill_name": "갈증",
+        "skill_type": "active",
+        "skill_description": "요도가 적에게 출혈을 유발한다. (공격 시 5% 확률로 4초간 출혈, 초당 2,820 피해. 중첩 불가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyBleed",
+            "params": {
+              "chance": 0.05,
+              "duration": 4,
+              "fixedDamagePerSecond": 2820,
+              "stackable": false,
+              "trigger": "onHit",
+              "cooldown": 0
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "갈증 해소",
+        "skill_type": "passive",
+        "skill_description": "피를 머금은 요도가 더욱 강력해진다. (출혈 상태의 적에게 피해 +50%)",
+        "skill_effect": [
+          {
+            "effect_name": "increaseDamageToStatused",
+            "params": { "status": "bleed", "multiplier": 0.5 }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.75,
+    "description": "피를 먹는다고 전해지는 요도. 출혈 상태의 적에게 추가 피해를 준다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 33006,
+    "name": "복제된 후츠노미타마",
+    "imageName": "epic/katana/33006.png",
+    "rarity": "Rarity.epic",
+    "type": "WeaponType.katana",
+    "baseLevel": 500,
+    "baseDamage": 7050,
+    "criticalChance": 0.15,
+    "criticalDamage": 1.58,
+    "defensePenetration": 10,
+    "doubleAttackChance": 0.05,
+    "speed": 1.15,
+    "baseSellPrice": 2109000,
+    "skills": [
+      {
+        "skill_name": "제령 (복제)",
+        "skill_type": "passive",
+        "skill_description": "복제된 성물이 선과 악을 구분해 전투를 돕는다. (언데드·데몬 종족 피해 +50%, 신성·천사 종족 피해 -30%)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveBonusDamageToRace",
@@ -1006,395 +1408,24 @@
         ]
       },
       {
-        "skill_name": "신성한 일격 (복제)",
+        "skill_name": "심판 (복제)",
         "skill_type": "active",
-        "skill_description": "신성한 빛으로 적을 정화합니다. (공격 시 10% 확률로 40,000 추가 고정 피해, 쿨타임 5초)",
+        "skill_description": "복제된 성물이 희미한 빛을 발산해 몬스터를 심판한다. (공격 시 5% 확률로 20,000 추가 피해, 쿨타임 4초)",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
-              "chance": 0.1,
-              "damage": 40000,
-              "cooldown": 5,
+              "chance": 0.05,
+              "damage": 20000,
+              "cooldown": 4,
               "trigger": "onHit"
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.65,
-    "description": "신성국에 전해지는 성검, 《프라가라흐》의 복제품. 진품보다 위력은 떨어지나, 그 권위는 여전합니다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 32008,
-    "name": "아이스브링어",
-    "imageName": "epic/greatsword/32008.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.greatsword",
-    "baseLevel": 500,
-    "baseDamage": 11420,
-    "criticalChance": 0.08,
-    "criticalDamage": 1.8,
-    "defensePenetration": 0,
-    "doubleAttackChance": 0,
-    "speed": 0.8,
-    "baseSellPrice": 2109000,
-    "skills": [
-      {
-        "skill_name": "절대영도",
-        "skill_type": "active",
-        "skill_description": "검에 깃든 미세한 빙룡의 힘이 적을 침식합니다. (공격 시 25% 확률로 5초간 빙결 상태 부여, 중첩 불가)",
-        "skill_effect": [
-          {
-            "effect_name": "applyFreeze",
-            "params": {
-              "chance": 0.25,
-              "duration": 5,
-              "trigger": "onHit",
-              "stackable": false,
-              "cooldown": 0
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "빙하부수기",
-        "skill_type": "passive",
-        "skill_description": "검의 특수한 냉기가 빙결된 적을 더욱 효과적으로 파괴합니다. (빙결 상태의 적에게 가하는 피해 50% 증가)",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToFrozen",
-            "params": { "damageMultiplier": 1.5 }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.65,
-    "description": "빙룡의 비늘 조각으로 벼려낸 대검. 서리 같은 냉기가 깃들어 있어, 빙결된 적을 산산조각 냅니다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 33000,
-    "name": "백연",
-    "imageName": "epic/katana/baekyeon.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.katana",
-    "baseLevel": 0,
-    "baseDamage": 290,
-    "criticalChance": 0.05,
-    "criticalDamage": 1.5,
-    "defensePenetration": 0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 9800,
-    "skills": [
-      {
-        "skill_name": "백연참",
-        "skill_type": "passive",
-        "skill_description": "흰 연기처럼 사라지는 검격으로 상대방에게 빗나가지 않는 공격을 가합니다. (적중률 100% 상승)",
-        "skill_effect": [
-          {
-            "effect_name": "increaseStat",
-            "params": { "stat": "accuracy", "value": 1.0 }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.8,
-    "description": "흰 연기처럼 사라지는 예리한 일격을 담은 카타나. 예측할 수 없는 검격은 결코 빗나가지 않습니다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 5,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 33001,
-    "name": "홍앵",
-    "imageName": "epic/katana/hongaeng.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.katana",
-    "baseLevel": 50,
-    "baseDamage": 710,
-    "criticalChance": 0.05,
-    "criticalDamage": 1.5,
-    "defensePenetration": 0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "accuracy": 0.65,
-    "baseSellPrice": 18500,
-    "skills": [
-      {
-        "skill_name": "벚꽃베기",
-        "skill_type": "passive",
-        "skill_description": "벚꽃이 흩날리듯 빠르게 움직이는 칼날이 적을 찌릅니다. (치명타 확률이 25% 증가하고, 공격 속도가 50% 상승합니다.)",
-        "skill_effect": [
-          {
-            "effect_name": "increaseStat",
-            "params": { "stat": "criticalChance", "value": 0.25 }
-          },
-          {
-            "effect_name": "increaseStat",
-            "params": { "stat": "speed", "value": 0.5 }
-          }
-        ]
-      }
-    ],
-    "description": "붉게 빛나는 검신이 특징인 검. 떨어지는 벚꽃잎도 벨 수 있을 정도로 빠른 공격이 가능합니다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 15,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 33002,
-    "name": "전율",
-    "imageName": "epic/katana/shockblade.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.katana",
-    "baseLevel": 100,
-    "baseDamage": 2740,
-    "criticalChance": 0.06,
-    "criticalDamage": 1.7,
-    "defensePenetration": 0,
-    "doubleAttackChance": 0.05,
-    "speed": 1.1,
-    "baseSellPrice": 122000,
-    "accuracy": 0.7,
-    "skills": [
-      {
-        "skill_name": "감전",
-        "skill_type": "active",
-        "trigger": "onHit",
-        "skill_description": "공격 시 15% 확률로 번개의 힘이 담긴 일격으로 적에게 감전 상태를 부여합니다. (중첩 불가)",
-        "skill_effect": [
-          {
-            "effect_name": "applyShock",
-            "params": {
-              "chance": 0.15,
-              "duration": 3,
-              "trigger": "onHit",
-              "stackable": false,
-              "cooldown": 0
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "방전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 50% 증가합니다.",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToShocked",
-            "params": { "damageMultiplier": 1.5 }
-          }
-        ]
-      }
-    ],
-    "description": "고요 속에서 들려오는 전류의 진동. 이 카타나는 감전된 적을 흔들림 없이 마무리합니다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 25,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 33003,
-    "name": "은빛날개",
-    "imageName": "epic/katana/silverwings.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.katana",
-    "baseLevel": 200,
-    "baseDamage": 5400,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.6,
-    "defensePenetration": 0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.3,
-    "baseSellPrice": 75000,
-    "skills": [
-      {
-        "skill_name": "고속검",
-        "skill_type": "passive",
-        "skill_description": "매우 빠른 속도로 검격을 휘두릅니다. 더블어택 확률이 15% 증가합니다.",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDoubleAttackChance",
-            "params": { "value": 0.15 }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.8,
-    "description": "은빛처럼 빠르고 날렵한 검격을 자랑하는 카타나입니다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 33004,
-    "name": "시라유키",
-    "imageName": "epic/katana/shirayuki.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.katana",
-    "baseLevel": 300,
-    "baseDamage": 7100,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.6,
-    "defensePenetration": 0,
-    "doubleAttackChance": 0.05,
-    "speed": 1.2,
-    "baseSellPrice": 132000,
-    "skills": [
-      {
-        "skill_name": "눈꽃",
-        "skill_type": "active",
-        "skill_description": "무기에 깃든 서늘한 냉기가 적을 얼어붙게 만듭니다. (공격 시 15% 확률로 5초간 빙결 상태 부여, 중첩 불가)",
-        "skill_effect": [
-          {
-            "effect_name": "applyFreeze",
-            "params": {
-              "chance": 0.15,
-              "duration": 5,
-              "trigger": "onHit",
-              "stackable": false,
-              "cooldown": 0
             }
           }
         ]
       }
     ],
     "accuracy": 0.75,
-    "description": "냉기를 담은 검신이 특징인 카타나. 휘두를 때마다 하얀 서리가 날리며, 검격에 맞은 적은 얼어붙게 됩니다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 33005,
-    "name": "혈매",
-    "imageName": "epic/katana/hyulmae.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.katana",
-    "baseLevel": 400,
-    "baseDamage": 8900,
-    "criticalChance": 0.04,
-    "criticalDamage": 1.9,
-    "defensePenetration": 0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 1080000,
-    "skills": [
-      {
-        "skill_name": "출혈 유도",
-        "skill_type": "active",
-        "skill_description": "공격 시 10% 확률로 적에게 5초간 출혈 상태를 부여합니다. (중첩 불가)",
-        "skill_effect": [
-          {
-            "effect_name": "applyBleed",
-            "params": {
-              "chance": 0.1,
-              "duration": 5,
-              "damagePerSecond": 0,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 0
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "출혈 타격",
-        "skill_type": "passive",
-        "skill_description": "출혈 상태의 적에게 가하는 피해가 50% 증가합니다.",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToStatusEffectTarget",
-            "params": { "statusEffect": "bleed", "damageMultiplier": 1.5 }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.65,
-    "description": "붉은 매화 문양이 새겨진 카타나. 이 검에 베이면 곧 피를 쏟게 됩니다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 33006,
-    "name": "복제된 후츠노미타마",
-    "imageName": "others/replicated_hutsunomitama.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.katana",
-    "baseLevel": 500,
-    "baseDamage": 6400,
-    "criticalChance": 0.15,
-    "criticalDamage": 1.5,
-    "defensePenetration": 10,
-    "doubleAttackChance": 0.05,
-    "speed": 1.0,
-    "baseSellPrice": 1800000,
-    "skills": [
-      {
-        "skill_name": "제령(복제)",
-        "skill_type": "passive",
-        "skill_description": "이 무기는 선과 악을 가립니다. (언데드와 데몬에게 30% 추가 피해, 신성교와 천사에게는 30% 피해 감소)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": { "race": "undead", "multiplier": 1.3 }
-          },
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": { "race": "demon", "multiplier": 1.3 }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": { "race": "divine", "multiplier": 0.7 }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": { "race": "angel", "multiplier": 0.7 }
-          }
-        ]
-      },
-      {
-        "skill_name": "신검(복제)",
-        "skill_type": "active",
-        "skill_description": "복제된 후츠노미타마가 발현하는 신비로운 일격입니다. (공격 시 10% 확률로 9999 고정 피해, 쿨타임 5초)",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.1,
-              "damage": 9999,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 1.0,
-    "description": "동쪽 바다를 품은 섬나라에서 전해 내려오는 《후츠노미타마》의 복제품. 진품에는 미치지 못하지만, 그 신비로운 힘을 이어받았습니다.",
+    "description": "동쪽 섬나라에서 전해지는 성물 《후츠노미타마》의 복제품. 진품보다 위력이 크게 떨어진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,

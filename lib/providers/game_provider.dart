@@ -17,6 +17,7 @@ import 'package:ryan_clicker_rpg/providers/weapon_skill_provider.dart';
 import 'package:ryan_clicker_rpg/services/reward_service.dart';
 import 'package:intl/intl.dart';
 import 'package:ryan_clicker_rpg/data/weapon_data.dart';
+import 'package:ryan_clicker_rpg/widgets/stage_zone_widget.dart';
 
 class GameProvider with ChangeNotifier {
   final RewardService _rewardService = RewardService();
@@ -37,7 +38,13 @@ class GameProvider with ChangeNotifier {
   final List<DamageModifier> _activeDamageModifiers = [];
   final List<PassiveStatModifier> _activePassiveStatModifiers = [];
   double _currentMonsterEffectiveDefense = 0.0; // New field
-  Function(int damage, bool isCritical, bool isMiss)?
+  Function(
+    int damage,
+    bool isCritical,
+    bool isMiss, {
+    bool isSkillDamage,
+    DamageType damageType,
+  })?
   _showFloatingDamageTextCallback;
 
   Player get player => _player;
@@ -61,6 +68,7 @@ class GameProvider with ChangeNotifier {
     double critChance = weapon.criticalChance;
     double critDamage = weapon.criticalDamage;
     double attackSpeed = weapon.speed;
+    double accuracy = weapon.accuracy;
     double doubleAttackChance = weapon.doubleAttackChance;
     double defensePenetration = weapon.defensePenetration;
 
@@ -90,6 +98,8 @@ class GameProvider with ChangeNotifier {
     critDamage += _player.passiveWeaponCriticalDamageBonus;
     doubleAttackChance += _player.passiveWeaponDoubleAttackChanceBonus;
     defensePenetration += _player.passiveWeaponDefensePenetrationBonus;
+    attackSpeed += _player.passiveWeaponSpeedBonus;
+    accuracy += _player.passiveWeaponAccuracyBonus;
 
     // 5. Apply temporary buffs
     for (final buff in _player.buffs) {
@@ -128,6 +138,7 @@ class GameProvider with ChangeNotifier {
     _player.finalCritChance = critChance;
     _player.finalCritDamage = critDamage;
     _player.finalAttackSpeed = attackSpeed;
+    _player.finalAccuracy = accuracy;
     _player.finalDoubleAttackChance = doubleAttackChance;
     _player.finalDefensePenetration = defensePenetration;
   }
@@ -151,7 +162,7 @@ class GameProvider with ChangeNotifier {
     );
 
     // Check for hit/miss based on weapon accuracy
-    if (Random().nextDouble() > _player.equippedWeapon.accuracy) {
+    if (Random().nextDouble() > _player.finalAccuracy) {
       showFloatingDamageText(0, false, true); // Notify UI about miss
       return {'damageDealt': 0, 'isCritical': false, 'isMiss': true};
     }
@@ -165,6 +176,7 @@ class GameProvider with ChangeNotifier {
         shatterDamage.toInt(),
         true,
         false,
+        damageType: DamageType.shatter,
       ); // Show as crit for visual flair
       _monster.statusEffects.removeWhere(
         (effect) => effect.type == StatusEffectType.freeze,
@@ -298,7 +310,12 @@ class GameProvider with ChangeNotifier {
       debugPrint(
         '[attackMonster] Monster HP after shock damage: ${_monster.hp}',
       );
-      showFloatingDamageText(shockDamage.toInt(), false, false);
+      showFloatingDamageText(
+        shockDamage.toInt(),
+        false,
+        false,
+        damageType: DamageType.shock,
+      );
     }
 
     if (Random().nextDouble() < _player.finalDoubleAttackChance) {
@@ -325,7 +342,12 @@ class GameProvider with ChangeNotifier {
         debugPrint(
           '[attackMonster] Monster HP after double attack shock damage: ${_monster.hp}',
         );
-        showFloatingDamageText(shockDamage.toInt(), false, false);
+        showFloatingDamageText(
+          shockDamage.toInt(),
+          false,
+          false,
+          damageType: DamageType.shock,
+        );
       }
     }
 
@@ -578,13 +600,32 @@ class GameProvider with ChangeNotifier {
   }
 
   void setShowFloatingDamageTextCallback(
-    Function(int damage, bool isCritical, bool isMiss)? callback,
+    Function(
+      int damage,
+      bool isCritical,
+      bool isMiss, {
+      bool isSkillDamage,
+      DamageType damageType,
+    })?
+    callback,
   ) {
     _showFloatingDamageTextCallback = callback;
   }
 
-  void showFloatingDamageText(int damage, bool isCritical, bool isMiss) {
-    _showFloatingDamageTextCallback?.call(damage, isCritical, isMiss);
+  void showFloatingDamageText(
+    int damage,
+    bool isCritical,
+    bool isMiss, {
+    bool isSkillDamage = false,
+    DamageType damageType = DamageType.normal,
+  }) {
+    _showFloatingDamageTextCallback?.call(
+      damage,
+      isCritical,
+      isMiss,
+      isSkillDamage: isSkillDamage,
+      damageType: damageType,
+    );
   }
 
   @override
@@ -607,7 +648,41 @@ class GameProvider with ChangeNotifier {
       for (final effect in _monster.statusEffects) {
         switch (effect.type) {
           case StatusEffectType.bleed:
+            if (effect.value != null && effect.value! > 0) {
+              debugPrint(
+                '[_updatePerSecond] Monster HP before DoT damage: ${_monster.hp}',
+              );
+              _monster.hp -= effect.value!;
+              _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
+              debugPrint(
+                '[_updatePerSecond] Monster HP after DoT damage: ${_monster.hp}',
+              );
+              showFloatingDamageText(
+                effect.value!.toInt(),
+                false,
+                false,
+                damageType: DamageType.bleed,
+              );
+            }
+            break;
           case StatusEffectType.poison:
+            if (effect.value != null && effect.value! > 0) {
+              debugPrint(
+                '[_updatePerSecond] Monster HP before DoT damage: ${_monster.hp}',
+              );
+              _monster.hp -= effect.value!;
+              _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
+              debugPrint(
+                '[_updatePerSecond] Monster HP after DoT damage: ${_monster.hp}',
+              );
+              showFloatingDamageText(
+                effect.value!.toInt(),
+                false,
+                false,
+                damageType: DamageType.poison,
+              );
+            }
+            break;
           case StatusEffectType.burn:
             if (effect.value != null && effect.value! > 0) {
               debugPrint(
@@ -618,7 +693,12 @@ class GameProvider with ChangeNotifier {
               debugPrint(
                 '[_updatePerSecond] Monster HP after DoT damage: ${_monster.hp}',
               );
-              showFloatingDamageText(effect.value!.toInt(), false, false);
+              showFloatingDamageText(
+                effect.value!.toInt(),
+                false,
+                false,
+                damageType: DamageType.fixed,
+              );
             }
             break;
           default:
@@ -672,8 +752,8 @@ class GameProvider with ChangeNotifier {
       _player = Player(equippedWeapon: Weapon.startingWeapon());
       _player.transcendenceStones = 0;
       _player.enhancementStones = 0;
-      _player.gold = 0.0;
-      _player.currentStage = 1;
+      _player.gold = 99999999.0;
+      _player.currentStage = 500;
       final latecomerWeapon = WeaponData.getAllWeapons().firstWhere(
         (w) => w.id == 13004,
       );
@@ -906,7 +986,15 @@ class GameProvider with ChangeNotifier {
     );
   }
 
+  String buyGuaranteedLegendBox() {
+    return _buyWeaponBox(
+      cost: 1, // TODO: Define actual cost
+      boxType: WeaponBoxType.guaranteedLegend,
+    );
+  }
+
   String buyAllRangeUniqueBox() => buyGuaranteedUniqueBox();
+  String buyAllRangeLegendaryBox() => buyGuaranteedLegendBox();
   String buyCurrentRangeUniqueBox(int currentStage) => buyGuaranteedUniqueBox();
   String buyAllRangeEpicBox() => buyGuaranteedEpicBox();
   String buyCurrentRangeEpicBox(int currentStage) => buyGuaranteedEpicBox();
