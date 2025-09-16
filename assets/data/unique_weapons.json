@@ -11,7 +11,7 @@
     "criticalDamage": 1.42,
     "defensePenetration": 0,
     "doubleAttackChance": 0.0,
-    "speed": 1.5,
+    "speed": 1.8,
     "baseSellPrice": 3000,
     "skills": [],
     "accuracy": 0.79,
@@ -233,26 +233,30 @@
     "skills": [
       {
         "skill_name": "칼춤",
-        "skill_type": "active",
-        "skill_description": "칼춤을 추듯 매우 빠르게 공격한다. (공격 시 2.5% 확률로 1.5초간 공격 속도 +1.0/s, 쿨타임 5초)",
+        "skill_type": "passive",
+        "skill_description": "칼춤을 추듯 매우 빠르게 공격한다.(더블 어택 확률 +2.5%, 공격속도 +0.3/s)",
         "skill_effect": [
           {
-            "effect_name": "applyStatBoost",
+            "effect_name": "applyPassiveStatBoost",
             "params": {
-              "chance": 0.025,
+              "stat": "criticalChance",
+              "value": 0.025,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
               "stat": "speed",
-              "duration": 1.5,
-              "value": 1.0,
-              "trigger": "onHit",
-              "stackable": false,
-              "cooldown": 5
+              "value": 0.3,
+              "isMultiplicative": false
             }
           }
         ]
       }
     ],
     "accuracy": 0.79,
-    "description": "수많은 전투를 거친 무사의 레이피어. 칼날이 춤추듯 빠르게 움직인다.",
+    "description": "칼날이 춤추듯 빠른 찌르기가 가능한 레이피어.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,

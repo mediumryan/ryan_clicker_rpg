@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.ryan_clicker_rpg"
-    compileSdk = 35
+    compileSdk = 36
     ndkVersion = "29.0.13846066"
 
     compileOptions {

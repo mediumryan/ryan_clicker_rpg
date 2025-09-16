@@ -205,20 +205,20 @@ class Weapon {
       baseLevel: json['baseLevel'],
       enhancement: json['enhancement'] ?? 0,
       transcendence: json['transcendence'] ?? 0,
-      baseDamage: json['baseDamage'] ?? json['damage'] ?? 0.0,
-      criticalChance: json['criticalChance'] ?? 0.0,
-      criticalDamage: json['criticalDamage'] ?? 0.0,
-      baseSellPrice: json['baseSellPrice'] ?? 0.0,
-      investedGold: json['investedGold'] ?? 0.0,
+      baseDamage: ((json['baseDamage'] ?? json['damage'] ?? 0.0) as num).toDouble(),
+      criticalChance: ((json['criticalChance'] ?? 0.0) as num).toDouble(),
+      criticalDamage: ((json['criticalDamage'] ?? 0.0) as num).toDouble(),
+      baseSellPrice: ((json['baseSellPrice'] ?? 0.0) as num).toDouble(),
+      investedGold: ((json['investedGold'] ?? 0.0) as num).toDouble(),
       investedEnhancementStones: json['investedEnhancementStones'] ?? 0,
       investedTranscendenceStones: json['investedTranscendenceStones'] ?? 0,
       description: json['description'],
-      defensePenetration: json['defensePenetration'] ?? 0.0,
-      doubleAttackChance: json['doubleAttackChance'] ?? 0.0,
-      speed: json['speed'] ?? 1.0,
-      accuracy:
-          json['accuracy'] ??
-          WeaponData.getDefaultAccuracyForRarity(calculatedRarity),
+      defensePenetration: ((json['defensePenetration'] ?? 0.0) as num).toDouble(),
+      doubleAttackChance: ((json['doubleAttackChance'] ?? 0.0) as num).toDouble(),
+      speed: ((json['speed'] ?? 1.0) as num).toDouble(),
+      accuracy: ((json['accuracy'] ??
+              WeaponData.getDefaultAccuracyForRarity(calculatedRarity)) as num)
+          .toDouble(),
       skills:
           (json['skills'] as List<dynamic>?)
               ?.map((e) => e as Map<String, dynamic>)

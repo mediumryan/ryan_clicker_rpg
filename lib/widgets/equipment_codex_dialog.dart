@@ -4,6 +4,7 @@ import 'package:ryan_clicker_rpg/data/weapon_data.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart';
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 import 'package:ryan_clicker_rpg/widgets/weapon_filter_dialog.dart'; // New import
+import 'package:ryan_clicker_rpg/widgets/achievement_dialog.dart';
 
 class EquipmentCodexDialog extends StatefulWidget {
   const EquipmentCodexDialog({super.key});
@@ -191,6 +192,17 @@ class _EquipmentCodexDialogState extends State<EquipmentCodexDialog> {
         },
       ),
       actions: <Widget>[
+        TextButton(
+          child: const Text('업적', style: TextStyle(color: Colors.blue)),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return const AchievementDialog();
+              },
+            );
+          },
+        ),
         TextButton(
           child: const Text('닫기', style: TextStyle(color: Colors.blue)),
           onPressed: () {

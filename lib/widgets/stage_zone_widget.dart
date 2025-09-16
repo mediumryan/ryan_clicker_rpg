@@ -8,15 +8,7 @@ import 'package:provider/provider.dart'; // New import
 import 'package:ryan_clicker_rpg/providers/game_provider.dart'; // New import
 import 'package:intl/intl.dart';
 
-enum DamageType {
-  normal,
-  bleed,
-  shatter,
-  shock,
-  poison,
-  fixed,
-  maxHp,
-}
+enum DamageType { normal, bleed, shatter, shock, poison, fixed, maxHp }
 
 // Class to hold damage text information
 class DamageText {
@@ -111,8 +103,13 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
   }
 
   // Method to add and manage damage text
-  void _showDamageText(int damage, bool isCritical, bool isMiss,
-      {bool isSkillDamage = false, DamageType damageType = DamageType.normal}) {
+  void _showDamageText(
+    int damage,
+    bool isCritical,
+    bool isMiss, {
+    bool isSkillDamage = false,
+    DamageType damageType = DamageType.normal,
+  }) {
     final newDamageText = DamageText(
       damage: damage,
       isCritical: isCritical,
@@ -134,6 +131,40 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
           _damageTexts.remove(newDamageText);
         });
       },
+    );
+  }
+
+  Widget _buildWarpDropdown() {
+    final List<int> warpStages = [];
+    final int highestClearedTwentyFiveStage =
+        (widget.player.highestStageCleared ~/ 25) * 25;
+
+    // Start from 25, go up to highestClearedTwentyFiveStage
+    for (int stage = 25; stage <= highestClearedTwentyFiveStage; stage += 25) {
+      warpStages.add(stage);
+    }
+
+    if (warpStages.isEmpty) {
+      return const SizedBox.shrink(); // No stages to warp to
+    }
+
+    return DropdownButton<int>(
+      hint: Text('Warp to Stage', style: TextStyle(color: Colors.white70)),
+      value: null, // No initial selection
+      dropdownColor: Colors.grey[800],
+      style: const TextStyle(color: Colors.white, fontSize: 16),
+      icon: const Icon(Icons.arrow_drop_down, color: Colors.white),
+      onChanged: (int? newStage) {
+        if (newStage != null) {
+          Provider.of<GameProvider>(
+            context,
+            listen: false,
+          ).warpToStage(newStage);
+        }
+      },
+      items: warpStages.map<DropdownMenuItem<int>>((int stage) {
+        return DropdownMenuItem<int>(value: stage, child: Text('Stage $stage'));
+      }).toList(),
     );
   }
 
@@ -367,6 +398,24 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 16), // Spacing for the dropdown
+                    _buildWarpDropdown(), // Warp dropdown
+                    const SizedBox(height: 8),
+                    ElevatedButton(
+                      onPressed: () {
+                        Provider.of<GameProvider>(
+                          context,
+                          listen: false,
+                        ).enterSpecialBossZone();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red[900],
+                      ),
+                      child: const Text(
+                        '스페셜 보스 도전',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ],
                 ),
                 // Next Stage Button
@@ -529,9 +578,25 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
 
     return Positioned.fill(
       child: Align(
-        alignment: widget.damageText.isSkillDamage
-            ? const Alignment(0.3, 0.0) // To the right
-            : Alignment.center, // Normal damage at the center
+        alignment: () {
+          if (widget.damageText.damageType == DamageType.shock) {
+            return const Alignment(
+              0.0,
+              -0.15,
+            ); // Slightly higher for shock damage
+          } else if (widget.damageText.isSkillDamage) {
+            return const Alignment(
+              0.3,
+              0.0,
+            ); // To the right for other skill damage
+          } else if (widget.damageText.isMiss) {
+            return const Alignment(
+              0.0,
+              -0.5,
+            ); // Slightly above center for MISS!
+          }
+          return Alignment.center; // Normal damage at the center
+        }(),
         child: SlideTransition(
           position: _offsetAnimation,
           child: FadeTransition(

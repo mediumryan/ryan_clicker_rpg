@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart'; // Needed for WidgetsFlutterBinding
 import 'package:provider/provider.dart';
 import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // Import WeaponData
+import 'package:ryan_clicker_rpg/screens/special_boss_screen.dart';
 import 'providers/game_provider.dart';
 import 'screens/main_game_screen.dart';
 
@@ -33,7 +34,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const MainGameScreen(),
+      home: Consumer<GameProvider>(
+        builder: (context, game, child) {
+          return game.inSpecialBossZone
+              ? const SpecialBossScreen()
+              : const MainGameScreen();
+        },
+      ),
     );
   }
 }

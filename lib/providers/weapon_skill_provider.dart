@@ -38,8 +38,6 @@ class WeaponSkillProvider with ChangeNotifier {
   }
 
   void updatePassiveSkills(Player player, Monster monster) {
-    _gameProvider.clearDamageModifiers(); // Clear existing passive modifiers
-
     // --- NEW: Reset all player passive weapon stats ---
     player.passiveWeaponDamageBonus = 0.0;
     player.passiveWeaponDamageMultiplier = 1.0;

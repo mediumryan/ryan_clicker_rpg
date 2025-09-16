@@ -14,4 +14,5 @@ enum MonsterSpecies {
   dwarf, // 소인족
   demon, // 악마
   dragon, // 드래곤
+  ancient, // 고대
 }

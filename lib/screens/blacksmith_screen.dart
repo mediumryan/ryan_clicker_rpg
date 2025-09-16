@@ -632,6 +632,12 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
             Rarity.uncommon,
             Rarity.rare,
           ], '커먼~레어'),
+          _buildBulkSellButton(context, game, inventoryWeapons, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+            Rarity.unique,
+          ], '유니크 이하'),
         ],
       ),
     );
@@ -660,7 +666,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
         foregroundColor: rarityColor,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       ),
-      child: Text('일괄판매'),
+      child: const Text('판매'),
     );
   }
 

@@ -205,11 +205,11 @@
       {
         "skill_name": "독사의 송곳니",
         "skill_type": "passive",
-        "skill_description": "중독된 적에게 치명상을 입힌다. (중독 상태인 적에게 추가 피해 +50%)",
+        "skill_description": "중독된 적에게 치명상을 입힌다. (중독 상태의 적에게 주는 피해 +50%)",
         "skill_effect": [
           {
-            "status": "increaseDamageToStatused",
-            "multiplier": 0.5
+            "effect_name": "increaseDamageToStatused",
+            "params": { "status": "poison", "damageMultiplier": 0.5 }
           }
         ]
       }
@@ -326,7 +326,7 @@
       {
         "skill_name": "누적 성장",
         "skill_type": "active",
-        "skill_description": "적을 처치할수록 검이 강해진다. (몬스터 처치 시 기본 공격력 +3 영구 증가, 최대 100중첩)",
+        "skill_description": "적을 처치할수록 검이 강해진다. (몬스터 처치 시 무기 공격력 +3 영구 증가, 최대 100중첩)",
         "skill_effect": [
           {
             "effect_name": "increaseStat",
@@ -578,7 +578,7 @@
     "baseDamage": 8060,
     "criticalChance": 0.1,
     "criticalDamage": 1.5,
-    "defensePenetration": 10,
+    "defensePenetration": 0,
     "doubleAttackChance": 0.0,
     "speed": 1.0,
     "baseSellPrice": 2109000,
@@ -840,7 +840,7 @@
   },
   {
     "id": 32004,
-    "name": "플람",
+    "name": "쌍날검",
     "imageName": "epic/greatsword/32004.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.greatsword",
@@ -958,11 +958,11 @@
       {
         "skill_name": "철의 노래 II",
         "skill_type": "passive",
-        "skill_description": "금속의 울림에 휘청인 적에게 더욱 치명적인 일격을 가한다. (혼란 상태의 적에게 피해 +50%)",
+        "skill_description": "금속의 울림에 휘청인 적에게 더욱 치명적인 일격을 가한다. (혼란 상태의 적에게 주는 피해 +50%)",
         "skill_effect": [
           {
-            "status": "increaseDamageToStatused",
-            "multiplier": 0.5
+            "effect_name": "increaseDamageToStatused",
+            "params": { "status": "confusion", "damageMultiplier": 0.5 }
           }
         ]
       }
@@ -1073,11 +1073,11 @@
       {
         "skill_name": "절대 영도",
         "skill_type": "passive",
-        "skill_description": "빙결 상태의 적에게 더욱 강력한 피해를 준다. (빙결 상태의 적에게 피해 +50%)",
+        "skill_description": "빙결 상태의 적에게 더욱 강력한 피해를 준다. (빙결 상태의 적에게 주는 피해 +50%)",
         "skill_effect": [
           {
-            "status": "increaseDamageToStatused",
-            "multiplier": 0.5
+            "effect_name": "increaseDamageToStatused",
+            "params": { "status": "freeze", "damageMultiplier": 0.5 }
           }
         ]
       }
@@ -1224,7 +1224,7 @@
         "skill_effect": [
           {
             "effect_name": "increaseDamageToStatused",
-            "params": { "damageMultiplier": 1.5 }
+            "params": { "status": "shock", "damageMultiplier": 0.5 }
           }
         ]
       }
@@ -1332,9 +1332,9 @@
     "baseSellPrice": 999000,
     "skills": [
       {
-        "skill_name": "갈증",
+        "skill_name": "출혈 유도",
         "skill_type": "active",
-        "skill_description": "요도가 적에게 출혈을 유발한다. (공격 시 5% 확률로 4초간 출혈, 초당 2,820 피해. 중첩 불가)",
+        "skill_description": "요도의 힘으로 적에게 출혈을 유도한다. (공격 시 5% 확률로 4초간 출혈, 초당 2,820 피해. 중첩 불가)",
         "skill_effect": [
           {
             "effect_name": "applyBleed",
@@ -1350,13 +1350,13 @@
         ]
       },
       {
-        "skill_name": "갈증 해소",
+        "skill_name": "갈증",
         "skill_type": "passive",
-        "skill_description": "피를 머금은 요도가 더욱 강력해진다. (출혈 상태의 적에게 피해 +50%)",
+        "skill_description": "피를 머금은 요도가 더욱 강력해진다. (출혈 상태의 적에게 주는 피해 +50%)",
         "skill_effect": [
           {
             "effect_name": "increaseDamageToStatused",
-            "params": { "status": "bleed", "multiplier": 0.5 }
+            "params": { "status": "bleed", "damageMultiplier": 0.5 }
           }
         ]
       }

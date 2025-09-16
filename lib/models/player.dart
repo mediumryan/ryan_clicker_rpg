@@ -13,7 +13,14 @@ class Player {
   int currentStage;
   int highestStageCleared;
   final Set<int> acquiredWeaponIdsHistory;
-  final Set<String> defeatedBossNames;
+  final Map<String, int> defeatedBosses;
+  int monstersKilled;
+
+  // Achievement-related stats
+  double totalGoldEarned;
+  int weaponDestructionCount;
+  int transcendenceSuccessCount;
+  int totalClicks;
 
   // --- Base Stats & Passive Bonuses ---
   // These are saved to disk.
@@ -51,7 +58,12 @@ class Player {
     this.currentStage = 1,
     this.highestStageCleared = 0,
     Set<int>? acquiredWeaponIdsHistory,
-    Set<String>? defeatedBossNames,
+    Map<String, int>? defeatedBosses,
+    this.monstersKilled = 0,
+    this.totalGoldEarned = 0,
+    this.weaponDestructionCount = 0,
+    this.transcendenceSuccessCount = 0,
+    this.totalClicks = 0,
     this.passiveGoldGainMultiplier = 1.0,
     this.passiveEnhancementStoneGainMultiplier = 1.0,
     this.passiveEnhancementStoneGainFlat = 0,
@@ -67,7 +79,7 @@ class Player {
        gachaBoxes = gachaBoxes ?? [],
        buffs = buffs ?? [],
        acquiredWeaponIdsHistory = acquiredWeaponIdsHistory ?? {},
-       defeatedBossNames = defeatedBossNames ?? {};
+       defeatedBosses = defeatedBosses ?? {};
 
   // Serialization
   Map<String, dynamic> toJson() => {
@@ -81,7 +93,12 @@ class Player {
     'currentStage': currentStage,
     'highestStageCleared': highestStageCleared,
     'acquiredWeaponIdsHistory': acquiredWeaponIdsHistory.toList(),
-    'defeatedBossNames': defeatedBossNames.toList(),
+    'defeatedBosses': defeatedBosses,
+    'monstersKilled': monstersKilled,
+    'totalGoldEarned': totalGoldEarned,
+    'weaponDestructionCount': weaponDestructionCount,
+    'transcendenceSuccessCount': transcendenceSuccessCount,
+    'totalClicks': totalClicks,
     'passiveGoldGainMultiplier': passiveGoldGainMultiplier,
     'passiveEnhancementStoneGainMultiplier':
         passiveEnhancementStoneGainMultiplier,
@@ -125,11 +142,13 @@ class Player {
               ?.map((id) => id as int)
               .toSet() ??
           {},
-      defeatedBossNames:
-          (json['defeatedBossNames'] as List?)
-              ?.map((name) => name as String)
-              .toSet() ??
-          {},
+      defeatedBosses:
+          Map<String, int>.from(json['defeatedBosses'] ?? {}),
+      monstersKilled: json['monstersKilled'] ?? 0,
+      totalGoldEarned: json['totalGoldEarned'] ?? 0,
+      weaponDestructionCount: json['weaponDestructionCount'] ?? 0,
+      transcendenceSuccessCount: json['transcendenceSuccessCount'] ?? 0,
+      totalClicks: json['totalClicks'] ?? 0,
       passiveGoldGainMultiplier: json['passiveGoldGainMultiplier'] ?? 1.0,
       passiveEnhancementStoneGainMultiplier:
           json['passiveEnhancementStoneGainMultiplier'] ?? 1.0,

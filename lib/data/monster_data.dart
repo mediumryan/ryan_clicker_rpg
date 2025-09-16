@@ -915,7 +915,7 @@ class MonsterData {
       'species': [MonsterSpecies.aberration],
     },
     {
-      'name': '바위산 뼈수집가',
+      'name': '바위산 학살자',
       'imageName': 'rocky_mountain_bone_collector.gif',
       'startStage': 900,
       'endStage': 900,
@@ -966,7 +966,7 @@ class MonsterData {
       'species': [MonsterSpecies.beast],
     },
     {
-      'name': '정신나간 멧돼지',
+      'name': '식인 멧돼지',
       'imageName': 'crazed_boar.gif',
       'startStage': 950,
       'endStage': 950,
@@ -1425,7 +1425,7 @@ class MonsterData {
       'species': [MonsterSpecies.elemental],
     },
     {
-      'name': '죽음의 형태',
+      'name': '죽음 그 자체',
       'imageName': 'form_of_death.gif',
       'startStage': 1400,
       'endStage': 1400,
@@ -1629,7 +1629,7 @@ class MonsterData {
       'species': [MonsterSpecies.elemental],
     },
     {
-      'name': '하급 악마',
+      'name': '하급 악마 시종',
       'imageName': 'lesser_demon.gif',
       'startStage': 1600,
       'endStage': 1600,
@@ -2037,7 +2037,7 @@ class MonsterData {
       'species': [MonsterSpecies.dragon],
     },
     {
-      'name': '용왕',
+      'name': '골드 드래곤',
       'imageName': 'dragon_king.gif',
       'startStage': 2000,
       'endStage': 2000,
@@ -2089,6 +2089,20 @@ class MonsterData {
       defense: def,
       isBoss: isBoss,
       species: species,
+    );
+  }
+
+  static Monster getSpecialBoss() {
+    // TODO: Add a unique image for the special boss
+    return Monster(
+      name: '고대 수호자',
+      imageName: 'dragon_king.gif', // Placeholder image
+      stage: 9999, // Special stage number
+      maxHp: 1000000000, // Very high HP
+      hp: 1000000000,
+      defense: 500, // Very high defense
+      isBoss: true,
+      species: [MonsterSpecies.dragon, MonsterSpecies.ancient],
     );
   }
 }

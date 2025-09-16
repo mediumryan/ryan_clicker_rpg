@@ -18,6 +18,8 @@ import 'package:ryan_clicker_rpg/services/reward_service.dart';
 import 'package:intl/intl.dart';
 import 'package:ryan_clicker_rpg/data/weapon_data.dart';
 import 'package:ryan_clicker_rpg/widgets/stage_zone_widget.dart';
+import 'package:ryan_clicker_rpg/models/reward.dart';
+import 'package:ryan_clicker_rpg/models/achievement.dart';
 
 class GameProvider with ChangeNotifier {
   final RewardService _rewardService = RewardService();
@@ -29,6 +31,7 @@ class GameProvider with ChangeNotifier {
   Timer? _autoAttackTimer; // New
   DateTime? _lastManualClickTime; // New
   Duration _autoAttackDelay = Duration.zero; // New
+  bool _inSpecialBossZone = false;
 
   Duration get autoAttackDelay => _autoAttackDelay; // New getter
 
@@ -50,6 +53,7 @@ class GameProvider with ChangeNotifier {
   Player get player => _player;
   Monster get monster => _monster;
   bool get isMonsterDefeated => _isMonsterDefeated;
+  bool get inSpecialBossZone => _inSpecialBossZone;
   String get currentStageName => StageData.getStageName(_player.currentStage);
   double get currentMonsterEffectiveDefense =>
       _currentMonsterEffectiveDefense; // New getter
@@ -266,7 +270,12 @@ class GameProvider with ChangeNotifier {
       );
     }
 
+    debugPrint('[attackMonster] Initial actualDamage: $actualDamage');
+
     for (final modifier in _activeDamageModifiers) {
+      debugPrint(
+        '[attackMonster] Checking modifier: ${modifier.requiredStatusEffectType}, multiplier: ${modifier.multiplier}',
+      );
       bool conditionMet = false;
       if (modifier.requiredRace != null) {
         if (_monster.species.contains(modifier.requiredRace)) {
@@ -275,13 +284,23 @@ class GameProvider with ChangeNotifier {
       } else if (modifier.requiredStatusEffectType != null) {
         if (_monster.hasStatusEffect(modifier.requiredStatusEffectType!)) {
           conditionMet = true;
+          debugPrint(
+            '[attackMonster] Condition met for status effect: ${modifier.requiredStatusEffectType}',
+          );
         }
       }
 
       if (conditionMet) {
-        actualDamage *= modifier.multiplier;
+        debugPrint(
+          '[attackMonster] Applying multiplier: ${modifier.multiplier}. actualDamage before: $actualDamage',
+        );
+        actualDamage *= (1 + modifier.multiplier);
+        debugPrint('[attackMonster] actualDamage after: $actualDamage');
       }
     }
+    debugPrint(
+      '[attackMonster] Final actualDamage after modifiers: $actualDamage',
+    );
 
     if (_monster.hasStatusEffect(StatusEffectType.shock)) {
       final shockDamage = _monster.maxHp * 0.03;
@@ -357,6 +376,7 @@ class GameProvider with ChangeNotifier {
       '[attackMonster] Checking monster death. Current HP: ${_monster.hp}',
     );
     if (_monster.hp <= 0) {
+      _player.monstersKilled++;
       _weaponSkillProvider.applyOnKillSkills(_player, _monster); // New
       _isMonsterDefeated = true;
       notifyListeners();
@@ -367,13 +387,14 @@ class GameProvider with ChangeNotifier {
           _player.passiveGoldGainMultiplier *
           bossMultiplier;
       _player.gold += goldReward;
+      _player.totalGoldEarned += goldReward;
       _lastGoldReward = goldReward; // Store gold reward
 
       final maxStones = (_player.currentStage ~/ 100) + 1;
       int stonesDropped = Random().nextInt(maxStones + 1);
       if (stonesDropped > 0) {
         stonesDropped = (stonesDropped * bossMultiplier).toInt();
-        stonesDropped =
+        stonesDropped = 
             (stonesDropped * _player.passiveEnhancementStoneGainMultiplier)
                 .toInt();
         stonesDropped += _player.passiveEnhancementStoneGainFlat;
@@ -382,16 +403,14 @@ class GameProvider with ChangeNotifier {
 
       GachaBox? droppedBox;
       if (_monster.isBoss) {
+        final bossId = 'boss_stage_${_player.currentStage}';
+        _player.defeatedBosses[bossId] =
+            (_player.defeatedBosses[bossId] ?? 0) + 1;
+
         droppedBox = _rewardService.getDropForBoss(
           _player.currentStage,
-          _player.defeatedBossNames.toList(),
+          _player.defeatedBosses.keys.toList(),
         );
-        final bossId = 'boss_stage_${_player.currentStage}';
-        if (droppedBox.id == bossId) {
-          if (!_player.defeatedBossNames.contains(bossId)) {
-            _player.defeatedBossNames.add(bossId);
-          }
-        }
       } else {
         droppedBox = _rewardService.getDropForNormalMonster(
           _player.currentStage,
@@ -410,7 +429,9 @@ class GameProvider with ChangeNotifier {
       }
 
       Future.delayed(const Duration(seconds: 1), () {
-        goToNextStage();
+        if (!_inSpecialBossZone) {
+          goToNextStage();
+        }
       });
     } else {
       notifyListeners();
@@ -431,6 +452,7 @@ class GameProvider with ChangeNotifier {
       _player.inventory.add(_player.equippedWeapon);
       _player.equippedWeapon = oldInventoryWeapon;
 
+      _activeDamageModifiers.clear(); // Clear existing damage modifiers
       recalculatePlayerStats();
       _weaponSkillProvider.updatePassiveSkills(_player, _monster);
       startAutoAttack(); // Restart auto-attack with new speed
@@ -492,6 +514,7 @@ class GameProvider with ChangeNotifier {
         weapon.enhancement--;
         penaltyMessage = '강화 실패... 강화 단계가 1 하락했습니다.';
       } else {
+        _player.weaponDestructionCount++;
         _player.equippedWeapon = Weapon.bareHands();
         penaltyMessage = '강화 실패... 무기가 파괴되었습니다.';
       }
@@ -539,12 +562,14 @@ class GameProvider with ChangeNotifier {
 
     const probabilities = [0.05];
     if (Random().nextDouble() < probabilities[weapon.transcendence]) {
+      _player.transcendenceSuccessCount++;
       weapon.transcendence++;
       recalculatePlayerStats();
       notifyListeners();
       _saveGame();
       return '초월 성공! [${weapon.transcendence}]';
     } else {
+      _player.weaponDestructionCount++;
       _player.equippedWeapon = Weapon.bareHands();
       recalculatePlayerStats();
       notifyListeners();
@@ -572,6 +597,7 @@ class GameProvider with ChangeNotifier {
   }
 
   void handleManualClick() {
+    _player.totalClicks++;
     _lastManualClickTime = DateTime.now();
     stopAutoAttack(); // Stop auto-attack immediately on manual click
 
@@ -643,6 +669,7 @@ class GameProvider with ChangeNotifier {
   }
 
   void _updatePerSecond() {
+    if (_inSpecialBossZone) return;
     if (_monster.hp > 0) {
       // Apply damage from DoT effects BEFORE ticking them down
       for (final effect in _monster.statusEffects) {
@@ -730,6 +757,7 @@ class GameProvider with ChangeNotifier {
   }
 
   void _spawnMonster() {
+    if (_inSpecialBossZone) return;
     _monster = MonsterData.getMonsterForStage(_player.currentStage);
     debugPrint(
       '[_spawnMonster] Spawned monster: ${_monster.name} with HP: ${_monster.hp}',
@@ -737,7 +765,33 @@ class GameProvider with ChangeNotifier {
     _isMonsterDefeated = false;
     _lastGoldReward = 0.0; // Clear previous reward
     _lastDroppedBox = null; // Clear previous dropped box
+    _activeDamageModifiers
+        .clear(); // Clear damage modifiers from previous monster
+    _weaponSkillProvider.updatePassiveSkills(
+      _player,
+      _monster,
+    ); // Re-evaluate passive skills for new monster
     _weaponSkillProvider.applyStageStartSkills(_player, _monster);
+    notifyListeners();
+  }
+
+  void enterSpecialBossZone(int bossId) {
+    _inSpecialBossZone = true;
+    _timer?.cancel(); // Stop the regular game loop
+    _monster = MonsterData.getSpecialBoss(bossId);
+    _isMonsterDefeated = false;
+    _lastGoldReward = 0.0;
+    _lastDroppedBox = null;
+    _activeDamageModifiers.clear();
+    _weaponSkillProvider.updatePassiveSkills(_player, _monster);
+    _weaponSkillProvider.applyStageStartSkills(_player, _monster);
+    notifyListeners();
+  }
+
+  void exitSpecialBossZone() {
+    _inSpecialBossZone = false;
+    _spawnMonster(); // Spawn a regular monster
+    _startGameLoop(); // Restart the regular game loop
     notifyListeners();
   }
 
@@ -753,7 +807,7 @@ class GameProvider with ChangeNotifier {
       _player.transcendenceStones = 0;
       _player.enhancementStones = 0;
       _player.gold = 99999999.0;
-      _player.currentStage = 500;
+      _player.currentStage = 1000;
       final latecomerWeapon = WeaponData.getAllWeapons().firstWhere(
         (w) => w.id == 13004,
       );
@@ -768,6 +822,7 @@ class GameProvider with ChangeNotifier {
   }
 
   void goToNextStage() {
+    if (_inSpecialBossZone) return;
     if (_player.currentStage < _player.highestStageCleared) {
       _player.currentStage++;
       _spawnMonster();
@@ -780,11 +835,24 @@ class GameProvider with ChangeNotifier {
   }
 
   void goToPreviousStage() {
+    if (_inSpecialBossZone) return;
     if (_player.currentStage > 1) {
       _player.currentStage--;
       _spawnMonster();
       _saveGame();
     }
+  }
+
+  void warpToStage(int targetStage) {
+    if (_inSpecialBossZone) return;
+    if (targetStage > _player.highestStageCleared) {
+      debugPrint('Cannot warp to uncleared stage: $targetStage');
+      return;
+    }
+    _player.currentStage = targetStage;
+    _spawnMonster();
+    _saveGame();
+    notifyListeners();
   }
 
   String buyEnhancementStones({required int amount, required int cost}) {
@@ -929,6 +997,41 @@ class GameProvider with ChangeNotifier {
       message += '초월석 $totalTranscendenceStones개 획득!\n';
     }
     return message;
+  }
+
+  void claimAchievementRewards(Achievement achievement) {
+    if (achievement.isCompleted && !achievement.isRewardClaimed) {
+      for (final reward in achievement.rewards) {
+        switch (reward.type) {
+          case RewardType.gold:
+            _player.gold += reward.quantity;
+            break;
+          case RewardType.enhancementStone:
+            _player.enhancementStones += reward.quantity;
+            break;
+          case RewardType.transcendenceStone:
+            _player.transcendenceStones += reward.quantity;
+            break;
+          case RewardType.gachaBox:
+            if (reward.item != null) {
+              for (int i = 0; i < reward.quantity; i++) {
+                // Create a new instance of the box with a unique ID
+                final newBox = GachaBox(
+                  id: 'ach_${achievement.id}_${DateTime.now().millisecondsSinceEpoch}_$i',
+                  boxType: reward.item!.boxType,
+                  stageLevel: reward.item!.stageLevel,
+                );
+                _player.gachaBoxes.add(newBox);
+              }
+            }
+            break;
+        }
+      }
+      achievement
+          .claimReward(); // Mark reward as claimed in the achievement object
+      notifyListeners();
+      _saveGame();
+    }
   }
 
   String disassembleWeapon(Weapon weaponToDisassemble) {
