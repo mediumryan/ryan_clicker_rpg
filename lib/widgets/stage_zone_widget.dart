@@ -8,7 +8,7 @@ import 'package:provider/provider.dart'; // New import
 import 'package:ryan_clicker_rpg/providers/game_provider.dart'; // New import
 import 'package:intl/intl.dart';
 
-enum DamageType { normal, bleed, shatter, shock, poison, fixed, maxHp }
+enum DamageType { normal, doubleAttack, bleed, shatter, shock, poison, fixed, maxHp }
 
 // Class to hold damage text information
 class DamageText {
@@ -235,26 +235,10 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                     ColorFiltered(
                       colorFilter: widget.isMonsterDefeated
                           ? const ColorFilter.matrix(<double>[
-                              0.2126,
-                              0.7152,
-                              0.0722,
-                              0,
-                              0,
-                              0.2126,
-                              0.7152,
-                              0.0722,
-                              0,
-                              0,
-                              0.2126,
-                              0.7152,
-                              0.0722,
-                              0,
-                              0,
-                              0,
-                              0,
-                              0,
-                              1,
-                              0,
+                              0.2126, 0.7152, 0.0722, 0, 0,
+                              0.2126, 0.7152, 0.0722, 0, 0,
+                              0.2126, 0.7152, 0.0722, 0, 0,
+                              0, 0, 0, 1, 0,
                             ])
                           : const ColorFilter.mode(
                               Colors.transparent,
@@ -400,22 +384,6 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                     ),
                     const SizedBox(height: 16), // Spacing for the dropdown
                     _buildWarpDropdown(), // Warp dropdown
-                    const SizedBox(height: 8),
-                    ElevatedButton(
-                      onPressed: () {
-                        Provider.of<GameProvider>(
-                          context,
-                          listen: false,
-                        ).enterSpecialBossZone();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red[900],
-                      ),
-                      child: const Text(
-                        '스페셜 보스 도전',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
                   ],
                 ),
                 // Next Stage Button
@@ -489,6 +457,25 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                   ),
                 ),
               ),
+            Positioned(
+              top: 8,
+              right: 8,
+              child: ElevatedButton(
+                onPressed: () {
+                  Provider.of<GameProvider>(
+                    context,
+                    listen: false,
+                  ).enterSpecialBossZone();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red[900],
+                ),
+                child: const Text(
+                  '스페셜 보스존',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -548,6 +535,8 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
   Widget build(BuildContext context) {
     Color getColor() {
       switch (widget.damageText.damageType) {
+        case DamageType.doubleAttack:
+          return Colors.orange;
         case DamageType.bleed:
           return Colors.red;
         case DamageType.shatter:
@@ -579,7 +568,12 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
     return Positioned.fill(
       child: Align(
         alignment: () {
-          if (widget.damageText.damageType == DamageType.shock) {
+          if (widget.damageText.damageType == DamageType.doubleAttack) {
+            return const Alignment(
+              0.0,
+              0.2,
+            ); // Slightly lower for double attack damage
+          } else if (widget.damageText.damageType == DamageType.shock) {
             return const Alignment(
               0.0,
               -0.15,

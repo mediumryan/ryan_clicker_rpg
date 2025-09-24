@@ -31,11 +31,15 @@ class Player {
   double passiveWeaponDamageBonus;
   double passiveWeaponDamageMultiplier;
   double passiveWeaponCriticalChanceBonus;
+  double passiveWeaponCriticalChanceMultiplier;
   double passiveWeaponCriticalDamageBonus;
+  double passiveWeaponCriticalDamageMultiplier;
   double passiveWeaponDoubleAttackChanceBonus;
   double passiveWeaponDefensePenetrationBonus;
   double passiveWeaponSpeedBonus;
+  double passiveWeaponSpeedMultiplier;
   double passiveWeaponAccuracyBonus;
+  double passiveWeaponAccuracyMultiplier;
 
   // --- Final Calculated Stats ---
   // These are calculated at runtime and not saved.
@@ -70,11 +74,15 @@ class Player {
     this.passiveWeaponDamageBonus = 0.0,
     this.passiveWeaponDamageMultiplier = 1.0,
     this.passiveWeaponCriticalChanceBonus = 0.0,
+    this.passiveWeaponCriticalChanceMultiplier = 1.0,
     this.passiveWeaponCriticalDamageBonus = 0.0,
+    this.passiveWeaponCriticalDamageMultiplier = 1.0,
     this.passiveWeaponDoubleAttackChanceBonus = 0.0,
     this.passiveWeaponDefensePenetrationBonus = 0.0,
     this.passiveWeaponSpeedBonus = 0.0,
+    this.passiveWeaponSpeedMultiplier = 1.0,
     this.passiveWeaponAccuracyBonus = 0.0,
+    this.passiveWeaponAccuracyMultiplier = 1.0,
   }) : inventory = inventory ?? [],
        gachaBoxes = gachaBoxes ?? [],
        buffs = buffs ?? [],
@@ -106,13 +114,17 @@ class Player {
     'passiveWeaponDamageBonus': passiveWeaponDamageBonus,
     'passiveWeaponDamageMultiplier': passiveWeaponDamageMultiplier,
     'passiveWeaponCriticalChanceBonus': passiveWeaponCriticalChanceBonus,
+    'passiveWeaponCriticalChanceMultiplier': passiveWeaponCriticalChanceMultiplier,
     'passiveWeaponCriticalDamageBonus': passiveWeaponCriticalDamageBonus,
+    'passiveWeaponCriticalDamageMultiplier': passiveWeaponCriticalDamageMultiplier,
     'passiveWeaponDoubleAttackChanceBonus':
         passiveWeaponDoubleAttackChanceBonus,
     'passiveWeaponDefensePenetrationBonus':
         passiveWeaponDefensePenetrationBonus,
     'passiveWeaponSpeedBonus': passiveWeaponSpeedBonus,
+    'passiveWeaponSpeedMultiplier': passiveWeaponSpeedMultiplier,
     'passiveWeaponAccuracyBonus': passiveWeaponAccuracyBonus,
+    'passiveWeaponAccuracyMultiplier': passiveWeaponAccuracyMultiplier,
   };
 
   // Deserialization
@@ -159,14 +171,21 @@ class Player {
           json['passiveWeaponDamageMultiplier'] ?? 1.0,
       passiveWeaponCriticalChanceBonus:
           json['passiveWeaponCriticalChanceBonus'] ?? 0.0,
+      passiveWeaponCriticalChanceMultiplier:
+          json['passiveWeaponCriticalChanceMultiplier'] ?? 1.0,
       passiveWeaponCriticalDamageBonus:
           json['passiveWeaponCriticalDamageBonus'] ?? 0.0,
+      passiveWeaponCriticalDamageMultiplier:
+          json['passiveWeaponCriticalDamageMultiplier'] ?? 1.0,
       passiveWeaponDoubleAttackChanceBonus:
           json['passiveWeaponDoubleAttackChanceBonus'] ?? 0.0,
       passiveWeaponDefensePenetrationBonus:
           json['passiveWeaponDefensePenetrationBonus'] ?? 0.0,
       passiveWeaponSpeedBonus: json['passiveWeaponSpeedBonus'] ?? 0.0,
+      passiveWeaponSpeedMultiplier: json['passiveWeaponSpeedMultiplier'] ?? 1.0,
       passiveWeaponAccuracyBonus: json['passiveWeaponAccuracyBonus'] ?? 0.0,
+      passiveWeaponAccuracyMultiplier:
+          json['passiveWeaponAccuracyMultiplier'] ?? 1.0,
     );
   }
 }

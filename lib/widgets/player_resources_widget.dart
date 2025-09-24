@@ -23,6 +23,8 @@ class PlayerResourcesWidget extends StatelessWidget {
                   Colors.amber,
                   '골드',
                   '골드는 무기 강화, 초월, 상점 이용 등 다양한 곳에 사용되는 기본 재화입니다.',
+                  '골드 획득량: +${((game.player.passiveGoldGainMultiplier - 1) * 100).toStringAsFixed(0)}%', // Multiplier value
+                  '골드 획득량은 몬스터 처치 시 획득하는 골드의 양을 증가시킵니다.', // Multiplier description
                 ),
               ),
               Expanded(
@@ -33,6 +35,8 @@ class PlayerResourcesWidget extends StatelessWidget {
                   Colors.blueGrey,
                   '강화석',
                   '강화석은 무기 강화에 사용되는 핵심 재료입니다. 강화 단계가 높아질수록 더 많은 강화석이 필요합니다.',
+                  '강화석 획득량: +${((game.player.passiveEnhancementStoneGainMultiplier - 1) * 100).toStringAsFixed(0)}% (${game.player.passiveEnhancementStoneGainFlat}개)', // Multiplier value
+                  '강화석 획득량은 몬스터 처치 시 획득하는 강화석의 양을 증가시킵니다.', // Multiplier description
                 ),
               ),
               Expanded(
@@ -43,6 +47,8 @@ class PlayerResourcesWidget extends StatelessWidget {
                   Colors.purple,
                   '초월석',
                   '초월석은 무기 초월에 사용되는 희귀 재료입니다. 초월을 통해 무기의 잠재력을 극한으로 끌어올릴 수 있습니다.',
+                  null, // No multiplier for transcendence stones
+                  null, // No multiplier description
                 ),
               ),
             ],
@@ -59,10 +65,17 @@ class PlayerResourcesWidget extends StatelessWidget {
     Color color,
     String title,
     String description,
+    String? multiplierValue, // New parameter
+    String? multiplierDescription, // New parameter
   ) {
     return GestureDetector(
       onTap: () {
-        _showResourceDescriptionDialog(context, title, description);
+        _showResourceDescriptionDialog(
+          context,
+          title,
+          description,
+          multiplierDescription,
+        );
       },
       child: Column(
         children: [
@@ -77,6 +90,15 @@ class PlayerResourcesWidget extends StatelessWidget {
               ),
             ],
           ),
+          // New: Display multiplier if available
+          if (multiplierValue != null)
+            Text(
+              multiplierValue,
+              style: TextStyle(
+                color: color,
+                fontSize: 12,
+              ), // Use resource color
+            ),
         ],
       ),
     );
@@ -86,6 +108,7 @@ class PlayerResourcesWidget extends StatelessWidget {
     BuildContext context,
     String title,
     String description,
+    String? multiplierDescription, // New parameter
   ) {
     showDialog(
       context: context,
@@ -93,9 +116,21 @@ class PlayerResourcesWidget extends StatelessWidget {
         return AlertDialog(
           backgroundColor: Colors.grey[800],
           title: Text(title, style: const TextStyle(color: Colors.white)),
-          content: Text(
-            description,
-            style: const TextStyle(color: Colors.white70),
+          content: Column(
+            // Changed to Column to hold multiple Text widgets
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(description, style: const TextStyle(color: Colors.white70)),
+              if (multiplierDescription != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    multiplierDescription,
+                    style: const TextStyle(color: Colors.white70),
+                  ),
+                ),
+            ],
           ),
           actions: <Widget>[
             TextButton(

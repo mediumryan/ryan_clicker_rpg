@@ -138,7 +138,8 @@ Widget buildWeaponDetailsDialog(BuildContext context, Weapon weapon) {
                   ...weapon.skills.map(
                     (skill) => Text(
                       '''${skill['skill_name']}
-${skill['skill_description']}''',
+${skill['skill_description']}
+${skill['skill_description_detail']}''',
                       style: const TextStyle(color: Colors.cyanAccent),
                     ),
                   ),

@@ -7,6 +7,7 @@ var uuid = const Uuid();
 enum Rarity { common, uncommon, rare, unique, epic, legend, demigod, god }
 
 enum WeaponType {
+  none,
   rapier,
   katana,
   sword,
@@ -59,6 +60,9 @@ class Weapon {
   double doubleAttackChance;
   double speed;
   double accuracy;
+
+  // Stacking mechanism
+  Map<String, dynamic> stack;
 
   // Resources invested in this weapon
   double investedGold;
@@ -145,33 +149,36 @@ class Weapon {
     this.skills = const [],
     this.accuracy = 1.0,
     Map<String, int>? skillStacks,
-  }) : skillStacks = skillStacks ?? {};
+    Map<String, dynamic>? stack,
+  }) : skillStacks = skillStacks ?? {},
+       stack = stack ?? {};
 
   Map<String, dynamic> toJson() => {
-        'instanceId': instanceId,
-        'id': id,
-        'name': name,
-        'imageName': imageName,
-        'rarity': rarity.toString(),
-        'type': type.toString(),
-        'baseLevel': baseLevel,
-        'enhancement': enhancement,
-        'transcendence': transcendence,
-        'baseDamage': baseDamage,
-        'criticalChance': criticalChance,
-        'criticalDamage': criticalDamage,
-        'baseSellPrice': baseSellPrice,
-        'investedGold': investedGold,
-        'investedEnhancementStones': investedEnhancementStones,
-        'investedTranscendenceStones': investedTranscendenceStones,
-        'description': description,
-        'defensePenetration': defensePenetration,
-        'doubleAttackChance': doubleAttackChance,
-        'speed': speed,
-        'skills': skills,
-        'accuracy': accuracy,
-        'skillStacks': skillStacks,
-      };
+    'instanceId': instanceId,
+    'id': id,
+    'name': name,
+    'imageName': imageName,
+    'rarity': rarity.toString(),
+    'type': type.toString(),
+    'baseLevel': baseLevel,
+    'enhancement': enhancement,
+    'transcendence': transcendence,
+    'baseDamage': baseDamage,
+    'criticalChance': criticalChance,
+    'criticalDamage': criticalDamage,
+    'baseSellPrice': baseSellPrice,
+    'investedGold': investedGold,
+    'investedEnhancementStones': investedEnhancementStones,
+    'investedTranscendenceStones': investedTranscendenceStones,
+    'description': description,
+    'defensePenetration': defensePenetration,
+    'doubleAttackChance': doubleAttackChance,
+    'speed': speed,
+    'skills': skills,
+    'accuracy': accuracy,
+    'skillStacks': skillStacks,
+    'stack': stack,
+  };
 
   factory Weapon.fromJson(Map<String, dynamic> json) {
     final calculatedRarity = Rarity.values.firstWhere(
@@ -205,7 +212,8 @@ class Weapon {
       baseLevel: json['baseLevel'],
       enhancement: json['enhancement'] ?? 0,
       transcendence: json['transcendence'] ?? 0,
-      baseDamage: ((json['baseDamage'] ?? json['damage'] ?? 0.0) as num).toDouble(),
+      baseDamage: ((json['baseDamage'] ?? json['damage'] ?? 0.0) as num)
+          .toDouble(),
       criticalChance: ((json['criticalChance'] ?? 0.0) as num).toDouble(),
       criticalDamage: ((json['criticalDamage'] ?? 0.0) as num).toDouble(),
       baseSellPrice: ((json['baseSellPrice'] ?? 0.0) as num).toDouble(),
@@ -213,21 +221,27 @@ class Weapon {
       investedEnhancementStones: json['investedEnhancementStones'] ?? 0,
       investedTranscendenceStones: json['investedTranscendenceStones'] ?? 0,
       description: json['description'],
-      defensePenetration: ((json['defensePenetration'] ?? 0.0) as num).toDouble(),
-      doubleAttackChance: ((json['doubleAttackChance'] ?? 0.0) as num).toDouble(),
-      speed: ((json['speed'] ?? 1.0) as num).toDouble(),
-      accuracy: ((json['accuracy'] ??
-              WeaponData.getDefaultAccuracyForRarity(calculatedRarity)) as num)
+      defensePenetration: ((json['defensePenetration'] ?? 0.0) as num)
           .toDouble(),
+      doubleAttackChance: ((json['doubleAttackChance'] ?? 0.0) as num)
+          .toDouble(),
+      speed: ((json['speed'] ?? 1.0) as num).toDouble(),
+      accuracy:
+          ((json['accuracy'] ??
+                      WeaponData.getDefaultAccuracyForRarity(calculatedRarity))
+                  as num)
+              .toDouble(),
       skills:
           (json['skills'] as List<dynamic>?)
               ?.map((e) => e as Map<String, dynamic>)
               .toList() ??
           const [],
       skillStacks:
-          (json['skillStacks'] as Map<String, dynamic>?)
-              ?.map((k, v) => MapEntry(k, v as int)) ??
+          (json['skillStacks'] as Map<String, dynamic>?)?.map(
+            (k, v) => MapEntry(k, v as int),
+          ) ??
           {},
+      stack: json['stack'] as Map<String, dynamic>? ?? {},
     );
   }
 
@@ -240,16 +254,22 @@ class Weapon {
       rarity: Rarity.common,
       type: WeaponType.rapier,
       baseLevel: 0,
-      baseDamage: 80,
-      criticalChance: 0.08,
-      criticalDamage: 1.08,
+      baseDamage: 36,
+      criticalChance: 0.18,
+      criticalDamage: 1.42,
       defensePenetration: 0,
       doubleAttackChance: 0.0,
-      speed: 0.8,
-      baseSellPrice: 120,
+      speed: 1.3,
+      baseSellPrice: 0,
       skills: [],
       description: "기본 무기입니다.",
-      accuracy: 0.7,
+      accuracy: 0.784,
+      stack: {
+        "enabled": false,
+        "currentStacks": 0,
+        "maxStacks": 0,
+        "damagePerStack": 0,
+      },
     );
   }
 
@@ -260,13 +280,24 @@ class Weapon {
       name: '맨손',
       imageName: 'bare_hands.png',
       rarity: Rarity.common,
-      type: WeaponType.rapier,
-      baseLevel: 1,
+      type: WeaponType.none, // Type is required, but may not affect bare hands
+      baseLevel: 0,
       baseDamage: 1,
       criticalChance: 0.0,
       criticalDamage: 1.0,
       baseSellPrice: 0,
       description: "무기가 없습니다.",
+      defensePenetration: 0.0,
+      doubleAttackChance: 0.0,
+      speed: 1.0,
+      accuracy: 0.7,
+      skills: [],
+      stack: {
+        "enabled": false,
+        "currentStacks": 0,
+        "maxStacks": 0,
+        "damagePerStack": 0,
+      },
     );
   }
 
@@ -293,6 +324,7 @@ class Weapon {
     double? accuracy,
     List<Map<String, dynamic>>? skills,
     Map<String, int>? skillStacks,
+    Map<String, dynamic>? stack,
   }) {
     return Weapon(
       instanceId: uuid.v4(), // Always generate a new UUID for a copy
@@ -320,6 +352,7 @@ class Weapon {
       accuracy: accuracy ?? this.accuracy,
       skills: skills ?? this.skills,
       skillStacks: skillStacks ?? this.skillStacks,
+      stack: stack ?? this.stack,
     );
   }
 }

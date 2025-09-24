@@ -102,6 +102,11 @@ class MainGameScreen extends StatelessWidget {
             '${(game.player.finalAccuracy * 100).toStringAsFixed(0)}%',
             '적중률: 공격이 몬스터에게 적중할 확률입니다.',
           ),
+          _buildStat(
+            'images/stats/double_attack_chance.png',
+            '${(game.player.finalDoubleAttackChance * 100).toStringAsFixed(1)}%',
+            '더블 어택 확률: 공격 시 한 번 더 공격할 확률입니다.',
+          ),
         ],
       ),
     );

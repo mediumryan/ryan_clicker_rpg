@@ -42,9 +42,15 @@ class WeaponSkillProvider with ChangeNotifier {
     player.passiveWeaponDamageBonus = 0.0;
     player.passiveWeaponDamageMultiplier = 1.0;
     player.passiveWeaponCriticalChanceBonus = 0.0;
+    player.passiveWeaponCriticalChanceMultiplier = 1.0;
     player.passiveWeaponCriticalDamageBonus = 0.0;
+    player.passiveWeaponCriticalDamageMultiplier = 1.0;
     player.passiveWeaponDoubleAttackChanceBonus = 0.0;
     player.passiveWeaponDefensePenetrationBonus = 0.0;
+    player.passiveWeaponSpeedBonus = 0.0;
+    player.passiveWeaponSpeedMultiplier = 1.0;
+    player.passiveWeaponAccuracyBonus = 0.0;
+    player.passiveWeaponAccuracyMultiplier = 1.0;
     player.passiveGoldGainMultiplier = 1.0;
     player.passiveEnhancementStoneGainMultiplier = 1.0;
     player.passiveEnhancementStoneGainFlat = 0;
@@ -285,26 +291,36 @@ class WeaponSkillProvider with ChangeNotifier {
 
   void _applyPassiveStatBoost(Map<String, dynamic> params, Player player) {
     final stat = params['stat'] as String?;
-    final value = (params['value'] as num?)?.toDouble();
+    double value =
+        (params['value'] as num?)?.toDouble() ?? 0.0; // Make value mutable
     final isMultiplicative = params['isMultiplicative'] as bool? ?? false;
 
-    if (stat == null || value == null) {
+    if (stat == null) {
+      // value can be 0.0
       return; // Missing essential parameters
     }
 
     switch (stat) {
       case "damage":
         if (isMultiplicative) {
-          player.passiveWeaponDamageMultiplier += value;
+          player.passiveWeaponDamageMultiplier *= value;
         } else {
           player.passiveWeaponDamageBonus += value;
         }
         break;
       case "criticalChance":
-        player.passiveWeaponCriticalChanceBonus += value;
+        if (isMultiplicative) {
+          player.passiveWeaponCriticalChanceMultiplier *= value;
+        } else {
+          player.passiveWeaponCriticalChanceBonus += value;
+        }
         break;
       case "criticalDamage":
-        player.passiveWeaponCriticalDamageBonus += value;
+        if (isMultiplicative) {
+          player.passiveWeaponCriticalDamageMultiplier *= value;
+        } else {
+          player.passiveWeaponCriticalDamageBonus += value;
+        }
         break;
       case "doubleAttackChance":
         player.passiveWeaponDoubleAttackChanceBonus += value;
@@ -313,10 +329,18 @@ class WeaponSkillProvider with ChangeNotifier {
         player.passiveWeaponDefensePenetrationBonus += value;
         break;
       case "speed":
-        player.passiveWeaponSpeedBonus += value;
+        if (isMultiplicative) {
+          player.passiveWeaponSpeedMultiplier *= value;
+        } else {
+          player.passiveWeaponSpeedBonus += value;
+        }
         break;
       case "accuracy":
-        player.passiveWeaponAccuracyBonus += value;
+        if (isMultiplicative) {
+          player.passiveWeaponAccuracyMultiplier *= value;
+        } else {
+          player.passiveWeaponAccuracyBonus += value;
+        }
         break;
       default:
         // Handle unknown stat or log an error
@@ -336,16 +360,24 @@ class WeaponSkillProvider with ChangeNotifier {
     switch (stat) {
       case "damage":
         if (isMultiplicative) {
-          player.passiveWeaponDamageMultiplier -= value;
+          player.passiveWeaponDamageMultiplier *= value;
         } else {
           player.passiveWeaponDamageBonus -= value;
         }
         break;
       case "criticalChance":
-        player.passiveWeaponCriticalChanceBonus -= value;
+        if (isMultiplicative) {
+          player.passiveWeaponCriticalChanceMultiplier *= value;
+        } else {
+          player.passiveWeaponCriticalChanceBonus -= value;
+        }
         break;
       case "criticalDamage":
-        player.passiveWeaponCriticalDamageBonus -= value;
+        if (isMultiplicative) {
+          player.passiveWeaponCriticalDamageMultiplier *= value;
+        } else {
+          player.passiveWeaponCriticalDamageBonus -= value;
+        }
         break;
       case "doubleAttackChance":
         player.passiveWeaponDoubleAttackChanceBonus -= value;
@@ -354,10 +386,18 @@ class WeaponSkillProvider with ChangeNotifier {
         player.passiveWeaponDefensePenetrationBonus -= value;
         break;
       case "speed":
-        player.passiveWeaponSpeedBonus -= value;
+        if (isMultiplicative) {
+          player.passiveWeaponSpeedMultiplier *= value;
+        } else {
+          player.passiveWeaponSpeedBonus -= value;
+        }
         break;
       case "accuracy":
-        player.passiveWeaponAccuracyBonus -= value;
+        if (isMultiplicative) {
+          player.passiveWeaponAccuracyMultiplier *= value;
+        } else {
+          player.passiveWeaponAccuracyBonus -= value;
+        }
         break;
       default:
         // Handle unknown stat or log an error
@@ -748,6 +788,7 @@ class WeaponSkillProvider with ChangeNotifier {
         type: StatusEffectType.poison,
         duration: duration,
         value: damageValue,
+        maxDmg: params['maxDmg'],
         stackable: isStackable,
       );
       monster.applyStatusEffect(effect);
@@ -907,8 +948,10 @@ class WeaponSkillProvider with ChangeNotifier {
     Player player,
     Monster monster,
   ) {
+    debugPrint('[_applyMaxHpDamage] Called.');
     final trigger = params['trigger'] as String?;
     if (trigger != 'onHit') {
+      debugPrint('[_applyMaxHpDamage] Wrong trigger: $trigger');
       return;
     }
 
@@ -917,8 +960,14 @@ class WeaponSkillProvider with ChangeNotifier {
     final cooldown = (params['cooldown'] as num?)?.toInt();
     final excludedRaces = (params['excludedRaces'] as List<dynamic>?)
         ?.cast<String>();
+    final maxDmg = (params['maxDmg'] as num?)?.toDouble();
+
+    debugPrint(
+      '[_applyMaxHpDamage] Params: chance=$chance, percentDamage=$percentDamage, cooldown=$cooldown, maxDmg=$maxDmg',
+    );
 
     if (chance == null || percentDamage == null || cooldown == null) {
+      debugPrint('[_applyMaxHpDamage] Missing essential parameters.');
       return; // Missing essential parameters
     }
 
@@ -926,6 +975,7 @@ class WeaponSkillProvider with ChangeNotifier {
     if (excludedRaces != null) {
       for (final race in excludedRaces) {
         if (monster.species.any((s) => s.toString().split('.').last == race)) {
+          debugPrint('[_applyMaxHpDamage] Monster race excluded.');
           return;
         }
       }
@@ -933,12 +983,23 @@ class WeaponSkillProvider with ChangeNotifier {
 
     // 2. Check for cooldown
     if (monster.isSkillOnCooldown('maxHpDamage', cooldown)) {
+      debugPrint('[_applyMaxHpDamage] Skill on cooldown.');
       return;
     }
 
     // 3. Roll for chance
-    if (Random().nextDouble() < chance) {
-      final damage = monster.maxHp * (percentDamage / 100);
+    final randomRoll = Random().nextDouble();
+    debugPrint('[_applyMaxHpDamage] Chance roll: $randomRoll vs $chance');
+    if (randomRoll < chance) {
+      debugPrint('[_applyMaxHpDamage] Skill triggered!');
+      var damage = monster.maxHp * percentDamage;
+      debugPrint(
+        '[_applyMaxHpDamage] Damage before cap: $damage (monster.maxHp=${monster.maxHp} * percentDamage=$percentDamage)',
+      );
+      if (maxDmg != null) {
+        damage = min(damage, maxDmg);
+        debugPrint('[_applyMaxHpDamage] Damage after cap ($maxDmg): $damage');
+      }
       monster.hp -= damage; // Apply damage based on max HP
       monster.setSkillCooldown('maxHpDamage');
       _gameProvider.showFloatingDamageText(
@@ -949,6 +1010,8 @@ class WeaponSkillProvider with ChangeNotifier {
         damageType: DamageType.maxHp,
       ); // Show skill damage
       _gameProvider.notifyListeners(); // Notify listeners for HP change
+    } else {
+      debugPrint('[_applyMaxHpDamage] Chance roll failed.');
     }
   }
 
@@ -1075,6 +1138,7 @@ class WeaponSkillProvider with ChangeNotifier {
     Player player,
     Monster monster,
   ) {
+    debugPrint('[_applyHpConditionalBonusDamage] Called with params: $params');
     final trigger = params['trigger'] as String?;
     if (trigger != 'onHit') {
       return;
@@ -1083,7 +1147,7 @@ class WeaponSkillProvider with ChangeNotifier {
     final chance =
         (params['chance'] as num?)?.toDouble() ?? 1.0; // Default to 100% chance
     final hpThreshold = (params['hpThreshold'] as num?)?.toDouble();
-    final condition = params['condition'] as String? ?? '이하'; // Default to '이하'
+    final condition = params['condition'] as String? ?? 'le'; // Default to 'le'
     final multiplier = (params['multiplier'] as num?)?.toDouble();
     final cooldown = (params['cooldown'] as num?)?.toInt();
     final excludedRaces = (params['excludedRaces'] as List<dynamic>?)
@@ -1109,20 +1173,20 @@ class WeaponSkillProvider with ChangeNotifier {
 
     // 3. Roll for chance
     if (Random().nextDouble() < chance) {
-      final monsterHpPercentage = (monster.hp / monster.maxHp) * 100;
+      final monsterHpPercentage = (monster.hp / monster.maxHp);
       bool conditionMet = false;
 
       switch (condition) {
-        case '이상':
+        case 'ge':
           conditionMet = monsterHpPercentage >= hpThreshold;
           break;
-        case '이하':
+        case 'le':
           conditionMet = monsterHpPercentage <= hpThreshold;
           break;
-        case '초과':
+        case 'gt':
           conditionMet = monsterHpPercentage > hpThreshold;
           break;
-        case '미만':
+        case 'lt':
           conditionMet = monsterHpPercentage < hpThreshold;
           break;
       }
@@ -1274,10 +1338,12 @@ class WeaponSkillProvider with ChangeNotifier {
           availableDebuffs[Random().nextInt(availableDebuffs.length)];
 
       double? value;
+      int? maxDmg;
       if (randomDebuff == StatusEffectType.bleed) {
         value = bleedPerDmg;
       } else if (randomDebuff == StatusEffectType.poison) {
         value = monster.maxHp * poisonPerDmg;
+        maxDmg = 0;
       } else if (randomDebuff == StatusEffectType.weakness) {
         value = monster.defense * 0.1;
       } else if (randomDebuff == StatusEffectType.disarm) {
@@ -1291,6 +1357,7 @@ class WeaponSkillProvider with ChangeNotifier {
         type: randomDebuff,
         duration: duration,
         value: value,
+        maxDmg: maxDmg,
         stackable: isStackable,
       );
       monster.applyStatusEffect(effect);
@@ -1298,17 +1365,23 @@ class WeaponSkillProvider with ChangeNotifier {
   }
 
   void applyStageStartSkills(Player player, Monster monster) {
+    debugPrint('applyStageStartSkills called');
     final weapon = player.equippedWeapon;
     for (final skill in weapon.skills) {
-      final trigger = skill['trigger'] as String?;
-      if (trigger == 'stageStart') {
-        final skillEffects = skill['skill_effect'];
-        if (skillEffects is List) {
-          for (final effect in skillEffects) {
-            final effectName = effect['effect_name'];
-            final params = effect['params'];
+      final skillEffects = skill['skill_effect'];
+      if (skillEffects is List) {
+        for (final effect in skillEffects) {
+          final effectName = effect['effect_name'];
+          final params = effect['params'];
+          final trigger =
+              params?['trigger']
+                  as String?; // Corrected: Get trigger from params
+
+          if (trigger == 'stageStart') {
+            debugPrint(
+              'Skill with stageStart trigger found: ${skill['skill_name']}',
+            );
             if (effectName != null && params != null) {
-              // We could use the main _applyEffect switch, but for now let's be specific
               if (effectName == 'applyStatBoost') {
                 _applyStatBoost(params, player);
               }
@@ -1325,7 +1398,12 @@ class WeaponSkillProvider with ChangeNotifier {
     final isMultiplicative = params['isMultiplicative'] as bool? ?? false;
     final duration = (params['duration'] as num?)?.toInt();
 
+    debugPrint(
+      '_applyStatBoost called for stat: $statString, value: $value, multiplicative: $isMultiplicative, duration: $duration',
+    );
+
     if (statString == null || value == null || duration == null) {
+      debugPrint('_applyStatBoost: Missing essential parameters.');
       return;
     }
 
@@ -1345,6 +1423,9 @@ class WeaponSkillProvider with ChangeNotifier {
     // Remove existing buff of same type before adding new one
     player.buffs.removeWhere((b) => b.id == buff.id);
     player.buffs.add(buff);
+    debugPrint(
+      'Buff added: ${buff.id}, current player buffs: ${player.buffs.length}',
+    );
     _gameProvider.recalculatePlayerStats();
   }
 
@@ -1395,18 +1476,13 @@ class WeaponSkillProvider with ChangeNotifier {
   void applyOnKillSkills(Player player, Monster monster) {
     final weapon = player.equippedWeapon;
     for (final skill in weapon.skills) {
-      final trigger = skill['trigger'] as String?;
-      if (trigger == 'killMonster') {
-        final skillEffects = skill['skill_effect'];
-        if (skillEffects is List) {
-          for (final effect in skillEffects) {
-            final effectName = effect['effect_name'];
-            final params = effect['params'];
-            if (effectName != null && params != null) {
-              if (effectName == 'increaseStat') {
-                _increaseStat(params, player);
-              }
-            }
+      final skillEffects = skill['skill_effect'];
+      if (skillEffects is List) {
+        for (final effect in skillEffects) {
+          final effectName = effect['effect_name'];
+          final params = effect['params'];
+          if (effectName == 'increaseStat') {
+            _increaseStat(params, player);
           }
         }
       }
@@ -1415,37 +1491,19 @@ class WeaponSkillProvider with ChangeNotifier {
 
   void _increaseStat(Map<String, dynamic> params, Player player) {
     final stat = params['stat'] as String?;
-    if (stat != 'baseDamage') return; // Only support baseDamage for now
-
-    final stackPerValue = (params['stackPerValue'] as num?)?.toDouble();
-    final maxStacks = (params['maxStacks'] as num?)?.toInt();
-    final skillId =
-        params['skillId'] as String? ??
-        'increaseStat_baseDamage'; // Need a unique ID for the skill
-
-    if (stackPerValue == null || maxStacks == null) {
-      return;
-    }
+    if (stat == null) return;
 
     final weapon = player.equippedWeapon;
-    final currentStacks = weapon.skillStacks[skillId] ?? 0;
 
-    if (currentStacks < maxStacks) {
-      weapon.skillStacks[skillId] = currentStacks + 1;
-      // This permanently modifies the weapon object.
-      // The baseDamage of the weapon is final, so we need to replace the weapon with a new one.
-      final newWeapon = weapon.copyWith(
-        baseDamage: weapon.baseDamage + stackPerValue,
-      );
-      player.equippedWeapon = newWeapon;
-      // Update the weapon in the player's inventory as well
-      final indexInInventory = player.inventory.indexWhere(
-        (w) => w.id == newWeapon.id,
-      );
-      if (indexInInventory != -1) {
-        player.inventory[indexInInventory] = newWeapon;
+    if (stat == 'stack.currentStacks') {
+      if (weapon.stack['enabled'] == true) {
+        final currentStacks = weapon.stack['currentStacks'] as int? ?? 0;
+        final maxStacks = weapon.stack['maxStacks'] as int? ?? 0;
+        if (currentStacks < maxStacks) {
+          weapon.stack['currentStacks'] = currentStacks + 1;
+          _gameProvider.recalculatePlayerStats();
+        }
       }
-      _gameProvider.recalculatePlayerStats();
     }
   }
 
@@ -1464,6 +1522,7 @@ class WeaponSkillProvider with ChangeNotifier {
     final cooldown = (params['cooldown'] as num?)?.toInt();
     final excludedRaces = (params['excludedRaces'] as List<dynamic>?)
         ?.cast<String>();
+    final maxDmg = (params['maxDmg'] as num?)?.toInt();
 
     if (chance == null || duration == null || cooldown == null) {
       return; // Missing essential parameters
@@ -1492,6 +1551,7 @@ class WeaponSkillProvider with ChangeNotifier {
         type: StatusEffectType.freeze,
         duration: duration,
         stackable: isStackable,
+        maxDmg: maxDmg,
       );
       monster.applyStatusEffect(effect);
       monster.setSkillCooldown('freeze');
@@ -1506,7 +1566,8 @@ class WeaponSkillProvider with ChangeNotifier {
 
     final chance = (params['chance'] as num?)?.toDouble();
     final duration = (params['duration'] as num?)?.toInt();
-    final damagePerSecond = (params['damagePerSecond'] as num?)?.toDouble();
+    final damagePerSecond = (params['fixedDamagePerSecond'] as num?)
+        ?.toDouble();
     final cooldown = (params['cooldown'] as num?)?.toInt();
     final excludedRaces = (params['excludedRaces'] as List<dynamic>?)
         ?.cast<String>();
@@ -1563,6 +1624,7 @@ class WeaponSkillProvider with ChangeNotifier {
     final cooldown = (params['cooldown'] as num?)?.toInt();
     final excludedRaces = (params['excludedRaces'] as List<dynamic>?)
         ?.cast<String>();
+    final maxDmg = (params['maxDmg'] as num?)?.toInt();
 
     if (chance == null || duration == null || cooldown == null) {
       return; // Missing essential parameters
@@ -1591,6 +1653,7 @@ class WeaponSkillProvider with ChangeNotifier {
         type: StatusEffectType.shock,
         duration: duration,
         stackable: isStackable,
+        maxDmg: maxDmg,
       );
       monster.applyStatusEffect(effect);
       monster.setSkillCooldown('shock');

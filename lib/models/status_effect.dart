@@ -16,12 +16,14 @@ class StatusEffect {
   final StatusEffectType type;
   int duration; // in seconds
   final double? value;
+  final int? maxDmg;
   final bool stackable; // New property
 
   StatusEffect({
     required this.type,
     required this.duration,
     this.value,
+    this.maxDmg,
     this.stackable = true,
   });
 }

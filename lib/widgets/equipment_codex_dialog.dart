@@ -4,7 +4,6 @@ import 'package:ryan_clicker_rpg/data/weapon_data.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart';
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 import 'package:ryan_clicker_rpg/widgets/weapon_filter_dialog.dart'; // New import
-import 'package:ryan_clicker_rpg/widgets/achievement_dialog.dart';
 
 class EquipmentCodexDialog extends StatefulWidget {
   const EquipmentCodexDialog({super.key});
@@ -14,8 +13,10 @@ class EquipmentCodexDialog extends StatefulWidget {
 }
 
 class _EquipmentCodexDialogState extends State<EquipmentCodexDialog> {
-  Set<Rarity> _selectedRarities = Rarity.values.toSet(); // Initialize with all rarities selected
-  Set<WeaponType> _selectedWeaponTypes = WeaponType.values.toSet(); // Initialize with all weapon types selected
+  Set<Rarity> _selectedRarities = Rarity.values
+      .toSet(); // Initialize with all rarities selected
+  Set<WeaponType> _selectedWeaponTypes = WeaponType.values
+      .toSet(); // Initialize with all weapon types selected
 
   // Helper to map rarity to a color
   Color _getColorForRarity(Rarity rarity) {
@@ -90,8 +91,12 @@ class _EquipmentCodexDialogState extends State<EquipmentCodexDialog> {
 
           // Apply filters
           final filteredWeapons = allWeapons.where((weapon) {
-            final bool matchesRarity = _selectedRarities.contains(weapon.rarity);
-            final bool matchesWeaponType = _selectedWeaponTypes.contains(weapon.type);
+            final bool matchesRarity = _selectedRarities.contains(
+              weapon.rarity,
+            );
+            final bool matchesWeaponType = _selectedWeaponTypes.contains(
+              weapon.type,
+            );
             return matchesRarity && matchesWeaponType;
           }).toList();
 
@@ -192,17 +197,6 @@ class _EquipmentCodexDialogState extends State<EquipmentCodexDialog> {
         },
       ),
       actions: <Widget>[
-        TextButton(
-          child: const Text('업적', style: TextStyle(color: Colors.blue)),
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return const AchievementDialog();
-              },
-            );
-          },
-        ),
         TextButton(
           child: const Text('닫기', style: TextStyle(color: Colors.blue)),
           onPressed: () {

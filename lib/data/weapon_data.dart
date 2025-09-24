@@ -64,6 +64,8 @@ class WeaponData {
 
   static String getKoreanWeaponType(WeaponType type) {
     switch (type) {
+      case WeaponType.none:
+        return '없음';
       case WeaponType.rapier:
         return '레이피어';
       case WeaponType.katana:

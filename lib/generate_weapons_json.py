@@ -1,10 +1,12 @@
 import json
 import math
+import unique_weapon_generator
+import os
 
 # --- 무기 타입 분류 ---
 
 FIRST_GROUP_WEAPONS = [
-    "레이피어", "카타나", "검", "대검", "시미터", "단검", "도축칼", "전투도끼"
+    "레이피어", "도검", "검", "대검", "시미터", "단검", "도축칼", "전투도끼"
 ]
 SECOND_GROUP_WEAPONS = [
     "전투망치", "창", "지팡이", "삼지창", "메이스", "낫", "곡도", "쌍절곤"
@@ -22,7 +24,7 @@ SUFFIX_MAP = {
     "악마의 힘이 깃든": "demonic", "용의 힘이 깃든": "dragon"
 }
 TYPE_MAP = {
-    "레이피어": "rapier", "카타나": "katana", "검": "sword",
+    "레이피어": "rapier", "도검": "blade", "검": "sword",
     "대검": "greatsword", "시미터": "scimitar", "단검": "dagger",
     "도축칼": "cleaver", "전투도끼": "battle_axe", "전투망치": "warhammer",
     "창": "spear", "지팡이": "staff", "삼지창": "trident",
@@ -32,7 +34,7 @@ TYPE_MAP = {
 # --- 무기 타입별 멀티플라이어 ---
 WEAPON_TYPE_MODIFIERS = {
      "rapier":       {"damage_mult": 0.90, "speed_mult": 1.30, "accuracy_mult": 1.120, "crit_chance_mult": 1.800, "crit_mult_mult": 0.950},
-     "katana":       {"damage_mult": 1.05, "speed_mult": 1.15, "accuracy_mult": 1.070, "crit_chance_mult": 1.500, "crit_mult_mult": 1.050},
+     "blade":       {"damage_mult": 1.05, "speed_mult": 1.15, "accuracy_mult": 1.070, "crit_chance_mult": 1.500, "crit_mult_mult": 1.050},
      "sword":        {"damage_mult": 1.20, "speed_mult": 1.00, "accuracy_mult": 1.030, "crit_chance_mult": 1.000, "crit_mult_mult": 1.000},
      "greatsword":   {"damage_mult": 1.70, "speed_mult": 0.80, "accuracy_mult": 0.940, "crit_chance_mult": 0.800, "crit_mult_mult": 1.200},
      "scimitar":     {"damage_mult": 1.05, "speed_mult": 1.15, "accuracy_mult": 1.040, "crit_chance_mult": 1.200, "crit_mult_mult": 1.000},
@@ -75,7 +77,7 @@ QUALITIES_DATA = [
 
 BASE_LEVEL_STATS = {
     level: {
-        'baseDamage': 100 if level == 0 else int(6.21 * level + 5),
+        'baseDamage': 0.08 * (level ** 1.75) + 7 * level + 50,
         'criticalChance': 0.1,
         'criticalDamage': 1.5,
         'speed': 1.0,
@@ -87,58 +89,8 @@ BASE_LEVEL_STATS = {
 
 def calculate_sell_price(level):
     base_price = 1000
-    if level == 0:
-        return base_price
-
-    # Piecewise exponential scaling for sell price
-    # Using base_price * (exponent ^ level)
-    
-    price = base_price
-    
-    # Segment 1: 1 to 100 (exponent 1.025)
-    if level <= 100:
-        price = base_price * math.pow(1.025, level)
-    # Segment 2: 101 to 200 (exponent 1.01)
-    elif level <= 200:
-        price_at_100 = base_price * math.pow(1.025, 100)
-        price = price_at_100 * math.pow(1.01, level - 100)
-    # Segment 3: 201 to 300 (exponent 1.0075)
-    elif level <= 300:
-        price_at_100 = base_price * math.pow(1.025, 100)
-        price_at_200 = price_at_100 * math.pow(1.01, 100)
-        price = price_at_200 * math.pow(1.0075, level - 200)
-    # Segment 4: 301 to 400 (exponent 1.005)
-    elif level <= 400:
-        price_at_100 = base_price * math.pow(1.025, 100)
-        price_at_200 = price_at_100 * math.pow(1.01, 100)
-        price_at_300 = price_at_200 * math.pow(1.0075, 100)
-        price = price_at_300 * math.pow(1.005, level - 300)
-    # Segment 5: 401 to 500 (exponent 1.0075)
-    elif level <= 500:
-        price_at_100 = base_price * math.pow(1.025, 100)
-        price_at_200 = price_at_100 * math.pow(1.01, 100)
-        price_at_300 = price_at_200 * math.pow(1.0075, 100)
-        price_at_400 = price_at_300 * math.pow(1.005, 100)
-        price = price_at_400 * math.pow(1.0075, level - 400)
-    # Segment 6: 501 to 1000 (exponent 1.005)
-    elif level <= 1000:
-        price_at_100 = base_price * math.pow(1.025, 100)
-        price_at_200 = price_at_100 * math.pow(1.01, 100)
-        price_at_300 = price_at_200 * math.pow(1.0075, 100)
-        price_at_400 = price_at_300 * math.pow(1.005, 100)
-        price_at_500 = price_at_400 * math.pow(1.0075, 100) # 500 - 400 = 100
-        price = price_at_500 * math.pow(1.005, level - 500)
-    # Segment 7: 1001 to 2000 (exponent 1.0025)
-    else: # level > 1000
-        price_at_100 = base_price * math.pow(1.025, 100)
-        price_at_200 = price_at_100 * math.pow(1.01, 100)
-        price_at_300 = price_at_200 * math.pow(1.0075, 100)
-        price_at_400 = price_at_300 * math.pow(1.005, 100)
-        price_at_500 = price_at_400 * math.pow(1.0025, 100)
-        price_at_1000 = price_at_500 * math.pow(1.005, 500) # 1000 - 500 = 500
-        price = price_at_1000 * math.pow(1.0025, level - 1000)
-
-    return int(price)
+    price_per_level = 100
+    return int(base_price + (level * price_per_level))
 
 # --- 무기 생성 함수 ---
 
@@ -261,19 +213,30 @@ def generate_weapons():
 # --- 저장 함수 ---
 
 def main():
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    output_dir = os.path.join(script_dir, '..', 'assets', 'data')
+
+    # Generate common, uncommon, rare weapons
     weapons_by_rarity = generate_weapons()
-    output_dir = './assets/data/'
 
     for rarity, weapons_list in weapons_by_rarity.items():
-        if rarity == 'unique': # Skip unique weapons for now as they are not generated by the loop
-            continue
-        output_path = f'{output_dir}{rarity}_weapons.json'
+        output_path = os.path.join(output_dir, f'{rarity}_weapons.json')
         try:
             with open(output_path, 'w', encoding='utf-8') as f:
                 json.dump(weapons_list, f, ensure_ascii=False, indent=2)
             print(f'Successfully saved {len(weapons_list)} {rarity} weapons to {output_path}')
         except IOError as e:
             print(f'Error writing {output_path}: {e}')
+
+    # Generate unique weapons
+    unique_weapons = unique_weapon_generator.generate_unique_weapons()
+    output_path = os.path.join(output_dir, 'unique_weapons.json')
+    try:
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(unique_weapons, f, ensure_ascii=False, indent=2)
+        print(f'Successfully saved {len(unique_weapons)} unique weapons to {output_path}')
+    except IOError as e:
+        print(f'Error writing {output_path}: {e}')
 
 if __name__ == '__main__':
     main()

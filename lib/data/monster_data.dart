@@ -2068,7 +2068,16 @@ class MonsterData {
         [];
 
     const double coefficient = 50;
-    const double exponent = 1.135;
+    double exponent;
+    if (stage <= 50) {
+      exponent = 1.135;
+    } else if (stage <= 100) {
+      exponent = 1.2;
+    } else if (stage <= 500) {
+      exponent = 1.4;
+    } else {
+      exponent = 1.5;
+    }
 
     double hp = coefficient * pow(stage, exponent);
     int def = monsterInfo['def'];
