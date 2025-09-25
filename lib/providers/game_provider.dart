@@ -631,13 +631,13 @@ class GameProvider with ChangeNotifier {
   // Make sure to include them in the final replacement string
 
   void startAutoAttack() {
-    // _autoAttackTimer?.cancel();
-    // _autoAttackTimer = Timer.periodic(_autoAttackDelay, (timer) {
-    //   if (!_isMonsterDefeated) {
-    //     attackMonster();
-    //   }
-    // });
-    // notifyListeners();
+    _autoAttackTimer?.cancel();
+    _autoAttackTimer = Timer.periodic(_autoAttackDelay, (timer) {
+      if (!_isMonsterDefeated) {
+        attackMonster();
+      }
+    });
+    notifyListeners();
   }
 
   void stopAutoAttack() {
@@ -861,17 +861,10 @@ class GameProvider with ChangeNotifier {
       _player = Player(equippedWeapon: Weapon.startingWeapon());
       _player.transcendenceStones = 0;
       _player.enhancementStones = 0;
-      _player.gold = 99999999.0;
-      _player.currentStage = 2000;
+      _player.gold = 0.0;
+      _player.currentStage = 1;
 
-      // Add all unique rapiers for testing
-      final allWeapons = WeaponData.getAllWeapons();
-      final uniqueRapiers = allWeapons.where(
-        (w) => w.rarity == Rarity.unique && w.type == WeaponType.rapier,
-      );
-      for (final weapon in uniqueRapiers) {
-        _player.inventory.add(weapon.copyWith());
-      }
+      // final allWeapons = WeaponData.getAllWeapons();
     }
   }
 

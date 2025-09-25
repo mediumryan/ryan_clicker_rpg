@@ -659,6 +659,10 @@ def generate_unique_weapons():
 
             # Recalculate base damage if it's based on level, otherwise keep the template's damage
             level = new_weapon['baseLevel']
+            if level == 0:
+                new_weapon['baseSellPrice'] = 3000
+            else:
+                new_weapon['baseSellPrice'] = int(1000 + (level * 300))
             damage_mult = type_modifiers.get('damage_mult', 1)
 
             if base_weapon_template.get('baseDamage', 0) == 0: # If baseDamage is 0 in template

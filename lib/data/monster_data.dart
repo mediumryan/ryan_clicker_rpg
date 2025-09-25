@@ -2074,9 +2074,9 @@ class MonsterData {
     } else if (stage <= 100) {
       exponent = 1.2;
     } else if (stage <= 500) {
-      exponent = 1.4;
+      exponent = 1.25;
     } else {
-      exponent = 1.5;
+      exponent = 1.3;
     }
 
     double hp = coefficient * pow(stage, exponent);

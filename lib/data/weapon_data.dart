@@ -2,9 +2,144 @@ import 'package:flutter/material.dart'; // For Color
 import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:ryan_clicker_rpg/models/gacha_box.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart';
 
 class WeaponData {
+  static final List<Map<String, dynamic>> gachaBoxInfo = [
+    {
+      'boxType': WeaponBoxType.common,
+      'name': '흔한 무기상자',
+      'description': '획득한 스테이지 기준 레벨의 커먼~에픽 무기가 랜덤으로 1개 들어있습니다.',
+      'probabilities': [
+        {'rarity': Rarity.common, 'percent': 50.0},
+        {'rarity': Rarity.uncommon, 'percent': 35.0},
+        {'rarity': Rarity.rare, 'percent': 10.0},
+        {'rarity': Rarity.unique, 'percent': 4.5},
+        {'rarity': Rarity.epic, 'percent': 0.5},
+      ],
+    },
+    {
+      'boxType': WeaponBoxType.plain,
+      'name': '평범한 무기상자',
+      'description': '획득한 스테이지 기준 레벨의 커먼~레전드 무기가 랜덤으로 1개 들어있습니다.',
+      'probabilities': [
+        {'rarity': Rarity.common, 'percent': 35.0},
+        {'rarity': Rarity.uncommon, 'percent': 33.0},
+        {'rarity': Rarity.rare, 'percent': 24.0},
+        {'rarity': Rarity.unique, 'percent': 6.0},
+        {'rarity': Rarity.epic, 'percent': 1.5},
+        {'rarity': Rarity.legend, 'percent': 0.5},
+      ],
+    },
+    {
+      'boxType': WeaponBoxType.rare,
+      'name': '희귀한 무기상자',
+      'description': '획득한 스테이지 기준 레벨의 커먼~레전드 무기가 랜덤으로 1개 들어있습니다.',
+      'probabilities': [
+        {'rarity': Rarity.common, 'percent': 30.0},
+        {'rarity': Rarity.uncommon, 'percent': 33.0},
+        {'rarity': Rarity.rare, 'percent': 25.0},
+        {'rarity': Rarity.unique, 'percent': 8.0},
+        {'rarity': Rarity.epic, 'percent': 3.0},
+        {'rarity': Rarity.legend, 'percent': 1.0},
+      ],
+    },
+    {
+      'boxType': WeaponBoxType.shiny,
+      'name': '빛나는 무기상자',
+      'description': '획득한 스테이지 기준 레벨의 언커먼~레전드 무기가 랜덤으로 1개 들어있습니다.',
+      'probabilities': [
+        {'rarity': Rarity.common, 'percent': 20.0},
+        {'rarity': Rarity.uncommon, 'percent': 28.0},
+        {'rarity': Rarity.rare, 'percent': 25.0},
+        {'rarity': Rarity.unique, 'percent': 15.0},
+        {'rarity': Rarity.epic, 'percent': 9.0},
+        {'rarity': Rarity.legend, 'percent': 1.0},
+      ],
+    },
+    {
+      'boxType': WeaponBoxType.mystic,
+      'name': '신비로운 무기상자',
+      'description': '획득한 스테이지 기준 레벨의 언커먼~데미갓 무기가 랜덤으로 1개 들어있습니다.',
+      'probabilities': [
+        {'rarity': Rarity.uncommon, 'percent': 20.0},
+        {'rarity': Rarity.rare, 'percent': 30.0},
+        {'rarity': Rarity.unique, 'percent': 35.0},
+        {'rarity': Rarity.epic, 'percent': 10.0},
+        {'rarity': Rarity.legend, 'percent': 4.9},
+        {'rarity': Rarity.demigod, 'percent': 0.1},
+      ],
+    },
+    {
+      'boxType': WeaponBoxType.holy,
+      'name': '신성한 기운이 감도는 무기상자',
+      'description': '획득한 스테이지 기준 레벨의 레어~갓 무기가 랜덤으로 1개 들어있습니다.',
+      'probabilities': [
+        {'rarity': Rarity.rare, 'percent': 25.0},
+        {'rarity': Rarity.unique, 'percent': 35.0},
+        {'rarity': Rarity.epic, 'percent': 25.0},
+        {'rarity': Rarity.legend, 'percent': 12.5},
+        {'rarity': Rarity.demigod, 'percent': 2.4},
+        {'rarity': Rarity.god, 'percent': 0.1},
+      ],
+    },
+    {
+      'boxType': WeaponBoxType.gamble,
+      'name': '무기 갬블상자',
+      'description': '현재 클리어한 최대 스테이지 기준 레벨의 커먼~갓 무기가 랜덤으로 1개 들어있습니다.',
+      'probabilities': [
+        {'rarity': Rarity.common, 'percent': 30.0},
+        {'rarity': Rarity.uncommon, 'percent': 30.0},
+        {'rarity': Rarity.rare, 'percent': 25.0},
+        {'rarity': Rarity.unique, 'percent': 8.0},
+        {'rarity': Rarity.epic, 'percent': 4.0},
+        {'rarity': Rarity.legend, 'percent': 2.0},
+        {'rarity': Rarity.demigod, 'percent': 0.9},
+        {'rarity': Rarity.god, 'percent': 0.1},
+      ],
+    },
+    {
+      'boxType': WeaponBoxType.guaranteedUnique,
+      'name': '유니크 등급 무기상자',
+      'description': '현재 클리어한 최대 스테이지 기준 레벨의 유니크 등급무기가 랜덤으로 1개 들어있습니다.',
+      'probabilities': [
+        {'rarity': Rarity.unique, 'percent': 100.0},
+      ],
+    },
+    {
+      'boxType': WeaponBoxType.guaranteedEpic,
+      'name': '에픽 등급 무기상자',
+      'description': '현재 클리어한 최대 스테이지 기준 레벨의 에픽 등급 무기가 랜덤으로 1개 들어있습니다.',
+      'probabilities': [
+        {'rarity': Rarity.epic, 'percent': 100.0},
+      ],
+    },
+    {
+      'boxType': WeaponBoxType.guaranteedLegend,
+      'name': '레전드 등급 무기상자',
+      'description': '현재 클리어한 최대 스테이지 기준 레벨의 레전드 등급 무기가 랜덤으로 1개 들어있습니다.',
+      'probabilities': [
+        {'rarity': Rarity.legend, 'percent': 100.0},
+      ],
+    },
+    {
+      'boxType': WeaponBoxType.guaranteedDemigod,
+      'name': '데미갓 등급 무기상자',
+      'description': '현재 클리어한 최대 스테이지 기준 레벨의 데미갓 등급 무기가 랜덤으로 1개 들어있습니다.',
+      'probabilities': [
+        {'rarity': Rarity.demigod, 'percent': 100.0},
+      ],
+    },
+    {
+      'boxType': WeaponBoxType.guaranteedGod,
+      'name': '갓 등급 무기상자',
+      'description': '현재 클리어한 최대 스테이지 기준 레벨의 갓 등급 무기가 랜덤으로 1개 들어있습니다.',
+      'probabilities': [
+        {'rarity': Rarity.god, 'percent': 100.0},
+      ],
+    },
+  ];
   static List<Weapon> _commonWeapons = [];
   static List<Weapon> _uncommonWeapons = [];
   static List<Weapon> _rareWeapons = [];
@@ -199,51 +334,35 @@ class WeaponData {
     return _allWeapons[Random().nextInt(_allWeapons.length)].copyWith();
   }
 
-  static Weapon getWeaponForStageLevel(
+  static Weapon getWeaponFromBox(
+    WeaponBoxType boxType,
     int stageLevel, {
-    Rarity? guaranteedRarity,
     bool isAllRange = false,
   }) {
     if (!_isInitialized || _allWeapons.isEmpty) {
       return Weapon.startingWeapon();
     }
 
-    Rarity selectedRarity;
+    final boxInfo = gachaBoxInfo.firstWhere(
+      (info) => info['boxType'] == boxType,
+      orElse: () => gachaBoxInfo.first, // Fallback to common box
+    );
 
-    if (guaranteedRarity != null) {
-      selectedRarity = guaranteedRarity;
-    } else {
-      final random = Random();
-      double roll = random.nextDouble();
+    final probabilities = boxInfo['probabilities'] as List<Map<String, dynamic>>;
 
-      // Define rarity probabilities for monster chest drops (up to Legend)
-      // Common: 50% (0.0 to 0.50)
-      if (roll < 0.50) {
-        selectedRarity = Rarity.common;
-      }
-      // Uncommon: 25% (0.50 to 0.75)
-      else if (roll < 0.75) {
-        selectedRarity = Rarity.uncommon;
-      }
-      // Rare: 15% (0.75 to 0.90)
-      else if (roll < 0.90) {
-        selectedRarity = Rarity.rare;
-      }
-      // Unique: 7% (0.90 to 0.97)
-      else if (roll < 0.97) {
-        selectedRarity = Rarity.unique;
-      }
-      // Epic: 2% (0.97 to 0.99)
-      else if (roll < 0.99) {
-        selectedRarity = Rarity.epic;
-      }
-      // Legend: 1% (0.99 to 1.00)
-      else {
-        selectedRarity = Rarity.legend;
+    final random = Random();
+    double roll = random.nextDouble() * 100;
+    double cumulative = 0;
+    Rarity selectedRarity = probabilities.last['rarity'] as Rarity; // Default to last
+
+    for (var prob in probabilities) {
+      cumulative += prob['percent'] as double;
+      if (roll < cumulative) {
+        selectedRarity = prob['rarity'] as Rarity;
+        break;
       }
     }
 
-    // Use the new helper method
     return getWeaponForRarity(
       selectedRarity,
       isAllRange: isAllRange,
@@ -252,7 +371,8 @@ class WeaponData {
   }
 
   static Weapon getWeaponForRarity(
-    Rarity rarity, {
+    Rarity rarity,
+    {
     bool isAllRange = false,
     int? currentStageLevel,
   }) {

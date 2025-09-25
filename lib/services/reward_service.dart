@@ -28,35 +28,11 @@ class RewardService {
   }
 
   Weapon getWeaponFromBox(GachaBox box, int highestStageCleared) {
-    Rarity? guaranteedRarity;
-    bool isAllRange = false;
+    bool isAllRange = box.boxType == WeaponBoxType.gamble;
 
-    switch (box.boxType) {
-      case WeaponBoxType.guaranteedUnique:
-        guaranteedRarity = Rarity.unique;
-        break;
-      case WeaponBoxType.guaranteedEpic:
-        guaranteedRarity = Rarity.epic;
-        break;
-      case WeaponBoxType.guaranteedLegend:
-        guaranteedRarity = Rarity.legend;
-        break;
-      case WeaponBoxType.guaranteedDemigod:
-        guaranteedRarity = Rarity.demigod;
-        break;
-      case WeaponBoxType.guaranteedGod:
-        guaranteedRarity = Rarity.god;
-        break;
-      case WeaponBoxType.gamble:
-        isAllRange = true;
-        break;
-      default:
-        break;
-    }
-
-    return WeaponData.getWeaponForStageLevel(
+    return WeaponData.getWeaponFromBox(
+      box.boxType,
       box.stageLevel,
-      guaranteedRarity: guaranteedRarity,
       isAllRange: isAllRange,
     );
   }
