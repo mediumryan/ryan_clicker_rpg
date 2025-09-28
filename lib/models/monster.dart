@@ -9,6 +9,7 @@ class Monster {
   double hp;
   final double maxHp;
   int defense;
+  final int attackPerDefence;
   final bool isBoss;
   final List<MonsterSpecies> species;
   List<StatusEffect> statusEffects;
@@ -26,6 +27,7 @@ class Monster {
     List<StatusEffect>? statusEffects,
     Map<String, DateTime>? skillCooldowns,
     this.isBoss = false,
+    this.attackPerDefence = 1,
   }) : _baseDefense = defense, // Store the base defense
        statusEffects = statusEffects ?? [],
        skillCooldowns = skillCooldowns ?? {};

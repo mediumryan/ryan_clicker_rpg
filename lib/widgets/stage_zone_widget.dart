@@ -7,8 +7,18 @@ import 'dart:async'; // Import for Timer
 import 'package:provider/provider.dart'; // New import
 import 'package:ryan_clicker_rpg/providers/game_provider.dart'; // New import
 import 'package:intl/intl.dart';
+import 'package:ryan_clicker_rpg/widgets/achievement_dialog.dart';
 
-enum DamageType { normal, doubleAttack, bleed, shatter, shock, poison, fixed, maxHp }
+enum DamageType {
+  normal,
+  doubleAttack,
+  bleed,
+  shatter,
+  shock,
+  poison,
+  fixed,
+  maxHp,
+}
 
 // Class to hold damage text information
 class DamageText {
@@ -42,6 +52,8 @@ class StageZoneWidget extends StatefulWidget {
   final double lastGoldReward; // New
   final GachaBox? lastDroppedBox; // New
   final Duration autoAttackDelay; // New
+  final bool hasCompletableAchievements;
+  final double lastEnhancementStonesReward; // New
 
   const StageZoneWidget({
     super.key,
@@ -56,6 +68,8 @@ class StageZoneWidget extends StatefulWidget {
     required this.lastGoldReward, // New
     required this.lastDroppedBox, // New
     required this.autoAttackDelay, // New
+    required this.hasCompletableAchievements,
+    required this.lastEnhancementStonesReward, // New
   });
 
   @override
@@ -100,6 +114,15 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
     ).setShowFloatingDamageTextCallback(null);
     _defeatTimer?.cancel();
     super.dispose();
+  }
+
+  void _showAchievementDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const AchievementDialog();
+      },
+    );
   }
 
   // Method to add and manage damage text
@@ -175,7 +198,7 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
         : 0;
 
     return GestureDetector(
-      onTap: widget.isMonsterDefeated
+      onTap: widget.isMonsterDefeated || !widget.player.canManualAttack
           ? null
           : () {
               Provider.of<GameProvider>(
@@ -235,10 +258,26 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                     ColorFiltered(
                       colorFilter: widget.isMonsterDefeated
                           ? const ColorFilter.matrix(<double>[
-                              0.2126, 0.7152, 0.0722, 0, 0,
-                              0.2126, 0.7152, 0.0722, 0, 0,
-                              0.2126, 0.7152, 0.0722, 0, 0,
-                              0, 0, 0, 1, 0,
+                              0.2126,
+                              0.7152,
+                              0.0722,
+                              0,
+                              0,
+                              0.2126,
+                              0.7152,
+                              0.0722,
+                              0,
+                              0,
+                              0.2126,
+                              0.7152,
+                              0.0722,
+                              0,
+                              0,
+                              0,
+                              0,
+                              0,
+                              1,
+                              0,
                             ])
                           : const ColorFilter.mode(
                               Colors.transparent,
@@ -322,7 +361,7 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                                       title: const Text('방어력 정보'),
                                       content: const Text(
                                         '몬스터의 방어력 수치를 나타냅니다.\n\n'
-                                        '몬스터의 방어력 1당 1%의 데미지가 경감됩니다.\n\n'
+                                        '몬스터의 방어력 1당 0.5%의 데미지가 경감됩니다.\n\n'
                                         '반대로 몬스터의 방어력이 0보다 낮을 경우에는 1당 2.5%의 추가 데미지를 받습니다.',
                                       ),
                                       actions: <Widget>[
@@ -452,11 +491,53 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                               ),
                             ),
                           ),
+                        // Enhancement stones reward
+                        if (widget.lastEnhancementStonesReward > 0)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 25,
+                                  height: 25,
+                                  child: Image.asset(
+                                    'images/others/enhancement_stone.png',
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  '${NumberFormat('#,###').format(widget.lastEnhancementStonesReward)}개',
+                                  style: const TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                       ],
                     ),
                   ),
                 ),
               ),
+            Positioned(
+              top: 8,
+              left: 8,
+              child: IconButton(
+                icon: Icon(
+                  Icons.emoji_events,
+                  color: widget.hasCompletableAchievements
+                      ? Colors.yellow
+                      : Colors.white,
+                ),
+                onPressed: () {
+                  _showAchievementDialog(context);
+                },
+                tooltip: '업적',
+              ),
+            ),
             Positioned(
               top: 8,
               right: 8,
@@ -571,23 +652,23 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
           if (widget.damageText.damageType == DamageType.doubleAttack) {
             return const Alignment(
               0.0,
-              0.2,
-            ); // Slightly lower for double attack damage
+              0.2, // Slightly lower for double attack damage
+            );
           } else if (widget.damageText.damageType == DamageType.shock) {
             return const Alignment(
               0.0,
-              -0.15,
-            ); // Slightly higher for shock damage
+              -0.15, // Slightly higher for shock damage
+            );
           } else if (widget.damageText.isSkillDamage) {
             return const Alignment(
               0.3,
-              0.0,
-            ); // To the right for other skill damage
+              0.0, // To the right for other skill damage
+            );
           } else if (widget.damageText.isMiss) {
             return const Alignment(
               0.0,
-              -0.5,
-            ); // Slightly above center for MISS!
+              -0.5, // Slightly above center for MISS!
+            );
           }
           return Alignment.center; // Normal damage at the center
         }(),

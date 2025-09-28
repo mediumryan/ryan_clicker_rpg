@@ -20,6 +20,7 @@ import 'package:ryan_clicker_rpg/data/weapon_data.dart';
 import 'package:ryan_clicker_rpg/widgets/stage_zone_widget.dart';
 import 'package:ryan_clicker_rpg/models/reward.dart';
 import 'package:ryan_clicker_rpg/models/achievement.dart';
+import 'package:ryan_clicker_rpg/data/achievement_data.dart';
 
 class GameProvider with ChangeNotifier {
   final RewardService _rewardService = RewardService();
@@ -37,6 +38,8 @@ class GameProvider with ChangeNotifier {
 
   double _lastGoldReward = 0.0; // New field for last gold reward
   GachaBox? _lastDroppedBox; // New field for last dropped box
+  double _lastEnhancementStonesReward =
+      0.0; // New field for last enhancement stones reward
 
   final List<DamageModifier> _activeDamageModifiers = [];
   final List<PassiveStatModifier> _activePassiveStatModifiers = [];
@@ -59,6 +62,14 @@ class GameProvider with ChangeNotifier {
       _currentMonsterEffectiveDefense; // New getter
   double get lastGoldReward => _lastGoldReward; // New getter
   GachaBox? get lastDroppedBox => _lastDroppedBox; // New getter
+  double get lastEnhancementStonesReward =>
+      _lastEnhancementStonesReward; // New getter
+
+  bool get hasCompletableAchievements {
+    return AchievementData.achievements.any(
+      (a) => a.isCompletable(_player) && !a.isCompleted,
+    );
+  }
 
   GameProvider() {
     _weaponSkillProvider = WeaponSkillProvider(this);
@@ -67,12 +78,13 @@ class GameProvider with ChangeNotifier {
   void recalculatePlayerStats() {
     final weapon = _player.equippedWeapon;
 
-    // 1. Start with weapon base stats
-    double damage = weapon.baseDamage;
-    double critChance = weapon.criticalChance;
-    double critDamage = weapon.criticalDamage;
-    double attackSpeed = weapon.speed;
-    double accuracy = weapon.accuracy;
+    // 1. Start with weapon stats (which now include enhancement and transcendence)
+    double damage = weapon.calculatedDamage;
+    double critChance = weapon.calculatedCritChance;
+    double critDamage = weapon.calculatedCritDamage;
+    double attackSpeed = weapon.calculatedSpeed;
+    double accuracy = weapon
+        .accuracy; // Assuming accuracy is not affected by enhancement/transcendence
     double doubleAttackChance = weapon.doubleAttackChance;
     double defensePenetration = weapon.defensePenetration;
 
@@ -81,25 +93,6 @@ class GameProvider with ChangeNotifier {
       final currentStacks = weapon.stack['currentStacks'] as int? ?? 0;
       final damagePerStack = weapon.stack['damagePerStack'] as num? ?? 0;
       damage += currentStacks * damagePerStack;
-    }
-
-    // Calculate auto-attack delay
-    _autoAttackDelay = Duration(
-      microseconds: (1000000 / attackSpeed).round(),
-    ); // New
-
-    // 2. Apply enhancement bonus (damage only)
-    damage *= pow(1.08, weapon.enhancement);
-
-    // 3. Apply transcendence bonuses
-    if (weapon.transcendence > 0) {
-      final bonus = Weapon.transcendenceBonuses[weapon.transcendence];
-      if (bonus != null) {
-        damage *= (1 + bonus.damageBonus);
-        attackSpeed *= (1 + bonus.speedBonus);
-        critChance += bonus.critChanceBonus;
-        critDamage += bonus.critDamageBonus;
-      }
     }
 
     // 4. Apply player-wide passive bonuses
@@ -156,6 +149,11 @@ class GameProvider with ChangeNotifier {
     _player.finalAccuracy = accuracy;
     _player.finalDoubleAttackChance = doubleAttackChance;
     _player.finalDefensePenetration = defensePenetration;
+
+    // Calculate auto-attack delay
+    _autoAttackDelay = Duration(
+      microseconds: (1000000 / _player.finalAttackSpeed).round(),
+    ); // New
   }
 
   void _recalculateMonsterEffectiveDefense() {
@@ -169,10 +167,6 @@ class GameProvider with ChangeNotifier {
       }
     }
     effectiveDefense -= totalDefenseReduction;
-
-    if (_monster.hasStatusEffect(StatusEffectType.charm)) {
-      effectiveDefense *= 0.90;
-    }
 
     _currentMonsterEffectiveDefense = effectiveDefense;
   }
@@ -249,13 +243,10 @@ class GameProvider with ChangeNotifier {
 
     double defenseDamageMultiplier = 1.0;
     if (_currentMonsterEffectiveDefense > 0) {
-      defenseDamageMultiplier = 1.0 - (_currentMonsterEffectiveDefense * 0.01);
+      defenseDamageMultiplier = 1.0 - (_currentMonsterEffectiveDefense * 0.005);
     } else {
       defenseDamageMultiplier =
           1.0 + (_currentMonsterEffectiveDefense.abs() * 0.025);
-    }
-    if (_currentMonsterEffectiveDefense > 0) {
-      defenseDamageMultiplier = max(0.1, defenseDamageMultiplier);
     }
     debugPrint(
       '[GameProvider.attackMonster] Defense damage multiplier: $defenseDamageMultiplier',
@@ -275,11 +266,21 @@ class GameProvider with ChangeNotifier {
       );
     }
 
-    // Charm: 10% increased damage taken
+    // Charm: 10% increased damage taken & defense reduction on hit
     if (_monster.hasStatusEffect(StatusEffectType.charm)) {
       actualDamage *= 1.10;
+      final charmEffect = _monster.statusEffects.firstWhere(
+        (e) => e.type == StatusEffectType.charm,
+      );
+      if (charmEffect.attackPerDefence != null) {
+        _monster.defense = (_monster.defense - charmEffect.attackPerDefence!)
+            .toInt();
+      }
       debugPrint(
         '[GameProvider.attackMonster] Actual damage after charm (10% increase): $actualDamage',
+      );
+      debugPrint(
+        '[GameProvider.attackMonster] Monster defense after charm reduction: ${_monster.defense}',
       );
     }
 
@@ -448,6 +449,8 @@ class GameProvider with ChangeNotifier {
                 .toInt();
         stonesDropped += _player.passiveEnhancementStoneGainFlat;
         _player.enhancementStones += stonesDropped;
+        _lastEnhancementStonesReward = stonesDropped
+            .toDouble(); // Store enhancement stones reward
       }
 
       GachaBox? droppedBox;
@@ -511,25 +514,39 @@ class GameProvider with ChangeNotifier {
     }
   }
 
-  String enhanceEquippedWeapon() {
+  Map<String, dynamic> enhanceEquippedWeapon() {
     final weapon = _player.equippedWeapon;
-    if (weapon.instanceId == 'bare_hands') return '맨손은 강화할 수 없습니다.';
-    if (weapon.enhancement >= weapon.maxEnhancement) return '이미 최대 강화 단계입니다.';
+    if (weapon.instanceId == 'bare_hands') {
+      return {'success': false, 'message': '맨손은 강화할 수 없습니다.'};
+    }
+    if (weapon.enhancement >= weapon.maxEnhancement) {
+      return {'success': false, 'message': '이미 최대 강화 단계입니다.'};
+    }
 
     final rarityMultiplier = weapon.rarity.index + 1;
     final goldCost =
         ((weapon.baseLevel + 1) + pow(weapon.enhancement + 1, 2.5)) *
-        100 *
+        50 *
         rarityMultiplier;
     final stoneCost =
         ((weapon.enhancement + 1) / 2).ceil() + (rarityMultiplier - 1);
 
     if (_player.gold < goldCost) {
-      return '골드가 부족합니다. (필요: ${NumberFormat('#,###').format(goldCost)}G)';
+      return {
+        'success': false,
+        'message':
+            '골드가 부족합니다. (필요: ${NumberFormat('#,###').format(goldCost)}G)',
+      };
     }
     if (_player.enhancementStones < stoneCost) {
-      return '강화석이 부족합니다. (필요: $stoneCost)';
+      return {'success': false, 'message': '강화석이 부족합니다. (필요: $stoneCost)'};
     }
+
+    final oldStats = {
+      'damage': weapon.calculatedDamage,
+      'attackSpeed': weapon.calculatedSpeed,
+      'critDamage': weapon.calculatedCritDamage,
+    };
 
     _player.gold -= goldCost;
     _player.enhancementStones -= stoneCost;
@@ -545,16 +562,31 @@ class GameProvider with ChangeNotifier {
       0.15, 0.10, // 18-19
       0.05, // 20
     ];
+
     final successChance = enhancementLevel < probabilities.length
         ? probabilities[enhancementLevel]
         : 0.0;
 
     if (Random().nextDouble() < successChance) {
       weapon.enhancement++;
+
+      final newStats = {
+        'damage': weapon.calculatedDamage,
+        'attackSpeed': weapon.calculatedSpeed,
+        'critDamage': weapon.calculatedCritDamage,
+      };
+
       recalculatePlayerStats();
       notifyListeners();
       _saveGame();
-      return '강화 성공! +${weapon.enhancement}';
+
+      return {
+        'success': true,
+        'message': '강화 성공! +${weapon.enhancement}',
+        'oldStats': oldStats,
+        'newStats': newStats,
+        'weapon': weapon,
+      };
     } else {
       String penaltyMessage;
       if (enhancementLevel < 4) {
@@ -563,14 +595,28 @@ class GameProvider with ChangeNotifier {
         weapon.enhancement--;
         penaltyMessage = '강화 실패... 강화 단계가 1 하락했습니다.';
       } else {
+        final rarityMultiplier = weapon.rarity.index + 1;
+        final enhancementMultiplier = weapon.enhancement + 1;
+        final levelMultiplier = 1 + (weapon.baseLevel / 50);
+        final darkMatterGained =
+            ((rarityMultiplier *
+                        pow(enhancementMultiplier, 2.5) *
+                        levelMultiplier) /
+                    10)
+                .truncate()
+                .toInt();
+        _player.darkMatter += darkMatterGained;
+
         _player.weaponDestructionCount++;
         _player.equippedWeapon = Weapon.bareHands();
-        penaltyMessage = '강화 실패... 무기가 파괴되었습니다.';
+        penaltyMessage =
+            '강화 실패... 무기가 파괴되었습니다.\n암흑 물질 $darkMatterGained 개를 획득했습니다.';
       }
       recalculatePlayerStats();
+      startAutoAttack(); // Fix: Restart auto-attack with new speed
       notifyListeners();
       _saveGame();
-      return penaltyMessage;
+      return {'success': false, 'message': penaltyMessage};
     }
   }
 
@@ -618,12 +664,21 @@ class GameProvider with ChangeNotifier {
       _saveGame();
       return '초월 성공! [${weapon.transcendence}]';
     } else {
+      final rarityMultiplier = weapon.rarity.index + 1;
+      final enhancementMultiplier = weapon.enhancement + 1;
+      final levelMultiplier = 1 + (weapon.baseLevel / 50);
+      final darkMatterGained =
+          (rarityMultiplier * enhancementMultiplier * levelMultiplier * 2.0)
+              .toInt();
+      _player.darkMatter += darkMatterGained;
+
       _player.weaponDestructionCount++;
       _player.equippedWeapon = Weapon.bareHands();
       recalculatePlayerStats();
+      startAutoAttack(); // Fix: Restart auto-attack with new speed
       notifyListeners();
       _saveGame();
-      return '초월 실패... 무기가 파괴되었습니다.';
+      return '초월 실패... 무기가 파괴되었습니다.\n암흑 물질 $darkMatterGained 개를 획득했습니다.';
     }
   }
 
@@ -646,7 +701,9 @@ class GameProvider with ChangeNotifier {
   }
 
   void handleManualClick() {
+    if (!_player.canManualAttack) return;
     _player.totalClicks++;
+    attackMonster();
     _lastManualClickTime = DateTime.now();
     stopAutoAttack(); // Stop auto-attack immediately on manual click
 
@@ -819,6 +876,8 @@ class GameProvider with ChangeNotifier {
     _isMonsterDefeated = false;
     _lastGoldReward = 0.0; // Clear previous reward
     _lastDroppedBox = null; // Clear previous dropped box
+    _lastEnhancementStonesReward =
+        0.0; // Clear previous enhancement stones reward
     _activeDamageModifiers
         .clear(); // Clear damage modifiers from previous monster
     _weaponSkillProvider.updatePassiveSkills(
@@ -862,9 +921,16 @@ class GameProvider with ChangeNotifier {
       _player.transcendenceStones = 0;
       _player.enhancementStones = 0;
       _player.gold = 0.0;
-      _player.currentStage = 1;
+      _player.darkMatter = 0;
+      _player.currentStage = 500;
+    }
 
-      // final allWeapons = WeaponData.getAllWeapons();
+    // Add test weapons
+    for (int i = 0; i < 24; i++) {
+      final testWeapon = WeaponData.getWeaponById(30000 + i);
+      if (testWeapon != null) {
+        _player.inventory.add(testWeapon);
+      }
     }
   }
 
@@ -1092,9 +1158,9 @@ class GameProvider with ChangeNotifier {
       return '장착 중인 무기는 분해할 수 없습니다.';
     }
     final returnedEnhancementStones =
-        weaponToDisassemble.investedEnhancementStones;
+        (weaponToDisassemble.investedEnhancementStones / 2).truncate();
     final returnedTranscendenceStones =
-        weaponToDisassemble.investedTranscendenceStones;
+        (weaponToDisassemble.investedTranscendenceStones / 2).truncate();
     _player.enhancementStones += returnedEnhancementStones;
     _player.transcendenceStones += returnedTranscendenceStones;
     _player.inventory.removeWhere(
@@ -1154,4 +1220,59 @@ class GameProvider with ChangeNotifier {
   String buyCurrentRangeUniqueBox(int currentStage) => buyGuaranteedUniqueBox();
   String buyAllRangeEpicBox() => buyGuaranteedEpicBox();
   String buyCurrentRangeEpicBox(int currentStage) => buyGuaranteedEpicBox();
+
+  String buyDarkMatterEnhancementStones({
+    required int amount,
+    required int cost,
+  }) {
+    if (_player.darkMatter >= cost) {
+      _player.darkMatter -= cost;
+      _player.enhancementStones += amount;
+      notifyListeners();
+      _saveGame();
+      return '$amount개의 강화석을 $cost 암흑 물질에 구매했습니다.';
+    } else {
+      return '암흑 물질이 부족합니다.';
+    }
+  }
+
+  String _buyDarkMatterWeaponBox({
+    required int cost,
+    required WeaponBoxType boxType,
+  }) {
+    if (_player.darkMatter < cost) {
+      return '암흑 물질이 부족합니다.';
+    }
+    _player.darkMatter -= cost;
+    final newGachaBox = GachaBox(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      boxType: boxType,
+      stageLevel: _player.currentStage,
+    );
+    _player.gachaBoxes.add(newGachaBox);
+    notifyListeners();
+    _saveGame();
+    return '${newGachaBox.name}을(를) 획득했습니다! 인벤토리에서 확인하세요.';
+  }
+
+  String buyDarkMatterUniqueBox() {
+    return _buyDarkMatterWeaponBox(
+      cost: 1000,
+      boxType: WeaponBoxType.guaranteedUnique,
+    );
+  }
+
+  String buyDarkMatterEpicBox() {
+    return _buyDarkMatterWeaponBox(
+      cost: 15000,
+      boxType: WeaponBoxType.guaranteedEpic,
+    );
+  }
+
+  String buyDarkMatterLegendBox() {
+    return _buyDarkMatterWeaponBox(
+      cost: 125000,
+      boxType: WeaponBoxType.guaranteedLegend,
+    );
+  }
 }

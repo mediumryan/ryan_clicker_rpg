@@ -253,19 +253,15 @@ class WeaponData {
         'assets/data/unique_weapons.json',
       );
       final String epicJsonString = await rootBundle.loadString(
-        // New
         'assets/data/epic_weapons.json',
       );
       final String legendJsonString = await rootBundle.loadString(
-        // New
         'assets/data/legend_weapons.json',
       );
       final String demigodJsonString = await rootBundle.loadString(
-        // New
         'assets/data/demigod_weapons.json',
       );
       final String godJsonString = await rootBundle.loadString(
-        // New
         'assets/data/god_weapons.json',
       );
 
@@ -281,32 +277,28 @@ class WeaponData {
       _uniqueWeapons = (json.decode(uniqueJsonString) as List)
           .map((json) => Weapon.fromJson(json))
           .toList();
-      _epicWeapons =
-          (json.decode(epicJsonString) as List) // New
-              .map((json) => Weapon.fromJson(json))
-              .toList();
-      _legendWeapons =
-          (json.decode(legendJsonString) as List) // New
-              .map((json) => Weapon.fromJson(json))
-              .toList();
-      _demigodWeapons =
-          (json.decode(demigodJsonString) as List) // New
-              .map((json) => Weapon.fromJson(json))
-              .toList();
-      _godWeapons =
-          (json.decode(godJsonString) as List) // New
-              .map((json) => Weapon.fromJson(json))
-              .toList();
+      _epicWeapons = (json.decode(epicJsonString) as List)
+          .map((json) => Weapon.fromJson(json))
+          .toList();
+      _legendWeapons = (json.decode(legendJsonString) as List)
+          .map((json) => Weapon.fromJson(json))
+          .toList();
+      _demigodWeapons = (json.decode(demigodJsonString) as List)
+          .map((json) => Weapon.fromJson(json))
+          .toList();
+      _godWeapons = (json.decode(godJsonString) as List)
+          .map((json) => Weapon.fromJson(json))
+          .toList();
 
       _allWeapons = [
         ..._commonWeapons,
         ..._uncommonWeapons,
         ..._rareWeapons,
         ..._uniqueWeapons,
-        ..._epicWeapons, // New
-        ..._legendWeapons, // New
-        ..._demigodWeapons, // New
-        ..._godWeapons, // New
+        ..._epicWeapons,
+        ..._legendWeapons,
+        ..._demigodWeapons,
+        ..._godWeapons,
       ];
 
       _isInitialized = true;
@@ -348,12 +340,14 @@ class WeaponData {
       orElse: () => gachaBoxInfo.first, // Fallback to common box
     );
 
-    final probabilities = boxInfo['probabilities'] as List<Map<String, dynamic>>;
+    final probabilities =
+        boxInfo['probabilities'] as List<Map<String, dynamic>>;
 
     final random = Random();
     double roll = random.nextDouble() * 100;
     double cumulative = 0;
-    Rarity selectedRarity = probabilities.last['rarity'] as Rarity; // Default to last
+    Rarity selectedRarity =
+        probabilities.last['rarity'] as Rarity; // Default to last
 
     for (var prob in probabilities) {
       cumulative += prob['percent'] as double;
@@ -371,8 +365,7 @@ class WeaponData {
   }
 
   static Weapon getWeaponForRarity(
-    Rarity rarity,
-    {
+    Rarity rarity, {
     bool isAllRange = false,
     int? currentStageLevel,
   }) {
@@ -486,6 +479,17 @@ class WeaponData {
       return [];
     }
     return List<Weapon>.from(_allWeapons);
+  }
+
+  static Weapon? getWeaponById(int id) {
+    if (!_isInitialized) {
+      return null;
+    }
+    try {
+      return _allWeapons.firstWhere((weapon) => weapon.id == id).copyWith();
+    } catch (e) {
+      return null;
+    }
   }
 
   static double getDefaultAccuracyForRarity(Rarity rarity) {

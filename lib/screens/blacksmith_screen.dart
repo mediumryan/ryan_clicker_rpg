@@ -6,6 +6,7 @@ import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT for Weapo
 import 'package:intl/intl.dart';
 import 'package:ryan_clicker_rpg/widgets/weapon_info_widget.dart';
 import 'dart:math'; // Import dart:math for pow function
+import 'package:ryan_clicker_rpg/widgets/enhancement_success_dialog.dart';
 
 enum StoneType { enhancement, transcendence }
 
@@ -32,41 +33,13 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
           final enhancementGoldCost =
               ((equippedWeapon.baseLevel + 1) +
                   pow(equippedWeapon.enhancement + 1, 2.5)) *
-              100 *
+              50 *
               rarityMultiplier;
           final enhancementStoneCost =
               ((equippedWeapon.enhancement + 1) / 2).ceil() +
               (rarityMultiplier - 1);
 
           final enhancementLevel = equippedWeapon.enhancement;
-          const enhancementDamageMultipliers = [
-            1.00,
-            1.05,
-            1.10,
-            1.15,
-            1.20,
-            1.30,
-            1.40,
-            1.50,
-            1.60,
-            1.70,
-            1.85,
-            2.00,
-            2.20,
-            2.40,
-            2.70,
-            3.10,
-            3.60,
-            4.20,
-            5.00,
-            6.00,
-            7.50,
-          ];
-          final expectedEnhancementDamage =
-              enhancementLevel < enhancementDamageMultipliers.length
-              ? equippedWeapon.calculatedDamage *
-                    enhancementDamageMultipliers[enhancementLevel]
-              : equippedWeapon.calculatedDamage;
           const enhancementProbabilities = [
             100, 100, 100, 100, 100, 100, // 0-5
             90, 85, 80, 75, 70, // 6-10
@@ -99,51 +72,71 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   // Gold Info
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'images/others/gold.png',
-                        width: 24,
-                        height: 24,
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minWidth: MediaQuery.of(context).size.width - 32), // Subtract padding
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Image.asset(
+                            'images/others/gold.png',
+                            width: 24,
+                            height: 24,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            ': ${NumberFormat('#,###').format(game.player.gold)}G',
+                            style: const TextStyle(
+                              color: Colors.yellow,
+                              fontSize: 18,
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Image.asset(
+                            'images/others/enhancement_stone.png',
+                            width: 24,
+                            height: 24,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            ': ${NumberFormat('#,###').format(game.player.enhancementStones)}개',
+                            style: const TextStyle(
+                              color: Colors.lightBlueAccent,
+                              fontSize: 18,
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Image.asset(
+                            'images/others/transcendence_stone.png',
+                            width: 24,
+                            height: 24,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            ': ${NumberFormat('#,###').format(game.player.transcendenceStones)}개',
+                            style: const TextStyle(
+                              color: Colors.purpleAccent,
+                              fontSize: 18,
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Image.asset(
+                            'images/others/dark_matter.png',
+                            width: 24,
+                            height: 24,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            ': ${NumberFormat('#,###').format(game.player.darkMatter)}개',
+                            style: const TextStyle(
+                              color: Colors.deepPurpleAccent,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 8),
-                      Text(
-                        ': ${NumberFormat('#,###').format(game.player.gold)}G',
-                        style: const TextStyle(
-                          color: Colors.yellow,
-                          fontSize: 18,
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      Image.asset(
-                        'images/others/enhancement_stone.png',
-                        width: 24,
-                        height: 24,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        ': ${NumberFormat('#,###').format(game.player.enhancementStones)}개',
-                        style: const TextStyle(
-                          color: Colors.lightBlueAccent,
-                          fontSize: 18,
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      Image.asset(
-                        'images/others/transcendence_stone.png',
-                        width: 24,
-                        height: 24,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        ': ${NumberFormat('#,###').format(game.player.transcendenceStones)}개',
-                        style: const TextStyle(
-                          color: Colors.purpleAccent,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                   const SizedBox(height: 20),
 
@@ -154,7 +147,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                         equippedWeapon.enhancement >=
                             equippedWeapon.maxEnhancement
                         ? '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n\n최대 강화에 도달하였습니다.'
-                        : '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n강화 확률: ${enhancementProbabilities[enhancementLevel]}%\n필요 골드: ${NumberFormat('#,###').format(enhancementGoldCost)}G\n필요 강화석: ${NumberFormat('#,###').format(enhancementStoneCost)}개\n성공 시 기대 데미지: ${NumberFormat('#,###').format(expectedEnhancementDamage)}\n\n골드와 강화석을 소모하여 무기를 강화합니다. 강화 시 데미지가 큰 폭으로 상승합니다.',
+                        : '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n강화 확률: ${enhancementProbabilities[enhancementLevel]}%\n필요 골드: ${NumberFormat('#,###').format(enhancementGoldCost)}G\n필요 강화석: ${NumberFormat('#,###').format(enhancementStoneCost)}개\n\n골드와 강화석을 소모하여 무기를 강화합니다. 강화 수치에 따라 데미지,공격속도,치명타배율이 상승합니다.',
                     buttonText: '강화',
                     onPressed:
                         equippedWeapon.enhancement >=
@@ -166,8 +159,20 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                               '강화',
                               '정말로 강화하시겠습니까?',
                               () {
-                                final message = game.enhanceEquippedWeapon();
-                                _showResultDialog(context, message);
+                                final result = game.enhanceEquippedWeapon();
+                                if (result['success']) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        EnhancementSuccessDialog(
+                                          weapon: result['weapon'],
+                                          oldStats: result['oldStats'],
+                                          newStats: result['newStats'],
+                                        ),
+                                  );
+                                } else {
+                                  _showResultDialog(context, result['message']);
+                                }
                               },
                             );
                           },
@@ -217,7 +222,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                       vertical: 4.0,
                     ),
                     child: Text(
-                      '판매: 기본 판매가 + 투자 자원(골드, 강화석, 초월석)의 1/3 회수.\n분해: 투자 자원(강화석, 초월석) 100% 회수 (골드 제외).',
+                      '판매: 기본 판매가 + 투자 골드의 1/3 회수.\n분해: 골드를 제외한 투자 자원 (강화석, 초월석) 50% 회수.',
                       style: TextStyle(color: Colors.white70, fontSize: 12),
                     ),
                   ),
@@ -402,10 +407,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                       ElevatedButton(
                         onPressed: () {
                           final double sellPrice =
-                              weapon.baseSellPrice +
-                              (weapon.investedGold / 3) +
-                              (weapon.investedEnhancementStones * 5000 / 3) +
-                              (weapon.investedTranscendenceStones * 50000 / 3);
+                              weapon.baseSellPrice + (weapon.investedGold / 3);
 
                           final content =
                               '${weapon.name}을(를) 정말로 판매하시겠습니까?\n\n판매금액: ${NumberFormat('#,###').format(sellPrice)}G';
@@ -420,15 +422,25 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                       const SizedBox(width: 8),
                       ElevatedButton(
                         onPressed: () {
-                          _showConfirmationDialog(
-                            context,
-                            '분해',
-                            '${weapon.name}을(를) 정말로 분해하시겠습니까?',
-                            () {
-                              final message = game.disassembleWeapon(weapon);
-                              _showResultDialog(context, message);
-                            },
-                          );
+                          final returnedEnhancementStones =
+                              (weapon.investedEnhancementStones / 2).truncate();
+                          final returnedTranscendenceStones =
+                              (weapon.investedTranscendenceStones / 2)
+                                  .truncate();
+
+                          String content =
+                              '${weapon.name}을(를) 정말로 분해하시겠습니까?\n\n획득 재화:\n';
+                          if (returnedEnhancementStones > 0) {
+                            content += '강화석: $returnedEnhancementStones개\n';
+                          }
+                          if (returnedTranscendenceStones > 0) {
+                            content += '초월석: $returnedTranscendenceStones개';
+                          }
+
+                          _showConfirmationDialog(context, '분해', content, () {
+                            final message = game.disassembleWeapon(weapon);
+                            _showResultDialog(context, message);
+                          });
                         },
                         child: const Text('분해'),
                       ),
@@ -538,35 +550,58 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                       style: const TextStyle(fontSize: 16),
                     ),
                     const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        ElevatedButton(
-                          onPressed: () => updateAmount(-10),
-                          child: const Text('-10'),
+                        // Minus buttons
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () => updateAmount(-100),
+                              child: const Text('-100'),
+                            ),
+                            const SizedBox(width: 8),
+                            ElevatedButton(
+                              onPressed: () => updateAmount(-10),
+                              child: const Text('-10'),
+                            ),
+                            const SizedBox(width: 8),
+                            ElevatedButton(
+                              onPressed: () => updateAmount(-1),
+                              child: const Text('-1'),
+                            ),
+                          ],
                         ),
-                        const SizedBox(width: 8),
-                        ElevatedButton(
-                          onPressed: () => updateAmount(-1),
-                          child: const Text('-1'),
-                        ),
-                        const SizedBox(width: 8),
+                        const SizedBox(height: 8),
+                        // Amount text
                         Text(
                           '$currentAmount개',
                           style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontSize: 24,
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        ElevatedButton(
-                          onPressed: () => updateAmount(1),
-                          child: const Text('+1'),
-                        ),
-                        const SizedBox(width: 8),
-                        ElevatedButton(
-                          onPressed: () => updateAmount(10),
-                          child: const Text('+10'),
+                        const SizedBox(height: 8),
+                        // Plus buttons
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () => updateAmount(1),
+                              child: const Text('+1'),
+                            ),
+                            const SizedBox(width: 8),
+                            ElevatedButton(
+                              onPressed: () => updateAmount(10),
+                              child: const Text('+10'),
+                            ),
+                            const SizedBox(width: 8),
+                            ElevatedButton(
+                              onPressed: () => updateAmount(100),
+                              child: const Text('+100'),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -688,12 +723,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
 
     final double totalSellPrice = weaponsToSell.fold(
       0,
-      (sum, weapon) =>
-          sum +
-          (weapon.baseSellPrice +
-              (weapon.investedGold / 3) +
-              (weapon.investedEnhancementStones * 5000 / 3) +
-              (weapon.investedTranscendenceStones * 50000 / 3)),
+      (sum, weapon) => sum + (weapon.baseSellPrice + (weapon.investedGold / 3)),
     );
 
     final content =

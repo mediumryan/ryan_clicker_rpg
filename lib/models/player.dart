@@ -6,6 +6,7 @@ class Player {
   double gold;
   int enhancementStones;
   int transcendenceStones;
+  int darkMatter;
   Weapon equippedWeapon;
   List<Weapon> inventory;
   List<GachaBox> gachaBoxes;
@@ -50,11 +51,14 @@ class Player {
   double finalDoubleAttackChance = 0;
   double finalDefensePenetration = 0;
   double finalAccuracy = 0;
+  bool manualClickDisabled = false;
+  bool canManualAttack = true;
 
   Player({
     this.gold = 0,
     this.enhancementStones = 0,
     this.transcendenceStones = 0,
+    this.darkMatter = 0,
     required this.equippedWeapon,
     List<Weapon>? inventory,
     List<GachaBox>? gachaBoxes,
@@ -94,6 +98,7 @@ class Player {
     'gold': gold,
     'enhancementStones': enhancementStones,
     'transcendenceStones': transcendenceStones,
+    'darkMatter': darkMatter,
     'equippedWeapon': equippedWeapon.toJson(),
     'inventory': inventory.map((w) => w.toJson()).toList(),
     'gachaBoxes': gachaBoxes.map((b) => b.toJson()).toList(),
@@ -114,9 +119,11 @@ class Player {
     'passiveWeaponDamageBonus': passiveWeaponDamageBonus,
     'passiveWeaponDamageMultiplier': passiveWeaponDamageMultiplier,
     'passiveWeaponCriticalChanceBonus': passiveWeaponCriticalChanceBonus,
-    'passiveWeaponCriticalChanceMultiplier': passiveWeaponCriticalChanceMultiplier,
+    'passiveWeaponCriticalChanceMultiplier':
+        passiveWeaponCriticalChanceMultiplier,
     'passiveWeaponCriticalDamageBonus': passiveWeaponCriticalDamageBonus,
-    'passiveWeaponCriticalDamageMultiplier': passiveWeaponCriticalDamageMultiplier,
+    'passiveWeaponCriticalDamageMultiplier':
+        passiveWeaponCriticalDamageMultiplier,
     'passiveWeaponDoubleAttackChanceBonus':
         passiveWeaponDoubleAttackChanceBonus,
     'passiveWeaponDefensePenetrationBonus':
@@ -133,6 +140,7 @@ class Player {
       gold: json['gold'],
       enhancementStones: json['enhancementStones'],
       transcendenceStones: json['transcendenceStones'],
+      darkMatter: json['darkMatter'] ?? 0,
       equippedWeapon: Weapon.fromJson(json['equippedWeapon']),
       inventory: (json['inventory'] as List)
           .map((item) => Weapon.fromJson(item))
@@ -154,8 +162,7 @@ class Player {
               ?.map((id) => id as int)
               .toSet() ??
           {},
-      defeatedBosses:
-          Map<String, int>.from(json['defeatedBosses'] ?? {}),
+      defeatedBosses: Map<String, int>.from(json['defeatedBosses'] ?? {}),
       monstersKilled: json['monstersKilled'] ?? 0,
       totalGoldEarned: json['totalGoldEarned'] ?? 0,
       weaponDestructionCount: json['weaponDestructionCount'] ?? 0,

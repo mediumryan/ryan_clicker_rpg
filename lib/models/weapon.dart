@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:ryan_clicker_rpg/data/weapon_data.dart';
 import 'package:uuid/uuid.dart';
 
@@ -90,10 +89,41 @@ class Weapon {
   // They do NOT include player-wide passive bonuses.
   double get calculatedDamage {
     double damage = baseDamage;
-    damage *= pow(1.08, enhancement);
+    for (int i = 1; i <= enhancement; i++) {
+      double enhancementDamageBonus = 0;
+      if (i >= 1 && i <= 4) {
+        enhancementDamageBonus = 8;
+      } else if (i >= 5 && i <= 8) {
+        enhancementDamageBonus = 12;
+      } else if (i >= 9 && i <= 10) {
+        enhancementDamageBonus = 15;
+      } else if (i == 11) {
+        enhancementDamageBonus = 20;
+      } else if (i >= 12 && i <= 13) {
+        enhancementDamageBonus = 25;
+      } else if (i == 14) {
+        enhancementDamageBonus = 30;
+      } else if (i == 15) {
+        enhancementDamageBonus = 50;
+      } else if (i == 16) {
+        enhancementDamageBonus = 100;
+      } else if (i == 17) {
+        enhancementDamageBonus = 125;
+      } else if (i == 18) {
+        enhancementDamageBonus = 150;
+      } else if (i == 19) {
+        enhancementDamageBonus = 200;
+      } else if (i == 20) {
+        enhancementDamageBonus = 300;
+      }
+      damage *= (1 + enhancementDamageBonus / 100);
+      damage = damage.truncateToDouble();
+    }
+
     final bonus = Weapon.transcendenceBonuses[transcendence];
     if (bonus != null) {
       damage *= (1 + bonus.damageBonus);
+      damage = damage.truncateToDouble();
     }
     return damage;
   }
@@ -109,6 +139,24 @@ class Weapon {
 
   double get calculatedCritDamage {
     double critDmg = criticalDamage;
+    for (int i = 1; i <= enhancement; i++) {
+      double enhancementCritDamageBonus = 0;
+      if (i == 15) {
+        enhancementCritDamageBonus = 100;
+      } else if (i == 16) {
+        enhancementCritDamageBonus = 200;
+      } else if (i == 17) {
+        enhancementCritDamageBonus = 300;
+      } else if (i == 18) {
+        enhancementCritDamageBonus = 400;
+      } else if (i == 19) {
+        enhancementCritDamageBonus = 500;
+      } else if (i == 20) {
+        enhancementCritDamageBonus = 1000;
+      }
+      critDmg += (enhancementCritDamageBonus / 100);
+    }
+
     final bonus = Weapon.transcendenceBonuses[transcendence];
     if (bonus != null) {
       critDmg += bonus.critDamageBonus;
@@ -118,6 +166,20 @@ class Weapon {
 
   double get calculatedSpeed {
     double spd = speed;
+    for (int i = 1; i <= enhancement; i++) {
+      double enhancementAttackSpeedBonus = 0;
+      if (i == 11) {
+        enhancementAttackSpeedBonus = 10;
+      } else if (i >= 12 && i <= 13) {
+        enhancementAttackSpeedBonus = 10;
+      } else if (i == 14) {
+        enhancementAttackSpeedBonus = 15;
+      } else if (i >= 15 && i <= 20) {
+        enhancementAttackSpeedBonus = 25;
+      }
+      spd *= (1 + enhancementAttackSpeedBonus / 100);
+    }
+
     final bonus = Weapon.transcendenceBonuses[transcendence];
     if (bonus != null) {
       spd *= (1 + bonus.speedBonus);

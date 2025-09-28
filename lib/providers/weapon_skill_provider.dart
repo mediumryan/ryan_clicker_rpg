@@ -54,6 +54,7 @@ class WeaponSkillProvider with ChangeNotifier {
     player.passiveGoldGainMultiplier = 1.0;
     player.passiveEnhancementStoneGainMultiplier = 1.0;
     player.passiveEnhancementStoneGainFlat = 0;
+    player.canManualAttack = true;
     // --- END NEW ---
 
     final weapon = player.equippedWeapon;
@@ -71,6 +72,9 @@ class WeaponSkillProvider with ChangeNotifier {
                 break;
               case 'applyPassiveStatDebuff':
                 _applyPassiveStatDebuff(params, player);
+                break;
+              case 'disableManualAttack':
+                _disableManualAttack(player);
                 break;
               case 'applyPassiveBonusDamageToRace':
                 _applyPassiveBonusDamageToRace(params, player, monster);
@@ -92,19 +96,6 @@ class WeaponSkillProvider with ChangeNotifier {
                   if (monsterType != null && multiplier != null) {
                     _applyPassiveBonusDamageToRace(
                       {'requiredRace': monsterType, 'multiplier': multiplier},
-                      player,
-                      monster,
-                    );
-                  }
-                }
-                break;
-              case 'increaseDamageToPoisoned':
-                {
-                  final multiplier = (params['damageMultiplier'] as num?)
-                      ?.toDouble();
-                  if (multiplier != null) {
-                    _applyStatusConditionalBonusDamage(
-                      {'requiredStatus': 'poison', 'multiplier': multiplier},
                       player,
                       monster,
                     );
@@ -142,55 +133,6 @@ class WeaponSkillProvider with ChangeNotifier {
                       'stat': 'damage',
                       'value': value / 100,
                       'isMultiplicative': true,
-                    }, player);
-                  }
-                }
-                break;
-              case 'increaseAttackSpeed':
-                {
-                  final value = (params['value'] as num?)?.toDouble();
-                  if (value != null) {
-                    _applyPassiveStatBoost({
-                      'stat': 'speed',
-                      'value': value,
-                      'isMultiplicative': false,
-                    }, player);
-                  }
-                }
-                break;
-              case 'increaseCriticalChance':
-                {
-                  final value = (params['value'] as num?)?.toDouble();
-                  if (value != null) {
-                    _applyPassiveStatBoost({
-                      'stat': 'criticalChance',
-                      'value': value,
-                      'isMultiplicative': false,
-                    }, player);
-                  }
-                }
-                break;
-              case 'applyBonusDamageToFrozen':
-                {
-                  final multiplier = (params['damageMultiplier'] as num?)
-                      ?.toDouble();
-                  if (multiplier != null) {
-                    _applyStatusConditionalBonusDamage(
-                      {'requiredStatus': 'freeze', 'multiplier': multiplier},
-                      player,
-                      monster,
-                    );
-                  }
-                }
-                break;
-              case 'increaseDoubleAttack':
-                {
-                  final amount = (params['amount'] as num?)?.toDouble();
-                  if (amount != null) {
-                    _applyPassiveStatBoost({
-                      'stat': 'doubleAttackChance',
-                      'value': amount,
-                      'isMultiplicative': false,
                     }, player);
                   }
                 }
@@ -287,6 +229,10 @@ class WeaponSkillProvider with ChangeNotifier {
         _applyStackingBuff(params, player);
         break;
     }
+  }
+
+  void _disableManualAttack(Player player) {
+    player.canManualAttack = false;
   }
 
   void _applyPassiveStatBoost(Map<String, dynamic> params, Player player) {
@@ -860,6 +806,7 @@ class WeaponSkillProvider with ChangeNotifier {
     final cooldown = (params['cooldown'] as num?)?.toInt();
     final excludedRaces = (params['excludedRaces'] as List<dynamic>?)
         ?.cast<String>();
+    final attackPerDefence = (params['attackPerDefence'] as num?)?.toDouble();
 
     if (chance == null || duration == null || cooldown == null) {
       return; // Missing essential parameters
@@ -888,6 +835,7 @@ class WeaponSkillProvider with ChangeNotifier {
         type: StatusEffectType.charm,
         duration: duration,
         stackable: isStackable,
+        attackPerDefence: attackPerDefence,
       );
       monster.applyStatusEffect(effect);
       monster.setSkillCooldown('charm');
@@ -1138,7 +1086,6 @@ class WeaponSkillProvider with ChangeNotifier {
     Player player,
     Monster monster,
   ) {
-    debugPrint('[_applyHpConditionalBonusDamage] Called with params: $params');
     final trigger = params['trigger'] as String?;
     if (trigger != 'onHit') {
       return;
@@ -1685,36 +1632,35 @@ class WeaponSkillProvider with ChangeNotifier {
     Player player,
     Monster monster,
   ) {
-    final conditionString = params['condition'] as String?;
-    final threshold = (params['threshold'] as num?)?.toDouble();
-    final damageMultiplier = (params['damageMultiplier'] as num?)?.toDouble();
+    final condition = params['condition'] as String?;
+    final hpThreshold = (params['hpThreshold'] as num?)?.toDouble();
+    final multiplier = (params['multiplier'] as num?)?.toDouble();
 
-    if (conditionString == null ||
-        threshold == null ||
-        damageMultiplier == null) {
+    if (condition == null || hpThreshold == null || multiplier == null) {
       return; // Missing essential parameters
     }
 
-    final conditionType = _getConditionTypeFromString(conditionString);
-    if (conditionType == null) {
-      return; // Invalid condition type
+    final monsterHpPercentage = (monster.hp / monster.maxHp);
+    bool conditionMet = false;
+
+    switch (condition) {
+      case 'ge':
+        conditionMet = monsterHpPercentage >= hpThreshold;
+        break;
+      case 'le':
+        conditionMet = monsterHpPercentage <= hpThreshold;
+        break;
+      case 'gt':
+        conditionMet = monsterHpPercentage > hpThreshold;
+        break;
+      case 'lt':
+        conditionMet = monsterHpPercentage < hpThreshold;
+        break;
     }
 
-    final modifier = DamageModifier(
-      requiredMonsterHpCondition: conditionType,
-      requiredMonsterHpThreshold: threshold,
-      multiplier: damageMultiplier,
-    );
-    _gameProvider.addDamageModifier(modifier);
-  }
-
-  ConditionType? _getConditionTypeFromString(String type) {
-    try {
-      return ConditionType.values.firstWhere(
-        (e) => e.toString().split('.').last == type,
-      );
-    } catch (e) {
-      return null;
+    if (conditionMet) {
+      player.passiveWeaponDamageMultiplier += multiplier;
+      _gameProvider.notifyListeners(); // Notify listeners for HP change
     }
   }
 }

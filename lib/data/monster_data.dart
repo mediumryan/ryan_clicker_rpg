@@ -2072,9 +2072,9 @@ class MonsterData {
     if (stage <= 50) {
       exponent = 1.135;
     } else if (stage <= 100) {
-      exponent = 1.25;
-    } else if (stage <= 500) {
       exponent = 1.35;
+    } else if (stage <= 500) {
+      exponent = 1.5;
     } else {
       exponent = 1.5;
     }

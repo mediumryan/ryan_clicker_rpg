@@ -2,8 +2,10 @@ import 'package:ryan_clicker_rpg/models/monster_species.dart';
 import 'package:ryan_clicker_rpg/models/status_effect.dart';
 
 enum ConditionType {
-  targetHealthBelowPercent,
-  targetHealthAbovePercent,
+  ge, // greater than or equal to
+  le, // less than or equal to
+  gt, // greater than
+  lt, // less than
 }
 
 class DamageModifier {

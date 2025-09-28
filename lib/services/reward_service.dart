@@ -7,8 +7,8 @@ class RewardService {
   final Random _random = Random();
 
   GachaBox? getDropForNormalMonster(int currentStage) {
-    // 10% chance to drop a box
-    if (_random.nextDouble() < 0.1) {
+    // 20% chance to drop a box
+    if (_random.nextDouble() < 0.2) {
       return GachaBox(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         boxType: _getBoxTypeForStage(currentStage),
@@ -46,10 +46,33 @@ class RewardService {
       return WeaponBoxType.plain;
     }
 
-    if (stage >= 1800) return WeaponBoxType.mystic;
-    if (stage >= 1500) return WeaponBoxType.shiny;
-    if (stage >= 1000) return WeaponBoxType.rare;
-    if (stage >= 500) return WeaponBoxType.plain;
-    return WeaponBoxType.common;
+    // Logic for normal monsters
+    final randomValue = _random.nextDouble();
+
+    if (stage <= 50) {
+      return WeaponBoxType.common;
+    } else if (stage <= 200) {
+      if (randomValue < 0.75) return WeaponBoxType.common;
+      return WeaponBoxType.plain;
+    } else if (stage <= 500) {
+      if (randomValue < 0.50) return WeaponBoxType.common;
+      if (randomValue < 0.75) return WeaponBoxType.plain;
+      if (randomValue < 0.90) return WeaponBoxType.rare;
+      return WeaponBoxType.shiny;
+    } else if (stage <= 1000) {
+      if (randomValue < 0.35) return WeaponBoxType.common;
+      if (randomValue < 0.60) return WeaponBoxType.plain;
+      if (randomValue < 0.80) return WeaponBoxType.rare;
+      if (randomValue < 0.92) return WeaponBoxType.shiny;
+      return WeaponBoxType.mystic;
+    } else {
+      // stage > 1000
+      if (randomValue < 0.25) return WeaponBoxType.common;
+      if (randomValue < 0.50) return WeaponBoxType.plain;
+      if (randomValue < 0.75) return WeaponBoxType.rare;
+      if (randomValue < 0.91) return WeaponBoxType.shiny;
+      if (randomValue < 0.96) return WeaponBoxType.mystic;
+      return WeaponBoxType.holy;
+    }
   }
 }

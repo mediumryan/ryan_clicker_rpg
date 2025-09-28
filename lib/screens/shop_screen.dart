@@ -96,6 +96,52 @@ class ShopScreen extends StatelessWidget {
               costToBuy: 950000,
             ),
           ];
+
+          final List<ShopItemData> darkMatterEnhancementStoneItems = [
+            ShopItemData(
+              imagePath: 'images/others/enhancement_stone.png',
+              quantity: 10,
+              description: '암흑 물질로 구매하는 강화석입니다.',
+              cost: 200,
+              amountToBuy: 10,
+              costToBuy: 200,
+            ),
+            ShopItemData(
+              imagePath: 'images/others/enhancement_stone.png',
+              quantity: 100,
+              description: '암흑 물질로 구매하는 강화석입니다.',
+              cost: 2000,
+              amountToBuy: 100,
+              costToBuy: 2000,
+            ),
+          ];
+
+          final List<ShopItemData> darkMatterWeaponBoxItems = [
+            ShopItemData(
+              imagePath: 'images/chests/unique.png',
+              quantity: 1,
+              description: '암흑 물질로 구매하는 현재 레벨 구간 유니크 무기 상자입니다.',
+              cost: 1000,
+              amountToBuy: 1,
+              costToBuy: 1000,
+            ),
+            ShopItemData(
+              imagePath: 'images/chests/epic.png',
+              quantity: 1,
+              description: '암흑 물질로 구매하는 현재 레벨 구간 에픽 무기 상자입니다.',
+              cost: 15000,
+              amountToBuy: 1,
+              costToBuy: 15000,
+            ),
+            ShopItemData(
+              imagePath: 'images/chests/legend.png',
+              quantity: 1,
+              description: '암흑 물질로 구매하는 현재 레벨 구간 레전드 무기 상자입니다.',
+              cost: 125000,
+              amountToBuy: 1,
+              costToBuy: 125000,
+            ),
+          ];
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
@@ -119,6 +165,24 @@ class ShopScreen extends StatelessWidget {
                         ': ${NumberFormat('#,###').format(game.player.gold)}G',
                         style: const TextStyle(
                           color: Colors.yellow,
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ), // Spacing between gold and dark matter
+                      Image.asset(
+                        'images/others/dark_matter.png',
+                        width: 24,
+                        height: 24,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ), // Spacing between image and text
+                      Text(
+                        ': ${NumberFormat('#,###').format(game.player.darkMatter)}개',
+                        style: const TextStyle(
+                          color: Colors.deepPurpleAccent,
                           fontSize: 18,
                         ),
                       ),
@@ -153,6 +217,93 @@ class ShopScreen extends StatelessWidget {
 
                   const Divider(height: 40, color: Colors.grey),
 
+                  ShopItemSection(
+                    title: '암흑 물질 강화석 상점',
+                    items: darkMatterEnhancementStoneItems,
+                    buyFunction: ({required int amount, required int cost}) =>
+                        game.buyDarkMatterEnhancementStones(
+                          amount: amount,
+                          cost: cost,
+                        ),
+                    confirmationMessage: (amount, cost) =>
+                        '강화석 $amount개를 $cost 암흑 물질에 구매하시겠습니까?',
+                    showResultDialog: _showResultDialog,
+                    showConfirmationDialog: _showConfirmationDialog,
+                    buildShopItem:
+                        ({
+                          required BuildContext context,
+                          String? title,
+                          String? imagePath,
+                          int? quantity,
+                          required String description,
+                          required int cost,
+                          required VoidCallback onPressed,
+                        }) => _buildShopItem(
+                          context: context,
+                          title: title,
+                          imagePath: imagePath,
+                          quantity: quantity,
+                          description: description,
+                          cost: cost,
+                          onPressed: onPressed,
+                          currencyUnit: '개',
+                        ),
+                  ),
+
+                  const Divider(height: 40, color: Colors.grey),
+
+                  ShopItemSection(
+                    title: '암흑 물질 무기 상점',
+                    items: darkMatterWeaponBoxItems,
+                    buyFunction: ({required int amount, required int cost}) {
+                      // The amount here is always 1 for weapon boxes
+                      if (cost == 1000) {
+                        // Unique box
+                        return game.buyDarkMatterUniqueBox();
+                      } else if (cost == 15000) {
+                        // Epic box
+                        return game.buyDarkMatterEpicBox();
+                      } else if (cost == 125000) {
+                        // Legend box
+                        return game.buyDarkMatterLegendBox();
+                      }
+                      return '잘못된 무기 상자 구매 요청입니다.';
+                    },
+                    confirmationMessage: (amount, cost) {
+                      String boxType = '';
+                      if (cost == 1000)
+                        boxType = '유니크';
+                      else if (cost == 15000)
+                        boxType = '에픽';
+                      else if (cost == 125000)
+                        boxType = '레전드';
+                      return '$boxType 무기 상자를 $cost 암흑 물질에 구매하시겠습니까?';
+                    },
+                    showResultDialog: _showResultDialog,
+                    showConfirmationDialog: _showConfirmationDialog,
+                    buildShopItem:
+                        ({
+                          required BuildContext context,
+                          String? title,
+                          String? imagePath,
+                          int? quantity,
+                          required String description,
+                          required int cost,
+                          required VoidCallback onPressed,
+                        }) => _buildShopItem(
+                          context: context,
+                          title: title,
+                          imagePath: imagePath,
+                          quantity: quantity,
+                          description: description,
+                          cost: cost,
+                          onPressed: onPressed,
+                          currencyUnit: '개',
+                        ),
+                  ),
+
+                  const Divider(height: 40, color: Colors.grey),
+
                   // Gacha Boxes
                   const Text(
                     '무기 상점',
@@ -166,6 +317,8 @@ class ShopScreen extends StatelessWidget {
                   _buildShopItem(
                     context: context,
                     title: '전구간 랜덤 유니크 무기 상자',
+                    imagePath: 'images/chests/unique.png',
+                    quantity: 1,
                     description: '모든 레벨 구간의 유니크 무기를 획득할 수 있습니다.',
                     cost: 1,
                     onPressed: () {
@@ -184,6 +337,8 @@ class ShopScreen extends StatelessWidget {
                   _buildShopItem(
                     context: context,
                     title: '현재 레벨구간 유니크 무기 상자',
+                    imagePath: 'images/chests/unique.png',
+                    quantity: 1,
                     description: '현재 레벨 구간 이하의 유니크 무기를 획득할 수 있습니다.',
                     cost: 1,
                     onPressed: () {
@@ -204,6 +359,8 @@ class ShopScreen extends StatelessWidget {
                   _buildShopItem(
                     context: context,
                     title: '전구간 랜덤 에픽 무기 상자',
+                    imagePath: 'images/chests/epic.png',
+                    quantity: 1,
                     description: '모든 레벨 구간의 에픽 무기를 획득할 수 있습니다.',
                     cost: 1,
                     onPressed: () {
@@ -222,6 +379,8 @@ class ShopScreen extends StatelessWidget {
                   _buildShopItem(
                     context: context,
                     title: '전구간 랜덤 레전드 무기 상자',
+                    imagePath: 'images/chests/legend.png',
+                    quantity: 1,
                     description: '모든 레벨 구간의 레전드 무기를 획득할 수 있습니다.',
                     cost: 1,
                     onPressed: () {
@@ -240,6 +399,8 @@ class ShopScreen extends StatelessWidget {
                   _buildShopItem(
                     context: context,
                     title: '현재 레벨구간 에픽 무기 상자',
+                    imagePath: 'images/chests/epic.png',
+                    quantity: 1,
                     description: '현재 레벨 구간 이하의 에픽 무기를 획득할 수 있습니다.',
                     cost: 1,
                     onPressed: () {
@@ -273,6 +434,7 @@ class ShopScreen extends StatelessWidget {
     required String description,
     required int cost,
     required VoidCallback onPressed,
+    String currencyUnit = 'G', // New parameter
   }) {
     return Container(
       padding: const EdgeInsets.all(12.0),
@@ -321,7 +483,9 @@ class ShopScreen extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: onPressed,
-            child: Text('구매 (${NumberFormat('#,###').format(cost)}G)'),
+            child: Text(
+              '구매 (${NumberFormat('#,###').format(cost)}$currencyUnit)',
+            ),
           ),
         ],
       ),
@@ -437,7 +601,7 @@ class ShopItemSection extends StatelessWidget {
         const SizedBox(height: 12),
         ...items.map((item) {
           String itemDescription =
-              '${title.contains('강화석') ? '강화석' : '초월석'} ${item.quantity}개를 구매합니다.';
+              item.description; // Use item's own description
           if (item.description.contains('할인')) {
             itemDescription +=
                 '\n${item.description.substring(item.description.indexOf('('))}';

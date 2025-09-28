@@ -18,6 +18,7 @@ class StatusEffect {
   final double? value;
   final int? maxDmg;
   final bool stackable; // New property
+  final double? attackPerDefence;
 
   StatusEffect({
     required this.type,
@@ -25,5 +26,6 @@ class StatusEffect {
     this.value,
     this.maxDmg,
     this.stackable = true,
+    this.attackPerDefence,
   });
 }

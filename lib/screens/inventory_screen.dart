@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart';
 import 'package:ryan_clicker_rpg/models/gacha_box.dart'; // Import GachaBox
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
-import 'package:ryan_clicker_rpg/widgets/achievement_dialog.dart';
 import 'package:ryan_clicker_rpg/widgets/equipment_codex_dialog.dart'; // NEW IMPORT
 import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT for WeaponData
 import 'package:ryan_clicker_rpg/widgets/weapon_info_widget.dart'; // NEW IMPORT for WeaponInfoWidget
@@ -18,13 +17,6 @@ class InventoryScreen extends StatelessWidget {
         title: const Text('인벤토리'),
         backgroundColor: Colors.grey[850],
         actions: [
-          IconButton(
-            icon: const Icon(Icons.emoji_events, color: Colors.white),
-            onPressed: () {
-              _showAchievementDialog(context);
-            },
-            tooltip: '업적',
-          ),
           IconButton(
             icon: const Icon(
               Icons.book,
@@ -317,15 +309,6 @@ class InventoryScreen extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return EquipmentCodexDialog(); // Use the new widget here
-      },
-    );
-  }
-
-  void _showAchievementDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return const AchievementDialog();
       },
     );
   }

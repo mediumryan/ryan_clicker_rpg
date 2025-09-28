@@ -16,7 +16,8 @@ void main() async {
   await gameProvider.initializeGame();
 
   runApp(
-    ChangeNotifierProvider<GameProvider>.value( // Use .value constructor
+    ChangeNotifierProvider<GameProvider>.value(
+      // Use .value constructor
       value: gameProvider,
       child: const MyApp(),
     ),
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( // No ChangeNotifierProvider here anymore
+    return MaterialApp(
+      // No ChangeNotifierProvider here anymore
       title: 'Ryan Clicker RPG',
       theme: ThemeData(
         primarySwatch: Colors.blue,

@@ -161,10 +161,7 @@ class _AchievementDialogState extends State<AchievementDialog> {
             ? () {
                 setState(() {
                   achievement.isCompleted = true;
-                  // If there are no rewards, claim it immediately
-                  if (achievement.rewards.isEmpty) {
-                    achievement.claimReward();
-                  }
+                  gameProvider.claimAchievementRewards(achievement);
                 });
               }
             : null, // Disabled if not completable
