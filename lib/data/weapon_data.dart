@@ -55,7 +55,7 @@ class WeaponData {
         {'rarity': Rarity.rare, 'percent': 25.0},
         {'rarity': Rarity.unique, 'percent': 15.0},
         {'rarity': Rarity.epic, 'percent': 9.0},
-        {'rarity': Rarity.legend, 'percent': 1.0},
+        {'rarity': Rarity.legend, 'percent': 3.0},
       ],
     },
     {
@@ -204,7 +204,7 @@ class WeaponData {
       case WeaponType.rapier:
         return '레이피어';
       case WeaponType.katana:
-        return '카타나';
+        return '도검';
       case WeaponType.sword:
         return '검';
       case WeaponType.greatsword:
@@ -214,11 +214,11 @@ class WeaponData {
       case WeaponType.dagger:
         return '단검';
       case WeaponType.cleaver:
-        return '클리버';
+        return '도축칼';
       case WeaponType.battleAxe:
-        return '전투 도끼';
+        return '전투도끼';
       case WeaponType.warhammer:
-        return '워해머';
+        return '전투망치';
       case WeaponType.spear:
         return '창';
       case WeaponType.staff:
@@ -226,11 +226,11 @@ class WeaponData {
       case WeaponType.trident:
         return '삼지창';
       case WeaponType.mace:
-        return '철퇴';
+        return '메이스';
       case WeaponType.scythe:
         return '낫';
       case WeaponType.curvedSword:
-        return '곡선형 검';
+        return '곡도';
       case WeaponType.nunchaku:
         return '쌍절곤';
     }

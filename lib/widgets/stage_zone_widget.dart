@@ -205,9 +205,6 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                 context,
                 listen: false,
               ).handleManualClick(); // New: Handle manual click
-              widget.onAttack(
-                {},
-              ); // Call onAttack, damage display is now handled internally
             },
       child: Container(
         color: Colors.grey[900],

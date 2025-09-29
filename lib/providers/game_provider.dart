@@ -433,7 +433,7 @@ class GameProvider with ChangeNotifier {
 
       final double bossMultiplier = _monster.isBoss ? 3.0 : 1.0;
       final goldReward =
-          (_player.currentStage * 25).toDouble() *
+          (_player.currentStage * 100).toDouble() *
           _player.passiveGoldGainMultiplier *
           bossMultiplier;
       _player.gold += goldReward;
@@ -922,16 +922,16 @@ class GameProvider with ChangeNotifier {
       _player.enhancementStones = 0;
       _player.gold = 0.0;
       _player.darkMatter = 0;
-      _player.currentStage = 500;
+      _player.currentStage = 1;
     }
 
     // Add test weapons
-    for (int i = 0; i < 24; i++) {
-      final testWeapon = WeaponData.getWeaponById(30000 + i);
-      if (testWeapon != null) {
-        _player.inventory.add(testWeapon);
-      }
-    }
+    // for (int i = 0; i < 24; i++) {
+    //   final testWeapon = WeaponData.getWeaponById(30000 + i);
+    //   if (testWeapon != null) {
+    //     _player.inventory.add(testWeapon);
+    //   }
+    // }
   }
 
   Future<void> _saveGame() async {

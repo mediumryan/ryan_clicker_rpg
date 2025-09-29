@@ -347,7 +347,7 @@ BASE_UNIQUE_WEAPONS = [
         "investedEnhancementStones": 0,
         "investedTranscendenceStones": 0,
         "stack": { "enabled": False, "currentStacks": 0, "maxStacks": 0, "damagePerStack": 0 },
-        "skills": [ { "skill_name": "사냥 본능", "skill_type": "active", "skill_description": "무기가 약화된 적에 반응해 강해진다.", "skill_description_detail": "체력이 50% 이하인 적에게 무기 공격력의 50% 추가 피해", "skill_effect": [ { "effect_name": "applyHpConditionalBonusDamage", "params": { "chance": 1.0, "hpThreshold": 0.5, "condition": "le", "multiplier": 0.5, "trigger": "onHit", "cooldown": 0 } } ] } ]
+        "skills": [ { "skill_name": "사냥 본능", "skill_type": "active", "skill_description": "체력이 약해진 적을 상대할 때 추가 피해를 가한다.", "skill_description_detail": "체력이 50% 이하인 적 공격 시, 무기 공격력의 15% 추가 피해", "skill_effect": [ { "effect_name": "applyHpConditionalBonusDamage", "params": { "chance": 1.0, "hpThreshold": 0.5, "condition": "le", "multiplier": 0.15, "trigger": "onHit", "cooldown": 0 } } ] } ]
     },
     {
         "id": 10014,
@@ -515,7 +515,7 @@ BASE_UNIQUE_WEAPONS = [
         "investedEnhancementStones": 0,
         "investedTranscendenceStones": 0,
         "stack": { "enabled": False, "currentStacks": 0, "maxStacks": 0, "damagePerStack": 0 },
-        "skills": [ { "skill_name": "투지", "skill_type": "active", "skill_description": "체력이 높은 적에게 투지를 불태운다.", "skill_description_detail": "체력이 50% 이상인 적에게 무기 공격력의 50% 추가 피해", "skill_effect": [ { "effect_name": "applyHpConditionalBonusDamage", "params": { "chance": 1.0, "hpThreshold": 0.5, "condition": "ge", "multiplier": 0.5, "trigger": "onHit", "cooldown": 0 } } ] } ]
+        "skills": [ { "skill_name": "투지", "skill_type": "active", "skill_description": "투신의 축복으로 체력이 높은 적을 상대할 때 추가 피해를 가한다.", "skill_description_detail": "체력이 50% 이상인 적 공격 시, 무기 공격력의 15% 추가 피해", "skill_effect": [ { "effect_name": "applyHpConditionalBonusDamage", "params": { "chance": 1.0, "hpThreshold": 0.5, "condition": "ge", "multiplier": 0.15, "trigger": "onHit", "cooldown": 0 } } ] } ]
     },
     {
         "id": 10021,
@@ -541,7 +541,7 @@ BASE_UNIQUE_WEAPONS = [
         "stack": { "enabled": False, "currentStacks": 0, "maxStacks": 0, "damagePerStack": 0 },
         "skills": [ { "skill_name": "방전", "skill_type": "active", 
                      "skill_description": "번개의 힘이 담긴 일격으로 적을 감전시킨다.", 
-                     "skill_description_detail": "공격 시 2.5% 확률로 3초간 감전, 최대 데미지 41,000, 쿨타임 5초", "skill_effect": [ { "effect_name": "applyShock", "params": { "chance": 0.025, "duration": 3, "trigger": "onHit", "stackable": False, "cooldown": 5, "maxDmg" : 41000 } } ] } ]
+                     "skill_description_detail": "공격 시 2.5% 확률로 3초간 감전, 최대 데미지 61,500, 쿨타임 5초", "skill_effect": [ { "effect_name": "applyShock", "params": { "chance": 0.025, "duration": 3, "trigger": "onHit", "stackable": False, "cooldown": 5, "maxDmg" : 61500 } } ] } ]
     },
     {
         "id": 10022,

@@ -705,9 +705,9 @@ BASE_EPIC_WEAPONS = [
     "skills": [
       {
         "skill_name": "최후통첩",
-        "skill_type": "passive",
-        "skill_description": "체력이 약해진 적에게 더욱 치명적인 공격을 가한다.",
-        "skill_description_detail": "체력이 50% 이하인 적에게 무기 공격력의 100% 추가 피해",
+        "skill_type": "active",
+        "skill_description": "체력이 약해진 적을 상대할 때 추가 피해를 가한다.",
+        "skill_description_detail": "체력이 50% 이하인 적 공격 시, 무기 공격력의 30% 추가 피해",
         "skill_effect": [
           {
             "effect_name": "applyHpConditionalBonusDamage",
@@ -715,7 +715,7 @@ BASE_EPIC_WEAPONS = [
               "chance": 1.0,
               "hpThreshold": 0.5,
               "condition": "le",
-              "multiplier": 1.0,
+              "multiplier": 0.3,
               "trigger": "onHit",
               "cooldown": 0
             }
@@ -1042,8 +1042,8 @@ BASE_EPIC_WEAPONS = [
       {
         "skill_name": "투지",
         "skill_type": "active",
-        "skill_description": "투신의 축복으로 체력이 높은 적을 상대할 때 공격력이 상승한다.",
-        "skill_description_detail": "체력이 50% 이상인 적에게 무기 공격력의 100% 추가 피해",
+        "skill_description": "투신의 축복으로 체력이 높은 적을 상대할 때 추가 피해를 가한다.",
+        "skill_description_detail": "체력이 50% 이상인 적 공격 시, 무기 공격력의 30% 추가 피해",
         "skill_effect": [
           {
             "effect_name": "applyHpConditionalBonusDamage",
@@ -1051,7 +1051,7 @@ BASE_EPIC_WEAPONS = [
               "chance": 1.0,
               "hpThreshold": 0.5,
               "condition": "ge",
-              "multiplier": 1.0,
+              "multiplier": 0.3,
               "trigger": "onHit",
               "cooldown": 0
             }
@@ -1092,7 +1092,7 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "번개의 힘이 담긴 일격으로 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 5% 확률로 5초간 감전, 최대 데미지 82,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 5% 확률로 5초간 감전, 최대 데미지 123,000, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -1102,7 +1102,7 @@ BASE_EPIC_WEAPONS = [
               "trigger": "onHit",
               "stackable": False,
               "cooldown": 5,
-              "maxDmg": 82000
+              "maxDmg": 123000
             }
           }
         ]
@@ -1264,21 +1264,21 @@ def generate_epic_weapons():
             
             new_weapon['type'] = f'WeaponType.{english_name}'
             # Note: The original imageName has the type hardcoded. We update it.
-            # e.g., "unique/rapier/30000.png" -> "unique/sword/31000.png"
-            new_weapon['imageName'] = f'unique/{english_name}/{new_weapon["id"]}.png'
+            # e.g., "epic/rapier/30000.png" -> "epic/sword/31000.png"
+            new_weapon['imageName'] = f'epic/{english_name}/{new_weapon["id"]}.png'
             
             # Recalculate stats based on weapon type modifiers
             new_weapon['speed'] = round(1.25 * base_speed * type_modifiers['speed_mult'], 2)
-            new_weapon['criticalChance'] = round(1.25 * base_crit_chance * type_modifiers['crit_chance_mult'], 3)
+            new_weapon['criticalChance'] = round(1.1 * base_crit_chance * type_modifiers['crit_chance_mult'], 3)
             new_weapon['criticalDamage'] = round(1.5 * base_crit_damage * type_modifiers['crit_mult_mult'], 2)
-            new_weapon['accuracy'] = round(1.05 * base_accuracy * type_modifiers['accuracy_mult'], 3)
+            new_weapon['accuracy'] = round(base_accuracy * type_modifiers['accuracy_mult'], 3)
 
             # Recalculate base damage if it's based on level, otherwise keep the template's damage
             level = new_weapon['baseLevel']
             if level == 0:
                 new_weapon['baseSellPrice'] = 9000
             else:
-                new_weapon['baseSellPrice'] = int(1000 + (level * 900))
+                new_weapon['baseSellPrice'] = int(level * 900)
             damage_mult = type_modifiers.get('damage_mult', 1)
 
             if base_weapon_template.get('baseDamage', 0) == 0: # If baseDamage is 0 in template
