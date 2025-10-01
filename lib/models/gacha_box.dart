@@ -22,8 +22,14 @@ class GachaBox {
   final String id;
   final WeaponBoxType boxType;
   final int stageLevel; // Stage level when the box was acquired
+  final bool isAllRange;
 
-  GachaBox({required this.id, required this.boxType, required this.stageLevel});
+  GachaBox({
+    required this.id,
+    required this.boxType,
+    required this.stageLevel,
+    this.isAllRange = false,
+  });
 
   // Helper to get the display name for the box
   String get name {

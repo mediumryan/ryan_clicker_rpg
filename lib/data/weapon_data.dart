@@ -402,6 +402,16 @@ class WeaponData {
     }
 
     if (isAllRange) {
+      if (currentStageLevel != null) {
+        List<Weapon> filteredCandidates = candidates
+            .where((weapon) => weapon.baseLevel <= currentStageLevel)
+            .toList();
+        if (filteredCandidates.isNotEmpty) {
+          return filteredCandidates[Random().nextInt(filteredCandidates.length)]
+              .copyWith();
+        }
+      }
+      // Fallback to original all-range behavior if no stage level or no candidates found
       return candidates[Random().nextInt(candidates.length)].copyWith();
     } else {
       if (currentStageLevel == null) {

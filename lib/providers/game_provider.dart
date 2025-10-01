@@ -197,7 +197,7 @@ class GameProvider with ChangeNotifier {
 
     // Check for Freeze/Shatter effect
     if (_monster.hasStatusEffect(StatusEffectType.freeze)) {
-      final shatterDamageMultiplier = _monster.isBoss ? 0.075 : 0.15;
+      final shatterDamageMultiplier = _monster.isBoss ? 0.1 : 0.2;
       var shatterDamage = _monster.maxHp * shatterDamageMultiplier;
 
       final freezeEffects = _monster.statusEffects
@@ -331,7 +331,7 @@ class GameProvider with ChangeNotifier {
       debugPrint(
         '[attackMonster] Monster HP before shock damage: ${_monster.hp}',
       );
-      final shockDamageMultiplier = _monster.isBoss ? 0.005 : 0.03;
+      final shockDamageMultiplier = _monster.isBoss ? 0.015 : 0.03;
       var shockDamage = _monster.maxHp * shockDamageMultiplier;
 
       final shockEffects = _monster.statusEffects
@@ -686,13 +686,13 @@ class GameProvider with ChangeNotifier {
   // Make sure to include them in the final replacement string
 
   void startAutoAttack() {
-    _autoAttackTimer?.cancel();
-    _autoAttackTimer = Timer.periodic(_autoAttackDelay, (timer) {
-      if (!_isMonsterDefeated) {
-        attackMonster();
-      }
-    });
-    notifyListeners();
+    // _autoAttackTimer?.cancel();
+    // _autoAttackTimer = Timer.periodic(_autoAttackDelay, (timer) {
+    //   if (!_isMonsterDefeated) {
+    //     attackMonster();
+    //   }
+    // });
+    // notifyListeners();
   }
 
   void stopAutoAttack() {
@@ -919,10 +919,19 @@ class GameProvider with ChangeNotifier {
     } else {
       _player = Player(equippedWeapon: Weapon.startingWeapon());
       _player.transcendenceStones = 0;
-      _player.enhancementStones = 0;
-      _player.gold = 0.0;
+      _player.enhancementStones = 9999999;
+      _player.gold = 9999999.0;
       _player.darkMatter = 0;
-      _player.currentStage = 1;
+      _player.currentStage = 2000;
+    }
+
+    for (final achievement in AchievementData.achievements) {
+      if (_player.completedAchievementIds.contains(achievement.id)) {
+        achievement.isCompleted = true;
+      }
+      if (_player.claimedAchievementIds.contains(achievement.id)) {
+        achievement.forceClaim();
+      }
     }
 
     // Add test weapons
@@ -1148,8 +1157,18 @@ class GameProvider with ChangeNotifier {
       }
       achievement
           .claimReward(); // Mark reward as claimed in the achievement object
+      _player.claimedAchievementIds.add(achievement.id);
       notifyListeners();
       _saveGame();
+    }
+  }
+
+  void completeAndClaimAchievement(Achievement achievement) {
+    if (!achievement.isCompleted) {
+      achievement.isCompleted = true;
+      _player.completedAchievementIds.add(achievement.id);
+      claimAchievementRewards(achievement);
+      notifyListeners();
     }
   }
 
@@ -1178,7 +1197,11 @@ class GameProvider with ChangeNotifier {
     return message;
   }
 
-  String _buyWeaponBox({required int cost, required WeaponBoxType boxType}) {
+  String _buyWeaponBox({
+    required int cost,
+    required WeaponBoxType boxType,
+    bool isAllRange = false,
+  }) {
     if (_player.gold < cost) {
       return '골드가 부족합니다.';
     }
@@ -1187,6 +1210,7 @@ class GameProvider with ChangeNotifier {
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       boxType: boxType,
       stageLevel: _player.currentStage,
+      isAllRange: isAllRange,
     );
     _player.gachaBoxes.add(newGachaBox);
     notifyListeners();
@@ -1194,32 +1218,39 @@ class GameProvider with ChangeNotifier {
     return '${newGachaBox.name}을(를) 획득했습니다! 인벤토리에서 확인하세요.';
   }
 
-  String buyGuaranteedUniqueBox() {
+  String buyGuaranteedUniqueBox({bool isAllRange = false}) {
     return _buyWeaponBox(
       cost: 1, // TODO: Define actual cost
       boxType: WeaponBoxType.guaranteedUnique,
+      isAllRange: isAllRange,
     );
   }
 
-  String buyGuaranteedEpicBox() {
+  String buyGuaranteedEpicBox({bool isAllRange = false}) {
     return _buyWeaponBox(
       cost: 1, // TODO: Define actual cost
       boxType: WeaponBoxType.guaranteedEpic,
+      isAllRange: isAllRange,
     );
   }
 
-  String buyGuaranteedLegendBox() {
+  String buyGuaranteedLegendBox({bool isAllRange = false}) {
     return _buyWeaponBox(
       cost: 1, // TODO: Define actual cost
       boxType: WeaponBoxType.guaranteedLegend,
+      isAllRange: isAllRange,
     );
   }
 
-  String buyAllRangeUniqueBox() => buyGuaranteedUniqueBox();
-  String buyAllRangeLegendaryBox() => buyGuaranteedLegendBox();
-  String buyCurrentRangeUniqueBox(int currentStage) => buyGuaranteedUniqueBox();
-  String buyAllRangeEpicBox() => buyGuaranteedEpicBox();
-  String buyCurrentRangeEpicBox(int currentStage) => buyGuaranteedEpicBox();
+  String buyAllRangeUniqueBox() => buyGuaranteedUniqueBox(isAllRange: true);
+  String buyAllRangeLegendaryBox() => buyGuaranteedLegendBox(isAllRange: true);
+  String buyCurrentRangeUniqueBox(int currentStage) =>
+      buyGuaranteedUniqueBox(isAllRange: false);
+  String buyAllRangeEpicBox() => buyGuaranteedEpicBox(isAllRange: true);
+  String buyCurrentRangeEpicBox(int currentStage) =>
+      buyGuaranteedEpicBox(isAllRange: false);
+  String buyCurrentRangeLegendaryBox(int currentStage) =>
+      buyGuaranteedLegendBox(isAllRange: false);
 
   String buyDarkMatterEnhancementStones({
     required int amount,

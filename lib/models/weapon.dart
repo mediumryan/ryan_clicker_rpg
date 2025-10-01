@@ -316,7 +316,7 @@ class Weapon {
       rarity: Rarity.common,
       type: WeaponType.rapier,
       baseLevel: 0,
-      baseDamage: 36,
+      baseDamage: 99999999,
       criticalChance: 0.18,
       criticalDamage: 1.42,
       defensePenetration: 0,

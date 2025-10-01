@@ -15,6 +15,8 @@ class Player {
   int highestStageCleared;
   final Set<int> acquiredWeaponIdsHistory;
   final Map<String, int> defeatedBosses;
+  final Set<String> completedAchievementIds;
+  final Set<String> claimedAchievementIds;
   int monstersKilled;
 
   // Achievement-related stats
@@ -67,6 +69,8 @@ class Player {
     this.highestStageCleared = 0,
     Set<int>? acquiredWeaponIdsHistory,
     Map<String, int>? defeatedBosses,
+    Set<String>? completedAchievementIds,
+    Set<String>? claimedAchievementIds,
     this.monstersKilled = 0,
     this.totalGoldEarned = 0,
     this.weaponDestructionCount = 0,
@@ -87,52 +91,56 @@ class Player {
     this.passiveWeaponSpeedMultiplier = 1.0,
     this.passiveWeaponAccuracyBonus = 0.0,
     this.passiveWeaponAccuracyMultiplier = 1.0,
-  }) : inventory = inventory ?? [],
-       gachaBoxes = gachaBoxes ?? [],
-       buffs = buffs ?? [],
-       acquiredWeaponIdsHistory = acquiredWeaponIdsHistory ?? {},
-       defeatedBosses = defeatedBosses ?? {};
+  })  : inventory = inventory ?? [],
+        gachaBoxes = gachaBoxes ?? [],
+        buffs = buffs ?? [],
+        acquiredWeaponIdsHistory = acquiredWeaponIdsHistory ?? {},
+        defeatedBosses = defeatedBosses ?? {},
+        completedAchievementIds = completedAchievementIds ?? {},
+        claimedAchievementIds = claimedAchievementIds ?? {};
 
   // Serialization
   Map<String, dynamic> toJson() => {
-    'gold': gold,
-    'enhancementStones': enhancementStones,
-    'transcendenceStones': transcendenceStones,
-    'darkMatter': darkMatter,
-    'equippedWeapon': equippedWeapon.toJson(),
-    'inventory': inventory.map((w) => w.toJson()).toList(),
-    'gachaBoxes': gachaBoxes.map((b) => b.toJson()).toList(),
-    'buffs': buffs.map((b) => b.toJson()).toList(), // New
-    'currentStage': currentStage,
-    'highestStageCleared': highestStageCleared,
-    'acquiredWeaponIdsHistory': acquiredWeaponIdsHistory.toList(),
-    'defeatedBosses': defeatedBosses,
-    'monstersKilled': monstersKilled,
-    'totalGoldEarned': totalGoldEarned,
-    'weaponDestructionCount': weaponDestructionCount,
-    'transcendenceSuccessCount': transcendenceSuccessCount,
-    'totalClicks': totalClicks,
-    'passiveGoldGainMultiplier': passiveGoldGainMultiplier,
-    'passiveEnhancementStoneGainMultiplier':
-        passiveEnhancementStoneGainMultiplier,
-    'passiveEnhancementStoneGainFlat': passiveEnhancementStoneGainFlat,
-    'passiveWeaponDamageBonus': passiveWeaponDamageBonus,
-    'passiveWeaponDamageMultiplier': passiveWeaponDamageMultiplier,
-    'passiveWeaponCriticalChanceBonus': passiveWeaponCriticalChanceBonus,
-    'passiveWeaponCriticalChanceMultiplier':
-        passiveWeaponCriticalChanceMultiplier,
-    'passiveWeaponCriticalDamageBonus': passiveWeaponCriticalDamageBonus,
-    'passiveWeaponCriticalDamageMultiplier':
-        passiveWeaponCriticalDamageMultiplier,
-    'passiveWeaponDoubleAttackChanceBonus':
-        passiveWeaponDoubleAttackChanceBonus,
-    'passiveWeaponDefensePenetrationBonus':
-        passiveWeaponDefensePenetrationBonus,
-    'passiveWeaponSpeedBonus': passiveWeaponSpeedBonus,
-    'passiveWeaponSpeedMultiplier': passiveWeaponSpeedMultiplier,
-    'passiveWeaponAccuracyBonus': passiveWeaponAccuracyBonus,
-    'passiveWeaponAccuracyMultiplier': passiveWeaponAccuracyMultiplier,
-  };
+        'gold': gold,
+        'enhancementStones': enhancementStones,
+        'transcendenceStones': transcendenceStones,
+        'darkMatter': darkMatter,
+        'equippedWeapon': equippedWeapon.toJson(),
+        'inventory': inventory.map((w) => w.toJson()).toList(),
+        'gachaBoxes': gachaBoxes.map((b) => b.toJson()).toList(),
+        'buffs': buffs.map((b) => b.toJson()).toList(), // New
+        'currentStage': currentStage,
+        'highestStageCleared': highestStageCleared,
+        'acquiredWeaponIdsHistory': acquiredWeaponIdsHistory.toList(),
+        'defeatedBosses': defeatedBosses,
+        'completedAchievementIds': completedAchievementIds.toList(),
+        'claimedAchievementIds': claimedAchievementIds.toList(),
+        'monstersKilled': monstersKilled,
+        'totalGoldEarned': totalGoldEarned,
+        'weaponDestructionCount': weaponDestructionCount,
+        'transcendenceSuccessCount': transcendenceSuccessCount,
+        'totalClicks': totalClicks,
+        'passiveGoldGainMultiplier': passiveGoldGainMultiplier,
+        'passiveEnhancementStoneGainMultiplier':
+            passiveEnhancementStoneGainMultiplier,
+        'passiveEnhancementStoneGainFlat': passiveEnhancementStoneGainFlat,
+        'passiveWeaponDamageBonus': passiveWeaponDamageBonus,
+        'passiveWeaponDamageMultiplier': passiveWeaponDamageMultiplier,
+        'passiveWeaponCriticalChanceBonus': passiveWeaponCriticalChanceBonus,
+        'passiveWeaponCriticalChanceMultiplier':
+            passiveWeaponCriticalChanceMultiplier,
+        'passiveWeaponCriticalDamageBonus': passiveWeaponCriticalDamageBonus,
+        'passiveWeaponCriticalDamageMultiplier':
+            passiveWeaponCriticalDamageMultiplier,
+        'passiveWeaponDoubleAttackChanceBonus':
+            passiveWeaponDoubleAttackChanceBonus,
+        'passiveWeaponDefensePenetrationBonus':
+            passiveWeaponDefensePenetrationBonus,
+        'passiveWeaponSpeedBonus': passiveWeaponSpeedBonus,
+        'passiveWeaponSpeedMultiplier': passiveWeaponSpeedMultiplier,
+        'passiveWeaponAccuracyBonus': passiveWeaponAccuracyBonus,
+        'passiveWeaponAccuracyMultiplier': passiveWeaponAccuracyMultiplier,
+      };
 
   // Deserialization
   factory Player.fromJson(Map<String, dynamic> json) {
@@ -145,24 +153,29 @@ class Player {
       inventory: (json['inventory'] as List)
           .map((item) => Weapon.fromJson(item))
           .toList(),
-      gachaBoxes:
-          (json['gachaBoxes'] as List?)
+      gachaBoxes: (json['gachaBoxes'] as List?)
               ?.map((item) => GachaBox.fromJson(item))
               .toList() ??
           [],
-      buffs:
-          (json['buffs'] as List?)
+      buffs: (json['buffs'] as List?)
               ?.map((item) => Buff.fromJson(item))
               .toList() ??
           [], // New
       currentStage: json['currentStage'],
       highestStageCleared: json['highestStageCleared'],
-      acquiredWeaponIdsHistory:
-          (json['acquiredWeaponIdsHistory'] as List?)
+      acquiredWeaponIdsHistory: (json['acquiredWeaponIdsHistory'] as List?)
               ?.map((id) => id as int)
               .toSet() ??
           {},
       defeatedBosses: Map<String, int>.from(json['defeatedBosses'] ?? {}),
+      completedAchievementIds: (json['completedAchievementIds'] as List?)
+              ?.map((id) => id.toString())
+              .toSet() ??
+          {},
+      claimedAchievementIds: (json['claimedAchievementIds'] as List?)
+              ?.map((id) => id.toString())
+              .toSet() ??
+          {},
       monstersKilled: json['monstersKilled'] ?? 0,
       totalGoldEarned: json['totalGoldEarned'] ?? 0,
       weaponDestructionCount: json['weaponDestructionCount'] ?? 0,

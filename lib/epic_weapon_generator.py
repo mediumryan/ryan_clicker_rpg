@@ -138,14 +138,14 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "맹독 주입",
         "skill_type": "active",
         "skill_description": "치명적인 맹독을 주입한다.",
-        "skill_description_detail": "공격 시 5% 확률로 5초간 중독, 초당 최대 체력의 5% 피해, 최대 데미지 7200, 쿨타임 5초",
+        "skill_description_detail": "공격 시 5% 확률로 5초간 중독, 초당 최대 체력의 5% 피해, 최대 데미지 11,300, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyPoison",
             "params": {
               "chance": 0.05,
               "percentPerSecond": 0.05,
-              "maxDmg": 7200,
+              "maxDmg": 11300,
               "duration": 5,
               "trigger": "onHit",
               "stackable": False,
@@ -242,14 +242,14 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "열 주입",
         "skill_type": "passive",
         "skill_description": "뜨거운 열기가 적을 불태운다.",
-        "skill_description_detail": "공격 시 5% 확률로 5초간 화상, 초당 12,000 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 5% 확률로 5초간 화상, 초당 27,800 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyBurn",
             "params": {
               "chance": 0.05,
               "duration": 5,
-              "fixedDamagePerSecond": 12000,
+              "fixedDamagePerSecond": 27800,
               "stackable": False,
               "trigger": "onHit",
               "cooldown": 5
@@ -333,13 +333,13 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "갑옷 부수기",
         "skill_type": "active",
         "skill_description": "예리한 공격으로 적의 방어를 무너뜨린다.",
-        "skill_description_detail": "공격 시 5% 확률로 5초간 무장 해제, 방어력 80 감소, 쿨타임 5초",
+        "skill_description_detail": "공격 시 5% 확률로 5초간 무장 해제, 방어력 33 감소, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyDisarm",
             "params": {
               "chance": 0.05,
-              "defenseReduction": 80,
+              "defenseReduction": 33,
               "duration": 5,
               "trigger": "onHit",
               "stackable": False,
@@ -428,14 +428,14 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "과다출혈",
         "skill_type": "passive",
         "skill_description": "거친 날과 면으로 스치기만 해도 적에게 출혈을 입힌다.",
-        "skill_description_detail": "공격 시 5% 확률로 5초간 출혈, 초당 40,000 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 5% 확률로 5초간 출혈, 초당 107,000 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyBleed",
             "params": {
               "chance": 0.05,
               "duration": 5,
-              "damagePerSecond": 40000,
+              "damagePerSecond": 107000,
               "stackable": False,
               "trigger": "onHit",
               "cooldown": 5
@@ -495,11 +495,11 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "각인 개화",
         "skill_type": "passive",
         "skill_description": "무기에 각인된 힘이 혼란 상태의 적에게 반응해 무기를 강화한다.",
-        "skill_description_detail": "혼란 상태의 적에게 주는 데미지 +30%",
+        "skill_description_detail": "혼란 상태의 적에게 주는 데미지 +50%",
         "skill_effect": [
           {
             "effect_name": "increaseDamageToStatused",
-            "params": { "status": "confusion", "damageMultiplier": 0.3 }
+            "params": { "status": "confusion", "damageMultiplier": 0.5 }
           }
         ]
       }
@@ -707,7 +707,7 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "최후통첩",
         "skill_type": "active",
         "skill_description": "체력이 약해진 적을 상대할 때 추가 피해를 가한다.",
-        "skill_description_detail": "체력이 50% 이하인 적 공격 시, 무기 공격력의 30% 추가 피해",
+        "skill_description_detail": "체력이 50% 이하인 적 공격 시, 무기 공격력의 5% 추가 피해",
         "skill_effect": [
           {
             "effect_name": "applyHpConditionalBonusDamage",
@@ -715,7 +715,7 @@ BASE_EPIC_WEAPONS = [
               "chance": 1.0,
               "hpThreshold": 0.5,
               "condition": "le",
-              "multiplier": 0.3,
+              "multiplier": 0.05,
               "trigger": "onHit",
               "cooldown": 0
             }
@@ -756,13 +756,13 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "충격파",
         "skill_type": "active",
         "skill_description": "공격과 동시에 충격파를 발산한다.",
-        "skill_description_detail": "공격 시 5% 확률로 264,000 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 5% 확률로 1,137,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.025,
-              "damage": 264000,
+              "damage": 1137000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -940,7 +940,7 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "냉기 주입",
         "skill_type": "passive",
         "skill_description": "서린 냉기가 적을 얼린다.",
-        "skill_description_detail": "공격 시 5% 확률로 5초간 빙결, 최대 데미지 960,000 ,쿨타임 5초",
+        "skill_description_detail": "공격 시 5% 확률로 5초간 빙결, 최대 데미지 643,000 ,쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFreeze",
@@ -950,7 +950,7 @@ BASE_EPIC_WEAPONS = [
               "trigger": "onHit",
               "stackable": False,
               "cooldown": 5,
-              "maxDmg": 960000
+              "maxDmg": 643000
             }
           }
         ]
@@ -1043,7 +1043,7 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "투지",
         "skill_type": "active",
         "skill_description": "투신의 축복으로 체력이 높은 적을 상대할 때 추가 피해를 가한다.",
-        "skill_description_detail": "체력이 50% 이상인 적 공격 시, 무기 공격력의 30% 추가 피해",
+        "skill_description_detail": "체력이 50% 이상인 적 공격 시, 무기 공격력의 5% 추가 피해",
         "skill_effect": [
           {
             "effect_name": "applyHpConditionalBonusDamage",
@@ -1051,7 +1051,7 @@ BASE_EPIC_WEAPONS = [
               "chance": 1.0,
               "hpThreshold": 0.5,
               "condition": "ge",
-              "multiplier": 0.3,
+              "multiplier": 0.05,
               "trigger": "onHit",
               "cooldown": 0
             }
@@ -1092,7 +1092,7 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "번개의 힘이 담긴 일격으로 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 5% 확률로 5초간 감전, 최대 데미지 123,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 5% 확률로 5초간 감전, 최대 데미지 125,000, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -1102,7 +1102,7 @@ BASE_EPIC_WEAPONS = [
               "trigger": "onHit",
               "stackable": False,
               "cooldown": 5,
-              "maxDmg": 123000
+              "maxDmg": 125000
             }
           }
         ]

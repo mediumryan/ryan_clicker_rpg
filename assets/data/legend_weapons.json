@@ -77,14 +77,14 @@
     "imageName": "legend/rapier/50001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.rapier",
-    "baseLevel": 100,
-    "baseDamage": 1560,
+    "baseLevel": 200,
+    "baseDamage": 3662,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -133,14 +133,14 @@
     "imageName": "legend/rapier/50002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.rapier",
-    "baseLevel": 200,
-    "baseDamage": 3662,
+    "baseLevel": 400,
+    "baseDamage": 9188,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -176,20 +176,20 @@
     "imageName": "legend/rapier/50002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.rapier",
-    "baseLevel": 300,
-    "baseDamage": 6220,
+    "baseLevel": 600,
+    "baseDamage": 16247,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -199,7 +199,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -234,14 +234,14 @@
     "imageName": "legend/rapier/50004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.rapier",
-    "baseLevel": 400,
-    "baseDamage": 9188,
+    "baseLevel": 800,
+    "baseDamage": 24684,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -277,7 +277,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -294,18 +294,18 @@
   },
   {
     "id": 50005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/rapier/50005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.rapier",
-    "baseLevel": 500,
-    "baseDamage": 12537,
+    "baseLevel": 1000,
+    "baseDamage": 34402,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -347,13 +347,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -447,14 +447,14 @@
     "imageName": "legend/blade/51001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.blade",
-    "baseLevel": 100,
-    "baseDamage": 1820,
+    "baseLevel": 200,
+    "baseDamage": 4273,
     "criticalChance": 0.18,
     "criticalDamage": 3.15,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -503,14 +503,14 @@
     "imageName": "legend/blade/51002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.blade",
-    "baseLevel": 200,
-    "baseDamage": 4273,
+    "baseLevel": 400,
+    "baseDamage": 10720,
     "criticalChance": 0.18,
     "criticalDamage": 3.15,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -546,20 +546,20 @@
     "imageName": "legend/blade/51002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.blade",
-    "baseLevel": 300,
-    "baseDamage": 7257,
+    "baseLevel": 600,
+    "baseDamage": 18954,
     "criticalChance": 0.18,
     "criticalDamage": 3.15,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -569,7 +569,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -604,14 +604,14 @@
     "imageName": "legend/blade/51004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.blade",
-    "baseLevel": 400,
-    "baseDamage": 10720,
+    "baseLevel": 800,
+    "baseDamage": 28798,
     "criticalChance": 0.18,
     "criticalDamage": 3.15,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -647,7 +647,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -664,18 +664,18 @@
   },
   {
     "id": 51005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/blade/51005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.blade",
-    "baseLevel": 500,
-    "baseDamage": 14627,
+    "baseLevel": 1000,
+    "baseDamage": 40136,
     "criticalChance": 0.18,
     "criticalDamage": 3.15,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -717,13 +717,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -817,14 +817,14 @@
     "imageName": "legend/sword/52001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.sword",
-    "baseLevel": 100,
-    "baseDamage": 2080,
+    "baseLevel": 200,
+    "baseDamage": 4883,
     "criticalChance": 0.12,
     "criticalDamage": 3.0,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -873,14 +873,14 @@
     "imageName": "legend/sword/52002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.sword",
-    "baseLevel": 200,
-    "baseDamage": 4883,
+    "baseLevel": 400,
+    "baseDamage": 12251,
     "criticalChance": 0.12,
     "criticalDamage": 3.0,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -916,20 +916,20 @@
     "imageName": "legend/sword/52002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.sword",
-    "baseLevel": 300,
-    "baseDamage": 8294,
+    "baseLevel": 600,
+    "baseDamage": 21662,
     "criticalChance": 0.12,
     "criticalDamage": 3.0,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -939,7 +939,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -974,14 +974,14 @@
     "imageName": "legend/sword/52004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.sword",
-    "baseLevel": 400,
-    "baseDamage": 12251,
+    "baseLevel": 800,
+    "baseDamage": 32912,
     "criticalChance": 0.12,
     "criticalDamage": 3.0,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -1017,7 +1017,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -1034,18 +1034,18 @@
   },
   {
     "id": 52005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/sword/52005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.sword",
-    "baseLevel": 500,
-    "baseDamage": 16717,
+    "baseLevel": 1000,
+    "baseDamage": 45870,
     "criticalChance": 0.12,
     "criticalDamage": 3.0,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -1087,13 +1087,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -1187,14 +1187,14 @@
     "imageName": "legend/greatsword/53001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.greatsword",
-    "baseLevel": 100,
-    "baseDamage": 2946,
+    "baseLevel": 200,
+    "baseDamage": 6918,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.2,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -1243,14 +1243,14 @@
     "imageName": "legend/greatsword/53002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.greatsword",
-    "baseLevel": 200,
-    "baseDamage": 6918,
+    "baseLevel": 400,
+    "baseDamage": 17356,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.2,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -1286,20 +1286,20 @@
     "imageName": "legend/greatsword/53002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.greatsword",
-    "baseLevel": 300,
-    "baseDamage": 11750,
+    "baseLevel": 600,
+    "baseDamage": 30688,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.2,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -1309,7 +1309,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -1344,14 +1344,14 @@
     "imageName": "legend/greatsword/53004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.greatsword",
-    "baseLevel": 400,
-    "baseDamage": 17356,
+    "baseLevel": 800,
+    "baseDamage": 46625,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.2,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -1387,7 +1387,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -1404,18 +1404,18 @@
   },
   {
     "id": 53005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/greatsword/53005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.greatsword",
-    "baseLevel": 500,
-    "baseDamage": 23682,
+    "baseLevel": 1000,
+    "baseDamage": 64982,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.2,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -1457,13 +1457,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -1557,14 +1557,14 @@
     "imageName": "legend/scimitar/54001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scimitar",
-    "baseLevel": 100,
-    "baseDamage": 1820,
+    "baseLevel": 200,
+    "baseDamage": 4273,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -1613,14 +1613,14 @@
     "imageName": "legend/scimitar/54002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scimitar",
-    "baseLevel": 200,
-    "baseDamage": 4273,
+    "baseLevel": 400,
+    "baseDamage": 10720,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -1656,20 +1656,20 @@
     "imageName": "legend/scimitar/54002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scimitar",
-    "baseLevel": 300,
-    "baseDamage": 7257,
+    "baseLevel": 600,
+    "baseDamage": 18954,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -1679,7 +1679,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -1714,14 +1714,14 @@
     "imageName": "legend/scimitar/54004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scimitar",
-    "baseLevel": 400,
-    "baseDamage": 10720,
+    "baseLevel": 800,
+    "baseDamage": 28798,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -1757,7 +1757,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -1774,18 +1774,18 @@
   },
   {
     "id": 54005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/scimitar/54005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scimitar",
-    "baseLevel": 500,
-    "baseDamage": 14627,
+    "baseLevel": 1000,
+    "baseDamage": 40136,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -1827,13 +1827,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -1927,14 +1927,14 @@
     "imageName": "legend/dagger/55001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.dagger",
-    "baseLevel": 100,
-    "baseDamage": 1473,
+    "baseLevel": 200,
+    "baseDamage": 3459,
     "criticalChance": 0.24,
     "criticalDamage": 2.7,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 2.03,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -1983,14 +1983,14 @@
     "imageName": "legend/dagger/55002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.dagger",
-    "baseLevel": 200,
-    "baseDamage": 3459,
+    "baseLevel": 400,
+    "baseDamage": 8678,
     "criticalChance": 0.24,
     "criticalDamage": 2.7,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 2.03,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -2026,20 +2026,20 @@
     "imageName": "legend/dagger/55002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.dagger",
-    "baseLevel": 300,
-    "baseDamage": 5875,
+    "baseLevel": 600,
+    "baseDamage": 15344,
     "criticalChance": 0.24,
     "criticalDamage": 2.7,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 2.03,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -2049,7 +2049,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -2084,14 +2084,14 @@
     "imageName": "legend/dagger/55004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.dagger",
-    "baseLevel": 400,
-    "baseDamage": 8678,
+    "baseLevel": 800,
+    "baseDamage": 23312,
     "criticalChance": 0.24,
     "criticalDamage": 2.7,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 2.03,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -2127,7 +2127,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -2144,18 +2144,18 @@
   },
   {
     "id": 55005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/dagger/55005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.dagger",
-    "baseLevel": 500,
-    "baseDamage": 11841,
+    "baseLevel": 1000,
+    "baseDamage": 32491,
     "criticalChance": 0.24,
     "criticalDamage": 2.7,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 2.03,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -2197,13 +2197,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -2297,14 +2297,14 @@
     "imageName": "legend/cleaver/56001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.cleaver",
-    "baseLevel": 100,
-    "baseDamage": 2340,
+    "baseLevel": 200,
+    "baseDamage": 5494,
     "criticalChance": 0.144,
     "criticalDamage": 3.3,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.35,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -2353,14 +2353,14 @@
     "imageName": "legend/cleaver/56002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.cleaver",
-    "baseLevel": 200,
-    "baseDamage": 5494,
+    "baseLevel": 400,
+    "baseDamage": 13783,
     "criticalChance": 0.144,
     "criticalDamage": 3.3,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.35,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -2396,20 +2396,20 @@
     "imageName": "legend/cleaver/56002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.cleaver",
-    "baseLevel": 300,
-    "baseDamage": 9331,
+    "baseLevel": 600,
+    "baseDamage": 24370,
     "criticalChance": 0.144,
     "criticalDamage": 3.3,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.35,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -2419,7 +2419,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -2454,14 +2454,14 @@
     "imageName": "legend/cleaver/56004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.cleaver",
-    "baseLevel": 400,
-    "baseDamage": 13783,
+    "baseLevel": 800,
+    "baseDamage": 37026,
     "criticalChance": 0.144,
     "criticalDamage": 3.3,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.35,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -2497,7 +2497,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -2514,18 +2514,18 @@
   },
   {
     "id": 56005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/cleaver/56005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.cleaver",
-    "baseLevel": 500,
-    "baseDamage": 18806,
+    "baseLevel": 1000,
+    "baseDamage": 51604,
     "criticalChance": 0.144,
     "criticalDamage": 3.3,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.35,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -2567,13 +2567,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -2667,14 +2667,14 @@
     "imageName": "legend/battle_axe/57001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.battle_axe",
-    "baseLevel": 100,
-    "baseDamage": 2600,
+    "baseLevel": 200,
+    "baseDamage": 6104,
     "criticalChance": 0.096,
     "criticalDamage": 3.45,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.27,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -2723,14 +2723,14 @@
     "imageName": "legend/battle_axe/57002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.battle_axe",
-    "baseLevel": 200,
-    "baseDamage": 6104,
+    "baseLevel": 400,
+    "baseDamage": 15314,
     "criticalChance": 0.096,
     "criticalDamage": 3.45,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.27,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -2766,20 +2766,20 @@
     "imageName": "legend/battle_axe/57002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.battle_axe",
-    "baseLevel": 300,
-    "baseDamage": 10368,
+    "baseLevel": 600,
+    "baseDamage": 27078,
     "criticalChance": 0.096,
     "criticalDamage": 3.45,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.27,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -2789,7 +2789,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -2824,14 +2824,14 @@
     "imageName": "legend/battle_axe/57004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.battle_axe",
-    "baseLevel": 400,
-    "baseDamage": 15314,
+    "baseLevel": 800,
+    "baseDamage": 41140,
     "criticalChance": 0.096,
     "criticalDamage": 3.45,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.27,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -2867,7 +2867,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -2884,18 +2884,18 @@
   },
   {
     "id": 57005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/battle_axe/57005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.battle_axe",
-    "baseLevel": 500,
-    "baseDamage": 20896,
+    "baseLevel": 1000,
+    "baseDamage": 57337,
     "criticalChance": 0.096,
     "criticalDamage": 3.45,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.27,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -2937,13 +2937,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -3037,14 +3037,14 @@
     "imageName": "legend/warhammer/58001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.warhammer",
-    "baseLevel": 100,
-    "baseDamage": 3120,
+    "baseLevel": 200,
+    "baseDamage": 7325,
     "criticalChance": 0.084,
     "criticalDamage": 3.9,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.12,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -3093,14 +3093,14 @@
     "imageName": "legend/warhammer/58002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.warhammer",
-    "baseLevel": 200,
-    "baseDamage": 7325,
+    "baseLevel": 400,
+    "baseDamage": 18377,
     "criticalChance": 0.084,
     "criticalDamage": 3.9,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.12,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -3136,20 +3136,20 @@
     "imageName": "legend/warhammer/58002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.warhammer",
-    "baseLevel": 300,
-    "baseDamage": 12441,
+    "baseLevel": 600,
+    "baseDamage": 32494,
     "criticalChance": 0.084,
     "criticalDamage": 3.9,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.12,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -3159,7 +3159,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -3194,14 +3194,14 @@
     "imageName": "legend/warhammer/58004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.warhammer",
-    "baseLevel": 400,
-    "baseDamage": 18377,
+    "baseLevel": 800,
+    "baseDamage": 49368,
     "criticalChance": 0.084,
     "criticalDamage": 3.9,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.12,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -3237,7 +3237,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -3254,18 +3254,18 @@
   },
   {
     "id": 58005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/warhammer/58005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.warhammer",
-    "baseLevel": 500,
-    "baseDamage": 25075,
+    "baseLevel": 1000,
+    "baseDamage": 68805,
     "criticalChance": 0.084,
     "criticalDamage": 3.9,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.12,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -3307,13 +3307,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -3407,14 +3407,14 @@
     "imageName": "legend/spear/59001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.spear",
-    "baseLevel": 100,
-    "baseDamage": 1906,
+    "baseLevel": 200,
+    "baseDamage": 4476,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.58,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -3463,14 +3463,14 @@
     "imageName": "legend/spear/59002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.spear",
-    "baseLevel": 200,
-    "baseDamage": 4476,
+    "baseLevel": 400,
+    "baseDamage": 11230,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.58,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -3506,20 +3506,20 @@
     "imageName": "legend/spear/59002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.spear",
-    "baseLevel": 300,
-    "baseDamage": 7603,
+    "baseLevel": 600,
+    "baseDamage": 19857,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.58,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -3529,7 +3529,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -3564,14 +3564,14 @@
     "imageName": "legend/spear/59004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.spear",
-    "baseLevel": 400,
-    "baseDamage": 11230,
+    "baseLevel": 800,
+    "baseDamage": 30169,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.58,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -3607,7 +3607,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -3624,18 +3624,18 @@
   },
   {
     "id": 59005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/spear/59005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.spear",
-    "baseLevel": 500,
-    "baseDamage": 15324,
+    "baseLevel": 1000,
+    "baseDamage": 42047,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.58,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -3677,13 +3677,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -3777,14 +3777,14 @@
     "imageName": "legend/staff/60001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.staff",
-    "baseLevel": 100,
-    "baseDamage": 1906,
+    "baseLevel": 200,
+    "baseDamage": 4476,
     "criticalChance": 0.156,
     "criticalDamage": 2.85,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -3833,14 +3833,14 @@
     "imageName": "legend/staff/60002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.staff",
-    "baseLevel": 200,
-    "baseDamage": 4476,
+    "baseLevel": 400,
+    "baseDamage": 11230,
     "criticalChance": 0.156,
     "criticalDamage": 2.85,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -3876,20 +3876,20 @@
     "imageName": "legend/staff/60002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.staff",
-    "baseLevel": 300,
-    "baseDamage": 7603,
+    "baseLevel": 600,
+    "baseDamage": 19857,
     "criticalChance": 0.156,
     "criticalDamage": 2.85,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -3899,7 +3899,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -3934,14 +3934,14 @@
     "imageName": "legend/staff/60004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.staff",
-    "baseLevel": 400,
-    "baseDamage": 11230,
+    "baseLevel": 800,
+    "baseDamage": 30169,
     "criticalChance": 0.156,
     "criticalDamage": 2.85,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -3977,7 +3977,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -3994,18 +3994,18 @@
   },
   {
     "id": 60005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/staff/60005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.staff",
-    "baseLevel": 500,
-    "baseDamage": 15324,
+    "baseLevel": 1000,
+    "baseDamage": 42047,
     "criticalChance": 0.156,
     "criticalDamage": 2.85,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -4047,13 +4047,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -4147,14 +4147,14 @@
     "imageName": "legend/trident/61001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.trident",
-    "baseLevel": 100,
-    "baseDamage": 2080,
+    "baseLevel": 200,
+    "baseDamage": 4883,
     "criticalChance": 0.144,
     "criticalDamage": 3.15,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.42,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -4203,14 +4203,14 @@
     "imageName": "legend/trident/61002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.trident",
-    "baseLevel": 200,
-    "baseDamage": 4883,
+    "baseLevel": 400,
+    "baseDamage": 12251,
     "criticalChance": 0.144,
     "criticalDamage": 3.15,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.42,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -4246,20 +4246,20 @@
     "imageName": "legend/trident/61002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.trident",
-    "baseLevel": 300,
-    "baseDamage": 8294,
+    "baseLevel": 600,
+    "baseDamage": 21662,
     "criticalChance": 0.144,
     "criticalDamage": 3.15,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.42,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -4269,7 +4269,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -4304,14 +4304,14 @@
     "imageName": "legend/trident/61004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.trident",
-    "baseLevel": 400,
-    "baseDamage": 12251,
+    "baseLevel": 800,
+    "baseDamage": 32912,
     "criticalChance": 0.144,
     "criticalDamage": 3.15,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.42,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -4347,7 +4347,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -4364,18 +4364,18 @@
   },
   {
     "id": 61005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/trident/61005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.trident",
-    "baseLevel": 500,
-    "baseDamage": 16717,
+    "baseLevel": 1000,
+    "baseDamage": 45870,
     "criticalChance": 0.144,
     "criticalDamage": 3.15,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.42,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -4417,13 +4417,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -4517,14 +4517,14 @@
     "imageName": "legend/mace/62001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.mace",
-    "baseLevel": 100,
-    "baseDamage": 2426,
+    "baseLevel": 200,
+    "baseDamage": 5697,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.35,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -4573,14 +4573,14 @@
     "imageName": "legend/mace/62002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.mace",
-    "baseLevel": 200,
-    "baseDamage": 5697,
+    "baseLevel": 400,
+    "baseDamage": 14293,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.35,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -4616,20 +4616,20 @@
     "imageName": "legend/mace/62002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.mace",
-    "baseLevel": 300,
-    "baseDamage": 9676,
+    "baseLevel": 600,
+    "baseDamage": 25273,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.35,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -4639,7 +4639,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -4674,14 +4674,14 @@
     "imageName": "legend/mace/62004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.mace",
-    "baseLevel": 400,
-    "baseDamage": 14293,
+    "baseLevel": 800,
+    "baseDamage": 38397,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.35,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -4717,7 +4717,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -4734,18 +4734,18 @@
   },
   {
     "id": 62005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/mace/62005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.mace",
-    "baseLevel": 500,
-    "baseDamage": 19503,
+    "baseLevel": 1000,
+    "baseDamage": 53515,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.35,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -4787,13 +4787,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -4887,14 +4887,14 @@
     "imageName": "legend/scythe/63001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scythe",
-    "baseLevel": 100,
-    "baseDamage": 2166,
+    "baseLevel": 200,
+    "baseDamage": 5087,
     "criticalChance": 0.156,
     "criticalDamage": 3.45,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -4943,14 +4943,14 @@
     "imageName": "legend/scythe/63002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scythe",
-    "baseLevel": 200,
-    "baseDamage": 5087,
+    "baseLevel": 400,
+    "baseDamage": 12762,
     "criticalChance": 0.156,
     "criticalDamage": 3.45,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -4986,20 +4986,20 @@
     "imageName": "legend/scythe/63002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scythe",
-    "baseLevel": 300,
-    "baseDamage": 8640,
+    "baseLevel": 600,
+    "baseDamage": 22565,
     "criticalChance": 0.156,
     "criticalDamage": 3.45,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -5009,7 +5009,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -5044,14 +5044,14 @@
     "imageName": "legend/scythe/63004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scythe",
-    "baseLevel": 400,
-    "baseDamage": 12762,
+    "baseLevel": 800,
+    "baseDamage": 34283,
     "criticalChance": 0.156,
     "criticalDamage": 3.45,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -5087,7 +5087,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -5104,18 +5104,18 @@
   },
   {
     "id": 63005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/scythe/63005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scythe",
-    "baseLevel": 500,
-    "baseDamage": 17413,
+    "baseLevel": 1000,
+    "baseDamage": 47781,
     "criticalChance": 0.156,
     "criticalDamage": 3.45,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -5157,13 +5157,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -5257,14 +5257,14 @@
     "imageName": "legend/curved_sword/64001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.curved_sword",
-    "baseLevel": 100,
-    "baseDamage": 1906,
+    "baseLevel": 200,
+    "baseDamage": 4476,
     "criticalChance": 0.144,
     "criticalDamage": 3.15,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.65,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -5313,14 +5313,14 @@
     "imageName": "legend/curved_sword/64002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.curved_sword",
-    "baseLevel": 200,
-    "baseDamage": 4476,
+    "baseLevel": 400,
+    "baseDamage": 11230,
     "criticalChance": 0.144,
     "criticalDamage": 3.15,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.65,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -5356,20 +5356,20 @@
     "imageName": "legend/curved_sword/64002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.curved_sword",
-    "baseLevel": 300,
-    "baseDamage": 7603,
+    "baseLevel": 600,
+    "baseDamage": 19857,
     "criticalChance": 0.144,
     "criticalDamage": 3.15,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.65,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -5379,7 +5379,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -5414,14 +5414,14 @@
     "imageName": "legend/curved_sword/64004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.curved_sword",
-    "baseLevel": 400,
-    "baseDamage": 11230,
+    "baseLevel": 800,
+    "baseDamage": 30169,
     "criticalChance": 0.144,
     "criticalDamage": 3.15,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.65,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -5457,7 +5457,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -5474,18 +5474,18 @@
   },
   {
     "id": 64005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/curved_sword/64005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.curved_sword",
-    "baseLevel": 500,
-    "baseDamage": 15324,
+    "baseLevel": 1000,
+    "baseDamage": 42047,
     "criticalChance": 0.144,
     "criticalDamage": 3.15,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.65,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -5527,13 +5527,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -5627,14 +5627,14 @@
     "imageName": "legend/nunchaku/65001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.nunchaku",
-    "baseLevel": 100,
-    "baseDamage": 1646,
+    "baseLevel": 200,
+    "baseDamage": 3866,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
     "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
-    "baseSellPrice": 180000,
+    "baseSellPrice": 360000,
     "skills": [
       {
         "skill_name": "낚아채기",
@@ -5683,14 +5683,14 @@
     "imageName": "legend/nunchaku/65002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.nunchaku",
-    "baseLevel": 200,
-    "baseDamage": 3866,
+    "baseLevel": 400,
+    "baseDamage": 9699,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
     "defensePenetration": 24.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
-    "baseSellPrice": 360000,
+    "baseSellPrice": 720000,
     "skills": [
       {
         "skill_name": "끈질긴 추격",
@@ -5726,20 +5726,20 @@
     "imageName": "legend/nunchaku/65002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.nunchaku",
-    "baseLevel": 300,
-    "baseDamage": 6566,
+    "baseLevel": 600,
+    "baseDamage": 17149,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
     "defensePenetration": 28.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
-    "baseSellPrice": 540000,
+    "baseSellPrice": 1080000,
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 12,000, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -5749,7 +5749,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 12000
+              "maxDmg": 27700
             }
           }
         ]
@@ -5784,14 +5784,14 @@
     "imageName": "legend/nunchaku/65004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.nunchaku",
-    "baseLevel": 400,
-    "baseDamage": 9699,
+    "baseLevel": 800,
+    "baseDamage": 26055,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
     "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
-    "baseSellPrice": 720000,
+    "baseSellPrice": 1440000,
     "skills": [
       {
         "skill_name": "정조준",
@@ -5827,7 +5827,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 0.5,
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -5844,18 +5844,18 @@
   },
   {
     "id": 65005,
-    "name": "신성한 일침",
+    "name": "세인트 프레이어",
     "imageName": "legend/nunchaku/65005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.nunchaku",
-    "baseLevel": 500,
-    "baseDamage": 13234,
+    "baseLevel": 1000,
+    "baseDamage": 36313,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
     "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
-    "baseSellPrice": 900000,
+    "baseSellPrice": 1800000,
     "skills": [
       {
         "skill_name": "정화",
@@ -5897,13 +5897,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 83,500 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 83500,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }

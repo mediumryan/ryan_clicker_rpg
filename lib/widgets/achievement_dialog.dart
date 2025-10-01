@@ -160,8 +160,7 @@ class _AchievementDialogState extends State<AchievementDialog> {
         onPressed: isCompletable
             ? () {
                 setState(() {
-                  achievement.isCompleted = true;
-                  gameProvider.claimAchievementRewards(achievement);
+                  gameProvider.completeAndClaimAchievement(achievement);
                 });
               }
             : null, // Disabled if not completable

@@ -32,4 +32,8 @@ class Achievement {
       _isRewardClaimed = true;
     }
   }
+
+  void forceClaim() {
+    _isRewardClaimed = true;
+  }
 }

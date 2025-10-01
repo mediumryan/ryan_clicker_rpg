@@ -378,6 +378,28 @@ class ShopScreen extends StatelessWidget {
                   const SizedBox(height: 12),
                   _buildShopItem(
                     context: context,
+                    title: '현재 레벨구간 에픽 무기 상자',
+                    imagePath: 'images/chests/epic.png',
+                    quantity: 1,
+                    description: '현재 레벨 구간 이하의 에픽 무기를 획득할 수 있습니다.',
+                    cost: 1,
+                    onPressed: () {
+                      _showConfirmationDialog(
+                        context,
+                        '구매 확인',
+                        '현재 레벨구간 에픽 무기 상자를 1 골드에 구매하시겠습니까?',
+                        () {
+                          final message = game.buyCurrentRangeEpicBox(
+                            game.player.currentStage,
+                          );
+                          _showResultDialog(context, message);
+                        },
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 12),
+                  _buildShopItem(
+                    context: context,
                     title: '전구간 랜덤 레전드 무기 상자',
                     imagePath: 'images/chests/legend.png',
                     quantity: 1,
@@ -398,18 +420,18 @@ class ShopScreen extends StatelessWidget {
                   const SizedBox(height: 12),
                   _buildShopItem(
                     context: context,
-                    title: '현재 레벨구간 에픽 무기 상자',
-                    imagePath: 'images/chests/epic.png',
+                    title: '현재 레벨구간 레전드 무기 상자',
+                    imagePath: 'images/chests/legend.png',
                     quantity: 1,
-                    description: '현재 레벨 구간 이하의 에픽 무기를 획득할 수 있습니다.',
+                    description: '현재 레벨 구간 이하의 레전드 무기를 획득할 수 있습니다.',
                     cost: 1,
                     onPressed: () {
                       _showConfirmationDialog(
                         context,
                         '구매 확인',
-                        '현재 레벨구간 에픽 무기 상자를 1 골드에 구매하시겠습니까?',
+                        '현재 레벨구간 레전드 무기 상자를 1 골드에 구매하시겠습니까?',
                         () {
-                          final message = game.buyCurrentRangeEpicBox(
+                          final message = game.buyCurrentRangeLegendaryBox(
                             game.player.currentStage,
                           );
                           _showResultDialog(context, message);

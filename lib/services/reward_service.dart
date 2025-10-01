@@ -28,11 +28,11 @@ class RewardService {
   }
 
   Weapon getWeaponFromBox(GachaBox box, int highestStageCleared) {
-    bool isAllRange = box.boxType == WeaponBoxType.gamble;
+    bool isAllRange = box.isAllRange;
 
     return WeaponData.getWeaponFromBox(
       box.boxType,
-      box.stageLevel,
+      isAllRange ? highestStageCleared : box.stageLevel,
       isAllRange: isAllRange,
     );
   }
