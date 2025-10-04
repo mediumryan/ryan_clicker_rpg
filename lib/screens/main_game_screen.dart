@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
-import 'package:ryan_clicker_rpg/widgets/nav_buttons_widget.dart';
+import 'package:ryan_clicker_rpg/widgets/quick_access_buttons.dart';
 import 'package:ryan_clicker_rpg/widgets/stage_zone_widget.dart';
 import 'package:ryan_clicker_rpg/widgets/weapon_info_widget.dart';
+import 'package:ryan_clicker_rpg/widgets/app_drawer.dart';
 import 'package:ryan_clicker_rpg/widgets/player_resources_widget.dart'; // New import
 
 class MainGameScreen extends StatelessWidget {
@@ -12,6 +13,7 @@ class MainGameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Consumer<GameProvider>(
@@ -24,18 +26,13 @@ class MainGameScreen extends StatelessWidget {
                   flex: 2,
                   child: Row(
                     children: [
-                      // Left 60% of the top section
                       Expanded(
-                        flex: 3, // Adjusted flex for WeaponInfoWidget
+                        flex: 3,
                         child: WeaponInfoWidget(
                           weapon: game.player.equippedWeapon,
                         ),
                       ),
-                      // Right 40% of the top section
-                      const Expanded(
-                        flex: 7, // Adjusted flex for NavButtonsWidget
-                        child: NavButtonsWidget(),
-                      ),
+                      const Expanded(flex: 7, child: QuickAccessButtons()),
                     ],
                   ),
                 ),
@@ -62,7 +59,6 @@ class MainGameScreen extends StatelessWidget {
                     lastDroppedBox: game.lastDroppedBox, // New
                     lastEnhancementStonesReward:
                         game.lastEnhancementStonesReward, // New
-                    hasCompletableAchievements: game.hasCompletableAchievements,
                   ),
                 ),
               ],

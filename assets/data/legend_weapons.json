@@ -9,15 +9,21 @@
     "baseDamage": 121,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
-    "defensePenetration": 4.0,
+    "defensePenetration": 10.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
     "baseSellPrice": 18000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
         "skill_name": "에메랄드 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
+        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -64,11 +70,11 @@
       }
     ],
     "accuracy": 0.823,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
+    "description": "에메랄드의 맑고 은은한 빛을 머금은 레이피어. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 10,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
@@ -81,22 +87,28 @@
     "baseDamage": 3662,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
-    "defensePenetration": 20.0,
+    "defensePenetration": 14.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
     "baseSellPrice": 360000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
         "skill_name": "낚아채기",
         "skill_type": "active",
         "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 106,240의 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 104000,
+              "damage": 106240,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -106,7 +118,8 @@
       {
         "skill_name": "매의 눈",
         "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
+        "skill_description": "매의 시력이 적중률을 높인다.",
+        "skill_description_detail": "적중률 +10%",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
@@ -120,11 +133,11 @@
       }
     ],
     "accuracy": 0.823,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
+    "description": "매의 눈을 본따 만든 레이피어. 포착한 사냥감은 놓치지 않는다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 30,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
@@ -137,25 +150,31 @@
     "baseDamage": 9188,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
-    "defensePenetration": 24.0,
+    "defensePenetration": 18.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
     "baseSellPrice": 720000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
         "skill_name": "끈질긴 추격",
         "skill_type": "passive",
         "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
+        "skill_description_detail": "공격 시 5초간 공격력 +10%, 최대 15중첩",
         "skill_effect": [
           {
             "effect_name": "applyStackingBuff",
             "params": {
               "trigger": "onHit",
               "duration": 5,
-              "maxStacks": 10,
+              "maxStacks": 15,
               "stat": "damage",
-              "increasePerStack": 0.15,
+              "increasePerStack": 0.1,
               "isMultiplicative": true
             }
           }
@@ -167,29 +186,35 @@
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 50,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
-    "id": 50002,
+    "id": 50003,
     "name": "뇌운",
-    "imageName": "legend/rapier/50002.png",
+    "imageName": "legend/rapier/50003.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.rapier",
     "baseLevel": 600,
     "baseDamage": 16247,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
-    "defensePenetration": 28.0,
+    "defensePenetration": 22.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
     "baseSellPrice": 1080000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
         "skill_name": "방전",
         "skill_type": "active",
         "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 110,000, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyShock",
@@ -199,7 +224,7 @@
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 27700
+              "maxDmg": 111000
             }
           }
         ]
@@ -225,7 +250,7 @@
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 100,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
@@ -238,10 +263,16 @@
     "baseDamage": 24684,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
-    "defensePenetration": 36.0,
+    "defensePenetration": 26.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
     "baseSellPrice": 1440000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
         "skill_name": "정조준",
@@ -285,16 +316,16 @@
       }
     ],
     "accuracy": 0.823,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
+    "description": "명사수 데스페라도의 보조무기. 빠르고 정확한 공격을 할 수 있다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 150,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 50005,
-    "name": "세인트 프레이어",
+    "name": "신성한 파편 - 눈",
     "imageName": "legend/rapier/50005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.rapier",
@@ -302,10 +333,16 @@
     "baseDamage": 34402,
     "criticalChance": 0.216,
     "criticalDamage": 2.85,
-    "defensePenetration": 40.0,
+    "defensePenetration": 30.0,
     "doubleAttackChance": 0.0,
     "speed": 1.95,
     "baseSellPrice": 1800000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
         "skill_name": "정화",
@@ -347,13 +384,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 10,00,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 1367000,
+              "damage": 1000000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -362,16 +399,16 @@
       }
     ],
     "accuracy": 0.823,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
+    "description": "신성국의 열다섯 성물 중 하나. 신의 눈으로 만들어졌다고 전해진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 150,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 51000,
-    "name": "에메랄드 플레어",
+    "name": "흑요도",
     "imageName": "legend/blade/51000.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.blade",
@@ -379,15 +416,21 @@
     "baseDamage": 141,
     "criticalChance": 0.18,
     "criticalDamage": 3.15,
-    "defensePenetration": 4.0,
+    "defensePenetration": 10.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
     "baseSellPrice": 18000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "에메랄드 각인",
+        "skill_name": "흑요석 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
+        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -434,16 +477,16 @@
       }
     ],
     "accuracy": 0.786,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
+    "description": "흑요석의 깊고 어두운 빛을 담은 검. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 10,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 51001,
-    "name": "팔콘 스트라이크",
+    "name": "적사",
     "imageName": "legend/blade/51001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.blade",
@@ -451,55 +494,63 @@
     "baseDamage": 4273,
     "criticalChance": 0.18,
     "criticalDamage": 3.15,
-    "defensePenetration": 20.0,
+    "defensePenetration": 14.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
     "baseSellPrice": 360000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "낚아채기",
+        "skill_name": "갈증",
         "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
+        "skill_description": "날카로운 일격이 적의 상처를 깊게 파고든다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 출혈, 초당 21,200 피해. 중첩 불가, 쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyFixedDamage",
+            "effect_name": "applyBleed",
             "params": {
               "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
+              "duration": 5,
+              "fixedDamagePerSecond": 21200,
+              "stackable": false,
+              "trigger": "onHit",
+              "cooldown": 5
             }
           }
         ]
       },
       {
-        "skill_name": "매의 눈",
+        "skill_name": "수혈",
         "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
+        "skill_description": "피로 물든 칼날이 더욱 예리해진다.",
+        "skill_description_detail": "출혈 상태의 적에게 주는 피해 +100%",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatBoost",
+            "effect_name": "increaseDamageToStatused",
             "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
+              "status": "bleed",
+              "damageMultiplier": 1.0
             }
           }
         ]
       }
     ],
     "accuracy": 0.786,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
+    "description": "붉은 뱀의 모양을 한 음침한 기운의 요도. 공격 시 출혈을 유발한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 30,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 51002,
-    "name": "그림자 사냥꾼",
+    "name": "의참도",
     "imageName": "legend/blade/51002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.blade",
@@ -507,25 +558,36 @@
     "baseDamage": 10720,
     "criticalChance": 0.18,
     "criticalDamage": 3.15,
-    "defensePenetration": 24.0,
+    "defensePenetration": 18.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
     "baseSellPrice": 720000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "끈질긴 추격",
+        "skill_name": "남아있는 의지",
         "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
+        "skill_description": "검에 깃든 강력한 의지가 사용자를 고무시킨다.",
+        "skill_description_detail": "공격력 +100%, 공격속도 +50%",
         "skill_effect": [
           {
-            "effect_name": "applyStackingBuff",
+            "effect_name": "applyPassiveStatBoost",
             "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
               "stat": "damage",
-              "increasePerStack": 0.15,
+              "value": 2.0,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 1.5,
               "isMultiplicative": true
             }
           }
@@ -533,74 +595,70 @@
       }
     ],
     "accuracy": 0.786,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
+    "description": "동쪽 나라의 협객 간사부로가 생전에 사용했던 검. 그 의협심이 고스란히 남아있다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 50,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
-    "id": 51002,
-    "name": "뇌운",
-    "imageName": "legend/blade/51002.png",
+    "id": 51003,
+    "name": "에어린델",
+    "imageName": "legend/blade/51003.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.blade",
     "baseLevel": 600,
     "baseDamage": 18954,
     "criticalChance": 0.18,
     "criticalDamage": 3.15,
-    "defensePenetration": 28.0,
+    "defensePenetration": 22.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
     "baseSellPrice": 1080000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "방전",
+        "skill_name": "제피르의 축복",
         "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
+        "skill_description": "바람의 신이자 실프의 주인인 제피르의 축복으로 사용자의 속도를 대폭 올려준다.",
+        "skill_description_detail": "공격속도 +150%, 더블어택 확률 +5%",
         "skill_effect": [
           {
-            "effect_name": "applyShock",
+            "effect_name": "applyPassiveStatBoost",
             "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
+              "stat": "doubleAttackChance",
+              "value": 0.05,
+              "isMultiplicative": false
             }
-          }
-        ]
-      },
-      {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
-        "skill_effect": [
+          },
           {
-            "effect_name": "increaseDamageToStatused",
+            "effect_name": "applyPassiveStatBoost",
             "params": {
-              "status": "shock",
-              "damageMultiplier": 1
+              "stat": "speed",
+              "value": 2.5,
+              "isMultiplicative": true
             }
           }
         ]
       }
     ],
     "accuracy": 0.786,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
+    "description": "바람의 정령 실프의 날개를 엮어 만든 검. 매우 빠른 공격이 가능해진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 100,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 51004,
-    "name": "리볼버샷",
+    "name": "사천당검",
     "imageName": "legend/blade/51004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.blade",
@@ -608,63 +666,64 @@
     "baseDamage": 28798,
     "criticalChance": 0.18,
     "criticalDamage": 3.15,
-    "defensePenetration": 36.0,
+    "defensePenetration": 26.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
     "baseSellPrice": 1440000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "정조준",
-        "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
+        "skill_name": "만독 주입",
+        "skill_type": "active",
+        "skill_description": "여러 대에 거쳐 개량된 극독을 상대방에게 주입한다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 중독, 초당 최대 체력의 8% 피해, 최대 데미지 864,000, 쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatBoost",
+            "effect_name": "applyPoison",
             "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
+              "chance": 0.075,
+              "percentPerSecond": 0.08,
+              "maxDmg": 864000,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 5
             }
           }
         ]
       },
       {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
+        "skill_name": "독요청광심법",
+        "skill_type": "active",
+        "skill_description": "당가의 비기로 독을 자유자제로 다룰 수 있게 된다.",
+        "skill_description_detail": "중독 상태의 적에게 주는 데미지 +100%",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatBoost",
+            "effect_name": "increaseDamageToStatused",
             "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
+              "status": "poison",
+              "damageMultiplier": 1.0
             }
           }
         ]
       }
     ],
     "accuracy": 0.786,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
+    "description": "동쪽 무림 세력 중 독에 정평이 나있는 사천당가의 명검.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 150,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 51005,
-    "name": "세인트 프레이어",
+    "name": "신성한 파편 - 오른손",
     "imageName": "legend/blade/51005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.blade",
@@ -672,10 +731,16 @@
     "baseDamage": 40136,
     "criticalChance": 0.18,
     "criticalDamage": 3.15,
-    "defensePenetration": 40.0,
+    "defensePenetration": 30.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
     "baseSellPrice": 1800000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
         "skill_name": "정화",
@@ -717,13 +782,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,000,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 1367000,
+              "damage": 1000000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -732,16 +797,16 @@
       }
     ],
     "accuracy": 0.786,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
+    "description": "신성국의 열다섯 성물 중 하나. 신의 오른손으로 만들어졌다고 전해진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 150,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 52000,
-    "name": "에메랄드 플레어",
+    "name": "라피스 글로우",
     "imageName": "legend/sword/52000.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.sword",
@@ -749,15 +814,21 @@
     "baseDamage": 162,
     "criticalChance": 0.12,
     "criticalDamage": 3.0,
-    "defensePenetration": 4.0,
+    "defensePenetration": 10.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
     "baseSellPrice": 18000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "에메랄드 각인",
+        "skill_name": "청금석 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
+        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -804,16 +875,16 @@
       }
     ],
     "accuracy": 0.757,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
+    "description": "청금석의 신비롭고 차분한 빛을 띠는 검. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 10,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 52001,
-    "name": "팔콘 스트라이크",
+    "name": "썬버드",
     "imageName": "legend/sword/52001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.sword",
@@ -821,55 +892,63 @@
     "baseDamage": 4883,
     "criticalChance": 0.12,
     "criticalDamage": 3.0,
-    "defensePenetration": 20.0,
+    "defensePenetration": 14.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
     "baseSellPrice": 360000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "낚아채기",
+        "skill_name": "발화",
         "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
+        "skill_description": "태양과 같은 뜨거운 열기로 적을 불태운다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 화상, 초당 21,200 피해, 중첩 불가, 쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyFixedDamage",
+            "effect_name": "applyBurn",
             "params": {
               "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
+              "duration": 5,
+              "damagePerSecond": 21200,
+              "stackable": false,
+              "trigger": "onHit",
+              "cooldown": 5
             }
           }
         ]
       },
       {
-        "skill_name": "매의 눈",
-        "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
+        "skill_name": "불꽃 날개짓",
+        "skill_type": "active",
+        "skill_description": "화상에 걸린 적을 재로 만든다.",
+        "skill_description_detail": "화상 상태의 적에게 주는 데미지 +100%",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatBoost",
+            "effect_name": "increaseDamageToStatused",
             "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
+              "status": "burn",
+              "damageMultiplier": 1.0
             }
           }
         ]
       }
     ],
     "accuracy": 0.757,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
+    "description": "불새의 날갯짓처럼 타오르는 검. 적에게 강한 화상을 입혀 지속적인 피해를 준다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 30,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 52002,
-    "name": "그림자 사냥꾼",
+    "name": "심판자",
     "imageName": "legend/sword/52002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.sword",
@@ -877,100 +956,110 @@
     "baseDamage": 12251,
     "criticalChance": 0.12,
     "criticalDamage": 3.0,
-    "defensePenetration": 24.0,
+    "defensePenetration": 18.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
     "baseSellPrice": 720000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "끈질긴 추격",
-        "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
+        "skill_name": "의지 관철",
+        "skill_type": "active",
+        "skill_description": "검에 깃든 신념으로 옳고 그름은 더이상 무의미해집니다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 320,000의 추가 피해. 쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyStackingBuff",
+            "effect_name": "applyFixedDamage",
             "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
-              "stat": "damage",
-              "increasePerStack": 0.15,
-              "isMultiplicative": true
+              "chance": 0.075,
+              "damage": 320000,
+              "cooldown": 5,
+              "trigger": "onHit"
             }
           }
         ]
       }
     ],
     "accuracy": 0.757,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
+    "description": "강력한 힘이 곧 정의라는 신념으로 만들어진 검.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 50,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
-    "id": 52002,
-    "name": "뇌운",
-    "imageName": "legend/sword/52002.png",
+    "id": 52003,
+    "name": "트리스칼",
+    "imageName": "legend/sword/52003.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.sword",
     "baseLevel": 600,
     "baseDamage": 21662,
     "criticalChance": 0.12,
     "criticalDamage": 3.0,
-    "defensePenetration": 28.0,
+    "defensePenetration": 22.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
     "baseSellPrice": 1080000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "방전",
+        "skill_name": "한기 방출",
         "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
+        "skill_description": "서린 한기가 적을 얼린다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 빙결, 최대 데미지 925,800 ,쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyShock",
+            "effect_name": "applyFreeze",
             "params": {
               "chance": 0.075,
               "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
               "cooldown": 5,
-              "maxDmg": 27700
+              "maxDmg": 925800,
+              "trigger": "onHit"
             }
           }
         ]
       },
       {
-        "skill_name": "충전",
+        "skill_name": "서리꽃",
         "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
+        "skill_description": "주변 온도가 낮아지며 적의 갑옷에 서리꽃이 핀다.",
+        "skill_description_detail": "방어력 관통 +25",
         "skill_effect": [
           {
-            "effect_name": "increaseDamageToStatused",
+            "effect_name": "applyPassiveStatBoost",
             "params": {
-              "status": "shock",
-              "damageMultiplier": 1
+              "stat": "defensePenetration",
+              "value": 25,
+              "isMultiplicative": false
             }
           }
         ]
       }
     ],
     "accuracy": 0.757,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
+    "description": "요툰의 왕 트림의 뼈로 벼린 검. 강한 냉기의 힘을 담고 있다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 100,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 52004,
-    "name": "리볼버샷",
+    "name": "크로우송",
     "imageName": "legend/sword/52004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.sword",
@@ -978,63 +1067,64 @@
     "baseDamage": 32912,
     "criticalChance": 0.12,
     "criticalDamage": 3.0,
-    "defensePenetration": 36.0,
+    "defensePenetration": 26.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
     "baseSellPrice": 1440000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "정조준",
-        "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
+        "skill_name": "전쟁의 노래",
+        "skill_type": "active",
+        "skill_description": "모리건의 전쟁의 노래가 전장에 울려 퍼진다.",
+        "skill_description_detail": "공격력 +88%",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
+              "stat": "damage",
+              "value": 1.88,
+              "isMultiplicative": true
             }
           }
         ]
       },
       {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
+        "skill_name": "까마귀의 저주",
+        "skill_type": "active",
+        "skill_description": "모리건의 저주가 깃든 까마귀 떼가 적을 휘감는다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 방어력 80 감소, 중첩 불가, 쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatBoost",
+            "effect_name": "applyDisarm",
             "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
+              "chance": 0.075,
+              "defenseReduction": 80,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 5
             }
           }
         ]
       }
     ],
     "accuracy": 0.757,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
+    "description": "전쟁의 신 모리건이 사용했던 검. 그녀의 권능이 남아있다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 150,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 52005,
-    "name": "세인트 프레이어",
+    "name": "신성한 파편 - 심장",
     "imageName": "legend/sword/52005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.sword",
@@ -1042,10 +1132,16 @@
     "baseDamage": 45870,
     "criticalChance": 0.12,
     "criticalDamage": 3.0,
-    "defensePenetration": 40.0,
+    "defensePenetration": 30.0,
     "doubleAttackChance": 0.0,
     "speed": 1.5,
     "baseSellPrice": 1800000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
         "skill_name": "정화",
@@ -1087,13 +1183,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 10,00,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 1367000,
+              "damage": 1000000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -1102,16 +1198,16 @@
       }
     ],
     "accuracy": 0.757,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
+    "description": "신성국의 열다섯 성물 중 하나. 신의 심장으로 만들어졌다고 전해진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 150,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 53000,
-    "name": "에메랄드 플레어",
+    "name": "루비 레이즈",
     "imageName": "legend/greatsword/53000.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.greatsword",
@@ -1119,15 +1215,21 @@
     "baseDamage": 229,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
-    "defensePenetration": 4.0,
+    "defensePenetration": 10.0,
     "doubleAttackChance": 0.0,
     "speed": 1.2,
     "baseSellPrice": 18000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "에메랄드 각인",
+        "skill_name": "루비 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
+        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -1174,16 +1276,16 @@
       }
     ],
     "accuracy": 0.691,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
+    "description": "루비의 뜨겁고 강렬한 광채를 품은 대검. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 10,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 53001,
-    "name": "팔콘 스트라이크",
+    "name": "라이언 하트",
     "imageName": "legend/greatsword/53001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.greatsword",
@@ -1191,55 +1293,78 @@
     "baseDamage": 6918,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
-    "defensePenetration": 20.0,
+    "defensePenetration": 14.0,
     "doubleAttackChance": 0.0,
     "speed": 1.2,
     "baseSellPrice": 360000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "낚아채기",
+        "skill_name": "로어",
         "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
+        "skill_description": "큰 소리를 내어 적을 혼란에 빠뜨린다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 혼란, 쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyFixedDamage",
+            "effect_name": "applyConfusion",
             "params": {
               "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 5
             }
           }
         ]
       },
       {
-        "skill_name": "매의 눈",
+        "skill_name": "숨통 끊기",
         "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
+        "skill_description": "혼란 상태의 적을 무자비하게 사냥한다.",
+        "skill_description_detail": "혼란 상태의 적에게 주는 데미지 +100%",
+        "skill_effect": [
+          {
+            "effect_name": "increaseDamageToStatused",
+            "params": {
+              "status": "confusion",
+              "damageMultiplier": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "맹수의 왕",
+        "skill_type": "passive",
+        "skill_description": "공격력이 증가한다.",
+        "skill_description_detail": "공격력 +50%",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
+              "stat": "damage",
+              "value": 1.5,
+              "isMultiplicative": true
             }
           }
         ]
       }
     ],
     "accuracy": 0.691,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
+    "description": "사자의 매서움을 본따 만든 대검. 적의 전의를 상실하게 만든다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 30,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 53002,
-    "name": "그림자 사냥꾼",
+    "name": "라스트 뱅가드",
     "imageName": "legend/greatsword/53002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.greatsword",
@@ -1247,100 +1372,125 @@
     "baseDamage": 17356,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
-    "defensePenetration": 24.0,
+    "defensePenetration": 18.0,
     "doubleAttackChance": 0.0,
     "speed": 1.2,
     "baseSellPrice": 720000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "끈질긴 추격",
+        "skill_name": "두려움은 없다",
         "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
+        "skill_description": "본인의 의지를 다잡으며 전투력을 끌어올린다.",
+        "skill_description_detail": "공격력 +125%, 치명타 확률 +10%, 치명타 배율 +3배",
         "skill_effect": [
           {
-            "effect_name": "applyStackingBuff",
+            "effect_name": "applyPassiveStatBoost",
             "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
               "stat": "damage",
-              "increasePerStack": 0.15,
+              "value": 2.25,
               "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.1,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalDamage",
+              "value": 3.0,
+              "isMultiplicative": false
             }
           }
         ]
       }
     ],
     "accuracy": 0.691,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
+    "description": "가장 용기있는 자만이 전장의 선봉에 설 수 있다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 50,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
-    "id": 53002,
-    "name": "뇌운",
-    "imageName": "legend/greatsword/53002.png",
+    "id": 53003,
+    "name": "이프리테인",
+    "imageName": "legend/greatsword/53003.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.greatsword",
     "baseLevel": 600,
     "baseDamage": 30688,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
-    "defensePenetration": 28.0,
+    "defensePenetration": 22.0,
     "doubleAttackChance": 0.0,
     "speed": 1.2,
     "baseSellPrice": 1080000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "방전",
-        "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
+        "skill_name": "화염 방출",
+        "skill_type": "passive",
+        "skill_description": "맹렬한 열기가 적을 불태운다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 화상, 초당 89,500 피해, 쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyShock",
+            "effect_name": "applyBurn",
             "params": {
               "chance": 0.075,
               "duration": 5,
+              "fixedDamagePerSecond": 89500,
               "stackable": false,
               "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
+              "cooldown": 5
             }
           }
         ]
       },
       {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
+        "skill_name": "복수의 불꽃",
+        "skill_type": "active",
+        "skill_description": "화상 상태의 적에게 주는 피해가 증가한다.",
+        "skill_description_detail": "화상 상태의 적에게 주는 데미지 +100%",
         "skill_effect": [
           {
             "effect_name": "increaseDamageToStatused",
             "params": {
-              "status": "shock",
-              "damageMultiplier": 1
+              "status": "burn",
+              "damageMultiplier": 1.0
             }
           }
         ]
       }
     ],
     "accuracy": 0.691,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
+    "description": "불의 정령 이프리트의 심장을 뽑아 만든 대검. 모든 적을 불태운다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 100,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 53004,
-    "name": "리볼버샷",
+    "name": "그람의 파편",
     "imageName": "legend/greatsword/53004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.greatsword",
@@ -1348,63 +1498,70 @@
     "baseDamage": 46625,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
-    "defensePenetration": 36.0,
+    "defensePenetration": 26.0,
     "doubleAttackChance": 0.0,
     "speed": 1.2,
     "baseSellPrice": 1440000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "정조준",
+        "skill_name": "미약한 힘",
         "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
+        "skill_description": "아주 적지만 그람의 힘이 느껴진다.",
+        "skill_description_detail": "공격력 +50%, 공격속도 +25%",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
+              "stat": "damage",
+              "value": 1.5,
+              "isMultiplicative": true
             }
           },
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 1.5,
+              "value": 1.25,
               "isMultiplicative": true
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "불완전한 용살격",
+        "skill_type": "active",
+        "skill_description": "불완전하지만, 파프니르의 목을 벤 전설의 일격을 재현한다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 721,000의 추가 피해, 쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.075,
+              "damage": 721000,
+              "cooldown": 5,
+              "trigger": "onHit"
             }
           }
         ]
       }
     ],
     "accuracy": 0.691,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
+    "description": "전설적인 용살검 그람의 파편. 파프니르의 목을 벤 일격의 힘이 담겨있다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 150,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 53005,
-    "name": "세인트 프레이어",
+    "name": "신성한 파편 - 오른팔",
     "imageName": "legend/greatsword/53005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.greatsword",
@@ -1412,10 +1569,16 @@
     "baseDamage": 64982,
     "criticalChance": 0.096,
     "criticalDamage": 3.6,
-    "defensePenetration": 40.0,
+    "defensePenetration": 30.0,
     "doubleAttackChance": 0.0,
     "speed": 1.2,
     "baseSellPrice": 1800000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
         "skill_name": "정화",
@@ -1457,13 +1620,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,000,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 1367000,
+              "damage": 1000000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -1472,16 +1635,16 @@
       }
     ],
     "accuracy": 0.691,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
+    "description": "신성국의 열다섯 성물 중 하나. 신의 오른팔으로 만들어졌다고 전해진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 150,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 54000,
-    "name": "에메랄드 플레어",
+    "name": "가넷 슬래시",
     "imageName": "legend/scimitar/54000.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scimitar",
@@ -1489,15 +1652,21 @@
     "baseDamage": 141,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
-    "defensePenetration": 4.0,
+    "defensePenetration": 10.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
     "baseSellPrice": 18000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "에메랄드 각인",
+        "skill_name": "가넷 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
+        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -1544,16 +1713,16 @@
       }
     ],
     "accuracy": 0.764,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
+    "description": "가넷의 깊고 열정적인 붉은 빛을 담은 검. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 10,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 54001,
-    "name": "팔콘 스트라이크",
+    "name": "블랙 스콜피온",
     "imageName": "legend/scimitar/54001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scimitar",
@@ -1561,38 +1730,56 @@
     "baseDamage": 4273,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
-    "defensePenetration": 20.0,
+    "defensePenetration": 14.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
     "baseSellPrice": 360000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "낚아채기",
+        "skill_name": "맹독 주입",
         "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
+        "skill_description": "치명적인 맹독을 주입한다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 중독, 초당 최대 체력의 8% 피해, 최대 데미지 166,000, 쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyFixedDamage",
+            "effect_name": "applyPoison",
             "params": {
               "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
+              "percentPerSecond": 0.08,
+              "maxDmg": 166000,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 5
             }
           }
         ]
       },
       {
-        "skill_name": "매의 눈",
-        "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
+        "skill_name": "사막의 매복자",
+        "skill_type": "active",
+        "skill_description": "상대가 방심한 틈을 타 치명적인 공격을 가한다.",
+        "skill_description_detail": "치명타 확률 +30%, 치명타 배율 +2배",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
-              "stat": "accuracy",
-              "value": 0.1,
+              "stat": "criticalChance",
+              "value": 0.3,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalDamage",
+              "value": 2.0,
               "isMultiplicative": false
             }
           }
@@ -1600,16 +1787,16 @@
       }
     ],
     "accuracy": 0.764,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
+    "description": "사막의 극독을 품은 블랙 스콜피온을 본따 만든 시미터. 중독된 생물은 살아남을 수 없다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 30,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 54002,
-    "name": "그림자 사냥꾼",
+    "name": "저주받은 도굴꾼",
     "imageName": "legend/scimitar/54002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scimitar",
@@ -1617,100 +1804,102 @@
     "baseDamage": 10720,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
-    "defensePenetration": 24.0,
+    "defensePenetration": 18.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
     "baseSellPrice": 720000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "끈질긴 추격",
+        "skill_name": "파라오의 저주",
         "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
+        "skill_description": "강력한 저주가 사용자의 이성을 파괴한다.",
+        "skill_description_detail": "공격력 +444%",
         "skill_effect": [
           {
-            "effect_name": "applyStackingBuff",
+            "effect_name": "applyPassiveStatBoost",
             "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
               "stat": "damage",
-              "increasePerStack": 0.15,
+              "value": 5.44,
               "isMultiplicative": true
             }
+          }
+        ]
+      },
+      {
+        "skill_name": "파라오의 저주 Ⅱ",
+        "skill_type": "passive",
+        "skill_description": "사용자가 이지를 상실한다.",
+        "skill_description_detail": "클릭 공격 비활성화",
+        "skill_effect": [
+          {
+            "effect_name": "disableManualAttack",
+            "params": {}
           }
         ]
       }
     ],
     "accuracy": 0.764,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
+    "description": "손에 쥐는 동시에 이성을 잃게 만드는 무기. 수많은 도굴꾼들이 이 무기를 탐내다 저주에 걸려 미쳐버렸다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 50,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
-    "id": 54002,
-    "name": "뇌운",
-    "imageName": "legend/scimitar/54002.png",
+    "id": 54003,
+    "name": "영혼 탐식자",
+    "imageName": "legend/scimitar/54003.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scimitar",
     "baseLevel": 600,
     "baseDamage": 18954,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
-    "defensePenetration": 28.0,
+    "defensePenetration": 22.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
     "baseSellPrice": 1080000,
+    "stack": {
+      "enabled": true,
+      "currentStacks": 0,
+      "maxStacks": 444,
+      "damagePerStack": 90
+    },
     "skills": [
       {
-        "skill_name": "방전",
+        "skill_name": "영혼 탐식",
         "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
+        "skill_description": "처치한 적의 영혼을 삼켜 힘으로 바꾼다.",
+        "skill_description_detail": "적 처치 시 무기 공격력 +90, 최대 444중첩",
         "skill_effect": [
           {
-            "effect_name": "applyShock",
+            "effect_name": "increaseStat",
             "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToStatused",
-            "params": {
-              "status": "shock",
-              "damageMultiplier": 1
+              "stat": "stack.currentStacks",
+              "increment": 1
             }
           }
         ]
       }
     ],
     "accuracy": 0.764,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
+    "description": "죽은 자의 혼을 심판하는 괴물인 아미트의 두개골로 만든 시미터. 처치한 적의 영혼을 수확한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 100,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 54004,
-    "name": "리볼버샷",
+    "name": "탈라예 쿠비라",
     "imageName": "legend/scimitar/54004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scimitar",
@@ -1718,63 +1907,59 @@
     "baseDamage": 28798,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
-    "defensePenetration": 36.0,
+    "defensePenetration": 26.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
     "baseSellPrice": 1440000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "정조준",
+        "skill_name": "영원한 번영",
         "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
+        "skill_description": "소지하는 것만으로도 엄청난 부를 불러온다. ",
+        "skill_description_detail": "골드 획득량 +200%",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatBoost",
+            "effect_name": "applyGoldGainBoost",
             "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
+              "multiplier": 3.0
             }
           }
         ]
       },
       {
-        "skill_name": "패닝",
+        "skill_name": "화려한 소비",
         "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
+        "skill_description": "보유한 골드를 소모해 적에게 추가 피해를 입힌다. ",
+        "skill_description_detail": "골드 소모량 500G, 무기 공격력의 100% 추가 피해",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatBoost",
+            "effect_name": "applyGoldConsumePerHitDamage",
             "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
+              "goldPerHit": 500,
+              "percentDamageBonus": 1.0,
+              "cooldown": 0
             }
           }
         ]
       }
     ],
     "accuracy": 0.764,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
+    "description": "부와 행운의 신 쿠베라의 황금을 깎아 만든 시미터. 골드 획득량이 증가하며, 골드를 소모해 추가 데미지를 준다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 150,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 54005,
-    "name": "세인트 프레이어",
+    "name": "신성한 파편 - 갈비뼈",
     "imageName": "legend/scimitar/54005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.scimitar",
@@ -1782,10 +1967,16 @@
     "baseDamage": 40136,
     "criticalChance": 0.144,
     "criticalDamage": 3.0,
-    "defensePenetration": 40.0,
+    "defensePenetration": 30.0,
     "doubleAttackChance": 0.0,
     "speed": 1.72,
     "baseSellPrice": 1800000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
         "skill_name": "정화",
@@ -1827,13 +2018,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,000,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 1367000,
+              "damage": 1000000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -1842,16 +2033,16 @@
       }
     ],
     "accuracy": 0.764,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
+    "description": "신성국의 열다섯 성물 중 하나. 신의 갈비뼈로 만들어졌다고 전해진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 150,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 55000,
-    "name": "에메랄드 플레어",
+    "name": "토파즈 플래시",
     "imageName": "legend/dagger/55000.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.dagger",
@@ -1859,15 +2050,21 @@
     "baseDamage": 114,
     "criticalChance": 0.24,
     "criticalDamage": 2.7,
-    "defensePenetration": 4.0,
+    "defensePenetration": 10.0,
     "doubleAttackChance": 0.0,
     "speed": 2.03,
     "baseSellPrice": 18000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "에메랄드 각인",
+        "skill_name": "토파즈 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
+        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -1914,16 +2111,16 @@
       }
     ],
     "accuracy": 0.808,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
+    "description": "토파즈의 따스한 황금빛 광채를 머금은 대검. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 10,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 55001,
-    "name": "팔콘 스트라이크",
+    "name": "사일런트 캣",
     "imageName": "legend/dagger/55001.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.dagger",
@@ -1931,37 +2128,51 @@
     "baseDamage": 3459,
     "criticalChance": 0.24,
     "criticalDamage": 2.7,
-    "defensePenetration": 20.0,
+    "defensePenetration": 14.0,
     "doubleAttackChance": 0.0,
     "speed": 2.03,
     "baseSellPrice": 360000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "낚아채기",
-        "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "매의 눈",
+        "skill_name": "고요한 사냥꾼",
         "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
+        "skill_description": "조용히 그리고 빠르게 적을 제압한다.",
+        "skill_description_detail": "공격속도 +50%, 치명타 확률 +15%, 치명타 배율 +2배, 더블어택 확률 +10%",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
-              "stat": "accuracy",
+              "stat": "speed",
+              "value": 1.5,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.15,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalDamage",
+              "value": 1.0,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "doubleAttackChance",
               "value": 0.1,
               "isMultiplicative": false
             }
@@ -1970,16 +2181,16 @@
       }
     ],
     "accuracy": 0.808,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
+    "description": "그림자처럼 조용히 움직이는 고양이를 본따 만든 단검. 한순간의 침묵 뒤에 폭풍 같은 연속공격이 시작된다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 30,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 55002,
-    "name": "그림자 사냥꾼",
+    "name": "특급 살수",
     "imageName": "legend/dagger/55002.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.dagger",
@@ -1987,100 +2198,136 @@
     "baseDamage": 8678,
     "criticalChance": 0.24,
     "criticalDamage": 2.7,
-    "defensePenetration": 24.0,
+    "defensePenetration": 18.0,
     "doubleAttackChance": 0.0,
     "speed": 2.03,
     "baseSellPrice": 720000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "끈질긴 추격",
+        "skill_name": "암살 지령",
         "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
+        "skill_description": "사전에 적의 정보를 수집하고 약점을 파악한다.",
+        "skill_description_detail": "치명타 확률 +25%, 치명타 배율 +4배",
         "skill_effect": [
           {
-            "effect_name": "applyStackingBuff",
+            "effect_name": "applyPassiveStatBoost",
             "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
-              "stat": "damage",
-              "increasePerStack": 0.15,
-              "isMultiplicative": true
+              "stat": "criticalChance",
+              "value": 0.2,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalDamage",
+              "value": 2.0,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "급소 찌르기",
+        "skill_type": "active",
+        "skill_description": "적의 급소를 정확히 찔러 큰 피해를 입힌다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 160,000 추가 피해, 쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.075,
+              "damage": 160000,
+              "cooldown": 5,
+              "trigger": "onHit"
             }
           }
         ]
       }
     ],
     "accuracy": 0.808,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
+    "description": "높은 경지에 오른 자객이 사용하는 단검. 적의 급소를 정확히 찔러 큰 피해를 입힌다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 50,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
-    "id": 55002,
-    "name": "뇌운",
-    "imageName": "legend/dagger/55002.png",
+    "id": 55003,
+    "name": "지옥 수문장",
+    "imageName": "legend/dagger/55003.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.dagger",
     "baseLevel": 600,
     "baseDamage": 15344,
     "criticalChance": 0.24,
     "criticalDamage": 2.7,
-    "defensePenetration": 28.0,
+    "defensePenetration": 22.0,
     "doubleAttackChance": 0.0,
     "speed": 2.03,
     "baseSellPrice": 1080000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "방전",
+        "skill_name": "지옥불",
         "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
+        "skill_description": "지옥불로 적을 불태운다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 화상, 초당 122,000 피해, 중첩 불가, 쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyShock",
+            "effect_name": "applyBurn",
             "params": {
               "chance": 0.075,
               "duration": 5,
+              "damagePerSecond": 122000,
               "stackable": false,
               "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
+              "cooldown": 5
             }
           }
         ]
       },
       {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
+        "skill_name": "삼연격",
+        "skill_type": "active",
+        "skill_description": "빠르게 3회 연속 공격한다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 3회 연속 공격, 쿨타임 0초",
         "skill_effect": [
           {
-            "effect_name": "increaseDamageToStatused",
+            "effect_name": "applyMultiHitDamage",
             "params": {
-              "status": "shock",
-              "damageMultiplier": 1
+              "trigger": "onHit",
+              "chance": 0.075,
+              "hits": 3,
+              "cooldown": 0
             }
           }
         ]
       }
     ],
     "accuracy": 0.808,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
+    "description": "케로베로스의 목줄을 녹여 만든 단검. 지옥 수문장의 힘을 얻는다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 100,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 55004,
-    "name": "리볼버샷",
+    "name": "로도스의 줄기",
     "imageName": "legend/dagger/55004.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.dagger",
@@ -2088,63 +2335,63 @@
     "baseDamage": 23312,
     "criticalChance": 0.24,
     "criticalDamage": 2.7,
-    "defensePenetration": 36.0,
+    "defensePenetration": 26.0,
     "doubleAttackChance": 0.0,
     "speed": 2.03,
     "baseSellPrice": 1440000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
-        "skill_name": "정조준",
+        "skill_name": "로도스의 장미",
         "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
+        "skill_description": "장미꽃을 피워 적을 매혹시킨다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 매혹, 적 피격시 방어력 5 감소, 쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatBoost",
+            "effect_name": "applyPoison",
             "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
+              "chance": 0.075,
+              "attackPerDefence": 5.0,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 5
             }
           }
         ]
       },
       {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
+        "skill_name": "장미의 가시",
+        "skill_type": "active",
+        "skill_description": "매혹에 걸린 적에게 입히는 피해가 증가한다.",
+        "skill_description_detail": "매혹 상태의 적에게 주는 데미지 +100%",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatBoost",
+            "effect_name": "increaseDamageToStatused",
             "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
+              "status": "charm",
+              "damageMultiplier": 1.0
             }
           }
         ]
       }
     ],
     "accuracy": 0.808,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
+    "description": "아프로디테의 눈물에서 피어난 장미 로도스의 줄기로 벼린 단검. 적을 매혹한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 150,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   },
   {
     "id": 55005,
-    "name": "세인트 프레이어",
+    "name": "신성한 파편 - 왼손",
     "imageName": "legend/dagger/55005.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.dagger",
@@ -2152,10 +2399,16 @@
     "baseDamage": 32491,
     "criticalChance": 0.24,
     "criticalDamage": 2.7,
-    "defensePenetration": 40.0,
+    "defensePenetration": 30.0,
     "doubleAttackChance": 0.0,
     "speed": 2.03,
     "baseSellPrice": 1800000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
     "skills": [
       {
         "skill_name": "정화",
@@ -2197,13 +2450,13 @@
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,000,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 1367000,
+              "damage": 1000000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -2212,3711 +2465,11 @@
       }
     ],
     "accuracy": 0.808,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
+    "description": "신성국의 열다섯 성물 중 하나. 신의 왼손으로 만들어졌다고 전해진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 56000,
-    "name": "에메랄드 플레어",
-    "imageName": "legend/cleaver/56000.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.cleaver",
-    "baseLevel": 0,
-    "baseDamage": 182,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.3,
-    "defensePenetration": 4.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 18000,
-    "skills": [
-      {
-        "skill_name": "에메랄드 각인",
-        "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
-        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.05,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.735,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 10,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 56001,
-    "name": "팔콘 스트라이크",
-    "imageName": "legend/cleaver/56001.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.cleaver",
-    "baseLevel": 200,
-    "baseDamage": 5494,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.3,
-    "defensePenetration": 20.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 360000,
-    "skills": [
-      {
-        "skill_name": "낚아채기",
-        "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "매의 눈",
-        "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.735,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 30,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 56002,
-    "name": "그림자 사냥꾼",
-    "imageName": "legend/cleaver/56002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.cleaver",
-    "baseLevel": 400,
-    "baseDamage": 13783,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.3,
-    "defensePenetration": 24.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 720000,
-    "skills": [
-      {
-        "skill_name": "끈질긴 추격",
-        "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
-        "skill_effect": [
-          {
-            "effect_name": "applyStackingBuff",
-            "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
-              "stat": "damage",
-              "increasePerStack": 0.15,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.735,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 50,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 56002,
-    "name": "뇌운",
-    "imageName": "legend/cleaver/56002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.cleaver",
-    "baseLevel": 600,
-    "baseDamage": 24370,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.3,
-    "defensePenetration": 28.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 1080000,
-    "skills": [
-      {
-        "skill_name": "방전",
-        "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyShock",
-            "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToStatused",
-            "params": {
-              "status": "shock",
-              "damageMultiplier": 1
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.735,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 100,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 56004,
-    "name": "리볼버샷",
-    "imageName": "legend/cleaver/56004.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.cleaver",
-    "baseLevel": 800,
-    "baseDamage": 37026,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.3,
-    "defensePenetration": 36.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 1440000,
-    "skills": [
-      {
-        "skill_name": "정조준",
-        "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.735,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 56005,
-    "name": "세인트 프레이어",
-    "imageName": "legend/cleaver/56005.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.cleaver",
-    "baseLevel": 1000,
-    "baseDamage": 51604,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.3,
-    "defensePenetration": 40.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 1800000,
-    "skills": [
-      {
-        "skill_name": "정화",
-        "skill_type": "passive",
-        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
-        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "undead",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "demon",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "divine",
-              "multiplier": 0.3
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "angel",
-              "multiplier": 0.3
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "심판",
-        "skill_type": "active",
-        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 1367000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.735,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 57000,
-    "name": "에메랄드 플레어",
-    "imageName": "legend/battle_axe/57000.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.battle_axe",
-    "baseLevel": 0,
-    "baseDamage": 202,
-    "criticalChance": 0.096,
-    "criticalDamage": 3.45,
-    "defensePenetration": 4.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.27,
-    "baseSellPrice": 18000,
-    "skills": [
-      {
-        "skill_name": "에메랄드 각인",
-        "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
-        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.05,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.698,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 10,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 57001,
-    "name": "팔콘 스트라이크",
-    "imageName": "legend/battle_axe/57001.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.battle_axe",
-    "baseLevel": 200,
-    "baseDamage": 6104,
-    "criticalChance": 0.096,
-    "criticalDamage": 3.45,
-    "defensePenetration": 20.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.27,
-    "baseSellPrice": 360000,
-    "skills": [
-      {
-        "skill_name": "낚아채기",
-        "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "매의 눈",
-        "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.698,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 30,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 57002,
-    "name": "그림자 사냥꾼",
-    "imageName": "legend/battle_axe/57002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.battle_axe",
-    "baseLevel": 400,
-    "baseDamage": 15314,
-    "criticalChance": 0.096,
-    "criticalDamage": 3.45,
-    "defensePenetration": 24.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.27,
-    "baseSellPrice": 720000,
-    "skills": [
-      {
-        "skill_name": "끈질긴 추격",
-        "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
-        "skill_effect": [
-          {
-            "effect_name": "applyStackingBuff",
-            "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
-              "stat": "damage",
-              "increasePerStack": 0.15,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.698,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 50,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 57002,
-    "name": "뇌운",
-    "imageName": "legend/battle_axe/57002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.battle_axe",
-    "baseLevel": 600,
-    "baseDamage": 27078,
-    "criticalChance": 0.096,
-    "criticalDamage": 3.45,
-    "defensePenetration": 28.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.27,
-    "baseSellPrice": 1080000,
-    "skills": [
-      {
-        "skill_name": "방전",
-        "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyShock",
-            "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToStatused",
-            "params": {
-              "status": "shock",
-              "damageMultiplier": 1
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.698,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 100,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 57004,
-    "name": "리볼버샷",
-    "imageName": "legend/battle_axe/57004.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.battle_axe",
-    "baseLevel": 800,
-    "baseDamage": 41140,
-    "criticalChance": 0.096,
-    "criticalDamage": 3.45,
-    "defensePenetration": 36.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.27,
-    "baseSellPrice": 1440000,
-    "skills": [
-      {
-        "skill_name": "정조준",
-        "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.698,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 57005,
-    "name": "세인트 프레이어",
-    "imageName": "legend/battle_axe/57005.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.battle_axe",
-    "baseLevel": 1000,
-    "baseDamage": 57337,
-    "criticalChance": 0.096,
-    "criticalDamage": 3.45,
-    "defensePenetration": 40.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.27,
-    "baseSellPrice": 1800000,
-    "skills": [
-      {
-        "skill_name": "정화",
-        "skill_type": "passive",
-        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
-        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "undead",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "demon",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "divine",
-              "multiplier": 0.3
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "angel",
-              "multiplier": 0.3
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "심판",
-        "skill_type": "active",
-        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 1367000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.698,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 58000,
-    "name": "에메랄드 플레어",
-    "imageName": "legend/warhammer/58000.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.warhammer",
-    "baseLevel": 0,
-    "baseDamage": 243,
-    "criticalChance": 0.084,
-    "criticalDamage": 3.9,
-    "defensePenetration": 4.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.12,
-    "baseSellPrice": 18000,
-    "skills": [
-      {
-        "skill_name": "에메랄드 각인",
-        "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
-        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.05,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.676,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 10,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 58001,
-    "name": "팔콘 스트라이크",
-    "imageName": "legend/warhammer/58001.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.warhammer",
-    "baseLevel": 200,
-    "baseDamage": 7325,
-    "criticalChance": 0.084,
-    "criticalDamage": 3.9,
-    "defensePenetration": 20.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.12,
-    "baseSellPrice": 360000,
-    "skills": [
-      {
-        "skill_name": "낚아채기",
-        "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "매의 눈",
-        "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.676,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 30,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 58002,
-    "name": "그림자 사냥꾼",
-    "imageName": "legend/warhammer/58002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.warhammer",
-    "baseLevel": 400,
-    "baseDamage": 18377,
-    "criticalChance": 0.084,
-    "criticalDamage": 3.9,
-    "defensePenetration": 24.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.12,
-    "baseSellPrice": 720000,
-    "skills": [
-      {
-        "skill_name": "끈질긴 추격",
-        "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
-        "skill_effect": [
-          {
-            "effect_name": "applyStackingBuff",
-            "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
-              "stat": "damage",
-              "increasePerStack": 0.15,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.676,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 50,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 58002,
-    "name": "뇌운",
-    "imageName": "legend/warhammer/58002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.warhammer",
-    "baseLevel": 600,
-    "baseDamage": 32494,
-    "criticalChance": 0.084,
-    "criticalDamage": 3.9,
-    "defensePenetration": 28.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.12,
-    "baseSellPrice": 1080000,
-    "skills": [
-      {
-        "skill_name": "방전",
-        "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyShock",
-            "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToStatused",
-            "params": {
-              "status": "shock",
-              "damageMultiplier": 1
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.676,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 100,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 58004,
-    "name": "리볼버샷",
-    "imageName": "legend/warhammer/58004.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.warhammer",
-    "baseLevel": 800,
-    "baseDamage": 49368,
-    "criticalChance": 0.084,
-    "criticalDamage": 3.9,
-    "defensePenetration": 36.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.12,
-    "baseSellPrice": 1440000,
-    "skills": [
-      {
-        "skill_name": "정조준",
-        "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.676,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 58005,
-    "name": "세인트 프레이어",
-    "imageName": "legend/warhammer/58005.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.warhammer",
-    "baseLevel": 1000,
-    "baseDamage": 68805,
-    "criticalChance": 0.084,
-    "criticalDamage": 3.9,
-    "defensePenetration": 40.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.12,
-    "baseSellPrice": 1800000,
-    "skills": [
-      {
-        "skill_name": "정화",
-        "skill_type": "passive",
-        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
-        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "undead",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "demon",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "divine",
-              "multiplier": 0.3
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "angel",
-              "multiplier": 0.3
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "심판",
-        "skill_type": "active",
-        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 1367000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.676,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 59000,
-    "name": "에메랄드 플레어",
-    "imageName": "legend/spear/59000.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.spear",
-    "baseLevel": 0,
-    "baseDamage": 148,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.0,
-    "defensePenetration": 4.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.58,
-    "baseSellPrice": 18000,
-    "skills": [
-      {
-        "skill_name": "에메랄드 각인",
-        "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
-        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.05,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.808,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 10,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 59001,
-    "name": "팔콘 스트라이크",
-    "imageName": "legend/spear/59001.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.spear",
-    "baseLevel": 200,
-    "baseDamage": 4476,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.0,
-    "defensePenetration": 20.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.58,
-    "baseSellPrice": 360000,
-    "skills": [
-      {
-        "skill_name": "낚아채기",
-        "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "매의 눈",
-        "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.808,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 30,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 59002,
-    "name": "그림자 사냥꾼",
-    "imageName": "legend/spear/59002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.spear",
-    "baseLevel": 400,
-    "baseDamage": 11230,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.0,
-    "defensePenetration": 24.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.58,
-    "baseSellPrice": 720000,
-    "skills": [
-      {
-        "skill_name": "끈질긴 추격",
-        "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
-        "skill_effect": [
-          {
-            "effect_name": "applyStackingBuff",
-            "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
-              "stat": "damage",
-              "increasePerStack": 0.15,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.808,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 50,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 59002,
-    "name": "뇌운",
-    "imageName": "legend/spear/59002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.spear",
-    "baseLevel": 600,
-    "baseDamage": 19857,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.0,
-    "defensePenetration": 28.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.58,
-    "baseSellPrice": 1080000,
-    "skills": [
-      {
-        "skill_name": "방전",
-        "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyShock",
-            "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToStatused",
-            "params": {
-              "status": "shock",
-              "damageMultiplier": 1
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.808,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 100,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 59004,
-    "name": "리볼버샷",
-    "imageName": "legend/spear/59004.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.spear",
-    "baseLevel": 800,
-    "baseDamage": 30169,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.0,
-    "defensePenetration": 36.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.58,
-    "baseSellPrice": 1440000,
-    "skills": [
-      {
-        "skill_name": "정조준",
-        "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.808,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 59005,
-    "name": "세인트 프레이어",
-    "imageName": "legend/spear/59005.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.spear",
-    "baseLevel": 1000,
-    "baseDamage": 42047,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.0,
-    "defensePenetration": 40.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.58,
-    "baseSellPrice": 1800000,
-    "skills": [
-      {
-        "skill_name": "정화",
-        "skill_type": "passive",
-        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
-        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "undead",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "demon",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "divine",
-              "multiplier": 0.3
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "angel",
-              "multiplier": 0.3
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "심판",
-        "skill_type": "active",
-        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 1367000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.808,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 60000,
-    "name": "에메랄드 플레어",
-    "imageName": "legend/staff/60000.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.staff",
-    "baseLevel": 0,
-    "baseDamage": 148,
-    "criticalChance": 0.156,
-    "criticalDamage": 2.85,
-    "defensePenetration": 4.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 18000,
-    "skills": [
-      {
-        "skill_name": "에메랄드 각인",
-        "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
-        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.05,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.823,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 10,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 60001,
-    "name": "팔콘 스트라이크",
-    "imageName": "legend/staff/60001.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.staff",
-    "baseLevel": 200,
-    "baseDamage": 4476,
-    "criticalChance": 0.156,
-    "criticalDamage": 2.85,
-    "defensePenetration": 20.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 360000,
-    "skills": [
-      {
-        "skill_name": "낚아채기",
-        "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "매의 눈",
-        "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.823,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 30,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 60002,
-    "name": "그림자 사냥꾼",
-    "imageName": "legend/staff/60002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.staff",
-    "baseLevel": 400,
-    "baseDamage": 11230,
-    "criticalChance": 0.156,
-    "criticalDamage": 2.85,
-    "defensePenetration": 24.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 720000,
-    "skills": [
-      {
-        "skill_name": "끈질긴 추격",
-        "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
-        "skill_effect": [
-          {
-            "effect_name": "applyStackingBuff",
-            "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
-              "stat": "damage",
-              "increasePerStack": 0.15,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.823,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 50,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 60002,
-    "name": "뇌운",
-    "imageName": "legend/staff/60002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.staff",
-    "baseLevel": 600,
-    "baseDamage": 19857,
-    "criticalChance": 0.156,
-    "criticalDamage": 2.85,
-    "defensePenetration": 28.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 1080000,
-    "skills": [
-      {
-        "skill_name": "방전",
-        "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyShock",
-            "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToStatused",
-            "params": {
-              "status": "shock",
-              "damageMultiplier": 1
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.823,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 100,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 60004,
-    "name": "리볼버샷",
-    "imageName": "legend/staff/60004.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.staff",
-    "baseLevel": 800,
-    "baseDamage": 30169,
-    "criticalChance": 0.156,
-    "criticalDamage": 2.85,
-    "defensePenetration": 36.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 1440000,
-    "skills": [
-      {
-        "skill_name": "정조준",
-        "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.823,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 60005,
-    "name": "세인트 프레이어",
-    "imageName": "legend/staff/60005.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.staff",
-    "baseLevel": 1000,
-    "baseDamage": 42047,
-    "criticalChance": 0.156,
-    "criticalDamage": 2.85,
-    "defensePenetration": 40.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 1800000,
-    "skills": [
-      {
-        "skill_name": "정화",
-        "skill_type": "passive",
-        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
-        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "undead",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "demon",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "divine",
-              "multiplier": 0.3
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "angel",
-              "multiplier": 0.3
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "심판",
-        "skill_type": "active",
-        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 1367000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.823,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 61000,
-    "name": "에메랄드 플레어",
-    "imageName": "legend/trident/61000.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.trident",
-    "baseLevel": 0,
-    "baseDamage": 162,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.15,
-    "defensePenetration": 4.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.42,
-    "baseSellPrice": 18000,
-    "skills": [
-      {
-        "skill_name": "에메랄드 각인",
-        "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
-        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.05,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.794,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 10,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 61001,
-    "name": "팔콘 스트라이크",
-    "imageName": "legend/trident/61001.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.trident",
-    "baseLevel": 200,
-    "baseDamage": 4883,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.15,
-    "defensePenetration": 20.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.42,
-    "baseSellPrice": 360000,
-    "skills": [
-      {
-        "skill_name": "낚아채기",
-        "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "매의 눈",
-        "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.794,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 30,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 61002,
-    "name": "그림자 사냥꾼",
-    "imageName": "legend/trident/61002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.trident",
-    "baseLevel": 400,
-    "baseDamage": 12251,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.15,
-    "defensePenetration": 24.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.42,
-    "baseSellPrice": 720000,
-    "skills": [
-      {
-        "skill_name": "끈질긴 추격",
-        "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
-        "skill_effect": [
-          {
-            "effect_name": "applyStackingBuff",
-            "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
-              "stat": "damage",
-              "increasePerStack": 0.15,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.794,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 50,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 61002,
-    "name": "뇌운",
-    "imageName": "legend/trident/61002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.trident",
-    "baseLevel": 600,
-    "baseDamage": 21662,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.15,
-    "defensePenetration": 28.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.42,
-    "baseSellPrice": 1080000,
-    "skills": [
-      {
-        "skill_name": "방전",
-        "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyShock",
-            "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToStatused",
-            "params": {
-              "status": "shock",
-              "damageMultiplier": 1
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.794,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 100,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 61004,
-    "name": "리볼버샷",
-    "imageName": "legend/trident/61004.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.trident",
-    "baseLevel": 800,
-    "baseDamage": 32912,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.15,
-    "defensePenetration": 36.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.42,
-    "baseSellPrice": 1440000,
-    "skills": [
-      {
-        "skill_name": "정조준",
-        "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.794,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 61005,
-    "name": "세인트 프레이어",
-    "imageName": "legend/trident/61005.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.trident",
-    "baseLevel": 1000,
-    "baseDamage": 45870,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.15,
-    "defensePenetration": 40.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.42,
-    "baseSellPrice": 1800000,
-    "skills": [
-      {
-        "skill_name": "정화",
-        "skill_type": "passive",
-        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
-        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "undead",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "demon",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "divine",
-              "multiplier": 0.3
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "angel",
-              "multiplier": 0.3
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "심판",
-        "skill_type": "active",
-        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 1367000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.794,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 62000,
-    "name": "에메랄드 플레어",
-    "imageName": "legend/mace/62000.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.mace",
-    "baseLevel": 0,
-    "baseDamage": 189,
-    "criticalChance": 0.096,
-    "criticalDamage": 3.6,
-    "defensePenetration": 4.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 18000,
-    "skills": [
-      {
-        "skill_name": "에메랄드 각인",
-        "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
-        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.05,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.713,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 10,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 62001,
-    "name": "팔콘 스트라이크",
-    "imageName": "legend/mace/62001.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.mace",
-    "baseLevel": 200,
-    "baseDamage": 5697,
-    "criticalChance": 0.096,
-    "criticalDamage": 3.6,
-    "defensePenetration": 20.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 360000,
-    "skills": [
-      {
-        "skill_name": "낚아채기",
-        "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "매의 눈",
-        "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.713,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 30,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 62002,
-    "name": "그림자 사냥꾼",
-    "imageName": "legend/mace/62002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.mace",
-    "baseLevel": 400,
-    "baseDamage": 14293,
-    "criticalChance": 0.096,
-    "criticalDamage": 3.6,
-    "defensePenetration": 24.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 720000,
-    "skills": [
-      {
-        "skill_name": "끈질긴 추격",
-        "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
-        "skill_effect": [
-          {
-            "effect_name": "applyStackingBuff",
-            "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
-              "stat": "damage",
-              "increasePerStack": 0.15,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.713,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 50,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 62002,
-    "name": "뇌운",
-    "imageName": "legend/mace/62002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.mace",
-    "baseLevel": 600,
-    "baseDamage": 25273,
-    "criticalChance": 0.096,
-    "criticalDamage": 3.6,
-    "defensePenetration": 28.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 1080000,
-    "skills": [
-      {
-        "skill_name": "방전",
-        "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyShock",
-            "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToStatused",
-            "params": {
-              "status": "shock",
-              "damageMultiplier": 1
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.713,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 100,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 62004,
-    "name": "리볼버샷",
-    "imageName": "legend/mace/62004.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.mace",
-    "baseLevel": 800,
-    "baseDamage": 38397,
-    "criticalChance": 0.096,
-    "criticalDamage": 3.6,
-    "defensePenetration": 36.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 1440000,
-    "skills": [
-      {
-        "skill_name": "정조준",
-        "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.713,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 62005,
-    "name": "세인트 프레이어",
-    "imageName": "legend/mace/62005.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.mace",
-    "baseLevel": 1000,
-    "baseDamage": 53515,
-    "criticalChance": 0.096,
-    "criticalDamage": 3.6,
-    "defensePenetration": 40.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.35,
-    "baseSellPrice": 1800000,
-    "skills": [
-      {
-        "skill_name": "정화",
-        "skill_type": "passive",
-        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
-        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "undead",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "demon",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "divine",
-              "multiplier": 0.3
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "angel",
-              "multiplier": 0.3
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "심판",
-        "skill_type": "active",
-        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 1367000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.713,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 63000,
-    "name": "에메랄드 플레어",
-    "imageName": "legend/scythe/63000.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.scythe",
-    "baseLevel": 0,
-    "baseDamage": 168,
-    "criticalChance": 0.156,
-    "criticalDamage": 3.45,
-    "defensePenetration": 4.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 18000,
-    "skills": [
-      {
-        "skill_name": "에메랄드 각인",
-        "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
-        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.05,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.728,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 10,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 63001,
-    "name": "팔콘 스트라이크",
-    "imageName": "legend/scythe/63001.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.scythe",
-    "baseLevel": 200,
-    "baseDamage": 5087,
-    "criticalChance": 0.156,
-    "criticalDamage": 3.45,
-    "defensePenetration": 20.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 360000,
-    "skills": [
-      {
-        "skill_name": "낚아채기",
-        "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "매의 눈",
-        "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.728,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 30,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 63002,
-    "name": "그림자 사냥꾼",
-    "imageName": "legend/scythe/63002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.scythe",
-    "baseLevel": 400,
-    "baseDamage": 12762,
-    "criticalChance": 0.156,
-    "criticalDamage": 3.45,
-    "defensePenetration": 24.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 720000,
-    "skills": [
-      {
-        "skill_name": "끈질긴 추격",
-        "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
-        "skill_effect": [
-          {
-            "effect_name": "applyStackingBuff",
-            "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
-              "stat": "damage",
-              "increasePerStack": 0.15,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.728,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 50,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 63002,
-    "name": "뇌운",
-    "imageName": "legend/scythe/63002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.scythe",
-    "baseLevel": 600,
-    "baseDamage": 22565,
-    "criticalChance": 0.156,
-    "criticalDamage": 3.45,
-    "defensePenetration": 28.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 1080000,
-    "skills": [
-      {
-        "skill_name": "방전",
-        "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyShock",
-            "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToStatused",
-            "params": {
-              "status": "shock",
-              "damageMultiplier": 1
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.728,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 100,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 63004,
-    "name": "리볼버샷",
-    "imageName": "legend/scythe/63004.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.scythe",
-    "baseLevel": 800,
-    "baseDamage": 34283,
-    "criticalChance": 0.156,
-    "criticalDamage": 3.45,
-    "defensePenetration": 36.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 1440000,
-    "skills": [
-      {
-        "skill_name": "정조준",
-        "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.728,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 63005,
-    "name": "세인트 프레이어",
-    "imageName": "legend/scythe/63005.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.scythe",
-    "baseLevel": 1000,
-    "baseDamage": 47781,
-    "criticalChance": 0.156,
-    "criticalDamage": 3.45,
-    "defensePenetration": 40.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.5,
-    "baseSellPrice": 1800000,
-    "skills": [
-      {
-        "skill_name": "정화",
-        "skill_type": "passive",
-        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
-        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "undead",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "demon",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "divine",
-              "multiplier": 0.3
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "angel",
-              "multiplier": 0.3
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "심판",
-        "skill_type": "active",
-        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 1367000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.728,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 64000,
-    "name": "에메랄드 플레어",
-    "imageName": "legend/curved_sword/64000.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.curved_sword",
-    "baseLevel": 0,
-    "baseDamage": 148,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.15,
-    "defensePenetration": 4.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.65,
-    "baseSellPrice": 18000,
-    "skills": [
-      {
-        "skill_name": "에메랄드 각인",
-        "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
-        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.05,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.757,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 10,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 64001,
-    "name": "팔콘 스트라이크",
-    "imageName": "legend/curved_sword/64001.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.curved_sword",
-    "baseLevel": 200,
-    "baseDamage": 4476,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.15,
-    "defensePenetration": 20.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.65,
-    "baseSellPrice": 360000,
-    "skills": [
-      {
-        "skill_name": "낚아채기",
-        "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "매의 눈",
-        "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.757,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 30,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 64002,
-    "name": "그림자 사냥꾼",
-    "imageName": "legend/curved_sword/64002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.curved_sword",
-    "baseLevel": 400,
-    "baseDamage": 11230,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.15,
-    "defensePenetration": 24.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.65,
-    "baseSellPrice": 720000,
-    "skills": [
-      {
-        "skill_name": "끈질긴 추격",
-        "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
-        "skill_effect": [
-          {
-            "effect_name": "applyStackingBuff",
-            "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
-              "stat": "damage",
-              "increasePerStack": 0.15,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.757,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 50,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 64002,
-    "name": "뇌운",
-    "imageName": "legend/curved_sword/64002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.curved_sword",
-    "baseLevel": 600,
-    "baseDamage": 19857,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.15,
-    "defensePenetration": 28.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.65,
-    "baseSellPrice": 1080000,
-    "skills": [
-      {
-        "skill_name": "방전",
-        "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyShock",
-            "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToStatused",
-            "params": {
-              "status": "shock",
-              "damageMultiplier": 1
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.757,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 100,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 64004,
-    "name": "리볼버샷",
-    "imageName": "legend/curved_sword/64004.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.curved_sword",
-    "baseLevel": 800,
-    "baseDamage": 30169,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.15,
-    "defensePenetration": 36.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.65,
-    "baseSellPrice": 1440000,
-    "skills": [
-      {
-        "skill_name": "정조준",
-        "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.757,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 64005,
-    "name": "세인트 프레이어",
-    "imageName": "legend/curved_sword/64005.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.curved_sword",
-    "baseLevel": 1000,
-    "baseDamage": 42047,
-    "criticalChance": 0.144,
-    "criticalDamage": 3.15,
-    "defensePenetration": 40.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.65,
-    "baseSellPrice": 1800000,
-    "skills": [
-      {
-        "skill_name": "정화",
-        "skill_type": "passive",
-        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
-        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "undead",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "demon",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "divine",
-              "multiplier": 0.3
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "angel",
-              "multiplier": 0.3
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "심판",
-        "skill_type": "active",
-        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 1367000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.757,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 65000,
-    "name": "에메랄드 플레어",
-    "imageName": "legend/nunchaku/65000.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.nunchaku",
-    "baseLevel": 0,
-    "baseDamage": 128,
-    "criticalChance": 0.216,
-    "criticalDamage": 2.85,
-    "defensePenetration": 4.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.95,
-    "baseSellPrice": 18000,
-    "skills": [
-      {
-        "skill_name": "에메랄드 각인",
-        "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
-        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.05,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.779,
-    "description": "에메랄드의 광채가 깃든 레이피어. 전투 능력을 대폭 향상시킨다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 10,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 65001,
-    "name": "팔콘 스트라이크",
-    "imageName": "legend/nunchaku/65001.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.nunchaku",
-    "baseLevel": 200,
-    "baseDamage": 3866,
-    "criticalChance": 0.216,
-    "criticalDamage": 2.85,
-    "defensePenetration": 20.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.95,
-    "baseSellPrice": 360000,
-    "skills": [
-      {
-        "skill_name": "낚아채기",
-        "skill_type": "active",
-        "skill_description": "매처럼 날카롭고 빠르게 적을 꿰뚫는다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 104,000의 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 104000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "매의 눈",
-        "skill_type": "passive",
-        "skill_description": "매의 시력이 적중률을 높인다. (적중률 +10%)",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.779,
-    "description": "매처럼 날카로운 시선을 가진 레이피어. 빠르고 정확한 찌르기로 적을 꿰뚫는다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 30,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 65002,
-    "name": "그림자 사냥꾼",
-    "imageName": "legend/nunchaku/65002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.nunchaku",
-    "baseLevel": 400,
-    "baseDamage": 9699,
-    "criticalChance": 0.216,
-    "criticalDamage": 2.85,
-    "defensePenetration": 24.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.95,
-    "baseSellPrice": 720000,
-    "skills": [
-      {
-        "skill_name": "끈질긴 추격",
-        "skill_type": "passive",
-        "skill_description": "적을 놓치지 않는 추격자가 된다.",
-        "skill_description_detail": "공격 시 5초간 공격력 +15%, 최대 10중첩",
-        "skill_effect": [
-          {
-            "effect_name": "applyStackingBuff",
-            "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 10,
-              "stat": "damage",
-              "increasePerStack": 0.15,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.779,
-    "description": "적의 그림자처럼 따라붙어 점점 숨통을 조이는 무기. 연속 공격 시 점점 강해진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 50,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 65002,
-    "name": "뇌운",
-    "imageName": "legend/nunchaku/65002.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.nunchaku",
-    "baseLevel": 600,
-    "baseDamage": 17149,
-    "criticalChance": 0.216,
-    "criticalDamage": 2.85,
-    "defensePenetration": 28.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.95,
-    "baseSellPrice": 1080000,
-    "skills": [
-      {
-        "skill_name": "방전",
-        "skill_type": "active",
-        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyShock",
-            "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 5,
-              "maxDmg": 27700
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "충전",
-        "skill_type": "passive",
-        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "increaseDamageToStatused",
-            "params": {
-              "status": "shock",
-              "damageMultiplier": 1
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.779,
-    "description": "신수 기린의 뿔로 만든 레이피어. 강한 번개의 힘을 담고 있다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 100,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 65004,
-    "name": "리볼버샷",
-    "imageName": "legend/nunchaku/65004.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.nunchaku",
-    "baseLevel": 800,
-    "baseDamage": 26055,
-    "criticalChance": 0.216,
-    "criticalDamage": 2.85,
-    "defensePenetration": 36.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.95,
-    "baseSellPrice": 1440000,
-    "skills": [
-      {
-        "skill_name": "정조준",
-        "skill_type": "passive",
-        "skill_description": "이 검에 의한 공격은 빗나가지 않는다.",
-        "skill_description_detail": "적중률 +100%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "패닝",
-        "skill_type": "passive",
-        "skill_description": "적이 눈으로 쫓지 못할 만큼 빠르게 공격한다.",
-        "skill_description_detail": "더블어택 확률 +20%, 공격속도 +50%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.779,
-    "description": "명사수 데스페라도의 축복이 담긴 레이피어. 빠르고 정확한 일격이 적을 관통한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 65005,
-    "name": "세인트 프레이어",
-    "imageName": "legend/nunchaku/65005.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.nunchaku",
-    "baseLevel": 1000,
-    "baseDamage": 36313,
-    "criticalChance": 0.216,
-    "criticalDamage": 2.85,
-    "defensePenetration": 40.0,
-    "doubleAttackChance": 0.0,
-    "speed": 1.95,
-    "baseSellPrice": 1800000,
-    "skills": [
-      {
-        "skill_name": "정화",
-        "skill_type": "passive",
-        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
-        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "undead",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassiveBonusDamageToRace",
-            "params": {
-              "race": "demon",
-              "multiplier": 1
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "divine",
-              "multiplier": 0.3
-            }
-          },
-          {
-            "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": {
-              "race": "angel",
-              "multiplier": 0.3
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "심판",
-        "skill_type": "active",
-        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 1367000,
-              "cooldown": 5,
-              "trigger": "onHit"
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.779,
-    "description": "신성국에 전해지는 성물 중 하나. 신성한 기운이 느껴진다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 150,
+    "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0
   }
 ]

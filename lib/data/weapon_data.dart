@@ -203,18 +203,14 @@ class WeaponData {
         return '없음';
       case WeaponType.rapier:
         return '레이피어';
-      case WeaponType.katana:
+      case WeaponType.blade:
         return '도검';
       case WeaponType.sword:
         return '검';
       case WeaponType.greatsword:
         return '대검';
-      case WeaponType.scimitar:
-        return '시미터';
       case WeaponType.dagger:
         return '단검';
-      case WeaponType.cleaver:
-        return '도축칼';
       case WeaponType.battleAxe:
         return '전투도끼';
       case WeaponType.warhammer:
@@ -223,16 +219,12 @@ class WeaponData {
         return '창';
       case WeaponType.staff:
         return '지팡이';
-      case WeaponType.trident:
-        return '삼지창';
       case WeaponType.mace:
         return '메이스';
       case WeaponType.scythe:
         return '낫';
       case WeaponType.curvedSword:
         return '곡도';
-      case WeaponType.nunchaku:
-        return '쌍절곤';
     }
   }
 

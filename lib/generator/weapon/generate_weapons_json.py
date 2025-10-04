@@ -4,12 +4,11 @@ import unique_weapon_generator
 import os
 
 # --- 무기 타입 분류 ---
-
 FIRST_GROUP_WEAPONS = [
-    "레이피어", "도검", "검", "대검", "시미터", "단검", "도축칼", "전투도끼"
+    "레이피어", "도검", "검", "대검", "단검", "전투도끼"
 ]
 SECOND_GROUP_WEAPONS = [
-    "전투망치", "창", "지팡이", "삼지창", "메이스", "낫", "곡도", "쌍절곤"
+    "전투망치", "창", "지팡이", "메이스", "낫", "곡도"
 ]
 
 # --- 영어 매핑 ---
@@ -23,12 +22,14 @@ SUFFIX_MAP = {
     "정령의 힘이 깃든": "elemental", "신성국의": "holy",
     "악마의 힘이 깃든": "demonic", "용의 힘이 깃든": "dragon"
 }
+
+# --- 무기 타입 분류 ---
 TYPE_MAP = {
     "레이피어": "rapier", "도검": "blade", "검": "sword",
-    "대검": "greatsword", "시미터": "scimitar", "단검": "dagger",
-    "도축칼": "cleaver", "전투도끼": "battle_axe", "전투망치": "warhammer",
-    "창": "spear", "지팡이": "staff", "삼지창": "trident",
-    "메이스": "mace", "낫": "scythe", "곡도": "curved_sword", "쌍절곤": "nunchaku"
+    "대검": "greatsword", "단검": "dagger",
+    "전투도끼": "battle_axe", "전투망치": "warhammer",
+    "창": "spear", "지팡이": "staff", 
+    "메이스": "mace", "낫": "scythe", "곡도": "curved_sword", 
 }
 
 # --- 무기 타입별 멀티플라이어 ---
@@ -37,18 +38,14 @@ WEAPON_TYPE_MODIFIERS = {
      "blade":       {"damage_mult": 1.05, "speed_mult": 1.15, "accuracy_mult": 1.070, "crit_chance_mult": 1.500, "crit_mult_mult": 1.050},
      "sword":        {"damage_mult": 1.20, "speed_mult": 1.00, "accuracy_mult": 1.030, "crit_chance_mult": 1.000, "crit_mult_mult": 1.000},
      "greatsword":   {"damage_mult": 1.70, "speed_mult": 0.80, "accuracy_mult": 0.940, "crit_chance_mult": 0.800, "crit_mult_mult": 1.200},
-     "scimitar":     {"damage_mult": 1.05, "speed_mult": 1.15, "accuracy_mult": 1.040, "crit_chance_mult": 1.200, "crit_mult_mult": 1.000},
      "dagger":       {"damage_mult": 0.85, "speed_mult": 1.35, "accuracy_mult": 1.100, "crit_chance_mult": 2.000, "crit_mult_mult": 0.900},
-     "cleaver":      {"damage_mult": 1.35, "speed_mult": 0.90, "accuracy_mult": 1.000, "crit_chance_mult": 1.200, "crit_mult_mult": 1.100},
      "battle_axe":    {"damage_mult": 1.50, "speed_mult": 0.85, "accuracy_mult": 0.950, "crit_chance_mult": 0.800, "crit_mult_mult": 1.150},
      "warhammer":    {"damage_mult": 1.80, "speed_mult": 0.75, "accuracy_mult": 0.920, "crit_chance_mult": 0.700, "crit_mult_mult": 1.300},
      "spear":        {"damage_mult": 1.10, "speed_mult": 1.05, "accuracy_mult": 1.100, "crit_chance_mult": 1.200, "crit_mult_mult": 1.000},
      "staff":        {"damage_mult": 1.10, "speed_mult": 1.00, "accuracy_mult": 1.120, "crit_chance_mult": 1.300, "crit_mult_mult": 0.950},
-     "trident":      {"damage_mult": 1.20, "speed_mult": 0.95, "accuracy_mult": 1.080, "crit_chance_mult": 1.200, "crit_mult_mult": 1.050},
      "mace":         {"damage_mult": 1.40, "speed_mult": 0.90, "accuracy_mult": 0.970, "crit_chance_mult": 0.800, "crit_mult_mult": 1.200},
      "scythe":       {"damage_mult": 1.25, "speed_mult": 1.00, "accuracy_mult": 0.990, "crit_chance_mult": 1.300, "crit_mult_mult": 1.150},
      "curved_sword": {"damage_mult": 1.10, "speed_mult": 1.10, "accuracy_mult": 1.030, "crit_chance_mult": 1.200, "crit_mult_mult": 1.050},
-     "nunchaku":     {"damage_mult": 0.95, "speed_mult": 1.30, "accuracy_mult": 1.060, "crit_chance_mult": 1.800, "crit_mult_mult": 0.950},
 }
 
 
@@ -163,6 +160,12 @@ def generate_weapons():
                     'defensePenetration': 0.0,
                     'doubleAttackChance': 0.0,
                     'baseSellPrice': base_sell_price,
+                    "stack": {
+                        "enabled": False,
+                        "currentStacks": 0,
+                        "maxStacks": 0,
+                        "damagePerStack": 0
+                    },
                     'enhancement': 0,
                     'transcendence': 0,
                     'investedGold': 0.0,

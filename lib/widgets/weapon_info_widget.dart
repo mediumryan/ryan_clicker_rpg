@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart';
-import 'package:provider/provider.dart'; // New import
-import 'package:ryan_clicker_rpg/providers/game_provider.dart'; // New import
+import 'package:provider/provider.dart';
+import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 
-import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT
+import 'package:ryan_clicker_rpg/data/weapon_data.dart';
 
 class WeaponInfoWidget extends StatelessWidget {
   final Weapon weapon;
@@ -31,7 +31,7 @@ class WeaponInfoWidget extends StatelessWidget {
                 color: Colors.black,
                 border: Border.all(
                   color: WeaponData.getColorForRarity(weapon.rarity),
-                  width: 2.0,
+                  width: 1.0,
                 ),
                 borderRadius: BorderRadius.circular(4.0),
               ),
@@ -135,14 +135,33 @@ Widget buildWeaponDetailsDialog(BuildContext context, Weapon weapon) {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  ...weapon.skills.map(
-                    (skill) => Text(
-                      '''${skill['skill_name']}
-${skill['skill_description']}
-${skill['skill_description_detail']}''',
-                      style: const TextStyle(color: Colors.cyanAccent),
-                    ),
-                  ),
+                  ...weapon.skills.map((skill) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 4.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            skill['skill_name'] as String,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            skill['skill_description'] as String,
+                            style: const TextStyle(color: Colors.white70),
+                          ),
+                          Text(
+                            skill['skill_description_detail'] as String,
+                            style: const TextStyle(
+                              color: Colors.teal,
+                            ), // Darker cyan
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
                 ],
               ),
             ),

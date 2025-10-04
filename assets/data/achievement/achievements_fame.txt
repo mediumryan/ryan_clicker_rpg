@@ -1,0 +1,72 @@
+
+    Achievement(
+      id: 'ach_fame_1'`,
+      name: '명성 쌓기Ⅰ'`,
+      description: '달성한 업적 1개',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 1000)
+      ],
+      isCompletable: (Player player) => player.completedAchievements.length >= 1,
+      progressText: (Player player) => '${player.completedAchievements.length} / 1'`,
+    ),
+    Achievement(
+      id: 'ach_fame_2'`,
+      name: '명성 쌓기Ⅱ'`,
+      description: '달성한 업적 10개',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 5000)
+        Reward(type: RewardType.enhancementStone, quantity: 5)
+      ],
+      isCompletable: (Player player) => player.completedAchievements.length >= 10,
+      progressText: (Player player) => '${player.completedAchievements.length} / 10'`,
+    ),
+    Achievement(
+      id: 'ach_fame_3'`,
+      name: '명성 쌓기Ⅲ'`,
+      description: '달성한 업적 50개',
+      rewards: [
+        Reward(type: RewardType.gachaBox, quantity: 2, item: GachaBox(id: 'ach_fame_3_reward', boxType: WeaponBoxType.rare, stageLevel: 0))
+      ],
+      isCompletable: (Player player) => player.completedAchievements.length >= 50,
+      progressText: (Player player) => '${player.completedAchievements.length} / 50'`,
+    ),
+    Achievement(
+      id: 'ach_fame_4'`,
+      name: '명성 쌓기Ⅳ'`,
+      description: '달성한 업적 100개',
+      rewards: [
+        Reward(type: RewardType.gachaBox, quantity: 1, item: GachaBox(id: 'ach_fame_4_reward', boxType: WeaponBoxType.guaranteedUnique, stageLevel: 0))
+      ],
+      isCompletable: (Player player) => player.completedAchievements.length >= 100,
+      progressText: (Player player) => '${player.completedAchievements.length} / 100'`,
+    ),
+    Achievement(
+      id: 'ach_fame_5'`,
+      name: '명성 쌓기Ⅴ'`,
+      description: '달성한 업적 200개',
+      rewards: [
+        Reward(type: RewardType.gachaBox, quantity: 2, item: GachaBox(id: 'ach_fame_5_reward', boxType: WeaponBoxType.guaranteedUnique, stageLevel: 0))
+      ],
+      isCompletable: (Player player) => player.completedAchievements.length >= 200,
+      progressText: (Player player) => '${player.completedAchievements.length} / 200'`,
+    ),
+    Achievement(
+      id: 'ach_fame_6'`,
+      name: '명성 쌓기Ⅵ'`,
+      description: '달성한 업적 500개',
+      rewards: [
+        Reward(type: RewardType.gachaBox, quantity: 1, item: GachaBox(id: 'ach_fame_6_reward', boxType: WeaponBoxType.guaranteedEpic, stageLevel: 0))
+      ],
+      isCompletable: (Player player) => player.completedAchievements.length >= 500,
+      progressText: (Player player) => '${player.completedAchievements.length} / 500'`,
+    ),
+    Achievement(
+      id: 'ach_fame_7'`,
+      name: '명성 쌓기Ⅶ'`,
+      description: '달성한 업적 1000개',
+      rewards: [
+        Reward(type: RewardType.gachaBox, quantity: 1, item: GachaBox(id: 'ach_fame_7_reward', boxType: WeaponBoxType.guaranteedLegend, stageLevel: 0))
+      ],
+      isCompletable: (Player player) => player.completedAchievements.length >= 1000,
+      progressText: (Player player) => '${player.completedAchievements.length} / 1000'`,
+    ),

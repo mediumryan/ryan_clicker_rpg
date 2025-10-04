@@ -34,6 +34,28 @@ class AchievementData {
     return count;
   }
 
+  static int _countAcquiredWeaponsByLevelAndRarity(
+    Player player,
+    int minLevel,
+    int maxLevel,
+    List<Rarity> rarities,
+  ) {
+    if (!_isInitialized) {
+      return 0;
+    }
+    int count = 0;
+    for (final weaponId in player.acquiredWeaponIdsHistory) {
+      final weapon = WeaponData.getWeaponById(weaponId);
+      if (weapon != null &&
+          weapon.baseLevel >= minLevel &&
+          weapon.baseLevel <= maxLevel &&
+          rarities.contains(weapon.rarity)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
   static final List<Achievement> achievements = [
     // Monster Kill Achievements
     Achievement(
@@ -2577,11 +2599,11 @@ class AchievementData {
     Achievement(
       id: 'ach_gold_002',
       name: '백만장자',
-      description: '총 골드 100,000,000 획득',
+      description: '누적 획득 골드 100,000,000 획득',
       rewards: [Reward(type: RewardType.transcendenceStone, quantity: 10)],
       isCompletable: (Player player) => player.totalGoldEarned >= 100000000,
       progressText: (Player player) =>
-          '${player.totalGoldEarned.floor()} / 100000000',
+          '${player.totalGoldEarned.floor()} / 100,000,000',
     ),
 
     // Enhancement & Transcendence Achievements
@@ -2602,50 +2624,6 @@ class AchievementData {
       progressText: (Player player) =>
           '${player.transcendenceSuccessCount} / 5',
     ),
-
-    // Collection Achievements
-    Achievement(
-      id: 'ach_collect_001',
-      name: '수집가',
-      description: '무기 50종류 수집',
-      rewards: [Reward(type: RewardType.gold, quantity: 50000)],
-      isCompletable: (Player player) =>
-          player.acquiredWeaponIdsHistory.length >= 50,
-      progressText: (Player player) =>
-          '${player.acquiredWeaponIdsHistory.length} / 50',
-    ),
-    // Manually defined collection achievements
-    Achievement(
-      id: 'ach_collect_common_1',
-      name: '일반 무기 수집가 I',
-      description: '일반 무기 1개 수집',
-      rewards: [Reward(type: RewardType.gold, quantity: 100)],
-      isCompletable: (Player player) =>
-          _countAcquiredWeaponsByRarity(player, Rarity.common) >= 1,
-      progressText: (Player player) =>
-          '${_countAcquiredWeaponsByRarity(player, Rarity.common)} / 1',
-    ),
-    Achievement(
-      id: 'ach_collect_common_10',
-      name: '일반 무기 수집가 II',
-      description: '일반 무기 10개 수집',
-      rewards: [Reward(type: RewardType.gold, quantity: 1000)],
-      isCompletable: (Player player) =>
-          _countAcquiredWeaponsByRarity(player, Rarity.common) >= 10,
-      progressText: (Player player) =>
-          '${_countAcquiredWeaponsByRarity(player, Rarity.common)} / 10',
-    ),
-    Achievement(
-      id: 'ach_collect_uncommon_1',
-      name: '고급 무기 수집가 I',
-      description: '고급 무기 1개 수집',
-      rewards: [Reward(type: RewardType.gold, quantity: 500)],
-      isCompletable: (Player player) =>
-          _countAcquiredWeaponsByRarity(player, Rarity.uncommon) >= 1,
-      progressText: (Player player) =>
-          '${_countAcquiredWeaponsByRarity(player, Rarity.uncommon)} / 1',
-    ),
-
     // Click Achievements
     Achievement(
       id: 'ach_click_001',
@@ -2654,6 +2632,3729 @@ class AchievementData {
       rewards: [Reward(type: RewardType.gold, quantity: 10000)],
       isCompletable: (Player player) => player.totalClicks >= 10000,
       progressText: (Player player) => '${player.totalClicks} / 10000',
+    ),
+
+    // Weapon Collection Achievements
+    Achievement(
+      id: 'ach_collect_common_1',
+      name: '녹슨 무기 수집가Ⅰ',
+      description: '커먼 등급의 무기 1개 수집하기',
+      rewards: [Reward(type: RewardType.gold, quantity: 1000)],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.common) >= 1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.common)} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_common_2',
+      name: '녹슨 무기 수집가ⅠⅠ',
+      description: '커먼 등급의 무기 10개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_common_2_reward',
+            boxType: WeaponBoxType.common,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.common) >= 10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.common)} / 10',
+    ),
+    Achievement(
+      id: 'ach_collect_common_3',
+      name: '녹슨 무기 수집가ⅠⅠⅠ',
+      description: '커먼 등급의 무기 50개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_common_3_reward',
+            boxType: WeaponBoxType.plain,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.common) >= 50,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.common)} / 50',
+    ),
+    Achievement(
+      id: 'ach_collect_common_4',
+      name: '녹슨 무기 수집가ⅠⅠⅠⅠ',
+      description: '커먼 등급의 무기 100개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_common_4_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.common) >= 100,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.common)} / 100',
+    ),
+    Achievement(
+      id: 'ach_collect_common_5',
+      name: '녹슨 무기 수집가ⅠⅠⅠⅠⅠ',
+      description: '커먼 등급의 무기 250개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_common_5_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.common) >= 250,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.common)} / 250',
+    ),
+    Achievement(
+      id: 'ach_collect_common_6',
+      name: '녹슨 무기 수집가ⅠⅠⅠⅠⅠⅠ',
+      description: '커먼 등급의 무기 500개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 5,
+          item: GachaBox(
+            id: 'ach_collect_common_6_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.common) >= 500,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.common)} / 500',
+    ),
+    Achievement(
+      id: 'ach_collect_uncommon_1',
+      name: '평범한 무기 수집가Ⅰ',
+      description: '언커먼 등급의 무기 1개 수집하기',
+      rewards: [Reward(type: RewardType.gold, quantity: 2500)],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.uncommon) >= 1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.uncommon)} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_uncommon_2',
+      name: '평범한 무기 수집가ⅠⅠ',
+      description: '언커먼 등급의 무기 10개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_uncommon_2_reward',
+            boxType: WeaponBoxType.plain,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.uncommon) >= 10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.uncommon)} / 10',
+    ),
+    Achievement(
+      id: 'ach_collect_uncommon_3',
+      name: '평범한 무기 수집가ⅠⅠⅠ',
+      description: '언커먼 등급의 무기 50개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_uncommon_3_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.uncommon) >= 50,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.uncommon)} / 50',
+    ),
+    Achievement(
+      id: 'ach_collect_uncommon_4',
+      name: '평범한 무기 수집가ⅠⅠⅠⅠ',
+      description: '언커먼 등급의 무기 100개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_uncommon_4_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.uncommon) >= 100,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.uncommon)} / 100',
+    ),
+    Achievement(
+      id: 'ach_collect_uncommon_5',
+      name: '평범한 무기 수집가ⅠⅠⅠⅠⅠ',
+      description: '언커먼 등급의 무기 250개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 5,
+          item: GachaBox(
+            id: 'ach_collect_uncommon_5_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.uncommon) >= 250,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.uncommon)} / 250',
+    ),
+    Achievement(
+      id: 'ach_collect_uncommon_6',
+      name: '평범한 무기 수집가ⅠⅠⅠⅠⅠⅠ',
+      description: '언커먼 등급의 무기 500개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_uncommon_6_reward',
+            boxType: WeaponBoxType.guaranteedEpic,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.uncommon) >= 500,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.uncommon)} / 500',
+    ),
+    Achievement(
+      id: 'ach_collect_rare_1',
+      name: '쓸만한 무기 수집가Ⅰ',
+      description: '레어 등급의 무기 1개 수집하기',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 5000),
+        Reward(type: RewardType.enhancementStone, quantity: 3),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.rare) >= 1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.rare)} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_rare_2',
+      name: '쓸만한 무기 수집가ⅠⅠ',
+      description: '레어 등급의 무기 10개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_rare_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.rare) >= 10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.rare)} / 10',
+    ),
+    Achievement(
+      id: 'ach_collect_rare_3',
+      name: '쓸만한 무기 수집가ⅠⅠⅠ',
+      description: '레어 등급의 무기 50개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_rare_3_reward',
+            boxType: WeaponBoxType.shiny,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.rare) >= 50,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.rare)} / 50',
+    ),
+    Achievement(
+      id: 'ach_collect_rare_4',
+      name: '쓸만한 무기 수집가ⅠⅠⅠⅠ',
+      description: '레어 등급의 무기 100개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_rare_4_reward',
+            boxType: WeaponBoxType.guaranteedEpic,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.rare) >= 100,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.rare)} / 100',
+    ),
+    Achievement(
+      id: 'ach_collect_rare_5',
+      name: '쓸만한 무기 수집가ⅠⅠⅠⅠⅠ',
+      description: '레어 등급의 무기 250개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 5,
+          item: GachaBox(
+            id: 'ach_collect_rare_5_reward',
+            boxType: WeaponBoxType.shiny,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.rare) >= 250,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.rare)} / 250',
+    ),
+    Achievement(
+      id: 'ach_collect_rare_6',
+      name: '쓸만한 무기 수집가ⅠⅠⅠⅠⅠⅠ',
+      description: '레어 등급의 무기 500개 수집하기',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_rare_6_reward',
+            boxType: WeaponBoxType.guaranteedLegend,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByRarity(player, Rarity.rare) >= 500,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByRarity(player, Rarity.rare)} / 500',
+    ),
+    Achievement(
+      id: 'ach_collect_0_0_1',
+      name: '조잡한 무기 수집가Ⅰ',
+      description: '레벨0~25의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 1000),
+        Reward(type: RewardType.enhancementStone, quantity: 1),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 0, 25, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 0, 25, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_0_0_2',
+      name: '조잡한 무기 수집가ⅠⅠ',
+      description: '레벨0~25의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_0_0_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 0, 25, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 0, 25, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_0_0_3',
+      name: '조잡한 무기 수집가ⅠⅠⅠ',
+      description: '레벨0~25의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_0_0_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 0, 25, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 0, 25, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_0_1_1',
+      name: '용병의 무기 수집가Ⅰ',
+      description: '레벨50~75의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 10000),
+        Reward(type: RewardType.enhancementStone, quantity: 5),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 50, 75, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 50, 75, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_0_1_2',
+      name: '용병의 무기 수집가ⅠⅠ',
+      description: '레벨50~75의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_0_1_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 50,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 50, 75, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 50, 75, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_0_1_3',
+      name: '용병의 무기 수집가ⅠⅠⅠ',
+      description: '레벨50~75의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_0_1_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 50,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 50, 75, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 50, 75, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_0_2_1',
+      name: '고블린족의 무기 수집가Ⅰ',
+      description: '레벨100~125의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 20000),
+        Reward(type: RewardType.enhancementStone, quantity: 10),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 100, 125, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 100, 125, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_0_2_2',
+      name: '고블린족의 무기 수집가ⅠⅠ',
+      description: '레벨100~125의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_0_2_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 100,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 100, 125, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 100, 125, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_0_2_3',
+      name: '고블린족의 무기 수집가ⅠⅠⅠ',
+      description: '레벨100~125의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_0_2_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 100,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 100, 125, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 100, 125, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_0_3_1',
+      name: '기사단의 무기 수집가Ⅰ',
+      description: '레벨150~175의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 30000),
+        Reward(type: RewardType.enhancementStone, quantity: 15),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 150, 175, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 150, 175, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_0_3_2',
+      name: '기사단의 무기 수집가ⅠⅠ',
+      description: '레벨150~175의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_0_3_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 150,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 150, 175, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 150, 175, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_0_3_3',
+      name: '기사단의 무기 수집가ⅠⅠⅠ',
+      description: '레벨150~175의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_0_3_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 150,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 150, 175, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 150, 175, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_0_4_1',
+      name: '리자드맨의 무기 수집가Ⅰ',
+      description: '레벨200~225의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 40000),
+        Reward(type: RewardType.enhancementStone, quantity: 20),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 200, 225, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 200, 225, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_0_4_2',
+      name: '리자드맨의 무기 수집가ⅠⅠ',
+      description: '레벨200~225의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_0_4_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 200,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 200, 225, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 200, 225, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_0_4_3',
+      name: '리자드맨의 무기 수집가ⅠⅠⅠ',
+      description: '레벨200~225의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_0_4_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 200,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 200, 225, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 200, 225, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_0_5_1',
+      name: '엘프족의 무기 수집가Ⅰ',
+      description: '레벨250~275의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 50000),
+        Reward(type: RewardType.enhancementStone, quantity: 25),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 250, 275, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 250, 275, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_0_5_2',
+      name: '엘프족의 무기 수집가ⅠⅠ',
+      description: '레벨250~275의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_0_5_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 250,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 250, 275, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 250, 275, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_0_5_3',
+      name: '엘프족의 무기 수집가ⅠⅠⅠ',
+      description: '레벨250~275의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_0_5_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 250,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 250, 275, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 250, 275, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_0_6_1',
+      name: '정령의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨300~325의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 60000),
+        Reward(type: RewardType.enhancementStone, quantity: 30),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 300, 325, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 300, 325, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_0_6_2',
+      name: '정령의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨300~325의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_0_6_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 300,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 300, 325, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 300, 325, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_0_6_3',
+      name: '정령의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨300~325의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_0_6_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 300,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 300, 325, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 300, 325, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_0_7_1',
+      name: '신성국의 무기 수집가Ⅰ',
+      description: '레벨350~375의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 70000),
+        Reward(type: RewardType.enhancementStone, quantity: 35),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 350, 375, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 350, 375, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_0_7_2',
+      name: '신성국의 무기 수집가ⅠⅠ',
+      description: '레벨350~375의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_0_7_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 350,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 350, 375, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 350, 375, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_0_7_3',
+      name: '신성국의 무기 수집가ⅠⅠⅠ',
+      description: '레벨350~375의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_0_7_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 350,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 350, 375, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 350, 375, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_0_8_1',
+      name: '악마의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨400~425의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 80000),
+        Reward(type: RewardType.enhancementStone, quantity: 40),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 400, 425, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 400, 425, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_0_8_2',
+      name: '악마의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨400~425의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_0_8_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 400,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 400, 425, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 400, 425, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_0_8_3',
+      name: '악마의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨400~425의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_0_8_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 400,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 400, 425, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 400, 425, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_0_9_1',
+      name: '용의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨450~475의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 90000),
+        Reward(type: RewardType.enhancementStone, quantity: 45),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 450, 475, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 450, 475, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_0_9_2',
+      name: '용의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨450~475의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_0_9_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 450,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 450, 475, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 450, 475, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_0_9_3',
+      name: '용의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨450~475의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_0_9_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 450,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 450, 475, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 450, 475, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_1_0_1',
+      name: 'Ⅰ 조잡한 무기 수집가Ⅰ',
+      description: '레벨500~525의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 10000),
+        Reward(type: RewardType.enhancementStone, quantity: 5),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 500, 525, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 500, 525, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_1_0_2',
+      name: 'Ⅰ 조잡한 무기 수집가ⅠⅠ',
+      description: '레벨500~525의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_1_0_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 500,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 500, 525, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 500, 525, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_1_0_3',
+      name: 'Ⅰ 조잡한 무기 수집가ⅠⅠⅠ',
+      description: '레벨500~525의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_1_0_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 500,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 500, 525, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 500, 525, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_1_1_1',
+      name: 'Ⅰ 용병의 무기 수집가Ⅰ',
+      description: '레벨550~575의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 100000),
+        Reward(type: RewardType.enhancementStone, quantity: 25),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 550, 575, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 550, 575, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_1_1_2',
+      name: 'Ⅰ 용병의 무기 수집가ⅠⅠ',
+      description: '레벨550~575의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_1_1_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 550,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 550, 575, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 550, 575, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_1_1_3',
+      name: 'Ⅰ 용병의 무기 수집가ⅠⅠⅠ',
+      description: '레벨550~575의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_1_1_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 550,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 550, 575, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 550, 575, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_1_2_1',
+      name: 'Ⅰ 고블린족의 무기 수집가Ⅰ',
+      description: '레벨600~625의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 200000),
+        Reward(type: RewardType.enhancementStone, quantity: 50),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 600, 625, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 600, 625, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_1_2_2',
+      name: 'Ⅰ 고블린족의 무기 수집가ⅠⅠ',
+      description: '레벨600~625의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_1_2_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 600,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 600, 625, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 600, 625, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_1_2_3',
+      name: 'Ⅰ 고블린족의 무기 수집가ⅠⅠⅠ',
+      description: '레벨600~625의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_1_2_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 600,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 600, 625, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 600, 625, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_1_3_1',
+      name: 'Ⅰ 기사단의 무기 수집가Ⅰ',
+      description: '레벨650~675의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 300000),
+        Reward(type: RewardType.enhancementStone, quantity: 75),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 650, 675, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 650, 675, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_1_3_2',
+      name: 'Ⅰ 기사단의 무기 수집가ⅠⅠ',
+      description: '레벨650~675의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_1_3_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 650,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 650, 675, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 650, 675, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_1_3_3',
+      name: 'Ⅰ 기사단의 무기 수집가ⅠⅠⅠ',
+      description: '레벨650~675의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_1_3_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 650,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 650, 675, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 650, 675, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_1_4_1',
+      name: 'Ⅰ 리자드맨의 무기 수집가Ⅰ',
+      description: '레벨700~725의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 400000),
+        Reward(type: RewardType.enhancementStone, quantity: 100),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 700, 725, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 700, 725, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_1_4_2',
+      name: 'Ⅰ 리자드맨의 무기 수집가ⅠⅠ',
+      description: '레벨700~725의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_1_4_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 700,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 700, 725, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 700, 725, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_1_4_3',
+      name: 'Ⅰ 리자드맨의 무기 수집가ⅠⅠⅠ',
+      description: '레벨700~725의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_1_4_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 700,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 700, 725, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 700, 725, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_1_5_1',
+      name: 'Ⅰ 엘프족의 무기 수집가Ⅰ',
+      description: '레벨750~775의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 500000),
+        Reward(type: RewardType.enhancementStone, quantity: 125),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 750, 775, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 750, 775, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_1_5_2',
+      name: 'Ⅰ 엘프족의 무기 수집가ⅠⅠ',
+      description: '레벨750~775의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_1_5_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 750,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 750, 775, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 750, 775, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_1_5_3',
+      name: 'Ⅰ 엘프족의 무기 수집가ⅠⅠⅠ',
+      description: '레벨750~775의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_1_5_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 750,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 750, 775, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 750, 775, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_1_6_1',
+      name: 'Ⅰ 정령의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨800~825의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 600000),
+        Reward(type: RewardType.enhancementStone, quantity: 150),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 800, 825, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 800, 825, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_1_6_2',
+      name: 'Ⅰ 정령의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨800~825의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_1_6_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 800,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 800, 825, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 800, 825, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_1_6_3',
+      name: 'Ⅰ 정령의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨800~825의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_1_6_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 800,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 800, 825, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 800, 825, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_1_7_1',
+      name: 'Ⅰ 신성국의 무기 수집가Ⅰ',
+      description: '레벨850~875의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 700000),
+        Reward(type: RewardType.enhancementStone, quantity: 175),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 850, 875, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 850, 875, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_1_7_2',
+      name: 'Ⅰ 신성국의 무기 수집가ⅠⅠ',
+      description: '레벨850~875의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_1_7_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 850,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 850, 875, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 850, 875, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_1_7_3',
+      name: 'Ⅰ 신성국의 무기 수집가ⅠⅠⅠ',
+      description: '레벨850~875의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_1_7_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 850,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 850, 875, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 850, 875, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_1_8_1',
+      name: 'Ⅰ 악마의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨900~925의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 800000),
+        Reward(type: RewardType.enhancementStone, quantity: 200),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 900, 925, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 900, 925, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_1_8_2',
+      name: 'Ⅰ 악마의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨900~925의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_1_8_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 900,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 900, 925, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 900, 925, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_1_8_3',
+      name: 'Ⅰ 악마의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨900~925의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_1_8_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 900,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 900, 925, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 900, 925, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_1_9_1',
+      name: 'Ⅰ 용의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨950~975의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 900000),
+        Reward(type: RewardType.enhancementStone, quantity: 225),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 950, 975, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 950, 975, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_1_9_2',
+      name: 'Ⅰ 용의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨950~975의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_1_9_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 950,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 950, 975, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 950, 975, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_1_9_3',
+      name: 'Ⅰ 용의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨950~975의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_1_9_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 950,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 950, 975, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 950, 975, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_2_0_1',
+      name: 'ⅠⅠ 조잡한 무기 수집가Ⅰ',
+      description: '레벨1000~1025의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 100000),
+        Reward(type: RewardType.enhancementStone, quantity: 25),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1000, 1025, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1000, 1025, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_2_0_2',
+      name: 'ⅠⅠ 조잡한 무기 수집가ⅠⅠ',
+      description: '레벨1000~1025의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_2_0_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1000,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1000, 1025, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1000, 1025, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_2_0_3',
+      name: 'ⅠⅠ 조잡한 무기 수집가ⅠⅠⅠ',
+      description: '레벨1000~1025의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_2_0_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1000,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1000, 1025, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1000, 1025, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_2_1_1',
+      name: 'ⅠⅠ 용병의 무기 수집가Ⅰ',
+      description: '레벨1050~1075의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 1000000),
+        Reward(type: RewardType.enhancementStone, quantity: 125),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1050, 1075, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1050, 1075, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_2_1_2',
+      name: 'ⅠⅠ 용병의 무기 수집가ⅠⅠ',
+      description: '레벨1050~1075의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_2_1_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1050,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1050, 1075, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1050, 1075, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_2_1_3',
+      name: 'ⅠⅠ 용병의 무기 수집가ⅠⅠⅠ',
+      description: '레벨1050~1075의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_2_1_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1050,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1050, 1075, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1050, 1075, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_2_2_1',
+      name: 'ⅠⅠ 고블린족의 무기 수집가Ⅰ',
+      description: '레벨1100~1125의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 2000000),
+        Reward(type: RewardType.enhancementStone, quantity: 250),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1100, 1125, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1100, 1125, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_2_2_2',
+      name: 'ⅠⅠ 고블린족의 무기 수집가ⅠⅠ',
+      description: '레벨1100~1125의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_2_2_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1100,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1100, 1125, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1100, 1125, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_2_2_3',
+      name: 'ⅠⅠ 고블린족의 무기 수집가ⅠⅠⅠ',
+      description: '레벨1100~1125의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_2_2_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1100,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1100, 1125, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1100, 1125, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_2_3_1',
+      name: 'ⅠⅠ 기사단의 무기 수집가Ⅰ',
+      description: '레벨1150~1175의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 3000000),
+        Reward(type: RewardType.enhancementStone, quantity: 375),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1150, 1175, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1150, 1175, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_2_3_2',
+      name: 'ⅠⅠ 기사단의 무기 수집가ⅠⅠ',
+      description: '레벨1150~1175의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_2_3_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1150,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1150, 1175, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1150, 1175, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_2_3_3',
+      name: 'ⅠⅠ 기사단의 무기 수집가ⅠⅠⅠ',
+      description: '레벨1150~1175의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_2_3_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1150,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1150, 1175, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1150, 1175, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_2_4_1',
+      name: 'ⅠⅠ 리자드맨의 무기 수집가Ⅰ',
+      description: '레벨1200~1225의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 4000000),
+        Reward(type: RewardType.enhancementStone, quantity: 500),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1200, 1225, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1200, 1225, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_2_4_2',
+      name: 'ⅠⅠ 리자드맨의 무기 수집가ⅠⅠ',
+      description: '레벨1200~1225의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_2_4_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1200,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1200, 1225, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1200, 1225, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_2_4_3',
+      name: 'ⅠⅠ 리자드맨의 무기 수집가ⅠⅠⅠ',
+      description: '레벨1200~1225의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_2_4_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1200,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1200, 1225, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1200, 1225, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_2_5_1',
+      name: 'ⅠⅠ 엘프족의 무기 수집가Ⅰ',
+      description: '레벨1250~1275의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 5000000),
+        Reward(type: RewardType.enhancementStone, quantity: 625),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1250, 1275, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1250, 1275, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_2_5_2',
+      name: 'ⅠⅠ 엘프족의 무기 수집가ⅠⅠ',
+      description: '레벨1250~1275의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_2_5_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1250,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1250, 1275, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1250, 1275, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_2_5_3',
+      name: 'ⅠⅠ 엘프족의 무기 수집가ⅠⅠⅠ',
+      description: '레벨1250~1275의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_2_5_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1250,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1250, 1275, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1250, 1275, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_2_6_1',
+      name: 'ⅠⅠ 정령의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨1300~1325의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 6000000),
+        Reward(type: RewardType.enhancementStone, quantity: 750),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1300, 1325, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1300, 1325, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_2_6_2',
+      name: 'ⅠⅠ 정령의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨1300~1325의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_2_6_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1300,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1300, 1325, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1300, 1325, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_2_6_3',
+      name: 'ⅠⅠ 정령의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨1300~1325의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_2_6_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1300,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1300, 1325, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1300, 1325, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_2_7_1',
+      name: 'ⅠⅠ 신성국의 무기 수집가Ⅰ',
+      description: '레벨1350~1375의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 7000000),
+        Reward(type: RewardType.enhancementStone, quantity: 875),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1350, 1375, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1350, 1375, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_2_7_2',
+      name: 'ⅠⅠ 신성국의 무기 수집가ⅠⅠ',
+      description: '레벨1350~1375의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_2_7_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1350,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1350, 1375, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1350, 1375, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_2_7_3',
+      name: 'ⅠⅠ 신성국의 무기 수집가ⅠⅠⅠ',
+      description: '레벨1350~1375의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_2_7_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1350,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1350, 1375, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1350, 1375, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_2_8_1',
+      name: 'ⅠⅠ 악마의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨1400~1425의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 8000000),
+        Reward(type: RewardType.enhancementStone, quantity: 1000),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1400, 1425, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1400, 1425, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_2_8_2',
+      name: 'ⅠⅠ 악마의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨1400~1425의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_2_8_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1400,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1400, 1425, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1400, 1425, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_2_8_3',
+      name: 'ⅠⅠ 악마의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨1400~1425의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_2_8_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1400,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1400, 1425, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1400, 1425, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_2_9_1',
+      name: 'ⅠⅠ 용의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨1450~1475의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 9000000),
+        Reward(type: RewardType.enhancementStone, quantity: 1125),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1450, 1475, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1450, 1475, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_2_9_2',
+      name: 'ⅠⅠ 용의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨1450~1475의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_2_9_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1450,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1450, 1475, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1450, 1475, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_2_9_3',
+      name: 'ⅠⅠ 용의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨1450~1475의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_2_9_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1450,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1450, 1475, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1450, 1475, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_3_0_1',
+      name: 'ⅠⅠⅠ 조잡한 무기 수집가Ⅰ',
+      description: '레벨1500~1525의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 1000000),
+        Reward(type: RewardType.enhancementStone, quantity: 125),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1500, 1525, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1500, 1525, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_3_0_2',
+      name: 'ⅠⅠⅠ 조잡한 무기 수집가ⅠⅠ',
+      description: '레벨1500~1525의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_3_0_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1500,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1500, 1525, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1500, 1525, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_3_0_3',
+      name: 'ⅠⅠⅠ 조잡한 무기 수집가ⅠⅠⅠ',
+      description: '레벨1500~1525의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_3_0_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1500,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1500, 1525, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1500, 1525, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_3_1_1',
+      name: 'ⅠⅠⅠ 용병의 무기 수집가Ⅰ',
+      description: '레벨1550~1575의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 10000000),
+        Reward(type: RewardType.enhancementStone, quantity: 625),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1550, 1575, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1550, 1575, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_3_1_2',
+      name: 'ⅠⅠⅠ 용병의 무기 수집가ⅠⅠ',
+      description: '레벨1550~1575의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_3_1_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1550,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1550, 1575, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1550, 1575, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_3_1_3',
+      name: 'ⅠⅠⅠ 용병의 무기 수집가ⅠⅠⅠ',
+      description: '레벨1550~1575의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_3_1_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1550,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1550, 1575, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1550, 1575, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_3_2_1',
+      name: 'ⅠⅠⅠ 고블린족의 무기 수집가Ⅰ',
+      description: '레벨1600~1625의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 20000000),
+        Reward(type: RewardType.enhancementStone, quantity: 1250),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1600, 1625, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1600, 1625, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_3_2_2',
+      name: 'ⅠⅠⅠ 고블린족의 무기 수집가ⅠⅠ',
+      description: '레벨1600~1625의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_3_2_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1600,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1600, 1625, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1600, 1625, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_3_2_3',
+      name: 'ⅠⅠⅠ 고블린족의 무기 수집가ⅠⅠⅠ',
+      description: '레벨1600~1625의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_3_2_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1600,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1600, 1625, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1600, 1625, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_3_3_1',
+      name: 'ⅠⅠⅠ 기사단의 무기 수집가Ⅰ',
+      description: '레벨1650~1675의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 30000000),
+        Reward(type: RewardType.enhancementStone, quantity: 1875),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1650, 1675, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1650, 1675, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_3_3_2',
+      name: 'ⅠⅠⅠ 기사단의 무기 수집가ⅠⅠ',
+      description: '레벨1650~1675의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_3_3_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1650,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1650, 1675, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1650, 1675, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_3_3_3',
+      name: 'ⅠⅠⅠ 기사단의 무기 수집가ⅠⅠⅠ',
+      description: '레벨1650~1675의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_3_3_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1650,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1650, 1675, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1650, 1675, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_3_4_1',
+      name: 'ⅠⅠⅠ 리자드맨의 무기 수집가Ⅰ',
+      description: '레벨1700~1725의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 40000000),
+        Reward(type: RewardType.enhancementStone, quantity: 2500),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1700, 1725, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1700, 1725, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_3_4_2',
+      name: 'ⅠⅠⅠ 리자드맨의 무기 수집가ⅠⅠ',
+      description: '레벨1700~1725의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_3_4_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1700,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1700, 1725, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1700, 1725, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_3_4_3',
+      name: 'ⅠⅠⅠ 리자드맨의 무기 수집가ⅠⅠⅠ',
+      description: '레벨1700~1725의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_3_4_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1700,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1700, 1725, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1700, 1725, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_3_5_1',
+      name: 'ⅠⅠⅠ 엘프족의 무기 수집가Ⅰ',
+      description: '레벨1750~1775의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 50000000),
+        Reward(type: RewardType.enhancementStone, quantity: 3125),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1750, 1775, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1750, 1775, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_3_5_2',
+      name: 'ⅠⅠⅠ 엘프족의 무기 수집가ⅠⅠ',
+      description: '레벨1750~1775의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_3_5_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1750,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1750, 1775, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1750, 1775, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_3_5_3',
+      name: 'ⅠⅠⅠ 엘프족의 무기 수집가ⅠⅠⅠ',
+      description: '레벨1750~1775의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_3_5_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1750,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1750, 1775, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1750, 1775, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_3_6_1',
+      name: 'ⅠⅠⅠ 정령의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨1800~1825의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 60000000),
+        Reward(type: RewardType.enhancementStone, quantity: 3750),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1800, 1825, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1800, 1825, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_3_6_2',
+      name: 'ⅠⅠⅠ 정령의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨1800~1825의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_3_6_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1800,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1800, 1825, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1800, 1825, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_3_6_3',
+      name: 'ⅠⅠⅠ 정령의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨1800~1825의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_3_6_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1800,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1800, 1825, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1800, 1825, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_3_7_1',
+      name: 'ⅠⅠⅠ 신성국의 무기 수집가Ⅰ',
+      description: '레벨1850~1875의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 70000000),
+        Reward(type: RewardType.enhancementStone, quantity: 4375),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1850, 1875, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1850, 1875, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_3_7_2',
+      name: 'ⅠⅠⅠ 신성국의 무기 수집가ⅠⅠ',
+      description: '레벨1850~1875의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_3_7_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1850,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1850, 1875, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1850, 1875, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_3_7_3',
+      name: 'ⅠⅠⅠ 신성국의 무기 수집가ⅠⅠⅠ',
+      description: '레벨1850~1875의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_3_7_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1850,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1850, 1875, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1850, 1875, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_3_8_1',
+      name: 'ⅠⅠⅠ 악마의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨1900~1925의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 80000000),
+        Reward(type: RewardType.enhancementStone, quantity: 5000),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1900, 1925, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1900, 1925, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_3_8_2',
+      name: 'ⅠⅠⅠ 악마의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨1900~1925의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_3_8_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1900,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1900, 1925, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1900, 1925, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_3_8_3',
+      name: 'ⅠⅠⅠ 악마의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨1900~1925의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_3_8_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1900,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1900, 1925, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1900, 1925, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_3_9_1',
+      name: 'ⅠⅠⅠ 용의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨1950~1975의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 90000000),
+        Reward(type: RewardType.enhancementStone, quantity: 5625),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1950, 1975, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1950, 1975, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_3_9_2',
+      name: 'ⅠⅠⅠ 용의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨1950~1975의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_3_9_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 1950,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1950, 1975, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1950, 1975, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_3_9_3',
+      name: 'ⅠⅠⅠ 용의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨1950~1975의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_3_9_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 1950,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 1950, 1975, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 1950, 1975, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_4_0_1',
+      name: 'ⅠⅠⅠⅠ 조잡한 무기 수집가Ⅰ',
+      description: '레벨2000~2025의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 10000000),
+        Reward(type: RewardType.enhancementStone, quantity: 625),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2000, 2025, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2000, 2025, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_4_0_2',
+      name: 'ⅠⅠⅠⅠ 조잡한 무기 수집가ⅠⅠ',
+      description: '레벨2000~2025의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_4_0_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 2000,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2000, 2025, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2000, 2025, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_4_0_3',
+      name: 'ⅠⅠⅠⅠ 조잡한 무기 수집가ⅠⅠⅠ',
+      description: '레벨2000~2025의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_4_0_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 2000,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2000, 2025, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2000, 2025, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_4_1_1',
+      name: 'ⅠⅠⅠⅠ 용병의 무기 수집가Ⅰ',
+      description: '레벨2050~2075의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 100000000),
+        Reward(type: RewardType.enhancementStone, quantity: 3125),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2050, 2075, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2050, 2075, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_4_1_2',
+      name: 'ⅠⅠⅠⅠ 용병의 무기 수집가ⅠⅠ',
+      description: '레벨2050~2075의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_4_1_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 2050,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2050, 2075, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2050, 2075, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_4_1_3',
+      name: 'ⅠⅠⅠⅠ 용병의 무기 수집가ⅠⅠⅠ',
+      description: '레벨2050~2075의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_4_1_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 2050,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2050, 2075, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2050, 2075, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_4_2_1',
+      name: 'ⅠⅠⅠⅠ 고블린족의 무기 수집가Ⅰ',
+      description: '레벨2100~2125의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 200000000),
+        Reward(type: RewardType.enhancementStone, quantity: 6250),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2100, 2125, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2100, 2125, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_4_2_2',
+      name: 'ⅠⅠⅠⅠ 고블린족의 무기 수집가ⅠⅠ',
+      description: '레벨2100~2125의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_4_2_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 2100,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2100, 2125, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2100, 2125, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_4_2_3',
+      name: 'ⅠⅠⅠⅠ 고블린족의 무기 수집가ⅠⅠⅠ',
+      description: '레벨2100~2125의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_4_2_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 2100,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2100, 2125, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2100, 2125, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_4_3_1',
+      name: 'ⅠⅠⅠⅠ 기사단의 무기 수집가Ⅰ',
+      description: '레벨2150~2175의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 300000000),
+        Reward(type: RewardType.enhancementStone, quantity: 9375),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2150, 2175, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2150, 2175, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_4_3_2',
+      name: 'ⅠⅠⅠⅠ 기사단의 무기 수집가ⅠⅠ',
+      description: '레벨2150~2175의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_4_3_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 2150,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2150, 2175, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2150, 2175, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_4_3_3',
+      name: 'ⅠⅠⅠⅠ 기사단의 무기 수집가ⅠⅠⅠ',
+      description: '레벨2150~2175의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_4_3_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 2150,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2150, 2175, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2150, 2175, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_4_4_1',
+      name: 'ⅠⅠⅠⅠ 리자드맨의 무기 수집가Ⅰ',
+      description: '레벨2200~2225의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 400000000),
+        Reward(type: RewardType.enhancementStone, quantity: 12500),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2200, 2225, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2200, 2225, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_4_4_2',
+      name: 'ⅠⅠⅠⅠ 리자드맨의 무기 수집가ⅠⅠ',
+      description: '레벨2200~2225의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_4_4_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 2200,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2200, 2225, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2200, 2225, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_4_4_3',
+      name: 'ⅠⅠⅠⅠ 리자드맨의 무기 수집가ⅠⅠⅠ',
+      description: '레벨2200~2225의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_4_4_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 2200,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2200, 2225, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2200, 2225, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_4_5_1',
+      name: 'ⅠⅠⅠⅠ 엘프족의 무기 수집가Ⅰ',
+      description: '레벨2250~2275의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 500000000),
+        Reward(type: RewardType.enhancementStone, quantity: 15625),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2250, 2275, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2250, 2275, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_4_5_2',
+      name: 'ⅠⅠⅠⅠ 엘프족의 무기 수집가ⅠⅠ',
+      description: '레벨2250~2275의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_4_5_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 2250,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2250, 2275, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2250, 2275, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_4_5_3',
+      name: 'ⅠⅠⅠⅠ 엘프족의 무기 수집가ⅠⅠⅠ',
+      description: '레벨2250~2275의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_4_5_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 2250,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2250, 2275, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2250, 2275, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_4_6_1',
+      name: 'ⅠⅠⅠⅠ 정령의 힘이 깃든 무기 수집가Ⅰ',
+      description: '레벨2300~2325의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 600000000),
+        Reward(type: RewardType.enhancementStone, quantity: 18750),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2300, 2325, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2300, 2325, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_4_6_2',
+      name: 'ⅠⅠⅠⅠ 정령의 힘이 깃든 무기 수집가ⅠⅠ',
+      description: '레벨2300~2325의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_4_6_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 2300,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2300, 2325, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2300, 2325, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_4_6_3',
+      name: 'ⅠⅠⅠⅠ 정령의 힘이 깃든 무기 수집가ⅠⅠⅠ',
+      description: '레벨2300~2325의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_4_6_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 2300,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2300, 2325, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2300, 2325, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+    Achievement(
+      id: 'ach_collect_4_7_1',
+      name: 'ⅠⅠⅠⅠ 신성국의 무기 수집가Ⅰ',
+      description: '레벨2350~2375의 커먼,언커먼,레어 등급의 무기 1개 수집',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 700000000),
+        Reward(type: RewardType.enhancementStone, quantity: 21875),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2350, 2375, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          1,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2350, 2375, [Rarity.common, Rarity.uncommon, Rarity.rare])} / 1',
+    ),
+    Achievement(
+      id: 'ach_collect_4_7_2',
+      name: 'ⅠⅠⅠⅠ 신성국의 무기 수집가ⅠⅠ',
+      description: '레벨2350~2375의 커먼,언커먼,레어 등급의 무기 10개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_collect_4_7_2_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 2350,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2350, 2375, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          10,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2350, 2375, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 10',
+    ),
+    Achievement(
+      id: 'ach_collect_4_7_3',
+      name: 'ⅠⅠⅠⅠ 신성국의 무기 수집가ⅠⅠⅠ',
+      description: '레벨2350~2375의 커먼,언커먼,레어 등급의 무기 36개 수집',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_collect_4_7_3_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 2350,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          _countAcquiredWeaponsByLevelAndRarity(player, 2350, 2375, [
+            Rarity.common,
+            Rarity.uncommon,
+            Rarity.rare,
+          ]) >=
+          36,
+      progressText: (Player player) =>
+          '${_countAcquiredWeaponsByLevelAndRarity(player, 2350, 2375, [Rarity.common, Rarity.uncommon, Rarity.rare])}/ 36',
+    ),
+
+    Achievement(
+      id: 'ach_fame_1',
+      name: '명성 쌓기Ⅰ',
+      description: '달성한 업적 1개',
+      rewards: [Reward(type: RewardType.gold, quantity: 1000)],
+      isCompletable: (Player player) =>
+          player.completedAchievementIds.isNotEmpty,
+      progressText: (Player player) =>
+          '${player.completedAchievementIds.length} / 1',
+    ),
+    Achievement(
+      id: 'ach_fame_2',
+      name: '명성 쌓기Ⅱ',
+      description: '달성한 업적 10개',
+      rewards: [
+        Reward(type: RewardType.gold, quantity: 5000),
+        Reward(type: RewardType.enhancementStone, quantity: 5),
+      ],
+      isCompletable: (Player player) =>
+          player.completedAchievementIds.length >= 10,
+      progressText: (Player player) =>
+          '${player.completedAchievementIds.length} / 10',
+    ),
+    Achievement(
+      id: 'ach_fame_3',
+      name: '명성 쌓기Ⅲ',
+      description: '달성한 업적 50개',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_fame_3_reward',
+            boxType: WeaponBoxType.rare,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          player.completedAchievementIds.length >= 50,
+      progressText: (Player player) =>
+          '${player.completedAchievementIds.length} / 50',
+    ),
+    Achievement(
+      id: 'ach_fame_4',
+      name: '명성 쌓기Ⅳ',
+      description: '달성한 업적 100개',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_fame_4_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          player.completedAchievementIds.length >= 100,
+      progressText: (Player player) =>
+          '${player.completedAchievementIds.length} / 100',
+    ),
+    Achievement(
+      id: 'ach_fame_5',
+      name: '명성 쌓기Ⅴ',
+      description: '달성한 업적 200개',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 2,
+          item: GachaBox(
+            id: 'ach_fame_5_reward',
+            boxType: WeaponBoxType.guaranteedUnique,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          player.completedAchievementIds.length >= 200,
+      progressText: (Player player) =>
+          '${player.completedAchievementIds.length} / 200',
+    ),
+    Achievement(
+      id: 'ach_fame_6',
+      name: '명성 쌓기Ⅵ',
+      description: '달성한 업적 500개',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_fame_6_reward',
+            boxType: WeaponBoxType.guaranteedEpic,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          player.completedAchievementIds.length >= 500,
+      progressText: (Player player) =>
+          '${player.completedAchievementIds.length} / 500',
+    ),
+    Achievement(
+      id: 'ach_fame_7',
+      name: '명성 쌓기Ⅶ',
+      description: '달성한 업적 1000개',
+      rewards: [
+        Reward(
+          type: RewardType.gachaBox,
+          quantity: 1,
+          item: GachaBox(
+            id: 'ach_fame_7_reward',
+            boxType: WeaponBoxType.guaranteedLegend,
+            stageLevel: 0,
+          ),
+        ),
+      ],
+      isCompletable: (Player player) =>
+          player.completedAchievementIds.length >= 1000,
+      progressText: (Player player) =>
+          '${player.completedAchievementIds.length} / 1000',
     ),
   ];
 }

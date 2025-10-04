@@ -596,10 +596,10 @@ BASE_UNIQUE_WEAPONS = [
 # --- 무기 타입 분류 ---
 TYPE_MAP = {
     "레이피어": "rapier", "도검": "blade", "검": "sword",
-    "대검": "greatsword", "시미터": "scimitar", "단검": "dagger",
-    "도축칼": "cleaver", "전투도끼": "battle_axe", "전투망치": "warhammer",
-    "창": "spear", "지팡이": "staff", "삼지창": "trident",
-    "메이스": "mace", "낫": "scythe", "곡도": "curved_sword", "쌍절곤": "nunchaku"
+    "대검": "greatsword", "단검": "dagger",
+    "전투도끼": "battle_axe", "전투망치": "warhammer",
+    "창": "spear", "지팡이": "staff", 
+    "메이스": "mace", "낫": "scythe", "곡도": "curved_sword", 
 }
 
 # --- 무기 타입별 멀티플라이어 ---
@@ -608,18 +608,14 @@ WEAPON_TYPE_MODIFIERS = {
      "blade":       {"damage_mult": 1.05, "speed_mult": 1.15, "accuracy_mult": 1.070, "crit_chance_mult": 1.500, "crit_mult_mult": 1.050},
      "sword":        {"damage_mult": 1.20, "speed_mult": 1.00, "accuracy_mult": 1.030, "crit_chance_mult": 1.000, "crit_mult_mult": 1.000},
      "greatsword":   {"damage_mult": 1.70, "speed_mult": 0.80, "accuracy_mult": 0.940, "crit_chance_mult": 0.800, "crit_mult_mult": 1.200},
-     "scimitar":     {"damage_mult": 1.05, "speed_mult": 1.15, "accuracy_mult": 1.040, "crit_chance_mult": 1.200, "crit_mult_mult": 1.000},
      "dagger":       {"damage_mult": 0.85, "speed_mult": 1.35, "accuracy_mult": 1.100, "crit_chance_mult": 2.000, "crit_mult_mult": 0.900},
-     "cleaver":      {"damage_mult": 1.35, "speed_mult": 0.90, "accuracy_mult": 1.000, "crit_chance_mult": 1.200, "crit_mult_mult": 1.100},
      "battle_axe":    {"damage_mult": 1.50, "speed_mult": 0.85, "accuracy_mult": 0.950, "crit_chance_mult": 0.800, "crit_mult_mult": 1.150},
      "warhammer":    {"damage_mult": 1.80, "speed_mult": 0.75, "accuracy_mult": 0.920, "crit_chance_mult": 0.700, "crit_mult_mult": 1.300},
      "spear":        {"damage_mult": 1.10, "speed_mult": 1.05, "accuracy_mult": 1.100, "crit_chance_mult": 1.200, "crit_mult_mult": 1.000},
      "staff":        {"damage_mult": 1.10, "speed_mult": 1.00, "accuracy_mult": 1.120, "crit_chance_mult": 1.300, "crit_mult_mult": 0.950},
-     "trident":      {"damage_mult": 1.20, "speed_mult": 0.95, "accuracy_mult": 1.080, "crit_chance_mult": 1.200, "crit_mult_mult": 1.050},
      "mace":         {"damage_mult": 1.40, "speed_mult": 0.90, "accuracy_mult": 0.970, "crit_chance_mult": 0.800, "crit_mult_mult": 1.200},
      "scythe":       {"damage_mult": 1.25, "speed_mult": 1.00, "accuracy_mult": 0.990, "crit_chance_mult": 1.300, "crit_mult_mult": 1.150},
      "curved_sword": {"damage_mult": 1.10, "speed_mult": 1.10, "accuracy_mult": 1.030, "crit_chance_mult": 1.200, "crit_mult_mult": 1.050},
-     "nunchaku":     {"damage_mult": 0.95, "speed_mult": 1.30, "accuracy_mult": 1.060, "crit_chance_mult": 1.800, "crit_mult_mult": 0.950},
 }
 
 def generate_unique_weapons():
@@ -658,6 +654,8 @@ def generate_unique_weapons():
 
             # Recalculate base damage if it's based on level, otherwise keep the template's damage
             level = new_weapon['baseLevel']
+            new_weapon['defensePenetration'] = round(level / 100 + 3, 0)
+
             if level == 0:
                 new_weapon['baseSellPrice'] = 3000
             else:

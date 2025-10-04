@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart'; // Needed for WidgetsFlutterBinding
 import 'package:provider/provider.dart';
+import 'package:ryan_clicker_rpg/data/achievement_data.dart';
 import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // Import WeaponData
 import 'package:ryan_clicker_rpg/screens/special_boss_screen.dart';
 import 'providers/game_provider.dart';
@@ -8,6 +9,7 @@ import 'screens/main_game_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter binding is initialized
   await WeaponData.initialize(); // Initialize WeaponData
+  await AchievementData.initialize(); // Initialize AchievementData
 
   // Create GameProvider instance
   final gameProvider = GameProvider();

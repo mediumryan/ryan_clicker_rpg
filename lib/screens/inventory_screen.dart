@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart';
 import 'package:ryan_clicker_rpg/models/gacha_box.dart'; // Import GachaBox
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
-import 'package:ryan_clicker_rpg/widgets/equipment_codex_dialog.dart'; // NEW IMPORT
 import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT for WeaponData
 import 'package:ryan_clicker_rpg/widgets/weapon_info_widget.dart'; // NEW IMPORT for WeaponInfoWidget
 
@@ -16,18 +15,7 @@ class InventoryScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('인벤토리'),
         backgroundColor: Colors.grey[850],
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.book,
-              color: Colors.white,
-            ), // Book icon for codex
-            onPressed: () {
-              _showEquipmentCodexDialog(context);
-            },
-            tooltip: '장비 도감', // Tooltip for accessibility
-          ),
-        ],
+        actions: [],
       ),
       backgroundColor: Colors.grey[900],
       body: Consumer<GameProvider>(
@@ -303,15 +291,7 @@ class InventoryScreen extends StatelessWidget {
     );
   }
 
-  // NEW METHOD FOR EQUIPMENT CODEX DIALOG
-  void _showEquipmentCodexDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return EquipmentCodexDialog(); // Use the new widget here
-      },
-    );
-  }
+
 
   void _showGachaInfoDialog(BuildContext context) {
     final List<Map<String, dynamic>> gachaBoxInfo = WeaponData.gachaBoxInfo;

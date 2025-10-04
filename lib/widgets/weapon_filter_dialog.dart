@@ -50,7 +50,7 @@ class _WeaponFilterDialogState extends State<WeaponFilterDialog> {
   String _getWeaponTypeKoreanName(WeaponType type) {
     const typeMap = {
       'rapier': '레이피어',
-      'katana': '카타나',
+      'blade': '도검',
       'sword': '검',
       'greatsword': '대검',
       'scimitar': '시미터',

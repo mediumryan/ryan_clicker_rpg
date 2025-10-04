@@ -1169,7 +1169,7 @@ BASE_EPIC_WEAPONS = [
     "imageName": "epic/rapier/30022.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
-    "description": "언뜻 평범해 보이지만, 공격 시 알 수 없는 힘이 발산되어 적을 매혹한다.",
+    "description": "강력한 정신계마법이 각인된 무기. 공격 시 적을 홀린다.",
     "baseLevel": 2000,
     "baseDamage": 0,
     "speed": 1.43,
@@ -1192,16 +1192,16 @@ BASE_EPIC_WEAPONS = [
     },
     "skills": [
       {
-        "skill_name": "손짓",
+        "skill_name": "홀리기",
         "skill_type": "passive",
-        "skill_description": "정체를 알 수 없는 힘으로 적을 홀려 매혹 상태로 만든다.",
-        "skill_description_detail": "공격 시 5% 확률로 5초간 매혹, 피격시 방어력 0.5 영구감소, 쿨타임 5초",
+        "skill_description": "적을 매혹 상태로 만든다.",
+        "skill_description_detail": "공격 시 5% 확률로 5초간 매혹, 적 피격시 방어력 2 감소, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyPoison",
             "params": {
               "chance": 0.05,
-              "attackPerDefence": 0.5,
+              "attackPerDefence": 2.0,
               "duration": 5,
               "trigger": "onHit",
               "stackable": False,
@@ -1214,14 +1214,13 @@ BASE_EPIC_WEAPONS = [
   }
 ]
 
-
 # --- 무기 타입 분류 ---
 TYPE_MAP = {
     "레이피어": "rapier", "도검": "blade", "검": "sword",
-    "대검": "greatsword", "시미터": "scimitar", "단검": "dagger",
-    "도축칼": "cleaver", "전투도끼": "battle_axe", "전투망치": "warhammer",
-    "창": "spear", "지팡이": "staff", "삼지창": "trident",
-    "메이스": "mace", "낫": "scythe", "곡도": "curved_sword", "쌍절곤": "nunchaku"
+    "대검": "greatsword", "단검": "dagger",
+    "전투도끼": "battle_axe", "전투망치": "warhammer",
+    "창": "spear", "지팡이": "staff", 
+    "메이스": "mace", "낫": "scythe", "곡도": "curved_sword", 
 }
 
 # --- 무기 타입별 멀티플라이어 ---
@@ -1230,18 +1229,14 @@ WEAPON_TYPE_MODIFIERS = {
      "blade":       {"damage_mult": 1.05, "speed_mult": 1.15, "accuracy_mult": 1.070, "crit_chance_mult": 1.500, "crit_mult_mult": 1.050},
      "sword":        {"damage_mult": 1.20, "speed_mult": 1.00, "accuracy_mult": 1.030, "crit_chance_mult": 1.000, "crit_mult_mult": 1.000},
      "greatsword":   {"damage_mult": 1.70, "speed_mult": 0.80, "accuracy_mult": 0.940, "crit_chance_mult": 0.800, "crit_mult_mult": 1.200},
-     "scimitar":     {"damage_mult": 1.05, "speed_mult": 1.15, "accuracy_mult": 1.040, "crit_chance_mult": 1.200, "crit_mult_mult": 1.000},
      "dagger":       {"damage_mult": 0.85, "speed_mult": 1.35, "accuracy_mult": 1.100, "crit_chance_mult": 2.000, "crit_mult_mult": 0.900},
-     "cleaver":      {"damage_mult": 1.35, "speed_mult": 0.90, "accuracy_mult": 1.000, "crit_chance_mult": 1.200, "crit_mult_mult": 1.100},
      "battle_axe":    {"damage_mult": 1.50, "speed_mult": 0.85, "accuracy_mult": 0.950, "crit_chance_mult": 0.800, "crit_mult_mult": 1.150},
      "warhammer":    {"damage_mult": 1.80, "speed_mult": 0.75, "accuracy_mult": 0.920, "crit_chance_mult": 0.700, "crit_mult_mult": 1.300},
      "spear":        {"damage_mult": 1.10, "speed_mult": 1.05, "accuracy_mult": 1.100, "crit_chance_mult": 1.200, "crit_mult_mult": 1.000},
      "staff":        {"damage_mult": 1.10, "speed_mult": 1.00, "accuracy_mult": 1.120, "crit_chance_mult": 1.300, "crit_mult_mult": 0.950},
-     "trident":      {"damage_mult": 1.20, "speed_mult": 0.95, "accuracy_mult": 1.080, "crit_chance_mult": 1.200, "crit_mult_mult": 1.050},
      "mace":         {"damage_mult": 1.40, "speed_mult": 0.90, "accuracy_mult": 0.970, "crit_chance_mult": 0.800, "crit_mult_mult": 1.200},
      "scythe":       {"damage_mult": 1.25, "speed_mult": 1.00, "accuracy_mult": 0.990, "crit_chance_mult": 1.300, "crit_mult_mult": 1.150},
      "curved_sword": {"damage_mult": 1.10, "speed_mult": 1.10, "accuracy_mult": 1.030, "crit_chance_mult": 1.200, "crit_mult_mult": 1.050},
-     "nunchaku":     {"damage_mult": 0.95, "speed_mult": 1.30, "accuracy_mult": 1.060, "crit_chance_mult": 1.800, "crit_mult_mult": 0.950},
 }
 
 def generate_epic_weapons():
@@ -1275,6 +1270,8 @@ def generate_epic_weapons():
 
             # Recalculate base damage if it's based on level, otherwise keep the template's damage
             level = new_weapon['baseLevel']
+            new_weapon['defensePenetration'] = round(level / 75 + 7, 0)
+
             if level == 0:
                 new_weapon['baseSellPrice'] = 9000
             else:

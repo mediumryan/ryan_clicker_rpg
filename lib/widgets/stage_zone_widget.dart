@@ -7,7 +7,6 @@ import 'dart:async'; // Import for Timer
 import 'package:provider/provider.dart'; // New import
 import 'package:ryan_clicker_rpg/providers/game_provider.dart'; // New import
 import 'package:intl/intl.dart';
-import 'package:ryan_clicker_rpg/widgets/achievement_dialog.dart';
 
 enum DamageType {
   normal,
@@ -52,7 +51,6 @@ class StageZoneWidget extends StatefulWidget {
   final double lastGoldReward; // New
   final GachaBox? lastDroppedBox; // New
   final Duration autoAttackDelay; // New
-  final bool hasCompletableAchievements;
   final double lastEnhancementStonesReward; // New
 
   const StageZoneWidget({
@@ -68,7 +66,6 @@ class StageZoneWidget extends StatefulWidget {
     required this.lastGoldReward, // New
     required this.lastDroppedBox, // New
     required this.autoAttackDelay, // New
-    required this.hasCompletableAchievements,
     required this.lastEnhancementStonesReward, // New
   });
 
@@ -116,14 +113,7 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
     super.dispose();
   }
 
-  void _showAchievementDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return const AchievementDialog();
-      },
-    );
-  }
+
 
   // Method to add and manage damage text
   void _showDamageText(
@@ -519,22 +509,7 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                   ),
                 ),
               ),
-            Positioned(
-              top: 8,
-              left: 8,
-              child: IconButton(
-                icon: Icon(
-                  Icons.emoji_events,
-                  color: widget.hasCompletableAchievements
-                      ? Colors.yellow
-                      : Colors.white,
-                ),
-                onPressed: () {
-                  _showAchievementDialog(context);
-                },
-                tooltip: '업적',
-              ),
-            ),
+
             Positioned(
               top: 8,
               right: 8,
