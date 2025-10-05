@@ -5,6 +5,56 @@ import 'package:ryan_clicker_rpg/models/gacha_box.dart'; // Import GachaBox
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT for WeaponData
 import 'package:ryan_clicker_rpg/widgets/weapon_info_widget.dart'; // NEW IMPORT for WeaponInfoWidget
+import 'package:collection/collection.dart'; // For list equality
+import 'package:intl/intl.dart';
+
+// Data class for the Selector
+class _InventoryData {
+  final Weapon equippedWeapon;
+  final List<Weapon> inventory;
+  final List<GachaBox> gachaBoxes;
+  final double gold;
+  final int enhancementStones;
+  final int transcendenceStones;
+  final int darkMatter;
+  final int destructionProtectionTickets;
+
+  _InventoryData({
+    required this.equippedWeapon,
+    required this.inventory,
+    required this.gachaBoxes,
+    required this.gold,
+    required this.enhancementStones,
+    required this.transcendenceStones,
+    required this.darkMatter,
+    required this.destructionProtectionTickets,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is _InventoryData &&
+          runtimeType == other.runtimeType &&
+          equippedWeapon == other.equippedWeapon &&
+          const ListEquality().equals(inventory, other.inventory) &&
+          const ListEquality().equals(gachaBoxes, other.gachaBoxes) &&
+          gold == other.gold &&
+          enhancementStones == other.enhancementStones &&
+          transcendenceStones == other.transcendenceStones &&
+          darkMatter == other.darkMatter &&
+          destructionProtectionTickets == other.destructionProtectionTickets;
+
+  @override
+  int get hashCode =>
+      equippedWeapon.hashCode ^
+      const ListEquality().hash(inventory) ^
+      const ListEquality().hash(gachaBoxes) ^
+      gold.hashCode ^
+      enhancementStones.hashCode ^
+      transcendenceStones.hashCode ^
+      darkMatter.hashCode ^
+      destructionProtectionTickets.hashCode;
+}
 
 class InventoryScreen extends StatelessWidget {
   const InventoryScreen({super.key});
@@ -18,28 +68,65 @@ class InventoryScreen extends StatelessWidget {
         actions: [],
       ),
       backgroundColor: Colors.grey[900],
-      body: Consumer<GameProvider>(
-        builder: (context, game, child) {
-          // Debug print for equipped weapon
-          debugPrint(
-            'Equipped Weapon: ${game.player.equippedWeapon.name} - Rarity Multiplier: ${game.player.equippedWeapon.rarity.index + 1}',
-          );
-
-          // Debug print for inventory weapons
-          for (var weapon in game.player.inventory) {
-            debugPrint(
-              'Inventory Weapon: ${weapon.name} - Rarity Multiplier: ${weapon.rarity.index + 1}',
-            );
-          }
-
+      body: Selector<GameProvider, _InventoryData>(
+        selector: (context, game) => _InventoryData(
+          equippedWeapon: game.player.equippedWeapon,
+          inventory: game.player.inventory,
+          gachaBoxes: game.player.gachaBoxes,
+          gold: game.player.gold,
+          enhancementStones: game.player.enhancementStones,
+          transcendenceStones: game.player.transcendenceStones,
+          darkMatter: game.player.darkMatter,
+          destructionProtectionTickets:
+              game.player.destructionProtectionTickets,
+        ),
+        builder: (context, data, child) {
           return Column(
             children: [
               // Equipped Weapon Section
               _buildWeaponCard(
-                context, // Pass context here
-                game.player.equippedWeapon,
+                context,
+                data.equippedWeapon,
                 isEquipped: true,
                 onEquip: () {},
+              ),
+              const Divider(color: Colors.yellow),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  '보유 재화',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+              ),
+              _buildResourceRow(
+                'images/others/gold.png',
+                '골드',
+                '게임의 기본 재화입니다.',
+                '${NumberFormat('#,###').format(data.gold)}G',
+              ),
+              _buildResourceRow(
+                'images/others/enhancement_stone.png',
+                '강화석',
+                '무기 강화에 사용됩니다.',
+                '${NumberFormat('#,###').format(data.enhancementStones)}개',
+              ),
+              _buildResourceRow(
+                'images/others/transcendence_stone.png',
+                '초월석',
+                '무기 초월에 사용됩니다.',
+                '${NumberFormat('#,###').format(data.transcendenceStones)}개',
+              ),
+              _buildResourceRow(
+                'images/others/dark_matter.png',
+                '암흑 물질',
+                '특별한 아이템 구매에 사용됩니다.',
+                '${NumberFormat('#,###').format(data.darkMatter)}개',
+              ),
+              _buildResourceRow(
+                'images/others/protection_ticket.png',
+                '파괴 방지권',
+                '강화 실패 시 파괴를 방지합니다.',
+                '${NumberFormat('#,###').format(data.destructionProtectionTickets)}개',
               ),
               const Divider(color: Colors.yellow),
               const Padding(
@@ -52,14 +139,14 @@ class InventoryScreen extends StatelessWidget {
               // Inventory List for Weapons
               Expanded(
                 child: ListView.builder(
-                  itemCount: game.player.inventory.length,
+                  itemCount: data.inventory.length,
                   itemBuilder: (context, index) {
-                    final weapon = game.player.inventory[index];
+                    final weapon = data.inventory[index];
                     return _buildWeaponCard(
                       context, // Pass context here
                       weapon,
                       onEquip: () {
-                        game.equipWeapon(weapon);
+                        context.read<GameProvider>().equipWeapon(weapon);
                       },
                     );
                   },
@@ -106,11 +193,13 @@ class InventoryScreen extends StatelessWidget {
               // Inventory List for Gacha Boxes
               Expanded(
                 child: ListView.builder(
-                  itemCount: game.player.gachaBoxes.length,
+                  itemCount: data.gachaBoxes.length,
                   itemBuilder: (context, index) {
-                    final box = game.player.gachaBoxes[index];
+                    final box = data.gachaBoxes[index];
                     return _buildGachaBoxCard(context, box, () {
-                      final newWeapon = game.openGachaBox(box);
+                      final newWeapon = context
+                          .read<GameProvider>()
+                          .openGachaBox(box);
                       _showGachaResultDialog(context, newWeapon);
                     });
                   },
@@ -119,6 +208,56 @@ class InventoryScreen extends StatelessWidget {
             ],
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildResourceRow(
+    String imagePath,
+    String name,
+    String description,
+    String count,
+  ) {
+    return Card(
+      color: Colors.grey[800],
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Row(
+          children: [
+            Image.asset(
+              imagePath,
+              width: 30,
+              height: 30,
+              errorBuilder: (context, error, stackTrace) =>
+                  const Icon(Icons.error, color: Colors.red),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    description,
+                    style: const TextStyle(color: Colors.white70, fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            Text(
+              count,
+              style: const TextStyle(color: Colors.white, fontSize: 16),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -290,8 +429,6 @@ class InventoryScreen extends StatelessWidget {
       },
     );
   }
-
-
 
   void _showGachaInfoDialog(BuildContext context) {
     final List<Map<String, dynamic>> gachaBoxInfo = WeaponData.gachaBoxInfo;

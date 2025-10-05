@@ -681,7 +681,8 @@ def generate_unique_weapons():
 def main():
     # Ensure the script can be run from anywhere by using absolute paths
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    output_path = os.path.join(script_dir, '..', 'assets', 'data', 'unique_weapons.json')
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(script_dir)))
+    output_path = os.path.join(project_root, 'assets', 'data', 'unique_weapons.json')
     
     unique_weapons = generate_unique_weapons()
     

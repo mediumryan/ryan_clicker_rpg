@@ -137,6 +137,9 @@ class WeaponSkillProvider with ChangeNotifier {
               case 'applyConditionalDamageBoost':
                 _applyConditionalDamageBoost(params, player, monster);
                 break;
+              case 'applySynergyBonus':
+                _applySynergyBonus(params, player);
+                break;
               // Add other passive effects here if needed
             }
           }
@@ -157,7 +160,6 @@ class WeaponSkillProvider with ChangeNotifier {
       case 'applyWeakness':
         _applyWeakness(params, player, monster);
         break;
-
       case 'applyBleed':
         _applyBleed(params, player, monster);
         break;
@@ -223,6 +225,9 @@ class WeaponSkillProvider with ChangeNotifier {
         break;
       case 'applyStackingBuff':
         _applyStackingBuff(params, player);
+        break;
+      case 'applyMonsterKill':
+        _applyMonsterKill(params, player, monster);
         break;
     }
   }
@@ -1333,14 +1338,54 @@ class WeaponSkillProvider with ChangeNotifier {
       player.buffs.add(buff);
     }
 
-    // Refresh duration of all stacks
-    for (final buff in player.buffs) {
-      if (buff.id == buffId) {
-        buff.duration = duration;
-      }
+    _gameProvider.recalculatePlayerStats();
+  }
+
+  void _applyMonsterKill(
+    Map<String, dynamic> params,
+    Player player,
+    Monster monster,
+  ) {
+    final trigger = params['trigger'] as String?;
+    if (trigger != 'onHit') {
+      return;
     }
 
-    _gameProvider.recalculatePlayerStats();
+    final chance = (params['chance'] as num?)?.toDouble();
+    final fixDmg = (params['fixDmg'] as num?)?.toDouble();
+    final cooldown = (params['cooldown'] as num?)?.toInt();
+
+    if (chance == null || fixDmg == null || cooldown == null) {
+      return; // Missing essential parameters
+    }
+
+    if (monster.isSkillOnCooldown('monsterKill', cooldown)) {
+      return;
+    }
+
+    if (Random().nextDouble() < chance) {
+      monster.setSkillCooldown('monsterKill');
+      if (monster.isBoss) {
+        monster.hp -= fixDmg;
+        _gameProvider.showFloatingDamageText(
+          fixDmg.toInt(),
+          false,
+          false,
+          isSkillDamage: true,
+          damageType: DamageType.fixed,
+        );
+      } else {
+        monster.hp = 0;
+        _gameProvider.showFloatingDamageText(
+          0,
+          false,
+          false,
+          isSkillDamage: true,
+          damageType: DamageType.instantKill,
+        );
+      }
+      _gameProvider.notifyListeners();
+    }
   }
 
   void applyOnKillSkills(Player player, Monster monster) {
@@ -1584,6 +1629,27 @@ class WeaponSkillProvider with ChangeNotifier {
     if (conditionMet) {
       player.passiveWeaponDamageMultiplier += multiplier;
       _gameProvider.notifyListeners(); // Notify listeners for HP change
+    }
+  }
+
+  void _applySynergyBonus(Map<String, dynamic> params, Player player) {
+    final targetIds = (params['targetId'] as List<dynamic>?)?.cast<int>();
+    final stat = params['stat'] as String?;
+    final value = (params['value'] as num?)?.toDouble();
+    final isMultiplicative = params['isMultiplicative'] as bool? ?? false;
+
+    if (targetIds == null || stat == null || value == null) {
+      return; // Missing essential parameters
+    }
+
+    bool allAcquired = targetIds.every((id) => player.acquiredWeaponIdsHistory.contains(id));
+
+    if (allAcquired) {
+      _applyPassiveStatBoost({
+        'stat': stat,
+        'value': value,
+        'isMultiplicative': isMultiplicative,
+      }, player);
     }
   }
 }

@@ -7,6 +7,7 @@ class Player {
   int enhancementStones;
   int transcendenceStones;
   int darkMatter;
+  int destructionProtectionTickets;
   Weapon equippedWeapon;
   List<Weapon> inventory;
   List<GachaBox> gachaBoxes;
@@ -63,6 +64,7 @@ class Player {
     this.enhancementStones = 0,
     this.transcendenceStones = 0,
     this.darkMatter = 0,
+    this.destructionProtectionTickets = 0,
     required this.equippedWeapon,
     List<Weapon>? inventory,
     List<GachaBox>? gachaBoxes,
@@ -109,6 +111,7 @@ class Player {
         'enhancementStones': enhancementStones,
         'transcendenceStones': transcendenceStones,
         'darkMatter': darkMatter,
+        'destructionProtectionTickets': destructionProtectionTickets,
         'equippedWeapon': equippedWeapon.toJson(),
         'inventory': inventory.map((w) => w.toJson()).toList(),
         'gachaBoxes': gachaBoxes.map((b) => b.toJson()).toList(),
@@ -155,6 +158,7 @@ class Player {
       enhancementStones: json['enhancementStones'],
       transcendenceStones: json['transcendenceStones'],
       darkMatter: json['darkMatter'] ?? 0,
+      destructionProtectionTickets: json['destructionProtectionTickets'] ?? 0,
       equippedWeapon: Weapon.fromJson(json['equippedWeapon']),
       inventory: (json['inventory'] as List)
           .map((item) => Weapon.fromJson(item))

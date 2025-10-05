@@ -111,7 +111,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                             TextButton(
                               child: const Text('초기화'),
                               onPressed: () {
-                                // TODO: Implement game reset logic
+                                Provider.of<GameProvider>(context, listen: false).resetGame();
                                 Navigator.of(
                                   context,
                                 ).pop(); // Close confirmation dialog

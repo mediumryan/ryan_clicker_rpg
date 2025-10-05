@@ -17,6 +17,7 @@ enum DamageType {
   poison,
   fixed,
   maxHp,
+  instantKill,
 }
 
 // Class to hold damage text information
@@ -601,6 +602,8 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
         case DamageType.fixed:
         case DamageType.maxHp:
           return Colors.orange;
+        case DamageType.instantKill:
+          return Colors.redAccent;
         case DamageType.normal:
           if (widget.damageText.isMiss) return Colors.yellow;
           if (widget.damageText.isCritical) return Colors.red;
@@ -649,9 +652,11 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
           child: FadeTransition(
             opacity: _opacityAnimation,
             child: Text(
-              widget.damageText.isMiss
-                  ? 'MISS!'
-                  : widget.damageText.damage.toString(),
+              widget.damageText.damageType == DamageType.instantKill
+                  ? 'Kill!'
+                  : (widget.damageText.isMiss
+                      ? 'MISS!'
+                      : widget.damageText.damage.toString()),
               style: TextStyle(
                 color: getColor(),
                 fontSize: getFontSize(),

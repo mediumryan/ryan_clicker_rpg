@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart';
-import 'package:provider/provider.dart';
-import 'package:ryan_clicker_rpg/providers/game_provider.dart';
+
 
 import 'package:ryan_clicker_rpg/data/weapon_data.dart';
 
@@ -77,42 +76,38 @@ Widget buildWeaponDetailsDialog(BuildContext context, Weapon weapon) {
             style: const TextStyle(color: Colors.white70),
           ),
           const Divider(color: Colors.grey),
-          Consumer<GameProvider>(
-            builder: (context, game, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '데미지: ${weapon.calculatedDamage.toStringAsFixed(0)}',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    '공격 속도: ${weapon.speed.toStringAsFixed(2)}',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    '치명타 확률: ${(weapon.criticalChance * 100).toStringAsFixed(2)}%',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    '치명타 배율: x${weapon.criticalDamage.toStringAsFixed(2)}',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    '방어력 관통: ${weapon.defensePenetration.toStringAsFixed(0)}',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    '더블어택 확률: ${(weapon.doubleAttackChance * 100).toStringAsFixed(2)}%',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    '적중률: ${(weapon.accuracy * 100).toStringAsFixed(2)}%',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ],
-              );
-            },
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '데미지: ${weapon.calculatedDamage.toStringAsFixed(0)}',
+                style: const TextStyle(color: Colors.white),
+              ),
+              Text(
+                '공격 속도: ${weapon.speed.toStringAsFixed(2)}',
+                style: const TextStyle(color: Colors.white),
+              ),
+              Text(
+                '치명타 확률: ${(weapon.criticalChance * 100).toStringAsFixed(2)}%',
+                style: const TextStyle(color: Colors.white),
+              ),
+              Text(
+                '치명타 배율: x${weapon.criticalDamage.toStringAsFixed(2)}',
+                style: const TextStyle(color: Colors.white),
+              ),
+              Text(
+                '방어력 관통: ${weapon.defensePenetration.toStringAsFixed(0)}',
+                style: const TextStyle(color: Colors.white),
+              ),
+              Text(
+                '더블어택 확률: ${(weapon.doubleAttackChance * 100).toStringAsFixed(2)}%',
+                style: const TextStyle(color: Colors.white),
+              ),
+              Text(
+                '적중률: ${(weapon.accuracy * 100).toStringAsFixed(2)}%',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ],
           ),
           if (weapon.description != null)
             Padding(

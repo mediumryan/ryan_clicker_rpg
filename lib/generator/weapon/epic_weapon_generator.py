@@ -495,11 +495,11 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "각인 개화",
         "skill_type": "passive",
         "skill_description": "무기에 각인된 힘이 혼란 상태의 적에게 반응해 무기를 강화한다.",
-        "skill_description_detail": "혼란 상태의 적에게 주는 데미지 +50%",
+        "skill_description_detail": "혼란 상태의 적에게 주는 데미지 +75%",
         "skill_effect": [
           {
             "effect_name": "increaseDamageToStatused",
-            "params": { "status": "confusion", "damageMultiplier": 0.5 }
+            "params": { "status": "confusion", "damageMultiplier": 0.75 }
           }
         ]
       }
@@ -1297,7 +1297,8 @@ def generate_epic_weapons():
 def main():
     # Ensure the script can be run from anywhere by using absolute paths
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    output_path = os.path.join(script_dir, '..', 'assets', 'data', 'epic_weapons.json')
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(script_dir)))
+    output_path = os.path.join(project_root, 'assets', 'data', 'epic_weapons.json')
     
     epic_weapons = generate_epic_weapons()
     

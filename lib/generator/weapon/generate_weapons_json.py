@@ -216,8 +216,11 @@ def generate_weapons():
 # --- 저장 함수 ---
 
 def main():
+
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    output_dir = os.path.join(script_dir, '..', 'assets', 'data')
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(script_dir)))
+    output_dir = os.path.join(project_root, 'assets', 'data')
+
 
     # Generate common, uncommon, rare weapons
     weapons_by_rarity = generate_weapons()

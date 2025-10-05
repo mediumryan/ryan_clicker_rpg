@@ -6,17 +6,17 @@ import os
 BASE_LEGEND_WEAPONS = [
   {
     "id": 50000,
-    "name": "토파즈 플래시",
-    "imageName": "legend/dagger/50000.png",
+    "name": "오닉스 스플린터",
+    "imageName": "legend/battle_axe/50000.png",
     "rarity": "Rarity.legend",
-    "type": "WeaponType.dagger",
+    "type": "WeaponType.battleAxe",
     "baseLevel": 0,
     "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 4.0,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
+    "defensePenetration": 10.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
+    "speed": 0.8,
     "baseSellPrice": 0,
     "stack": {
       "enabled": False,
@@ -26,7 +26,7 @@ BASE_LEGEND_WEAPONS = [
     },
     "skills": [
       {
-        "skill_name": "토파즈 각인",
+        "skill_name": "오닉스 각인",
         "skill_type": "passive",
         "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
@@ -74,8 +74,8 @@ BASE_LEGEND_WEAPONS = [
         ]
       }
     ],
-    "accuracy": 0.823,
-    "description": "토파즈의 따스한 황금빛 광채를 머금은 대검. 전투 능력을 크게 끌어올린다.",
+    "accuracy": 0.8,
+    "description": "오닉스의 어둡지만 신비로운 광채를 품은 도끼. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -84,17 +84,17 @@ BASE_LEGEND_WEAPONS = [
   },
   {
     "id": 50001,
-    "name": "사일런트 캣",
-    "imageName": "legend/dagger/50001.png",
+    "name": "그리즐리",
+    "imageName": "legend/battle_axe/50001.png",
     "rarity": "Rarity.legend",
-    "type": "WeaponType.dagger",
+    "type": "WeaponType.battleAxe",
     "baseLevel": 200,
     "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 20.0,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
+    "defensePenetration": 25.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
+    "speed": 0.8,
     "baseSellPrice": 0,
     "stack": {
       "enabled": False,
@@ -104,48 +104,25 @@ BASE_LEGEND_WEAPONS = [
     },
     "skills": [
       {
-        "skill_name": "고요한 사냥꾼",
-        "skill_type": "passive",
-        "skill_description": "조용히 그리고 빠르게 적을 제압한다.",
-        "skill_description_detail": "공격속도 +50%, 치명타 확률 +15%, 치명타 배율 +2배, 더블어택 확률 +10%",
+        "skill_name": "곰발",
+        "skill_type": "active",
+        "skill_description": "강력한 일격으로 눈앞의 적을 가른다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 10배의 피해, 쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatBoost",
+            "effect_name": "applyMultiplierDamage",
             "params": {
-              "stat": "speed",
-              "value": 1.5,
-              "isMultiplicative": True
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.15,
-              "isMultiplicative": False
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 1.0,
-              "isMultiplicative": False
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.1,
-              "isMultiplicative": False
+              "chance": 0.075,
+              "trigger": "onHit",
+              "multiplier": 10.0,
+              "cooldown": 5
             }
           }
         ]
       }
     ],
-    "accuracy": 0.823,
-    "description": "그림자처럼 조용히 움직이는 고양이를 본따 만든 단검. 한순간의 침묵 뒤에 폭풍 같은 연속공격이 시작된다.",
+    "accuracy": 0.8,
+    "description": "일격에 모든 것을 찢어버리는 거대한 도끼. 마치 곰의 앞발과도 같다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -154,17 +131,17 @@ BASE_LEGEND_WEAPONS = [
   },
   {
     "id": 50002,
-    "name": "특급 살수",
-    "imageName": "legend/dagger/50002.png",
+    "name": "무자비한 집행자",
+    "imageName": "legend/battle_axe/50002.png",
     "rarity": "Rarity.legend",
-    "type": "WeaponType.dagger",
+    "type": "WeaponType.battleAxe",
     "baseLevel": 400,
     "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 24.0,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
+    "defensePenetration": 30.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
+    "speed": 0.8,
     "baseSellPrice": 0,
     "stack": {
       "enabled": False,
@@ -174,49 +151,25 @@ BASE_LEGEND_WEAPONS = [
     },
     "skills": [
       {
-        "skill_name": "암살 지령",
+        "skill_name": "처형",
         "skill_type": "passive",
-        "skill_description": "사전에 적의 정보를 수집하고 약점을 파악한다.",
-        "skill_description_detail": "치명타 확률 +25%, 치명타 배율 +4배",
+        "skill_description": "단두대의 칼날과 같은 공격으로 적을 처형한다.",
+        "skill_description_detail": "공격시 2.5% 확률로 적 처치, 보스의 경우 160,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatBoost",
+            "effect_name": "applyMonsterKill",
             "params": {
-              "stat": "criticalChance",
-              "value": 0.2,
-              "isMultiplicative": False
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 2.0,
-              "isMultiplicative": False
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "급소 찌르기",
-        "skill_type": "active",
-        "skill_description": "적의 급소를 정확히 찔러 큰 피해를 입힌다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 160,000 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyFixedDamage",
-            "params": {
-              "chance": 0.075,
-              "damage": 160000,
-              "cooldown": 5,
-              "trigger": "onHit"
+              "fixDmg": 160000,
+              "trigger": "onHit",
+              "chance": 0.025,
+              "cooldown": 5
             }
           }
         ]
       }
     ],
-    "accuracy": 0.823,
-    "description": "높은 경지에 오른 자객이 사용하는 단검. 적의 급소를 정확히 찔러 큰 피해를 입힌다.",
+    "accuracy": 0.8,
+    "description": "죄인의 목을 치던 망나니의 도끼. 공격 시 낮은 확률로 적을 즉시 처형한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -225,17 +178,17 @@ BASE_LEGEND_WEAPONS = [
   },
   {
     "id": 50003,
-    "name": "지옥 수문장",
-    "imageName": "legend/dagger/50003.png",
+    "name": "가이안트",
+    "imageName": "legend/battle_axe/50003.png",
     "rarity": "Rarity.legend",
-    "type": "WeaponType.dagger",
+    "type": "WeaponType.battleAxe",
     "baseLevel": 600,
     "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 28.0,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
+    "defensePenetration": 35.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
+    "speed": 0.8,
     "baseSellPrice": 0,
     "stack": {
       "enabled": False,
@@ -245,44 +198,48 @@ BASE_LEGEND_WEAPONS = [
     },
     "skills": [
       {
-        "skill_name": "지옥불",
-        "skill_type": "active",
-        "skill_description": "지옥불로 적을 불태운다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 화상, 초당 122,000 피해, 중첩 불가, 쿨타임 5초",
+        "skill_name": "가이아의 축복",
+        "skill_type": "passive",
+        "skill_description": "대지의 신 가이아의 축복으로 사용자의 공격력을 대폭 올려준다.",
+        "skill_description_detail": "공격력 +200%",
         "skill_effect": [
           {
-            "effect_name": "applyBurn",
+            "effect_name": "applyPassiveStatBoost",
             "params": {
-              "chance": 0.075,
-              "duration": 5,
-              "damagePerSecond": 122000,
-              "stackable": False,
-              "trigger": "onHit",
-              "cooldown": 5
+              "stat": "damage",
+              "value": 3.0,
+              "isMultiplicative": True
             }
           }
         ]
       },
       {
-        "skill_name": "삼연격",
-        "skill_type": "active",
-        "skill_description": "빠르게 3회 연속 공격한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 3회 연속 공격, 쿨타임 0초",
+        "skill_name": "개연성",
+        "skill_type": "passive",
+        "skill_description": "신의 온전한 축복을 모두 감당하기에는 무기가 완전하지 못하다.",
+        "skill_description_detail": "공격속도 -30%, 적중률 -5%",
         "skill_effect": [
           {
-            "effect_name": "applyMultiHitDamage",
+            "effect_name": "applyPassiveStatDebuff",
             "params": {
-              "trigger": "onHit",
-              "chance": 0.075,
-              "hits": 3,
-              "cooldown": 0
+              "stat": "speed",
+              "value": 0.3,
+              "isMultiplicative": True
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatDebuff",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.05,
+              "isMultiplicative": False
             }
           }
         ]
       }
     ],
-    "accuracy": 0.823,
-    "description": "케로베로스의 목줄을 녹여 만든 단검. 지옥 수문장의 힘을 얻는다.",
+    "accuracy": 0.8,
+    "description": "대지의 신 가이아가 직접 단조했다는 전설의 도끼. 강력한 힘을 지녔으나 그 힘을 감당하기에는 무기가 완전하지 못하다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -291,17 +248,17 @@ BASE_LEGEND_WEAPONS = [
   },
   {
     "id": 50004,
-    "name": "로도스의 줄기",
-    "imageName": "legend/dagger/50004.png",
+    "name": "은도끼",
+    "imageName": "legend/battle_axe/50004.png",
     "rarity": "Rarity.legend",
-    "type": "WeaponType.dagger",
+    "type": "WeaponType.battleAxe",
     "baseLevel": 800,
     "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 28.0,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
+    "defensePenetration": 45.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
+    "speed": 0.8,
     "baseSellPrice": 0,
     "stack": {
       "enabled": False,
@@ -311,42 +268,34 @@ BASE_LEGEND_WEAPONS = [
     },
     "skills": [
       {
-        "skill_name": "로도스의 장미",
+        "skill_name": "신선 세트",
         "skill_type": "passive",
-        "skill_description": "장미꽃을 피워 적을 매혹시킨다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 5초간 매혹, 적 피격시 방어력 5 감소, 쿨타임 5초",
+        "skill_description": "금도끼를 획득한 적이 있는 경우, 능력치가 대폭 상승한다.",
+        "skill_description_detail": "무기 도감에 금도끼가 활성화 되어있는 경우 공격속도 +200%, 적중률 +20%",
         "skill_effect": [
           {
-            "effect_name": "applyPoison",
+            "effect_name": "applySynergyBonus",
             "params": {
-              "chance": 0.075,
-              "attackPerDefence": 5.0,
-              "duration": 5,
-              "trigger": "onHit",
-              "stackable": False,
-              "cooldown": 5
+              "stat": "speed",
+              "value": 3.0,
+              "isMultiplicative": True,
+              "targetId": [50005]
             }
-          }
-        ]
-      },
-      {
-        "skill_name": "장미의 가시",
-        "skill_type": "active",
-        "skill_description": "매혹에 걸린 적에게 입히는 피해가 증가한다.",
-        "skill_description_detail": "매혹 상태의 적에게 주는 데미지 +100%",
-        "skill_effect": [
+          },
           {
-            "effect_name": "increaseDamageToStatused",
+            "effect_name": "applySynergyBonus",
             "params": {
-              "status": "charm",
-              "damageMultiplier": 1.0
+              "stat": "accuracy",
+              "value": 0.2,
+              "isMultiplicative": False,
+              "targetId": [50005]
             }
           }
         ]
       }
     ],
-    "accuracy": 0.823,
-    "description": "아프로디테의 눈물에서 피어난 장미 로도스의 줄기로 벼린 단검. 적을 매혹한다.",
+    "accuracy": 0.8,
+    "description": "산 속의 패왕 신선이 사용하던 도끼. 겉보기엔 평범한 은도끼이지만 금도끼를 획득한 적이 있는 경우, 능력치가 대폭 상승한다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -355,17 +304,73 @@ BASE_LEGEND_WEAPONS = [
   },
   {
     "id": 50005,
-    "name": "신성한 파편 - 왼손",
-    "imageName": "legend/dagger/50005.png",
+    "name": "금도끼",
+    "imageName": "legend/battle_axe/50005.png",
     "rarity": "Rarity.legend",
-    "type": "WeaponType.dagger",
+    "type": "WeaponType.battleAxe",
+    "baseLevel": 800,
+    "baseDamage": 0,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
+    "defensePenetration": 45.0,
+    "doubleAttackChance": 0.0,
+    "speed": 0.8,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": False,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "신선 세트",
+        "skill_type": "passive",
+        "skill_description": "은도끼를 획득한 적이 있는 경우, 능력치가 대폭 상승한다.",
+        "skill_description_detail": "무기 도감에 금도끼가 활성화 되어있는 경우 공격력 +150%, 적중률 +20%",
+        "skill_effect": [
+          {
+            "effect_name": "applySynergyBonus",
+            "params": {
+              "stat": "damage",
+              "value": 2.5,
+              "isMultiplicative": True,
+              "targetId": [50005]
+            }
+          },
+          {
+            "effect_name": "applySynergyBonus",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.2,
+              "isMultiplicative": False,
+              "targetId": [50005]
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.8,
+    "description": "산 속의 패왕 신선이 사용하던 도끼. 겉보기엔 평범한 금도끼이지만 은도끼를 획득한 적이 있는 경우, 능력치가 대폭 상승한다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 50006,
+    "name": "신성한 파편 - 척추",
+    "imageName": "legend/battle_axe/50006.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.battleAxe",
     "baseLevel": 1000,
     "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 40.0,
+    "criticalChance": 0.08,
+    "criticalDamage": 1.8,
+    "defensePenetration": 50.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
+    "speed": 0.8,
     "baseSellPrice": 0,
     "stack": {
       "enabled": False,
@@ -416,8 +421,8 @@ BASE_LEGEND_WEAPONS = [
         ]
       }
     ],
-    "accuracy": 0.823,
-    "description": "신성국의 열다섯 성물 중 하나. 신의 왼손으로 만들어졌다고 전해진다.",
+    "accuracy": 0.8,
+    "description": "신성국의 열다섯 성물 중 하나. 신의 척추로 만들어졌다고 전해진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -425,6 +430,7 @@ BASE_LEGEND_WEAPONS = [
     "investedTranscendenceStones": 0
   }
 ]
+
 
 # --- 무기 타입 분류 ---
 TYPE_MAP = {
@@ -508,7 +514,8 @@ def generate_legend_weapons():
 def main():
     # Ensure the script can be run from anywhere by using absolute paths
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    output_path = os.path.join(script_dir, '..', 'assets', 'data', 'legend_weapons.json')
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(script_dir)))
+    output_path = os.path.join(project_root, 'assets', 'data', 'legend_weapons.json')
     
     legend_weapons = generate_legend_weapons()
     

@@ -44,13 +44,10 @@ class _EquipmentCodexDialogState extends State<EquipmentCodexDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: Colors.grey[850],
-      title: Consumer<GameProvider>(
-        builder: (context, game, child) {
+      title: Selector<GameProvider, int>(
+        selector: (context, game) => game.player.acquiredWeaponIdsHistory.length,
+        builder: (context, acquiredWeaponsCount, child) {
           final allWeapons = WeaponData.getAllWeapons();
-
-          // Use acquiredWeaponIdsHistory directly for the count
-          final acquiredWeaponsCount =
-              game.player.acquiredWeaponIdsHistory.length;
 
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,8 +81,9 @@ class _EquipmentCodexDialogState extends State<EquipmentCodexDialog> {
           );
         },
       ),
-      content: Consumer<GameProvider>(
-        builder: (context, game, child) {
+      content: Selector<GameProvider, Set<int>>(
+        selector: (context, game) => game.player.acquiredWeaponIdsHistory,
+        builder: (context, acquiredWeaponIds, child) {
           final allWeapons = WeaponData.getAllWeapons();
           allWeapons.sort((a, b) => a.id.compareTo(b.id)); // Sort by ID
 
@@ -99,9 +97,6 @@ class _EquipmentCodexDialogState extends State<EquipmentCodexDialog> {
             );
             return matchesRarity && matchesWeaponType;
           }).toList();
-
-          // Use acquiredWeaponIdsHistory directly for checking acquisition
-          final acquiredWeaponIds = game.player.acquiredWeaponIdsHistory;
 
           return SizedBox(
             width: 400, // Specify a fixed width

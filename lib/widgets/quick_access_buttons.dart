@@ -18,43 +18,44 @@ class QuickAccessButtons extends StatelessWidget {
         final itemHeight = (constraints.maxHeight - mainAxisSpacing) / 2;
         final childAspectRatio = itemWidth / itemHeight;
 
-        return Consumer<GameProvider>(
-          builder: (context, game, child) {
-            return GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: mainAxisSpacing,
-              crossAxisSpacing: crossAxisSpacing,
-              childAspectRatio: childAspectRatio,
-              children: [
-                _buildButton(
+        return GridView.count(
+          crossAxisCount: 2,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          mainAxisSpacing: mainAxisSpacing,
+          crossAxisSpacing: crossAxisSpacing,
+          childAspectRatio: childAspectRatio,
+          children: [
+            _buildButton(
+              context,
+              icon: Icons.inventory,
+              label: '인벤토리',
+              onPressed: () {
+                Navigator.push(
                   context,
-                  icon: Icons.inventory,
-                  label: '인벤토리',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const InventoryScreen(),
-                      ),
-                    );
-                  },
-                ),
-                _buildButton(
+                  MaterialPageRoute(
+                    builder: (context) => const InventoryScreen(),
+                  ),
+                );
+              },
+            ),
+            _buildButton(
+              context,
+              icon: Icons.gavel,
+              label: '대장간',
+              onPressed: () {
+                Navigator.push(
                   context,
-                  icon: Icons.gavel,
-                  label: '대장간',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const BlacksmithScreen(),
-                      ),
-                    );
-                  },
-                ),
-                _buildButton(
+                  MaterialPageRoute(
+                    builder: (context) => const BlacksmithScreen(),
+                  ),
+                );
+              },
+            ),
+            Selector<GameProvider, bool>(
+              selector: (context, game) => game.hasCompletableAchievements,
+              builder: (context, hasCompletableAchievements, child) {
+                return _buildButton(
                   context,
                   icon: Icons.emoji_events,
                   label: '업적',
@@ -64,21 +65,20 @@ class QuickAccessButtons extends StatelessWidget {
                       builder: (context) => const AchievementDialog(),
                     );
                   },
-                  highlightColor: game.hasCompletableAchievements
-                      ? Colors.yellow
-                      : null,
-                ),
-                _buildButton(
-                  context,
-                  icon: Icons.public,
-                  label: '차원이동',
-                  onPressed: () {
-                    // TODO: Implement Dimension Shift screen
-                  },
-                ),
-              ],
-            );
-          },
+                  highlightColor:
+                      hasCompletableAchievements ? Colors.yellow : null,
+                );
+              },
+            ),
+            _buildButton(
+              context,
+              icon: Icons.public,
+              label: '차원이동',
+              onPressed: () {
+                // TODO: Implement Dimension Shift screen
+              },
+            ),
+          ],
         );
       },
     );
@@ -98,10 +98,11 @@ class QuickAccessButtons extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 24, color: highlightColor),
+            Icon(icon, size: 24, color: highlightColor ?? Colors.white),
             const SizedBox(height: 4),
             FittedBox(
-              child: Text(label, style: TextStyle(color: highlightColor)),
+              child: Text(label,
+                  style: TextStyle(color: highlightColor ?? Colors.white70)),
             ),
           ],
         ),

@@ -36,4 +36,9 @@ class Achievement {
   void forceClaim() {
     _isRewardClaimed = true;
   }
+
+  void reset() {
+    isCompleted = false;
+    _isRewardClaimed = false;
+  }
 }
