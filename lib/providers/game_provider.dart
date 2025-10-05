@@ -751,6 +751,7 @@ class GameProvider with ChangeNotifier {
     bool isSkillDamage = false,
     DamageType damageType = DamageType.normal,
   }) {
+    if (!_player.showFloatingDamage) return;
     _showFloatingDamageTextCallback?.call(
       damage,
       isCritical,
@@ -1170,6 +1171,18 @@ class GameProvider with ChangeNotifier {
       claimAchievementRewards(achievement);
       notifyListeners();
     }
+  }
+
+  void toggleShowFloatingDamage(bool value) {
+    _player.showFloatingDamage = value;
+    notifyListeners();
+    _saveGame();
+  }
+
+  void setGraphicsQuality(String quality) {
+    _player.graphicsQuality = quality;
+    notifyListeners();
+    _saveGame();
   }
 
   String disassembleWeapon(Weapon weaponToDisassemble) {

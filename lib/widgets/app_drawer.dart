@@ -6,6 +6,7 @@ import 'package:ryan_clicker_rpg/screens/inventory_screen.dart';
 import 'package:ryan_clicker_rpg/screens/shop_screen.dart';
 import 'package:ryan_clicker_rpg/widgets/achievement_dialog.dart';
 import 'package:ryan_clicker_rpg/widgets/equipment_codex_dialog.dart';
+import 'package:ryan_clicker_rpg/widgets/settings_dialog.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -121,7 +122,10 @@ class AppDrawer extends StatelessWidget {
                       label: '설정',
                       onPressed: () {
                         Navigator.pop(context); // Close the drawer
-                        // TODO: Implement Settings screen
+                        showDialog(
+                          context: context,
+                          builder: (context) => const SettingsDialog(),
+                        );
                       },
                     ),
                   ],

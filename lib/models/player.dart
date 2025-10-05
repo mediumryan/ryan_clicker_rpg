@@ -55,6 +55,8 @@ class Player {
   double finalAccuracy = 0;
   bool manualClickDisabled = false;
   bool canManualAttack = true;
+  bool showFloatingDamage;
+  String graphicsQuality;
 
   Player({
     this.gold = 0,
@@ -91,6 +93,8 @@ class Player {
     this.passiveWeaponSpeedMultiplier = 1.0,
     this.passiveWeaponAccuracyBonus = 0.0,
     this.passiveWeaponAccuracyMultiplier = 1.0,
+    this.showFloatingDamage = true,
+    this.graphicsQuality = 'Medium',
   })  : inventory = inventory ?? [],
         gachaBoxes = gachaBoxes ?? [],
         buffs = buffs ?? [],
@@ -140,6 +144,8 @@ class Player {
         'passiveWeaponSpeedMultiplier': passiveWeaponSpeedMultiplier,
         'passiveWeaponAccuracyBonus': passiveWeaponAccuracyBonus,
         'passiveWeaponAccuracyMultiplier': passiveWeaponAccuracyMultiplier,
+        'showFloatingDamage': showFloatingDamage,
+        'graphicsQuality': graphicsQuality,
       };
 
   // Deserialization
@@ -206,6 +212,8 @@ class Player {
       passiveWeaponAccuracyBonus: json['passiveWeaponAccuracyBonus'] ?? 0.0,
       passiveWeaponAccuracyMultiplier:
           json['passiveWeaponAccuracyMultiplier'] ?? 1.0,
+      showFloatingDamage: json['showFloatingDamage'] ?? true,
+      graphicsQuality: json['graphicsQuality'] ?? 'Medium',
     );
   }
 }

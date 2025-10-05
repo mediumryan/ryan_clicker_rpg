@@ -32,12 +32,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // No ChangeNotifierProvider here anymore
       title: 'Ryan Clicker RPG',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      builder: (context, child) {
+        final gameProvider = context.watch<GameProvider>();
+        final quality = gameProvider.player.graphicsQuality;
+        final mediaQuery = MediaQuery.of(context);
+        double pixelRatio = mediaQuery.devicePixelRatio;
+
+        if (quality == 'Low') {
+          pixelRatio = 1.0;
+        } else if (quality == 'Medium') {
+          pixelRatio = mediaQuery.devicePixelRatio * 0.75;
+        }
+
+        return MediaQuery(
+          data: mediaQuery.copyWith(devicePixelRatio: pixelRatio),
+          child: child!,
+        );
+      },
       home: Consumer<GameProvider>(
         builder: (context, game, child) {
           return game.inSpecialBossZone
