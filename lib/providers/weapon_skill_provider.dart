@@ -15,21 +15,18 @@ class WeaponSkillProvider with ChangeNotifier {
   WeaponSkillProvider(this._gameProvider);
 
   void applySkills(Player player, Monster monster) {
-    debugPrint('--- applySkills called ---');
     final weapon = player.equippedWeapon;
     for (final skill in weapon.skills) {
       final trigger = skill['trigger'] as String?;
       if (trigger == 'killMonster') {
         continue;
       }
-      debugPrint('Checking skill: ${skill['skill_name']}');
       final skillEffects = skill['skill_effect'];
       if (skillEffects is List) {
         for (final effect in skillEffects) {
           final effectName = effect['effect_name'];
           final params = effect['params'];
           if (effectName != null && params != null) {
-            debugPrint('Applying effect: \$effectName');
             _applyEffect(effectName, params, player, monster);
           }
         }
@@ -156,7 +153,6 @@ class WeaponSkillProvider with ChangeNotifier {
     Player player,
     Monster monster,
   ) {
-    debugPrint('Inside _applyEffect for $effectName');
     switch (effectName) {
       case 'applyWeakness':
         _applyWeakness(params, player, monster);
@@ -359,11 +355,7 @@ class WeaponSkillProvider with ChangeNotifier {
     String? raceString = params['requiredRace'] as String?;
     if (raceString == null) {
       raceString = params['race'] as String?;
-      if (raceString != null) {
-        debugPrint(
-          'WARNING: Using deprecated "race" for passive bonus damage. Please use "requiredRace" instead.',
-        );
-      }
+      if (raceString != null) {}
     }
     final multiplier = (params['multiplier'] as num?)?.toDouble();
 
@@ -391,11 +383,7 @@ class WeaponSkillProvider with ChangeNotifier {
     String? raceString = params['requiredRace'] as String?;
     if (raceString == null) {
       raceString = params['race'] as String?;
-      if (raceString != null) {
-        debugPrint(
-          'WARNING: Using deprecated "race" for passive penalty damage. Please use "requiredRace" instead.',
-        );
-      }
+      if (raceString != null) {}
     }
     final multiplier = (params['multiplier'] as num?)?.toDouble();
 
@@ -449,10 +437,8 @@ class WeaponSkillProvider with ChangeNotifier {
     Player player,
     Monster monster,
   ) {
-    debugPrint('[WeaponSkillProvider._applyDisarm] Called.');
     final trigger = params['trigger'] as String?;
     if (trigger != 'onHit') {
-      debugPrint('[WeaponSkillProvider._applyDisarm] Wrong trigger: $trigger');
       return;
     }
 
@@ -480,9 +466,6 @@ class WeaponSkillProvider with ChangeNotifier {
 
     if (duration == null || cooldown == null || effectValue == null) {
       // Check if effectValue is null
-      debugPrint(
-        '[WeaponSkillProvider._applyDisarm] Missing essential parameters (duration, cooldown, or defense reduction value).',
-      );
       return; // Missing essential parameters
     }
 
@@ -490,9 +473,6 @@ class WeaponSkillProvider with ChangeNotifier {
     if (excludedRaces != null) {
       for (final race in excludedRaces) {
         if (monster.species.any((s) => s.toString().split('.').last == race)) {
-          debugPrint(
-            '[WeaponSkillProvider._applyDisarm] Monster race excluded.',
-          );
           return;
         }
       }
@@ -503,7 +483,6 @@ class WeaponSkillProvider with ChangeNotifier {
       StatusEffectType.disarm.toString().split('.').last,
       cooldown,
     )) {
-      debugPrint('[WeaponSkillProvider._applyDisarm] Skill on cooldown.');
       return;
     }
 
@@ -522,11 +501,8 @@ class WeaponSkillProvider with ChangeNotifier {
       monster.setSkillCooldown(
         StatusEffectType.disarm.toString().split('.').last,
       );
-      debugPrint(
-        '[WeaponSkillProvider._applyDisarm] Status effect applied: ${effect.type} with value ${effect.value}',
-      );
     } else {
-      debugPrint('[WeaponSkillProvider._applyDisarm] Chance roll failed.');
+      return;
     }
   }
 
@@ -535,12 +511,8 @@ class WeaponSkillProvider with ChangeNotifier {
     Player player,
     Monster monster,
   ) {
-    debugPrint('[WeaponSkillProvider._applyWeakness] Called.');
     final trigger = params['trigger'] as String?;
     if (trigger != 'onHit') {
-      debugPrint(
-        '[WeaponSkillProvider._applyWeakness] Wrong trigger: $trigger',
-      );
       return;
     }
 
@@ -557,9 +529,6 @@ class WeaponSkillProvider with ChangeNotifier {
     if (duration == null ||
         cooldown == null ||
         (defenseReduction == null && defenseReductionPer == null)) {
-      debugPrint(
-        '[WeaponSkillProvider._applyWeakness] Missing essential parameters.',
-      );
       return; // Missing essential parameters
     }
 
@@ -567,9 +536,6 @@ class WeaponSkillProvider with ChangeNotifier {
     if (excludedRaces != null) {
       for (final race in excludedRaces) {
         if (monster.species.any((s) => s.toString().split('.').last == race)) {
-          debugPrint(
-            '[WeaponSkillProvider._applyWeakness] Monster race excluded.',
-          );
           return;
         }
       }
@@ -580,7 +546,6 @@ class WeaponSkillProvider with ChangeNotifier {
       StatusEffectType.weakness.toString().split('.').last,
       cooldown,
     )) {
-      debugPrint('[WeaponSkillProvider._applyWeakness] Skill on cooldown.');
       return;
     }
 
@@ -592,9 +557,6 @@ class WeaponSkillProvider with ChangeNotifier {
       } else if (defenseReductionPer != null) {
         reductionValue = monster.defense * (defenseReductionPer / 100);
       }
-      debugPrint(
-        '[WeaponSkillProvider._applyWeakness] Applying reductionValue: $reductionValue',
-      );
 
       final isStackable =
           (params['stackable'] as bool?) ??
@@ -609,11 +571,8 @@ class WeaponSkillProvider with ChangeNotifier {
       monster.setSkillCooldown(
         StatusEffectType.weakness.toString().split('.').last,
       );
-      debugPrint(
-        '[WeaponSkillProvider._applyWeakness] Status effect applied: ${effect.type} with value ${effect.value}',
-      );
     } else {
-      debugPrint('[WeaponSkillProvider._applyWeakness] Chance roll failed.');
+      return;
     }
   }
 
@@ -634,19 +593,16 @@ class WeaponSkillProvider with ChangeNotifier {
     if (damagePerSecond == null) {
       damagePerSecond = (params['fixedDamagePerSecond'] as num?)?.toDouble();
       if (damagePerSecond != null) {
-        debugPrint(
-          'WARNING: Using deprecated "fixedDamagePerSecond" for bleed. Please use "damagePerSecond" instead.',
-        );
+        // If fixedDamagePerSecond is provided, use it directly
+      } else {
+        return; // Neither damagePerSecond nor fixedDamagePerSecond is provided
       }
     }
     final cooldown = (params['cooldown'] as num?)?.toInt();
     final excludedRaces = (params['excludedRaces'] as List<dynamic>?)
         ?.cast<String>();
 
-    if (chance == null ||
-        duration == null ||
-        damagePerSecond == null ||
-        cooldown == null) {
+    if (chance == null || duration == null || cooldown == null) {
       return; // Missing essential parameters
     }
 
@@ -685,10 +641,8 @@ class WeaponSkillProvider with ChangeNotifier {
     Player player,
     Monster monster,
   ) {
-    debugPrint('Inside _applyPoison');
     final trigger = params['trigger'] as String?;
     if (trigger != 'onHit') {
-      debugPrint('Wrong trigger for poison: $trigger');
       return;
     }
 
@@ -703,7 +657,6 @@ class WeaponSkillProvider with ChangeNotifier {
         duration == null ||
         percentPerSecond == null ||
         cooldown == null) {
-      debugPrint('Missing parameters for poison');
       return; // Missing essential parameters
     }
 
@@ -711,7 +664,6 @@ class WeaponSkillProvider with ChangeNotifier {
     if (excludedRaces != null) {
       for (final race in excludedRaces) {
         if (monster.species.any((s) => s.toString().split('.').last == race)) {
-          debugPrint('Monster race is excluded for poison');
           return;
         }
       }
@@ -719,7 +671,6 @@ class WeaponSkillProvider with ChangeNotifier {
 
     // 2. Check for cooldown
     if (monster.isSkillOnCooldown('poison', cooldown)) {
-      debugPrint('Poison is on cooldown');
       return;
     }
 
@@ -728,7 +679,6 @@ class WeaponSkillProvider with ChangeNotifier {
         (params['stackable'] as bool?) ??
         true; // Default to true if not specified
     if (Random().nextDouble() < chance) {
-      debugPrint('Poison skill triggered!');
       final damageValue = monster.maxHp * percentPerSecond;
       final effect = StatusEffect(
         type: StatusEffectType.poison,
@@ -896,10 +846,8 @@ class WeaponSkillProvider with ChangeNotifier {
     Player player,
     Monster monster,
   ) {
-    debugPrint('[_applyMaxHpDamage] Called.');
     final trigger = params['trigger'] as String?;
     if (trigger != 'onHit') {
-      debugPrint('[_applyMaxHpDamage] Wrong trigger: $trigger');
       return;
     }
 
@@ -910,12 +858,7 @@ class WeaponSkillProvider with ChangeNotifier {
         ?.cast<String>();
     final maxDmg = (params['maxDmg'] as num?)?.toDouble();
 
-    debugPrint(
-      '[_applyMaxHpDamage] Params: chance=$chance, percentDamage=$percentDamage, cooldown=$cooldown, maxDmg=$maxDmg',
-    );
-
     if (chance == null || percentDamage == null || cooldown == null) {
-      debugPrint('[_applyMaxHpDamage] Missing essential parameters.');
       return; // Missing essential parameters
     }
 
@@ -923,7 +866,6 @@ class WeaponSkillProvider with ChangeNotifier {
     if (excludedRaces != null) {
       for (final race in excludedRaces) {
         if (monster.species.any((s) => s.toString().split('.').last == race)) {
-          debugPrint('[_applyMaxHpDamage] Monster race excluded.');
           return;
         }
       }
@@ -931,22 +873,15 @@ class WeaponSkillProvider with ChangeNotifier {
 
     // 2. Check for cooldown
     if (monster.isSkillOnCooldown('maxHpDamage', cooldown)) {
-      debugPrint('[_applyMaxHpDamage] Skill on cooldown.');
       return;
     }
 
     // 3. Roll for chance
     final randomRoll = Random().nextDouble();
-    debugPrint('[_applyMaxHpDamage] Chance roll: $randomRoll vs $chance');
     if (randomRoll < chance) {
-      debugPrint('[_applyMaxHpDamage] Skill triggered!');
       var damage = monster.maxHp * percentDamage;
-      debugPrint(
-        '[_applyMaxHpDamage] Damage before cap: $damage (monster.maxHp=${monster.maxHp} * percentDamage=$percentDamage)',
-      );
       if (maxDmg != null) {
         damage = min(damage, maxDmg);
-        debugPrint('[_applyMaxHpDamage] Damage after cap ($maxDmg): $damage');
       }
       monster.hp -= damage; // Apply damage based on max HP
       monster.setSkillCooldown('maxHpDamage');
@@ -959,7 +894,7 @@ class WeaponSkillProvider with ChangeNotifier {
       ); // Show skill damage
       _gameProvider.notifyListeners(); // Notify listeners for HP change
     } else {
-      debugPrint('[_applyMaxHpDamage] Chance roll failed.');
+      return;
     }
   }
 
@@ -1312,7 +1247,6 @@ class WeaponSkillProvider with ChangeNotifier {
   }
 
   void applyStageStartSkills(Player player, Monster monster) {
-    debugPrint('applyStageStartSkills called');
     final weapon = player.equippedWeapon;
     for (final skill in weapon.skills) {
       final skillEffects = skill['skill_effect'];
@@ -1325,9 +1259,6 @@ class WeaponSkillProvider with ChangeNotifier {
                   as String?; // Corrected: Get trigger from params
 
           if (trigger == 'stageStart') {
-            debugPrint(
-              'Skill with stageStart trigger found: ${skill['skill_name']}',
-            );
             if (effectName != null && params != null) {
               if (effectName == 'applyStatBoost') {
                 _applyStatBoost(params, player);
@@ -1345,12 +1276,7 @@ class WeaponSkillProvider with ChangeNotifier {
     final isMultiplicative = params['isMultiplicative'] as bool? ?? false;
     final duration = (params['duration'] as num?)?.toInt();
 
-    debugPrint(
-      '_applyStatBoost called for stat: $statString, value: $value, multiplicative: $isMultiplicative, duration: $duration',
-    );
-
     if (statString == null || value == null || duration == null) {
-      debugPrint('_applyStatBoost: Missing essential parameters.');
       return;
     }
 
@@ -1370,9 +1296,6 @@ class WeaponSkillProvider with ChangeNotifier {
     // Remove existing buff of same type before adding new one
     player.buffs.removeWhere((b) => b.id == buff.id);
     player.buffs.add(buff);
-    debugPrint(
-      'Buff added: ${buff.id}, current player buffs: ${player.buffs.length}',
-    );
     _gameProvider.recalculatePlayerStats();
   }
 

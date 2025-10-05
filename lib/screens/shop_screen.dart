@@ -271,12 +271,13 @@ class ShopScreen extends StatelessWidget {
                     },
                     confirmationMessage: (amount, cost) {
                       String boxType = '';
-                      if (cost == 1000)
+                      if (cost == 1000) {
                         boxType = '유니크';
-                      else if (cost == 15000)
+                      } else if (cost == 15000) {
                         boxType = '에픽';
-                      else if (cost == 125000)
+                      } else if (cost == 125000) {
                         boxType = '레전드';
+                      }
                       return '$boxType 무기 상자를 $cost 암흑 물질에 구매하시겠습니까?';
                     },
                     showResultDialog: _showResultDialog,

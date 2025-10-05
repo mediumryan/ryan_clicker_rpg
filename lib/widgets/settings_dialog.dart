@@ -71,9 +71,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                     value: game.player.graphicsQuality,
                     dropdownColor: Colors.grey[800],
                     style: const TextStyle(color: Colors.white),
-                    items: graphicsQualityMap.keys.map((
-                      String value,
-                    ) {
+                    items: graphicsQualityMap.keys.map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(graphicsQualityMap[value]!),

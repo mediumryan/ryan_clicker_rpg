@@ -182,13 +182,6 @@ class GameProvider with ChangeNotifier {
   }
 
   Map<String, dynamic> attackMonster() {
-    debugPrint(
-      '[GameProvider.attackMonster] Monster HP before attack: ${_monster.hp}, Defense: ${_monster.defense}',
-    );
-    debugPrint(
-      '[GameProvider.attackMonster] Player finalDefensePenetration: ${_player.finalDefensePenetration}',
-    );
-
     // Check for hit/miss based on weapon accuracy
     if (Random().nextDouble() > _player.finalAccuracy) {
       showFloatingDamageText(0, false, true); // Notify UI about miss
@@ -209,9 +202,6 @@ class GameProvider with ChangeNotifier {
           shatterDamage = min(shatterDamage, freezeEffect.maxDmg!.toDouble());
         } else {
           shatterDamage = min(shatterDamage, _player.finalDamage);
-          debugPrint(
-            "Warning: Freeze effect's maxDmg is not set. Falling back to player's finalDamage for shatter cap.",
-          );
         }
       } else {
         shatterDamage = min(shatterDamage, _player.finalDamage);
@@ -237,9 +227,6 @@ class GameProvider with ChangeNotifier {
     }
 
     _recalculateMonsterEffectiveDefense();
-    debugPrint(
-      '[GameProvider.attackMonster] Stored _currentMonsterEffectiveDefense: $_currentMonsterEffectiveDefense',
-    );
 
     double defenseDamageMultiplier = 1.0;
     if (_currentMonsterEffectiveDefense > 0) {
@@ -248,22 +235,13 @@ class GameProvider with ChangeNotifier {
       defenseDamageMultiplier =
           1.0 + (_currentMonsterEffectiveDefense.abs() * 0.025);
     }
-    debugPrint(
-      '[GameProvider.attackMonster] Defense damage multiplier: $defenseDamageMultiplier',
-    );
 
     double actualDamage = totalDamage * defenseDamageMultiplier;
     actualDamage = max(1, actualDamage);
-    debugPrint(
-      '[GameProvider.attackMonster] Actual damage before debuffs: $actualDamage',
-    );
 
     // Confuse: 25% more damage
     if (_monster.hasStatusEffect(StatusEffectType.confusion)) {
       actualDamage *= 1.25;
-      debugPrint(
-        '[GameProvider.attackMonster] Actual damage after confusion (25% increase): $actualDamage',
-      );
     }
 
     // Charm: 10% increased damage taken & defense reduction on hit
@@ -276,20 +254,9 @@ class GameProvider with ChangeNotifier {
         _monster.defense = (_monster.defense - charmEffect.attackPerDefence!)
             .toInt();
       }
-      debugPrint(
-        '[GameProvider.attackMonster] Actual damage after charm (10% increase): $actualDamage',
-      );
-      debugPrint(
-        '[GameProvider.attackMonster] Monster defense after charm reduction: ${_monster.defense}',
-      );
     }
 
-    debugPrint('[attackMonster] Initial actualDamage: $actualDamage');
-
     for (final modifier in _activeDamageModifiers) {
-      debugPrint(
-        '[attackMonster] Checking modifier: ${modifier.requiredStatusEffectType}, multiplier: ${modifier.multiplier}',
-      );
       bool conditionMet = false;
       if (modifier.requiredRace != null) {
         if (_monster.species.contains(modifier.requiredRace)) {
@@ -298,28 +265,16 @@ class GameProvider with ChangeNotifier {
       } else if (modifier.requiredStatusEffectType != null) {
         if (_monster.hasStatusEffect(modifier.requiredStatusEffectType!)) {
           conditionMet = true;
-          debugPrint(
-            '[attackMonster] Condition met for status effect: ${modifier.requiredStatusEffectType}',
-          );
         }
       }
 
       if (conditionMet) {
-        debugPrint(
-          '[attackMonster] Applying multiplier: ${modifier.multiplier}. actualDamage before: $actualDamage',
-        );
         actualDamage *= (1 + modifier.multiplier);
-        debugPrint('[attackMonster] actualDamage after: $actualDamage');
       }
     }
-    debugPrint(
-      '[attackMonster] Final actualDamage after modifiers: $actualDamage',
-    );
 
-    debugPrint('[attackMonster] Monster HP before damage: ${_monster.hp}');
     _monster.hp -= actualDamage;
     _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
-    debugPrint('[attackMonster] Monster HP after damage: ${_monster.hp}');
     showFloatingDamageText(
       actualDamage.toInt(),
       isCritical,
@@ -328,9 +283,6 @@ class GameProvider with ChangeNotifier {
 
     // Apply shock damage on hit
     if (_monster.hasStatusEffect(StatusEffectType.shock)) {
-      debugPrint(
-        '[attackMonster] Monster HP before shock damage: ${_monster.hp}',
-      );
       final shockDamageMultiplier = _monster.isBoss ? 0.015 : 0.03;
       var shockDamage = _monster.maxHp * shockDamageMultiplier;
 
@@ -343,9 +295,6 @@ class GameProvider with ChangeNotifier {
           shockDamage = min(shockDamage, shockEffect.maxDmg!.toDouble());
         } else {
           shockDamage = min(shockDamage, _player.finalDamage);
-          debugPrint(
-            "Warning: Shock effect's maxDmg is not set. Falling back to player's finalDamage for shock cap.",
-          );
         }
       } else {
         shockDamage = min(shockDamage, _player.finalDamage);
@@ -353,9 +302,6 @@ class GameProvider with ChangeNotifier {
 
       _monster.hp -= shockDamage;
       _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
-      debugPrint(
-        '[attackMonster] Monster HP after shock damage: ${_monster.hp}',
-      );
       showFloatingDamageText(
         shockDamage.toInt(),
         false,
@@ -365,14 +311,8 @@ class GameProvider with ChangeNotifier {
     }
 
     if (Random().nextDouble() < _player.finalDoubleAttackChance) {
-      debugPrint(
-        '[attackMonster] Monster HP before double attack damage: ${_monster.hp}',
-      );
       _monster.hp -= actualDamage;
       _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
-      debugPrint(
-        '[attackMonster] Monster HP after double attack damage: ${_monster.hp}',
-      );
       // Re-show damage text for the second hit
       showFloatingDamageText(
         actualDamage.toInt(),
@@ -383,9 +323,6 @@ class GameProvider with ChangeNotifier {
 
       // Apply shock damage on double attack hit
       if (_monster.hasStatusEffect(StatusEffectType.shock)) {
-        debugPrint(
-          '[attackMonster] Monster HP before double attack shock damage: ${_monster.hp}',
-        );
         final shockDamageMultiplier = _monster.isBoss ? 0.005 : 0.03;
         var shockDamage = _monster.maxHp * shockDamageMultiplier;
 
@@ -398,9 +335,6 @@ class GameProvider with ChangeNotifier {
             shockDamage = min(shockDamage, shockEffect.maxDmg!.toDouble());
           } else {
             shockDamage = min(shockDamage, _player.finalDamage);
-            debugPrint(
-              "Warning: Shock effect's maxDmg is not set. Falling back to player's finalDamage for shock cap.",
-            );
           }
         } else {
           shockDamage = min(shockDamage, _player.finalDamage);
@@ -408,9 +342,6 @@ class GameProvider with ChangeNotifier {
 
         _monster.hp -= shockDamage;
         _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
-        debugPrint(
-          '[attackMonster] Monster HP after double attack shock damage: ${_monster.hp}',
-        );
         showFloatingDamageText(
           shockDamage.toInt(),
           false,
@@ -422,9 +353,6 @@ class GameProvider with ChangeNotifier {
 
     _weaponSkillProvider.applySkills(_player, _monster);
 
-    debugPrint(
-      '[attackMonster] Checking monster death. Current HP: ${_monster.hp}',
-    );
     if (_monster.hp <= 0) {
       _player.monstersKilled++;
       _weaponSkillProvider.applyOnKillSkills(_player, _monster); // New
@@ -486,7 +414,7 @@ class GameProvider with ChangeNotifier {
         }
       });
     } else {
-      notifyListeners();
+      // notifyListeners(); // Removed for performance optimization
     }
     _saveGame();
     return {'damageDealt': actualDamage.toInt(), 'isCritical': isCritical};
@@ -783,14 +711,8 @@ class GameProvider with ChangeNotifier {
         switch (effect.type) {
           case StatusEffectType.bleed:
             if (effect.value != null && effect.value! > 0) {
-              debugPrint(
-                '[_updatePerSecond] Monster HP before DoT damage: ${_monster.hp}',
-              );
               _monster.hp -= effect.value!;
               _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
-              debugPrint(
-                '[_updatePerSecond] Monster HP after DoT damage: ${_monster.hp}',
-              );
               showFloatingDamageText(
                 effect.value!.toInt(),
                 false,
@@ -801,18 +723,12 @@ class GameProvider with ChangeNotifier {
             break;
           case StatusEffectType.poison:
             if (effect.value != null && effect.value! > 0) {
-              debugPrint(
-                '[_updatePerSecond] Monster HP before DoT damage: ${_monster.hp}',
-              );
               var poisonDamage = effect.value!;
               if (effect.maxDmg != null) {
                 poisonDamage = min(poisonDamage, effect.maxDmg!.toDouble());
               }
               _monster.hp -= poisonDamage;
               _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
-              debugPrint(
-                '[_updatePerSecond] Monster HP after DoT damage: ${_monster.hp}',
-              );
               showFloatingDamageText(
                 poisonDamage.toInt(),
                 false,
@@ -823,14 +739,8 @@ class GameProvider with ChangeNotifier {
             break;
           case StatusEffectType.burn:
             if (effect.value != null && effect.value! > 0) {
-              debugPrint(
-                '[_updatePerSecond] Monster HP before DoT damage: ${_monster.hp}',
-              );
               _monster.hp -= effect.value!;
               _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
-              debugPrint(
-                '[_updatePerSecond] Monster HP after DoT damage: ${_monster.hp}',
-              );
               showFloatingDamageText(
                 effect.value!.toInt(),
                 false,
@@ -871,9 +781,6 @@ class GameProvider with ChangeNotifier {
   void _spawnMonster() {
     if (_inSpecialBossZone) return;
     _monster = MonsterData.getMonsterForStage(_player.currentStage);
-    debugPrint(
-      '[_spawnMonster] Spawned monster: ${_monster.name} with HP: ${_monster.hp}',
-    );
     _isMonsterDefeated = false;
     _lastGoldReward = 0.0; // Clear previous reward
     _lastDroppedBox = null; // Clear previous dropped box
@@ -975,7 +882,6 @@ class GameProvider with ChangeNotifier {
   void warpToStage(int targetStage) {
     if (_inSpecialBossZone) return;
     if (targetStage > _player.highestStageCleared) {
-      debugPrint('Cannot warp to uncleared stage: $targetStage');
       return;
     }
     _player.currentStage = targetStage;

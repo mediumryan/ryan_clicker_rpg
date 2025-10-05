@@ -295,7 +295,8 @@ class WeaponData {
 
       _isInitialized = true;
     } catch (e, stacktrace) {
-      debugPrint('ERROR: Failed to initialize WeaponData: $e\n$stacktrace');
+      print('Error initializing WeaponData: $e');
+      print(stacktrace);
     }
   }
 
@@ -455,21 +456,21 @@ class WeaponData {
     return [
       {'text': '무기 드롭 확률:', 'color': Colors.white},
       {
-        'text': '\n언커먼: 50%',
+        'text': '커먼: 50%',
         'color': WeaponData.getColorForRarity(Rarity.common),
       },
       {
-        'text': '\n커먼: 25%',
+        'text': '언커먼: 25%',
         'color': WeaponData.getColorForRarity(Rarity.uncommon),
       },
-      {'text': '\n레어: 15%', 'color': WeaponData.getColorForRarity(Rarity.rare)},
+      {'text': '레어: 15%', 'color': WeaponData.getColorForRarity(Rarity.rare)},
       {
-        'text': '\n유니크: 7%',
+        'text': '유니크: 7%',
         'color': WeaponData.getColorForRarity(Rarity.unique),
       },
-      {'text': '\n에픽: 2%', 'color': WeaponData.getColorForRarity(Rarity.epic)},
+      {'text': '에픽: 2%', 'color': WeaponData.getColorForRarity(Rarity.epic)},
       {
-        'text': '\n레전드: 1%',
+        'text': '레전드: 1%',
         'color': WeaponData.getColorForRarity(Rarity.legend),
       },
     ];
