@@ -1642,7 +1642,9 @@ class WeaponSkillProvider with ChangeNotifier {
       return; // Missing essential parameters
     }
 
-    bool allAcquired = targetIds.every((id) => player.acquiredWeaponIdsHistory.contains(id));
+    bool allAcquired = targetIds.every(
+      (id) => player.acquiredWeaponIdsHistory.contains(id),
+    );
 
     if (allAcquired) {
       _applyPassiveStatBoost({

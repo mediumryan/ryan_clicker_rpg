@@ -442,127 +442,134 @@ class GameProvider with ChangeNotifier {
     }
   }
 
-    Map<String, dynamic> enhanceEquippedWeapon({bool useProtectionTicket = false}) {
-      final weapon = _player.equippedWeapon;
-      if (weapon.instanceId == 'bare_hands') {
-        return {'success': false, 'message': '맨손은 강화할 수 없습니다.'};
-      }
-      if (weapon.enhancement >= weapon.maxEnhancement) {
-        return {'success': false, 'message': '이미 최대 강화 단계입니다.'};
-      }
-  
-      final rarityMultiplier = weapon.rarity.index + 1;
-      final goldCost =
-          ((weapon.baseLevel + 1) + pow(weapon.enhancement + 1, 2.5)) *
-              50 *
-              rarityMultiplier;
-      final stoneCost =
-          ((weapon.enhancement + 1) / 2).ceil() + (rarityMultiplier - 1);
-  
-      if (_player.gold < goldCost) {
+  Map<String, dynamic> enhanceEquippedWeapon({
+    bool useProtectionTicket = false,
+  }) {
+    final weapon = _player.equippedWeapon;
+    if (weapon.instanceId == 'bare_hands') {
+      return {'success': false, 'message': '맨손은 강화할 수 없습니다.'};
+    }
+    if (weapon.enhancement >= weapon.maxEnhancement) {
+      return {'success': false, 'message': '이미 최대 강화 단계입니다.'};
+    }
+
+    final rarityMultiplier = weapon.rarity.index + 1;
+    final goldCost =
+        ((weapon.baseLevel + 1) + pow(weapon.enhancement + 1, 2.5)) *
+        30 *
+        rarityMultiplier;
+    final stoneCost =
+        ((weapon.enhancement + 1) / 2).ceil() + (rarityMultiplier - 1);
+
+    if (_player.gold < goldCost) {
+      return {
+        'success': false,
+        'message':
+            '골드가 부족합니다. (필요: ${NumberFormat('#,###').format(goldCost)}G)',
+      };
+    }
+    if (_player.enhancementStones < stoneCost) {
+      return {'success': false, 'message': '강화석이 부족합니다. (필요: $stoneCost)'};
+    }
+
+    if (useProtectionTicket) {
+      final ticketCost =
+          (((rarityMultiplier) +
+                      (weapon.enhancement / 5) +
+                      (weapon.baseLevel / 100)) /
+                  5)
+              .truncate();
+      if (_player.destructionProtectionTickets < ticketCost) {
         return {
           'success': false,
-          'message':
-              '골드가 부족합니다. (필요: ${NumberFormat('#,###').format(goldCost)}G)',
+          'message': '무기 파괴 방지권이 부족합니다. (필요: $ticketCost개)',
         };
       }
-      if (_player.enhancementStones < stoneCost) {
-        return {'success': false, 'message': '강화석이 부족합니다. (필요: $stoneCost)'};
-      }
-  
-      if (useProtectionTicket) {
-        final ticketCost = (rarityMultiplier) +
-            (weapon.enhancement / 5) +
-            (weapon.baseLevel / 100);
-        if (_player.destructionProtectionTickets < ticketCost) {
-          return {
-            'success': false,
-            'message': '무기 파괴 방지권이 부족합니다. (필요: ${ticketCost.ceil()}개)'
-          };
-        }
-        _player.destructionProtectionTickets -= ticketCost.ceil();
-      }
-  
-      final oldStats = {
+      _player.destructionProtectionTickets -= ticketCost;
+    }
+
+    final oldStats = {
+      'damage': weapon.calculatedDamage,
+      'attackSpeed': weapon.calculatedSpeed,
+      'critDamage': weapon.calculatedCritDamage,
+    };
+
+    _player.gold -= goldCost;
+    _player.enhancementStones -= stoneCost;
+    weapon.investedGold += goldCost;
+    weapon.investedEnhancementStones += stoneCost;
+
+    final enhancementLevel = weapon.enhancement;
+    final probabilities = [
+      1.0, 1.0, 1.0, 1.0, 1.0, 1.0, // 0-5
+      0.90, 0.85, 0.80, 0.75, 0.70, // 6-10
+      0.60, 0.53, 0.47, 0.40, // 11-14
+      0.30, 0.25, 0.20, // 15-17
+      0.15, 0.10, // 18-19
+      0.05, // 20
+    ];
+
+    final successChance = enhancementLevel < probabilities.length
+        ? probabilities[enhancementLevel]
+        : 0.0;
+
+    if (Random().nextDouble() < successChance) {
+      weapon.enhancement++;
+
+      final newStats = {
         'damage': weapon.calculatedDamage,
         'attackSpeed': weapon.calculatedSpeed,
         'critDamage': weapon.calculatedCritDamage,
       };
-  
-      _player.gold -= goldCost;
-      _player.enhancementStones -= stoneCost;
-      weapon.investedGold += goldCost;
-      weapon.investedEnhancementStones += stoneCost;
-  
-      final enhancementLevel = weapon.enhancement;
-      final probabilities = [
-        1.0, 1.0, 1.0, 1.0, 1.0, 1.0, // 0-5
-        0.90, 0.85, 0.80, 0.75, 0.70, // 6-10
-        0.60, 0.53, 0.47, 0.40, // 11-14
-        0.30, 0.25, 0.20, // 15-17
-        0.15, 0.10, // 18-19
-        0.05, // 20
-      ];
-  
-      final successChance = enhancementLevel < probabilities.length
-          ? probabilities[enhancementLevel]
-          : 0.0;
-  
-      if (Random().nextDouble() < successChance) {
-        weapon.enhancement++;
-  
-        final newStats = {
-          'damage': weapon.calculatedDamage,
-          'attackSpeed': weapon.calculatedSpeed,
-          'critDamage': weapon.calculatedCritDamage,
-        };
-  
-        recalculatePlayerStats();
-        notifyListeners();
-        _saveGame();
-  
-        return {
-          'success': true,
-          'message': '강화 성공! +${weapon.enhancement}',
-          'oldStats': oldStats,
-          'newStats': newStats,
-          'weapon': weapon,
-        };
+
+      recalculatePlayerStats();
+      notifyListeners();
+      _saveGame();
+
+      return {
+        'success': true,
+        'message': '강화 성공! +${weapon.enhancement}',
+        'oldStats': oldStats,
+        'newStats': newStats,
+        'weapon': weapon,
+      };
+    } else {
+      String penaltyMessage;
+      if (useProtectionTicket) {
+        penaltyMessage = '강화에 실패했지만, 방지권으로 무기와 강화 단계를 보호했습니다.';
       } else {
-        String penaltyMessage;
-        if (useProtectionTicket) {
-          penaltyMessage = '강화에 실패했지만, 방지권으로 무기와 강화 단계를 보호했습니다.';
+        if (enhancementLevel < 4) {
+          penaltyMessage = '강화에 실패했지만 단계는 유지됩니다.';
+        } else if (enhancementLevel < 10) {
+          weapon.enhancement--;
+          penaltyMessage = '강화 실패... 강화 단계가 1 하락했습니다.';
         } else {
-          if (enhancementLevel < 4) {
-            penaltyMessage = '강화에 실패했지만 단계는 유지됩니다.';
-          } else if (enhancementLevel < 10) {
-            weapon.enhancement--;
-            penaltyMessage = '강화 실패... 강화 단계가 1 하락했습니다.';
-          } else {
-            final rarityMultiplier = weapon.rarity.index + 1;
-            final enhancementMultiplier = weapon.enhancement + 1;
-            final levelMultiplier = 1 + (weapon.baseLevel / 50);
-            final darkMatterGained = ((rarityMultiplier *
-                        pow(enhancementMultiplier, 2.5) *
-                        levelMultiplier) /
-                    10)
-                .truncate()
-                .toInt();
-            _player.darkMatter += darkMatterGained;
-  
-            _player.weaponDestructionCount++;
-            _player.equippedWeapon = Weapon.bareHands();
-            penaltyMessage =
-                '강화 실패... 무기가 파괴되었습니다.\n암흑 물질 $darkMatterGained 개를 획득했습니다.';
-          }
+          final rarityMultiplier = weapon.rarity.index + 1;
+          final enhancementMultiplier = weapon.enhancement + 1;
+          final levelMultiplier = 1 + (weapon.baseLevel / 50);
+          final darkMatterGained =
+              ((rarityMultiplier *
+                          pow(enhancementMultiplier, 2.5) *
+                          levelMultiplier) /
+                      10)
+                  .truncate()
+                  .toInt();
+          _player.darkMatter += darkMatterGained;
+
+          _player.weaponDestructionCount++;
+          _player.equippedWeapon = Weapon.bareHands();
+          penaltyMessage =
+              '강화 실패... 무기가 파괴되었습니다.\n암흑 물질 $darkMatterGained 개를 획득했습니다.';
         }
-        recalculatePlayerStats();
-        startAutoAttack(); // Fix: Restart auto-attack with new speed
-        notifyListeners();
-        _saveGame();
-        return {'success': false, 'message': penaltyMessage};
       }
+      recalculatePlayerStats();
+      startAutoAttack(); // Fix: Restart auto-attack with new speed
+      notifyListeners();
+      _saveGame();
+      return {'success': false, 'message': penaltyMessage};
     }
+  }
+
   String transcendEquippedWeapon() {
     final weapon = _player.equippedWeapon;
     final rarityMultiplier = weapon.rarity.index + 1;
@@ -864,6 +871,15 @@ class GameProvider with ChangeNotifier {
     //     _player.inventory.add(testWeapon);
     //   }
     // }
+
+    final List<int> enhancementLevels = [8, 11, 13, 15, 17, 19, 20];
+    for (final level in enhancementLevels) {
+      final testWeapon = WeaponData.getWeaponById(52004);
+      if (testWeapon != null) {
+        testWeapon.enhancement = level;
+        _player.inventory.add(testWeapon);
+      }
+    }
   }
 
   Future<void> _saveGame() async {
@@ -970,6 +986,32 @@ class GameProvider with ChangeNotifier {
     notifyListeners();
     _saveGame();
     return newWeapon;
+  }
+
+  List<Weapon> openAllGachaBoxes() {
+    if (_player.gachaBoxes.isEmpty) {
+      return [];
+    }
+
+    final List<Weapon> newWeapons = [];
+    for (final box in _player.gachaBoxes) {
+      final newWeapon = _rewardService.getWeaponFromBox(
+        box,
+        _player.highestStageCleared,
+      );
+      newWeapons.add(newWeapon);
+    }
+
+    _player.inventory.addAll(newWeapons);
+    for (final weapon in newWeapons) {
+      _player.acquiredWeaponIdsHistory.add(weapon.id);
+    }
+    _player.gachaBoxes.clear();
+
+    notifyListeners();
+    _saveGame();
+
+    return newWeapons;
   }
 
   String sellWeapon(Weapon weaponToSell) {
@@ -1083,6 +1125,56 @@ class GameProvider with ChangeNotifier {
       notifyListeners();
       _saveGame();
     }
+  }
+
+  void claimAllCompletableAchievements() {
+    final completableAchievements = AchievementData.achievements
+        .where((a) => a.isCompletable(_player) && !a.isCompleted)
+        .toList();
+
+    if (completableAchievements.isEmpty) {
+      return;
+    }
+
+    for (final achievement in completableAchievements) {
+      if (!achievement.isCompleted) {
+        achievement.isCompleted = true;
+        _player.completedAchievementIds.add(achievement.id);
+      }
+
+      if (achievement.isCompleted && !achievement.isRewardClaimed) {
+        for (final reward in achievement.rewards) {
+          switch (reward.type) {
+            case RewardType.gold:
+              _player.gold += reward.quantity;
+              break;
+            case RewardType.enhancementStone:
+              _player.enhancementStones += reward.quantity;
+              break;
+            case RewardType.transcendenceStone:
+              _player.transcendenceStones += reward.quantity;
+              break;
+            case RewardType.gachaBox:
+              if (reward.item != null) {
+                for (int i = 0; i < reward.quantity; i++) {
+                  final newBox = GachaBox(
+                    id: 'ach_${achievement.id}_${DateTime.now().millisecondsSinceEpoch}_$i',
+                    boxType: reward.item!.boxType,
+                    stageLevel: reward.item!.stageLevel,
+                  );
+                  _player.gachaBoxes.add(newBox);
+                }
+              }
+              break;
+          }
+        }
+        achievement.claimReward();
+        _player.claimedAchievementIds.add(achievement.id);
+      }
+    }
+
+    notifyListeners();
+    _saveGame();
   }
 
   void completeAndClaimAchievement(Achievement achievement) {
@@ -1262,8 +1354,10 @@ class GameProvider with ChangeNotifier {
     );
   }
 
-  String buyDestructionProtectionTicketsWithGold(
-      {required int amount, required int cost}) {
+  String buyDestructionProtectionTicketsWithGold({
+    required int amount,
+    required int cost,
+  }) {
     if (_player.gold < cost) {
       return '골드가 부족합니다.';
     }
@@ -1275,8 +1369,10 @@ class GameProvider with ChangeNotifier {
     return '$amount개의 무기 파괴 방지권을 구매했습니다.';
   }
 
-  String buyDestructionProtectionTicketsWithDarkMatter(
-      {required int amount, required int cost}) {
+  String buyDestructionProtectionTicketsWithDarkMatter({
+    required int amount,
+    required int cost,
+  }) {
     if (_player.darkMatter < cost) {
       return '암흑 물질이 부족합니다.';
     }

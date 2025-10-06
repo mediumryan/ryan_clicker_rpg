@@ -71,8 +71,8 @@ class InventoryScreen extends StatelessWidget {
       body: Selector<GameProvider, _InventoryData>(
         selector: (context, game) => _InventoryData(
           equippedWeapon: game.player.equippedWeapon,
-          inventory: game.player.inventory,
-          gachaBoxes: game.player.gachaBoxes,
+          inventory: List.of(game.player.inventory),
+          gachaBoxes: List.of(game.player.gachaBoxes),
           gold: game.player.gold,
           enhancementStones: game.player.enhancementStones,
           transcendenceStones: game.player.transcendenceStones,
@@ -81,64 +81,66 @@ class InventoryScreen extends StatelessWidget {
               game.player.destructionProtectionTickets,
         ),
         builder: (context, data, child) {
-          return Column(
-            children: [
-              // Equipped Weapon Section
-              _buildWeaponCard(
-                context,
-                data.equippedWeapon,
-                isEquipped: true,
-                onEquip: () {},
-              ),
-              const Divider(color: Colors.yellow),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  '보유 재화',
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                // Equipped Weapon Section
+                _buildWeaponCard(
+                  context,
+                  data.equippedWeapon,
+                  isEquipped: true,
+                  onEquip: () {},
                 ),
-              ),
-              _buildResourceRow(
-                'images/others/gold.png',
-                '골드',
-                '게임의 기본 재화입니다.',
-                '${NumberFormat('#,###').format(data.gold)}G',
-              ),
-              _buildResourceRow(
-                'images/others/enhancement_stone.png',
-                '강화석',
-                '무기 강화에 사용됩니다.',
-                '${NumberFormat('#,###').format(data.enhancementStones)}개',
-              ),
-              _buildResourceRow(
-                'images/others/transcendence_stone.png',
-                '초월석',
-                '무기 초월에 사용됩니다.',
-                '${NumberFormat('#,###').format(data.transcendenceStones)}개',
-              ),
-              _buildResourceRow(
-                'images/others/dark_matter.png',
-                '암흑 물질',
-                '특별한 아이템 구매에 사용됩니다.',
-                '${NumberFormat('#,###').format(data.darkMatter)}개',
-              ),
-              _buildResourceRow(
-                'images/others/protection_ticket.png',
-                '파괴 방지권',
-                '강화 실패 시 파괴를 방지합니다.',
-                '${NumberFormat('#,###').format(data.destructionProtectionTickets)}개',
-              ),
-              const Divider(color: Colors.yellow),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  '보유 무기',
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                const Divider(color: Colors.yellow),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    '보유 재화',
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
                 ),
-              ),
-              // Inventory List for Weapons
-              Expanded(
-                child: ListView.builder(
+                _buildResourceRow(
+                  'images/others/gold.png',
+                  '골드',
+                  '게임의 기본 재화입니다.',
+                  '${NumberFormat('#,###').format(data.gold)}G',
+                ),
+                _buildResourceRow(
+                  'images/others/enhancement_stone.png',
+                  '강화석',
+                  '무기 강화에 사용됩니다.',
+                  '${NumberFormat('#,###').format(data.enhancementStones)}개',
+                ),
+                _buildResourceRow(
+                  'images/others/transcendence_stone.png',
+                  '초월석',
+                  '무기 초월에 사용됩니다.',
+                  '${NumberFormat('#,###').format(data.transcendenceStones)}개',
+                ),
+                _buildResourceRow(
+                  'images/others/dark_matter.png',
+                  '암흑 물질',
+                  '특별한 아이템 구매에 사용됩니다.',
+                  '${NumberFormat('#,###').format(data.darkMatter)}개',
+                ),
+                _buildResourceRow(
+                  'images/others/protection_ticket.png',
+                  '파괴 방지권',
+                  '강화 실패 시 파괴를 방지합니다.',
+                  '${NumberFormat('#,###').format(data.destructionProtectionTickets)}개',
+                ),
+                const Divider(color: Colors.yellow),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    '보유 무기',
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                ),
+                // Inventory List for Weapons
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: data.inventory.length,
                   itemBuilder: (context, index) {
                     final weapon = data.inventory[index];
@@ -151,48 +153,38 @@ class InventoryScreen extends StatelessWidget {
                     );
                   },
                 ),
-              ),
-              const Divider(color: Colors.yellow),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceBetween, // Changed to spaceBetween
-                  children: [
-                    Row(
-                      // New inner Row to group text and icon
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          '보유 상자',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                        const SizedBox(width: 16), // Spacing
-                        IconButton(
-                          // Changed from Tooltip
-                          icon: const Icon(
-                            Icons.info_outline, // Changed icon to info_outline
-                            color: Colors.white70,
-                            size: 20,
-                          ),
+                const Divider(color: Colors.yellow),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        '보유 상자',
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      const SizedBox(width: 16),
+                      IconButton(
+                        icon: const Icon(Icons.info_outline, color: Colors.white70, size: 20),
+                        onPressed: () => _showGachaInfoDialog(context),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                      ),
+                      const Spacer(),
+                      if (data.gachaBoxes.isNotEmpty)
+                        ElevatedButton(
                           onPressed: () {
-                            _showGachaInfoDialog(
-                              context,
-                            ); // New method to show info
+                            final newWeapons = context.read<GameProvider>().openAllGachaBoxes();
+                            _showAllGachaResultsDialog(context, newWeapons);
                           },
-                          padding: EdgeInsets.zero, // Remove default padding
-                          constraints:
-                              const BoxConstraints(), // Remove default constraints
+                          child: const Text('모두 열기'),
                         ),
-                      ],
-                    ),
-                    // No other widgets here, the IconButton is now part of the inner Row
-                  ],
-                ),
-              ),
-              // Inventory List for Gacha Boxes
-              Expanded(
-                child: ListView.builder(
+                    ],
+                  ),
+                ), // Inventory List for Gacha Boxes
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: data.gachaBoxes.length,
                   itemBuilder: (context, index) {
                     final box = data.gachaBoxes[index];
@@ -204,8 +196,8 @@ class InventoryScreen extends StatelessWidget {
                     });
                   },
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),
@@ -268,6 +260,8 @@ class InventoryScreen extends StatelessWidget {
     bool isEquipped = false,
     required VoidCallback onEquip,
   }) {
+    final gradientColors = _getGradientColorsForEnhancement(weapon.enhancement);
+
     return Card(
       color: isEquipped ? Colors.blueGrey[800] : Colors.grey[800],
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -288,7 +282,19 @@ class InventoryScreen extends StatelessWidget {
                 width: 50, // Fixed width for the image container
                 height: 50, // Fixed height for the image container
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  gradient: gradientColors.isNotEmpty
+                      ? LinearGradient(
+                          colors: isEquipped
+                              ? gradientColors
+                                  .map((c) => Color.alphaBlend(
+                                      Colors.white.withAlpha(38), c))
+                                  .toList()
+                              : gradientColors,
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        )
+                      : null,
+                  color: gradientColors.isEmpty ? Colors.black : null,
                   border: Border.all(
                     color: WeaponData.getColorForRarity(weapon.rarity),
                     width: 2.0,
@@ -314,7 +320,7 @@ class InventoryScreen extends StatelessWidget {
                 children: [
                   // Top part of Right Box (Info)
                   Text(
-                    '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]${isEquipped ? ' [E]' : ''}',
+                    '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]${isEquipped ? ' [장착중]' : ''}',
                     style: TextStyle(
                       color: WeaponData.getColorForRarity(weapon.rarity),
                       fontSize: 18,
@@ -511,5 +517,61 @@ class InventoryScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _showAllGachaResultsDialog(BuildContext context, List<Weapon> newWeapons) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.grey[800],
+          title: const Text('전체 상자 개봉 결과', style: TextStyle(color: Colors.white)),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: newWeapons.length,
+              itemBuilder: (context, index) {
+                final weapon = newWeapons[index];
+                return Text(
+                  weapon.name,
+                  style: TextStyle(
+                    color: WeaponData.getColorForRarity(weapon.rarity),
+                  ),
+                );
+              },
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('확인', style: TextStyle(color: Colors.blue)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  List<Color> _getGradientColorsForEnhancement(int enhancementLevel) {
+    if (enhancementLevel >= 20) {
+      return [Colors.amber[200]!, Colors.amber[500]!];
+    } else if (enhancementLevel >= 19) {
+      return [Colors.red[500]!, Colors.red[700]!];
+    } else if (enhancementLevel >= 17) {
+      return [Colors.red[300]!, Colors.red[500]!];
+    } else if (enhancementLevel >= 15) {
+      return [Colors.deepOrange[300]!, Colors.deepOrange[500]!];
+    } else if (enhancementLevel >= 13) {
+      return [Colors.orange[400]!, Colors.orange[600]!];
+    } else if (enhancementLevel >= 11) {
+      return [Colors.amber[500]!, Colors.amber[700]!];
+    } else if (enhancementLevel >= 8) {
+      return [Colors.yellow[600]!, Colors.yellow[800]!];
+    } else {
+      return [];
+    }
   }
 }

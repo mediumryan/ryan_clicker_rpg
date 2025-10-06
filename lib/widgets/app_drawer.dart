@@ -117,6 +117,15 @@ class AppDrawer extends StatelessWidget {
                     // TODO: Implement Dimension Shift screen
                   },
                 ),
+                _buildNavButton(
+                  context,
+                  icon: Icons.mail,
+                  label: '우편함',
+                  onPressed: () {
+                    Navigator.pop(context); // Close the drawer
+                    // TODO: Implement mailbox functionality
+                  },
+                ),
                 const SizedBox.shrink(),
                 const SizedBox.shrink(),
                 _buildNavButton(

@@ -83,7 +83,8 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                   scrollDirection: Axis.horizontal,
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
-                        minWidth: MediaQuery.of(context).size.width - 32),
+                      minWidth: MediaQuery.of(context).size.width - 32,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -169,13 +170,14 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                 builder: (context, game, child) {
                   final equippedWeapon = game.player.equippedWeapon;
                   final rarityMultiplier = equippedWeapon.rarity.index + 1;
-                  final enhancementGoldCost = ((equippedWeapon.baseLevel + 1) +
+                  final enhancementGoldCost =
+                      ((equippedWeapon.baseLevel + 1) +
                           pow(equippedWeapon.enhancement + 1, 2.5)) *
-                      50 *
+                      30 *
                       rarityMultiplier;
                   final enhancementStoneCost =
                       ((equippedWeapon.enhancement + 1) / 2).ceil() +
-                          (rarityMultiplier - 1);
+                      (rarityMultiplier - 1);
 
                   final enhancementLevel = equippedWeapon.enhancement;
                   const enhancementProbabilities = [
@@ -202,19 +204,24 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                     5, // 20
                   ]; // In percentage
 
-                  final ticketCost = (rarityMultiplier) +
-                      (equippedWeapon.enhancement / 5) +
-                      (equippedWeapon.baseLevel / 100);
+                  final ticketCost =
+                      (((rarityMultiplier) +
+                                  (equippedWeapon.enhancement / 5) +
+                                  (equippedWeapon.baseLevel / 100)) /
+                              5)
+                          .truncate();
 
-                  final newTranscendenceGoldCost = (100 +
-                          (equippedWeapon.baseLevel + 1) * 10) *
+                  final newTranscendenceGoldCost =
+                      (100 + (equippedWeapon.baseLevel + 1) * 10) *
                       1250 *
                       rarityMultiplier * // rarityMultiplier is already defined above
                       (equippedWeapon.transcendence + 1);
-                  final newTranscendenceStoneCost = ((rarityMultiplier +
-                              ((equippedWeapon.baseLevel + 1) / 200).floor()) *
-                          (equippedWeapon.transcendence + 1))
-                      .toInt();
+                  final newTranscendenceStoneCost =
+                      ((rarityMultiplier +
+                                  ((equippedWeapon.baseLevel + 1) / 200)
+                                      .floor()) *
+                              (equippedWeapon.transcendence + 1))
+                          .toInt();
 
                   // Filter out the equipped weapon from inventory for selling/disassembling
                   final inventoryWeapons = game.player.inventory
@@ -235,12 +242,14 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                                   ? '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n\n최대 강화에 도달하였습니다.'
                                   : '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n강화 확률: ${enhancementProbabilities[enhancementLevel]}%\n필요 골드: ${NumberFormat('#,###').format(enhancementGoldCost)}G\n필요 강화석: ${NumberFormat('#,###').format(enhancementStoneCost)}개\n\n골드와 강화석을 소모하여 무기를 강화합니다. 강화 수치에 따라 데미지,공격속도,치명타배율이 상승합니다.',
                               style: const TextStyle(
-                                  color: Colors.white70, fontSize: 14),
+                                color: Colors.white70,
+                                fontSize: 14,
+                              ),
                             ),
                             if (enhancementLevel >= 10)
                               SwitchListTile(
                                 title: Text(
-                                  '파괴 방지권 사용 (${ticketCost.ceil()}개 필요)',
+                                  '파괴 방지권 사용 ($ticketCost개 필요)',
                                   style: const TextStyle(color: Colors.white),
                                 ),
                                 value: _useTicket,
@@ -253,18 +262,18 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                               ),
                           ],
                           buttonText: '강화',
-                          onPressed: equippedWeapon.enhancement >=
+                          onPressed:
+                              equippedWeapon.enhancement >=
                                   equippedWeapon.maxEnhancement
                               ? null
                               : () {
-                                  final enhancementLevel = 
+                                  final enhancementLevel =
                                       equippedWeapon.enhancement;
-                                  final probability = 
+                                  final probability =
                                       enhancementProbabilities[enhancementLevel];
                                   String penaltyMessage;
                                   if (_useTicket) {
-                                    penaltyMessage =
-                                        '실패 시 강화 단계 유지 (방지권 사용)';
+                                    penaltyMessage = '실패 시 강화 단계 유지 (방지권 사용)';
                                   } else if (enhancementLevel < 4) {
                                     penaltyMessage = '실패 시 페널티 없음';
                                   } else if (enhancementLevel < 10) {
@@ -273,13 +282,14 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                                     penaltyMessage = '실패 시 무기 파괴';
                                   }
 
-                                  String content = '''정말로 강화하시겠습니까?\n
+                                  String content =
+                                      '''정말로 강화하시겠습니까?\n
 필요 골드: ${NumberFormat('#,###').format(enhancementGoldCost)}G
 강화 확률: $probability%\n실패 페널티: $penaltyMessage''';
 
                                   if (_useTicket) {
                                     content +=
-                                        '\n\n파괴 방지권 ${ticketCost.ceil()}개가 소모됩니다.';
+                                        '\n\n파괴 방지권 $ticketCost개가 소모됩니다.';
                                   }
 
                                   _showConfirmationDialog(
@@ -287,22 +297,24 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                                     '강화',
                                     content,
                                     () {
-                                      final result = 
-                                          game.enhanceEquippedWeapon(
-                                              useProtectionTicket: _useTicket);
+                                      final result = game.enhanceEquippedWeapon(
+                                        useProtectionTicket: _useTicket,
+                                      );
                                       if (result['success']) {
                                         showDialog(
                                           context: context,
-                                          builder: (context) => 
+                                          builder: (context) =>
                                               EnhancementSuccessDialog(
-                                            weapon: result['weapon'],
-                                            oldStats: result['oldStats'],
-                                            newStats: result['newStats'],
-                                          ),
+                                                weapon: result['weapon'],
+                                                oldStats: result['oldStats'],
+                                                newStats: result['newStats'],
+                                              ),
                                         );
                                       } else {
                                         _showResultDialog(
-                                            context, result['message']);
+                                          context,
+                                          result['message'],
+                                        );
                                       }
                                     },
                                   );
@@ -316,14 +328,14 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                           title: '초월',
                           description:
                               equippedWeapon.transcendence >=
-                                      equippedWeapon.maxTranscendence
-                                  ? '현재 초월: [${equippedWeapon.transcendence}] / ${equippedWeapon.maxTranscendence}\n\n이미 최대 초월 단계입니다.'
-                                  : '현재 초월: [${equippedWeapon.transcendence}] / ${equippedWeapon.maxTranscendence}\n초월 확률: 5%\n조건: +20 강화\n필요 골드: ${NumberFormat('#,###').format(newTranscendenceGoldCost)}G\n필요 초월석: ${NumberFormat('#,###').format(newTranscendenceStoneCost)}개\n성공 시 능력치 상승\n\n최대 강화 무기를 초월시킵니다. 초월 시 능력치가 막대하게 상승합니다.',
+                                  equippedWeapon.maxTranscendence
+                              ? '현재 초월: [${equippedWeapon.transcendence}] / ${equippedWeapon.maxTranscendence}\n\n이미 최대 초월 단계입니다.'
+                              : '현재 초월: [${equippedWeapon.transcendence}] / ${equippedWeapon.maxTranscendence}\n초월 확률: 5%\n조건: +20 강화\n필요 골드: ${NumberFormat('#,###').format(newTranscendenceGoldCost)}G\n필요 초월석: ${NumberFormat('#,###').format(newTranscendenceStoneCost)}개\n성공 시 능력치 상승\n\n최대 강화 무기를 초월시킵니다. 초월 시 능력치가 막대하게 상승합니다.',
                           buttonText: '초월',
                           onPressed:
                               equippedWeapon.transcendence >=
-                                          equippedWeapon.maxTranscendence ||
-                                      equippedWeapon.enhancement < 20
+                                      equippedWeapon.maxTranscendence ||
+                                  equippedWeapon.enhancement < 20
                               ? null
                               : () {
                                   _showConfirmationDialog(
@@ -331,8 +343,8 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                                     '초월',
                                     '정말로 초월하시겠습니까?',
                                     () {
-                                      final message =
-                                          game.transcendEquippedWeapon();
+                                      final message = game
+                                          .transcendEquippedWeapon();
                                       _showResultDialog(context, message);
                                     },
                                   );
@@ -356,7 +368,9 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                           child: Text(
                             '판매: 기본 판매가 + 투자 골드의 1/3 회수.\n분해: 골드를 제외한 투자 자원 (강화석, 초월석) 50% 회수.',
                             style: TextStyle(
-                                color: Colors.white70, fontSize: 12),
+                              color: Colors.white70,
+                              fontSize: 12,
+                            ),
                           ),
                         ),
 
@@ -384,8 +398,8 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                         _buildSection(
                           title: '보유 재화 판매',
                           description:
-                              '강화석: ${game.player.enhancementStones}개 (개당 5000 골드)\n'
-                              '초월석: ${game.player.transcendenceStones}개 (개당 50000 골드)',
+                              '강화석: ${game.player.enhancementStones}개 (개당 2,500 골드)\n'
+                              '초월석: ${game.player.transcendenceStones}개 (개당 25,000 골드)',
                           children: [
                             const SizedBox(height: 10),
                             ElevatedButton(
@@ -562,7 +576,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                               (weapon.investedTranscendenceStones / 2)
                                   .truncate();
 
-                          String content = 
+                          String content =
                               '${weapon.name}을(를) 정말로 분해하시겠습니까?\n\n획득 재화:\n';
                           if (returnedEnhancementStones > 0) {
                             content += '강화석: $returnedEnhancementStones개\n';
@@ -660,8 +674,8 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                 ? '강화석'
                 : '초월석';
             final int sellPricePerStone = (type == StoneType.enhancement)
-                ? 5000
-                : 50000;
+                ? 2500
+                : 25000;
 
             // Ensure currentAmount doesn't exceed maxStones
             if (currentAmount > maxStones) {

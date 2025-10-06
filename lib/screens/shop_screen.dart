@@ -22,7 +22,6 @@ class _PlayerResources {
   int get hashCode => gold.hashCode ^ darkMatter.hashCode;
 }
 
-
 // New data class for shop items
 class ShopItemData {
   final String imagePath;
@@ -64,17 +63,14 @@ class ShopScreen extends StatelessWidget {
                   _PlayerResources(game.player.gold, game.player.darkMatter),
               builder: (context, resources, child) {
                 return Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // Center the row
+                  mainAxisAlignment: MainAxisAlignment.center, // Center the row
                   children: [
                     Image.asset(
                       'images/others/gold.png',
                       width: 24,
                       height: 24,
                     ),
-                    const SizedBox(
-                      width: 8,
-                    ), // Spacing between image and text
+                    const SizedBox(width: 8), // Spacing between image and text
                     Text(
                       ': ${NumberFormat('#,###').format(resources.gold)}G',
                       style: const TextStyle(
@@ -90,9 +86,7 @@ class ShopScreen extends StatelessWidget {
                       width: 24,
                       height: 24,
                     ),
-                    const SizedBox(
-                      width: 8,
-                    ), // Spacing between image and text
+                    const SizedBox(width: 8), // Spacing between image and text
                     Text(
                       ': ${NumberFormat('#,###').format(resources.darkMatter)}개',
                       style: const TextStyle(
@@ -195,8 +189,7 @@ class ShopScreen extends StatelessWidget {
                     ShopItemData(
                       imagePath: 'images/chests/unique.png',
                       quantity: 1,
-                      description:
-                          '암흑 물질로 구매하는 현재 레벨 구간 유니크 무기 상자입니다.',
+                      description: '암흑 물질로 구매하는 현재 레벨 구간 유니크 무기 상자입니다.',
                       cost: 1000,
                       amountToBuy: 1,
                       costToBuy: 1000,
@@ -204,8 +197,7 @@ class ShopScreen extends StatelessWidget {
                     ShopItemData(
                       imagePath: 'images/chests/epic.png',
                       quantity: 1,
-                      description:
-                          '암흑 물질로 구매하는 현재 레벨 구간 에픽 무기 상자입니다.',
+                      description: '암흑 물질로 구매하는 현재 레벨 구간 에픽 무기 상자입니다.',
                       cost: 15000,
                       amountToBuy: 1,
                       costToBuy: 15000,
@@ -213,8 +205,7 @@ class ShopScreen extends StatelessWidget {
                     ShopItemData(
                       imagePath: 'images/chests/legend.png',
                       quantity: 1,
-                      description:
-                          '암흑 물질로 구매하는 현재 레벨 구간 레전드 무기 상자입니다.',
+                      description: '암흑 물질로 구매하는 현재 레벨 구간 레전드 무기 상자입니다.',
                       cost: 125000,
                       amountToBuy: 1,
                       costToBuy: 125000,
@@ -237,9 +228,9 @@ class ShopScreen extends StatelessWidget {
                       imagePath: 'images/others/protection_ticket.png',
                       quantity: 1,
                       description: '강화 실패 시 무기 파괴를 1회 방지합니다.',
-                      cost: 100,
+                      cost: 500,
                       amountToBuy: 1,
-                      costToBuy: 100,
+                      costToBuy: 500,
                     ),
                   ];
                   return SingleChildScrollView(
@@ -249,9 +240,12 @@ class ShopScreen extends StatelessWidget {
                         ShopItemSection(
                           title: '강화석 상점',
                           items: enhancementStoneItems,
-                          buyFunction: ({required int amount, required int cost}) =>
-                              game.buyEnhancementStones(
-                                  amount: amount, cost: cost),
+                          buyFunction:
+                              ({required int amount, required int cost}) =>
+                                  game.buyEnhancementStones(
+                                    amount: amount,
+                                    cost: cost,
+                                  ),
                           confirmationMessage: (amount, cost) =>
                               '강화석 $amount개를 $cost 골드에 구매하시겠습니까?',
                           showResultDialog: _showResultDialog,
@@ -263,9 +257,12 @@ class ShopScreen extends StatelessWidget {
                         ShopItemSection(
                           title: '초월석 상점',
                           items: transcendenceStoneItems,
-                          buyFunction: ({required int amount, required int cost}) =>
-                              game.buyTranscendenceStones(
-                                  amount: amount, cost: cost),
+                          buyFunction:
+                              ({required int amount, required int cost}) =>
+                                  game.buyTranscendenceStones(
+                                    amount: amount,
+                                    cost: cost,
+                                  ),
                           confirmationMessage: (amount, cost) =>
                               '초월석 $amount개를 $cost 골드에 구매하시겠습니까?',
                           showResultDialog: _showResultDialog,
@@ -278,9 +275,12 @@ class ShopScreen extends StatelessWidget {
                         ShopItemSection(
                           title: '파괴 방지권 상점 (골드)',
                           items: protectionTicketItems,
-                          buyFunction: ({required int amount, required int cost}) =>
-                              game.buyDestructionProtectionTicketsWithGold(
-                                  amount: amount, cost: cost),
+                          buyFunction:
+                              ({required int amount, required int cost}) =>
+                                  game.buyDestructionProtectionTicketsWithGold(
+                                    amount: amount,
+                                    cost: cost,
+                                  ),
                           confirmationMessage: (amount, cost) =>
                               '파괴 방지권 $amount개를 $cost 골드에 구매하시겠습니까?',
                           showResultDialog: _showResultDialog,
@@ -294,32 +294,34 @@ class ShopScreen extends StatelessWidget {
                           title: '파괴 방지권 상점 (암흑 물질)',
                           items: darkMatterProtectionTicketItems,
                           buyFunction:
-                              ({required int amount, required int cost}) =>
-                                  game.buyDestructionProtectionTicketsWithDarkMatter(
-                                      amount: amount, cost: cost),
+                              ({required int amount, required int cost}) => game
+                                  .buyDestructionProtectionTicketsWithDarkMatter(
+                                    amount: amount,
+                                    cost: cost,
+                                  ),
                           confirmationMessage: (amount, cost) =>
                               '파괴 방지권 $amount개를 $cost 암흑 물질에 구매하시겠습니까?',
                           showResultDialog: _showResultDialog,
                           showConfirmationDialog: _showConfirmationDialog,
-                          buildShopItem: ({
-                            required BuildContext context,
-                            String? title,
-                            String? imagePath,
-                            int? quantity,
-                            required String description,
-                            required int cost,
-                            required VoidCallback onPressed,
-                          }) =>
-                              _buildShopItem(
-                            context: context,
-                            title: title,
-                            imagePath: imagePath,
-                            quantity: quantity,
-                            description: description,
-                            cost: cost,
-                            onPressed: onPressed,
-                            currencyUnit: '개',
-                          ),
+                          buildShopItem:
+                              ({
+                                required BuildContext context,
+                                String? title,
+                                String? imagePath,
+                                int? quantity,
+                                required String description,
+                                required int cost,
+                                required VoidCallback onPressed,
+                              }) => _buildShopItem(
+                                context: context,
+                                title: title,
+                                imagePath: imagePath,
+                                quantity: quantity,
+                                description: description,
+                                cost: cost,
+                                onPressed: onPressed,
+                                currencyUnit: '개',
+                              ),
                         ),
 
                         const Divider(height: 40, color: Colors.grey),
@@ -330,32 +332,32 @@ class ShopScreen extends StatelessWidget {
                           buyFunction:
                               ({required int amount, required int cost}) =>
                                   game.buyDarkMatterEnhancementStones(
-                            amount: amount,
-                            cost: cost,
-                          ),
+                                    amount: amount,
+                                    cost: cost,
+                                  ),
                           confirmationMessage: (amount, cost) =>
                               '강화석 $amount개를 $cost 암흑 물질에 구매하시겠습니까?',
                           showResultDialog: _showResultDialog,
                           showConfirmationDialog: _showConfirmationDialog,
-                          buildShopItem: ({ 
-                            required BuildContext context,
-                            String? title,
-                            String? imagePath,
-                            int? quantity,
-                            required String description,
-                            required int cost,
-                            required VoidCallback onPressed,
-                          }) =>
-                              _buildShopItem(
-                            context: context,
-                            title: title,
-                            imagePath: imagePath,
-                            quantity: quantity,
-                            description: description,
-                            cost: cost,
-                            onPressed: onPressed,
-                            currencyUnit: '개',
-                          ),
+                          buildShopItem:
+                              ({
+                                required BuildContext context,
+                                String? title,
+                                String? imagePath,
+                                int? quantity,
+                                required String description,
+                                required int cost,
+                                required VoidCallback onPressed,
+                              }) => _buildShopItem(
+                                context: context,
+                                title: title,
+                                imagePath: imagePath,
+                                quantity: quantity,
+                                description: description,
+                                cost: cost,
+                                onPressed: onPressed,
+                                currencyUnit: '개',
+                              ),
                         ),
 
                         const Divider(height: 40, color: Colors.grey),
@@ -365,19 +367,19 @@ class ShopScreen extends StatelessWidget {
                           items: darkMatterWeaponBoxItems,
                           buyFunction:
                               ({required int amount, required int cost}) {
-                            // The amount here is always 1 for weapon boxes
-                            if (cost == 1000) {
-                              // Unique box
-                              return game.buyDarkMatterUniqueBox();
-                            } else if (cost == 15000) {
-                              // Epic box
-                              return game.buyDarkMatterEpicBox();
-                            } else if (cost == 125000) {
-                              // Legend box
-                              return game.buyDarkMatterLegendBox();
-                            }
-                            return '잘못된 무기 상자 구매 요청입니다.';
-                          },
+                                // The amount here is always 1 for weapon boxes
+                                if (cost == 1000) {
+                                  // Unique box
+                                  return game.buyDarkMatterUniqueBox();
+                                } else if (cost == 15000) {
+                                  // Epic box
+                                  return game.buyDarkMatterEpicBox();
+                                } else if (cost == 125000) {
+                                  // Legend box
+                                  return game.buyDarkMatterLegendBox();
+                                }
+                                return '잘못된 무기 상자 구매 요청입니다.';
+                              },
                           confirmationMessage: (amount, cost) {
                             String boxType = '';
                             if (cost == 1000) {
@@ -391,25 +393,25 @@ class ShopScreen extends StatelessWidget {
                           },
                           showResultDialog: _showResultDialog,
                           showConfirmationDialog: _showConfirmationDialog,
-                          buildShopItem: ({ 
-                            required BuildContext context,
-                            String? title,
-                            String? imagePath,
-                            int? quantity,
-                            required String description,
-                            required int cost,
-                            required VoidCallback onPressed,
-                          }) =>
-                              _buildShopItem(
-                            context: context,
-                            title: title,
-                            imagePath: imagePath,
-                            quantity: quantity,
-                            description: description,
-                            cost: cost,
-                            onPressed: onPressed,
-                            currencyUnit: '개',
-                          ),
+                          buildShopItem:
+                              ({
+                                required BuildContext context,
+                                String? title,
+                                String? imagePath,
+                                int? quantity,
+                                required String description,
+                                required int cost,
+                                required VoidCallback onPressed,
+                              }) => _buildShopItem(
+                                context: context,
+                                title: title,
+                                imagePath: imagePath,
+                                quantity: quantity,
+                                description: description,
+                                cost: cost,
+                                onPressed: onPressed,
+                                currencyUnit: '개',
+                              ),
                         ),
 
                         const Divider(height: 40, color: Colors.grey),
@@ -541,10 +543,10 @@ class ShopScreen extends StatelessWidget {
                               '구매 확인',
                               '현재 레벨구간 레전드 무기 상자를 1 골드에 구매하시겠습니까?',
                               () {
-                                final message =
-                                    game.buyCurrentRangeLegendaryBox(
-                                  game.player.currentStage,
-                                );
+                                final message = game
+                                    .buyCurrentRangeLegendaryBox(
+                                      game.player.currentStage,
+                                    );
                                 _showResultDialog(context, message);
                               },
                             );
@@ -736,11 +738,11 @@ class ShopItemSection extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         ...items.map((item) {
-          String itemDescription = 
+          String itemDescription =
               item.description; // Use item's own description
           if (item.description.contains('할인')) {
-            itemDescription += 
-                '\n${item.description.substring(item.description.indexOf('('))}' ;
+            itemDescription +=
+                '\n${item.description.substring(item.description.indexOf('('))}';
           }
 
           return Padding(
