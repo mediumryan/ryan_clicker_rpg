@@ -1,3 +1,5 @@
+import 'package:ryan_clicker_rpg/models/difficulty.dart';
+import 'package:ryan_clicker_rpg/data/difficulty_data.dart';
 import 'package:flutter/material.dart';
 import 'package:ryan_clicker_rpg/models/monster.dart';
 import 'package:ryan_clicker_rpg/models/status_effect.dart';
@@ -96,25 +98,56 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
   @override
   void initState() {
     super.initState();
-    // Get GameProvider instance and set the callback
-    Provider.of<GameProvider>(
-      context,
-      listen: false,
-    ).setShowFloatingDamageTextCallback(_showDamageText);
+    final gameProvider = Provider.of<GameProvider>(context, listen: false);
+    gameProvider.setShowFloatingDamageTextCallback(_showDamageText);
+    gameProvider.setShowDifficultyClearDialogCallback(
+      _showDifficultyClearDialog,
+    );
   }
 
   @override
   void dispose() {
-    // Clear the callback when the widget is disposed
-    Provider.of<GameProvider>(
-      context,
-      listen: false,
-    ).setShowFloatingDamageTextCallback(null);
+    final gameProvider = Provider.of<GameProvider>(context, listen: false);
+    gameProvider.setShowFloatingDamageTextCallback(null);
+    gameProvider.setShowDifficultyClearDialogCallback(null);
     _defeatTimer?.cancel();
     super.dispose();
   }
 
-
+  void _showDifficultyClearDialog(int xpReward, Difficulty? nextDifficulty) {
+    final gameProvider = Provider.of<GameProvider>(context, listen: false);
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          backgroundColor: Colors.grey[850],
+          title: const Text('축하합니다!', style: TextStyle(color: Colors.white)),
+          content: Text(
+            '${DifficultyData.getDifficultyName(gameProvider.player.currentDifficulty)} 난이도를 클리어 하셨습니다.\n\n클리어 보상: 영웅 경험치 $xpReward',
+            style: const TextStyle(color: Colors.white70),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('난이도 재도전'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+                gameProvider.restartCurrentDifficulty();
+              },
+            ),
+            if (nextDifficulty != null)
+              TextButton(
+                child: const Text('다음 난이도 도전'),
+                onPressed: () {
+                  Navigator.of(dialogContext).pop();
+                  gameProvider.startNextDifficulty();
+                },
+              ),
+          ],
+        );
+      },
+    );
+  }
 
   // Method to add and manage damage text
   void _showDamageText(
@@ -439,7 +472,7 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
             // Reward display (positioned absolutely)
             if (widget.isMonsterDefeated)
               Positioned(
-                bottom: 20, // Adjust as needed
+                bottom: 60, // Moved down slightly
                 left: 0,
                 right: 0,
                 child: Center(
@@ -513,21 +546,84 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
 
             Positioned(
               top: 8,
+              left: 8,
               right: 8,
-              child: ElevatedButton(
-                onPressed: () {
-                  Provider.of<GameProvider>(
-                    context,
-                    listen: false,
-                  ).enterSpecialBossZone();
+              child: Selector<GameProvider, bool>(
+                selector: (context, game) => game.isAutoAttackActive,
+                builder: (context, isAutoAttackActive, child) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        DifficultyData.getDifficultyName(
+                          widget.player.currentDifficulty,
+                        ),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Auto-Attack',
+                            style: TextStyle(
+                              color: isAutoAttackActive
+                                  ? Colors.greenAccent
+                                  : Colors.white70,
+                            ),
+                          ),
+                          Switch(
+                            value: isAutoAttackActive,
+                            onChanged: (value) {
+                              Provider.of<GameProvider>(
+                                context,
+                                listen: false,
+                              ).toggleAutoAttack();
+                            },
+                            activeTrackColor: Colors.green,
+                            inactiveTrackColor: Colors.grey,
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red[900],
-                ),
-                child: const Text(
-                  '스페셜 보스존',
-                  style: TextStyle(color: Colors.white),
-                ),
+              ),
+            ),
+            _buildHeroExpBar(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHeroExpBar() {
+    final requiredExp = widget.player.heroLevel * 1000;
+    final expPercentage = requiredExp > 0
+        ? widget.player.heroExp / requiredExp
+        : 0.0;
+
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        color: const Color.fromRGBO(0, 0, 0, 0.5),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '용사 레벨: ${widget.player.heroLevel} (${widget.player.heroExp.toStringAsFixed(0)} / $requiredExp)',
+              style: const TextStyle(color: Colors.white, fontSize: 14),
+            ),
+            const SizedBox(height: 4),
+            LinearProgressIndicator(
+              value: expPercentage,
+              backgroundColor: Colors.grey[700],
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                Colors.lightBlueAccent,
               ),
             ),
           ],
@@ -655,8 +751,8 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
               widget.damageText.damageType == DamageType.instantKill
                   ? 'Kill!'
                   : (widget.damageText.isMiss
-                      ? 'MISS!'
-                      : widget.damageText.damage.toString()),
+                        ? 'MISS!'
+                        : widget.damageText.damage.toString()),
               style: TextStyle(
                 color: getColor(),
                 fontSize: getFontSize(),

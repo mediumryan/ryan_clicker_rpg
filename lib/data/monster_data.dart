@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:ryan_clicker_rpg/models/monster.dart';
 import 'package:ryan_clicker_rpg/models/monster_species.dart';
 
@@ -2047,58 +2046,12 @@ class MonsterData {
     },
   ];
 
-  static Monster getMonsterForStage(int stage) {
-    var monsterInfo = _monsterList.firstWhere(
+  static Map<String, dynamic> getMonsterDataForStage(int stage) {
+    final monsterData = _monsterList.firstWhere(
       (m) => stage >= m['startStage'] && stage <= m['endStage'],
-      orElse: () => {
-        'name': 'Unknown',
-        'imageName': 'unknown.gif', // Fallback image
-        'startStage': 0,
-        'endStage': 0,
-        'def': 0,
-        'species': [], // Default species
-      },
+      orElse: () => _monsterList.first, // Fallback to the first monster
     );
-
-    bool isBoss = monsterInfo['isBoss'] ?? false;
-    List<MonsterSpecies> species =
-        (monsterInfo['species'] as List?)
-            ?.map((s) => s as MonsterSpecies)
-            .toList() ??
-        [];
-
-    const double coefficient = 50;
-    double exponent;
-    if (stage <= 50) {
-      exponent = 1.135;
-    } else if (stage <= 100) {
-      exponent = 1.35;
-    } else if (stage <= 500) {
-      exponent = 1.5;
-    } else {
-      exponent = 1.5;
-    }
-
-    double hp = coefficient * pow(stage, exponent);
-    int def = monsterInfo['def'];
-
-    if (isBoss) {
-      const double bossHpMultiplier = 8.0;
-      const double bossDefMultiplier = 1.3;
-      hp *= bossHpMultiplier;
-      def = (def * bossDefMultiplier).floor();
-    }
-
-    return Monster(
-      name: monsterInfo['name'],
-      imageName: monsterInfo['imageName'],
-      stage: stage,
-      maxHp: hp.floorToDouble(),
-      hp: hp.floorToDouble(),
-      defense: def,
-      isBoss: isBoss,
-      species: species,
-    );
+    return monsterData;
   }
 
   static Monster getSpecialBoss() {

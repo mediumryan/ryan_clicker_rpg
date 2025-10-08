@@ -221,6 +221,14 @@ class ShopScreen extends StatelessWidget {
                       amountToBuy: 1,
                       costToBuy: 1000000,
                     ),
+                    ShopItemData(
+                      imagePath: 'images/others/protection_ticket.png',
+                      quantity: 10,
+                      description: '강화 실패 시 무기 파괴를 10회 방지합니다. (10% 할인)',
+                      cost: 9000000,
+                      amountToBuy: 10,
+                      costToBuy: 9000000,
+                    ),
                   ];
 
                   final List<ShopItemData> darkMatterProtectionTicketItems = [
@@ -231,6 +239,14 @@ class ShopScreen extends StatelessWidget {
                       cost: 500,
                       amountToBuy: 1,
                       costToBuy: 500,
+                    ),
+                    ShopItemData(
+                      imagePath: 'images/others/protection_ticket.png',
+                      quantity: 10,
+                      description: '강화 실패 시 무기 파괴를 10회 방지합니다. (10% 할인)',
+                      cost: 4500,
+                      amountToBuy: 10,
+                      costToBuy: 4500,
                     ),
                   ];
                   return SingleChildScrollView(

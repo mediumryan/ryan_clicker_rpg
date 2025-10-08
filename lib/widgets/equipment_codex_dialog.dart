@@ -45,7 +45,8 @@ class _EquipmentCodexDialogState extends State<EquipmentCodexDialog> {
     return AlertDialog(
       backgroundColor: Colors.grey[850],
       title: Selector<GameProvider, int>(
-        selector: (context, game) => game.player.acquiredWeaponIdsHistory.length,
+        selector: (context, game) =>
+            game.player.acquiredWeaponIdsHistory.length,
         builder: (context, acquiredWeaponsCount, child) {
           final allWeapons = WeaponData.getAllWeapons();
 

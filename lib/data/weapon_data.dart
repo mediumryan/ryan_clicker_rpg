@@ -455,24 +455,15 @@ class WeaponData {
   static List<Map<String, dynamic>> getWeaponDropProbabilitiesRichText() {
     return [
       {'text': '무기 드롭 확률:', 'color': Colors.white},
-      {
-        'text': '커먼: 50%',
-        'color': WeaponData.getColorForRarity(Rarity.common),
-      },
+      {'text': '커먼: 50%', 'color': WeaponData.getColorForRarity(Rarity.common)},
       {
         'text': '언커먼: 25%',
         'color': WeaponData.getColorForRarity(Rarity.uncommon),
       },
       {'text': '레어: 15%', 'color': WeaponData.getColorForRarity(Rarity.rare)},
-      {
-        'text': '유니크: 7%',
-        'color': WeaponData.getColorForRarity(Rarity.unique),
-      },
+      {'text': '유니크: 7%', 'color': WeaponData.getColorForRarity(Rarity.unique)},
       {'text': '에픽: 2%', 'color': WeaponData.getColorForRarity(Rarity.epic)},
-      {
-        'text': '레전드: 1%',
-        'color': WeaponData.getColorForRarity(Rarity.legend),
-      },
+      {'text': '레전드: 1%', 'color': WeaponData.getColorForRarity(Rarity.legend)},
     ];
   }
 

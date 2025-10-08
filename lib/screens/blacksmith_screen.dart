@@ -1,3 +1,4 @@
+import 'package:ryan_clicker_rpg/utils/enhancement_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
@@ -288,8 +289,9 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
 강화 확률: $probability%\n실패 페널티: $penaltyMessage''';
 
                                   if (_useTicket) {
+                                    final currentTickets = game.player.destructionProtectionTickets;
                                     content +=
-                                        '\n\n파괴 방지권 $ticketCost개가 소모됩니다.';
+                                        '\n\n파괴 방지권 $ticketCost개가 소모됩니다. (보유: $currentTickets개)';
                                   }
 
                                   _showConfirmationDialog(
@@ -477,127 +479,152 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
     Weapon weapon,
     GameProvider game,
   ) {
-    return Card(
-      color: Colors.grey[800],
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Row(
-          children: [
-            // Left Box (Image)
-            GestureDetector(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) =>
-                      buildWeaponDetailsDialog(context, weapon),
-                );
-              },
-              child: Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  border: Border.all(
-                    color: WeaponData.getColorForRarity(weapon.rarity),
-                    width: 2.0,
+    final gradientColors = EnhancementUtils.getGradientColors(weapon.enhancement);
+    final bool canEquip = weapon.baseLevel <= game.player.highestStageCleared;
+
+    return Opacity(
+      opacity: canEquip ? 1.0 : 0.5,
+      child: Card(
+        color: Colors.grey[800],
+        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
+            children: [
+              // Left Box (Image)
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) =>
+                        buildWeaponDetailsDialog(context, weapon),
+                  );
+                },
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    gradient: gradientColors.isNotEmpty
+                        ? LinearGradient(
+                            colors: gradientColors,
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          )
+                        : null,
+                    color: gradientColors.isEmpty ? Colors.black : null,
+                    border: Border.all(
+                      color: WeaponData.getColorForRarity(weapon.rarity),
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(4.0),
                   ),
-                  borderRadius: BorderRadius.circular(4.0),
-                ),
-                child: Image.asset(
-                  'images/weapons/${weapon.imageName}',
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Center(
-                      child: Icon(Icons.broken_image, color: Colors.red),
-                    );
-                  },
+                  child: Image.asset(
+                    'images/weapons/${weapon.imageName}',
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Center(
+                        child: Icon(Icons.broken_image, color: Colors.red),
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(width: 12),
-            // Right Box (Info and Buttons)
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Top part of Right Box (Info)
-                  Text(
-                    '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]',
-                    style: TextStyle(
-                      color: WeaponData.getColorForRarity(weapon.rarity),
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+              const SizedBox(width: 12),
+              // Right Box (Info and Buttons)
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Top part of Right Box (Info)
+                    Text(
+                      '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]',
+                      style: TextStyle(
+                        color: WeaponData.getColorForRarity(weapon.rarity),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  Text(
-                    '데미지: ${weapon.calculatedDamage.toStringAsFixed(0)}',
-                    style: const TextStyle(color: Colors.white70),
-                  ),
-                  const SizedBox(height: 8),
-                  // Bottom part of Right Box (Buttons)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      if (game.player.equippedWeapon.instanceId !=
-                          weapon.instanceId)
+                    Text(
+                      '데미지: ${weapon.calculatedDamage.toStringAsFixed(0)}',
+                      style: const TextStyle(color: Colors.white70),
+                    ),
+                    if (!canEquip)
+                      Text(
+                        '착용 필요 스테이지: ${weapon.baseLevel}',
+                        style: const TextStyle(color: Colors.redAccent),
+                      ),
+                    const SizedBox(height: 8),
+                    // Bottom part of Right Box (Buttons)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        if (game.player.equippedWeapon.instanceId !=
+                            weapon.instanceId)
+                          Tooltip(
+                            message: canEquip
+                                ? ''
+                                : '최고 스테이지 ${weapon.baseLevel} 이상 달성 시 착용 가능합니다.',
+                            child: ElevatedButton(
+                              onPressed: canEquip
+                                  ? () {
+                                      game.equipWeapon(weapon);
+                                      _showResultDialog(
+                                        context,
+                                        '${weapon.name}을(를) 장착했습니다.',
+                                      );
+                                    }
+                                  : null,
+                              child: const Text('장착'),
+                            ),
+                          ),
+                        const SizedBox(width: 8),
                         ElevatedButton(
                           onPressed: () {
-                            game.equipWeapon(weapon);
-                            _showResultDialog(
-                              context,
-                              '${weapon.name}을(를) 장착했습니다.',
-                            );
+                            final double sellPrice =
+                                weapon.baseSellPrice + (weapon.investedGold / 3);
+
+                            final content =
+                                '${weapon.name}을(를) 정말로 판매하시겠습니까?\n\n판매금액: ${NumberFormat('#,###').format(sellPrice)}G';
+
+                            _showConfirmationDialog(context, '판매', content, () {
+                              final message = game.sellWeapon(weapon);
+                              _showResultDialog(context, message);
+                            });
                           },
-                          child: const Text('장착'),
+                          child: const Text('판매'),
                         ),
-                      const SizedBox(width: 8),
-                      ElevatedButton(
-                        onPressed: () {
-                          final double sellPrice =
-                              weapon.baseSellPrice + (weapon.investedGold / 3);
+                        const SizedBox(width: 8),
+                        ElevatedButton(
+                          onPressed: () {
+                            final returnedEnhancementStones =
+                                (weapon.investedEnhancementStones / 2).truncate();
+                            final returnedTranscendenceStones =
+                                (weapon.investedTranscendenceStones / 2)
+                                    .truncate();
 
-                          final content =
-                              '${weapon.name}을(를) 정말로 판매하시겠습니까?\n\n판매금액: ${NumberFormat('#,###').format(sellPrice)}G';
+                            String content =
+                                '${weapon.name}을(를) 정말로 분해하시겠습니까?\n\n획득 재화:\n';
+                            if (returnedEnhancementStones > 0) {
+                              content += '강화석: $returnedEnhancementStones개\n';
+                            }
+                            if (returnedTranscendenceStones > 0) {
+                              content += '초월석: $returnedTranscendenceStones개';
+                            }
 
-                          _showConfirmationDialog(context, '판매', content, () {
-                            final message = game.sellWeapon(weapon);
-                            _showResultDialog(context, message);
-                          });
-                        },
-                        child: const Text('판매'),
-                      ),
-                      const SizedBox(width: 8),
-                      ElevatedButton(
-                        onPressed: () {
-                          final returnedEnhancementStones =
-                              (weapon.investedEnhancementStones / 2).truncate();
-                          final returnedTranscendenceStones =
-                              (weapon.investedTranscendenceStones / 2)
-                                  .truncate();
-
-                          String content =
-                              '${weapon.name}을(를) 정말로 분해하시겠습니까?\n\n획득 재화:\n';
-                          if (returnedEnhancementStones > 0) {
-                            content += '강화석: $returnedEnhancementStones개\n';
-                          }
-                          if (returnedTranscendenceStones > 0) {
-                            content += '초월석: $returnedTranscendenceStones개';
-                          }
-
-                          _showConfirmationDialog(context, '분해', content, () {
-                            final message = game.disassembleWeapon(weapon);
-                            _showResultDialog(context, message);
-                          });
-                        },
-                        child: const Text('분해'),
-                      ),
-                    ],
-                  ),
-                ],
+                            _showConfirmationDialog(context, '분해', content, () {
+                              final message = game.disassembleWeapon(weapon);
+                              _showResultDialog(context, message);
+                            });
+                          },
+                          child: const Text('분해'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

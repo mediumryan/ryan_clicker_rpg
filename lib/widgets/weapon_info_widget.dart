@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart';
-
+import 'package:ryan_clicker_rpg/utils/enhancement_utils.dart';
 
 import 'package:ryan_clicker_rpg/data/weapon_data.dart';
 
@@ -10,6 +10,8 @@ class WeaponInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final gradientColors = EnhancementUtils.getGradientColors(weapon.enhancement);
+
     return GestureDetector(
       onTap: () {
         showDialog(
@@ -27,7 +29,14 @@ class WeaponInfoWidget extends StatelessWidget {
             aspectRatio: 1.0, // Force the image to be square
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.black,
+                gradient: gradientColors.isNotEmpty
+                    ? LinearGradient(
+                        colors: gradientColors,
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      )
+                    : null,
+                color: gradientColors.isEmpty ? Colors.black : null,
                 border: Border.all(
                   color: WeaponData.getColorForRarity(weapon.rarity),
                   width: 1.0,

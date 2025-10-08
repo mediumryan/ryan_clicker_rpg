@@ -1,3 +1,7 @@
+import 'package:ryan_clicker_rpg/models/hero_skill.dart';
+import 'package:ryan_clicker_rpg/data/hero_skill_data.dart';
+import 'package:ryan_clicker_rpg/models/difficulty.dart';
+import 'package:ryan_clicker_rpg/data/difficulty_data.dart';
 import 'dart:async';
 import 'dart:math';
 import 'dart:convert';
@@ -32,9 +36,10 @@ class GameProvider with ChangeNotifier {
   Timer? _autoAttackTimer; // New
   DateTime? _lastManualClickTime; // New
   Duration _autoAttackDelay = Duration.zero; // New
-  bool _inSpecialBossZone = false;
+  bool _isAutoAttackActive = true;
 
   Duration get autoAttackDelay => _autoAttackDelay; // New getter
+  bool get isAutoAttackActive => _isAutoAttackActive;
 
   double _lastGoldReward = 0.0; // New field for last gold reward
   GachaBox? _lastDroppedBox; // New field for last dropped box
@@ -53,10 +58,13 @@ class GameProvider with ChangeNotifier {
   })?
   _showFloatingDamageTextCallback;
 
+  Function(int xpReward, Difficulty? nextDifficulty)?
+  _showDifficultyClearDialogCallback;
+
   Player get player => _player;
   Monster get monster => _monster;
   bool get isMonsterDefeated => _isMonsterDefeated;
-  bool get inSpecialBossZone => _inSpecialBossZone;
+  bool get inSpecialBossZone => false; // This feature is removed
   String get currentStageName => StageData.getStageName(_player.currentStage);
   double get currentMonsterEffectiveDefense =>
       _currentMonsterEffectiveDefense; // New getter
@@ -76,6 +84,46 @@ class GameProvider with ChangeNotifier {
   }
 
   void recalculatePlayerStats() {
+    // Auto-unequip weapon if level requirement is no longer met
+    if (_player.equippedWeapon.baseLevel > _player.highestStageCleared &&
+        _player.equippedWeapon.instanceId != 'bare_hands') {
+      _player.equippedWeapon = Weapon.bareHands();
+    }
+
+    // Reset passive bonuses before recalculating from skills
+    _player.passiveGoldGainMultiplier = 1.0;
+    _player.passiveEnhancementStoneGainMultiplier = 1.0;
+    _player.passiveWeaponDamageMultiplier = 1.0;
+    _player.passiveWeaponCriticalChanceBonus = 0.0;
+    _player.passiveWeaponCriticalDamageBonus = 0.0;
+
+    // Apply hero skill effects
+    _player.learnedSkills.forEach((skillId, level) {
+      final skill = HeroSkillData.findById(skillId);
+      if (skill != null) {
+        final effectValue = skill.calculateEffect(level);
+        switch (skill.effectType) {
+          case SkillEffectType.passiveGoldGainMultiplier:
+            _player.passiveGoldGainMultiplier += effectValue;
+            break;
+          case SkillEffectType.passiveEnhancementStoneGainMultiplier:
+            _player.passiveEnhancementStoneGainMultiplier += effectValue;
+            break;
+          case SkillEffectType.passiveWeaponDamageMultiplier:
+            _player.passiveWeaponDamageMultiplier += effectValue;
+            break;
+          case SkillEffectType.passiveWeaponCriticalChanceBonus:
+            _player.passiveWeaponCriticalChanceBonus += effectValue;
+            break;
+          case SkillEffectType.passiveWeaponCriticalDamageBonus:
+            _player.passiveWeaponCriticalDamageBonus += effectValue;
+            break;
+          default:
+            break;
+        }
+      }
+    });
+
     final weapon = _player.equippedWeapon;
 
     // 1. Start with weapon stats (which now include enhancement and transcendence)
@@ -182,52 +230,109 @@ class GameProvider with ChangeNotifier {
   }
 
   Map<String, dynamic> attackMonster() {
-    // Check for hit/miss based on weapon accuracy
+    if (_isMonsterDefeated) return {}; // Don't attack dead monsters
+
+    // 1. Accuracy Check
     if (Random().nextDouble() > _player.finalAccuracy) {
-      showFloatingDamageText(0, false, true); // Notify UI about miss
+      _dealDamageToMonster(0, isMiss: true);
       return {'damageDealt': 0, 'isCritical': false, 'isMiss': true};
     }
 
-    // Check for Freeze/Shatter effect
-    if (_monster.hasStatusEffect(StatusEffectType.freeze)) {
-      final shatterDamageMultiplier = _monster.isBoss ? 0.1 : 0.2;
-      var shatterDamage = _monster.maxHp * shatterDamageMultiplier;
+    // 2. Pre-hit effects (like Shatter)
+    _applyShatterEffect();
+    if (_monster.hp <= 0) return _handleMonsterDefeat();
 
-      final freezeEffects = _monster.statusEffects
-          .where((e) => e.type == StatusEffectType.freeze)
-          .toList();
-      if (freezeEffects.isNotEmpty) {
-        final freezeEffect = freezeEffects.first;
-        if (freezeEffect.maxDmg != null) {
-          shatterDamage = min(shatterDamage, freezeEffect.maxDmg!.toDouble());
-        } else {
-          shatterDamage = min(shatterDamage, _player.finalDamage);
-        }
-      } else {
-        shatterDamage = min(shatterDamage, _player.finalDamage);
-      }
+    // 3. Calculate Damage
+    final attack = _calculateAttackDamage();
+    double actualDamage = _applyDamageModifiers(attack.damage);
 
-      _monster.hp -= shatterDamage;
-      showFloatingDamageText(
-        shatterDamage.toInt(),
-        true,
-        false,
-        damageType: DamageType.shatter,
-      ); // Show as crit for visual flair
-      _monster.statusEffects.removeWhere(
-        (effect) => effect.type == StatusEffectType.freeze,
+    // 4. Deal Main Damage and apply shock
+    _dealDamageToMonster(actualDamage, isCritical: attack.isCritical);
+    _applyShockDamageOnHit(isDoubleAttack: false);
+    if (_monster.hp <= 0) return _handleMonsterDefeat();
+
+    // 5. Double Attack
+    if (Random().nextDouble() < _player.finalDoubleAttackChance) {
+      _dealDamageToMonster(
+        actualDamage,
+        isCritical: attack.isCritical,
+        damageType: DamageType.doubleAttack,
       );
+      _applyShockDamageOnHit(isDoubleAttack: true);
+      if (_monster.hp <= 0) return _handleMonsterDefeat();
     }
 
-    // Use the final, pre-calculated stats from the player object
+    // 6. Weapon Skills
+    _weaponSkillProvider.applySkills(_player, _monster);
+    if (_monster.hp <= 0) return _handleMonsterDefeat();
+
+    // 7. Save and return
+    _saveGame();
+    return {
+      'damageDealt': actualDamage.toInt(),
+      'isCritical': attack.isCritical,
+    };
+  }
+
+  void _dealDamageToMonster(
+    double damage, {
+    bool isCritical = false,
+    bool isMiss = false,
+    DamageType damageType = DamageType.normal,
+  }) {
+    if (isMiss) {
+      showFloatingDamageText(0, false, true);
+      return;
+    }
+    _monster.hp -= damage;
+    _monster.hp = max(0, _monster.hp);
+    showFloatingDamageText(
+      damage.toInt(),
+      isCritical,
+      isMiss,
+      damageType: damageType,
+    );
+  }
+
+  void _applyShatterEffect() {
+    if (!_monster.hasStatusEffect(StatusEffectType.freeze)) return;
+
+    final shatterDamageMultiplier = _monster.isBoss ? 0.1 : 0.2;
+    var shatterDamage = _monster.maxHp * shatterDamageMultiplier;
+
+    final freezeEffect = _monster.statusEffects.firstWhere(
+      (e) => e.type == StatusEffectType.freeze,
+    );
+
+    if (freezeEffect.maxDmg != null) {
+      shatterDamage = min(shatterDamage, freezeEffect.maxDmg!.toDouble());
+    } else {
+      shatterDamage = min(shatterDamage, _player.finalDamage);
+    }
+
+    _dealDamageToMonster(
+      shatterDamage,
+      isCritical: true, // Shatter is always a "crit" for visual flair
+      damageType: DamageType.shatter,
+    );
+    _monster.statusEffects.removeWhere(
+      (effect) => effect.type == StatusEffectType.freeze,
+    );
+  }
+
+  ({double damage, bool isCritical}) _calculateAttackDamage() {
     double totalDamage = _player.finalDamage;
     bool isCritical = Random().nextDouble() < _player.finalCritChance;
     if (isCritical) {
       totalDamage *= _player.finalCritDamage;
     }
+    return (damage: totalDamage, isCritical: isCritical);
+  }
 
+  double _applyDamageModifiers(double baseDamage) {
     _recalculateMonsterEffectiveDefense();
 
+    // Defense multiplier
     double defenseDamageMultiplier = 1.0;
     if (_currentMonsterEffectiveDefense > 0) {
       defenseDamageMultiplier = 1.0 - (_currentMonsterEffectiveDefense * 0.005);
@@ -235,16 +340,12 @@ class GameProvider with ChangeNotifier {
       defenseDamageMultiplier =
           1.0 + (_currentMonsterEffectiveDefense.abs() * 0.025);
     }
+    double actualDamage = baseDamage * defenseDamageMultiplier;
 
-    double actualDamage = totalDamage * defenseDamageMultiplier;
-    actualDamage = max(1, actualDamage);
-
-    // Confuse: 25% more damage
+    // Status effect multipliers
     if (_monster.hasStatusEffect(StatusEffectType.confusion)) {
       actualDamage *= 1.25;
     }
-
-    // Charm: 10% increased damage taken & defense reduction on hit
     if (_monster.hasStatusEffect(StatusEffectType.charm)) {
       actualDamage *= 1.10;
       final charmEffect = _monster.statusEffects.firstWhere(
@@ -256,171 +357,129 @@ class GameProvider with ChangeNotifier {
       }
     }
 
+    // Active damage modifiers (from weapon skills, etc.)
     for (final modifier in _activeDamageModifiers) {
-      bool conditionMet = false;
-      if (modifier.requiredRace != null) {
-        if (_monster.species.contains(modifier.requiredRace)) {
-          conditionMet = true;
-        }
-      } else if (modifier.requiredStatusEffectType != null) {
-        if (_monster.hasStatusEffect(modifier.requiredStatusEffectType!)) {
-          conditionMet = true;
-        }
-      }
-
+      bool conditionMet =
+          (modifier.requiredRace != null &&
+              _monster.species.contains(modifier.requiredRace)) ||
+          (modifier.requiredStatusEffectType != null &&
+              _monster.hasStatusEffect(modifier.requiredStatusEffectType!));
       if (conditionMet) {
         actualDamage *= (1 + modifier.multiplier);
       }
     }
 
-    _monster.hp -= actualDamage;
-    _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
-    showFloatingDamageText(
-      actualDamage.toInt(),
-      isCritical,
-      false,
-    ); // Show damage for hit
+    return max(1, actualDamage);
+  }
 
-    // Apply shock damage on hit
-    if (_monster.hasStatusEffect(StatusEffectType.shock)) {
-      final shockDamageMultiplier = _monster.isBoss ? 0.015 : 0.03;
-      var shockDamage = _monster.maxHp * shockDamageMultiplier;
+  void _applyShockDamageOnHit({required bool isDoubleAttack}) {
+    if (!_monster.hasStatusEffect(StatusEffectType.shock)) return;
 
-      final shockEffects = _monster.statusEffects
-          .where((e) => e.type == StatusEffectType.shock)
-          .toList();
-      if (shockEffects.isNotEmpty) {
-        final shockEffect = shockEffects.first;
-        if (shockEffect.maxDmg != null) {
-          shockDamage = min(shockDamage, shockEffect.maxDmg!.toDouble());
-        } else {
-          shockDamage = min(shockDamage, _player.finalDamage);
-        }
-      } else {
-        shockDamage = min(shockDamage, _player.finalDamage);
-      }
+    final shockDamageMultiplier = _monster.isBoss
+        ? (isDoubleAttack ? 0.005 : 0.015)
+        : 0.03;
+    var shockDamage = _monster.maxHp * shockDamageMultiplier;
 
-      _monster.hp -= shockDamage;
-      _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
-      showFloatingDamageText(
-        shockDamage.toInt(),
-        false,
-        false,
-        damageType: DamageType.shock,
-      );
-    }
-
-    if (Random().nextDouble() < _player.finalDoubleAttackChance) {
-      _monster.hp -= actualDamage;
-      _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
-      // Re-show damage text for the second hit
-      showFloatingDamageText(
-        actualDamage.toInt(),
-        isCritical,
-        false,
-        damageType: DamageType.doubleAttack,
-      );
-
-      // Apply shock damage on double attack hit
-      if (_monster.hasStatusEffect(StatusEffectType.shock)) {
-        final shockDamageMultiplier = _monster.isBoss ? 0.005 : 0.03;
-        var shockDamage = _monster.maxHp * shockDamageMultiplier;
-
-        final shockEffects = _monster.statusEffects
-            .where((e) => e.type == StatusEffectType.shock)
-            .toList();
-        if (shockEffects.isNotEmpty) {
-          final shockEffect = shockEffects.first;
-          if (shockEffect.maxDmg != null) {
-            shockDamage = min(shockDamage, shockEffect.maxDmg!.toDouble());
-          } else {
-            shockDamage = min(shockDamage, _player.finalDamage);
-          }
-        } else {
-          shockDamage = min(shockDamage, _player.finalDamage);
-        }
-
-        _monster.hp -= shockDamage;
-        _monster.hp = max(0.0, _monster.hp); // Clamp HP at 0
-        showFloatingDamageText(
-          shockDamage.toInt(),
-          false,
-          false,
-          damageType: DamageType.shock,
-        );
-      }
-    }
-
-    _weaponSkillProvider.applySkills(_player, _monster);
-
-    if (_monster.hp <= 0) {
-      _player.monstersKilled++;
-      _weaponSkillProvider.applyOnKillSkills(_player, _monster); // New
-      _isMonsterDefeated = true;
-      notifyListeners();
-
-      final double bossMultiplier = _monster.isBoss ? 3.0 : 1.0;
-      final goldReward =
-          (_player.currentStage * 100).toDouble() *
-          _player.passiveGoldGainMultiplier *
-          bossMultiplier;
-      _player.gold += goldReward;
-      _player.totalGoldEarned += goldReward;
-      _lastGoldReward = goldReward; // Store gold reward
-
-      final maxStones = (_player.currentStage ~/ 100) + 1;
-      int stonesDropped = Random().nextInt(maxStones + 1);
-      if (stonesDropped > 0) {
-        stonesDropped = (stonesDropped * bossMultiplier).toInt();
-        stonesDropped =
-            (stonesDropped * _player.passiveEnhancementStoneGainMultiplier)
-                .toInt();
-        stonesDropped += _player.passiveEnhancementStoneGainFlat;
-        _player.enhancementStones += stonesDropped;
-        _lastEnhancementStonesReward = stonesDropped
-            .toDouble(); // Store enhancement stones reward
-      }
-
-      GachaBox? droppedBox;
-      if (_monster.isBoss) {
-        final bossId = 'boss_stage_${_player.currentStage}';
-        _player.defeatedBosses[bossId] =
-            (_player.defeatedBosses[bossId] ?? 0) + 1;
-
-        droppedBox = _rewardService.getDropForBoss(
-          _player.currentStage,
-          _player.defeatedBosses.keys.toList(),
-        );
-      } else {
-        droppedBox = _rewardService.getDropForNormalMonster(
-          _player.currentStage,
-        );
-      }
-
-      if (droppedBox != null) {
-        _player.gachaBoxes.add(droppedBox);
-        _lastDroppedBox = droppedBox; // Store dropped box
-      } else {
-        _lastDroppedBox = null; // Clear if no box dropped
-      }
-
-      if (_player.currentStage >= _player.highestStageCleared) {
-        _player.highestStageCleared = _player.currentStage;
-      }
-
-      Future.delayed(const Duration(seconds: 1), () {
-        if (!_inSpecialBossZone) {
-          goToNextStage();
-        }
-      });
+    final shockEffect = _monster.statusEffects.firstWhere(
+      (e) => e.type == StatusEffectType.shock,
+    );
+    if (shockEffect.maxDmg != null) {
+      shockDamage = min(shockDamage, shockEffect.maxDmg!.toDouble());
     } else {
-      // notifyListeners(); // Removed for performance optimization
+      shockDamage = min(shockDamage, _player.finalDamage);
     }
+
+    _dealDamageToMonster(shockDamage, damageType: DamageType.shock);
+  }
+
+  Map<String, dynamic> _handleMonsterDefeat() {
+    if (_isMonsterDefeated) return {}; // Already handled
+    _isMonsterDefeated = true;
+
+    _player.monstersKilled++;
+    _weaponSkillProvider.applyOnKillSkills(_player, _monster);
+
+    _grantRewards();
+
+    if (_player.currentStage >= _player.highestStageCleared) {
+      _player.highestStageCleared = _player.currentStage;
+      recalculatePlayerStats(); // Check for weapon requirement changes
+    }
+
+    // Check for difficulty completion
+    final currentGoal = DifficultyData.getDifficultyGoal(
+      _player.currentDifficulty,
+    );
+    if (_player.currentStage >= currentGoal) {
+      _completeDifficulty();
+      return {'damageDealt': 0, 'isCritical': false, 'monsterDefeated': true};
+    }
+
+    notifyListeners();
+
+    // Use a delayed future to move to the next stage
+    Future.delayed(const Duration(seconds: 1), () {
+      goToNextStage();
+    });
+
     _saveGame();
-    return {'damageDealt': actualDamage.toInt(), 'isCritical': isCritical};
+    return {'damageDealt': 0, 'isCritical': false, 'monsterDefeated': true};
+  }
+
+  void _grantRewards() {
+    final double bossMultiplier = _monster.isBoss ? 3.0 : 1.0;
+
+    // Gold
+    final goldReward =
+        (_player.currentStage * 100).toDouble() *
+        _player.passiveGoldGainMultiplier *
+        bossMultiplier;
+    _player.gold += goldReward;
+    _player.totalGoldEarned += goldReward;
+    _lastGoldReward = goldReward;
+
+    // Enhancement Stones
+    final maxStones = (_player.currentStage ~/ 100) + 1;
+    int stonesDropped = Random().nextInt(maxStones + 1);
+    if (stonesDropped > 0) {
+      stonesDropped = (stonesDropped * bossMultiplier).toInt();
+      stonesDropped =
+          (stonesDropped * _player.passiveEnhancementStoneGainMultiplier)
+              .toInt();
+      stonesDropped += _player.passiveEnhancementStoneGainFlat;
+      _player.enhancementStones += stonesDropped;
+      _lastEnhancementStonesReward = stonesDropped.toDouble();
+    } else {
+      _lastEnhancementStonesReward = 0.0;
+    }
+
+    // Gacha Box
+    GachaBox? droppedBox;
+    if (_monster.isBoss) {
+      final bossId = 'boss_stage_${_player.currentStage}';
+      _player.defeatedBosses[bossId] =
+          (_player.defeatedBosses[bossId] ?? 0) + 1;
+      droppedBox = _rewardService.getDropForBoss(
+        _player.currentStage,
+        _player.defeatedBosses.keys.toList(),
+      );
+    } else {
+      droppedBox = _rewardService.getDropForNormalMonster(_player.currentStage);
+    }
+
+    if (droppedBox != null) {
+      _player.gachaBoxes.add(droppedBox);
+      _lastDroppedBox = droppedBox;
+    } else {
+      _lastDroppedBox = null;
+    }
   }
 
   void equipWeapon(Weapon weaponToEquip) {
+    if (weaponToEquip.baseLevel > _player.highestStageCleared) {
+      // This should ideally be handled by the UI, but as a safeguard.
+      return;
+    }
     if (_player.equippedWeapon.instanceId == weaponToEquip.instanceId) return;
 
     final index = _player.inventory.indexWhere(
@@ -637,6 +696,7 @@ class GameProvider with ChangeNotifier {
 
   void startAutoAttack() {
     _autoAttackTimer?.cancel();
+    if (!_isAutoAttackActive) return;
     _autoAttackTimer = Timer.periodic(_autoAttackDelay, (timer) {
       if (!_isMonsterDefeated) {
         attackMonster();
@@ -650,6 +710,16 @@ class GameProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void toggleAutoAttack() {
+    _isAutoAttackActive = !_isAutoAttackActive;
+    if (_isAutoAttackActive) {
+      startAutoAttack();
+    } else {
+      stopAutoAttack();
+    }
+    notifyListeners();
+  }
+
   void handleManualClick() {
     if (!_player.canManualAttack) return;
     _player.totalClicks++;
@@ -660,7 +730,9 @@ class GameProvider with ChangeNotifier {
     // Start a timer to re-engage auto-attack after 3 seconds of inactivity
     Timer(const Duration(seconds: 3), () {
       if (DateTime.now().difference(_lastManualClickTime!).inSeconds >= 3) {
-        startAutoAttack();
+        if (_isAutoAttackActive) {
+          startAutoAttack();
+        }
       }
     });
   }
@@ -718,6 +790,12 @@ class GameProvider with ChangeNotifier {
     super.dispose();
   }
 
+  void setShowDifficultyClearDialogCallback(
+    Function(int xpReward, Difficulty? nextDifficulty)? callback,
+  ) {
+    _showDifficultyClearDialogCallback = callback;
+  }
+
   void _startGameLoop() {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -726,7 +804,6 @@ class GameProvider with ChangeNotifier {
   }
 
   void _updatePerSecond() {
-    if (_inSpecialBossZone) return;
     if (_monster.hp > 0) {
       // Apply damage from DoT effects BEFORE ticking them down
       for (final effect in _monster.statusEffects) {
@@ -801,8 +878,45 @@ class GameProvider with ChangeNotifier {
   }
 
   void _spawnMonster() {
-    if (_inSpecialBossZone) return;
-    _monster = MonsterData.getMonsterForStage(_player.currentStage);
+    final monsterData = MonsterData.getMonsterDataForStage(
+      _player.currentStage,
+    );
+
+    double hp = 100 + pow(_player.currentStage, 2.5).toDouble();
+    int defense = monsterData['def'];
+
+    // Apply difficulty modifiers
+    switch (_player.currentDifficulty) {
+      case Difficulty.normal:
+        hp *= 0.7;
+        defense -= 5;
+        break;
+      case Difficulty.hard:
+        // No change for hard
+        break;
+      case Difficulty.hell:
+        hp *= 1.3;
+        defense = (defense * 1.25).round();
+        if (defense == 0) defense = 3;
+        break;
+      case Difficulty.infinity:
+        hp *= 2.0;
+        defense = (defense * 1.5).round();
+        if (defense == 0) defense = 10;
+        break;
+    }
+
+    _monster = Monster(
+      name: monsterData['name'],
+      imageName: monsterData['imageName'],
+      stage: _player.currentStage,
+      hp: hp,
+      maxHp: hp,
+      defense: defense,
+      isBoss: monsterData['isBoss'] ?? false,
+      species: monsterData['species'] ?? [],
+    );
+
     _isMonsterDefeated = false;
     _lastGoldReward = 0.0; // Clear previous reward
     _lastDroppedBox = null; // Clear previous dropped box
@@ -819,24 +933,145 @@ class GameProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void enterSpecialBossZone() {
-    _inSpecialBossZone = true;
-    _timer?.cancel(); // Stop the regular game loop
-    _monster = MonsterData.getSpecialBoss();
-    _isMonsterDefeated = false;
-    _lastGoldReward = 0.0;
-    _lastDroppedBox = null;
-    _activeDamageModifiers.clear();
-    _weaponSkillProvider.updatePassiveSkills(_player, _monster);
-    _weaponSkillProvider.applyStageStartSkills(_player, _monster);
-    notifyListeners();
+  void _completeDifficulty() {
+    // Stop game loops
+    _timer?.cancel();
+    _autoAttackTimer?.cancel();
+
+    final currentGoal = DifficultyData.getDifficultyGoal(
+      _player.currentDifficulty,
+    );
+    if (_player.currentStage >= currentGoal) {
+      final nextDifficulty = DifficultyData.getNextDifficulty(
+        _player.currentDifficulty,
+      );
+      int xpReward;
+      if (nextDifficulty != null &&
+          nextDifficulty.index > _player.highestDifficultyUnlocked.index) {
+        _player.highestDifficultyUnlocked = nextDifficulty;
+        xpReward = 1000; // Placeholder for first-time clear
+      } else {
+        xpReward = 200; // Placeholder for subsequent clear
+      }
+      _player.heroExp += xpReward;
+      _levelUpHero();
+
+      // Trigger dialog
+      _showDifficultyClearDialogCallback?.call(xpReward, nextDifficulty);
+      _saveGame();
+    }
   }
 
-  void exitSpecialBossZone() {
-    _inSpecialBossZone = false;
-    _spawnMonster(); // Spawn a regular monster
-    _startGameLoop(); // Restart the regular game loop
+  void restartCurrentDifficulty() {
+    _player.currentStage = 1;
+    recalculatePlayerStats();
+    _spawnMonster();
+    _startGameLoop();
+    startAutoAttack();
     notifyListeners();
+    _saveGame();
+  }
+
+  void startNextDifficulty() {
+    final nextDifficulty = DifficultyData.getNextDifficulty(
+      _player.currentDifficulty,
+    );
+    if (nextDifficulty != null &&
+        nextDifficulty.index <= _player.highestDifficultyUnlocked.index) {
+      _player.currentDifficulty = nextDifficulty;
+      restartCurrentDifficulty(); // Reuse the reset logic
+    }
+  }
+
+  void _levelUpHero() {
+    double requiredExp = _player.heroLevel * 1000; // Simple formula for now
+    while (_player.heroExp >= requiredExp) {
+      _player.heroExp -= requiredExp;
+      _player.heroLevel++;
+      _player.skillPoints++;
+      requiredExp = _player.heroLevel * 1000;
+    }
+  }
+
+  String? canLearnSkill(String skillId) {
+    final skill = HeroSkillData.findById(skillId);
+    if (skill == null) {
+      return '존재하지 않는 스킬입니다.';
+    }
+
+    final currentLevel = _player.learnedSkills[skillId] ?? 0;
+    if (currentLevel >= skill.maxLevel) {
+      return '이미 마스터한 스킬입니다.';
+    }
+
+    if (_player.skillPoints <= 0) {
+      return '스킬 포인트가 부족합니다.';
+    }
+
+    if (_player.heroLevel < skill.requiredHeroLevel) {
+      return '영웅 레벨이 부족합니다. (필요 레벨: ${skill.requiredHeroLevel})';
+    }
+
+    for (final prerequisiteId in skill.prerequisites) {
+      final prerequisiteSkill = HeroSkillData.findById(prerequisiteId);
+      if (prerequisiteSkill == null) continue;
+      final prerequisiteLevel = _player.learnedSkills[prerequisiteId] ?? 0;
+      // Assuming prerequisite needs to be at least level 1, can be more complex
+      if (prerequisiteLevel < 1) {
+        return '선행 스킬이 필요합니다: ${prerequisiteSkill.name}';
+      }
+    }
+
+    return null; // Can learn
+  }
+
+  String learnSkill(String skillId) {
+    final skill = HeroSkillData.findById(skillId);
+    if (skill == null) {
+      return '존재하지 않는 스킬입니다.';
+    }
+
+    final currentLevel = _player.learnedSkills[skillId] ?? 0;
+    if (currentLevel >= skill.maxLevel) {
+      return '이미 마스터한 스킬입니다.';
+    }
+
+    if (_player.skillPoints <= 0) {
+      return '스킬 포인트가 부족합니다.';
+    }
+
+    if (_player.heroLevel < skill.requiredHeroLevel) {
+      return '영웅 레벨이 부족합니다. (필요 레벨: ${skill.requiredHeroLevel})';
+    }
+
+    for (final prerequisiteId in skill.prerequisites) {
+      final prerequisiteSkill = HeroSkillData.findById(prerequisiteId);
+      if (prerequisiteSkill == null) continue;
+      final prerequisiteLevel = _player.learnedSkills[prerequisiteId] ?? 0;
+      // Assuming prerequisite needs to be at least level 1, can be more complex
+      if (prerequisiteLevel < 1) {
+        return '선행 스킬이 필요합니다: ${prerequisiteSkill.name}';
+      }
+    }
+
+    _player.skillPoints--;
+    _player.learnedSkills[skillId] = currentLevel + 1;
+    recalculatePlayerStats();
+    notifyListeners();
+    _saveGame();
+
+    return '${skill.name} 스킬을 배웠습니다! (레벨 ${currentLevel + 1})';
+  }
+
+  void setDifficulty(Difficulty newDifficulty) {
+    if (newDifficulty.index <= _player.highestDifficultyUnlocked.index) {
+      _player.currentDifficulty = newDifficulty;
+      _player.currentStage = 1;
+      recalculatePlayerStats();
+      _spawnMonster();
+      notifyListeners();
+      _saveGame();
+    }
   }
 
   Future<void> _loadGame() async {
@@ -849,10 +1084,10 @@ class GameProvider with ChangeNotifier {
     } else {
       _player = Player(equippedWeapon: Weapon.startingWeapon());
       _player.transcendenceStones = 0;
-      _player.enhancementStones = 0;
-      _player.gold = 0.0;
-      _player.darkMatter = 0;
-      _player.currentStage = 1;
+      _player.enhancementStones = 99999999;
+      _player.gold = 999999999999.0;
+      _player.darkMatter = 999999999;
+      _player.currentStage = 99;
     }
 
     for (final achievement in AchievementData.achievements) {
@@ -872,13 +1107,19 @@ class GameProvider with ChangeNotifier {
     //   }
     // }
 
-    final List<int> enhancementLevels = [8, 11, 13, 15, 17, 19, 20];
-    for (final level in enhancementLevels) {
-      final testWeapon = WeaponData.getWeaponById(52004);
-      if (testWeapon != null) {
-        testWeapon.enhancement = level;
-        _player.inventory.add(testWeapon);
-      }
+    // final List<int> enhancementLevels = [8, 11, 13, 15, 17, 19, 20];
+    // for (final level in enhancementLevels) {
+    //   final testWeapon = WeaponData.getWeaponById(52004);
+    //   if (testWeapon != null) {
+    //     testWeapon.enhancement = level;
+    //     _player.inventory.add(testWeapon);
+    //   }
+    // }
+
+    final testWeapon = WeaponData.getWeaponById(50000);
+    if (testWeapon != null) {
+      testWeapon.enhancement = 20;
+      _player.inventory.add(testWeapon);
     }
   }
 
@@ -889,7 +1130,6 @@ class GameProvider with ChangeNotifier {
   }
 
   void goToNextStage() {
-    if (_inSpecialBossZone) return;
     if (_player.currentStage < _player.highestStageCleared) {
       _player.currentStage++;
       _spawnMonster();
@@ -902,7 +1142,6 @@ class GameProvider with ChangeNotifier {
   }
 
   void goToPreviousStage() {
-    if (_inSpecialBossZone) return;
     if (_player.currentStage > 1) {
       _player.currentStage--;
       _spawnMonster();
@@ -911,7 +1150,6 @@ class GameProvider with ChangeNotifier {
   }
 
   void warpToStage(int targetStage) {
-    if (_inSpecialBossZone) return;
     if (targetStage > _player.highestStageCleared) {
       return;
     }

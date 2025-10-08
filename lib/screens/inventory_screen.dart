@@ -6,6 +6,7 @@ import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // NEW IMPORT for WeaponData
 import 'package:ryan_clicker_rpg/widgets/weapon_info_widget.dart'; // NEW IMPORT for WeaponInfoWidget
 import 'package:collection/collection.dart'; // For list equality
+import 'package:ryan_clicker_rpg/utils/enhancement_utils.dart';
 import 'package:intl/intl.dart';
 
 // Data class for the Selector
@@ -18,6 +19,7 @@ class _InventoryData {
   final int transcendenceStones;
   final int darkMatter;
   final int destructionProtectionTickets;
+  final int highestStageCleared;
 
   _InventoryData({
     required this.equippedWeapon,
@@ -28,6 +30,7 @@ class _InventoryData {
     required this.transcendenceStones,
     required this.darkMatter,
     required this.destructionProtectionTickets,
+    required this.highestStageCleared,
   });
 
   @override
@@ -42,7 +45,8 @@ class _InventoryData {
           enhancementStones == other.enhancementStones &&
           transcendenceStones == other.transcendenceStones &&
           darkMatter == other.darkMatter &&
-          destructionProtectionTickets == other.destructionProtectionTickets;
+          destructionProtectionTickets == other.destructionProtectionTickets &&
+          highestStageCleared == other.highestStageCleared;
 
   @override
   int get hashCode =>
@@ -53,7 +57,8 @@ class _InventoryData {
       enhancementStones.hashCode ^
       transcendenceStones.hashCode ^
       darkMatter.hashCode ^
-      destructionProtectionTickets.hashCode;
+      destructionProtectionTickets.hashCode ^
+      highestStageCleared.hashCode;
 }
 
 class InventoryScreen extends StatelessWidget {
@@ -79,6 +84,7 @@ class InventoryScreen extends StatelessWidget {
           darkMatter: game.player.darkMatter,
           destructionProtectionTickets:
               game.player.destructionProtectionTickets,
+          highestStageCleared: game.player.highestStageCleared,
         ),
         builder: (context, data, child) {
           return SingleChildScrollView(
@@ -90,6 +96,7 @@ class InventoryScreen extends StatelessWidget {
                   data.equippedWeapon,
                   isEquipped: true,
                   onEquip: () {},
+                  highestStageCleared: data.highestStageCleared,
                 ),
                 const Divider(color: Colors.yellow),
                 const Padding(
@@ -150,6 +157,7 @@ class InventoryScreen extends StatelessWidget {
                       onEquip: () {
                         context.read<GameProvider>().equipWeapon(weapon);
                       },
+                      highestStageCleared: data.highestStageCleared,
                     );
                   },
                 ),
@@ -259,92 +267,107 @@ class InventoryScreen extends StatelessWidget {
     Weapon weapon, {
     bool isEquipped = false,
     required VoidCallback onEquip,
+    required int highestStageCleared,
   }) {
-    final gradientColors = _getGradientColorsForEnhancement(weapon.enhancement);
+    final gradientColors = EnhancementUtils.getGradientColors(weapon.enhancement);
+    final bool canEquip = weapon.baseLevel <= highestStageCleared;
 
-    return Card(
-      color: isEquipped ? Colors.blueGrey[800] : Colors.grey[800],
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Row(
-          children: [
-            // Left Box (Image)
-            GestureDetector(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) =>
-                      buildWeaponDetailsDialog(context, weapon),
-                );
-              },
-              child: Container(
-                width: 50, // Fixed width for the image container
-                height: 50, // Fixed height for the image container
-                decoration: BoxDecoration(
-                  gradient: gradientColors.isNotEmpty
-                      ? LinearGradient(
-                          colors: isEquipped
-                              ? gradientColors
-                                  .map((c) => Color.alphaBlend(
-                                      Colors.white.withAlpha(38), c))
-                                  .toList()
-                              : gradientColors,
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        )
-                      : null,
-                  color: gradientColors.isEmpty ? Colors.black : null,
-                  border: Border.all(
-                    color: WeaponData.getColorForRarity(weapon.rarity),
-                    width: 2.0,
+    return Opacity(
+      opacity: canEquip || isEquipped ? 1.0 : 0.5,
+      child: Card(
+        color: isEquipped ? Colors.blueGrey[800] : Colors.grey[800],
+        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
+            children: [
+              // Left Box (Image)
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) =>
+                        buildWeaponDetailsDialog(context, weapon),
+                  );
+                },
+                child: Container(
+                  width: 50, // Fixed width for the image container
+                  height: 50, // Fixed height for the image container
+                  decoration: BoxDecoration(
+                    gradient: gradientColors.isNotEmpty
+                        ? LinearGradient(
+                            colors: isEquipped
+                                ? gradientColors
+                                    .map((c) => Color.alphaBlend(
+                                        Colors.white.withAlpha(38), c))
+                                    .toList()
+                                : gradientColors,
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          )
+                        : null,
+                    color: gradientColors.isEmpty ? Colors.black : null,
+                    border: Border.all(
+                      color: WeaponData.getColorForRarity(weapon.rarity),
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(4.0),
                   ),
-                  borderRadius: BorderRadius.circular(4.0),
-                ),
-                child: Image.asset(
-                  'images/weapons/${weapon.imageName}',
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Center(
-                      child: Icon(Icons.broken_image, color: Colors.red),
-                    );
-                  },
+                  child: Image.asset(
+                    'images/weapons/${weapon.imageName}',
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Center(
+                        child: Icon(Icons.broken_image, color: Colors.red),
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(width: 12),
-            // Right Box (Info and Button)
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Top part of Right Box (Info)
-                  Text(
-                    '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]${isEquipped ? ' [장착중]' : ''}',
-                    style: TextStyle(
-                      color: WeaponData.getColorForRarity(weapon.rarity),
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    '데미지: ${weapon.calculatedDamage.toStringAsFixed(0)}',
-                    style: const TextStyle(color: Colors.white70),
-                  ),
-                  const SizedBox(height: 8),
-                  // Bottom part of Right Box (Button)
-                  if (!isEquipped)
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: ElevatedButton(
-                        onPressed: onEquip,
-                        child: const Text('장착'),
+              const SizedBox(width: 12),
+              // Right Box (Info and Button)
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Top part of Right Box (Info)
+                    Text(
+                      '${weapon.name} +${weapon.enhancement}[${weapon.transcendence}]${isEquipped ? ' [장착중]' : ''}',
+                      style: TextStyle(
+                        color: WeaponData.getColorForRarity(weapon.rarity),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                ],
+                    Text(
+                      '데미지: ${weapon.calculatedDamage.toStringAsFixed(0)}',
+                      style: const TextStyle(color: Colors.white70),
+                    ),
+                    if (!canEquip && !isEquipped)
+                      Text(
+                        '착용 필요 스테이지: ${weapon.baseLevel}',
+                        style: const TextStyle(color: Colors.redAccent),
+                      ),
+                    const SizedBox(height: 8),
+                    // Bottom part of Right Box (Button)
+                    if (!isEquipped)
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Tooltip(
+                          message: canEquip
+                              ? ''
+                              : '최고 스테이지 ${weapon.baseLevel} 이상 달성 시 착용 가능합니다.',
+                          child: ElevatedButton(
+                            onPressed: canEquip ? onEquip : null,
+                            child: const Text('장착'),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -555,23 +578,5 @@ class InventoryScreen extends StatelessWidget {
     );
   }
 
-  List<Color> _getGradientColorsForEnhancement(int enhancementLevel) {
-    if (enhancementLevel >= 20) {
-      return [Colors.amber[200]!, Colors.amber[500]!];
-    } else if (enhancementLevel >= 19) {
-      return [Colors.red[500]!, Colors.red[700]!];
-    } else if (enhancementLevel >= 17) {
-      return [Colors.red[300]!, Colors.red[500]!];
-    } else if (enhancementLevel >= 15) {
-      return [Colors.deepOrange[300]!, Colors.deepOrange[500]!];
-    } else if (enhancementLevel >= 13) {
-      return [Colors.orange[400]!, Colors.orange[600]!];
-    } else if (enhancementLevel >= 11) {
-      return [Colors.amber[500]!, Colors.amber[700]!];
-    } else if (enhancementLevel >= 8) {
-      return [Colors.yellow[600]!, Colors.yellow[800]!];
-    } else {
-      return [];
-    }
-  }
+
 }
