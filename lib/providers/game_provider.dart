@@ -61,6 +61,8 @@ class GameProvider with ChangeNotifier {
   Function(int xpReward, Difficulty? nextDifficulty)?
   _showDifficultyClearDialogCallback;
 
+  Function(int newLevel, int skillPointsGained)? _showHeroLevelUpDialogCallback;
+
   Player get player => _player;
   Monster get monster => _monster;
   bool get isMonsterDefeated => _isMonsterDefeated;
@@ -87,15 +89,13 @@ class GameProvider with ChangeNotifier {
     // Auto-unequip weapon if level requirement is no longer met
     if (_player.equippedWeapon.baseLevel > _player.highestStageCleared &&
         _player.equippedWeapon.instanceId != 'bare_hands') {
-      _player.equippedWeapon = Weapon.bareHands();
+      _player.inventory.add(_player.equippedWeapon);
+      _player.equippedWeapon = Weapon.startingWeapon();
     }
 
     // Reset passive bonuses before recalculating from skills
     _player.passiveGoldGainMultiplier = 1.0;
     _player.passiveEnhancementStoneGainMultiplier = 1.0;
-    _player.passiveWeaponDamageMultiplier = 1.0;
-    _player.passiveWeaponCriticalChanceBonus = 0.0;
-    _player.passiveWeaponCriticalDamageBonus = 0.0;
 
     // Apply hero skill effects
     _player.learnedSkills.forEach((skillId, level) {
@@ -401,6 +401,23 @@ class GameProvider with ChangeNotifier {
 
     _grantRewards();
 
+    // --- XP Rewards for Stage/Boss Clear ---
+    final xpMultiplier = DifficultyData.getXpMultiplier(
+      _player.currentDifficulty,
+    );
+    double xpReward =
+        _player.currentStage * xpMultiplier; // Base reward for any stage
+
+    // Grant additional bonus for first-time boss clear in this run
+    if (_monster.isBoss &&
+        !_player.clearedBossesInThisRun.contains(_player.currentStage)) {
+      _player.clearedBossesInThisRun.add(_player.currentStage);
+      xpReward *= 5; // Apply boss bonus
+    }
+
+    _player.heroExp += xpReward;
+    _levelUpHero(); // Check for level up after any XP gain
+
     if (_player.currentStage >= _player.highestStageCleared) {
       _player.highestStageCleared = _player.currentStage;
       recalculatePlayerStats(); // Check for weapon requirement changes
@@ -492,7 +509,6 @@ class GameProvider with ChangeNotifier {
       _player.equippedWeapon = oldInventoryWeapon;
 
       _activeDamageModifiers.clear(); // Clear existing damage modifiers
-      recalculatePlayerStats();
       _weaponSkillProvider.updatePassiveSkills(_player, _monster);
       startAutoAttack(); // Restart auto-attack with new speed
 
@@ -616,7 +632,7 @@ class GameProvider with ChangeNotifier {
           _player.darkMatter += darkMatterGained;
 
           _player.weaponDestructionCount++;
-          _player.equippedWeapon = Weapon.bareHands();
+          _player.equippedWeapon = Weapon.startingWeapon();
           penaltyMessage =
               '강화 실패... 무기가 파괴되었습니다.\n암흑 물질 $darkMatterGained 개를 획득했습니다.';
         }
@@ -682,7 +698,7 @@ class GameProvider with ChangeNotifier {
       _player.darkMatter += darkMatterGained;
 
       _player.weaponDestructionCount++;
-      _player.equippedWeapon = Weapon.bareHands();
+      _player.equippedWeapon = Weapon.startingWeapon();
       recalculatePlayerStats();
       startAutoAttack(); // Fix: Restart auto-attack with new speed
       notifyListeners();
@@ -794,6 +810,12 @@ class GameProvider with ChangeNotifier {
     Function(int xpReward, Difficulty? nextDifficulty)? callback,
   ) {
     _showDifficultyClearDialogCallback = callback;
+  }
+
+  void setShowHeroLevelUpDialogCallback(
+    Function(int newLevel, int skillPointsGained)? callback,
+  ) {
+    _showHeroLevelUpDialogCallback = callback;
   }
 
   void _startGameLoop() {
@@ -949,9 +971,9 @@ class GameProvider with ChangeNotifier {
       if (nextDifficulty != null &&
           nextDifficulty.index > _player.highestDifficultyUnlocked.index) {
         _player.highestDifficultyUnlocked = nextDifficulty;
-        xpReward = 1000; // Placeholder for first-time clear
+        xpReward = DifficultyData.getFirstClearXp(_player.currentDifficulty);
       } else {
-        xpReward = 200; // Placeholder for subsequent clear
+        xpReward = DifficultyData.getRepeatClearXp(_player.currentDifficulty);
       }
       _player.heroExp += xpReward;
       _levelUpHero();
@@ -964,6 +986,8 @@ class GameProvider with ChangeNotifier {
 
   void restartCurrentDifficulty() {
     _player.currentStage = 1;
+    _player.highestStageCleared = 0;
+    _player.clearedBossesInThisRun.clear();
     recalculatePlayerStats();
     _spawnMonster();
     _startGameLoop();
@@ -984,12 +1008,24 @@ class GameProvider with ChangeNotifier {
   }
 
   void _levelUpHero() {
-    double requiredExp = _player.heroLevel * 1000; // Simple formula for now
+    int levelsGained = 0;
+    int skillPointsGained = 0;
+    double requiredExp = (1000 * pow(_player.heroLevel, 1.3)).toDouble();
+
     while (_player.heroExp >= requiredExp) {
       _player.heroExp -= requiredExp;
       _player.heroLevel++;
       _player.skillPoints++;
-      requiredExp = _player.heroLevel * 1000;
+      levelsGained++;
+      skillPointsGained++;
+      requiredExp = (1000 * pow(_player.heroLevel, 1.3)).toDouble();
+    }
+
+    if (levelsGained > 0) {
+      _showHeroLevelUpDialogCallback?.call(
+        _player.heroLevel,
+        skillPointsGained,
+      );
     }
   }
 
@@ -1067,6 +1103,8 @@ class GameProvider with ChangeNotifier {
     if (newDifficulty.index <= _player.highestDifficultyUnlocked.index) {
       _player.currentDifficulty = newDifficulty;
       _player.currentStage = 1;
+      _player.highestStageCleared = 0;
+      _player.clearedBossesInThisRun.clear();
       recalculatePlayerStats();
       _spawnMonster();
       notifyListeners();
@@ -1084,10 +1122,10 @@ class GameProvider with ChangeNotifier {
     } else {
       _player = Player(equippedWeapon: Weapon.startingWeapon());
       _player.transcendenceStones = 0;
-      _player.enhancementStones = 99999999;
-      _player.gold = 999999999999.0;
-      _player.darkMatter = 999999999;
-      _player.currentStage = 99;
+      _player.enhancementStones = 0;
+      _player.gold = 0.0;
+      _player.darkMatter = 0;
+      _player.currentStage = 1;
     }
 
     for (final achievement in AchievementData.achievements) {
@@ -1108,19 +1146,21 @@ class GameProvider with ChangeNotifier {
     // }
 
     // final List<int> enhancementLevels = [8, 11, 13, 15, 17, 19, 20];
+    // final List<int> enhancementLevels = [19, 20];
     // for (final level in enhancementLevels) {
-    //   final testWeapon = WeaponData.getWeaponById(52004);
+    //   final testWeapon = WeaponData.getWeaponById(50001);
+    //   // final testWeapon = WeaponData.getWeaponById(52004);
     //   if (testWeapon != null) {
     //     testWeapon.enhancement = level;
     //     _player.inventory.add(testWeapon);
     //   }
     // }
 
-    final testWeapon = WeaponData.getWeaponById(50000);
-    if (testWeapon != null) {
-      testWeapon.enhancement = 20;
-      _player.inventory.add(testWeapon);
-    }
+    // final testWeapon = WeaponData.getWeaponById(50000);
+    // if (testWeapon != null) {
+    //   testWeapon.enhancement = 20;
+    //   _player.inventory.add(testWeapon);
+    // }
   }
 
   Future<void> _saveGame() async {

@@ -93,15 +93,15 @@ Widget buildWeaponDetailsDialog(BuildContext context, Weapon weapon) {
                 style: const TextStyle(color: Colors.white),
               ),
               Text(
-                '공격 속도: ${weapon.speed.toStringAsFixed(2)}',
+                '공격 속도: ${weapon.calculatedSpeed.toStringAsFixed(2)}',
                 style: const TextStyle(color: Colors.white),
               ),
               Text(
-                '치명타 확률: ${(weapon.criticalChance * 100).toStringAsFixed(2)}%',
+                '치명타 확률: ${(weapon.calculatedCritChance * 100).toStringAsFixed(2)}%',
                 style: const TextStyle(color: Colors.white),
               ),
               Text(
-                '치명타 배율: x${weapon.criticalDamage.toStringAsFixed(2)}',
+                '치명타 배율: x${weapon.calculatedCritDamage.toStringAsFixed(2)}',
                 style: const TextStyle(color: Colors.white),
               ),
               Text(

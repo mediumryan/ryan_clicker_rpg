@@ -51,8 +51,54 @@ class _PlayerStatsData {
       finalDefensePenetration.hashCode;
 }
 
-class MainGameScreen extends StatelessWidget {
+class MainGameScreen extends StatefulWidget {
   const MainGameScreen({super.key});
+
+  @override
+  State<MainGameScreen> createState() => _MainGameScreenState();
+}
+
+class _MainGameScreenState extends State<MainGameScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<GameProvider>(context, listen: false)
+          .setShowHeroLevelUpDialogCallback(_showHeroLevelUpDialog);
+    });
+  }
+
+  @override
+  void dispose() {
+    Provider.of<GameProvider>(context, listen: false)
+        .setShowHeroLevelUpDialogCallback(null);
+    super.dispose();
+  }
+
+  void _showHeroLevelUpDialog(int newLevel, int skillPointsGained) {
+    if (!mounted) return;
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.grey[800],
+          title: const Text('용사 레벨 업!', style: TextStyle(color: Colors.white)),
+          content: Text(
+            '축하합니다! 용사 레벨이 ${newLevel}이 되었습니다.\n\n스킬 포인트를 ${skillPointsGained} 획득했습니다.',
+            style: const TextStyle(color: Colors.white70),
+          ),
+          actions: [
+            TextButton(
+              child: const Text('확인', style: TextStyle(color: Colors.blue)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

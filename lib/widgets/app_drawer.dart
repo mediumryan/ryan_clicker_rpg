@@ -214,24 +214,70 @@ class AppDrawer extends StatelessWidget {
                 final bool isUnlocked = difficulty.index <= highestUnlocked.index;
                 final bool isCurrent = difficulty == currentDifficulty;
 
-                return ListTile(
-                  title: Text(
-                    DifficultyData.getDifficultyName(difficulty),
-                    style: TextStyle(
-                      color: isUnlocked ? Colors.white : Colors.grey[600],
-                      fontWeight:
-                          isCurrent ? FontWeight.bold : FontWeight.normal,
+                return Card(
+                  color: isCurrent ? Colors.blueGrey[800] : Colors.grey[800],
+                  margin: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: InkWell(
+                    onTap: isUnlocked && !isCurrent
+                        ? () {
+                            _showDifficultyConfirmationDialog(
+                                dialogContext, difficulty, gameProvider);
+                          }
+                        : null,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Opacity(
+                        opacity: isUnlocked ? 1.0 : 0.5,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  DifficultyData.getDifficultyName(difficulty),
+                                  style: TextStyle(
+                                    color: isUnlocked
+                                        ? Colors.white
+                                        : Colors.grey[600],
+                                    fontSize: 18,
+                                    fontWeight: isCurrent
+                                        ? FontWeight.bold
+                                        : FontWeight.normal,
+                                  ),
+                                ),
+                                const Spacer(),
+                                if (isCurrent)
+                                  const Icon(Icons.check_circle,
+                                      color: Colors.greenAccent),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              DifficultyData.getDescription(difficulty),
+                              style: TextStyle(
+                                  color: Colors.white70, fontSize: 14),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              '- 목표 스테이지: ${DifficultyData.getDifficultyGoal(difficulty)}',
+                              style: TextStyle(
+                                  color: Colors.white70, fontSize: 12),
+                            ),
+                            Text(
+                              '- 최초 클리어: ${DifficultyData.getFirstClearXp(difficulty)} XP',
+                              style: TextStyle(
+                                  color: Colors.white70, fontSize: 12),
+                            ),
+                            Text(
+                              '- 반복 클리어: ${DifficultyData.getRepeatClearXp(difficulty)} XP',
+                              style: TextStyle(
+                                  color: Colors.white70, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                  trailing: isCurrent
-                      ? const Icon(Icons.check_circle, color: Colors.greenAccent)
-                      : null,
-                  onTap: isUnlocked && !isCurrent
-                      ? () {
-                          _showDifficultyConfirmationDialog(
-                              dialogContext, difficulty, gameProvider);
-                        }
-                      : null,
                 );
               }).toList(),
             ),

@@ -294,9 +294,9 @@ class WeaponData {
       ];
 
       _isInitialized = true;
-    } catch (e, stacktrace) {
-      print('Error initializing WeaponData: $e');
-      print(stacktrace);
+    } catch (e) {
+      // For debugging purposes, you might want to log the error 'e'
+      // instead of using print in a production app.
     }
   }
 

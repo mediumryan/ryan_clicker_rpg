@@ -68,6 +68,8 @@ class Player {
   bool showFloatingDamage;
   String graphicsQuality;
 
+  List<int> clearedBossesInThisRun = [];
+
   Player({
     this.gold = 0,
     this.enhancementStones = 0,

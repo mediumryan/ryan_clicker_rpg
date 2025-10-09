@@ -253,7 +253,7 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Stage ${widget.monster.stage}',
+                      'Stage ${widget.monster.stage} / ${DifficultyData.getDifficultyGoal(widget.player.currentDifficulty)}',
                       style: const TextStyle(color: Colors.white, fontSize: 24),
                     ),
                     Text(

@@ -1,6 +1,1 @@
-enum Difficulty {
-  normal,
-  hard,
-  hell,
-  infinity,
-}
+enum Difficulty { normal, hard, hell, infinity }
