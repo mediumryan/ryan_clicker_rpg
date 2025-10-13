@@ -85,9 +85,7 @@ class PlayerResourcesWidget extends StatelessWidget {
                       _buildResourceDisplay(
                         context,
                         'images/others/enhancement_stone.png',
-                        NumberFormat(
-                          '#,###',
-                        ).format(data.enhancementStones),
+                        NumberFormat('#,###').format(data.enhancementStones),
                         Colors.blueGrey,
                         '강화석',
                         '강화석은 무기 강화에 사용되는 핵심 재료입니다. 강화 단계가 높아질수록 더 많은 강화석이 필요합니다.',

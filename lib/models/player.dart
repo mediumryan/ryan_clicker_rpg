@@ -54,6 +54,14 @@ class Player {
   double passiveWeaponAccuracyBonus;
   double passiveWeaponAccuracyMultiplier;
 
+  // New skill effect fields
+  double passiveExpGainMultiplier;
+  double monsterDefenseReduction;
+  double monsterMaxHpReduction;
+  double monsterDamageTakenIncrease;
+  double enhancementGoldCostReduction;
+  int enhancementStoneCostReduction;
+
   // --- Final Calculated Stats ---
   // These are calculated at runtime and not saved.
   double finalDamage = 0;
@@ -114,6 +122,13 @@ class Player {
     this.heroExp = 0,
     this.skillPoints = 0,
     Map<String, int>? learnedSkills,
+    // New fields
+    this.passiveExpGainMultiplier = 1.0,
+    this.monsterDefenseReduction = 0.0,
+    this.monsterMaxHpReduction = 0.0,
+    this.monsterDamageTakenIncrease = 0.0,
+    this.enhancementGoldCostReduction = 0.0,
+    this.enhancementStoneCostReduction = 0,
   }) : inventory = inventory ?? [],
        gachaBoxes = gachaBoxes ?? [],
        buffs = buffs ?? [],
@@ -173,6 +188,13 @@ class Player {
     'heroExp': heroExp,
     'skillPoints': skillPoints,
     'learnedSkills': learnedSkills,
+    // New fields
+    'passiveExpGainMultiplier': passiveExpGainMultiplier,
+    'monsterDefenseReduction': monsterDefenseReduction,
+    'monsterMaxHpReduction': monsterMaxHpReduction,
+    'monsterDamageTakenIncrease': monsterDamageTakenIncrease,
+    'enhancementGoldCostReduction': enhancementGoldCostReduction,
+    'enhancementStoneCostReduction': enhancementStoneCostReduction,
   }; // Deserialization
   factory Player.fromJson(Map<String, dynamic> json) {
     return Player(
@@ -257,6 +279,13 @@ class Player {
       heroExp: json['heroExp'] ?? 0.0,
       skillPoints: json['skillPoints'] ?? 0,
       learnedSkills: Map<String, int>.from(json['learnedSkills'] ?? {}),
+      // New fields
+      passiveExpGainMultiplier: json['passiveExpGainMultiplier'] ?? 1.0,
+      monsterDefenseReduction: json['monsterDefenseReduction'] ?? 0.0,
+      monsterMaxHpReduction: json['monsterMaxHpReduction'] ?? 0.0,
+      monsterDamageTakenIncrease: json['monsterDamageTakenIncrease'] ?? 0.0,
+      enhancementGoldCostReduction: json['enhancementGoldCostReduction'] ?? 0.0,
+      enhancementStoneCostReduction: json['enhancementStoneCostReduction'] ?? 0,
     );
   }
 }

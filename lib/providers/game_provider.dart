@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ryan_clicker_rpg/models/hero_skill.dart';
 import 'package:ryan_clicker_rpg/data/hero_skill_data.dart';
 import 'package:ryan_clicker_rpg/models/difficulty.dart';
@@ -6,6 +7,8 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ryan_clicker_rpg/models/player.dart';
 import 'package:ryan_clicker_rpg/models/monster.dart';
 import 'package:ryan_clicker_rpg/models/weapon.dart';
@@ -27,6 +30,7 @@ import 'package:ryan_clicker_rpg/models/achievement.dart';
 import 'package:ryan_clicker_rpg/data/achievement_data.dart';
 
 class GameProvider with ChangeNotifier {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final RewardService _rewardService = RewardService();
   late Player _player;
   late Monster _monster;
@@ -37,6 +41,12 @@ class GameProvider with ChangeNotifier {
   DateTime? _lastManualClickTime; // New
   Duration _autoAttackDelay = Duration.zero; // New
   bool _isAutoAttackActive = true;
+
+  // Firebase Auth
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+  User? _user;
+  User? get user => _user;
 
   Duration get autoAttackDelay => _autoAttackDelay; // New getter
   bool get isAutoAttackActive => _isAutoAttackActive;
@@ -75,6 +85,9 @@ class GameProvider with ChangeNotifier {
   double get lastEnhancementStonesReward =>
       _lastEnhancementStonesReward; // New getter
 
+  double get requiredExpForLevelUp =>
+      (1000 * pow(_player.heroLevel, 1.3)).toDouble();
+
   bool get hasCompletableAchievements {
     return AchievementData.achievements.any(
       (a) => a.isCompletable(_player) && !a.isCompleted,
@@ -83,19 +96,77 @@ class GameProvider with ChangeNotifier {
 
   GameProvider() {
     _weaponSkillProvider = WeaponSkillProvider(this);
+    _auth.authStateChanges().listen((User? user) {
+      _user = user;
+      // In the future, we will trigger data loading/saving here
+      notifyListeners();
+    });
+  }
+
+  Future<void> signInWithGoogle() async {
+    if (kDebugMode) {
+      print("Attempting to sign in with Google...");
+    }
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (kDebugMode) {
+        print("GoogleSignIn.signIn() completed.");
+        if (googleUser == null) {
+          print("googleUser is null. The user may have cancelled the sign-in.");
+        } else {
+          print("googleUser is not null. Proceeding with Firebase auth.");
+        }
+      }
+
+      if (googleUser == null) {
+        // The user canceled the sign-in
+        return;
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      if (kDebugMode) {
+        print("Signing in to Firebase with credential...");
+      }
+      await _auth.signInWithCredential(credential);
+      if (kDebugMode) {
+        print("Firebase sign-in successful.");
+      }
+    } catch (e) {
+      // Handle error
+      if (kDebugMode) {
+        print('Error during Google sign-in: $e');
+      }
+    }
+  }
+
+  Future<void> signOut() async {
+    await _googleSignIn.signOut();
+    await _auth.signOut();
   }
 
   void recalculatePlayerStats() {
-    // Auto-unequip weapon if level requirement is no longer met
-    if (_player.equippedWeapon.baseLevel > _player.highestStageCleared &&
-        _player.equippedWeapon.instanceId != 'bare_hands') {
-      _player.inventory.add(_player.equippedWeapon);
-      _player.equippedWeapon = Weapon.startingWeapon();
-    }
-
     // Reset passive bonuses before recalculating from skills
     _player.passiveGoldGainMultiplier = 1.0;
     _player.passiveEnhancementStoneGainMultiplier = 1.0;
+    _player.passiveWeaponDamageMultiplier = 1.0;
+    _player.passiveWeaponCriticalChanceBonus = 0.0;
+    _player.passiveWeaponCriticalDamageBonus = 0.0;
+    _player.passiveWeaponSpeedBonus = 0.0;
+    _player.passiveWeaponAccuracyBonus = 0.0;
+    _player.passiveWeaponDefensePenetrationBonus = 0.0;
+    _player.passiveWeaponDoubleAttackChanceBonus = 0.0;
+    _player.passiveExpGainMultiplier = 1.0;
+    _player.monsterDefenseReduction = 0.0;
+    _player.monsterMaxHpReduction = 0.0;
+    _player.monsterDamageTakenIncrease = 0.0;
+    _player.enhancementGoldCostReduction = 0.0;
+    _player.enhancementStoneCostReduction = 0;
 
     // Apply hero skill effects
     _player.learnedSkills.forEach((skillId, level) {
@@ -117,6 +188,36 @@ class GameProvider with ChangeNotifier {
             break;
           case SkillEffectType.passiveWeaponCriticalDamageBonus:
             _player.passiveWeaponCriticalDamageBonus += effectValue;
+            break;
+          case SkillEffectType.passiveWeaponSpeedBonus:
+            _player.passiveWeaponSpeedBonus += effectValue;
+            break;
+          case SkillEffectType.passiveWeaponAccuracyBonus:
+            _player.passiveWeaponAccuracyBonus += effectValue;
+            break;
+          case SkillEffectType.passiveWeaponDefensePenetrationBonus:
+            _player.passiveWeaponDefensePenetrationBonus += effectValue;
+            break;
+          case SkillEffectType.passiveWeaponDoubleAttackChanceBonus:
+            _player.passiveWeaponDoubleAttackChanceBonus += effectValue;
+            break;
+          case SkillEffectType.passiveExpGainMultiplier:
+            _player.passiveExpGainMultiplier += effectValue;
+            break;
+          case SkillEffectType.monsterDefenseReduction:
+            _player.monsterDefenseReduction += effectValue;
+            break;
+          case SkillEffectType.monsterMaxHpReduction:
+            _player.monsterMaxHpReduction += effectValue;
+            break;
+          case SkillEffectType.monsterDamageTakenIncrease:
+            _player.monsterDamageTakenIncrease += effectValue;
+            break;
+          case SkillEffectType.enhancementGoldCostReduction:
+            _player.enhancementGoldCostReduction += effectValue;
+            break;
+          case SkillEffectType.enhancementStoneCostReduction:
+            _player.enhancementStoneCostReduction += effectValue.toInt();
             break;
           default:
             break;
@@ -219,9 +320,57 @@ class GameProvider with ChangeNotifier {
     _currentMonsterEffectiveDefense = effectiveDefense;
   }
 
+  Future<void> _loadGameFromFirestore() async {
+    if (_user == null) {
+      // Should not happen if called correctly, but as a fallback
+      return _loadGameFromPrefs();
+    }
+
+    final docRef = _firestore.collection('users').doc(_user!.uid);
+    final doc = await docRef.get();
+
+    if (doc.exists) {
+      // Cloud data exists, load from it
+      final data = doc.data();
+      if (data != null && data.containsKey('player_data')) {
+        final Map<String, dynamic> playerDataJson = jsonDecode(
+          data['player_data'],
+        );
+        _player = Player.fromJson(playerDataJson);
+      } else {
+        // Document exists but is empty/invalid, create new player
+        _player = Player(equippedWeapon: Weapon.startingWeapon());
+      }
+    } else {
+      // No cloud data, check for local data to migrate
+      final prefs = await SharedPreferences.getInstance();
+      final localData = prefs.getString('player_data');
+
+      if (localData != null) {
+        // Local data exists, migrate it to Firestore
+        final Map<String, dynamic> playerDataJson = jsonDecode(localData);
+        _player = Player.fromJson(playerDataJson);
+        await _saveGameToFirestore(); // Save migrated data to cloud
+        await prefs.remove('player_data'); // Remove local data after migration
+      } else {
+        // No local data either, create a brand new player
+        _player = Player(equippedWeapon: Weapon.startingWeapon());
+        await _saveGameToFirestore(); // Save the new player to cloud
+      }
+    }
+  }
+
   Future<void> initializeGame() async {
     await WeaponData.initialize();
-    await _loadGame();
+
+    // Check auth state and load data accordingly
+    if (_auth.currentUser != null) {
+      _user = _auth.currentUser;
+      await _loadGameFromFirestore();
+    } else {
+      await _loadGameFromPrefs();
+    }
+
     recalculatePlayerStats(); // Initial stat calculation
     _player.acquiredWeaponIdsHistory.add(_player.equippedWeapon.id);
     _spawnMonster();
@@ -357,6 +506,9 @@ class GameProvider with ChangeNotifier {
       }
     }
 
+    // Apply monster damage taken increase from hero skills
+    actualDamage *= (1.0 + _player.monsterDamageTakenIncrease);
+
     // Active damage modifiers (from weapon skills, etc.)
     for (final modifier in _activeDamageModifiers) {
       bool conditionMet =
@@ -415,7 +567,7 @@ class GameProvider with ChangeNotifier {
       xpReward *= 5; // Apply boss bonus
     }
 
-    _player.heroExp += xpReward;
+    _player.heroExp += xpReward * _player.passiveExpGainMultiplier;
     _levelUpHero(); // Check for level up after any XP gain
 
     if (_player.currentStage >= _player.highestStageCleared) {
@@ -508,6 +660,8 @@ class GameProvider with ChangeNotifier {
       _player.inventory.add(_player.equippedWeapon);
       _player.equippedWeapon = oldInventoryWeapon;
 
+      recalculatePlayerStats(); // Recalculate stats for the new weapon
+
       _activeDamageModifiers.clear(); // Clear existing damage modifiers
       _weaponSkillProvider.updatePassiveSkills(_player, _monster);
       startAutoAttack(); // Restart auto-attack with new speed
@@ -529,12 +683,17 @@ class GameProvider with ChangeNotifier {
     }
 
     final rarityMultiplier = weapon.rarity.index + 1;
-    final goldCost =
+    var goldCost =
         ((weapon.baseLevel + 1) + pow(weapon.enhancement + 1, 2.5)) *
         30 *
         rarityMultiplier;
-    final stoneCost =
+    var stoneCost =
         ((weapon.enhancement + 1) / 2).ceil() + (rarityMultiplier - 1);
+
+    // Apply hero skill cost reductions
+    goldCost *= (1.0 - _player.enhancementGoldCostReduction);
+    stoneCost -= _player.enhancementStoneCostReduction;
+    if (stoneCost < 1) stoneCost = 1; // Ensure stone cost is at least 1
 
     if (_player.gold < goldCost) {
       return {
@@ -570,9 +729,9 @@ class GameProvider with ChangeNotifier {
     };
 
     _player.gold -= goldCost;
-    _player.enhancementStones -= stoneCost;
+    _player.enhancementStones -= stoneCost.toInt();
     weapon.investedGold += goldCost;
-    weapon.investedEnhancementStones += stoneCost;
+    weapon.investedEnhancementStones += stoneCost.toInt();
 
     final enhancementLevel = weapon.enhancement;
     final probabilities = [
@@ -907,6 +1066,10 @@ class GameProvider with ChangeNotifier {
     double hp = 100 + pow(_player.currentStage, 2.5).toDouble();
     int defense = monsterData['def'];
 
+    // Apply hero skill effects to monster
+    hp *= (1.0 - _player.monsterMaxHpReduction);
+    defense = (defense - _player.monsterDefenseReduction).toInt();
+
     // Apply difficulty modifiers
     switch (_player.currentDifficulty) {
       case Difficulty.normal:
@@ -975,7 +1138,7 @@ class GameProvider with ChangeNotifier {
       } else {
         xpReward = DifficultyData.getRepeatClearXp(_player.currentDifficulty);
       }
-      _player.heroExp += xpReward;
+      _player.heroExp += xpReward * _player.passiveExpGainMultiplier;
       _levelUpHero();
 
       // Trigger dialog
@@ -985,6 +1148,13 @@ class GameProvider with ChangeNotifier {
   }
 
   void restartCurrentDifficulty() {
+    // Auto-unequip weapon on rebirth, copying it to inventory
+    if (_player.equippedWeapon.id != 1 &&
+        _player.equippedWeapon.instanceId != 'bare_hands') {
+      _player.inventory.add(_player.equippedWeapon.copyWith());
+      _player.equippedWeapon = Weapon.startingWeapon();
+    }
+
     _player.currentStage = 1;
     _player.highestStageCleared = 0;
     _player.clearedBossesInThisRun.clear();
@@ -1112,7 +1282,7 @@ class GameProvider with ChangeNotifier {
     }
   }
 
-  Future<void> _loadGame() async {
+  Future<void> _loadGameFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     final playerDataString = prefs.getString('player_data');
 
@@ -1125,7 +1295,7 @@ class GameProvider with ChangeNotifier {
       _player.enhancementStones = 0;
       _player.gold = 0.0;
       _player.darkMatter = 0;
-      _player.currentStage = 1;
+      _player.currentStage = 99;
     }
 
     for (final achievement in AchievementData.achievements) {
@@ -1156,17 +1326,51 @@ class GameProvider with ChangeNotifier {
     //   }
     // }
 
-    // final testWeapon = WeaponData.getWeaponById(50000);
-    // if (testWeapon != null) {
-    //   testWeapon.enhancement = 20;
-    //   _player.inventory.add(testWeapon);
-    // }
+    final testWeapon = WeaponData.getWeaponById(50000);
+    if (testWeapon != null) {
+      testWeapon.enhancement = 20;
+      _player.inventory.add(testWeapon);
+    }
+  }
+
+  Future<void> _saveGameToFirestore() async {
+    if (_user == null) return;
+    if (kDebugMode) {
+      print("Attempting to save game to Firestore for user: ${_user!.uid}");
+    }
+    try {
+      final playerDataString = jsonEncode(_player.toJson());
+      await _firestore.collection('users').doc(_user!.uid).set({
+        'player_data': playerDataString,
+        'last_saved': FieldValue.serverTimestamp(),
+      });
+      if (kDebugMode) {
+        print("Successfully saved game to Firestore.");
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error saving game to Firestore: $e');
+      }
+    }
   }
 
   Future<void> _saveGame() async {
-    final prefs = await SharedPreferences.getInstance();
-    final playerDataString = jsonEncode(_player.toJson());
-    await prefs.setString('player_data', playerDataString);
+    if (kDebugMode) {
+      print("_saveGame called.");
+    }
+    if (_user != null) {
+      if (kDebugMode) {
+        print("User is logged in, calling _saveGameToFirestore.");
+      }
+      await _saveGameToFirestore();
+    } else {
+      if (kDebugMode) {
+        print("User is not logged in, saving to SharedPreferences.");
+      }
+      final prefs = await SharedPreferences.getInstance();
+      final playerDataString = jsonEncode(_player.toJson());
+      await prefs.setString('player_data', playerDataString);
+    }
   }
 
   void goToNextStage() {
@@ -1229,10 +1433,10 @@ class GameProvider with ChangeNotifier {
     }
     if (_player.enhancementStones >= amount) {
       _player.enhancementStones -= amount;
-      _player.gold += (amount * 5000).toDouble();
+      _player.gold += (amount * 2500).toDouble();
       notifyListeners();
       _saveGame();
-      return '$amount개의 강화석을 판매하여 ${amount * 5000} 골드를 획득했습니다.';
+      return '$amount개의 강화석을 판매하여 ${amount * 2500} 골드를 획득했습니다.';
     } else {
       return '강화석이 부족합니다.';
     }
@@ -1244,10 +1448,10 @@ class GameProvider with ChangeNotifier {
     }
     if (_player.transcendenceStones >= amount) {
       _player.transcendenceStones -= amount;
-      _player.gold += (amount * 50000).toDouble();
+      _player.gold += (amount * 25000).toDouble();
       notifyListeners();
       _saveGame();
-      return '$amount개의 초월석을 판매하여 ${amount * 50000} 골드를 획득했습니다.';
+      return '$amount개의 초월석을 판매하여 ${amount * 25000} 골드를 획득했습니다.';
     } else {
       return '초월석이 부족합니다.';
     }

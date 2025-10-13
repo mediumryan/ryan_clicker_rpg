@@ -10,6 +10,31 @@ import 'package:provider/provider.dart'; // New import
 import 'package:ryan_clicker_rpg/providers/game_provider.dart'; // New import
 import 'package:intl/intl.dart';
 
+class _HeroExpData {
+  final int heroLevel;
+  final double heroExp;
+  final double requiredExp;
+
+  _HeroExpData({
+    required this.heroLevel,
+    required this.heroExp,
+    required this.requiredExp,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is _HeroExpData &&
+          runtimeType == other.runtimeType &&
+          heroLevel == other.heroLevel &&
+          heroExp == other.heroExp &&
+          requiredExp == other.requiredExp;
+
+  @override
+  int get hashCode =>
+      heroLevel.hashCode ^ heroExp.hashCode ^ requiredExp.hashCode;
+}
+
 enum DamageType {
   normal,
   doubleAttack,
@@ -599,36 +624,58 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
   }
 
   Widget _buildHeroExpBar() {
-    final requiredExp = widget.player.heroLevel * 1000;
-    final expPercentage = requiredExp > 0
-        ? widget.player.heroExp / requiredExp
-        : 0.0;
-
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: Container(
-        color: const Color.fromRGBO(0, 0, 0, 0.5),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '용사 레벨: ${widget.player.heroLevel} (${widget.player.heroExp.toStringAsFixed(0)} / $requiredExp)',
-              style: const TextStyle(color: Colors.white, fontSize: 14),
-            ),
-            const SizedBox(height: 4),
-            LinearProgressIndicator(
-              value: expPercentage,
-              backgroundColor: Colors.grey[700],
-              valueColor: const AlwaysStoppedAnimation<Color>(
-                Colors.lightBlueAccent,
-              ),
-            ),
-          ],
-        ),
+    return Selector<GameProvider, _HeroExpData>(
+      selector: (context, game) => _HeroExpData(
+        heroLevel: game.player.heroLevel,
+        heroExp: game.player.heroExp,
+        requiredExp: game.requiredExpForLevelUp,
       ),
+      builder: (context, data, child) {
+        final expPercentage = data.requiredExp > 0
+            ? data.heroExp / data.requiredExp
+            : 0.0;
+
+        return Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            color: const Color.fromRGBO(0, 0, 0, 0.5),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                  height: 22, // Give a fixed height to the bar
+                  child: LinearProgressIndicator(
+                    value: expPercentage,
+                    backgroundColor: Colors.grey[700],
+                    valueColor: const AlwaysStoppedAnimation<Color>(
+                      Colors.lightBlueAccent,
+                    ),
+                  ),
+                ),
+                Text(
+                  '레벨: ${data.heroLevel} (${data.heroExp.toStringAsFixed(0)} / ${data.requiredExp.toStringAsFixed(0)})',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      // Add shadow for better readability
+                      Shadow(
+                        blurRadius: 2.0,
+                        color: Colors.black,
+                        offset: Offset(1.0, 1.0),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

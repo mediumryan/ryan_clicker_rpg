@@ -65,8 +65,9 @@ class QuickAccessButtons extends StatelessWidget {
                       builder: (context) => const AchievementDialog(),
                     );
                   },
-                  highlightColor:
-                      hasCompletableAchievements ? Colors.yellow : null,
+                  highlightColor: hasCompletableAchievements
+                      ? Colors.yellow
+                      : null,
                 );
               },
             ),
@@ -101,8 +102,10 @@ class QuickAccessButtons extends StatelessWidget {
             Icon(icon, size: 24, color: highlightColor ?? Colors.white),
             const SizedBox(height: 4),
             FittedBox(
-              child: Text(label,
-                  style: TextStyle(color: highlightColor ?? Colors.white70)),
+              child: Text(
+                label,
+                style: TextStyle(color: highlightColor ?? Colors.white70),
+              ),
             ),
           ],
         ),

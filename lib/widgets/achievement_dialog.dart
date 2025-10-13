@@ -41,145 +41,153 @@ class _AchievementDialogState extends State<AchievementDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final gameProvider = context.read<GameProvider>();
-    final achievementsToDisplay = _getFilteredAchievements(gameProvider.player);
-
     return AlertDialog(
       backgroundColor: Colors.grey[850],
       title: const Text('업적', style: TextStyle(color: Colors.white)),
       content: SizedBox(
         width: 400, // Increased width to better display rewards
         height: 400,
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Consumer<GameProvider>(
+          builder: (context, gameProvider, child) {
+            final achievementsToDisplay = _getFilteredAchievements(
+              gameProvider.player,
+            );
+            return Column(
               children: [
-                TextButton(
-                  onPressed: () =>
-                      setState(() => _selectedFilter = AchievementFilter.all),
-                  style: TextButton.styleFrom(
-                    backgroundColor: _selectedFilter == AchievementFilter.all
-                        ? Colors.blue[800]
-                        : Colors.transparent,
-                  ),
-                  child: const Text(
-                    '모든 업적',
-                    style: TextStyle(color: Colors.white),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      onPressed: () => setState(
+                        () => _selectedFilter = AchievementFilter.all,
+                      ),
+                      style: TextButton.styleFrom(
+                        backgroundColor:
+                            _selectedFilter == AchievementFilter.all
+                            ? Colors.blue[800]
+                            : Colors.transparent,
+                      ),
+                      child: const Text(
+                        '모든 업적',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () => setState(
+                        () => _selectedFilter = AchievementFilter.completable,
+                      ),
+                      style: TextButton.styleFrom(
+                        backgroundColor:
+                            _selectedFilter == AchievementFilter.completable
+                            ? Colors.blue[800]
+                            : Colors.transparent,
+                      ),
+                      child: const Text(
+                        '완료 가능',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () => setState(
+                        () => _selectedFilter = AchievementFilter.completed,
+                      ),
+                      style: TextButton.styleFrom(
+                        backgroundColor:
+                            _selectedFilter == AchievementFilter.completed
+                            ? Colors.blue[800]
+                            : Colors.transparent,
+                      ),
+                      child: const Text(
+                        '완료',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
-                TextButton(
-                  onPressed: () => setState(
-                    () => _selectedFilter = AchievementFilter.completable,
+                const Divider(color: Colors.grey),
+                if (gameProvider.hasCompletableAchievements)
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          gameProvider.claimAllCompletableAchievements();
+                        },
+                        child: const Text('모두 완료'),
+                      ),
+                    ),
                   ),
-                  style: TextButton.styleFrom(
-                    backgroundColor:
-                        _selectedFilter == AchievementFilter.completable
-                        ? Colors.blue[800]
-                        : Colors.transparent,
-                  ),
-                  child: const Text(
-                    '완료 가능',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => setState(
-                    () => _selectedFilter = AchievementFilter.completed,
-                  ),
-                  style: TextButton.styleFrom(
-                    backgroundColor:
-                        _selectedFilter == AchievementFilter.completed
-                        ? Colors.blue[800]
-                        : Colors.transparent,
-                  ),
-                  child: const Text(
-                    '완료',
-                    style: TextStyle(color: Colors.white),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: achievementsToDisplay.length,
+                    itemBuilder: (context, index) {
+                      final achievement = achievementsToDisplay[index];
+                      final bool isCompleted = achievement.isCompleted;
+                      final bool isRewardClaimed = achievement.isRewardClaimed;
+
+                      final rewardText = achievement.rewards
+                          .map((r) => r.description)
+                          .join(', ');
+
+                      return Opacity(
+                        opacity: isCompleted && isRewardClaimed ? 0.5 : 1.0,
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.star,
+                            color: isCompleted && isRewardClaimed
+                                ? Colors.grey
+                                : Colors.yellow,
+                          ),
+                          title: Text(
+                            achievement.name,
+                            style: TextStyle(
+                              color: isCompleted && isRewardClaimed
+                                  ? Colors.grey
+                                  : Colors.white,
+                            ),
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                achievement.description,
+                                style: TextStyle(
+                                  color: isCompleted && isRewardClaimed
+                                      ? Colors.grey[400]
+                                      : Colors.grey,
+                                ),
+                              ),
+                              if (achievement.progressText != null)
+                                Text(
+                                  '진행도: ${achievement.progressText!(gameProvider.player)}',
+                                  style: const TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              if (rewardText.isNotEmpty)
+                                Text(
+                                  '보상: $rewardText',
+                                  style: const TextStyle(
+                                    color: Colors.amber,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                            ],
+                          ),
+                          trailing: _buildTrailingWidget(
+                            achievement,
+                            gameProvider,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
-            ),
-            const Divider(color: Colors.grey),
-            if (gameProvider.hasCompletableAchievements)
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      gameProvider.claimAllCompletableAchievements();
-                      setState(() {});
-                    },
-                    child: const Text('모두 완료'),
-                  ),
-                ),
-              ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: achievementsToDisplay.length,
-                itemBuilder: (context, index) {
-                  final achievement = achievementsToDisplay[index];
-                  final bool isCompleted = achievement.isCompleted;
-                  final bool isRewardClaimed = achievement.isRewardClaimed;
-
-                  final rewardText = achievement.rewards
-                      .map((r) => r.description)
-                      .join(', ');
-
-                  return Opacity(
-                    opacity: isCompleted && isRewardClaimed ? 0.5 : 1.0,
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.star,
-                        color: isCompleted && isRewardClaimed
-                            ? Colors.grey
-                            : Colors.yellow,
-                      ),
-                      title: Text(
-                        achievement.name,
-                        style: TextStyle(
-                          color: isCompleted && isRewardClaimed
-                              ? Colors.grey
-                              : Colors.white,
-                        ),
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            achievement.description,
-                            style: TextStyle(
-                              color: isCompleted && isRewardClaimed
-                                  ? Colors.grey[400]
-                                  : Colors.grey,
-                            ),
-                          ),
-                          if (achievement.progressText != null)
-                            Text(
-                              '진행도: ${achievement.progressText!(gameProvider.player)}',
-                              style: const TextStyle(
-                                color: Colors.white70,
-                                fontSize: 12,
-                              ),
-                            ),
-                          if (rewardText.isNotEmpty)
-                            Text(
-                              '보상: $rewardText',
-                              style: const TextStyle(
-                                color: Colors.amber,
-                                fontSize: 12,
-                              ),
-                            ),
-                        ],
-                      ),
-                      trailing: _buildTrailingWidget(achievement, gameProvider),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
+            );
+          },
         ),
       ),
       actions: <Widget>[
@@ -207,9 +215,7 @@ class _AchievementDialogState extends State<AchievementDialog> {
       } else {
         return ElevatedButton(
           onPressed: () {
-            setState(() {
-              gameProvider.claimAchievementRewards(achievement);
-            });
+            gameProvider.claimAchievementRewards(achievement);
           },
           child: const Text('보상 받기'),
         );
@@ -218,9 +224,7 @@ class _AchievementDialogState extends State<AchievementDialog> {
       return ElevatedButton(
         onPressed: isCompletable
             ? () {
-                setState(() {
-                  gameProvider.completeAndClaimAchievement(achievement);
-                });
+                gameProvider.completeAndClaimAchievement(achievement);
               }
             : null, // Disabled if not completable
         child: const Text('완료'),

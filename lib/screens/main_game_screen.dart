@@ -82,10 +82,9 @@ class _MainGameScreenState extends State<MainGameScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.grey[800],
-          title: const Text('용사 레벨 업!', style: TextStyle(color: Colors.white)),
-          content: Text(
-            '축하합니다! 용사 레벨이 ${newLevel}이 되었습니다.\n\n스킬 포인트를 ${skillPointsGained} 획득했습니다.',
-            style: const TextStyle(color: Colors.white70),
+                  title: const Text('레벨 업!', style: TextStyle(color: Colors.white)),
+                  content: Text(
+                    '축하합니다! 레벨이 $newLevel이 되었습니다.\n\n스킬 포인트를 $skillPointsGained 획득했습니다.',            style: const TextStyle(color: Colors.white70),
           ),
           actions: [
             TextButton(

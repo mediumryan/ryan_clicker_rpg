@@ -84,44 +84,44 @@ class Weapon {
   // These getters calculate the weapon's own stats including enhancement and transcendence.
   // They do NOT include player-wide passive bonuses.
   double get calculatedDamage {
-    double damage = baseDamage;
+    double totalEnhancementBonus = 0;
     for (int i = 1; i <= enhancement; i++) {
-      double enhancementDamageBonus = 0;
-      if (i >= 1 && i <= 4) {
-        enhancementDamageBonus = 8;
-      } else if (i >= 5 && i <= 8) {
-        enhancementDamageBonus = 12;
-      } else if (i >= 9 && i <= 10) {
-        enhancementDamageBonus = 15;
+      if (i >= 1 && i <= 5) {
+        totalEnhancementBonus += 5;
+      } else if (i >= 6 && i <= 9) {
+        totalEnhancementBonus += 8;
+      } else if (i == 10) {
+        totalEnhancementBonus += 10;
       } else if (i == 11) {
-        enhancementDamageBonus = 20;
-      } else if (i >= 12 && i <= 13) {
-        enhancementDamageBonus = 25;
+        totalEnhancementBonus += 12.5;
+      } else if (i == 12) {
+        totalEnhancementBonus += 15;
+      } else if (i == 13) {
+        totalEnhancementBonus += 20;
       } else if (i == 14) {
-        enhancementDamageBonus = 30;
+        totalEnhancementBonus += 25;
       } else if (i == 15) {
-        enhancementDamageBonus = 50;
+        totalEnhancementBonus += 30;
       } else if (i == 16) {
-        enhancementDamageBonus = 100;
+        totalEnhancementBonus += 35;
       } else if (i == 17) {
-        enhancementDamageBonus = 125;
+        totalEnhancementBonus += 40;
       } else if (i == 18) {
-        enhancementDamageBonus = 150;
+        totalEnhancementBonus += 45;
       } else if (i == 19) {
-        enhancementDamageBonus = 200;
+        totalEnhancementBonus += 50;
       } else if (i == 20) {
-        enhancementDamageBonus = 300;
+        totalEnhancementBonus += 100;
       }
-      damage *= (1 + enhancementDamageBonus / 100);
-      damage = damage.truncateToDouble();
     }
+
+    double damage = baseDamage * (1 + totalEnhancementBonus / 100);
 
     final bonus = Weapon.transcendenceBonuses[transcendence];
     if (bonus != null) {
       damage *= (1 + bonus.damageBonus);
-      damage = damage.truncateToDouble();
     }
-    return damage;
+    return damage.truncateToDouble();
   }
 
   double get calculatedCritChance {
@@ -140,15 +140,15 @@ class Weapon {
       if (i == 15) {
         enhancementCritDamageBonus = 100;
       } else if (i == 16) {
-        enhancementCritDamageBonus = 200;
+        enhancementCritDamageBonus = 150;
       } else if (i == 17) {
-        enhancementCritDamageBonus = 300;
+        enhancementCritDamageBonus = 200;
       } else if (i == 18) {
-        enhancementCritDamageBonus = 400;
+        enhancementCritDamageBonus = 250;
       } else if (i == 19) {
-        enhancementCritDamageBonus = 500;
+        enhancementCritDamageBonus = 300;
       } else if (i == 20) {
-        enhancementCritDamageBonus = 1000;
+        enhancementCritDamageBonus = 500;
       }
       critDmg += (enhancementCritDamageBonus / 100);
     }
@@ -165,12 +165,14 @@ class Weapon {
     for (int i = 1; i <= enhancement; i++) {
       double enhancementAttackSpeedBonus = 0;
       if (i == 11) {
-        enhancementAttackSpeedBonus = 10;
+        enhancementAttackSpeedBonus = 5;
       } else if (i >= 12 && i <= 13) {
-        enhancementAttackSpeedBonus = 10;
+        enhancementAttackSpeedBonus = 7.5;
       } else if (i == 14) {
+        enhancementAttackSpeedBonus = 10;
+      } else if (i >= 15 && i <= 19) {
         enhancementAttackSpeedBonus = 15;
-      } else if (i >= 15 && i <= 20) {
+      } else if (i == 20) {
         enhancementAttackSpeedBonus = 25;
       }
       spd *= (1 + enhancementAttackSpeedBonus / 100);
@@ -310,7 +312,7 @@ class Weapon {
       imageName: "group1/rusty_crude_rapier.png",
       type: WeaponType.rapier,
       baseLevel: 0,
-      baseDamage: 36,
+      baseDamage: 9999999,
       speed: 1.3,
       criticalChance: 0.18,
       criticalDamage: 1.42,

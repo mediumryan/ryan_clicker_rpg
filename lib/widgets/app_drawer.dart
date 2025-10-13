@@ -32,6 +32,64 @@ class AppDrawer extends StatelessWidget {
                 ),
               ),
             ),
+            Consumer<GameProvider>(
+              builder: (context, game, child) {
+                final user = game.user;
+                if (user == null) {
+                  // Not logged in
+                  return ListTile(
+                    leading: const Icon(Icons.login, color: Colors.white),
+                    title: const Text(
+                      'Google로 로그인',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onTap: () {
+                      game.signInWithGoogle();
+                      Navigator.pop(context);
+                    },
+                  );
+                } else {
+                  // Logged in
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(user.photoURL ?? ''),
+                          radius: 25,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          user.displayName ?? '사용자',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          user.email ?? '',
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 12,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        ElevatedButton(
+                          onPressed: () {
+                            game.signOut();
+                            Navigator.pop(context);
+                          },
+                          child: const Text('로그아웃'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              },
+            ),
+            const Divider(color: Colors.grey),
+
             GridView.count(
               crossAxisCount: 3,
               shrinkWrap: true,
@@ -132,7 +190,7 @@ class AppDrawer extends StatelessWidget {
                 _buildNavButton(
                   context,
                   icon: Icons.person,
-                  label: '용사',
+                  label: '스킬',
                   onPressed: () {
                     Navigator.pop(context); // Close the drawer
                     Navigator.push(
@@ -189,7 +247,10 @@ class AppDrawer extends StatelessWidget {
           children: [
             Icon(icon, size: 30, color: highlightColor ?? Colors.white),
             const SizedBox(height: 8),
-            Text(label, style: TextStyle(color: highlightColor ?? Colors.white70)),
+            Text(
+              label,
+              style: TextStyle(color: highlightColor ?? Colors.white70),
+            ),
           ],
         ),
       ),
@@ -211,7 +272,8 @@ class AppDrawer extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: Difficulty.values.map((difficulty) {
-                final bool isUnlocked = difficulty.index <= highestUnlocked.index;
+                final bool isUnlocked =
+                    difficulty.index <= highestUnlocked.index;
                 final bool isCurrent = difficulty == currentDifficulty;
 
                 return Card(
@@ -221,7 +283,10 @@ class AppDrawer extends StatelessWidget {
                     onTap: isUnlocked && !isCurrent
                         ? () {
                             _showDifficultyConfirmationDialog(
-                                dialogContext, difficulty, gameProvider);
+                              dialogContext,
+                              difficulty,
+                              gameProvider,
+                            );
                           }
                         : null,
                     child: Padding(
@@ -247,31 +312,41 @@ class AppDrawer extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 if (isCurrent)
-                                  const Icon(Icons.check_circle,
-                                      color: Colors.greenAccent),
+                                  const Icon(
+                                    Icons.check_circle,
+                                    color: Colors.greenAccent,
+                                  ),
                               ],
                             ),
                             const SizedBox(height: 8),
                             Text(
                               DifficultyData.getDescription(difficulty),
                               style: TextStyle(
-                                  color: Colors.white70, fontSize: 14),
+                                color: Colors.white70,
+                                fontSize: 14,
+                              ),
                             ),
                             const SizedBox(height: 8),
                             Text(
                               '- 목표 스테이지: ${DifficultyData.getDifficultyGoal(difficulty)}',
                               style: TextStyle(
-                                  color: Colors.white70, fontSize: 12),
+                                color: Colors.white70,
+                                fontSize: 12,
+                              ),
                             ),
                             Text(
                               '- 최초 클리어: ${DifficultyData.getFirstClearXp(difficulty)} XP',
                               style: TextStyle(
-                                  color: Colors.white70, fontSize: 12),
+                                color: Colors.white70,
+                                fontSize: 12,
+                              ),
                             ),
                             Text(
                               '- 반복 클리어: ${DifficultyData.getRepeatClearXp(difficulty)} XP',
                               style: TextStyle(
-                                  color: Colors.white70, fontSize: 12),
+                                color: Colors.white70,
+                                fontSize: 12,
+                              ),
                             ),
                           ],
                         ),
@@ -294,7 +369,10 @@ class AppDrawer extends StatelessWidget {
   }
 
   void _showDifficultyConfirmationDialog(
-      BuildContext listDialogContext, Difficulty difficulty, GameProvider gameProvider) {
+    BuildContext listDialogContext,
+    Difficulty difficulty,
+    GameProvider gameProvider,
+  ) {
     showDialog(
       context: listDialogContext,
       builder: (BuildContext confirmDialogContext) {
@@ -313,7 +391,9 @@ class AppDrawer extends StatelessWidget {
             TextButton(
               onPressed: () {
                 gameProvider.setDifficulty(difficulty);
-                Navigator.of(confirmDialogContext).pop(); // Close confirmation dialog
+                Navigator.of(
+                  confirmDialogContext,
+                ).pop(); // Close confirmation dialog
                 Navigator.of(listDialogContext).pop(); // Close list dialog
               },
               child: const Text('확인', style: TextStyle(color: Colors.blue)),

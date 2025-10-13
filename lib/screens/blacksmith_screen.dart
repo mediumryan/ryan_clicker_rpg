@@ -1,3 +1,5 @@
+import 'package:ryan_clicker_rpg/models/player.dart';
+import 'package:collection/collection.dart';
 import 'package:ryan_clicker_rpg/utils/enhancement_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -47,6 +49,80 @@ class _BlacksmithResourcesData {
       destructionProtectionTickets.hashCode;
 }
 
+class _EquippedWeaponData {
+  final Weapon equippedWeapon;
+  final double gold;
+  final int enhancementStones;
+  final int transcendenceStones;
+  final int destructionProtectionTickets;
+
+  _EquippedWeaponData({
+    required this.equippedWeapon,
+    required this.gold,
+    required this.enhancementStones,
+    required this.transcendenceStones,
+    required this.destructionProtectionTickets,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is _EquippedWeaponData &&
+          runtimeType == other.runtimeType &&
+          equippedWeapon == other.equippedWeapon &&
+          gold == other.gold &&
+          enhancementStones == other.enhancementStones &&
+          transcendenceStones == other.transcendenceStones &&
+          destructionProtectionTickets == other.destructionProtectionTickets;
+
+  @override
+  int get hashCode =>
+      equippedWeapon.hashCode ^
+      gold.hashCode ^
+      enhancementStones.hashCode ^
+      transcendenceStones.hashCode ^
+      destructionProtectionTickets.hashCode;
+}
+
+class _InventoryListData {
+  final List<Weapon> inventory;
+  final Player player;
+
+  _InventoryListData({required this.inventory, required this.player});
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is _InventoryListData &&
+          runtimeType == other.runtimeType &&
+          const ListEquality().equals(inventory, other.inventory) &&
+          player == other.player;
+
+  @override
+  int get hashCode => const ListEquality().hash(inventory) ^ player.hashCode;
+}
+
+class _SellableResourcesData {
+  final int enhancementStones;
+  final int transcendenceStones;
+
+  _SellableResourcesData({
+    required this.enhancementStones,
+    required this.transcendenceStones,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is _SellableResourcesData &&
+          runtimeType == other.runtimeType &&
+          enhancementStones == other.enhancementStones &&
+          transcendenceStones == other.transcendenceStones;
+
+  @override
+  int get hashCode => enhancementStones.hashCode ^ transcendenceStones.hashCode;
+}
+
 class BlacksmithScreen extends StatefulWidget {
   const BlacksmithScreen({super.key});
 
@@ -62,374 +138,526 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('대장간'),
+
         backgroundColor: Colors.grey[850],
       ),
+
       backgroundColor: Colors.grey[900],
+
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Gold Info - Optimized with Selector
-            Selector<GameProvider, _BlacksmithResourcesData>(
-              selector: (context, game) => _BlacksmithResourcesData(
-                gold: game.player.gold,
-                enhancementStones: game.player.enhancementStones,
-                transcendenceStones: game.player.transcendenceStones,
-                darkMatter: game.player.darkMatter,
-                destructionProtectionTickets:
-                    game.player.destructionProtectionTickets,
-              ),
-              builder: (context, data, child) {
-                return SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minWidth: MediaQuery.of(context).size.width - 32,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset(
-                          'images/others/gold.png',
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          ': ${NumberFormat('#,###').format(data.gold)}G',
-                          style: const TextStyle(
-                            color: Colors.yellow,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-                        Image.asset(
-                          'images/others/enhancement_stone.png',
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          ': ${NumberFormat('#,###').format(data.enhancementStones)}개',
-                          style: const TextStyle(
-                            color: Colors.lightBlueAccent,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-                        Image.asset(
-                          'images/others/transcendence_stone.png',
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          ': ${NumberFormat('#,###').format(data.transcendenceStones)}개',
-                          style: const TextStyle(
-                            color: Colors.purpleAccent,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-                        Image.asset(
-                          'images/others/dark_matter.png',
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          ': ${NumberFormat('#,###').format(data.darkMatter)}개',
-                          style: const TextStyle(
-                            color: Colors.deepPurpleAccent,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-                        Image.asset(
-                          'images/others/protection_ticket.png',
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          ': ${NumberFormat('#,###').format(data.destructionProtectionTickets)}개',
-                          style: const TextStyle(
-                            color: Colors.greenAccent,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-            const SizedBox(height: 20),
-            // Rest of the screen - Using Consumer
-            Expanded(
-              child: Consumer<GameProvider>(
-                builder: (context, game, child) {
-                  final equippedWeapon = game.player.equippedWeapon;
-                  final rarityMultiplier = equippedWeapon.rarity.index + 1;
-                  final enhancementGoldCost =
-                      ((equippedWeapon.baseLevel + 1) +
-                          pow(equippedWeapon.enhancement + 1, 2.5)) *
-                      30 *
-                      rarityMultiplier;
-                  final enhancementStoneCost =
-                      ((equippedWeapon.enhancement + 1) / 2).ceil() +
-                      (rarityMultiplier - 1);
 
-                  final enhancementLevel = equippedWeapon.enhancement;
-                  const enhancementProbabilities = [
-                    100,
-                    100,
-                    100,
-                    100,
-                    100,
-                    100, // 0-5
-                    90,
-                    85,
-                    80,
-                    75,
-                    70, // 6-10
-                    60,
-                    53,
-                    47,
-                    40, // 11-14
-                    30,
-                    25,
-                    20, // 15-17
-                    15,
-                    10, // 18-19
-                    5, // 20
-                  ]; // In percentage
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Gold Info - Optimized with Selector
+              Selector<GameProvider, _BlacksmithResourcesData>(
+                selector: (context, game) => _BlacksmithResourcesData(
+                  gold: game.player.gold,
 
-                  final ticketCost =
-                      (((rarityMultiplier) +
-                                  (equippedWeapon.enhancement / 5) +
-                                  (equippedWeapon.baseLevel / 100)) /
-                              5)
-                          .truncate();
+                  enhancementStones: game.player.enhancementStones,
 
-                  final newTranscendenceGoldCost =
-                      (100 + (equippedWeapon.baseLevel + 1) * 10) *
-                      1250 *
-                      rarityMultiplier * // rarityMultiplier is already defined above
-                      (equippedWeapon.transcendence + 1);
-                  final newTranscendenceStoneCost =
-                      ((rarityMultiplier +
-                                  ((equippedWeapon.baseLevel + 1) / 200)
-                                      .floor()) *
-                              (equippedWeapon.transcendence + 1))
-                          .toInt();
+                  transcendenceStones: game.player.transcendenceStones,
 
-                  // Filter out the equipped weapon from inventory for selling/disassembling
-                  final inventoryWeapons = game.player.inventory
-                      .where((w) => w.instanceId != equippedWeapon.instanceId)
-                      .toList();
+                  darkMatter: game.player.darkMatter,
 
+                  destructionProtectionTickets:
+                      game.player.destructionProtectionTickets,
+                ),
+
+                builder: (context, data, child) {
                   return SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        // Enhancement Section
-                        _buildSection(
-                          title: '강화',
-                          children: [
-                            Text(
-                              equippedWeapon.enhancement >=
-                                      equippedWeapon.maxEnhancement
-                                  ? '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n\n최대 강화에 도달하였습니다.'
-                                  : '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n강화 확률: ${enhancementProbabilities[enhancementLevel]}%\n필요 골드: ${NumberFormat('#,###').format(enhancementGoldCost)}G\n필요 강화석: ${NumberFormat('#,###').format(enhancementStoneCost)}개\n\n골드와 강화석을 소모하여 무기를 강화합니다. 강화 수치에 따라 데미지,공격속도,치명타배율이 상승합니다.',
-                              style: const TextStyle(
-                                color: Colors.white70,
-                                fontSize: 14,
-                              ),
-                            ),
-                            if (enhancementLevel >= 10)
-                              SwitchListTile(
-                                title: Text(
-                                  '파괴 방지권 사용 ($ticketCost개 필요)',
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                                value: _useTicket,
-                                onChanged: (bool value) {
-                                  setState(() {
-                                    _useTicket = value;
-                                  });
-                                },
-                                activeTrackColor: Colors.greenAccent,
-                              ),
-                          ],
-                          buttonText: '강화',
-                          onPressed:
-                              equippedWeapon.enhancement >=
-                                  equippedWeapon.maxEnhancement
-                              ? null
-                              : () {
-                                  final enhancementLevel =
-                                      equippedWeapon.enhancement;
-                                  final probability =
-                                      enhancementProbabilities[enhancementLevel];
-                                  String penaltyMessage;
-                                  if (_useTicket) {
-                                    penaltyMessage = '실패 시 강화 단계 유지 (방지권 사용)';
-                                  } else if (enhancementLevel < 4) {
-                                    penaltyMessage = '실패 시 페널티 없음';
-                                  } else if (enhancementLevel < 10) {
-                                    penaltyMessage = '실패 시 강화 단계 1 하락';
-                                  } else {
-                                    penaltyMessage = '실패 시 무기 파괴';
-                                  }
+                    scrollDirection: Axis.horizontal,
 
-                                  String content =
-                                      '''정말로 강화하시겠습니까?\n
-필요 골드: ${NumberFormat('#,###').format(enhancementGoldCost)}G
-강화 확률: $probability%\n실패 페널티: $penaltyMessage''';
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minWidth: MediaQuery.of(context).size.width - 32,
+                      ),
 
-                                  if (_useTicket) {
-                                    final currentTickets = game.player.destructionProtectionTickets;
-                                    content +=
-                                        '\n\n파괴 방지권 $ticketCost개가 소모됩니다. (보유: $currentTickets개)';
-                                  }
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-                                  _showConfirmationDialog(
-                                    context,
-                                    '강화',
-                                    content,
-                                    () {
-                                      final result = game.enhanceEquippedWeapon(
-                                        useProtectionTicket: _useTicket,
-                                      );
-                                      if (result['success']) {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) =>
-                                              EnhancementSuccessDialog(
-                                                weapon: result['weapon'],
-                                                oldStats: result['oldStats'],
-                                                newStats: result['newStats'],
-                                              ),
-                                        );
-                                      } else {
-                                        _showResultDialog(
-                                          context,
-                                          result['message'],
-                                        );
-                                      }
-                                    },
-                                  );
-                                },
-                        ),
+                        children: [
+                          Image.asset(
+                            'images/others/gold.png',
 
-                        const SizedBox(height: 20),
+                            width: 24,
 
-                        // Transcendence Section
-                        _buildSection(
-                          title: '초월',
-                          description:
-                              equippedWeapon.transcendence >=
-                                  equippedWeapon.maxTranscendence
-                              ? '현재 초월: [${equippedWeapon.transcendence}] / ${equippedWeapon.maxTranscendence}\n\n이미 최대 초월 단계입니다.'
-                              : '현재 초월: [${equippedWeapon.transcendence}] / ${equippedWeapon.maxTranscendence}\n초월 확률: 5%\n조건: +20 강화\n필요 골드: ${NumberFormat('#,###').format(newTranscendenceGoldCost)}G\n필요 초월석: ${NumberFormat('#,###').format(newTranscendenceStoneCost)}개\n성공 시 능력치 상승\n\n최대 강화 무기를 초월시킵니다. 초월 시 능력치가 막대하게 상승합니다.',
-                          buttonText: '초월',
-                          onPressed:
-                              equippedWeapon.transcendence >=
-                                      equippedWeapon.maxTranscendence ||
-                                  equippedWeapon.enhancement < 20
-                              ? null
-                              : () {
-                                  _showConfirmationDialog(
-                                    context,
-                                    '초월',
-                                    '정말로 초월하시겠습니까?',
-                                    () {
-                                      final message = game
-                                          .transcendEquippedWeapon();
-                                      _showResultDialog(context, message);
-                                    },
-                                  );
-                                },
-                        ),
-
-                        const SizedBox(height: 20),
-                        const Divider(color: Colors.yellow),
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            '보유 무기 (판매/분해)',
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                            height: 24,
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 8.0,
-                            vertical: 4.0,
-                          ),
-                          child: Text(
-                            '판매: 기본 판매가 + 투자 골드의 1/3 회수.\n분해: 골드를 제외한 투자 자원 (강화석, 초월석) 50% 회수.',
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 12,
+
+                          const SizedBox(width: 8),
+
+                          Text(
+                            ': ${NumberFormat('#,###').format(data.gold)}G',
+
+                            style: const TextStyle(
+                              color: Colors.yellow,
+
+                              fontSize: 18,
                             ),
                           ),
-                        ),
 
-                        // Bulk Sell Section
-                        _buildBulkSellSection(context, game, inventoryWeapons),
+                          const SizedBox(width: 20),
 
-                        // Inventory List for Selling/Disassembling
-                        ListView.builder(
-                          shrinkWrap:
-                              true, // Important for nested ListView in SingleChildScrollView
-                          physics:
-                              const NeverScrollableScrollPhysics(), // Disable scrolling for nested ListView
-                          itemCount: inventoryWeapons.length,
-                          itemBuilder: (context, index) {
-                            final weapon = inventoryWeapons[index];
-                            return _buildSellDisassembleWeaponCard(
-                              context,
-                              weapon,
-                              game,
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        const Divider(color: Colors.yellow),
-                        _buildSection(
-                          title: '보유 재화 판매',
-                          description:
-                              '강화석: ${game.player.enhancementStones}개 (개당 2,500 골드)\n'
-                              '초월석: ${game.player.transcendenceStones}개 (개당 25,000 골드)',
-                          children: [
-                            const SizedBox(height: 10),
-                            ElevatedButton(
-                              onPressed: () => _showSellStoneDialog(
-                                context,
-                                StoneType.enhancement,
-                                game,
-                              ),
-                              child: const Text('강화석 판매'),
+                          Image.asset(
+                            'images/others/enhancement_stone.png',
+
+                            width: 24,
+
+                            height: 24,
+                          ),
+
+                          const SizedBox(width: 8),
+
+                          Text(
+                            ': ${NumberFormat('#,###').format(data.enhancementStones)}개',
+
+                            style: const TextStyle(
+                              color: Colors.lightBlueAccent,
+
+                              fontSize: 18,
                             ),
-                            const SizedBox(height: 8),
-                            ElevatedButton(
-                              onPressed: () => _showSellStoneDialog(
-                                context,
-                                StoneType.transcendence,
-                                game,
-                              ),
-                              child: const Text('초월석 판매'),
+                          ),
+
+                          const SizedBox(width: 20),
+
+                          Image.asset(
+                            'images/others/transcendence_stone.png',
+
+                            width: 24,
+
+                            height: 24,
+                          ),
+
+                          const SizedBox(width: 8),
+
+                          Text(
+                            ': ${NumberFormat('#,###').format(data.transcendenceStones)}개',
+
+                            style: const TextStyle(
+                              color: Colors.purpleAccent,
+
+                              fontSize: 18,
                             ),
-                          ],
-                        ),
-                      ],
+                          ),
+
+                          const SizedBox(width: 20),
+
+                          Image.asset(
+                            'images/others/dark_matter.png',
+
+                            width: 24,
+
+                            height: 24,
+                          ),
+
+                          const SizedBox(width: 8),
+
+                          Text(
+                            ': ${NumberFormat('#,###').format(data.darkMatter)}개',
+
+                            style: const TextStyle(
+                              color: Colors.deepPurpleAccent,
+
+                              fontSize: 18,
+                            ),
+                          ),
+
+                          const SizedBox(width: 20),
+
+                          Image.asset(
+                            'images/others/protection_ticket.png',
+
+                            width: 24,
+
+                            height: 24,
+                          ),
+
+                          const SizedBox(width: 8),
+
+                          Text(
+                            ': ${NumberFormat('#,###').format(data.destructionProtectionTickets)}개',
+
+                            style: const TextStyle(
+                              color: Colors.greenAccent,
+
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
               ),
-            ),
-          ],
+
+              const SizedBox(height: 20),
+
+              // Enhancement and Transcendence Section
+              StatefulBuilder(
+                builder: (context, setState) {
+                  return Selector<GameProvider, _EquippedWeaponData>(
+                    selector: (context, game) => _EquippedWeaponData(
+                      equippedWeapon: game.player.equippedWeapon,
+
+                      gold: game.player.gold,
+
+                      enhancementStones: game.player.enhancementStones,
+
+                      transcendenceStones: game.player.transcendenceStones,
+
+                      destructionProtectionTickets:
+                          game.player.destructionProtectionTickets,
+                    ),
+
+                    builder: (context, data, child) {
+                      final equippedWeapon = data.equippedWeapon;
+
+                      final rarityMultiplier = equippedWeapon.rarity.index + 1;
+
+                      final enhancementGoldCost =
+                          ((equippedWeapon.baseLevel + 1) +
+                              pow(equippedWeapon.enhancement + 1, 2.5)) *
+                          30 *
+                          rarityMultiplier;
+
+                      final enhancementStoneCost =
+                          ((equippedWeapon.enhancement + 1) / 2).ceil() +
+                          (rarityMultiplier - 1);
+
+                      final enhancementLevel = equippedWeapon.enhancement;
+
+                      const enhancementProbabilities = [
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100, // 0-5
+                        90,
+                        85,
+                        80,
+                        75,
+                        70, // 6-10
+                        60,
+                        53,
+                        47,
+                        40, // 11-14
+                        30,
+                        25,
+                        20, // 15-17
+                        15,
+                        10, // 18-19
+                        5, // 20
+                      ]; // In percentage
+
+                      final ticketCost =
+                          (((rarityMultiplier) +
+                                      (equippedWeapon.enhancement / 5) +
+                                      (equippedWeapon.baseLevel / 100)) /
+                                  5)
+                              .truncate();
+
+                      final newTranscendenceGoldCost =
+                          (100 + (equippedWeapon.baseLevel + 1) * 10) *
+                          1250 *
+                          rarityMultiplier *
+                          (equippedWeapon.transcendence + 1);
+
+                      final newTranscendenceStoneCost =
+                          ((rarityMultiplier +
+                                      ((equippedWeapon.baseLevel + 1) / 200)
+                                          .floor()) *
+                                  (equippedWeapon.transcendence + 1))
+                              .toInt();
+
+                      return Column(
+                        children: [
+                          _buildSection(
+                            title: '강화',
+
+                            children: [
+                              Text(
+                                equippedWeapon.enhancement >=
+                                        equippedWeapon.maxEnhancement
+                                    ? '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n\n최대 강화에 도달하였습니다.'
+                                    : '현재 강화: +${equippedWeapon.enhancement} / +${equippedWeapon.maxEnhancement}\n강화 확률: ${enhancementProbabilities[enhancementLevel]}%\n필요 골드: ${NumberFormat('#,###').format(enhancementGoldCost)}G\n필요 강화석: ${NumberFormat('#,###').format(enhancementStoneCost)}개\n\n골드와 강화석을 소모하여 무기를 강화합니다. 강화 수치에 따라 데미지,공격속도,치명타배율이 상승합니다.',
+
+                                style: const TextStyle(
+                                  color: Colors.white70,
+
+                                  fontSize: 14,
+                                ),
+                              ),
+
+                              if (enhancementLevel >= 10)
+                                SwitchListTile(
+                                  title: Text(
+                                    '파괴 방지권 사용 ($ticketCost개 필요)',
+
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+
+                                  value: _useTicket,
+
+                                  onChanged: (bool value) {
+                                    setState(() {
+                                      _useTicket = value;
+                                    });
+                                  },
+
+                                  activeTrackColor: Colors.greenAccent,
+                                ),
+                            ],
+
+                            buttonText: '강화',
+
+                            onPressed:
+                                equippedWeapon.enhancement >=
+                                    equippedWeapon.maxEnhancement
+                                ? null
+                                : () {
+                                    final enhancementLevel =
+                                        equippedWeapon.enhancement;
+
+                                    final probability =
+                                        enhancementProbabilities[enhancementLevel];
+
+                                    String penaltyMessage;
+
+                                    if (_useTicket) {
+                                      penaltyMessage = '실패 시 강화 단계 유지 (방지권 사용)';
+                                    } else if (enhancementLevel < 4) {
+                                      penaltyMessage = '실패 시 페널티 없음';
+                                    } else if (enhancementLevel < 10) {
+                                      penaltyMessage = '실패 시 강화 단계 1 하락';
+                                    } else {
+                                      penaltyMessage = '실패 시 무기 파괴';
+                                    }
+
+                                    String content =
+                                        '''정말로 강화하시겠습니까?\n
+
+  필요 골드: ${NumberFormat('#,###').format(enhancementGoldCost)}G
+
+  강화 확률: $probability%\n실패 페널티: $penaltyMessage''';
+
+                                    if (_useTicket) {
+                                      final currentTickets =
+                                          data.destructionProtectionTickets;
+
+                                      content +=
+                                          '\n\n파괴 방지권 $ticketCost개가 소모됩니다. (보유: $currentTickets개)';
+                                    }
+
+                                    _showConfirmationDialog(
+                                      context,
+
+                                      '강화',
+
+                                      content,
+
+                                      () {
+                                        final result = context
+                                            .read<GameProvider>()
+                                            .enhanceEquippedWeapon(
+                                              useProtectionTicket: _useTicket,
+                                            );
+
+                                        if (result['success']) {
+                                          showDialog(
+                                            context: context,
+
+                                            builder: (context) =>
+                                                EnhancementSuccessDialog(
+                                                  weapon: result['weapon'],
+
+                                                  oldStats: result['oldStats'],
+
+                                                  newStats: result['newStats'],
+                                                ),
+                                          );
+                                        } else {
+                                          _showResultDialog(
+                                            context,
+
+                                            result['message'],
+                                          );
+                                        }
+                                      },
+                                    );
+                                  },
+                          ),
+
+                          const SizedBox(height: 20),
+
+                          _buildSection(
+                            title: '초월',
+
+                            description:
+                                equippedWeapon.transcendence >=
+                                    equippedWeapon.maxTranscendence
+                                ? '현재 초월: [${equippedWeapon.transcendence}] / ${equippedWeapon.maxTranscendence}\n\n이미 최대 초월 단계입니다.'
+                                : '현재 초월: [${equippedWeapon.transcendence}] / ${equippedWeapon.maxTranscendence}\n초월 확률: 5%\n조건: +20 강화\n필요 골드: ${NumberFormat('#,###').format(newTranscendenceGoldCost)}G\n필요 초월석: ${NumberFormat('#,###').format(newTranscendenceStoneCost)}개\n성공 시 능력치 상승\n\n최대 강화 무기를 초월시킵니다. 초월 시 능력치가 막대하게 상승합니다.',
+
+                            buttonText: '초월',
+
+                            onPressed:
+                                equippedWeapon.transcendence >=
+                                        equippedWeapon.maxTranscendence ||
+                                    equippedWeapon.enhancement < 20
+                                ? null
+                                : () {
+                                    _showConfirmationDialog(
+                                      context,
+
+                                      '초월',
+
+                                      '정말로 초월하시겠습니까?',
+
+                                      () {
+                                        final message = context
+                                            .read<GameProvider>()
+                                            .transcendEquippedWeapon();
+
+                                        _showResultDialog(context, message);
+                                      },
+                                    );
+                                  },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+
+              const SizedBox(height: 20),
+
+              const Divider(color: Colors.yellow),
+
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+
+                child: Text(
+                  '보유 무기 (판매/분해)',
+
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+              ),
+
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+
+                child: Text(
+                  '판매: 기본 판매가 + 투자 골드의 1/3 회수.\n분해: 골드를 제외한 투자 자원 (강화석, 초월석) 50% 회수.',
+
+                  style: TextStyle(color: Colors.white70, fontSize: 12),
+                ),
+              ),
+
+              Selector<GameProvider, _InventoryListData>(
+                selector: (context, game) => _InventoryListData(
+                  inventory: List.of(game.player.inventory),
+
+                  player: game.player,
+                ),
+
+                builder: (context, data, child) {
+                  final inventoryWeapons = data.inventory
+                      .where(
+                        (w) =>
+                            w.instanceId !=
+                            data.player.equippedWeapon.instanceId,
+                      )
+                      .toList();
+
+                  return Column(
+                    children: [
+                      _buildBulkSellSection(
+                        context,
+                        context.read<GameProvider>(),
+                        inventoryWeapons,
+                      ),
+
+                      ListView.builder(
+                        shrinkWrap: true,
+
+                        physics: const NeverScrollableScrollPhysics(),
+
+                        itemCount: inventoryWeapons.length,
+
+                        itemBuilder: (context, index) {
+                          final weapon = inventoryWeapons[index];
+
+                          return _buildSellDisassembleWeaponCard(
+                            context,
+
+                            weapon,
+
+                            context.read<GameProvider>(),
+                          );
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ),
+
+              const SizedBox(height: 20),
+
+              const Divider(color: Colors.yellow),
+
+              Selector<GameProvider, _SellableResourcesData>(
+                selector: (context, game) => _SellableResourcesData(
+                  enhancementStones: game.player.enhancementStones,
+
+                  transcendenceStones: game.player.transcendenceStones,
+                ),
+
+                builder: (context, data, child) {
+                  return _buildSection(
+                    title: '보유 재화 판매',
+
+                    description:
+                        '강화석: ${data.enhancementStones}개 (개당 2,500 골드)\n'
+                        '초월석: ${data.transcendenceStones}개 (개당 25,000 골드)',
+
+                    children: [
+                      const SizedBox(height: 10),
+
+                      ElevatedButton(
+                        onPressed: () => _showSellStoneDialog(
+                          context,
+
+                          StoneType.enhancement,
+
+                          context.read<GameProvider>(),
+                        ),
+
+                        child: const Text('강화석 판매'),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      ElevatedButton(
+                        onPressed: () => _showSellStoneDialog(
+                          context,
+
+                          StoneType.transcendence,
+
+                          context.read<GameProvider>(),
+                        ),
+
+                        child: const Text('초월석 판매'),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -449,7 +677,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             title,
@@ -479,7 +707,9 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
     Weapon weapon,
     GameProvider game,
   ) {
-    final gradientColors = EnhancementUtils.getGradientColors(weapon.enhancement);
+    final gradientColors = EnhancementUtils.getGradientColors(
+      weapon.enhancement,
+    );
     final bool canEquip = weapon.baseLevel <= game.player.highestStageCleared;
 
     return Opacity(
@@ -581,7 +811,8 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                         ElevatedButton(
                           onPressed: () {
                             final double sellPrice =
-                                weapon.baseSellPrice + (weapon.investedGold / 3);
+                                weapon.baseSellPrice +
+                                (weapon.investedGold / 3);
 
                             final content =
                                 '${weapon.name}을(를) 정말로 판매하시겠습니까?\n\n판매금액: ${NumberFormat('#,###').format(sellPrice)}G';
@@ -597,7 +828,8 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                         ElevatedButton(
                           onPressed: () {
                             final returnedEnhancementStones =
-                                (weapon.investedEnhancementStones / 2).truncate();
+                                (weapon.investedEnhancementStones / 2)
+                                    .truncate();
                             final returnedTranscendenceStones =
                                 (weapon.investedTranscendenceStones / 2)
                                     .truncate();

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart'; // Needed for WidgetsFlutterBinding
+import 'package:firebase_core/firebase_core.dart';
+import 'package:ryan_clicker_rpg/firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:ryan_clicker_rpg/data/achievement_data.dart';
 import 'package:ryan_clicker_rpg/data/weapon_data.dart'; // Import WeaponData
@@ -9,6 +11,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter binding is initialized
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await WeaponData.initialize(); // Initialize WeaponData
   await AchievementData.initialize(); // Initialize AchievementData
 
