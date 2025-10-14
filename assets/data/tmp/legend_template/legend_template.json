@@ -1,0 +1,382 @@
+[
+  {
+    "id": 51000,
+    "name": "흑요도",
+    "imageName": "legend/blade/51000.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.blade",
+    "baseLevel": 0,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 4.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "흑요석 각인",
+        "skill_type": "passive",
+        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다. (공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 피해 +1배, 적중률 +5%)",
+        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 1.5,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 1.5,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.1,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalDamage",
+              "value": 1.0,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.05,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "흑요석의 깊고 어두운 빛을 담은 검. 전투 능력을 크게 끌어올린다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 10,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 51001,
+    "name": "적사",
+    "imageName": "legend/blade/51001.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.blade",
+    "baseLevel": 200,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 20.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "갈증",
+        "skill_type": "active",
+        "skill_description": "날카로운 일격이 적의 상처를 깊게 파고든다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 출혈, 초당 7,220 피해. 중첩 불가, 쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyBleed",
+            "params": {
+              "chance": 0.075,
+              "duration": 5,
+              "fixedDamagePerSecond": 7220,
+              "stackable": false,
+              "trigger": "onHit",
+              "cooldown": 5
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "수혈",
+        "skill_type": "passive",
+        "skill_description": "피로 물든 칼날이 더욱 예리해진다.",
+        "skill_description_detail": "출혈 상태의 적에게 주는 피해 +50%",
+        "skill_effect": [
+          {
+            "effect_name": "increaseDamageToStatused",
+            "params": { "status": "bleed", "damageMultiplier": 0.5 }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "붉은 뱀의 모양을 한 음침한 기운의 요도. 공격 시 출혈을 유발한다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 30,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 51002,
+    "name": "의참도",
+    "imageName": "legend/blade/51002.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.blade",
+    "baseLevel": 400,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 24.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "남아있는 의지",
+        "skill_type": "passive",
+        "skill_description": "검에 깃든 강력한 의지가 사용자를 고무시킨다.",
+        "skill_description_detail": "공격력 +100%, 공격속도 +50%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 2.0,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 1.5,
+              "isMultiplicative": true
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "동쪽 나라의 협객 간사부로가 생전에 사용했던 검. 그 의협심이 고스란히 남아있다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 50,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 51003,
+    "name": "에어린델",
+    "imageName": "legend/blade/51003.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.blade",
+    "baseLevel": 600,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 28.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "제피르의 축복",
+        "skill_type": "active",
+        "skill_description": "바람의 신이자 실프의 주인인 제피르의 축복으로 사용자의 속도를 대폭 올려준다.",
+        "skill_description_detail": "공격속도 +150%, 더블어택 확률 +5%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "doubleAttackChance",
+              "value": 0.05,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 2.5,
+              "isMultiplicative": true
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "바람의 정령 실프의 날개를 엮어 만든 검. 매우 빠른 공격이 가능해진다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 100,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 51004,
+    "name": "사천당검",
+    "imageName": "legend/blade/51004.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.blade",
+    "baseLevel": 800,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 36.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "만독 주입",
+        "skill_type": "active",
+        "skill_description": "여러 대에 거쳐 개량된 극독을 상대방에게 주입한다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 중독, 초당 최대 체력의 8% 피해, 최대 데미지 108,000, 쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyPoison",
+            "params": {
+              "chance": 0.075,
+              "percentPerSecond": 0.08,
+              "maxDmg": 108000,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 5
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "독요청광심법",
+        "skill_type": "active",
+        "skill_description": "당가의 비기로 독을 자유자제로 다룰 수 있게 된다.",
+        "skill_description_detail": "중독 상태의 적에게 주는 데미지 +50%",
+        "skill_effect": [
+          {
+            "effect_name": "increaseDamageToStatused",
+            "params": { "status": "poison", "damageMultiplier": 0.5 }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "동쪽 무림 세력 중 독에 정평이 나있는 사천당가의 명검.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 51005,
+    "name": "신성한 파편 - 오른손",
+    "imageName": "legend/blade/51005.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.blade",
+    "baseLevel": 500,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 40.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "정화",
+        "skill_type": "passive",
+        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
+        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "undead", "multiplier": 1 }
+          },
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "demon", "multiplier": 1 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "divine", "multiplier": 0.3 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "angel", "multiplier": 0.3 }
+          }
+        ]
+      },
+      {
+        "skill_name": "심판",
+        "skill_type": "active",
+        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.075,
+              "damage": 1367000,
+              "cooldown": 5,
+              "trigger": "onHit"
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "신성국의 열다섯 성물 중 하나. 신의 오른손으로 만들어졌다고 전해진다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  }
+]
