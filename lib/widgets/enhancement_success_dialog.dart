@@ -32,7 +32,7 @@ class EnhancementSuccessDialog extends StatelessWidget {
                 width: 100,
                 height: 100,
                 child: Image.asset(
-                  'images/weapons/${weapon.imageName}',
+                  'assets/images/weapons/${weapon.imageName}',
                   fit: BoxFit.contain,
                 ),
               ),

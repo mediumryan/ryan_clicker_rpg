@@ -54,11 +54,11 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAGCGMAk5fogx_w0DRTDdA0lmz18K7ALIk',
-    appId: '1:229554224855:android:f3a6150f5d3b0f3017fa92',
-    messagingSenderId: '229554224855',
-    projectId: 'nooler-rpg',
-    storageBucket: 'nooler-rpg.firebasestorage.app',
+    apiKey: 'AIzaSyDCJO8b4cFz8e43t5yx6qg2ngh659URQEo',
+    appId: '1:533837749555:android:cd14b98b11e237f02b3246',
+    messagingSenderId: '533837749555',
+    projectId: 'nooler-clicker-rpg',
+    storageBucket: 'nooler-clicker-rpg.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(

@@ -99,12 +99,15 @@ class QuickAccessButtons extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 24, color: highlightColor ?? Colors.white),
-            const SizedBox(height: 4),
+            Icon(icon, size: 22, color: highlightColor ?? Colors.white),
+            const SizedBox(height: 2),
             FittedBox(
               child: Text(
                 label,
-                style: TextStyle(color: highlightColor ?? Colors.white70),
+                style: TextStyle(
+                  color: highlightColor ?? Colors.white70,
+                  fontSize: 12,
+                ),
               ),
             ),
           ],

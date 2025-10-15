@@ -11,9 +11,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter binding is initialized
+
   await Firebase.initializeApp(
+    name: "nooler-clicker",
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   await WeaponData.initialize(); // Initialize WeaponData
   await AchievementData.initialize(); // Initialize AchievementData
 
@@ -39,14 +42,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ryan Clicker RPG',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ).copyWith(
-        textTheme: GoogleFonts.juaTextTheme(
-          Theme.of(context).textTheme,
-        ),
-      ),
+      theme:
+          ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ).copyWith(
+            textTheme: GoogleFonts.juaTextTheme(Theme.of(context).textTheme),
+          ),
       builder: (context, child) {
         return Selector<GameProvider, String>(
           selector: (context, game) => game.player.graphicsQuality,

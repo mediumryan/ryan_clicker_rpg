@@ -1,9 +1,10 @@
 import 'package:ryan_clicker_rpg/models/difficulty.dart';
 import 'package:ryan_clicker_rpg/data/difficulty_data.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ryan_clicker_rpg/models/monster.dart';
+
 import 'package:ryan_clicker_rpg/models/status_effect.dart';
-import 'package:ryan_clicker_rpg/models/player.dart';
+
 import 'package:ryan_clicker_rpg/models/gacha_box.dart'; // New import
 import 'dart:async'; // Import for Timer
 import 'package:provider/provider.dart'; // New import
@@ -66,36 +67,9 @@ class DamageText {
   : key = UniqueKey();
 }
 
-class StageZoneWidget extends StatefulWidget {
-  final Player player;
-  final Monster monster;
-  final Function(Map<String, dynamic>)
-  onAttack; // Updated to accept damage info
-  final VoidCallback onGoToNextStage;
-  final VoidCallback onGoToPreviousStage;
-  final bool isMonsterDefeated;
-  final String stageName; // New: Stage name
-  final double monsterEffectiveDefense; // New field
-  final double lastGoldReward; // New
-  final GachaBox? lastDroppedBox; // New
-  final Duration autoAttackDelay; // New
-  final double lastEnhancementStonesReward; // New
 
-  const StageZoneWidget({
-    super.key,
-    required this.player,
-    required this.monster,
-    required this.onAttack,
-    required this.onGoToNextStage,
-    required this.onGoToPreviousStage,
-    required this.isMonsterDefeated,
-    required this.stageName, // New: Required in constructor
-    required this.monsterEffectiveDefense, // New required field
-    required this.lastGoldReward, // New
-    required this.lastDroppedBox, // New
-    required this.autoAttackDelay, // New
-    required this.lastEnhancementStonesReward, // New
-  });
+class StageZoneWidget extends StatefulWidget {
+  const StageZoneWidget({super.key});
 
   @override
   State<StageZoneWidget> createState() => _StageZoneWidgetState();
@@ -107,17 +81,17 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
 
   // Helper map to get icon and color for each status effect
   final Map<StatusEffectType, String> _statusEffectImagePaths = {
-    StatusEffectType.poison: 'images/status/poison.png',
-    StatusEffectType.bleed: 'images/status/bleed.png',
-    StatusEffectType.stun: 'images/status/stun.png',
-    StatusEffectType.confusion: 'images/status/confusion.png',
-    StatusEffectType.sleep: 'images/status/sleep.png',
-    StatusEffectType.disarm: 'images/status/disarm.png',
-    StatusEffectType.charm: 'images/status/charm.png',
-    StatusEffectType.weakness: 'images/status/weakness.png',
-    StatusEffectType.freeze: 'images/status/freeze.png',
-    StatusEffectType.burn: 'images/status/burn.png',
-    StatusEffectType.shock: 'images/status/shock.png',
+    StatusEffectType.poison: 'assets/images/status/poison.png',
+    StatusEffectType.bleed: 'assets/images/status/bleed.png',
+    StatusEffectType.stun: 'assets/images/status/stun.png',
+    StatusEffectType.confusion: 'assets/images/status/confusion.png',
+    StatusEffectType.sleep: 'assets/images/status/sleep.png',
+    StatusEffectType.disarm: 'assets/images/status/disarm.png',
+    StatusEffectType.charm: 'assets/images/status/charm.png',
+    StatusEffectType.weakness: 'assets/images/status/weakness.png',
+    StatusEffectType.freeze: 'assets/images/status/freeze.png',
+    StatusEffectType.burn: 'assets/images/status/burn.png',
+    StatusEffectType.shock: 'assets/images/status/shock.png',
   };
 
   @override
@@ -189,16 +163,21 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
       isSkillDamage: isSkillDamage,
       damageType: damageType,
     );
+    if (!mounted) return;
     setState(() {
       _damageTexts.add(newDamageText);
     });
 
+    final gameProvider = Provider.of<GameProvider>(context, listen: false);
+
     // Remove the damage text after a delay (e.g., 1.5 seconds for animation)
     Timer(
       Duration(
-        milliseconds: (widget.autoAttackDelay.inMilliseconds * 0.75).round(),
+        milliseconds:
+            (gameProvider.autoAttackDelay.inMilliseconds * 0.75).round(),
       ),
       () {
+        if (!mounted) return;
         setState(() {
           _damageTexts.remove(newDamageText);
         });
@@ -206,419 +185,509 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
     );
   }
 
-  Widget _buildWarpDropdown() {
-    final List<int> warpStages = [];
-    final int highestClearedTwentyFiveStage =
-        (widget.player.highestStageCleared ~/ 25) * 25;
+  @override
+  Widget build(BuildContext context) {
+    // The main GestureDetector needs to know if it should be tappable.
+    return Selector<GameProvider, (bool, bool)>(
+      selector: (context, game) =>
+          (game.isMonsterDefeated, game.player.canManualAttack),
+      builder: (context, data, child) {
+        final isMonsterDefeated = data.$1;
+        final canManualAttack = data.$2;
 
-    // Start from 25, go up to highestClearedTwentyFiveStage
-    for (int stage = 25; stage <= highestClearedTwentyFiveStage; stage += 25) {
-      warpStages.add(stage);
-    }
-
-    if (warpStages.isEmpty) {
-      return const SizedBox.shrink(); // No stages to warp to
-    }
-
-    return DropdownButton<int>(
-      hint: Text('Warp to Stage', style: TextStyle(color: Colors.white70)),
-      value: null, // No initial selection
-      dropdownColor: Colors.grey[800],
-      style: const TextStyle(color: Colors.white, fontSize: 16),
-      icon: const Icon(Icons.arrow_drop_down, color: Colors.white),
-      onChanged: (int? newStage) {
-        if (newStage != null) {
-          Provider.of<GameProvider>(
-            context,
-            listen: false,
-          ).warpToStage(newStage);
-        }
+        return GestureDetector(
+          onTap: isMonsterDefeated || !canManualAttack
+              ? null
+              : () => Provider.of<GameProvider>(context, listen: false)
+                  .handleManualClick(),
+          child: Container(
+            color: Colors.grey[900],
+            width: double.infinity,
+            child: Stack(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    _buildLeftNavigation(),
+                    _buildCenterContent(),
+                    _buildRightNavigation(),
+                  ],
+                ),
+                _buildDamageTexts(),
+                _buildRewardDisplay(),
+                _buildTopBar(),
+                _buildHeroExpBar(),
+              ],
+            ),
+          ),
+        );
       },
-      items: warpStages.map<DropdownMenuItem<int>>((int stage) {
-        return DropdownMenuItem<int>(value: stage, child: Text('Stage $stage'));
-      }).toList(),
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    double hpPercentage = widget.monster.maxHp > 0
-        ? widget.monster.hp / widget.monster.maxHp
-        : 0;
-
-    return GestureDetector(
-      onTap: widget.isMonsterDefeated || !widget.player.canManualAttack
-          ? null
-          : () {
-              Provider.of<GameProvider>(
-                context,
-                listen: false,
-              ).handleManualClick(); // New: Handle manual click
-            },
-      child: Container(
-        color: Colors.grey[900],
-        width: double.infinity,
-        child: Stack(
-          // Use Stack to overlay damage numbers
+  Widget _buildLeftNavigation() {
+    return Selector<GameProvider, (int, bool)>(
+      selector: (context, game) =>
+          (game.player.currentStage, game.isMonsterDefeated),
+      builder: (context, data, child) {
+        final currentStage = data.$1;
+        final isMonsterDefeated = data.$2;
+        return Row(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                // Previous Stage Button
-                IconButton(
-                  icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-                  onPressed:
-                      widget.player.currentStage > 1 &&
-                          !widget.isMonsterDefeated
-                      ? widget.onGoToPreviousStage
-                      : null,
-                ),
-                // Center Content
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Stage ${widget.monster.stage} / ${DifficultyData.getDifficultyGoal(widget.player.currentDifficulty)}',
-                      style: const TextStyle(color: Colors.white, fontSize: 24),
-                    ),
-                    Text(
-                      widget.stageName, // Display stage name
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      widget.monster.isBoss
-                          ? '${widget.monster.name} (BOSS)'
-                          : widget.monster.name,
-                      style: TextStyle(
-                        color: widget.monster.isBoss
-                            ? Colors.red
-                            : Colors.white,
-                        fontSize: 20,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    ColorFiltered(
-                      colorFilter: widget.isMonsterDefeated
-                          ? const ColorFilter.matrix(<double>[
-                              0.2126,
-                              0.7152,
-                              0.0722,
-                              0,
-                              0,
-                              0.2126,
-                              0.7152,
-                              0.0722,
-                              0,
-                              0,
-                              0.2126,
-                              0.7152,
-                              0.0722,
-                              0,
-                              0,
-                              0,
-                              0,
-                              0,
-                              1,
-                              0,
-                            ])
-                          : const ColorFilter.mode(
-                              Colors.transparent,
-                              BlendMode.multiply,
-                            ),
-                      child: Stack(
-                        children: [
-                          SizedBox(
-                            width: 200,
-                            height: 200,
-                            child: Image.asset(
-                              'images/monsters/${widget.monster.imageName}',
-                              fit: BoxFit.contain,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  Container(
-                                    color: Colors.blue,
-                                    child: const Center(
-                                      child: Text(
-                                        'Monster Img',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ),
-                                  ),
-                            ),
-                          ),
-                          if (widget.monster.statusEffects.isNotEmpty)
-                            Positioned(
-                              top: 0,
-                              left: 0,
-                              child: Row(
-                                children: widget.monster.statusEffects
-                                    .map(
-                                      (effect) => effect.type,
-                                    ) // Get only the type
-                                    .toSet() // Get unique types
-                                    .map((uniqueType) {
-                                      // Map unique types to icons
-                                      final imagePath =
-                                          _statusEffectImagePaths[uniqueType];
-                                      if (imagePath != null) {
-                                        // Find the first effect of this type to get its duration for the tooltip
-                                        final effect = widget
-                                            .monster
-                                            .statusEffects
-                                            .firstWhere(
-                                              (e) => e.type == uniqueType,
-                                            );
-                                        return Tooltip(
-                                          message:
-                                              '${effect.type.toString().split('.').last} (${effect.duration}s)',
-                                          child: Image.asset(
-                                            imagePath,
-                                            width: 30,
-                                            height: 30,
-                                          ),
-                                        );
-                                      }
-                                      return const SizedBox.shrink();
-                                    })
-                                    .toList(),
-                              ),
-                            ),
-                          // Monster Defense Icon
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: GestureDetector(
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      backgroundColor: Colors.grey[900],
-                                      titleTextStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                      ),
-                                      contentTextStyle: const TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                      title: const Text('방어력 정보'),
-                                      content: const Text(
-                                        '몬스터의 방어력 수치를 나타냅니다.\n\n'
-                                        '몬스터의 방어력 1당 0.5%의 데미지가 경감됩니다.\n\n'
-                                        '반대로 몬스터의 방어력이 0보다 낮을 경우에는 1당 2.5%의 추가 데미지를 받습니다.',
-                                      ),
-                                      actions: <Widget>[
-                                        TextButton(
-                                          child: const Text('닫기'),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              },
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.shield,
-                                    color: Colors.grey[800],
-                                    size: 40,
-                                  ),
-                                  Text(
-                                    widget.monsterEffectiveDefense
-                                        .toStringAsFixed(0),
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    SizedBox(
-                      width: 250,
-                      child: Column(
-                        children: [
-                          LinearProgressIndicator(
-                            value: hpPercentage,
-                            minHeight: 20,
-                            backgroundColor: Colors.grey,
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                              Colors.red,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            '${widget.monster.hp.toStringAsFixed(0)} / ${widget.monster.maxHp.toStringAsFixed(0)}',
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 16), // Spacing for the dropdown
-                    _buildWarpDropdown(), // Warp dropdown
-                  ],
-                ),
-                // Next Stage Button
-                IconButton(
-                  icon: const Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.white,
-                  ),
-                  onPressed:
-                      widget.player.currentStage <
-                              widget.player.highestStageCleared &&
-                          !widget.isMonsterDefeated
-                      ? widget.onGoToNextStage
-                      : null,
-                ),
-              ],
+            IconButton(
+              icon: const Icon(Icons.first_page, color: Colors.white),
+              onPressed: currentStage > 1 && !isMonsterDefeated
+                  ? () =>
+                      Provider.of<GameProvider>(context, listen: false).warpToStage(1)
+                  : null,
             ),
-            // Render damage texts
-            ..._damageTexts.map(
-              (dt) => _DamageTextWidget(
-                key: dt.key,
-                damageText: dt,
-                animationDuration: widget.autoAttackDelay,
+            IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
               ),
+              onPressed: currentStage > 1 && !isMonsterDefeated
+                  ? () => Provider.of<GameProvider>(context, listen: false)
+                      .goToPreviousStage()
+                  : null,
             ),
-            // Reward display (positioned absolutely)
-            if (widget.isMonsterDefeated)
-              Positioned(
-                bottom: 60, // Moved down slightly
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // Gold reward
-                        SizedBox(
-                          width: 25,
-                          height: 25,
-                          child: Image.asset(
-                            'images/others/gold.png',
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          '${NumberFormat('#,###').format(widget.lastGoldReward)}G',
-                          style: const TextStyle(
-                            color: Colors.yellow,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        // Dropped box
-                        if (widget.lastDroppedBox != null)
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: SizedBox(
-                              width: 30,
-                              height: 30,
-                              child: Image.asset(
-                                widget.lastDroppedBox!.imagePath,
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                        // Enhancement stones reward
-                        if (widget.lastEnhancementStonesReward > 0)
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: 25,
-                                  height: 25,
-                                  child: Image.asset(
-                                    'images/others/enhancement_stone.png',
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  '${NumberFormat('#,###').format(widget.lastEnhancementStonesReward)}개',
-                                  style: const TextStyle(
-                                    color: Colors.blue,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+          ],
+        );
+      },
+    );
+  }
 
-            Positioned(
-              top: 8,
-              left: 8,
-              right: 8,
-              child: Selector<GameProvider, bool>(
-                selector: (context, game) => game.isAutoAttackActive,
-                builder: (context, isAutoAttackActive, child) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Widget _buildRightNavigation() {
+    return Selector<GameProvider, (int, int)>(
+      selector: (context, game) => (
+        game.player.currentStage,
+        game.player.highestStageCleared,
+      ),
+      builder: (context, data, child) {
+        final currentStage = data.$1;
+        final highestStageCleared = data.$2;
+        return Row(
+          children: [
+            IconButton(
+              icon: const Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.white,
+              ),
+              onPressed: currentStage < highestStageCleared + 1
+                  ? () => Provider.of<GameProvider>(context, listen: false)
+                      .goToNextStage()
+                  : null,
+            ),
+            IconButton(
+              icon: const Icon(Icons.last_page, color: Colors.white),
+              onPressed: currentStage < highestStageCleared + 1
+                  ? () => Provider.of<GameProvider>(context, listen: false)
+                      .warpToStage(highestStageCleared + 1)
+                  : null,
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildCenterContent() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _buildStageText(),
+        const SizedBox(height: 16),
+        _buildMonsterName(),
+        const SizedBox(height: 16),
+        _buildMonsterImageAndInfo(),
+        const SizedBox(height: 16),
+        _buildMonsterHpBar(),
+      ],
+    );
+  }
+
+  Widget _buildStageText() {
+    return Selector<GameProvider, (int, Difficulty, String)>(
+      selector: (context, game) => (
+        game.monster.stage,
+        game.player.currentDifficulty,
+        game.currentStageName
+      ),
+      builder: (context, data, child) {
+        return Column(
+          children: [
+            Text(
+              'Stage ${data.$1} / ${DifficultyData.getDifficultyGoal(data.$2)}',
+              style: const TextStyle(color: Colors.white, fontSize: 24),
+            ),
+            Text(
+              data.$3, // Display stage name
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 16,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildMonsterName() {
+    return Selector<GameProvider, (String, bool)>(
+      selector: (context, game) => (game.monster.name, game.monster.isBoss),
+      builder: (context, data, child) {
+        final name = data.$1;
+        final isBoss = data.$2;
+        return Text(
+          isBoss ? '$name (BOSS)' : name,
+          style: TextStyle(
+            color: isBoss ? Colors.red : Colors.white,
+            fontSize: 20,
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildMonsterImageAndInfo() {
+    return Selector<GameProvider,
+        (bool, String, List<StatusEffect>, double)>(
+      selector: (context, game) => (
+        game.isMonsterDefeated,
+        game.monster.imageName,
+        game.monster.statusEffects,
+        game.currentMonsterEffectiveDefense
+      ),
+      shouldRebuild: (previous, next) {
+        // Rebuild only if these specific values change
+        return previous.$1 != next.$1 ||
+            previous.$2 != next.$2 ||
+            !listEquals(previous.$3, next.$3) ||
+            previous.$4 != next.$4;
+      },
+      builder: (context, data, child) {
+        final isMonsterDefeated = data.$1;
+        final imageName = data.$2;
+        final statusEffects = data.$3;
+        final effectiveDefense = data.$4;
+
+        return ColorFiltered(
+          colorFilter: isMonsterDefeated
+              ? const ColorFilter.matrix(<double>[
+                  0.2126, 0.7152, 0.0722, 0, 0,
+                  0.2126, 0.7152, 0.0722, 0, 0,
+                  0.2126, 0.7152, 0.0722, 0, 0,
+                  0,      0,      0,      1, 0,
+                ])
+              : const ColorFilter.mode(
+                  Colors.transparent,
+                  BlendMode.multiply,
+                ),
+          child: Stack(
+            children: [
+              SizedBox(
+                width: 160,
+                height: 160,
+                child: Image.asset(
+                  'assets/images/monsters/$imageName',
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    color: Colors.blue,
+                    child: const Center(
+                      child: Text('Monster Img',
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                ),
+              ),
+              if (statusEffects.isNotEmpty)
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  child: Row(
+                    children: statusEffects
+                        .map((e) => e.type)
+                        .toSet()
+                        .map((uniqueType) {
+                      final imagePath = _statusEffectImagePaths[uniqueType];
+                      if (imagePath != null) {
+                        final effect =
+                            statusEffects.firstWhere((e) => e.type == uniqueType);
+                        return Tooltip(
+                          message:
+                              '${effect.type.toString().split('.').last} (${effect.duration}s)',
+                          child: Image.asset(
+                            imagePath,
+                            width: 30,
+                            height: 30,
+                          ),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    }).toList(),
+                  ),
+                ),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          backgroundColor: Colors.grey[900],
+                          titleTextStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                          contentTextStyle: const TextStyle(
+                            color: Colors.white,
+                          ),
+                          title: const Text('방어력 정보'),
+                          content: const Text(
+                            '몬스터의 방어력 수치를 나타냅니다.\n\n'
+                            '몬스터의 방어력 1당 0.5%의 데미지가 경감됩니다.\n\n'
+                            '반대로 몬스터의 방어력이 0보다 낮을 경우에는 1당 2.5%의 추가 데미지를 받습니다.',
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text('닫기'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
                     children: [
+                      Icon(
+                        Icons.shield,
+                        color: Colors.grey[800],
+                        size: 30,
+                      ),
                       Text(
-                        DifficultyData.getDifficultyName(
-                          widget.player.currentDifficulty,
-                        ),
+                        effectiveDefense.toStringAsFixed(0),
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Row(
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildMonsterHpBar() {
+    return Selector<GameProvider, (double, double)>(
+      selector: (context, game) => (game.monster.hp, game.monster.maxHp),
+      builder: (context, data, child) {
+        final hp = data.$1;
+        final maxHp = data.$2;
+        final hpPercentage = maxHp > 0 ? hp / maxHp : 0.0;
+
+        return SizedBox(
+          width: 160,
+          child: Column(
+            children: [
+              LinearProgressIndicator(
+                value: hpPercentage,
+                minHeight: 20,
+                backgroundColor: Colors.grey,
+                valueColor: const AlwaysStoppedAnimation<Color>(
+                  Colors.red,
+                ),
+              ),
+              const SizedBox(height: 4),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  '${NumberFormat('#,###').format(hp.truncate())} / ${NumberFormat('#,###').format(maxHp.truncate())}',
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildDamageTexts() {
+    return Selector<GameProvider, Duration>(
+      selector: (context, game) => game.autoAttackDelay,
+      builder: (context, autoAttackDelay, child) {
+        return Stack(
+          children: _damageTexts
+              .map(
+                (dt) => _DamageTextWidget(
+                  key: dt.key,
+                  damageText: dt,
+                  animationDuration: autoAttackDelay,
+                ),
+              )
+              .toList(),
+        );
+      },
+    );
+  }
+
+  Widget _buildRewardDisplay() {
+    return Selector<GameProvider, (bool, double, GachaBox?, double)>(
+      selector: (context, game) => (
+        game.isMonsterDefeated,
+        game.lastGoldReward,
+        game.lastDroppedBox,
+        game.lastEnhancementStonesReward
+      ),
+      builder: (context, data, child) {
+        final isMonsterDefeated = data.$1;
+        final lastGoldReward = data.$2;
+        final lastDroppedBox = data.$3;
+        final lastEnhancementStonesReward = data.$4;
+
+        if (!isMonsterDefeated) {
+          return const SizedBox.shrink();
+        }
+
+        return Positioned(
+          bottom: 60, // Moved down slightly
+          left: 0,
+          right: 0,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Gold reward
+                  SizedBox(
+                    width: 25,
+                    height: 25,
+                    child: Image.asset(
+                      'assets/images/others/gold.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    '${NumberFormat('#,###').format(lastGoldReward)}G',
+                    style: const TextStyle(
+                      color: Colors.yellow,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  // Dropped box
+                  if (lastDroppedBox != null)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: SizedBox(
+                        width: 30,
+                        height: 30,
+                        child: Image.asset(
+                          lastDroppedBox.imagePath,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  // Enhancement stones reward
+                  if (lastEnhancementStonesReward > 0)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Row(
                         children: [
-                          Text(
-                            'Auto-Attack',
-                            style: TextStyle(
-                              color: isAutoAttackActive
-                                  ? Colors.greenAccent
-                                  : Colors.white70,
+                          SizedBox(
+                            width: 25,
+                            height: 25,
+                            child: Image.asset(
+                              'assets/images/others/enhancement_stone.png',
+                              fit: BoxFit.contain,
                             ),
                           ),
-                          Switch(
-                            value: isAutoAttackActive,
-                            onChanged: (value) {
-                              Provider.of<GameProvider>(
-                                context,
-                                listen: false,
-                              ).toggleAutoAttack();
-                            },
-                            activeTrackColor: Colors.green,
-                            inactiveTrackColor: Colors.grey,
+                          const SizedBox(width: 4),
+                          Text(
+                            '${NumberFormat('#,###').format(lastEnhancementStonesReward)}개',
+                            style: const TextStyle(
+                              color: Colors.blue,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
-                    ],
-                  );
-                },
+                    ),
+                ],
               ),
             ),
-            _buildHeroExpBar(),
-          ],
-        ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildTopBar() {
+    return Positioned(
+      top: 8,
+      left: 8,
+      right: 8,
+      child: Selector<GameProvider, (Difficulty, bool)>(
+        selector: (context, game) =>
+            (game.player.currentDifficulty, game.isAutoAttackActive),
+        builder: (context, data, child) {
+          final currentDifficulty = data.$1;
+          final isAutoAttackActive = data.$2;
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                DifficultyData.getDifficultyName(
+                  currentDifficulty,
+                ),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+              Column(
+                children: [
+                  Switch(
+                    value: isAutoAttackActive,
+                    onChanged: (value) {
+                      Provider.of<GameProvider>(
+                        context,
+                        listen: false,
+                      ).toggleAutoAttack();
+                    },
+                    activeTrackColor: Colors.green,
+                    inactiveTrackColor: Colors.grey,
+                  ),
+                  Text(
+                    'Auto-Attack',
+                    style: TextStyle(
+                      color: isAutoAttackActive
+                          ? Colors.greenAccent
+                          : Colors.white70,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -631,9 +700,8 @@ class _StageZoneWidgetState extends State<StageZoneWidget> {
         requiredExp: game.requiredExpForLevelUp,
       ),
       builder: (context, data, child) {
-        final expPercentage = data.requiredExp > 0
-            ? data.heroExp / data.requiredExp
-            : 0.0;
+        final expPercentage =
+            data.requiredExp > 0 ? data.heroExp / data.requiredExp : 0.0;
 
         return Positioned(
           bottom: 0,
@@ -798,8 +866,8 @@ class _DamageTextWidgetState extends State<_DamageTextWidget>
               widget.damageText.damageType == DamageType.instantKill
                   ? 'Kill!'
                   : (widget.damageText.isMiss
-                        ? 'MISS!'
-                        : widget.damageText.damage.toString()),
+                      ? 'MISS!'
+                      : widget.damageText.damage.toString()),
               style: TextStyle(
                 color: getColor(),
                 fontSize: getFontSize(),

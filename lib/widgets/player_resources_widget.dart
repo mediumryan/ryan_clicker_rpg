@@ -73,7 +73,7 @@ class PlayerResourcesWidget extends StatelessWidget {
                     children: [
                       _buildResourceDisplay(
                         context,
-                        'images/others/gold.png',
+                        'assets/images/others/gold.png',
                         NumberFormat('#,###').format(data.gold),
                         Colors.amber,
                         '골드',
@@ -84,7 +84,7 @@ class PlayerResourcesWidget extends StatelessWidget {
                       const SizedBox(width: 16),
                       _buildResourceDisplay(
                         context,
-                        'images/others/enhancement_stone.png',
+                        'assets/images/others/enhancement_stone.png',
                         NumberFormat('#,###').format(data.enhancementStones),
                         Colors.blueGrey,
                         '강화석',
@@ -95,7 +95,7 @@ class PlayerResourcesWidget extends StatelessWidget {
                       const SizedBox(width: 16),
                       _buildResourceDisplay(
                         context,
-                        'images/others/dark_matter.png',
+                        'assets/images/others/dark_matter.png',
                         NumberFormat('#,###').format(data.darkMatter),
                         Colors.deepPurple,
                         '암흑 물질',

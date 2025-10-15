@@ -312,7 +312,7 @@ class Weapon {
       imageName: "group1/rusty_crude_rapier.png",
       type: WeaponType.rapier,
       baseLevel: 0,
-      baseDamage: 9999999,
+      baseDamage: 36,
       speed: 1.3,
       criticalChance: 0.18,
       criticalDamage: 1.42,

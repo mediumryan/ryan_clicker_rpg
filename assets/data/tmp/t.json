@@ -1,16 +1,11 @@
-import json
-import copy
-import os
-
-# --- 베이스 에픽 무기 데이터 ---
-BASE_EPIC_WEAPONS = [
+[
   {
     "id": 30000,
     "name": "조화",
     "imageName": "epic/rapier/30000.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
-    "description": "모든 능력치가 아름답게 조화를 이룬 무기입니다. 모든 능력치가 소폭 상승합니다.",
+    "description": "모든 능력치가 아릅답게 조화를 이룬 무기입니다. 모든 능력치가 소폭 상승합니다.",
     "baseLevel": 0,
     "baseDamage": 0,
     "speed": 1.43,
@@ -26,7 +21,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -43,7 +38,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "damage",
               "value": 1.25,
-              "isMultiplicative": True
+              "isMultiplicative": true
             }
           },
           {
@@ -51,7 +46,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "speed",
               "value": 1.15,
-              "isMultiplicative": True
+              "isMultiplicative": true
             }
           },
           {
@@ -59,7 +54,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "criticalChance",
               "value": 0.1,
-              "isMultiplicative": False
+              "isMultiplicative": false
             }
           },
           {
@@ -67,7 +62,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "criticalDamage",
               "value": 1.0,
-              "isMultiplicative": False
+              "isMultiplicative": false
             }
           },
           {
@@ -75,7 +70,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "accuracy",
               "value": 0.05,
-              "isMultiplicative": False
+              "isMultiplicative": false
             }
           }
         ]
@@ -104,7 +99,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -121,7 +116,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "damage",
               "value": 1.5,
-              "isMultiplicative": True
+              "isMultiplicative": true
             }
           },
           {
@@ -129,7 +124,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "criticalChance",
               "value": 0.3,
-              "isMultiplicative": False
+              "isMultiplicative": false
             }
           }
         ]
@@ -158,7 +153,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -178,7 +173,7 @@ BASE_EPIC_WEAPONS = [
               "maxDmg": 11300,
               "duration": 5,
               "trigger": "onHit",
-              "stackable": False,
+              "stackable": false,
               "cooldown": 7.5
             }
           }
@@ -208,7 +203,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -225,7 +220,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "speed",
               "value": 0.6,
-              "isMultiplicative": True
+              "isMultiplicative": true
             }
           },
           {
@@ -233,7 +228,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "damage",
               "value": 2.0,
-              "isMultiplicative": True
+              "isMultiplicative": true
             }
           }
         ]
@@ -246,7 +241,7 @@ BASE_EPIC_WEAPONS = [
     "imageName": "epic/rapier/30004.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
-    "description": "강력한 화염마법이 각인되어 있어 일정 확률로 적을 불태울 수 있는 무기입니다.",
+    "description": "강력한 화염마법이 각인되어있어 일정 확률로 적을 불태울 수 있는 무기입니다.",
     "baseLevel": 300,
     "baseDamage": 0,
     "speed": 1.43,
@@ -262,7 +257,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -280,7 +275,7 @@ BASE_EPIC_WEAPONS = [
               "chance": 0.05,
               "duration": 5,
               "fixedDamagePerSecond": 27800,
-              "stackable": False,
+              "stackable": false,
               "trigger": "onHit",
               "cooldown": 7.5
             }
@@ -311,10 +306,10 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": True,
+      "enabled": true,
       "currentStacks": 0,
       "maxStacks": 100,
-      "damagePerStack": 90
+      "damagePerStack": 60
     },
     "skills": [
       {
@@ -337,7 +332,7 @@ BASE_EPIC_WEAPONS = [
     "imageName": "epic/rapier/30006.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
-    "description": "이름에 맞게 적의 방어를 무력화시키는 데 특화된 무기입니다.",
+    "description": "이름에 맞게 적의 방어를 무력화시키는데 특화된 무기입니다.",
     "baseLevel": 500,
     "baseDamage": 0,
     "speed": 1.43,
@@ -353,7 +348,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -372,7 +367,7 @@ BASE_EPIC_WEAPONS = [
               "defenseReduction": 33,
               "duration": 5,
               "trigger": "onHit",
-              "stackable": False,
+              "stackable": false,
               "cooldown": 7.5
             }
           }
@@ -402,7 +397,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -418,8 +413,8 @@ BASE_EPIC_WEAPONS = [
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "criticalDamage",
-              "value": 7.5,
-              "isMultiplicative": False
+              "value": 5.0,
+              "isMultiplicative": false
             }
           }
         ]
@@ -448,7 +443,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -466,7 +461,7 @@ BASE_EPIC_WEAPONS = [
               "chance": 0.05,
               "duration": 5,
               "damagePerSecond": 107000,
-              "stackable": False,
+              "stackable": false,
               "trigger": "onHit",
               "cooldown": 7.5
             }
@@ -497,7 +492,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -515,7 +510,7 @@ BASE_EPIC_WEAPONS = [
               "chance": 0.05,
               "duration": 5,
               "trigger": "onHit",
-              "stackable": False,
+              "stackable": false,
               "cooldown": 7.5
             }
           }
@@ -529,7 +524,7 @@ BASE_EPIC_WEAPONS = [
         "skill_effect": [
           {
             "effect_name": "increaseDamageToStatused",
-            "params": { "status": "confusion", "damageMultiplier": 1.5 }
+            "params": { "status": "confusion", "damageMultiplier": 0.5 }
           }
         ]
       }
@@ -557,7 +552,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -574,7 +569,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "speed",
               "value": 0.05,
-              "isMultiplicative": True
+              "isMultiplicative": true
             }
           }
         ]
@@ -589,8 +584,8 @@ BASE_EPIC_WEAPONS = [
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "damage",
-              "value": 11.0,
-              "isMultiplicative": True
+              "value": 10.0,
+              "isMultiplicative": true
             }
           }
         ]
@@ -599,7 +594,7 @@ BASE_EPIC_WEAPONS = [
         "skill_name": "의지 상실",
         "skill_type": "passive",
         "skill_description": "클릭 공격을 할 수 없게 됩니다.",
-        "skill_description_detail": "무기 해제 시 클릭 공격이 활성화됩니다.",
+        "skill_description_detail": "무기 해제 시 클릭 공격이 활성화 됩니다.",
         "skill_effect": [{ "effect_name": "disableManualAttack", "params": {} }]
       }
     ]
@@ -626,7 +621,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -643,7 +638,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "damage",
               "value": 1.5,
-              "isMultiplicative": True
+              "isMultiplicative": true
             }
           },
           {
@@ -651,7 +646,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "speed",
               "value": 1.3,
-              "isMultiplicative": True
+              "isMultiplicative": true
             }
           },
           {
@@ -659,15 +654,15 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "criticalChance",
               "value": 0.25,
-              "isMultiplicative": False
+              "isMultiplicative": false
             }
           },
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "accuracy",
-              "value": 0.05,
-              "isMultiplicative": False
+              "value": 0.5,
+              "isMultiplicative": false
             }
           }
         ]
@@ -680,7 +675,7 @@ BASE_EPIC_WEAPONS = [
     "imageName": "epic/rapier/30012.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
-    "description": "매우 귀한 물건입니다. 지니고 있는 것만으로도 막대한 부를 가져온다고 합니다.",
+    "description": "매우 귀한 물건입니다. 지니고 있는 것 만으로도 막대한 부를 가져온다고 합니다.",
     "baseLevel": 1000,
     "baseDamage": 0,
     "speed": 1.43,
@@ -696,7 +691,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -738,7 +733,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -771,7 +766,7 @@ BASE_EPIC_WEAPONS = [
     "imageName": "epic/rapier/30014.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
-    "description": "강력한 대지마법이 각인되어 있어, 일정 확률로 충격파를 발산하는 무기입니다.",
+    "description": "강력한 대지마법이 각인되어있어, 일정 확률로 충격파를 발산하는 무기입니다.",
     "baseLevel": 1200,
     "baseDamage": 0,
     "speed": 1.43,
@@ -787,7 +782,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -834,7 +829,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -854,7 +849,7 @@ BASE_EPIC_WEAPONS = [
               "maxStacks": 20,
               "stat": "damage",
               "increasePerStack": 0.065,
-              "isMultiplicative": True
+              "isMultiplicative": true
             }
           }
         ]
@@ -883,7 +878,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -900,7 +895,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "doubleAttackChance",
               "value": 0.2,
-              "isMultiplicative": False
+              "isMultiplicative": false
             }
           }
         ]
@@ -913,7 +908,7 @@ BASE_EPIC_WEAPONS = [
     "imageName": "epic/rapier/30017.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
-    "description": "강화석 탐지 기능이 있어 특이한 이명이 생긴 무기입니다. 몬스터 처치 시 획득하는 강화석의 획득량이 증가합니다.",
+    "description": "강화석 탐지 기능이 있어 특이한 이명이 생긴 무기입니다. 몬스터 처치시 획득하는 강화석의 획득량이 증가합니다.",
     "baseLevel": 1500,
     "baseDamage": 0,
     "speed": 1.43,
@@ -929,7 +924,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -955,7 +950,7 @@ BASE_EPIC_WEAPONS = [
     "imageName": "epic/rapier/30018.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
-    "description": "강력한 얼음마법이 각인되어 있어, 일정 확률로 적을 얼릴 수 있는 무기입니다.",
+    "description": "강력한 얼음마법이 각인되어있어, 일정 확률로 적을 얼릴 수 있는 무기입니다.",
     "baseLevel": 1500,
     "baseDamage": 0,
     "speed": 1.43,
@@ -971,7 +966,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -989,7 +984,7 @@ BASE_EPIC_WEAPONS = [
               "chance": 0.05,
               "duration": 5,
               "trigger": "onHit",
-              "stackable": False,
+              "stackable": false,
               "cooldown": 7.5,
               "maxDmg": 643000
             }
@@ -1020,7 +1015,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -1037,7 +1032,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "damage",
               "value": 0.4,
-              "isMultiplicative": True
+              "isMultiplicative": true
             }
           },
           {
@@ -1045,7 +1040,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "speed",
               "value": 2.5,
-              "isMultiplicative": True
+              "isMultiplicative": true
             }
           }
         ]
@@ -1074,7 +1069,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -1107,7 +1102,7 @@ BASE_EPIC_WEAPONS = [
     "imageName": "epic/rapier/30021.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
-    "description": "강력한 전기마법이 각인되어 있어, 일정 확률로 적을 감전시킬 수 있습니다.",
+    "description": "강력한 전기마법이 각인되어있어, 일정 확률로 적을 감전시킬 수 있습니다.",
     "baseLevel": 1800,
     "baseDamage": 0,
     "speed": 1.43,
@@ -1123,7 +1118,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -1141,7 +1136,7 @@ BASE_EPIC_WEAPONS = [
               "chance": 0.05,
               "duration": 5,
               "trigger": "onHit",
-              "stackable": False,
+              "stackable": false,
               "cooldown": 7.5,
               "maxDmg": 125000
             }
@@ -1172,7 +1167,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -1189,7 +1184,7 @@ BASE_EPIC_WEAPONS = [
             "params": {
               "stat": "criticalChance",
               "value": 0.5,
-              "isMultiplicative": False
+              "isMultiplicative": false
             }
           }
         ]
@@ -1202,7 +1197,7 @@ BASE_EPIC_WEAPONS = [
     "imageName": "epic/rapier/30022.png",
     "rarity": "Rarity.epic",
     "type": "WeaponType.rapier",
-    "description": "강력한 정신계 마법이 각인된 무기입니다. 일정 확률로 적을 홀립니다.",
+    "description": "강력한 정신계마법이 각인된 무기입니다. 일정 확률로 적을 홀립니다.",
     "baseLevel": 2000,
     "baseDamage": 0,
     "speed": 1.43,
@@ -1218,7 +1213,7 @@ BASE_EPIC_WEAPONS = [
     "investedEnhancementStones": 0,
     "investedTranscendenceStones": 0,
     "stack": {
-      "enabled": False,
+      "enabled": false,
       "currentStacks": 0,
       "maxStacks": 0,
       "damagePerStack": 0
@@ -1231,13 +1226,13 @@ BASE_EPIC_WEAPONS = [
         "skill_description_detail": "매혹 - 매 피격시 방어력 2씩 감소",
         "skill_effect": [
           {
-            "effect_name": "applyCharm",
+            "effect_name": "applyPoison",
             "params": {
               "chance": 0.05,
               "attackPerDefence": 2.0,
               "duration": 5,
               "trigger": "onHit",
-              "stackable": False,
+              "stackable": false,
               "cooldown": 7.5
             }
           }
@@ -1246,102 +1241,3 @@ BASE_EPIC_WEAPONS = [
     ]
   }
 ]
-
-
-# --- 무기 타입 분류 ---
-TYPE_MAP = {
-    "레이피어": "rapier", "도검": "blade", "검": "sword",
-    "대검": "greatsword", "단검": "dagger",
-    "전투도끼": "battle_axe", "전투망치": "warhammer",
-    "창": "spear", "지팡이": "staff", 
-    "메이스": "mace", "낫": "scythe", "곡도": "curved_sword", 
-}
-
-# --- 무기 타입별 멀티플라이어 ---
-WEAPON_TYPE_MODIFIERS = {
-     "rapier":       {"damage_mult": 0.90, "speed_mult": 1.30, "accuracy_mult": 1.120, "crit_chance_mult": 1.800, "crit_mult_mult": 0.950},
-     "blade":       {"damage_mult": 1.05, "speed_mult": 1.15, "accuracy_mult": 1.070, "crit_chance_mult": 1.500, "crit_mult_mult": 1.050},
-     "sword":        {"damage_mult": 1.20, "speed_mult": 1.00, "accuracy_mult": 1.030, "crit_chance_mult": 1.000, "crit_mult_mult": 1.000},
-     "greatsword":   {"damage_mult": 1.70, "speed_mult": 0.80, "accuracy_mult": 0.940, "crit_chance_mult": 0.800, "crit_mult_mult": 1.200},
-     "dagger":       {"damage_mult": 0.85, "speed_mult": 1.35, "accuracy_mult": 1.100, "crit_chance_mult": 2.000, "crit_mult_mult": 0.900},
-     "battle_axe":    {"damage_mult": 1.50, "speed_mult": 0.85, "accuracy_mult": 0.950, "crit_chance_mult": 0.800, "crit_mult_mult": 1.150},
-     "warhammer":    {"damage_mult": 1.80, "speed_mult": 0.75, "accuracy_mult": 0.920, "crit_chance_mult": 0.700, "crit_mult_mult": 1.300},
-     "spear":        {"damage_mult": 1.10, "speed_mult": 1.05, "accuracy_mult": 1.100, "crit_chance_mult": 1.200, "crit_mult_mult": 1.000},
-     "staff":        {"damage_mult": 1.10, "speed_mult": 1.00, "accuracy_mult": 1.120, "crit_chance_mult": 1.300, "crit_mult_mult": 0.950},
-     "mace":         {"damage_mult": 1.40, "speed_mult": 0.90, "accuracy_mult": 0.970, "crit_chance_mult": 0.800, "crit_mult_mult": 1.200},
-     "scythe":       {"damage_mult": 1.25, "speed_mult": 1.00, "accuracy_mult": 0.990, "crit_chance_mult": 1.300, "crit_mult_mult": 1.150},
-     "curved_sword": {"damage_mult": 1.10, "speed_mult": 1.10, "accuracy_mult": 1.030, "crit_chance_mult": 1.200, "crit_mult_mult": 1.050},
-}
-
-def generate_epic_weapons():
-    all_epic_weapons = []
-    
-    base_speed = 1.0
-    base_crit_chance = 0.1
-    base_crit_damage = 1.5
-    base_accuracy = 0.7
-
-    for i, (korean_name, english_name) in enumerate(TYPE_MAP.items()):
-        type_modifiers = WEAPON_TYPE_MODIFIERS[english_name]
-        
-        for base_weapon_template in BASE_EPIC_WEAPONS:
-            new_weapon = copy.deepcopy(base_weapon_template)
-            
-            # Generate new ID based on weapon type index
-            # The base ID for rapier is 30000, for the next type it will be 31000, and so on.
-            new_weapon['id'] = base_weapon_template['id'] + (i * 1000)
-            
-            new_weapon['type'] = f'WeaponType.{english_name}'
-            # Note: The original imageName has the type hardcoded. We update it.
-            # e.g., "epic/rapier/30000.png" -> "epic/sword/31000.png"
-            new_weapon['imageName'] = f'epic/{english_name}/{new_weapon["id"]}.png'
-            
-            # Recalculate stats based on weapon type modifiers
-            new_weapon['speed'] = round(1.25 * base_speed * type_modifiers['speed_mult'], 2)
-            new_weapon['criticalChance'] = round(1.1 * base_crit_chance * type_modifiers['crit_chance_mult'], 3)
-            new_weapon['criticalDamage'] = round(1.5 * base_crit_damage * type_modifiers['crit_mult_mult'], 2)
-            new_weapon['accuracy'] = round(base_accuracy * type_modifiers['accuracy_mult'], 3)
-
-            # Recalculate base damage if it's based on level, otherwise keep the template's damage
-            level = new_weapon['baseLevel']
-            new_weapon['defensePenetration'] = round(level / 75 + 7, 0)
-
-            if level == 0:
-                new_weapon['baseSellPrice'] = 9000
-            else:
-                new_weapon['baseSellPrice'] = int(level * 900)
-            damage_mult = type_modifiers.get('damage_mult', 1)
-
-            if base_weapon_template.get('baseDamage', 0) == 0: # If baseDamage is 0 in template
-                if level == 0:
-                    damage = 50 * 1.2 * 1.25 * damage_mult # User's requested fixed value
-                    new_weapon['baseDamage'] = int(damage)
-                elif level > 0:
-                    # Original formula for level > 0
-                    damage = (0.08 * (level ** 1.75) + 7 * level + 10) * 1.2 * 1.25 * damage_mult
-                    new_weapon['baseDamage'] = int(damage)
-            else:
-                # Keep the original baseDamage from the template if it was specified (i.e., not 0)
-                new_weapon['baseDamage'] = base_weapon_template.get('baseDamage', 0)
-
-            all_epic_weapons.append(new_weapon)
-
-    return all_epic_weapons
-
-def main():
-    # Ensure the script can be run from anywhere by using absolute paths
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.dirname(os.path.dirname(os.path.dirname(script_dir)))
-    output_path = os.path.join(project_root, 'assets', 'data', 'epic_weapons.json')
-    
-    epic_weapons = generate_epic_weapons()
-    
-    try:
-        with open(output_path, 'w', encoding='utf-8') as f:
-            json.dump(epic_weapons, f, ensure_ascii=False, indent=2)
-        print(f'Successfully saved {len(epic_weapons)} epic weapons to {output_path}')
-    except IOError as e:
-        print(f'Error writing {output_path}: {e}')
-
-if __name__ == '__main__':
-    main()

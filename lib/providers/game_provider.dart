@@ -44,7 +44,11 @@ class GameProvider with ChangeNotifier {
 
   // Firebase Auth
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: ['email'],
+    serverClientId:
+        '1097763001627-3o21bmegejjbk2d247mafbhjv2ascmjn.apps.googleusercontent.com',
+  );
   User? _user;
   User? get user => _user;
 
@@ -150,23 +154,25 @@ class GameProvider with ChangeNotifier {
     await _auth.signOut();
   }
 
-  void recalculatePlayerStats() {
-    // Reset passive bonuses before recalculating from skills
-    _player.passiveGoldGainMultiplier = 1.0;
-    _player.passiveEnhancementStoneGainMultiplier = 1.0;
-    _player.passiveWeaponDamageMultiplier = 1.0;
-    _player.passiveWeaponCriticalChanceBonus = 0.0;
-    _player.passiveWeaponCriticalDamageBonus = 0.0;
-    _player.passiveWeaponSpeedBonus = 0.0;
-    _player.passiveWeaponAccuracyBonus = 0.0;
-    _player.passiveWeaponDefensePenetrationBonus = 0.0;
-    _player.passiveWeaponDoubleAttackChanceBonus = 0.0;
-    _player.passiveExpGainMultiplier = 1.0;
-    _player.monsterDefenseReduction = 0.0;
-    _player.monsterMaxHpReduction = 0.0;
-    _player.monsterDamageTakenIncrease = 0.0;
-    _player.enhancementGoldCostReduction = 0.0;
-    _player.enhancementStoneCostReduction = 0;
+  void recalculatePlayerStats({bool resetStats = true}) {
+    if (resetStats) {
+      // Reset passive bonuses before recalculating from skills
+      _player.passiveGoldGainMultiplier = 1.0;
+      _player.passiveEnhancementStoneGainMultiplier = 1.0;
+      _player.passiveWeaponDamageMultiplier = 1.0;
+      _player.passiveWeaponCriticalChanceBonus = 0.0;
+      _player.passiveWeaponCriticalDamageBonus = 0.0;
+      _player.passiveWeaponSpeedBonus = 0.0;
+      _player.passiveWeaponAccuracyBonus = 0.0;
+      _player.passiveWeaponDefensePenetrationBonus = 0.0;
+      _player.passiveWeaponDoubleAttackChanceBonus = 0.0;
+      _player.passiveExpGainMultiplier = 1.0;
+      _player.monsterDefenseReduction = 0.0;
+      _player.monsterMaxHpReduction = 0.0;
+      _player.monsterDamageTakenIncrease = 0.0;
+      _player.enhancementGoldCostReduction = 0.0;
+      _player.enhancementStoneCostReduction = 0;
+    }
 
     // Apply hero skill effects
     _player.learnedSkills.forEach((skillId, level) {
@@ -599,10 +605,14 @@ class GameProvider with ChangeNotifier {
     final double bossMultiplier = _monster.isBoss ? 3.0 : 1.0;
 
     // Gold
+    final difficultyMultiplier = DifficultyData.getXpMultiplier(
+      _player.currentDifficulty,
+    );
     final goldReward =
         (_player.currentStage * 100).toDouble() *
         _player.passiveGoldGainMultiplier *
-        bossMultiplier;
+        bossMultiplier *
+        difficultyMultiplier;
     _player.gold += goldReward;
     _player.totalGoldEarned += goldReward;
     _lastGoldReward = goldReward;
@@ -660,10 +670,11 @@ class GameProvider with ChangeNotifier {
       _player.inventory.add(_player.equippedWeapon);
       _player.equippedWeapon = oldInventoryWeapon;
 
-      recalculatePlayerStats(); // Recalculate stats for the new weapon
-
       _activeDamageModifiers.clear(); // Clear existing damage modifiers
-      _weaponSkillProvider.updatePassiveSkills(_player, _monster);
+      _weaponSkillProvider.updatePassiveSkills(
+        _player,
+        _monster,
+      ); // This now handles the recalculation.
       startAutoAttack(); // Restart auto-attack with new speed
 
       notifyListeners();
@@ -1063,12 +1074,25 @@ class GameProvider with ChangeNotifier {
       _player.currentStage,
     );
 
-    double hp = 100 + pow(_player.currentStage, 2.5).toDouble();
-    int defense = monsterData['def'];
+    double exponent;
+    if (_player.currentStage < 100) {
+      exponent = 1.35;
+    } else if (_player.currentStage < 250) {
+      exponent = 1.5;
+    } else if (_player.currentStage < 500) {
+      exponent = 1.75;
+    } else if (_player.currentStage < 1000) {
+      exponent = 2.0;
+    } else {
+      exponent = 2.5;
+    }
+
+    double hp = 100 + pow(_player.currentStage, exponent).toDouble();
+    double defense = (monsterData['def'] as int).toDouble();
 
     // Apply hero skill effects to monster
     hp *= (1.0 - _player.monsterMaxHpReduction);
-    defense = (defense - _player.monsterDefenseReduction).toInt();
+    defense -= _player.monsterDefenseReduction;
 
     // Apply difficulty modifiers
     switch (_player.currentDifficulty) {
@@ -1081,14 +1105,20 @@ class GameProvider with ChangeNotifier {
         break;
       case Difficulty.hell:
         hp *= 1.3;
-        defense = (defense * 1.25).round();
+        defense *= 1.25;
         if (defense == 0) defense = 3;
         break;
       case Difficulty.infinity:
         hp *= 2.0;
-        defense = (defense * 1.5).round();
+        defense *= 1.5;
         if (defense == 0) defense = 10;
         break;
+    }
+
+    final isBoss = monsterData['isBoss'] ?? false;
+    if (isBoss) {
+      hp *= 8;
+      defense *= 1.5;
     }
 
     _monster = Monster(
@@ -1097,8 +1127,8 @@ class GameProvider with ChangeNotifier {
       stage: _player.currentStage,
       hp: hp,
       maxHp: hp,
-      defense: defense,
-      isBoss: monsterData['isBoss'] ?? false,
+      defense: defense.toInt(),
+      isBoss: isBoss,
       species: monsterData['species'] ?? [],
     );
 
@@ -1295,7 +1325,7 @@ class GameProvider with ChangeNotifier {
       _player.enhancementStones = 0;
       _player.gold = 0.0;
       _player.darkMatter = 0;
-      _player.currentStage = 99;
+      _player.currentStage = 1000;
     }
 
     for (final achievement in AchievementData.achievements) {
@@ -1325,6 +1355,12 @@ class GameProvider with ChangeNotifier {
     //     _player.inventory.add(testWeapon);
     //   }
     // }
+
+    final testWeaponB = WeaponData.getWeaponById(50004);
+    if (testWeaponB != null) {
+      testWeaponB.enhancement = 20;
+      _player.inventory.add(testWeaponB);
+    }
 
     final testWeapon = WeaponData.getWeaponById(50000);
     if (testWeapon != null) {
@@ -1374,7 +1410,7 @@ class GameProvider with ChangeNotifier {
   }
 
   void goToNextStage() {
-    if (_player.currentStage < _player.highestStageCleared) {
+    if (_player.currentStage < _player.highestStageCleared + 1) {
       _player.currentStage++;
       _spawnMonster();
       _saveGame();
@@ -1394,7 +1430,7 @@ class GameProvider with ChangeNotifier {
   }
 
   void warpToStage(int targetStage) {
-    if (targetStage > _player.highestStageCleared) {
+    if (targetStage > _player.highestStageCleared + 1) {
       return;
     }
     _player.currentStage = targetStage;
@@ -1864,5 +1900,40 @@ class GameProvider with ChangeNotifier {
     notifyListeners();
     _saveGame();
     return '$amount개의 무기 파괴 방지권을 구매했습니다.';
+  }
+
+  Map<String, dynamic> getSkillResetCost() {
+    if (_player.learnedSkills.isEmpty) {
+      return {'points': 0, 'cost': 0.0};
+    }
+    final totalUsedPoints = _player.learnedSkills.values.reduce(
+      (total, level) => total + level,
+    );
+    final cost = totalUsedPoints * 250000.0;
+    return {'points': totalUsedPoints, 'cost': cost};
+  }
+
+  String resetHeroSkills() {
+    final costData = getSkillResetCost();
+    final cost = costData['cost'] as double;
+    final points = costData['points'] as int;
+
+    if (points == 0) {
+      return '초기화할 스킬이 없습니다.';
+    }
+
+    if (_player.gold < cost) {
+      return '골드가 부족합니다.';
+    }
+
+    _player.gold -= cost;
+    _player.skillPoints += points;
+    _player.learnedSkills.clear();
+
+    recalculatePlayerStats();
+    notifyListeners();
+    _saveGame();
+
+    return '모든 스킬이 초기화되었습니다.';
   }
 }

@@ -75,6 +75,35 @@ flutter:
     - assets/images/stats/
     - assets/images/status/
     - assets/images/weapons/
+    - assets/images/weapons/group1/
+    - assets/images/weapons/group2/
+    - assets/images/weapons/unique/
+    - assets/images/weapons/unique/rapier/
+    - assets/images/weapons/unique/blade/
+    - assets/images/weapons/unique/greatsword/
+    - assets/images/weapons/unique/battle_axe/
+    - assets/images/weapons/unique/spear/
+    - assets/images/weapons/unique/mace/
+    - assets/images/weapons/unique/sword/
+    - assets/images/weapons/unique/curved_sword/
+    - assets/images/weapons/unique/staff/
+    - assets/images/weapons/unique/dagger/
+    - assets/images/weapons/epic/
+    - assets/images/weapons/epic/rapier/
+    - assets/images/weapons/epic/blade/
+    - assets/images/weapons/epic/greatsword/
+    - assets/images/weapons/epic/battle_axe/
+    - assets/images/weapons/epic/spear/
+    - assets/images/weapons/epic/mace/
+    - assets/images/weapons/epic/sword/
+    - assets/images/weapons/epic/curved_sword/
+    - assets/images/weapons/epic/staff/
+    - assets/images/weapons/epic/dagger/
+    - assets/images/weapons/legend/
+    - assets/images/weapons/legend/rapier/
+    - assets/images/weapons/legend/blade/
+    - assets/images/weapons/legend/greatsword/
+    - assets/images/weapons/legend/sword/
     - assets/data/
     - assets/data/achievement/
     - assets/data/tmp/

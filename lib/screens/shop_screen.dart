@@ -66,7 +66,7 @@ class ShopScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center, // Center the row
                   children: [
                     Image.asset(
-                      'images/others/gold.png',
+                      'assets/images/others/gold.png',
                       width: 24,
                       height: 24,
                     ),
@@ -82,7 +82,7 @@ class ShopScreen extends StatelessWidget {
                       width: 20,
                     ), // Spacing between gold and dark matter
                     Image.asset(
-                      'images/others/dark_matter.png',
+                      'assets/images/others/dark_matter.png',
                       width: 24,
                       height: 24,
                     ),
@@ -106,7 +106,7 @@ class ShopScreen extends StatelessWidget {
                 builder: (context, game, child) {
                   final List<ShopItemData> enhancementStoneItems = [
                     ShopItemData(
-                      imagePath: 'images/others/enhancement_stone.png',
+                      imagePath: 'assets/images/others/enhancement_stone.png',
                       quantity: 1,
                       description: '무기 강화에 사용되는 돌입니다.',
                       cost: 5000,
@@ -114,7 +114,7 @@ class ShopScreen extends StatelessWidget {
                       costToBuy: 5000,
                     ),
                     ShopItemData(
-                      imagePath: 'images/others/enhancement_stone.png',
+                      imagePath: 'assets/images/others/enhancement_stone.png',
                       quantity: 10,
                       description: '무기 강화에 사용되는 돌입니다. (10% 할인)',
                       cost: 45000,
@@ -122,7 +122,7 @@ class ShopScreen extends StatelessWidget {
                       costToBuy: 45000,
                     ),
                     ShopItemData(
-                      imagePath: 'images/others/enhancement_stone.png',
+                      imagePath: 'assets/images/others/enhancement_stone.png',
                       quantity: 50,
                       description: '무기 강화에 사용되는 돌입니다. (16% 할인)',
                       cost: 210000,
@@ -130,7 +130,7 @@ class ShopScreen extends StatelessWidget {
                       costToBuy: 210000,
                     ),
                     ShopItemData(
-                      imagePath: 'images/others/enhancement_stone.png',
+                      imagePath: 'assets/images/others/enhancement_stone.png',
                       quantity: 100,
                       description: '무기 강화에 사용되는 돌입니다. (20% 할인)',
                       cost: 400000,
@@ -141,7 +141,7 @@ class ShopScreen extends StatelessWidget {
 
                   final List<ShopItemData> transcendenceStoneItems = [
                     ShopItemData(
-                      imagePath: 'images/others/transcendence_stone.png',
+                      imagePath: 'assets/images/others/transcendence_stone.png',
                       quantity: 1,
                       description: '무기 초월에 사용되는 돌입니다.',
                       cost: 100000,
@@ -149,7 +149,7 @@ class ShopScreen extends StatelessWidget {
                       costToBuy: 100000,
                     ),
                     ShopItemData(
-                      imagePath: 'images/others/transcendence_stone.png',
+                      imagePath: 'assets/images/others/transcendence_stone.png',
                       quantity: 5,
                       description: '무기 초월에 사용되는 돌입니다. (4% 할인)',
                       cost: 480000,
@@ -157,7 +157,7 @@ class ShopScreen extends StatelessWidget {
                       costToBuy: 480000,
                     ),
                     ShopItemData(
-                      imagePath: 'images/others/transcendence_stone.png',
+                      imagePath: 'assets/images/others/transcendence_stone.png',
                       quantity: 10,
                       description: '무기 초월에 사용되는 돌입니다. (5% 할인)',
                       cost: 950000,
@@ -168,7 +168,7 @@ class ShopScreen extends StatelessWidget {
 
                   final List<ShopItemData> darkMatterEnhancementStoneItems = [
                     ShopItemData(
-                      imagePath: 'images/others/enhancement_stone.png',
+                      imagePath: 'assets/images/others/enhancement_stone.png',
                       quantity: 10,
                       description: '암흑 물질로 구매하는 강화석입니다.',
                       cost: 200,
@@ -176,7 +176,7 @@ class ShopScreen extends StatelessWidget {
                       costToBuy: 200,
                     ),
                     ShopItemData(
-                      imagePath: 'images/others/enhancement_stone.png',
+                      imagePath: 'assets/images/others/enhancement_stone.png',
                       quantity: 100,
                       description: '암흑 물질로 구매하는 강화석입니다.',
                       cost: 2000,
@@ -187,7 +187,7 @@ class ShopScreen extends StatelessWidget {
 
                   final List<ShopItemData> darkMatterWeaponBoxItems = [
                     ShopItemData(
-                      imagePath: 'images/chests/unique.png',
+                      imagePath: 'assets/images/chests/unique.png',
                       quantity: 1,
                       description: '암흑 물질로 구매하는 현재 레벨 구간 유니크 무기 상자입니다.',
                       cost: 1000,
@@ -195,7 +195,7 @@ class ShopScreen extends StatelessWidget {
                       costToBuy: 1000,
                     ),
                     ShopItemData(
-                      imagePath: 'images/chests/epic.png',
+                      imagePath: 'assets/images/chests/epic.png',
                       quantity: 1,
                       description: '암흑 물질로 구매하는 현재 레벨 구간 에픽 무기 상자입니다.',
                       cost: 15000,
@@ -203,7 +203,7 @@ class ShopScreen extends StatelessWidget {
                       costToBuy: 15000,
                     ),
                     ShopItemData(
-                      imagePath: 'images/chests/legend.png',
+                      imagePath: 'assets/images/chests/legend.png',
                       quantity: 1,
                       description: '암흑 물질로 구매하는 현재 레벨 구간 레전드 무기 상자입니다.',
                       cost: 125000,
@@ -214,7 +214,7 @@ class ShopScreen extends StatelessWidget {
 
                   final List<ShopItemData> protectionTicketItems = [
                     ShopItemData(
-                      imagePath: 'images/others/protection_ticket.png',
+                      imagePath: 'assets/images/others/protection_ticket.png',
                       quantity: 1,
                       description: '강화 실패 시 무기 파괴를 1회 방지합니다.',
                       cost: 1000000,
@@ -222,7 +222,7 @@ class ShopScreen extends StatelessWidget {
                       costToBuy: 1000000,
                     ),
                     ShopItemData(
-                      imagePath: 'images/others/protection_ticket.png',
+                      imagePath: 'assets/images/others/protection_ticket.png',
                       quantity: 10,
                       description: '강화 실패 시 무기 파괴를 10회 방지합니다. (10% 할인)',
                       cost: 9000000,
@@ -233,7 +233,7 @@ class ShopScreen extends StatelessWidget {
 
                   final List<ShopItemData> darkMatterProtectionTicketItems = [
                     ShopItemData(
-                      imagePath: 'images/others/protection_ticket.png',
+                      imagePath: 'assets/images/others/protection_ticket.png',
                       quantity: 1,
                       description: '강화 실패 시 무기 파괴를 1회 방지합니다.',
                       cost: 500,
@@ -241,7 +241,7 @@ class ShopScreen extends StatelessWidget {
                       costToBuy: 500,
                     ),
                     ShopItemData(
-                      imagePath: 'images/others/protection_ticket.png',
+                      imagePath: 'assets/images/others/protection_ticket.png',
                       quantity: 10,
                       description: '강화 실패 시 무기 파괴를 10회 방지합니다. (10% 할인)',
                       cost: 4500,
@@ -445,7 +445,7 @@ class ShopScreen extends StatelessWidget {
                         _buildShopItem(
                           context: context,
                           title: '전구간 랜덤 유니크 무기 상자',
-                          imagePath: 'images/chests/unique.png',
+                          imagePath: 'assets/images/chests/unique.png',
                           quantity: 1,
                           description: '모든 레벨 구간의 유니크 무기를 획득할 수 있습니다.',
                           cost: 1,
@@ -465,7 +465,7 @@ class ShopScreen extends StatelessWidget {
                         _buildShopItem(
                           context: context,
                           title: '현재 레벨구간 유니크 무기 상자',
-                          imagePath: 'images/chests/unique.png',
+                          imagePath: 'assets/images/chests/unique.png',
                           quantity: 1,
                           description: '현재 레벨 구간 이하의 유니크 무기를 획득할 수 있습니다.',
                           cost: 1,
@@ -487,7 +487,7 @@ class ShopScreen extends StatelessWidget {
                         _buildShopItem(
                           context: context,
                           title: '전구간 랜덤 에픽 무기 상자',
-                          imagePath: 'images/chests/epic.png',
+                          imagePath: 'assets/images/chests/epic.png',
                           quantity: 1,
                           description: '모든 레벨 구간의 에픽 무기를 획득할 수 있습니다.',
                           cost: 1,
@@ -507,7 +507,7 @@ class ShopScreen extends StatelessWidget {
                         _buildShopItem(
                           context: context,
                           title: '현재 레벨구간 에픽 무기 상자',
-                          imagePath: 'images/chests/epic.png',
+                          imagePath: 'assets/images/chests/epic.png',
                           quantity: 1,
                           description: '현재 레벨 구간 이하의 에픽 무기를 획득할 수 있습니다.',
                           cost: 1,
@@ -529,7 +529,7 @@ class ShopScreen extends StatelessWidget {
                         _buildShopItem(
                           context: context,
                           title: '전구간 랜덤 레전드 무기 상자',
-                          imagePath: 'images/chests/legend.png',
+                          imagePath: 'assets/images/chests/legend.png',
                           quantity: 1,
                           description: '모든 레벨 구간의 레전드 무기를 획득할 수 있습니다.',
                           cost: 1,
@@ -549,7 +549,7 @@ class ShopScreen extends StatelessWidget {
                         _buildShopItem(
                           context: context,
                           title: '현재 레벨구간 레전드 무기 상자',
-                          imagePath: 'images/chests/legend.png',
+                          imagePath: 'assets/images/chests/legend.png',
                           quantity: 1,
                           description: '현재 레벨 구간 이하의 레전드 무기를 획득할 수 있습니다.',
                           cost: 1,
@@ -758,7 +758,8 @@ class ShopItemSection extends StatelessWidget {
               item.description; // Use item's own description
           if (item.description.contains('할인')) {
             itemDescription +=
-                '\n${item.description.substring(item.description.indexOf('('))}';
+                '\n${item.description.substring(item.description.indexOf('('))}'
+                    .replaceAll('\n', '\n'); // Ensure newline is correctly escaped
           }
 
           return Padding(

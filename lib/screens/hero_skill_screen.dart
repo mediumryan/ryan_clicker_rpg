@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:ryan_clicker_rpg/data/hero_skill_data.dart';
 import 'package:ryan_clicker_rpg/models/hero_skill.dart';
 import 'package:ryan_clicker_rpg/providers/game_provider.dart';
+import 'package:intl/intl.dart';
 
 class HeroSkillScreen extends StatefulWidget {
   const HeroSkillScreen({super.key});
@@ -50,8 +51,70 @@ class _HeroSkillScreenState extends State<HeroSkillScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('스킬'),
-
         backgroundColor: Colors.grey[850],
+        actions: [
+          TextButton(
+            onPressed: () {
+              final game = context.read<GameProvider>();
+              final costData = game.getSkillResetCost();
+              final points = costData['points'] as int;
+              final cost = costData['cost'] as double;
+
+              if (points == 0) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('초기화할 스킬이 없습니다.'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+                return;
+              }
+
+              showDialog(
+                context: context,
+                builder: (BuildContext dialogContext) {
+                  return AlertDialog(
+                    backgroundColor: Colors.grey[800],
+                    title: const Text('스킬 초기화',
+                        style: TextStyle(color: Colors.white)),
+                    content: Text(
+                      '사용한 모든 스킬 포인트를 되돌려 받습니다.\n\n'
+                      '총 사용 포인트: $points\n'
+                      '필요 비용: ${NumberFormat('#,###').format(cost)} G\n\n'
+                      '정말로 초기화하시겠습니까?',
+                      style: const TextStyle(color: Colors.white70),
+                    ),
+                    actions: [
+                      TextButton(
+                        child: const Text('취소'),
+                        onPressed: () {
+                          Navigator.of(dialogContext).pop();
+                        },
+                      ),
+                      TextButton(
+                        child: const Text('확인', style: TextStyle(color: Colors.red)),
+                        onPressed: () {
+                          Navigator.of(dialogContext).pop();
+                          final message = game.resetHeroSkills();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(message),
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            child: const Text(
+              '스킬 초기화',
+              style: TextStyle(color: Colors.white),
+            ),
+          )
+        ],
       ),
 
       backgroundColor: Colors.grey[900],

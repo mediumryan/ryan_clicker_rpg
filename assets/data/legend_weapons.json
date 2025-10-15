@@ -1,7 +1,7 @@
 [
   {
     "id": 50000,
-    "name": "에메랄드 플레어",
+    "name": "룬드 레이피어",
     "imageName": "legend/rapier/50000.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.rapier",
@@ -21,9 +21,9 @@
     },
     "skills": [
       {
-        "skill_name": "에메랄드 각인",
+        "skill_name": "룬 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
+        "skill_description": "공격력이 50% 증가합니다. 공격속도가 50% 증가합니다. 치명타 확률이 10% 증가합니다. 치명타 배율이 1.5배 증가합니다. 적중률이 5% 증가합니다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -54,7 +54,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "criticalDamage",
-              "value": 1.0,
+              "value": 1.5,
               "isMultiplicative": false
             }
           },
@@ -70,7 +70,7 @@
       }
     ],
     "accuracy": 0.823,
-    "description": "에메랄드의 맑고 은은한 빛을 머금은 레이피어. 전투 능력을 크게 끌어올린다.",
+    "description": "드워프족의 고유 기술인 룬 문자를 새긴 레이피어. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -408,7 +408,7 @@
   },
   {
     "id": 51000,
-    "name": "흑요도",
+    "name": "룬드 블레이드",
     "imageName": "legend/blade/51000.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.blade",
@@ -428,9 +428,9 @@
     },
     "skills": [
       {
-        "skill_name": "흑요석 각인",
+        "skill_name": "룬 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
+        "skill_description": "공격력이 50% 증가합니다. 공격속도가 50% 증가합니다. 치명타 확률이 10% 증가합니다. 치명타 배율이 1.5배 증가합니다. 적중률이 5% 증가합니다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -461,7 +461,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "criticalDamage",
-              "value": 1.0,
+              "value": 1.5,
               "isMultiplicative": false
             }
           },
@@ -477,7 +477,7 @@
       }
     ],
     "accuracy": 0.786,
-    "description": "흑요석의 깊고 어두운 빛을 담은 검. 전투 능력을 크게 끌어올린다.",
+    "description": "드워프족의 고유 기술인 룬 문자를 새긴 도검. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -806,7 +806,7 @@
   },
   {
     "id": 52000,
-    "name": "라피스 글로우",
+    "name": "룬드 소드",
     "imageName": "legend/sword/52000.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.sword",
@@ -826,9 +826,9 @@
     },
     "skills": [
       {
-        "skill_name": "청금석 각인",
+        "skill_name": "룬 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
+        "skill_description": "공격력이 50% 증가합니다. 공격속도가 50% 증가합니다. 치명타 확률이 10% 증가합니다. 치명타 배율이 1.5배 증가합니다. 적중률이 5% 증가합니다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -859,7 +859,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "criticalDamage",
-              "value": 1.0,
+              "value": 1.5,
               "isMultiplicative": false
             }
           },
@@ -875,7 +875,7 @@
       }
     ],
     "accuracy": 0.757,
-    "description": "청금석의 신비롭고 차분한 빛을 띠는 검. 전투 능력을 크게 끌어올린다.",
+    "description": "드워프족의 고유 기술인 룬 문자를 새긴 검. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -1207,7 +1207,7 @@
   },
   {
     "id": 53000,
-    "name": "루비 레이즈",
+    "name": "룬드 그레이트 소드",
     "imageName": "legend/greatsword/53000.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.greatsword",
@@ -1227,9 +1227,9 @@
     },
     "skills": [
       {
-        "skill_name": "루비 각인",
+        "skill_name": "룬 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
+        "skill_description": "공격력이 50% 증가합니다. 공격속도가 50% 증가합니다. 치명타 확률이 10% 증가합니다. 치명타 배율이 1.5배 증가합니다. 적중률이 5% 증가합니다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -1260,7 +1260,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "criticalDamage",
-              "value": 1.0,
+              "value": 1.5,
               "isMultiplicative": false
             }
           },
@@ -1276,7 +1276,7 @@
       }
     ],
     "accuracy": 0.691,
-    "description": "루비의 뜨겁고 강렬한 광채를 품은 대검. 전투 능력을 크게 끌어올린다.",
+    "description": "드워프족의 고유 기술인 룬 문자를 새긴 대검. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -1644,7 +1644,7 @@
   },
   {
     "id": 54000,
-    "name": "토파즈 플래시",
+    "name": "룬드 대거",
     "imageName": "legend/dagger/54000.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.dagger",
@@ -1664,9 +1664,9 @@
     },
     "skills": [
       {
-        "skill_name": "토파즈 각인",
+        "skill_name": "룬 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
+        "skill_description": "공격력이 50% 증가합니다. 공격속도가 50% 증가합니다. 치명타 확률이 10% 증가합니다. 치명타 배율이 1.5배 증가합니다. 적중률이 5% 증가합니다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -1697,7 +1697,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "criticalDamage",
-              "value": 1.0,
+              "value": 1.5,
               "isMultiplicative": false
             }
           },
@@ -1713,7 +1713,7 @@
       }
     ],
     "accuracy": 0.808,
-    "description": "토파즈의 따스한 황금빛 광채를 머금은 대검. 전투 능력을 크게 끌어올린다.",
+    "description": "드워프족의 고유 기술인 룬 문자를 새긴 단검. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -2076,7 +2076,7 @@
   },
   {
     "id": 55000,
-    "name": "오닉스 스플린터",
+    "name": "룬드 배틀액스",
     "imageName": "legend/battle_axe/55000.png",
     "rarity": "Rarity.legend",
     "type": "WeaponType.battle_axe",
@@ -2096,9 +2096,9 @@
     },
     "skills": [
       {
-        "skill_name": "오닉스 각인",
+        "skill_name": "룬 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
+        "skill_description": "공격력이 50% 증가합니다. 공격속도가 50% 증가합니다. 치명타 확률이 10% 증가합니다. 치명타 배율이 1.5배 증가합니다. 적중률이 5% 증가합니다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -2129,7 +2129,7 @@
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "criticalDamage",
-              "value": 1.0,
+              "value": 1.5,
               "isMultiplicative": false
             }
           },
@@ -2145,7 +2145,7 @@
       }
     ],
     "accuracy": 0.698,
-    "description": "오닉스의 어둡지만 신비로운 광채를 품은 도끼. 전투 능력을 크게 끌어올린다.",
+    "description": "드워프족의 고유 기술인 룬 문자를 새긴 전투도끼. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
@@ -2509,6 +2509,1161 @@
     "transcendence": 0,
     "investedGold": 0.0,
     "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 56000,
+    "name": "룬드 워해머",
+    "imageName": "legend/warhammer/56000.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.warhammer",
+    "baseLevel": 0,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 4.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "룬 각인",
+        "skill_type": "passive",
+        "skill_description": "공격력이 50% 증가합니다. 공격속도가 50% 증가합니다. 치명타 확률이 10% 증가합니다. 치명타 배율이 1.5배 증가합니다. 적중률이 5% 증가합니다.",
+        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 1.5,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 1.5,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.1,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalDamage",
+              "value": 1.5,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.05,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "드워프족의 고유 기술인 룬 문자를 새긴 전투망치. 전투 능력을 크게 끌어올린다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 10,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 56001,
+    "name": "워 엘리펀트",
+    "imageName": "legend/warhammer/56001.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.warhammer",
+    "baseLevel": 200,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 20.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "짓밟기",
+        "skill_type": "passive",
+        "skill_description": "한방한방 치명적인 공격을 가한다. 치명타확률, 치명타 배율 증가.",
+        "skill_description_detail": "치명타 확률 +15%, 치명타 배율 +10배",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.15,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalDamage",
+              "value": 10.0,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "한 때 전장을 공포로 물들인 전투 코끼리의 앞발을 본따 만든 무기. 모든 것을 짓밟는다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 30,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 56002,
+    "name": "명장",
+    "imageName": "legend/warhammer/56002.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.warhammer",
+    "baseLevel": 400,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 24.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "단조",
+        "skill_type": "passive",
+        "skill_description": "전투를 지속하며 무기가 강해진다.",
+        "skill_description_detail": "공격 시 7.5초간 공격력 +10%, 최대 20중첩",
+        "skill_effect": [
+          {
+            "effect_name": "applyStackingBuff",
+            "params": {
+              "trigger": "onHit",
+              "duration": 7.5,
+              "maxStacks": 25,
+              "stat": "damage",
+              "increasePerStack": 0.1,
+              "isMultiplicative": true
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "수많은 무기를 벼린 명장 오르칸의 망치. 전투를 지속할수록 공격력이 비약적으로 상승한다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 50,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 56003,
+    "name": "미노쏜",
+    "imageName": "legend/warhammer/56003.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.warhammer",
+    "baseLevel": 600,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 28.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "멈출 수 없는 힘",
+        "skill_type": "passive",
+        "skill_description": "충격이 뼈와 장기까지 전해지는 무자비한 공격을 한다.",
+        "skill_description_detail": "방어력 관통 +60",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "defensePenetration",
+              "value": 60.0,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "뇌진탕",
+        "skill_type": "active",
+        "skill_description": "적을 혼란 상태에 빠뜨린다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 혼란, 쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyConfusion",
+            "params": {
+              "chance": 0.075,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 5
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "미궁의 괴수 미노타우로스의 거대한 망치. 강력한 파괴력으로 상대방의 방어를 무력화한다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 100,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 56004,
+    "name": "본탈로스",
+    "imageName": "legend/warhammer/56004.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.warhammer",
+    "baseLevel": 800,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 36.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "크레타의 수호자",
+        "skill_type": "passive",
+        "skill_description": "모든 공격이 치명타가 된다.",
+        "skill_description_detail": "치명타 확률 +100%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 1.0,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "헤파이스토스가 창조한 거인 탈로스의 두개골로 만든 망치. 모든 공격이 치명적이다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 56005,
+    "name": "신성한 파편 - 오른발",
+    "imageName": "legend/warhammer/56005.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.warhammer",
+    "baseLevel": 500,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 40.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "정화",
+        "skill_type": "passive",
+        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
+        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "undead", "multiplier": 1 }
+          },
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "demon", "multiplier": 1 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "divine", "multiplier": 0.3 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "angel", "multiplier": 0.3 }
+          }
+        ]
+      },
+      {
+        "skill_name": "심판",
+        "skill_type": "active",
+        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.075,
+              "damage": 1367000,
+              "cooldown": 5,
+              "trigger": "onHit"
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "신성국의 열다섯 성물 중 하나. 신의 오른발으로 만들어졌다고 전해진다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 57000,
+    "name": "룬드 스피어",
+    "imageName": "legend/spear/57000.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.spear",
+    "baseLevel": 0,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 4.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "룬 각인",
+        "skill_type": "passive",
+        "skill_description": "공격력이 50% 증가합니다. 공격속도가 50% 증가합니다. 치명타 확률이 10% 증가합니다. 치명타 배율이 1.5배 증가합니다. 적중률이 5% 증가합니다.",
+        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 1.5,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 1.5,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.1,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalDamage",
+              "value": 1.5,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.05,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "드워프족의 고유 기술인 룬 문자를 새긴 창. 전투 능력을 크게 끌어올린다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 10,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 57001,
+    "name": "라이노 대쉬",
+    "imageName": "legend/spear/57001.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.spear",
+    "baseLevel": 200,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 20.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "성난 돌격",
+        "skill_type": "passive",
+        "skill_description": "빠르고 강한 찌르기로 적을 관통한다. 적중률이 소폭 감소한다.",
+        "skill_description_detail": "공격력 +50%, 치명타 확률 +50%, 적중률 -5%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.25,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "마치 성난 코뿔소 처럼 땅을 가르며 질주하는 창.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 30,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 57002,
+    "name": "냉혈한",
+    "imageName": "legend/spear/57002.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.spear",
+    "baseLevel": 400,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 24.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "냉기 주입",
+        "skill_type": "active",
+        "skill_description": "서린 냉기가 적을 얼린다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 빙결, 최대 데미지 120,000 ,쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyFreeze",
+            "params": {
+              "chance": 0.075,
+              "duration": 5,
+              "cooldown": 5,
+              "maxDmg": 120000,
+              "trigger": "onHit"
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "차가운 피",
+        "skill_type": "passive",
+        "skill_description": "어떤 상황에서도 흔들림 없이 차분해진다.",
+        "skill_description_detail": "명중률 +10%, 더블 어택 확률 +5%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.1,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "criticalDamage",
+            "params": {
+              "stat": "doubleAttackChance",
+              "value": 0.05,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "피도 눈물도 없이 눈앞의 적을 꿰뚫는 창. 시리도록 찬 기운을 품고있다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 50,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 57003,
+    "name": "청천벽력",
+    "imageName": "legend/spear/57003.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.spear",
+    "baseLevel": 600,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 28.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "방전",
+        "skill_type": "active",
+        "skill_description": "칼끝에서 흐르는 강력한 전류가 적을 감전시킨다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 감전, 최대 데미지 27,700, 쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyShock",
+            "params": {
+              "chance": 0.075,
+              "duration": 5,
+              "stackable": false,
+              "trigger": "onHit",
+              "cooldown": 5,
+              "maxDmg": 27700
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "충전",
+        "skill_type": "passive",
+        "skill_description": "감전 상태의 적에게 입히는 피해가 증가한다.",
+        "skill_description_detail": "감전 상태의 적에게 주는 피해 +100%",
+        "skill_effect": [
+          {
+            "effect_name": "increaseDamageToStatused",
+            "params": { "status": "shock", "damageMultiplier": 1 }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "신수 청룡의 역린으로 벼린 창. 강력한 번개의 힘을 담고 있다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 100,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 57004,
+    "name": "아킬레우스의 창",
+    "imageName": "legend/spear/57004.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.spear",
+    "baseLevel": 800,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 36.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "전쟁의 영웅",
+        "skill_type": "passive",
+        "skill_description": "트로이 전쟁을 승리로 이끈 위대한 영웅처럼, 모든 전투에서 승리를 쟁취한다.",
+        "skill_description_detail": "공격력 +100%, 치명타 확률 +15%, 명중률 +10%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 2.0,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.15,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.1,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "아킬레스건",
+        "skill_type": "passive",
+        "skill_description": "사용자와 마찬가지로 무기 또한 치명적인 약점을 갖는다.",
+        "skill_description_detail": "공격속도 -1000/s (자동공격 불가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatDebuff",
+            "params": {
+              "stat": "speed",
+              "value": 1000.0,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "반신이자 영웅인 아킬레우스의 창. 펠리온 산의 물푸레 나무로 만들어져 매우 무겁다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 57005,
+    "name": "신성한 파편 - 왼발",
+    "imageName": "legend/spear/57005.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.spear",
+    "baseLevel": 500,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 40.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "정화",
+        "skill_type": "passive",
+        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
+        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "undead", "multiplier": 1 }
+          },
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "demon", "multiplier": 1 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "divine", "multiplier": 0.3 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "angel", "multiplier": 0.3 }
+          }
+        ]
+      },
+      {
+        "skill_name": "심판",
+        "skill_type": "active",
+        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.075,
+              "damage": 1367000,
+              "cooldown": 5,
+              "trigger": "onHit"
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "신성국의 열다섯 성물 중 하나. 신의 왼발으로 만들어졌다고 전해진다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 58000,
+    "name": "룬드 스태프",
+    "imageName": "legend/staff/58000.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.staff",
+    "baseLevel": 0,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 4.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "룬 각인",
+        "skill_type": "passive",
+        "skill_description": "공격력이 50% 증가합니다. 공격속도가 50% 증가합니다. 치명타 확률이 10% 증가합니다. 치명타 배율이 1.5배 증가합니다. 적중률이 5% 증가합니다.",
+        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 1.5,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 1.5,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.1,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalDamage",
+              "value": 1.5,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.05,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "드워프족의 고유 기술인 룬 문자를 새긴 지팡이. 전투 능력을 크게 끌어올린다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 10,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 58001,
+    "name": "세이지 아울",
+    "imageName": "legend/staff/58001.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.staff",
+    "baseLevel": 200,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 20.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "깨달음",
+        "skill_type": "passive",
+        "skill_description": "경험치 획득량이 증가한다.",
+        "skill_description_detail": "경험치 획득량 +100%",
+        "skill_effect": [
+          {
+            "effect_name": "applyExpGainBoost",
+            "params": { "multiplier": 2.0 }
+          }
+        ]
+      },
+      {
+        "skill_name": "관찰",
+        "skill_type": "passive",
+        "skill_description": "상대방의 움직임을 정확히 파악해 공격한다.",
+        "skill_description_detail": "명중률 +15%, 더블 어택 확률 +20%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.15,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "criticalDamage",
+            "params": {
+              "stat": "doubleAttackChance",
+              "value": 0.2,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "밤의 고요한 현자 올빼미에 영감을 받아 만들어진 지팡이.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 30,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 58002,
+    "name": "참된 스승",
+    "imageName": "legend/staff/58002.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.staff",
+    "baseLevel": 400,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 24.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "갈!",
+        "skill_type": "active",
+        "skill_description": "큰 소리로 상대방을 꾸짖는다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 무장 해제, 방어력 40 감소, 쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyDisarm",
+            "params": {
+              "chance": 0.075,
+              "defenseReduction": 40,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 5
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "교육열",
+        "skill_type": "passive",
+        "skill_description": "끝난 전투를 복기하며 성장한다.",
+        "skill_description_detail": "무기 획득 시 경험치 획득량 25% 영구 증가.",
+        "skill_effect": []
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "참된 스승의 가르침은 때와 장소를 가리지 않는다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 50,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 58003,
+    "name": "신성한 뿔",
+    "imageName": "legend/staff/58003.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.staff",
+    "baseLevel": 600,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 28.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "행운의 상징",
+        "skill_type": "active",
+        "skill_description": "신수의 힘이 모든 것을 사용자에게 유리한 방향으로 이끈다.",
+        "skill_description_detail": "치명타 확률 +25%, 명중률 +10%, 더블 어택 확률 +10%",
+        "skill_effect": [
+          {
+            "effect_name": "applyMultiplierDamage",
+            "params": {
+              "chance": 0.075,
+              "trigger": "onHit",
+              "multiplier": 10.0,
+              "cooldown": 5
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "행운의 상징 Ⅱ",
+        "skill_type": "active",
+        "skill_description": "골드 획득량이 영구적으로 증가한다.",
+        "skill_description_detail": "골드 획득량 50% 영구 증가",
+        "skill_effect": []
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "신수 페가수스의 뿔로 벼린 지팡이. 사용자의 행운을 높여준다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 100,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 58004,
+    "name": "아킬레우스의 창",
+    "imageName": "legend/staff/58004.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.staff",
+    "baseLevel": 800,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 36.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "전쟁의 영웅",
+        "skill_type": "passive",
+        "skill_description": "트로이 전쟁을 승리로 이끈 위대한 영웅처럼, 모든 전투에서 승리를 쟁취한다.",
+        "skill_description_detail": "공격력 +100%, 치명타 확률 +15%, 명중률 +10%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 1.0,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "아킬레스건",
+        "skill_type": "passive",
+        "skill_description": "사용자와 마찬가지로 무기 또한 치명적인 약점을 갖는다.",
+        "skill_description_detail": "공격속도 -1000/s (자동공격 불가)",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatDebuff",
+            "params": {
+              "stat": "speed",
+              "value": 1000.0,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "반신이자 영웅인 아킬레우스의 창. 펠리온 산의 물푸레 나무로 만들어져 매우 무겁다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 58005,
+    "name": "신성한 파편 - 왼발",
+    "imageName": "legend/staff/58005.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.staff",
+    "baseLevel": 500,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 40.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "정화",
+        "skill_type": "passive",
+        "skill_description": "성물이 선과 악을 구분해 전투를 돕는다.",
+        "skill_description_detail": "언데드·데몬 종족에게 추가 피해 +100%, 신성·천사 종족에게 추가 피해 -30%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "undead", "multiplier": 1 }
+          },
+          {
+            "effect_name": "applyPassiveBonusDamageToRace",
+            "params": { "race": "demon", "multiplier": 1 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "divine", "multiplier": 0.3 }
+          },
+          {
+            "effect_name": "applyPassivePenaltyDamageToRace",
+            "params": { "race": "angel", "multiplier": 0.3 }
+          }
+        ]
+      },
+      {
+        "skill_name": "심판",
+        "skill_type": "active",
+        "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyFixedDamage",
+            "params": {
+              "chance": 0.075,
+              "damage": 1367000,
+              "cooldown": 5,
+              "trigger": "onHit"
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "신성국의 열다섯 성물 중 하나. 신의 왼발으로 만들어졌다고 전해진다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 150,
     "investedTranscendenceStones": 0
   }
 ]

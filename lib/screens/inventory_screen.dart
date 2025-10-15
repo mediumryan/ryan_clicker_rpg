@@ -147,31 +147,31 @@ class InventoryScreen extends StatelessWidget {
                 return Column(
                   children: [
                     _buildResourceRow(
-                      'images/others/gold.png',
+                      'assets/images/others/gold.png',
                       '골드',
                       '게임의 기본 재화입니다.',
                       '${NumberFormat('#,###').format(data.gold)}G',
                     ),
                     _buildResourceRow(
-                      'images/others/enhancement_stone.png',
+                      'assets/images/others/enhancement_stone.png',
                       '강화석',
                       '무기 강화에 사용됩니다.',
                       '${NumberFormat('#,###').format(data.enhancementStones)}개',
                     ),
                     _buildResourceRow(
-                      'images/others/transcendence_stone.png',
+                      'assets/images/others/transcendence_stone.png',
                       '초월석',
                       '무기 초월에 사용됩니다.',
                       '${NumberFormat('#,###').format(data.transcendenceStones)}개',
                     ),
                     _buildResourceRow(
-                      'images/others/dark_matter.png',
+                      'assets/images/others/dark_matter.png',
                       '암흑 물질',
                       '특별한 아이템 구매에 사용됩니다.',
                       '${NumberFormat('#,###').format(data.darkMatter)}개',
                     ),
                     _buildResourceRow(
-                      'images/others/protection_ticket.png',
+                      'assets/images/others/protection_ticket.png',
                       '파괴 방지권',
                       '강화 실패 시 파괴를 방지합니다.',
                       '${NumberFormat('#,###').format(data.destructionProtectionTickets)}개',
@@ -378,7 +378,7 @@ class InventoryScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   child: Image.asset(
-                    'images/weapons/${weapon.imageName}',
+                    'assets/images/weapons/${weapon.imageName}',
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) {
                       return const Center(

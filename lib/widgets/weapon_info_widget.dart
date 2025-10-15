@@ -10,7 +10,9 @@ class WeaponInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final gradientColors = EnhancementUtils.getGradientColors(weapon.enhancement);
+    final gradientColors = EnhancementUtils.getGradientColors(
+      weapon.enhancement,
+    );
 
     return GestureDetector(
       onTap: () {
@@ -39,12 +41,12 @@ class WeaponInfoWidget extends StatelessWidget {
                 color: gradientColors.isEmpty ? Colors.black : null,
                 border: Border.all(
                   color: WeaponData.getColorForRarity(weapon.rarity),
-                  width: 1.0,
+                  width: 3.0,
                 ),
                 borderRadius: BorderRadius.circular(4.0),
               ),
               child: Image.asset(
-                'images/weapons/${weapon.imageName}',
+                'assets/images/weapons/${weapon.imageName}',
                 fit: BoxFit.contain,
                 errorBuilder: (context, error, stackTrace) {
                   return const Center(

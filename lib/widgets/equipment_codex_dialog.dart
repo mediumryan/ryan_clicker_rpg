@@ -155,7 +155,7 @@ class _EquipmentCodexDialogState extends State<EquipmentCodexDialog> {
                                 0,
                               ]),
                         child: Image.asset(
-                          'images/weapons/${weapon.imageName}',
+                          'assets/images/weapons/${weapon.imageName}',
                           width: 60,
                           height: 60,
                           fit: BoxFit.contain,

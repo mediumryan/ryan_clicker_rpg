@@ -147,7 +147,8 @@ class WeaponSkillProvider with ChangeNotifier {
       }
     }
     // After applying all passive skills, recalculate player stats in GameProvider
-    _gameProvider.recalculatePlayerStats();
+    // Pass resetStats: false because this method has already handled the reset.
+    _gameProvider.recalculatePlayerStats(resetStats: false);
   }
 
   void _applyEffect(

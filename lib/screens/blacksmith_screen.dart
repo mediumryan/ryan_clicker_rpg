@@ -179,7 +179,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
 
                         children: [
                           Image.asset(
-                            'images/others/gold.png',
+                            'assets/images/others/gold.png',
 
                             width: 24,
 
@@ -201,7 +201,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                           const SizedBox(width: 20),
 
                           Image.asset(
-                            'images/others/enhancement_stone.png',
+                            'assets/images/others/enhancement_stone.png',
 
                             width: 24,
 
@@ -223,7 +223,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                           const SizedBox(width: 20),
 
                           Image.asset(
-                            'images/others/transcendence_stone.png',
+                            'assets/images/others/transcendence_stone.png',
 
                             width: 24,
 
@@ -245,7 +245,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                           const SizedBox(width: 20),
 
                           Image.asset(
-                            'images/others/dark_matter.png',
+                            'assets/images/others/dark_matter.png',
 
                             width: 24,
 
@@ -267,7 +267,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                           const SizedBox(width: 20),
 
                           Image.asset(
-                            'images/others/protection_ticket.png',
+                            'assets/images/others/protection_ticket.png',
 
                             width: 24,
 
@@ -368,8 +368,8 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                       final newTranscendenceStoneCost =
                           ((rarityMultiplier +
                                       ((equippedWeapon.baseLevel + 1) / 200)
-                                          .floor()) *
-                                  (equippedWeapon.transcendence + 1))
+                                          .floor())
+                                  * (equippedWeapon.transcendence + 1))
                               .toInt();
 
                       return Column(
@@ -438,7 +438,6 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
 
                                     String content =
                                         '''정말로 강화하시겠습니까?\n
-
   필요 골드: ${NumberFormat('#,###').format(enhancementGoldCost)}G
 
   강화 확률: $probability%\n실패 페널티: $penaltyMessage''';
@@ -749,7 +748,7 @@ class _BlacksmithScreenState extends State<BlacksmithScreen> {
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   child: Image.asset(
-                    'images/weapons/${weapon.imageName}',
+                    'assets/images/weapons/${weapon.imageName}',
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) {
                       return const Center(

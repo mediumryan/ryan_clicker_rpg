@@ -79,29 +79,29 @@ class GachaBox {
   String get imagePath {
     switch (boxType) {
       case WeaponBoxType.common:
-        return 'images/chests/common.png';
+        return 'assets/images/chests/common.png';
       case WeaponBoxType.plain:
-        return 'images/chests/plain.png';
+        return 'assets/images/chests/plain.png';
       case WeaponBoxType.rare:
-        return 'images/chests/rare.png';
+        return 'assets/images/chests/rare.png';
       case WeaponBoxType.shiny:
-        return 'images/chests/shiny.png';
+        return 'assets/images/chests/shiny.png';
       case WeaponBoxType.mystic:
-        return 'images/chests/mystic.png';
+        return 'assets/images/chests/mystic.png';
       case WeaponBoxType.holy:
-        return 'images/chests/holy.png';
+        return 'assets/images/chests/holy.png';
       case WeaponBoxType.guaranteedUnique:
-        return 'images/chests/unique.png';
+        return 'assets/images/chests/unique.png';
       case WeaponBoxType.guaranteedEpic:
-        return 'images/chests/epic.png';
+        return 'assets/images/chests/epic.png';
       case WeaponBoxType.guaranteedLegend:
-        return 'images/chests/legend.png';
+        return 'assets/images/chests/legend.png';
       case WeaponBoxType.guaranteedDemigod:
-        return 'images/chests/demi_god.png';
+        return 'assets/images/chests/demi_god.png';
       case WeaponBoxType.guaranteedGod:
-        return 'images/chests/god.png';
+        return 'assets/images/chests/god.png';
       case WeaponBoxType.gamble:
-        return 'images/chests/gamble.png';
+        return 'assets/images/chests/gamble.png';
     }
   }
 

@@ -43,3 +43,17 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Security
+firebase.json
+**/google-services.json
+**/GoogleService-Info.plist
+devtools_options.yaml
+*.jks
+*.cer
+*.p12
+secrets.json
+credentials.json
+serviceAccountKey.json
+*service_account.json
+*service.json
