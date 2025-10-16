@@ -914,7 +914,7 @@
             "params": {
               "chance": 0.075,
               "duration": 5,
-              "damagePerSecond": 21200,
+              "fixedDamagePerSecond": 21200,
               "stackable": false,
               "trigger": "onHit",
               "cooldown": 5
@@ -2518,13 +2518,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.warhammer",
     "baseLevel": 0,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 4.0,
+    "baseDamage": 243,
+    "criticalChance": 0.084,
+    "criticalDamage": 3.9,
+    "defensePenetration": 10.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.12,
+    "baseSellPrice": 18000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -2581,7 +2581,7 @@
         ]
       }
     ],
-    "accuracy": 0.823,
+    "accuracy": 0.676,
     "description": "드워프족의 고유 기술인 룬 문자를 새긴 전투망치. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
@@ -2596,13 +2596,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.warhammer",
     "baseLevel": 200,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 20.0,
+    "baseDamage": 7325,
+    "criticalChance": 0.084,
+    "criticalDamage": 3.9,
+    "defensePenetration": 14.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.12,
+    "baseSellPrice": 360000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -2635,7 +2635,7 @@
         ]
       }
     ],
-    "accuracy": 0.823,
+    "accuracy": 0.676,
     "description": "한 때 전장을 공포로 물들인 전투 코끼리의 앞발을 본따 만든 무기. 모든 것을 짓밟는다.",
     "enhancement": 0,
     "transcendence": 0,
@@ -2650,13 +2650,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.warhammer",
     "baseLevel": 400,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 24.0,
+    "baseDamage": 18377,
+    "criticalChance": 0.084,
+    "criticalDamage": 3.9,
+    "defensePenetration": 18.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.12,
+    "baseSellPrice": 720000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -2684,7 +2684,7 @@
         ]
       }
     ],
-    "accuracy": 0.823,
+    "accuracy": 0.676,
     "description": "수많은 무기를 벼린 명장 오르칸의 망치. 전투를 지속할수록 공격력이 비약적으로 상승한다.",
     "enhancement": 0,
     "transcendence": 0,
@@ -2699,13 +2699,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.warhammer",
     "baseLevel": 600,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 28.0,
+    "baseDamage": 32494,
+    "criticalChance": 0.084,
+    "criticalDamage": 3.9,
+    "defensePenetration": 22.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.12,
+    "baseSellPrice": 1080000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -2748,7 +2748,7 @@
         ]
       }
     ],
-    "accuracy": 0.823,
+    "accuracy": 0.676,
     "description": "미궁의 괴수 미노타우로스의 거대한 망치. 강력한 파괴력으로 상대방의 방어를 무력화한다.",
     "enhancement": 0,
     "transcendence": 0,
@@ -2763,13 +2763,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.warhammer",
     "baseLevel": 800,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 36.0,
+    "baseDamage": 49368,
+    "criticalChance": 0.084,
+    "criticalDamage": 3.9,
+    "defensePenetration": 26.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.12,
+    "baseSellPrice": 1440000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -2794,7 +2794,7 @@
         ]
       }
     ],
-    "accuracy": 0.823,
+    "accuracy": 0.676,
     "description": "헤파이스토스가 창조한 거인 탈로스의 두개골로 만든 망치. 모든 공격이 치명적이다.",
     "enhancement": 0,
     "transcendence": 0,
@@ -2809,13 +2809,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.warhammer",
     "baseLevel": 500,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 40.0,
+    "baseDamage": 25075,
+    "criticalChance": 0.084,
+    "criticalDamage": 3.9,
+    "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.12,
+    "baseSellPrice": 900000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -2831,19 +2831,31 @@
         "skill_effect": [
           {
             "effect_name": "applyPassiveBonusDamageToRace",
-            "params": { "race": "undead", "multiplier": 1 }
+            "params": {
+              "race": "undead",
+              "multiplier": 1
+            }
           },
           {
             "effect_name": "applyPassiveBonusDamageToRace",
-            "params": { "race": "demon", "multiplier": 1 }
+            "params": {
+              "race": "demon",
+              "multiplier": 1
+            }
           },
           {
             "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": { "race": "divine", "multiplier": 0.3 }
+            "params": {
+              "race": "divine",
+              "multiplier": 0.3
+            }
           },
           {
             "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": { "race": "angel", "multiplier": 0.3 }
+            "params": {
+              "race": "angel",
+              "multiplier": 0.3
+            }
           }
         ]
       },
@@ -2865,7 +2877,7 @@
         ]
       }
     ],
-    "accuracy": 0.823,
+    "accuracy": 0.676,
     "description": "신성국의 열다섯 성물 중 하나. 신의 오른발으로 만들어졌다고 전해진다.",
     "enhancement": 0,
     "transcendence": 0,
@@ -2880,13 +2892,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.spear",
     "baseLevel": 0,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 4.0,
+    "baseDamage": 148,
+    "criticalChance": 0.144,
+    "criticalDamage": 3.0,
+    "defensePenetration": 10.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.58,
+    "baseSellPrice": 18000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -2943,7 +2955,7 @@
         ]
       }
     ],
-    "accuracy": 0.823,
+    "accuracy": 0.808,
     "description": "드워프족의 고유 기술인 룬 문자를 새긴 창. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
@@ -2958,13 +2970,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.spear",
     "baseLevel": 200,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 20.0,
+    "baseDamage": 4476,
+    "criticalChance": 0.144,
+    "criticalDamage": 3.0,
+    "defensePenetration": 14.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.58,
+    "baseSellPrice": 360000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -2989,7 +3001,7 @@
         ]
       }
     ],
-    "accuracy": 0.823,
+    "accuracy": 0.808,
     "description": "마치 성난 코뿔소 처럼 땅을 가르며 질주하는 창.",
     "enhancement": 0,
     "transcendence": 0,
@@ -3004,13 +3016,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.spear",
     "baseLevel": 400,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 24.0,
+    "baseDamage": 11230,
+    "criticalChance": 0.144,
+    "criticalDamage": 3.0,
+    "defensePenetration": 18.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.58,
+    "baseSellPrice": 720000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -3061,7 +3073,7 @@
         ]
       }
     ],
-    "accuracy": 0.823,
+    "accuracy": 0.808,
     "description": "피도 눈물도 없이 눈앞의 적을 꿰뚫는 창. 시리도록 찬 기운을 품고있다.",
     "enhancement": 0,
     "transcendence": 0,
@@ -3076,13 +3088,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.spear",
     "baseLevel": 600,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 28.0,
+    "baseDamage": 19857,
+    "criticalChance": 0.144,
+    "criticalDamage": 3.0,
+    "defensePenetration": 22.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.58,
+    "baseSellPrice": 1080000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -3117,12 +3129,15 @@
         "skill_effect": [
           {
             "effect_name": "increaseDamageToStatused",
-            "params": { "status": "shock", "damageMultiplier": 1 }
+            "params": {
+              "status": "shock",
+              "damageMultiplier": 1
+            }
           }
         ]
       }
     ],
-    "accuracy": 0.823,
+    "accuracy": 0.808,
     "description": "신수 청룡의 역린으로 벼린 창. 강력한 번개의 힘을 담고 있다.",
     "enhancement": 0,
     "transcendence": 0,
@@ -3137,13 +3152,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.spear",
     "baseLevel": 800,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 36.0,
+    "baseDamage": 30169,
+    "criticalChance": 0.144,
+    "criticalDamage": 3.0,
+    "defensePenetration": 26.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.58,
+    "baseSellPrice": 1440000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -3200,7 +3215,7 @@
         ]
       }
     ],
-    "accuracy": 0.823,
+    "accuracy": 0.808,
     "description": "반신이자 영웅인 아킬레우스의 창. 펠리온 산의 물푸레 나무로 만들어져 매우 무겁다.",
     "enhancement": 0,
     "transcendence": 0,
@@ -3215,13 +3230,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.spear",
     "baseLevel": 500,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 40.0,
+    "baseDamage": 15324,
+    "criticalChance": 0.144,
+    "criticalDamage": 3.0,
+    "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.58,
+    "baseSellPrice": 900000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -3237,19 +3252,31 @@
         "skill_effect": [
           {
             "effect_name": "applyPassiveBonusDamageToRace",
-            "params": { "race": "undead", "multiplier": 1 }
+            "params": {
+              "race": "undead",
+              "multiplier": 1
+            }
           },
           {
             "effect_name": "applyPassiveBonusDamageToRace",
-            "params": { "race": "demon", "multiplier": 1 }
+            "params": {
+              "race": "demon",
+              "multiplier": 1
+            }
           },
           {
             "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": { "race": "divine", "multiplier": 0.3 }
+            "params": {
+              "race": "divine",
+              "multiplier": 0.3
+            }
           },
           {
             "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": { "race": "angel", "multiplier": 0.3 }
+            "params": {
+              "race": "angel",
+              "multiplier": 0.3
+            }
           }
         ]
       },
@@ -3271,7 +3298,7 @@
         ]
       }
     ],
-    "accuracy": 0.823,
+    "accuracy": 0.808,
     "description": "신성국의 열다섯 성물 중 하나. 신의 왼발으로 만들어졌다고 전해진다.",
     "enhancement": 0,
     "transcendence": 0,
@@ -3286,13 +3313,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.staff",
     "baseLevel": 0,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 4.0,
+    "baseDamage": 148,
+    "criticalChance": 0.156,
+    "criticalDamage": 2.85,
+    "defensePenetration": 10.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.5,
+    "baseSellPrice": 18000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -3364,13 +3391,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.staff",
     "baseLevel": 200,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 20.0,
+    "baseDamage": 4476,
+    "criticalChance": 0.156,
+    "criticalDamage": 2.85,
+    "defensePenetration": 14.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.5,
+    "baseSellPrice": 360000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -3386,7 +3413,9 @@
         "skill_effect": [
           {
             "effect_name": "applyExpGainBoost",
-            "params": { "multiplier": 2.0 }
+            "params": {
+              "multiplier": 2.0
+            }
           }
         ]
       },
@@ -3430,13 +3459,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.staff",
     "baseLevel": 400,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 24.0,
+    "baseDamage": 11230,
+    "criticalChance": 0.156,
+    "criticalDamage": 2.85,
+    "defensePenetration": 18.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.5,
+    "baseSellPrice": 720000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -3486,13 +3515,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.staff",
     "baseLevel": 600,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 28.0,
+    "baseDamage": 19857,
+    "criticalChance": 0.156,
+    "criticalDamage": 2.85,
+    "defensePenetration": 22.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.5,
+    "baseSellPrice": 1080000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -3540,13 +3569,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.staff",
     "baseLevel": 800,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 36.0,
+    "baseDamage": 30169,
+    "criticalChance": 0.156,
+    "criticalDamage": 2.85,
+    "defensePenetration": 26.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.5,
+    "baseSellPrice": 1440000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -3602,13 +3631,13 @@
     "rarity": "Rarity.legend",
     "type": "WeaponType.staff",
     "baseLevel": 500,
-    "baseDamage": 0,
-    "criticalChance": 0.1,
-    "criticalDamage": 1.5,
-    "defensePenetration": 40.0,
+    "baseDamage": 15324,
+    "criticalChance": 0.156,
+    "criticalDamage": 2.85,
+    "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
-    "speed": 1.0,
-    "baseSellPrice": 0,
+    "speed": 1.5,
+    "baseSellPrice": 900000,
     "stack": {
       "enabled": false,
       "currentStacks": 0,
@@ -3624,19 +3653,31 @@
         "skill_effect": [
           {
             "effect_name": "applyPassiveBonusDamageToRace",
-            "params": { "race": "undead", "multiplier": 1 }
+            "params": {
+              "race": "undead",
+              "multiplier": 1
+            }
           },
           {
             "effect_name": "applyPassiveBonusDamageToRace",
-            "params": { "race": "demon", "multiplier": 1 }
+            "params": {
+              "race": "demon",
+              "multiplier": 1
+            }
           },
           {
             "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": { "race": "divine", "multiplier": 0.3 }
+            "params": {
+              "race": "divine",
+              "multiplier": 0.3
+            }
           },
           {
             "effect_name": "applyPassivePenaltyDamageToRace",
-            "params": { "race": "angel", "multiplier": 0.3 }
+            "params": {
+              "race": "angel",
+              "multiplier": 0.3
+            }
           }
         ]
       },
@@ -3664,6 +3705,84 @@
     "transcendence": 0,
     "investedGold": 0.0,
     "investedEnhancementStones": 150,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 59000,
+    "name": "룬드 스태프",
+    "imageName": "legend/mace/59000.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.mace",
+    "baseLevel": 0,
+    "baseDamage": 189,
+    "criticalChance": 0.096,
+    "criticalDamage": 3.6,
+    "defensePenetration": 10.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.35,
+    "baseSellPrice": 18000,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "룬 각인",
+        "skill_type": "passive",
+        "skill_description": "공격력이 50% 증가합니다. 공격속도가 50% 증가합니다. 치명타 확률이 10% 증가합니다. 치명타 배율이 1.5배 증가합니다. 적중률이 5% 증가합니다.",
+        "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 1.5,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 1.5,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalChance",
+              "value": 0.1,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "criticalDamage",
+              "value": 1.5,
+              "isMultiplicative": false
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.05,
+              "isMultiplicative": false
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.713,
+    "description": "드워프족의 고유 기술인 룬 문자를 새긴 지팡이. 전투 능력을 크게 끌어올린다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 10,
     "investedTranscendenceStones": 0
   }
 ]
