@@ -4,19 +4,19 @@ import os
 
 # --- 베이스 레전드 무기 데이터 ---
 BASE_LEGEND_WEAPONS = [
-  {
+    {
     "id": 50000,
-    "name": "오닉스 스플린터",
-    "imageName": "legend/battle_axe/50000.png",
+    "name": "룬드 스태프",
+    "imageName": "legend/staff/50000.png",
     "rarity": "Rarity.legend",
-    "type": "WeaponType.battleAxe",
+    "type": "WeaponType.staff",
     "baseLevel": 0,
     "baseDamage": 0,
-    "criticalChance": 0.08,
-    "criticalDamage": 1.8,
-    "defensePenetration": 10.0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 4.0,
     "doubleAttackChance": 0.0,
-    "speed": 0.8,
+    "speed": 1.0,
     "baseSellPrice": 0,
     "stack": {
       "enabled": False,
@@ -26,9 +26,9 @@ BASE_LEGEND_WEAPONS = [
     },
     "skills": [
       {
-        "skill_name": "오닉스 각인",
+        "skill_name": "룬 각인",
         "skill_type": "passive",
-        "skill_description": "보석의 힘이 사용자와 무기를 각성시킨다.",
+        "skill_description": "공격력이 50% 증가합니다. 공격속도가 50% 증가합니다. 치명타 확률이 10% 증가합니다. 치명타 배율이 1.5배 증가합니다. 적중률이 5% 증가합니다.",
         "skill_description_detail": "공격력 +50%, 공격속도 +50%, 치명타 확률 +10%, 치명타 배율 +1배, 적중률 +5%",
         "skill_effect": [
           {
@@ -59,7 +59,7 @@ BASE_LEGEND_WEAPONS = [
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "criticalDamage",
-              "value": 1.0,
+              "value": 1.5,
               "isMultiplicative": False
             }
           },
@@ -74,27 +74,27 @@ BASE_LEGEND_WEAPONS = [
         ]
       }
     ],
-    "accuracy": 0.8,
-    "description": "오닉스의 어둡지만 신비로운 광채를 품은 도끼. 전투 능력을 크게 끌어올린다.",
+    "accuracy": 0.823,
+    "description": "드워프족의 고유 기술인 룬 문자를 새긴 지팡이. 전투 능력을 크게 끌어올린다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 0,
+    "investedEnhancementStones": 10,
     "investedTranscendenceStones": 0
   },
   {
     "id": 50001,
-    "name": "그리즐리",
-    "imageName": "legend/battle_axe/50001.png",
+    "name": "세이지 아울",
+    "imageName": "legend/staff/50001.png",
     "rarity": "Rarity.legend",
-    "type": "WeaponType.battleAxe",
+    "type": "WeaponType.staff",
     "baseLevel": 200,
     "baseDamage": 0,
-    "criticalChance": 0.08,
-    "criticalDamage": 1.8,
-    "defensePenetration": 25.0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 20.0,
     "doubleAttackChance": 0.0,
-    "speed": 0.8,
+    "speed": 1.0,
     "baseSellPrice": 0,
     "stack": {
       "enabled": False,
@@ -104,10 +104,132 @@ BASE_LEGEND_WEAPONS = [
     },
     "skills": [
       {
-        "skill_name": "곰발",
+        "skill_name": "깨달음",
+        "skill_type": "passive",
+        "skill_description": "경험치 획득량이 증가한다.",
+        "skill_description_detail": "경험치 획득량 +100%",
+        "skill_effect": [
+          {
+            "effect_name": "applyExpGainBoost",
+            "params": { "multiplier": 2.0 }
+          }
+        ]
+      },
+      {
+        "skill_name": "관찰",
+        "skill_type": "passive",
+        "skill_description": "상대방의 움직임을 정확히 파악해 공격한다.",
+        "skill_description_detail": "명중률 +15%, 더블 어택 확률 +20%",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "accuracy",
+              "value": 0.15,
+              "isMultiplicative": False
+            }
+          },
+          {
+            "effect_name": "criticalDamage",
+            "params": {
+              "stat": "doubleAttackChance",
+              "value": 0.2,
+              "isMultiplicative": False
+            }
+          }
+        ]
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "밤의 고요한 현자 올빼미에 영감을 받아 만들어진 지팡이.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 30,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 50002,
+    "name": "참된 스승",
+    "imageName": "legend/staff/50002.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.staff",
+    "baseLevel": 400,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 24.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": False,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "갈!",
         "skill_type": "active",
-        "skill_description": "강력한 일격으로 눈앞의 적을 가른다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 10배의 피해, 쿨타임 5초",
+        "skill_description": "큰 소리로 상대방을 꾸짖는다.",
+        "skill_description_detail": "공격 시 7.5% 확률로 5초간 무장 해제, 방어력 40 감소, 쿨타임 5초",
+        "skill_effect": [
+          {
+            "effect_name": "applyDisarm",
+            "params": {
+              "chance": 0.075,
+              "defenseReduction": 40,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": False,
+              "cooldown": 5
+            }
+          }
+        ]
+      },
+      {
+        "skill_name": "교육열",
+        "skill_type": "passive",
+        "skill_description": "끝난 전투를 복기하며 성장한다.",
+        "skill_description_detail": "무기 획득 시 경험치 획득량 25% 영구 증가.",
+        "skill_effect": []
+      }
+    ],
+    "accuracy": 0.823,
+    "description": "참된 스승의 가르침은 때와 장소를 가리지 않는다.",
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 50,
+    "investedTranscendenceStones": 0
+  },
+  {
+    "id": 50003,
+    "name": "신성한 뿔",
+    "imageName": "legend/staff/50003.png",
+    "rarity": "Rarity.legend",
+    "type": "WeaponType.staff",
+    "baseLevel": 600,
+    "baseDamage": 0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 28.0,
+    "doubleAttackChance": 0.0,
+    "speed": 1.0,
+    "baseSellPrice": 0,
+    "stack": {
+      "enabled": False,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "행운의 상징",
+        "skill_type": "active",
+        "skill_description": "신수의 힘이 모든 것을 사용자에게 유리한 방향으로 이끈다.",
+        "skill_description_detail": "치명타 확률 +25%, 명중률 +10%, 더블 어택 확률 +10%",
         "skill_effect": [
           {
             "effect_name": "applyMultiplierDamage",
@@ -119,29 +241,36 @@ BASE_LEGEND_WEAPONS = [
             }
           }
         ]
+      },
+      {
+        "skill_name": "행운의 상징 Ⅱ",
+        "skill_type": "active",
+        "skill_description": "골드 획득량이 영구적으로 증가한다.",
+        "skill_description_detail": "골드 획득량 50% 영구 증가",
+        "skill_effect": []
       }
     ],
-    "accuracy": 0.8,
-    "description": "일격에 모든 것을 찢어버리는 거대한 도끼. 마치 곰의 앞발과도 같다.",
+    "accuracy": 0.823,
+    "description": "신수 페가수스의 뿔로 벼린 지팡이. 사용자의 행운을 높여준다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 0,
+    "investedEnhancementStones": 100,
     "investedTranscendenceStones": 0
   },
   {
-    "id": 50002,
-    "name": "무자비한 집행자",
-    "imageName": "legend/battle_axe/50002.png",
+    "id": 50004,
+    "name": "아킬레우스의 창",
+    "imageName": "legend/staff/50004.png",
     "rarity": "Rarity.legend",
-    "type": "WeaponType.battleAxe",
-    "baseLevel": 400,
+    "type": "WeaponType.staff",
+    "baseLevel": 800,
     "baseDamage": 0,
-    "criticalChance": 0.08,
-    "criticalDamage": 1.8,
-    "defensePenetration": 30.0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 36.0,
     "doubleAttackChance": 0.0,
-    "speed": 0.8,
+    "speed": 1.0,
     "baseSellPrice": 0,
     "stack": {
       "enabled": False,
@@ -151,226 +280,59 @@ BASE_LEGEND_WEAPONS = [
     },
     "skills": [
       {
-        "skill_name": "처형",
+        "skill_name": "전쟁의 영웅",
         "skill_type": "passive",
-        "skill_description": "단두대의 칼날과 같은 공격으로 적을 처형한다.",
-        "skill_description_detail": "공격시 2.5% 확률로 적 처치, 보스의 경우 160,000 추가 피해, 쿨타임 5초",
-        "skill_effect": [
-          {
-            "effect_name": "applyMonsterKill",
-            "params": {
-              "fixDmg": 160000,
-              "trigger": "onHit",
-              "chance": 0.025,
-              "cooldown": 5
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.8,
-    "description": "죄인의 목을 치던 망나니의 도끼. 공격 시 낮은 확률로 적을 즉시 처형한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 50003,
-    "name": "가이안트",
-    "imageName": "legend/battle_axe/50003.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.battleAxe",
-    "baseLevel": 600,
-    "baseDamage": 0,
-    "criticalChance": 0.08,
-    "criticalDamage": 1.8,
-    "defensePenetration": 35.0,
-    "doubleAttackChance": 0.0,
-    "speed": 0.8,
-    "baseSellPrice": 0,
-    "stack": {
-      "enabled": False,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "가이아의 축복",
-        "skill_type": "passive",
-        "skill_description": "대지의 신 가이아의 축복으로 사용자의 공격력을 대폭 올려준다.",
-        "skill_description_detail": "공격력 +200%",
+        "skill_description": "트로이 전쟁을 승리로 이끈 위대한 영웅처럼, 모든 전투에서 승리를 쟁취한다.",
+        "skill_description_detail": "공격력 +100%, 치명타 확률 +15%, 명중률 +10%",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
-              "stat": "damage",
-              "value": 3.0,
-              "isMultiplicative": True
+              "stat": "criticalChance",
+              "value": 1.0,
+              "isMultiplicative": False
             }
           }
         ]
       },
       {
-        "skill_name": "개연성",
+        "skill_name": "아킬레스건",
         "skill_type": "passive",
-        "skill_description": "신의 온전한 축복을 모두 감당하기에는 무기가 완전하지 못하다.",
-        "skill_description_detail": "공격속도 -30%, 적중률 -5%",
+        "skill_description": "사용자와 마찬가지로 무기 또한 치명적인 약점을 갖는다.",
+        "skill_description_detail": "공격속도 -1000/s (자동공격 불가)",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatDebuff",
             "params": {
               "stat": "speed",
-              "value": 0.3,
-              "isMultiplicative": True
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatDebuff",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.05,
+              "value": 1000.0,
               "isMultiplicative": False
             }
           }
         ]
       }
     ],
-    "accuracy": 0.8,
-    "description": "대지의 신 가이아가 직접 단조했다는 전설의 도끼. 강력한 힘을 지녔으나 그 힘을 감당하기에는 무기가 완전하지 못하다.",
+    "accuracy": 0.823,
+    "description": "반신이자 영웅인 아킬레우스의 창. 펠리온 산의 물푸레 나무로 만들어져 매우 무겁다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 50004,
-    "name": "은도끼",
-    "imageName": "legend/battle_axe/50004.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.battleAxe",
-    "baseLevel": 800,
-    "baseDamage": 0,
-    "criticalChance": 0.08,
-    "criticalDamage": 1.8,
-    "defensePenetration": 45.0,
-    "doubleAttackChance": 0.0,
-    "speed": 0.8,
-    "baseSellPrice": 0,
-    "stack": {
-      "enabled": False,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "신선 세트",
-        "skill_type": "passive",
-        "skill_description": "금도끼를 획득한 적이 있는 경우, 능력치가 대폭 상승한다.",
-        "skill_description_detail": "무기 도감에 금도끼가 활성화 되어있는 경우 공격속도 +200%, 적중률 +20%",
-        "skill_effect": [
-          {
-            "effect_name": "applySynergyBonus",
-            "params": {
-              "stat": "speed",
-              "value": 3.0,
-              "isMultiplicative": True,
-              "targetId": [50005]
-            }
-          },
-          {
-            "effect_name": "applySynergyBonus",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.2,
-              "isMultiplicative": False,
-              "targetId": [50005]
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.8,
-    "description": "산 속의 패왕 신선이 사용하던 도끼. 겉보기엔 평범한 은도끼이지만 금도끼를 획득한 적이 있는 경우, 능력치가 대폭 상승한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
+    "investedEnhancementStones": 150,
     "investedTranscendenceStones": 0
   },
   {
     "id": 50005,
-    "name": "금도끼",
-    "imageName": "legend/battle_axe/50005.png",
+    "name": "신성한 파편 - 왼발",
+    "imageName": "legend/staff/50005.png",
     "rarity": "Rarity.legend",
-    "type": "WeaponType.battleAxe",
-    "baseLevel": 800,
+    "type": "WeaponType.staff",
+    "baseLevel": 500,
     "baseDamage": 0,
-    "criticalChance": 0.08,
-    "criticalDamage": 1.8,
-    "defensePenetration": 45.0,
+    "criticalChance": 0.1,
+    "criticalDamage": 1.5,
+    "defensePenetration": 40.0,
     "doubleAttackChance": 0.0,
-    "speed": 0.8,
-    "baseSellPrice": 0,
-    "stack": {
-      "enabled": False,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "신선 세트",
-        "skill_type": "passive",
-        "skill_description": "은도끼를 획득한 적이 있는 경우, 능력치가 대폭 상승한다.",
-        "skill_description_detail": "무기 도감에 금도끼가 활성화 되어있는 경우 공격력 +150%, 적중률 +20%",
-        "skill_effect": [
-          {
-            "effect_name": "applySynergyBonus",
-            "params": {
-              "stat": "damage",
-              "value": 2.5,
-              "isMultiplicative": True,
-              "targetId": [50005]
-            }
-          },
-          {
-            "effect_name": "applySynergyBonus",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.2,
-              "isMultiplicative": False,
-              "targetId": [50005]
-            }
-          }
-        ]
-      }
-    ],
-    "accuracy": 0.8,
-    "description": "산 속의 패왕 신선이 사용하던 도끼. 겉보기엔 평범한 금도끼이지만 은도끼를 획득한 적이 있는 경우, 능력치가 대폭 상승한다.",
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0
-  },
-  {
-    "id": 50006,
-    "name": "신성한 파편 - 척추",
-    "imageName": "legend/battle_axe/50006.png",
-    "rarity": "Rarity.legend",
-    "type": "WeaponType.battleAxe",
-    "baseLevel": 1000,
-    "baseDamage": 0,
-    "criticalChance": 0.08,
-    "criticalDamage": 1.8,
-    "defensePenetration": 50.0,
-    "doubleAttackChance": 0.0,
-    "speed": 0.8,
+    "speed": 1.0,
     "baseSellPrice": 0,
     "stack": {
       "enabled": False,
@@ -407,13 +369,13 @@ BASE_LEGEND_WEAPONS = [
         "skill_name": "심판",
         "skill_type": "active",
         "skill_description": "성물이 찬란한 빛을 발산해 몬스터를 심판한다.",
-        "skill_description_detail": "공격 시 7.5% 확률로 1,000,000 추가 피해, 쿨타임 5초",
+        "skill_description_detail": "공격 시 7.5% 확률로 1,367,000 추가 피해, 쿨타임 5초",
         "skill_effect": [
           {
             "effect_name": "applyFixedDamage",
             "params": {
               "chance": 0.075,
-              "damage": 1000000,
+              "damage": 1367000,
               "cooldown": 5,
               "trigger": "onHit"
             }
@@ -421,12 +383,12 @@ BASE_LEGEND_WEAPONS = [
         ]
       }
     ],
-    "accuracy": 0.8,
-    "description": "신성국의 열다섯 성물 중 하나. 신의 척추로 만들어졌다고 전해진다.",
+    "accuracy": 0.823,
+    "description": "신성국의 열다섯 성물 중 하나. 신의 왼발으로 만들어졌다고 전해진다.",
     "enhancement": 0,
     "transcendence": 0,
     "investedGold": 0.0,
-    "investedEnhancementStones": 0,
+    "investedEnhancementStones": 150,
     "investedTranscendenceStones": 0
   }
 ]

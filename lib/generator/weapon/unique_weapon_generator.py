@@ -35,14 +35,14 @@ BASE_UNIQUE_WEAPONS = [
       {
         "skill_name": "순조로운 시작",
         "skill_type": "passive",
-        "skill_description": "전투 시작 시 5초간 공격력이 30% 증가 합니다.",
+        "skill_description": "전투 시작 시 5초간 공격력이 50% 증가 합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
             "effect_name": "applyStatBoost",
             "params": {
               "stat": "damage",
-              "value": 1.3,
+              "value": 1.5,
               "isMultiplicative": True,
               "duration": 5,
               "trigger": "stageStart"
@@ -185,7 +185,7 @@ BASE_UNIQUE_WEAPONS = [
           {
             "effect_name": "applyPoison",
             "params": {
-              "chance": 0.05,
+              "chance": 0.025,
               "percentPerSecond": 0.025,
               "maxDmg": 11300,
               "duration": 5,
@@ -229,7 +229,7 @@ BASE_UNIQUE_WEAPONS = [
       {
         "skill_name": "과중량",
         "skill_type": "passive",
-        "skill_description": "공격력이 30% 증가합니다. 공격속도가 30% 감소합니다.",
+        "skill_description": "공격력이 40% 증가합니다. 공격속도가 15% 감소합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
@@ -289,7 +289,7 @@ BASE_UNIQUE_WEAPONS = [
           {
             "effect_name": "applyBurn",
             "params": {
-              "chance": 0.05,
+              "chance": 0.025,
               "duration": 5,
               "fixedDamagePerSecond": 24500,
               "stackable": False,
@@ -326,13 +326,13 @@ BASE_UNIQUE_WEAPONS = [
       "enabled": True,
       "currentStacks": 0,
       "maxStacks": 100,
-      "damagePerStack": 30
+      "damagePerStack": 75
     },
     "skills": [
       {
         "skill_name": "수혈",
         "skill_type": "active",
-        "skill_description": "적 처치 시 무기의 공격력이 30씩 증가합니다.",
+        "skill_description": "적 처치 시 무기의 공격력이 75씩 증가합니다.",
         "skill_description_detail": "최대 중첩 - 100회",
         "skill_effect": [
           {
@@ -380,7 +380,7 @@ BASE_UNIQUE_WEAPONS = [
           {
             "effect_name": "applyDisarm",
             "params": {
-              "chance": 0.05,
+              "chance": 0.025,
               "defenseReduction": 25,
               "duration": 5,
               "trigger": "onHit",
@@ -423,14 +423,14 @@ BASE_UNIQUE_WEAPONS = [
       {
         "skill_name": "급소 공략",
         "skill_type": "passive",
-        "skill_description": "치명타 배율이 3배 증가합니다.",
+        "skill_description": "치명타 배율이 5배 증가합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "criticalDamage",
-              "value": 3.0,
+              "value": 5.0,
               "isMultiplicative": False
             }
           }
@@ -475,7 +475,7 @@ BASE_UNIQUE_WEAPONS = [
           {
             "effect_name": "applyBleed",
             "params": {
-              "chance": 0.05,
+              "chance": 0.025,
               "duration": 5,
               "damagePerSecond": 94300,
               "stackable": False,
@@ -519,13 +519,13 @@ BASE_UNIQUE_WEAPONS = [
         "skill_name": "혼란한 시야",
         "skill_type": "active",
         "skill_description": "공격 시 2.5% 확률로 적을 5초간 혼란 상태로 만듭니다. 쿨타임 10초",
-        "skill_description_detail": "혼란 - 적의 피격 데미지 25% 증가",
+        "skill_description_detail": "혼란 - 적의 피격 데미지 50% 증가",
         "skill_effect": [
           {
             "effect_name": "applyConfusion",
             "params": {
-              "chance": 0.05,
-              "duration": 3,
+              "chance": 0.025,
+              "duration": 5,
               "trigger": "onHit",
               "stackable": False,
               "cooldown": 10
@@ -614,14 +614,14 @@ BASE_UNIQUE_WEAPONS = [
       {
         "skill_name": "훌륭한 작품",
         "skill_type": "passive",
-        "skill_description": "공격력이 15% 증가합니다. 공격속도가 15% 증가합니다. 치명타 확률이 +10% 증가합니다.",
+        "skill_description": "공격력이 20% 증가합니다. 공격속도가 15% 증가합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "damage",
-              "value": 1.15,
+              "value": 1.2,
               "isMultiplicative": True
             }
           },
@@ -631,14 +631,6 @@ BASE_UNIQUE_WEAPONS = [
               "stat": "speed",
               "value": 1.15,
               "isMultiplicative": True
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": False
             }
           }
         ]
@@ -675,8 +667,8 @@ BASE_UNIQUE_WEAPONS = [
     "skills": [
       {
         "skill_name": "사냥 본능",
-        "skill_type": "active",
-        "skill_description": "체력이 50% 이하인 적을 공격 시 공격력의 2.5%에 해당하는 추가 피해를 입힙니다.",
+        "skill_type": "passive",
+        "skill_description": "체력이 50% 이하인 적을 공격 시 공격력의 5%에 해당하는 추가 피해를 입힙니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
@@ -685,7 +677,7 @@ BASE_UNIQUE_WEAPONS = [
               "chance": 1.0,
               "hpThreshold": 0.5,
               "condition": "le",
-              "multiplier": 0.025,
+              "multiplier": 0.05,
               "trigger": "onHit",
               "cooldown": 0
             }
@@ -725,15 +717,15 @@ BASE_UNIQUE_WEAPONS = [
       {
         "skill_name": "충격파",
         "skill_type": "active",
-        "skill_description": "공격 시 2.5% 확률로 공격력의 10배의 피해를 입힙니다. 쿨타임 10초",
+        "skill_description": "공격 시 2.5% 확률로 공격력의 3.3배의 피해를 입힙니다. 쿨타임 10초",
         "skill_description_detail": "",
         "skill_effect": [
           {
             "effect_name": "applyMultiplierDamage",
             "params": {
-              "chance": 0.05,
+              "chance": 0.025,
               "trigger": "onHit",
-              "multiplier": 10.0,
+              "multiplier": 3.3,
               "cooldown": 10
             }
           }
@@ -772,17 +764,17 @@ BASE_UNIQUE_WEAPONS = [
       {
         "skill_name": "담금질",
         "skill_type": "passive",
-        "skill_description": "공격 시 5초간 공격력 2.5% 증가",
-        "skill_description_detail": "최대중첩 - 20회",
+        "skill_description": "공격 시 5초간 공격력 5% 증가",
+        "skill_description_detail": "최대중첩 - 16회",
         "skill_effect": [
           {
             "effect_name": "applyStackingBuff",
             "params": {
               "trigger": "onHit",
               "duration": 2.5,
-              "maxStacks": 20,
+              "maxStacks": 16,
               "stat": "damage",
-              "increasePerStack": 0.025,
+              "increasePerStack": 0.05,
               "isMultiplicative": True
             }
           }
@@ -821,14 +813,14 @@ BASE_UNIQUE_WEAPONS = [
       {
         "skill_name": "속공",
         "skill_type": "passive",
-        "skill_description": "더블 어택 확률이 7.5% 증가합니다.",
+        "skill_description": "더블 어택 확률이 10% 증가합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "doubleAttackChance",
-              "value": 0.075,
+              "value": 0.1,
               "isMultiplicative": False
             }
           }
@@ -867,12 +859,12 @@ BASE_UNIQUE_WEAPONS = [
       {
         "skill_name": "고급 관상용 무구",
         "skill_type": "passive",
-        "skill_description": "골드 획득량이 77% 증가합니다.",
+        "skill_description": "골드 획득량이 35% 증가합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
             "effect_name": "applyGoldGainBoost",
-            "params": { "multiplier": 1.77 }
+            "params": { "multiplier": 1.35 }
           }
         ]
       }
@@ -915,7 +907,7 @@ BASE_UNIQUE_WEAPONS = [
           {
             "effect_name": "applyFreeze",
             "params": {
-              "chance": 0.05,
+              "chance": 0.025,
               "duration": 3,
               "trigger": "onHit",
               "stackable": False,
@@ -958,14 +950,14 @@ BASE_UNIQUE_WEAPONS = [
       {
         "skill_name": "경금속 재질",
         "skill_type": "passive",
-        "skill_description": "공격력이 60% 감소합니다. 공격속도가 100% 증가합니다.",
+        "skill_description": "공격력이 35% 감소합니다. 공격속도가 100% 증가합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatDebuff",
             "params": {
               "stat": "damage",
-              "value": 0.4,
+              "value": 0.65,
               "isMultiplicative": True
             }
           },
@@ -1011,8 +1003,8 @@ BASE_UNIQUE_WEAPONS = [
     "skills": [
       {
         "skill_name": "투지",
-        "skill_type": "active",
-        "skill_description": "체력이 50% 이상인 적을 공격 시 공격력의 2.5%에 해당하는 추가 피해를 입힙니다.",
+        "skill_type": "passive",
+        "skill_description": "체력이 50% 이상인 적을 공격 시 공격력의 5%에 해당하는 추가 피해를 입힙니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
@@ -1021,7 +1013,7 @@ BASE_UNIQUE_WEAPONS = [
               "chance": 1.0,
               "hpThreshold": 0.5,
               "condition": "ge",
-              "multiplier": 0.025,
+              "multiplier": 0.05,
               "trigger": "onHit",
               "cooldown": 0
             }
@@ -1067,7 +1059,7 @@ BASE_UNIQUE_WEAPONS = [
           {
             "effect_name": "applyShock",
             "params": {
-              "chance": 0.05,
+              "chance": 0.025,
               "duration": 5,
               "trigger": "onHit",
               "stackable": False,
@@ -1110,14 +1102,14 @@ BASE_UNIQUE_WEAPONS = [
       {
         "skill_name": "날카로운 일격",
         "skill_type": "passive",
-        "skill_description": "치명타 확률이 25% 증가합니다.",
+        "skill_description": "치명타 확률이 10% 증가합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "criticalChance",
-              "value": 0.25,
+              "value": 0.1,
               "isMultiplicative": False
             }
           }
@@ -1156,7 +1148,7 @@ BASE_UNIQUE_WEAPONS = [
       {
         "skill_name": "마스터피스",
         "skill_type": "passive",
-        "skill_description": "공격력이 25% 증가합니다. 공격속도가 25% 증가합니다. 치명타 확률이 +10% 증가합니다.",
+        "skill_description": "공격력이 25% 증가합니다. 공격속도가 15% 증가합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
@@ -1171,16 +1163,8 @@ BASE_UNIQUE_WEAPONS = [
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "speed",
-              "value": 1.25,
+              "value": 1.15,
               "isMultiplicative": True
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": False
             }
           }
         ]
@@ -1188,6 +1172,7 @@ BASE_UNIQUE_WEAPONS = [
     ]
   }
 ]
+
 
 
 # --- 무기 타입 분류 ---

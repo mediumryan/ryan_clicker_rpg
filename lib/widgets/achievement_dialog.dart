@@ -1,9 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ryan_clicker_rpg/models/achievement.dart';
 import 'package:ryan_clicker_rpg/data/achievement_data.dart';
-import 'package:ryan_clicker_rpg/providers/game_provider.dart';
+import 'package:ryan_clicker_rpg/models/achievement.dart';
 import 'package:ryan_clicker_rpg/models/player.dart';
+import 'package:ryan_clicker_rpg/providers/game_provider.dart';
 
 enum AchievementFilter { all, completable, completed }
 
@@ -16,178 +17,183 @@ class AchievementDialog extends StatefulWidget {
 
 class _AchievementDialogState extends State<AchievementDialog> {
   AchievementFilter _selectedFilter = AchievementFilter.all;
-  late List<Achievement> _achievements;
 
-  @override
-  void initState() {
-    super.initState();
-    // It's often better to get the source of truth from a provider if it can change,
-    // but for this case, we'll work with a local copy from static data.
-    _achievements = AchievementData.achievements;
-  }
-
-  List<Achievement> _getFilteredAchievements(Player player) {
+  List<Achievement> _getFilteredAchievements(
+      Player player, List<Achievement> achievements) {
     switch (_selectedFilter) {
       case AchievementFilter.completable:
-        return _achievements
+        return achievements
             .where((a) => a.isCompletable(player) && !a.isCompleted)
             .toList();
       case AchievementFilter.completed:
-        return _achievements.where((a) => a.isCompleted).toList();
+        return achievements.where((a) => a.isCompleted).toList();
       case AchievementFilter.all:
-        return _achievements;
+        return achievements;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    // We listen to the provider once here, but don't rebuild the whole dialog on change
+    final gameProvider = Provider.of<GameProvider>(context, listen: false);
+
     return AlertDialog(
       backgroundColor: Colors.grey[850],
       title: const Text('업적', style: TextStyle(color: Colors.white)),
       content: SizedBox(
         width: 400, // Increased width to better display rewards
         height: 400,
-        child: Consumer<GameProvider>(
-          builder: (context, gameProvider, child) {
-            final achievementsToDisplay = _getFilteredAchievements(
-              gameProvider.player,
-            );
-            return Column(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    TextButton(
-                      onPressed: () => setState(
-                        () => _selectedFilter = AchievementFilter.all,
-                      ),
-                      style: TextButton.styleFrom(
-                        backgroundColor:
-                            _selectedFilter == AchievementFilter.all
-                            ? Colors.blue[800]
-                            : Colors.transparent,
-                      ),
-                      child: const Text(
-                        '모든 업적',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () => setState(
-                        () => _selectedFilter = AchievementFilter.completable,
-                      ),
-                      style: TextButton.styleFrom(
-                        backgroundColor:
-                            _selectedFilter == AchievementFilter.completable
-                            ? Colors.blue[800]
-                            : Colors.transparent,
-                      ),
-                      child: const Text(
-                        '완료 가능',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () => setState(
-                        () => _selectedFilter = AchievementFilter.completed,
-                      ),
-                      style: TextButton.styleFrom(
-                        backgroundColor:
-                            _selectedFilter == AchievementFilter.completed
-                            ? Colors.blue[800]
-                            : Colors.transparent,
-                      ),
-                      child: const Text(
-                        '완료',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
+                TextButton(
+                  onPressed: () =>
+                      setState(() => _selectedFilter = AchievementFilter.all),
+                  style: TextButton.styleFrom(
+                    backgroundColor: _selectedFilter == AchievementFilter.all
+                        ? Colors.blue[800]
+                        : Colors.transparent,
+                  ),
+                  child: const Text('모든 업적',
+                      style: TextStyle(color: Colors.white)),
                 ),
-                const Divider(color: Colors.grey),
-                if (gameProvider.hasCompletableAchievements)
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          gameProvider.claimAllCompletableAchievements();
-                        },
-                        child: const Text('모두 완료'),
-                      ),
+                TextButton(
+                  onPressed: () => setState(
+                      () => _selectedFilter = AchievementFilter.completable),
+                  style: TextButton.styleFrom(
+                    backgroundColor:
+                        _selectedFilter == AchievementFilter.completable
+                            ? Colors.blue[800]
+                            : Colors.transparent,
+                  ),
+                  child: const Text('완료 가능',
+                      style: TextStyle(color: Colors.white)),
+                ),
+                TextButton(
+                  onPressed: () => setState(
+                      () => _selectedFilter = AchievementFilter.completed),
+                  style: TextButton.styleFrom(
+                    backgroundColor:
+                        _selectedFilter == AchievementFilter.completed
+                            ? Colors.blue[800]
+                            : Colors.transparent,
+                  ),
+                  child:
+                      const Text('완료', style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
+            const Divider(color: Colors.grey),
+            Selector<GameProvider, bool>(
+              selector: (_, provider) => provider.hasCompletableAchievements,
+              builder: (context, hasCompletableAchievements, child) {
+                if (!hasCompletableAchievements) {
+                  return const SizedBox.shrink();
+                }
+                return Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        gameProvider.claimAllCompletableAchievements();
+                      },
+                      child: const Text('모두 완료'),
                     ),
                   ),
-                Expanded(
-                  child: ListView.builder(
+                );
+              },
+            ),
+            Expanded(
+              child: Selector<GameProvider, List<Achievement>>(
+                selector: (context, provider) => _getFilteredAchievements(
+                    provider.player, AchievementData.achievements),
+                shouldRebuild: (previous, next) =>
+                    !listEquals(previous, next),
+                builder: (context, achievementsToDisplay, child) {
+                  return ListView.builder(
                     itemCount: achievementsToDisplay.length,
                     itemBuilder: (context, index) {
                       final achievement = achievementsToDisplay[index];
-                      final bool isCompleted = achievement.isCompleted;
-                      final bool isRewardClaimed = achievement.isRewardClaimed;
+                      // Use a Selector for each item to only rebuild what's necessary
+                      return Selector<GameProvider, String>(
+                        selector: (context, provider) {
+                          // Create a unique "signature" of the achievement's state
+                          final player = provider.player;
+                          final isCompleted = achievement.isCompleted;
+                          final isRewardClaimed = achievement.isRewardClaimed;
+                          final progress =
+                              achievement.progressText?.call(player) ?? '';
+                          return '${achievement.id}-$isCompleted-$isRewardClaimed-$progress';
+                        },
+                        builder: (context, _, child) {
+                          final player = gameProvider.player;
+                          final isCompleted = achievement.isCompleted;
+                          final isRewardClaimed = achievement.isRewardClaimed;
+                          final rewardText = achievement.rewards
+                              .map((r) => r.description)
+                              .join(', ');
 
-                      final rewardText = achievement.rewards
-                          .map((r) => r.description)
-                          .join(', ');
-
-                      return Opacity(
-                        opacity: isCompleted && isRewardClaimed ? 0.5 : 1.0,
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.star,
-                            color: isCompleted && isRewardClaimed
-                                ? Colors.grey
-                                : Colors.yellow,
-                          ),
-                          title: Text(
-                            achievement.name,
-                            style: TextStyle(
-                              color: isCompleted && isRewardClaimed
-                                  ? Colors.grey
-                                  : Colors.white,
-                            ),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                achievement.description,
+                          return Opacity(
+                            opacity: isCompleted && isRewardClaimed ? 0.5 : 1.0,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.star,
+                                color: isCompleted && isRewardClaimed
+                                    ? Colors.grey
+                                    : Colors.yellow,
+                              ),
+                              title: Text(
+                                achievement.name,
                                 style: TextStyle(
                                   color: isCompleted && isRewardClaimed
-                                      ? Colors.grey[400]
-                                      : Colors.grey,
+                                      ? Colors.grey
+                                      : Colors.white,
                                 ),
                               ),
-                              if (achievement.progressText != null)
-                                Text(
-                                  '진행도: ${achievement.progressText!(gameProvider.player)}',
-                                  style: const TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 12,
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    achievement.description,
+                                    style: TextStyle(
+                                      color: isCompleted && isRewardClaimed
+                                          ? Colors.grey[400]
+                                          : Colors.grey,
+                                    ),
                                   ),
-                                ),
-                              if (rewardText.isNotEmpty)
-                                Text(
-                                  '보상: $rewardText',
-                                  style: const TextStyle(
-                                    color: Colors.amber,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                            ],
-                          ),
-                          trailing: _buildTrailingWidget(
-                            achievement,
-                            gameProvider,
-                          ),
-                        ),
+                                  if (achievement.progressText != null)
+                                    Text(
+                                      '진행도: ${achievement.progressText!(player)}',
+                                      style: const TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  if (rewardText.isNotEmpty)
+                                    Text(
+                                      '보상: $rewardText',
+                                      style: const TextStyle(
+                                        color: Colors.amber,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                ],
+                              ),
+                              trailing: _buildTrailingWidget(
+                                  achievement, gameProvider),
+                            ),
+                          );
+                        },
                       );
                     },
-                  ),
-                ),
-              ],
-            );
-          },
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
       actions: <Widget>[
@@ -205,9 +211,10 @@ class _AchievementDialogState extends State<AchievementDialog> {
     Achievement achievement,
     GameProvider gameProvider,
   ) {
+    // This widget will be rebuilt by the parent Selector, which is fine.
+    final player = gameProvider.player;
     final bool isCompletable =
-        achievement.isCompletable(gameProvider.player) &&
-        !achievement.isCompleted;
+        achievement.isCompletable(player) && !achievement.isCompleted;
 
     if (achievement.isCompleted) {
       if (achievement.isRewardClaimed) {
@@ -232,3 +239,4 @@ class _AchievementDialogState extends State<AchievementDialog> {
     }
   }
 }
+

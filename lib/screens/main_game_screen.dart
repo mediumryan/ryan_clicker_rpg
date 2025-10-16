@@ -59,10 +59,12 @@ class MainGameScreen extends StatefulWidget {
   State<MainGameScreen> createState() => _MainGameScreenState();
 }
 
-class _MainGameScreenState extends State<MainGameScreen> {
+class _MainGameScreenState extends State<MainGameScreen>
+    with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<GameProvider>(
         context,
@@ -73,11 +75,20 @@ class _MainGameScreenState extends State<MainGameScreen> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     Provider.of<GameProvider>(
       context,
       listen: false,
     ).setShowHeroLevelUpDialogCallback(null);
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      // Save the game when the app is paused/backgrounded
+      context.read<GameProvider>().saveGame();
+    }
   }
 
   void _showHeroLevelUpDialog(int newLevel, int skillPointsGained) {

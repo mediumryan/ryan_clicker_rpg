@@ -38,6 +38,7 @@ class GameProvider with ChangeNotifier {
   late WeaponSkillProvider _weaponSkillProvider;
   Timer? _timer;
   Timer? _autoAttackTimer; // New
+  Timer? _saveTimer; // For periodic saving
   DateTime? _lastManualClickTime; // New
   Duration _autoAttackDelay = Duration.zero; // New
   bool _isAutoAttackActive = true;
@@ -382,6 +383,15 @@ class GameProvider with ChangeNotifier {
     _spawnMonster();
     _startGameLoop();
     startAutoAttack(); // New: Start auto-attack on game initialization
+
+    // Start periodic saving
+    _saveTimer?.cancel();
+    _saveTimer = Timer.periodic(const Duration(seconds: 60), (timer) {
+      if (kDebugMode) {
+        print("Periodic save triggered.");
+      }
+      _saveGame();
+    });
   }
 
   Map<String, dynamic> attackMonster() {
@@ -421,8 +431,7 @@ class GameProvider with ChangeNotifier {
     _weaponSkillProvider.applySkills(_player, _monster);
     if (_monster.hp <= 0) return _handleMonsterDefeat();
 
-    // 7. Save and return
-    _saveGame();
+    // 7. Return attack results
     return {
       'damageDealt': actualDamage.toInt(),
       'isCritical': attack.isCritical,
@@ -499,7 +508,7 @@ class GameProvider with ChangeNotifier {
 
     // Status effect multipliers
     if (_monster.hasStatusEffect(StatusEffectType.confusion)) {
-      actualDamage *= 1.25;
+      actualDamage *= 1.50;
     }
     if (_monster.hasStatusEffect(StatusEffectType.charm)) {
       actualDamage *= 1.10;
@@ -597,7 +606,6 @@ class GameProvider with ChangeNotifier {
       goToNextStage();
     });
 
-    _saveGame();
     return {'damageDealt': 0, 'isCritical': false, 'monsterDefeated': true};
   }
 
@@ -973,6 +981,7 @@ class GameProvider with ChangeNotifier {
   void dispose() {
     _timer?.cancel();
     _autoAttackTimer?.cancel(); // New
+    _saveTimer?.cancel(); // Cancel periodic save timer
     super.dispose();
   }
 
@@ -1076,13 +1085,13 @@ class GameProvider with ChangeNotifier {
 
     double exponent;
     if (_player.currentStage < 100) {
-      exponent = 1.35;
-    } else if (_player.currentStage < 250) {
-      exponent = 1.5;
-    } else if (_player.currentStage < 500) {
       exponent = 1.75;
+    } else if (_player.currentStage < 250) {
+      exponent = 1.9;
+    } else if (_player.currentStage < 500) {
+      exponent = 2.05;
     } else if (_player.currentStage < 1000) {
-      exponent = 2.0;
+      exponent = 2.2;
     } else {
       exponent = 2.5;
     }
@@ -1325,7 +1334,7 @@ class GameProvider with ChangeNotifier {
       _player.enhancementStones = 0;
       _player.gold = 0.0;
       _player.darkMatter = 0;
-      _player.currentStage = 1000;
+      _player.currentStage = 1;
     }
 
     for (final achievement in AchievementData.achievements) {
@@ -1356,17 +1365,17 @@ class GameProvider with ChangeNotifier {
     //   }
     // }
 
-    final testWeaponB = WeaponData.getWeaponById(50004);
-    if (testWeaponB != null) {
-      testWeaponB.enhancement = 20;
-      _player.inventory.add(testWeaponB);
-    }
+    // final testWeaponB = WeaponData.getWeaponById(50004);
+    // if (testWeaponB != null) {
+    //   testWeaponB.enhancement = 20;
+    //   _player.inventory.add(testWeaponB);
+    // }
 
-    final testWeapon = WeaponData.getWeaponById(50000);
-    if (testWeapon != null) {
-      testWeapon.enhancement = 20;
-      _player.inventory.add(testWeapon);
-    }
+    // final testWeapon = WeaponData.getWeaponById(50000);
+    // if (testWeapon != null) {
+    //   testWeapon.enhancement = 20;
+    //   _player.inventory.add(testWeapon);
+    // }
   }
 
   Future<void> _saveGameToFirestore() async {
@@ -1936,4 +1945,6 @@ class GameProvider with ChangeNotifier {
 
     return '모든 스킬이 초기화되었습니다.';
   }
+
+  Future<void> saveGame() async => await _saveGame();
 }

@@ -1,12 +1,60 @@
 [
   {
-    "id": 30000,
-    "name": "조화",
-    "imageName": "epic/rapier/30000.png",
-    "rarity": "Rarity.epic",
+    "id": 10000,
+    "name": "첫걸음",
+    "imageName": "unique/rapier/10000.png",
+    "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
-    "description": "모든 능력치가 아릅답게 조화를 이룬 무기입니다. 모든 능력치가 소폭 상승합니다.",
+    "description": "초보 모험가들의 인기상품 입니다.",
     "baseLevel": 0,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 1.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "순조로운 시작",
+        "skill_type": "passive",
+        "skill_description": "전투 시작 시 5초간 공격력이 50% 증가 합니다.",
+        "skill_description_detail": "",
+        "skill_effect": [
+          {
+            "effect_name": "applyStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 1.5,
+              "isMultiplicative": true,
+              "duration": 5,
+              "trigger": "stageStart"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10001,
+    "name": "장식용 레이피어",
+    "imageName": "unique/rapier/10001.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "장식용이지만 쓸만한 무기입니다. 행운을 불러온다는 소문이 있습니다.",
+    "baseLevel": 50,
     "baseDamage": 0,
     "speed": 1.43,
     "criticalChance": 0.18,
@@ -28,69 +76,33 @@
     },
     "skills": [
       {
-        "skill_name": "꽉 찬 육각형",
+        "skill_name": "관상용 무구",
         "skill_type": "passive",
-        "skill_description": "공격력이 25% 증가합니다. 공격속도가 15% 증가합니다. 치명타 확률이 10% 증가합니다. 치명타 배율이 1배 증가합니다. 명중률이 5% 증가합니다.",
+        "skill_description": "골드 획득량이 25% 증가 합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 1.25,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.15,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.1,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalDamage",
-              "value": 1.0,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.05,
-              "isMultiplicative": false
-            }
+            "effect_name": "applyGoldGainBoost",
+            "params": { "multiplier": 1.25 }
           }
         ]
       }
     ]
   },
   {
-    "id": 30001,
-    "name": "초신성",
-    "imageName": "epic/rapier/30001.png",
-    "rarity": "Rarity.epic",
+    "id": 10002,
+    "name": "수작",
+    "imageName": "unique/rapier/10002.png",
+    "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
-    "description": "빛나는 가능성을 지닌 무기입니다. 그 존재감은 숨기고 싶어도 숨길 수 없습니다.",
+    "description": "대장장이 윌터의 수작 중 하나로, 마감이 그럭저럭 잘 되어있습니다.",
     "baseLevel": 50,
     "baseDamage": 0,
     "speed": 1.43,
     "criticalChance": 0.18,
     "criticalDamage": 1.42,
     "accuracy": 0.784,
-    "defensePenetration": 4.0,
+    "defensePenetration": 2.0,
     "doubleAttackChance": 0.0,
     "baseSellPrice": 0,
     "enhancement": 0,
@@ -106,25 +118,25 @@
     },
     "skills": [
       {
-        "skill_name": "숨길 수 없는 존재감",
+        "skill_name": "나름 쓸만한 작품",
         "skill_type": "passive",
-        "skill_description": "공격력이 50% 증가합니다. 치명타 확률이 30% 증가합니다.",
+        "skill_description": "공격력이 15% 증가합니다. 공격속도가 15% 증가합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "damage",
-              "value": 1.5,
+              "value": 1.15,
               "isMultiplicative": true
             }
           },
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
-              "stat": "criticalChance",
-              "value": 0.3,
-              "isMultiplicative": false
+              "stat": "speed",
+              "value": 1.15,
+              "isMultiplicative": true
             }
           }
         ]
@@ -132,13 +144,208 @@
     ]
   },
   {
-    "id": 30002,
-    "name": "독아",
-    "imageName": "epic/rapier/30002.png",
-    "rarity": "Rarity.epic",
+    "id": 10003,
+    "name": "독초",
+    "imageName": "unique/rapier/10003.png",
+    "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
-    "description": "마치 독사의 송곳니와도 같은 이 무기는 대량의 맹독을 품고 있습니다.",
+    "description": "소량의 맹독이 함유되어있는 무기 입니다. 중독되지 않도록 취급에 주의해야 합니다.",
     "baseLevel": 100,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 5.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "맹독 주입",
+        "skill_type": "active",
+        "skill_description": "공격 시 2.5% 확률로 적을 5초간 중독 상태로 만듭니다. 쿨타임 10초",
+        "skill_description_detail": "중독 : 초당 최대 체력의 2.5% 피해를 입힙니다. 최대 데미지 11,300",
+        "skill_effect": [
+          {
+            "effect_name": "applyPoison",
+            "params": {
+              "chance": 0.025,
+              "percentPerSecond": 0.025,
+              "maxDmg": 11300,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 10
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10004,
+    "name": "괴력",
+    "imageName": "unique/rapier/10004.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "매우 무거운 소재로 만들어진 무기 입니다. 일반인은 들기조차 버겁습니다.",
+    "baseLevel": 200,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 6.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "과중량",
+        "skill_type": "passive",
+        "skill_description": "공격력이 40% 증가합니다. 공격속도가 15% 감소합니다.",
+        "skill_description_detail": "",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatDebuff",
+            "params": {
+              "stat": "speed",
+              "value": 0.7,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 1.3,
+              "isMultiplicative": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10005,
+    "name": "불씨",
+    "imageName": "unique/rapier/10005.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "미약한 화염마법이 각인되어있어 낮은 확률로 적을 불태울 수 있는 무기입니다.",
+    "baseLevel": 300,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 7.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "열 주입",
+        "skill_type": "passive",
+        "skill_description": "공격 시 2.5% 확률로 적을 5초간 화상 상태로 만듭니다. 쿨타임 10초",
+        "skill_description_detail": "화상 - 초당 24,500의 피해를 입힙니다.",
+        "skill_effect": [
+          {
+            "effect_name": "applyBurn",
+            "params": {
+              "chance": 0.025,
+              "duration": 5,
+              "fixedDamagePerSecond": 24500,
+              "stackable": false,
+              "trigger": "onHit",
+              "cooldown": 10
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10006,
+    "name": "갈증",
+    "imageName": "unique/rapier/10006.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "적을 처치할 수록 강해지는 무기입니다.",
+    "baseLevel": 400,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 9.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": true,
+      "currentStacks": 0,
+      "maxStacks": 100,
+      "damagePerStack": 75
+    },
+    "skills": [
+      {
+        "skill_name": "수혈",
+        "skill_type": "active",
+        "skill_description": "적 처치 시 무기의 공격력이 75씩 증가합니다.",
+        "skill_description_detail": "최대 중첩 - 100회",
+        "skill_effect": [
+          {
+            "effect_name": "increaseStat",
+            "params": { "stat": "stack.currentStacks", "increment": 1 }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10007,
+    "name": "약점",
+    "imageName": "unique/rapier/10007.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "상대의 약점을 노릴 수 있도록 날카롭게 설계된 무기입니다.",
+    "baseLevel": 500,
     "baseDamage": 0,
     "speed": 1.43,
     "criticalChance": 0.18,
@@ -160,21 +367,20 @@
     },
     "skills": [
       {
-        "skill_name": "맹독 주입",
+        "skill_name": "약점 간파",
         "skill_type": "active",
-        "skill_description": "공격 시 5% 확률로 적을 5초간 중독 상태로 만듭니다. 쿨타임 7.5초",
-        "skill_description_detail": "중독 : 초당 최대 체력의 5% 피해를 입힙니다. 최대 데미지 11,300",
+        "skill_description": "공격 시 2.5% 확률로 적을 5초간 무장해제 상태로 만듭니다. 쿨타임 10초",
+        "skill_description_detail": "무장해제 - 방어력 25 감소",
         "skill_effect": [
           {
-            "effect_name": "applyPoison",
+            "effect_name": "applyDisarm",
             "params": {
-              "chance": 0.05,
-              "percentPerSecond": 0.05,
-              "maxDmg": 11300,
+              "chance": 0.025,
+              "defenseReduction": 25,
               "duration": 5,
               "trigger": "onHit",
               "stackable": false,
-              "cooldown": 7.5
+              "cooldown": 10
             }
           }
         ]
@@ -182,19 +388,19 @@
     ]
   },
   {
-    "id": 30003,
-    "name": "중력",
-    "imageName": "epic/rapier/30003.png",
-    "rarity": "Rarity.epic",
+    "id": 10008,
+    "name": "급소",
+    "imageName": "unique/rapier/10008.png",
+    "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
-    "description": "강력한 중력 마법이 각인되어 엄청난 무게를 자랑하는 무기입니다. 늘어난 무게만큼 파괴력도 증가하였습니다.",
-    "baseLevel": 200,
+    "description": "적에게 치명적인 공격이 가능하도록 설계된 무기입니다.",
+    "baseLevel": 600,
     "baseDamage": 0,
     "speed": 1.43,
     "criticalChance": 0.18,
     "criticalDamage": 1.42,
     "accuracy": 0.784,
-    "defensePenetration": 12.0,
+    "defensePenetration": 11.0,
     "doubleAttackChance": 0.0,
     "baseSellPrice": 0,
     "enhancement": 0,
@@ -210,25 +416,17 @@
     },
     "skills": [
       {
-        "skill_name": "중력 각인",
+        "skill_name": "급소 공략",
         "skill_type": "passive",
-        "skill_description": "공격력이 100% 증가합니다. 공격속도가 40% 감소합니다.",
+        "skill_description": "치명타 배율이 5배 증가합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
-            "effect_name": "applyPassiveStatDebuff",
-            "params": {
-              "stat": "speed",
-              "value": 0.6,
-              "isMultiplicative": true
-            }
-          },
-          {
             "effect_name": "applyPassiveStatBoost",
             "params": {
-              "stat": "damage",
-              "value": 2.0,
-              "isMultiplicative": true
+              "stat": "criticalDamage",
+              "value": 5.0,
+              "isMultiplicative": false
             }
           }
         ]
@@ -236,13 +434,62 @@
     ]
   },
   {
-    "id": 30004,
-    "name": "겁화",
-    "imageName": "epic/rapier/30004.png",
-    "rarity": "Rarity.epic",
+    "id": 10009,
+    "name": "가시",
+    "imageName": "unique/rapier/10009.png",
+    "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
-    "description": "강력한 화염마법이 각인되어있어 일정 확률로 적을 불태울 수 있는 무기입니다.",
-    "baseLevel": 300,
+    "description": "거칠게 연마된 무기로 적에게 출혈을 유도합니다.",
+    "baseLevel": 700,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 13.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "찢어발기기",
+        "skill_type": "passive",
+        "skill_description": "공격 시 2.5% 확률로 5초간 적을 출혈 상태로 만듭니다. 쿨타임 10초",
+        "skill_description_detail": "출혈 - 초당 94,300 피해",
+        "skill_effect": [
+          {
+            "effect_name": "applyBleed",
+            "params": {
+              "chance": 0.025,
+              "duration": 5,
+              "damagePerSecond": 94300,
+              "stackable": false,
+              "trigger": "onHit",
+              "cooldown": 10
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10010,
+    "name": "안개",
+    "imageName": "unique/rapier/10010.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "적을 혼란에 빠뜨려 전투에 도움을 주는 무기입니다.",
+    "baseLevel": 800,
     "baseDamage": 0,
     "speed": 1.43,
     "criticalChance": 0.18,
@@ -264,20 +511,19 @@
     },
     "skills": [
       {
-        "skill_name": "열 주입",
-        "skill_type": "passive",
-        "skill_description": "공격 시 5% 확률로 적을 5초간 화상 상태로 만듭니다. 쿨타임 7.5초",
-        "skill_description_detail": "화상 - 초당 27,800의 피해를 입힙니다.",
+        "skill_name": "혼란한 시야",
+        "skill_type": "active",
+        "skill_description": "공격 시 2.5% 확률로 적을 5초간 혼란 상태로 만듭니다. 쿨타임 10초",
+        "skill_description_detail": "혼란 - 적의 피격 데미지 50% 증가",
         "skill_effect": [
           {
-            "effect_name": "applyBurn",
+            "effect_name": "applyConfusion",
             "params": {
-              "chance": 0.05,
+              "chance": 0.025,
               "duration": 5,
-              "fixedDamagePerSecond": 27800,
-              "stackable": false,
               "trigger": "onHit",
-              "cooldown": 7.5
+              "stackable": false,
+              "cooldown": 10
             }
           }
         ]
@@ -285,61 +531,19 @@
     ]
   },
   {
-    "id": 30005,
-    "name": "수확",
-    "imageName": "epic/rapier/30005.png",
-    "rarity": "Rarity.epic",
+    "id": 10011,
+    "name": "사신",
+    "imageName": "unique/rapier/10011.png",
+    "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
-    "description": "처치한 적의 목숨을 수확하는 흑마법이 깃든 무기입니다.",
-    "baseLevel": 400,
+    "description": "",
+    "baseLevel": 900,
     "baseDamage": 0,
     "speed": 1.43,
     "criticalChance": 0.18,
     "criticalDamage": 1.42,
     "accuracy": 0.784,
-    "defensePenetration": 18.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": true,
-      "currentStacks": 0,
-      "maxStacks": 100,
-      "damagePerStack": 60
-    },
-    "skills": [
-      {
-        "skill_name": "갈증 해소",
-        "skill_type": "active",
-        "skill_description": "적 처치 시 무기의 공격력이 90씩 증가합니다.",
-        "skill_description_detail": "최대 중첩 - 100회",
-        "skill_effect": [
-          {
-            "effect_name": "increaseStat",
-            "params": { "stat": "stack.currentStacks", "increment": 1 }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 30006,
-    "name": "아머브레이커",
-    "imageName": "epic/rapier/30006.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "이름에 맞게 적의 방어를 무력화시키는데 특화된 무기입니다.",
-    "baseLevel": 500,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 20.0,
+    "defensePenetration": 15.0,
     "doubleAttackChance": 0.0,
     "baseSellPrice": 0,
     "enhancement": 0,
@@ -355,20 +559,19 @@
     },
     "skills": [
       {
-        "skill_name": "갑옷 부수기",
+        "skill_name": "죽음 선사",
         "skill_type": "active",
-        "skill_description": "공격 시 5% 확률로 적을 5초간 무장해제 상태로 만듭니다. 쿨타임 7.5초",
-        "skill_description_detail": "무장해제 - 방어력 33 감소",
+        "skill_description": "공격 시 0.44% 확률로 적에게 죽음을 선사합니다. 쿨타임 10초",
+        "skill_description_detail": "죽음선사 - 몬스터의 최대 체력의 100% 데미지(보스 몬스터의 경우 1/3 적용). 최대 데미지 1,500,000",
         "skill_effect": [
           {
-            "effect_name": "applyDisarm",
+            "effect_name": "applyPercentageMaxHealthDamage",
             "params": {
-              "chance": 0.05,
-              "defenseReduction": 33,
-              "duration": 5,
+              "chance": 0.0044,
+              "percentDamage": 1,
               "trigger": "onHit",
-              "stackable": false,
-              "cooldown": 7.5
+              "maxDmg": 1500000,
+              "cooldown": 10
             }
           }
         ]
@@ -376,13 +579,212 @@
     ]
   },
   {
-    "id": 30007,
-    "name": "파멸",
-    "imageName": "epic/rapier/30007.png",
-    "rarity": "Rarity.epic",
+    "id": 10012,
+    "name": "대작",
+    "imageName": "unique/rapier/10012.png",
+    "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
-    "description": "적을 파멸로 이끄는 공격이 가능하도록 설계된 무기입니다.",
-    "baseLevel": 600,
+    "description": "대장장이 윌터의 대작 중 하나로, 마감이 뛰어납니다.",
+    "baseLevel": 1000,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 17.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "훌륭한 작품",
+        "skill_type": "passive",
+        "skill_description": "공격력이 20% 증가합니다. 공격속도가 15% 증가합니다.",
+        "skill_description_detail": "",
+        "skill_effect": [
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "damage",
+              "value": 1.2,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 1.15,
+              "isMultiplicative": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10013,
+    "name": "포식자",
+    "imageName": "unique/rapier/10013.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "체력이 낮은 적에게 더 많은 피해를 주는 특수한 무기입니다.",
+    "baseLevel": 1100,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 18.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "사냥 본능",
+        "skill_type": "passive",
+        "skill_description": "체력이 50% 이하인 적을 공격 시 공격력의 5%에 해당하는 추가 피해를 입힙니다.",
+        "skill_description_detail": "",
+        "skill_effect": [
+          {
+            "effect_name": "applyHpConditionalBonusDamage",
+            "params": {
+              "chance": 1.0,
+              "hpThreshold": 0.5,
+              "condition": "le",
+              "multiplier": 0.05,
+              "trigger": "onHit",
+              "cooldown": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10014,
+    "name": "충격",
+    "imageName": "unique/rapier/10014.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "미약한 대지마법이 각인되어있어, 낮을 확률로 충격파를 발산하는 무기입니다.",
+    "baseLevel": 1200,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 19.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "충격파",
+        "skill_type": "active",
+        "skill_description": "공격 시 2.5% 확률로 공격력의 3.3배의 피해를 입힙니다. 쿨타임 10초",
+        "skill_description_detail": "",
+        "skill_effect": [
+          {
+            "effect_name": "applyMultiplierDamage",
+            "params": {
+              "chance": 0.025,
+              "trigger": "onHit",
+              "multiplier": 3.3,
+              "cooldown": 10
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10015,
+    "name": "인내",
+    "imageName": "unique/rapier/10015.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "",
+    "baseLevel": 1300,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 21.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "담금질",
+        "skill_type": "passive",
+        "skill_description": "공격 시 5초간 공격력 5% 증가",
+        "skill_description_detail": "최대중첩 - 16회",
+        "skill_effect": [
+          {
+            "effect_name": "applyStackingBuff",
+            "params": {
+              "trigger": "onHit",
+              "duration": 2.5,
+              "maxStacks": 16,
+              "stat": "damage",
+              "increasePerStack": 0.05,
+              "isMultiplicative": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10016,
+    "name": "날개",
+    "imageName": "unique/rapier/10016.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "미약한 바람마법이 각인되어있는 무기입니다. 더블어택 확률이 소폭 증가합니다.",
+    "baseLevel": 1400,
     "baseDamage": 0,
     "speed": 1.43,
     "criticalChance": 0.18,
@@ -404,16 +806,16 @@
     },
     "skills": [
       {
-        "skill_name": "숨통끊기",
+        "skill_name": "속공",
         "skill_type": "passive",
-        "skill_description": "치명타 배율이 7.5배 증가합니다.",
+        "skill_description": "더블 어택 확률이 10% 증가합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
-              "stat": "criticalDamage",
-              "value": 5.0,
+              "stat": "doubleAttackChance",
+              "value": 0.1,
               "isMultiplicative": false
             }
           }
@@ -422,13 +824,104 @@
     ]
   },
   {
-    "id": 30008,
-    "name": "송곳니",
-    "imageName": "epic/rapier/30008.png",
-    "rarity": "Rarity.epic",
+    "id": 10017,
+    "name": "고급 장식용 레이피어",
+    "imageName": "unique/rapier/10017.png",
+    "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
-    "description": "매우 거칠게 연마된 무기로 적에게 출혈을 유도합니다.",
-    "baseLevel": 700,
+    "description": "장식용이지만 실전에서도 사용 가능한 훌륭한 무기입니다. 골드를 끌어들이는 힘이 있습니다.",
+    "baseLevel": 1500,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 23.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "고급 관상용 무구",
+        "skill_type": "passive",
+        "skill_description": "골드 획득량이 35% 증가합니다.",
+        "skill_description_detail": "",
+        "skill_effect": [
+          {
+            "effect_name": "applyGoldGainBoost",
+            "params": { "multiplier": 1.35 }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10018,
+    "name": "눈꽃",
+    "imageName": "unique/rapier/10018.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "미약한 얼음마법이 각인되어있어, 낮은 확률로 적을 얼릴 수 있는 무기입니다.",
+    "baseLevel": 1500,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 25.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "냉기 주입",
+        "skill_type": "passive",
+        "skill_description": "공격 시 2.5% 확률로 적을 5초간 빙결 상태로 만듭니다. 쿨타임 10초",
+        "skill_description_detail": "빙결 - 피격시 최대 체력의 25%에 해당하는 추가 피해(보스 몬스터의 경우 1/2 적용). 최대 데미지 643,000",
+        "skill_effect": [
+          {
+            "effect_name": "applyFreeze",
+            "params": {
+              "chance": 0.025,
+              "duration": 3,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 10,
+              "maxDmg": 643000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10019,
+    "name": "경량",
+    "imageName": "unique/rapier/10019.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "매우 가벼운 소재로 만들어진 무기입니다. 위력을 포기하고 속도에 중점을 두었습니다.",
+    "baseLevel": 1600,
     "baseDamage": 0,
     "speed": 1.43,
     "criticalChance": 0.18,
@@ -450,20 +943,25 @@
     },
     "skills": [
       {
-        "skill_name": "과다출혈",
+        "skill_name": "경금속 재질",
         "skill_type": "passive",
-        "skill_description": "공격 시 5% 확률로 5초간 적을 출혈 상태로 만듭니다. 쿨타임 7.5초",
-        "skill_description_detail": "출혈 - 초당 107,000 피해",
+        "skill_description": "공격력이 35% 감소합니다. 공격속도가 100% 증가합니다.",
+        "skill_description_detail": "",
         "skill_effect": [
           {
-            "effect_name": "applyBleed",
+            "effect_name": "applyPassiveStatDebuff",
             "params": {
-              "chance": 0.05,
-              "duration": 5,
-              "damagePerSecond": 107000,
-              "stackable": false,
-              "trigger": "onHit",
-              "cooldown": 7.5
+              "stat": "damage",
+              "value": 0.65,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 2.0,
+              "isMultiplicative": true
             }
           }
         ]
@@ -471,19 +969,19 @@
     ]
   },
   {
-    "id": 30009,
-    "name": "일루전",
-    "imageName": "epic/rapier/30009.png",
-    "rarity": "Rarity.epic",
+    "id": 10020,
+    "name": "대담함",
+    "imageName": "unique/rapier/10020.png",
+    "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
-    "description": "적에게 환상을 보여주어 혼란에 빠뜨리는 특수한 무기입니다.",
-    "baseLevel": 800,
+    "description": "체력이 높은 적에게 더 많은 피해를 주는 특수한 무기입니다.",
+    "baseLevel": 1700,
     "baseDamage": 0,
     "speed": 1.43,
     "criticalChance": 0.18,
     "criticalDamage": 1.42,
     "accuracy": 0.784,
-    "defensePenetration": 28.0,
+    "defensePenetration": 27.0,
     "doubleAttackChance": 0.0,
     "baseSellPrice": 0,
     "enhancement": 0,
@@ -499,45 +997,83 @@
     },
     "skills": [
       {
-        "skill_name": "어지러운 전장",
-        "skill_type": "active",
-        "skill_description": "공격 시 5% 확률로 적을 5초간 혼란 상태로 만듭니다. 쿨타임 7.5초",
-        "skill_description_detail": "혼란 - 적의 피격 데미지 25% 증가",
-        "skill_effect": [
-          {
-            "effect_name": "applyConfusion",
-            "params": {
-              "chance": 0.05,
-              "duration": 5,
-              "trigger": "onHit",
-              "stackable": false,
-              "cooldown": 7.5
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "뒷통수 후리기",
+        "skill_name": "투지",
         "skill_type": "passive",
-        "skill_description": "혼란 상태의 적에게 주는 데미지가 50% 증가합니다.",
+        "skill_description": "체력이 50% 이상인 적을 공격 시 공격력의 5%에 해당하는 추가 피해를 입힙니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
-            "effect_name": "increaseDamageToStatused",
-            "params": { "status": "confusion", "damageMultiplier": 0.5 }
+            "effect_name": "applyHpConditionalBonusDamage",
+            "params": {
+              "chance": 1.0,
+              "hpThreshold": 0.5,
+              "condition": "ge",
+              "multiplier": 0.05,
+              "trigger": "onHit",
+              "cooldown": 0
+            }
           }
         ]
       }
     ]
   },
   {
-    "id": 30010,
-    "name": "족쇄",
-    "imageName": "epic/rapier/30010.png",
-    "rarity": "Rarity.epic",
+    "id": 10021,
+    "name": "전류",
+    "imageName": "unique/rapier/10021.png",
+    "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
-    "description": "저주받은 무기로 손에 쥐는 순간 사용자는 자신의 의지대로 움직일 수 없게 됩니다.",
-    "baseLevel": 900,
+    "description": "미약한 전기마법이 각인되어있어, 낮을 확률로 적을 감전시킬 수 있습니다.",
+    "baseLevel": 1800,
+    "baseDamage": 0,
+    "speed": 1.43,
+    "criticalChance": 0.18,
+    "criticalDamage": 1.42,
+    "accuracy": 0.784,
+    "defensePenetration": 29.0,
+    "doubleAttackChance": 0.0,
+    "baseSellPrice": 0,
+    "enhancement": 0,
+    "transcendence": 0,
+    "investedGold": 0.0,
+    "investedEnhancementStones": 0,
+    "investedTranscendenceStones": 0,
+    "stack": {
+      "enabled": false,
+      "currentStacks": 0,
+      "maxStacks": 0,
+      "damagePerStack": 0
+    },
+    "skills": [
+      {
+        "skill_name": "방전",
+        "skill_type": "active",
+        "skill_description": "공격 시 2.5% 확률로 적을 5초간 감전 상태로 만듭니다. 쿨타임 10초",
+        "skill_description_detail": "감전 - 피격시 최대 체력의 3%에 해당하는 추가피해(보스 몬스터의 경우 1/2 적용). 최대 데미지 62,500, ",
+        "skill_effect": [
+          {
+            "effect_name": "applyShock",
+            "params": {
+              "chance": 0.025,
+              "duration": 5,
+              "trigger": "onHit",
+              "stackable": false,
+              "cooldown": 10,
+              "maxDmg": 62500
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10022,
+    "name": "예리함",
+    "imageName": "unique/rapier/10022.png",
+    "rarity": "Rarity.unique",
+    "type": "WeaponType.rapier",
+    "description": "매우 예리하게 벼려진 무기입니다. 치명타 확률이 증가합니다.",
+    "baseLevel": 1900,
     "baseDamage": 0,
     "speed": 1.43,
     "criticalChance": 0.18,
@@ -559,631 +1095,16 @@
     },
     "skills": [
       {
-        "skill_name": "사악한 저주",
+        "skill_name": "날카로운 일격",
         "skill_type": "passive",
-        "skill_description": "공격속도가 95% 감소합니다.",
-        "skill_description_detail": "공격속도 -95%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatDebuff",
-            "params": {
-              "stat": "speed",
-              "value": 0.05,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "저주의 반향",
-        "skill_type": "passive",
-        "skill_description": "공격력이 1000% 증가합니다.",
-        "skill_description_detail": "",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 10.0,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      },
-      {
-        "skill_name": "의지 상실",
-        "skill_type": "passive",
-        "skill_description": "클릭 공격을 할 수 없게 됩니다.",
-        "skill_description_detail": "무기 해제 시 클릭 공격이 활성화 됩니다.",
-        "skill_effect": [{ "effect_name": "disableManualAttack", "params": {} }]
-      }
-    ]
-  },
-  {
-    "id": 30011,
-    "name": "명작",
-    "imageName": "epic/rapier/30011.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "헤파이스토스의 유일한 인간 제자인 불칸의 작품으로 대장장이들의 꿈과도 같은 무기입니다.",
-    "baseLevel": 1000,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 34.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": false,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "불칸 에디션",
-        "skill_type": "passive",
-        "skill_description": "공격력이 50% 상승합니다. 공격속도가 30% 상승합니다. 치명타 확률이 25% 상승합니다. 명중률이 5% 상승합니다.",
-        "skill_description_detail": "",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "damage",
-              "value": 1.5,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 1.3,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "criticalChance",
-              "value": 0.25,
-              "isMultiplicative": false
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "accuracy",
-              "value": 0.5,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 30012,
-    "name": "보물",
-    "imageName": "epic/rapier/30012.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "매우 귀한 물건입니다. 지니고 있는 것 만으로도 막대한 부를 가져온다고 합니다.",
-    "baseLevel": 1000,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 34.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": false,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "재물운",
-        "skill_type": "passive",
-        "skill_description": "골드 획득량이 150% 증가합니다.",
-        "skill_description_detail": "",
-        "skill_effect": [
-          {
-            "effect_name": "applyGoldGainBoost",
-            "params": { "multiplier": 2.5 }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 30013,
-    "name": "최후의 속삭임",
-    "imageName": "epic/rapier/30013.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "체력이 낮은 적에게 더 많은 피해를 주는 특수한 무기입니다.",
-    "baseLevel": 1100,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 36.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": false,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "최후통첩",
-        "skill_type": "active",
-        "skill_description": "체력이 50% 이하인 적을 공격 시 공격력의 5%에 해당하는 추가 피해를 입힙니다.",
-        "skill_description_detail": "",
-        "skill_effect": [
-          {
-            "effect_name": "applyHpConditionalBonusDamage",
-            "params": {
-              "chance": 1.0,
-              "hpThreshold": 0.5,
-              "condition": "le",
-              "multiplier": 0.05,
-              "trigger": "onHit",
-              "cooldown": 0
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 30014,
-    "name": "지진",
-    "imageName": "epic/rapier/30014.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "강력한 대지마법이 각인되어있어, 일정 확률로 충격파를 발산하는 무기입니다.",
-    "baseLevel": 1200,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 38.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": false,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "충격파",
-        "skill_type": "active",
-        "skill_description": "공격 시 5% 확률로 공격력의 15배의 피해를 입힙니다. 쿨타임 7.5초",
-        "skill_description_detail": "",
-        "skill_effect": [
-          {
-            "effect_name": "applyMultiplierDamage",
-            "params": {
-              "chance": 0.05,
-              "trigger": "onHit",
-              "multiplier": 15.0,
-              "cooldown": 7.5
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 30015,
-    "name": "각성",
-    "imageName": "epic/rapier/30015.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "전투를 지속할수록 사용자의 감각을 깨워 점점 강해지는 무기입니다.",
-    "baseLevel": 1300,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 42.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": false,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "감각 깨우기",
-        "skill_type": "passive",
-        "skill_description": "공격 시 5초간 공격력 6.5% 증가",
-        "skill_description_detail": "최대중첩 - 20회",
-        "skill_effect": [
-          {
-            "effect_name": "applyStackingBuff",
-            "params": {
-              "trigger": "onHit",
-              "duration": 5,
-              "maxStacks": 20,
-              "stat": "damage",
-              "increasePerStack": 0.065,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 30016,
-    "name": "질풍",
-    "imageName": "epic/rapier/30016.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "강력한 바람마법이 각인되어있는 무기입니다. 더블어택 확률이 대폭 증가합니다.",
-    "baseLevel": 1400,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 44.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": false,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "속공",
-        "skill_type": "passive",
-        "skill_description": "바람마법으로 매우 빠르게 공격한다.",
-        "skill_description_detail": "더블 어택 확률 +20%",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "doubleAttackChance",
-              "value": 0.2,
-              "isMultiplicative": false
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 30017,
-    "name": "광부",
-    "imageName": "epic/rapier/30017.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "강화석 탐지 기능이 있어 특이한 이명이 생긴 무기입니다. 몬스터 처치시 획득하는 강화석의 획득량이 증가합니다.",
-    "baseLevel": 1500,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 46.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": false,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "광물 탐지",
-        "skill_type": "passive",
-        "skill_description": "몬스터 처치 시 강화석 추가 획득량 +5",
-        "skill_description_detail": "",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveEnhancementStoneGainBoost",
-            "params": { "flatBonus": 5 }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 30018,
-    "name": "서릿발",
-    "imageName": "epic/rapier/30018.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "강력한 얼음마법이 각인되어있어, 일정 확률로 적을 얼릴 수 있는 무기입니다.",
-    "baseLevel": 1500,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 50.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": false,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "냉기 주입",
-        "skill_type": "passive",
-        "skill_description": "공격 시 5% 확률로 적을 5초간 빙결 상태로 만듭니다. 쿨타임 7.5초",
-        "skill_description_detail": "빙결 - 피격시 최대 체력의 25%에 해당하는 추가 피해(보스 몬스터의 경우 1/2 적용). 최대 데미지 643,000",
-        "skill_effect": [
-          {
-            "effect_name": "applyFreeze",
-            "params": {
-              "chance": 0.05,
-              "duration": 5,
-              "trigger": "onHit",
-              "stackable": false,
-              "cooldown": 7.5,
-              "maxDmg": 643000
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 30019,
-    "name": "반중력",
-    "imageName": "epic/rapier/30019.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "강력한 중력 마법이 각인되어 엄청난 속도를 자랑하는 무기입니다. 줄어든 무게만큼 속도도 증가하였습니다.",
-    "baseLevel": 1600,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 52.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": false,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "반중력 각인",
-        "skill_type": "passive",
-        "skill_description": "공격력이 60% 감소합니다. 공격속도가 150% 증가합니다.",
-        "skill_description_detail": "",
-        "skill_effect": [
-          {
-            "effect_name": "applyPassiveStatDebuff",
-            "params": {
-              "stat": "damage",
-              "value": 0.4,
-              "isMultiplicative": true
-            }
-          },
-          {
-            "effect_name": "applyPassiveStatBoost",
-            "params": {
-              "stat": "speed",
-              "value": 2.5,
-              "isMultiplicative": true
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 30020,
-    "name": "위풍당당",
-    "imageName": "epic/rapier/30020.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "체력이 높은 적에게 더 많은 피해를 주는 특수한 무기입니다.",
-    "baseLevel": 1700,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 54.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": false,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "전투의지",
-        "skill_type": "active",
-        "skill_description": "체력이 50% 이상인 적을 공격 시 공격력의 5%에 해당하는 추가 피해를 입힙니다.",
-        "skill_description_detail": "",
-        "skill_effect": [
-          {
-            "effect_name": "applyHpConditionalBonusDamage",
-            "params": {
-              "chance": 1.0,
-              "hpThreshold": 0.5,
-              "condition": "ge",
-              "multiplier": 0.05,
-              "trigger": "onHit",
-              "cooldown": 0
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 30021,
-    "name": "낙뢰",
-    "imageName": "epic/rapier/30021.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "강력한 전기마법이 각인되어있어, 일정 확률로 적을 감전시킬 수 있습니다.",
-    "baseLevel": 1800,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 58.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": false,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "방전",
-        "skill_type": "active",
-        "skill_description": "공격 시 5% 확률로 적을 5초간 감전 상태로 만듭니다. 쿨타임 7.5초",
-        "skill_description_detail": "감전 - 피격시 최대 체력의 3%에 해당하는 추가피해(보스 몬스터의 경우 1/2 적용). 최대 데미지 125,000, ",
-        "skill_effect": [
-          {
-            "effect_name": "applyShock",
-            "params": {
-              "chance": 0.05,
-              "duration": 5,
-              "trigger": "onHit",
-              "stackable": false,
-              "cooldown": 7.5,
-              "maxDmg": 125000
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 30022,
-    "name": "매의 눈",
-    "imageName": "epic/rapier/30022.png",
-    "rarity": "Rarity.epic",
-    "type": "WeaponType.rapier",
-    "description": "매우 예리하게 벼려진 무기입니다. 치명타 확률이 대폭 증가합니다.",
-    "baseLevel": 1900,
-    "baseDamage": 0,
-    "speed": 1.43,
-    "criticalChance": 0.18,
-    "criticalDamage": 1.42,
-    "accuracy": 0.784,
-    "defensePenetration": 60.0,
-    "doubleAttackChance": 0.0,
-    "baseSellPrice": 0,
-    "enhancement": 0,
-    "transcendence": 0,
-    "investedGold": 0.0,
-    "investedEnhancementStones": 0,
-    "investedTranscendenceStones": 0,
-    "stack": {
-      "enabled": false,
-      "currentStacks": 0,
-      "maxStacks": 0,
-      "damagePerStack": 0
-    },
-    "skills": [
-      {
-        "skill_name": "날카로운 집중",
-        "skill_type": "passive",
-        "skill_description": "치명타 확률이 50% 증가합니다.",
+        "skill_description": "치명타 확률이 10% 증가합니다.",
         "skill_description_detail": "",
         "skill_effect": [
           {
             "effect_name": "applyPassiveStatBoost",
             "params": {
               "stat": "criticalChance",
-              "value": 0.5,
+              "value": 0.1,
               "isMultiplicative": false
             }
           }
@@ -1192,19 +1113,19 @@
     ]
   },
   {
-    "id": 30023,
-    "name": "회유",
-    "imageName": "epic/rapier/30022.png",
-    "rarity": "Rarity.epic",
+    "id": 10023,
+    "name": "걸작",
+    "imageName": "unique/rapier/10022.png",
+    "rarity": "Rarity.unique",
     "type": "WeaponType.rapier",
-    "description": "강력한 정신계마법이 각인된 무기입니다. 일정 확률로 적을 홀립니다.",
+    "description": "대장장이 윌터의 걸작 중 하나로, 마감이 완벽합니다.",
     "baseLevel": 2000,
     "baseDamage": 0,
     "speed": 1.43,
     "criticalChance": 0.18,
     "criticalDamage": 1.42,
     "accuracy": 0.784,
-    "defensePenetration": 62.0,
+    "defensePenetration": 31.0,
     "doubleAttackChance": 0.0,
     "baseSellPrice": 0,
     "enhancement": 0,
@@ -1220,20 +1141,25 @@
     },
     "skills": [
       {
-        "skill_name": "속삭임",
+        "skill_name": "마스터피스",
         "skill_type": "passive",
-        "skill_description": "공격 시 5% 확률로 적을 5초간 매혹 상태로 만듭니다. 쿨타임 7.5초",
-        "skill_description_detail": "매혹 - 매 피격시 방어력 2씩 감소",
+        "skill_description": "공격력이 25% 증가합니다. 공격속도가 15% 증가합니다.",
+        "skill_description_detail": "",
         "skill_effect": [
           {
-            "effect_name": "applyPoison",
+            "effect_name": "applyPassiveStatBoost",
             "params": {
-              "chance": 0.05,
-              "attackPerDefence": 2.0,
-              "duration": 5,
-              "trigger": "onHit",
-              "stackable": false,
-              "cooldown": 7.5
+              "stat": "damage",
+              "value": 1.25,
+              "isMultiplicative": true
+            }
+          },
+          {
+            "effect_name": "applyPassiveStatBoost",
+            "params": {
+              "stat": "speed",
+              "value": 1.15,
+              "isMultiplicative": true
             }
           }
         ]
